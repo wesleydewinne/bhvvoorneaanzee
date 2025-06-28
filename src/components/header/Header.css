@@ -1,0 +1,21 @@
+header {
+    grid-area: header;
+    width: 100%;
+    padding: 0 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+
+}
+
+header img {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100px;
+
+}
