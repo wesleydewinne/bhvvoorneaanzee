@@ -1,0 +1,19 @@
+.training-card-section {
+    padding: 2rem;
+    background-color: var();
+}
+
+.training-card-section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #1f2937;
+}
+
+.training-card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem 1.5rem;
+}

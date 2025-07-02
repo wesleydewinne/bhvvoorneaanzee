@@ -1,0 +1,33 @@
+.containerFactor {
+    gap: 1rem;
+    align-items: center;
+    /* display en flexDirection zet je inline via React */
+}
+
+.container-left {
+    flex: 1;
+}
+
+.container-right {
+    flex: 1;
+    max-width: 400px; /* max breedte van de afbeelding */
+}
+
+.container-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Mobiel: alles onder elkaar, ook als flexDirection inline staat */
+@media (max-width: 768px) {
+    .containerFactor {
+        flex-direction: column !important; /* overschrijft inline flexDirection */
+        align-items: flex-start;
+    }
+
+    .container-left,
+    .container-right {
+        max-width: 100%;
+    }
+}

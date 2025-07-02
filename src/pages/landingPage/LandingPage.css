@@ -1,0 +1,43 @@
+.hero-section {
+    padding: 80px 20px;
+    background: linear-gradient(to right, #ff6a00, #ffaa00);
+    color: white;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background-color: white;
+    color: #ff6a00;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.form-section {
+    padding: 60px 20px;
+    background: #f7f7f7;
+    text-align: center;
+}
+
+.lead-form input,
+.lead-form button {
+    display: block;
+    width: 90%;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.lead-form button {
+    background-color: #ff6a00;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

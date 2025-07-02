@@ -1,0 +1,95 @@
+.training-card {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 375px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #000; /* fallback kleur */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+}
+
+.training-card:hover {
+    transform: translateY(-19px);
+    box-shadow: 0 13px 20px rgba(0, 0, 0, 0.9);
+}
+
+/* Afbeelding als achtergrond */
+.training-card-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.training-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.training-card-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* boven-midden-onder */
+}
+
+.content-block {
+    /* Midden plaatsen */
+    margin: auto 0;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.9);
+    border-radius: 10px;
+    width: 100%;
+    padding: 16px 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.training-card-title {
+    font-size: 2.5rem;
+}
+.training-card-description {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+}
+
+/* Prijs en button onderaan */
+.training-card-pricing {
+    font-size: 1.3rem;
+    text-align: center;
+    color: white;
+    margin-bottom: 6px;
+}
+
+.training-card-button {
+    display: block;
+    padding: 10px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0);
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 0 0 0 0;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    backdrop-filter: blur(3px);
+    width: 100%;
+}
+/*!* Button onderaan *!*/
+
+.training-card-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+}
