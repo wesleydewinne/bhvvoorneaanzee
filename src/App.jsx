@@ -26,8 +26,6 @@ function App() {
                     {/*        element={<PrivateRoute>{element}</PrivateRoute>}*/}
                     {/*    />*/}
                     {/*))}*/}
-
-                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </main>
             <Footer />
