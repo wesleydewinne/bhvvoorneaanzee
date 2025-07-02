@@ -9,9 +9,9 @@ const Footer = () => {
                 <div className="footer-column">
                     <h4>Website</h4>
                     <ul>
-                        {/*<li><Link to="/training">Trainingen</Link></li>*/}
-                        {/*<li><Link to="/training-maatwerk">Maatwerk training</Link></li>*/}
-                        {/*<li><Link to="/training-modulair">Modulair trainen</Link></li>*/}
+                        <li><Link to="#">Trainingen</Link></li>
+                        <li><Link to="#">Maatwerk training</Link></li>
+                        <li><Link to="#">Modulair trainen</Link></li>
                         {/*<li><Link to="/bedrijfsveiligheid-oefen-en-borgen">oefenen en borgen</Link></li>*/}
                         {/*<li><Link to="/sitemap">sitemap</Link></li>*/}
                     </ul>
@@ -23,14 +23,14 @@ const Footer = () => {
                         {/*<li><Link to="/leveringsvoorwaarden">Leveringsvoorwaarden</Link></li>*/}
                         {/*<li><Link to="/cookies">Cookiebeleid</Link></li>*/}
                         {/*<li><Link to="/privacy">Privacyverklaring</Link></li>*/}
-                        {/*<li><Link to="/nieuwsbrief">Aanmelding nieuwsbrief</Link></li>*/}
+                        <li><Link to="#">Aanmelding nieuwsbrief</Link></li>
                     </ul>
                 </div>
 
                 <div className="footer-column">
                     <h4>Bedrijfsgegevens</h4>
                     <ul>
-                        {/*<li><Link to="/over-ons">Over ons</Link></li>*/}
+                        <li><Link to="#">Over ons</Link></li>
                         <li><Link to="#">Contact ons</Link></li>
                     </ul>
                 </div>
