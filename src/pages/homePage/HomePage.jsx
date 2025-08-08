@@ -3,6 +3,10 @@ import HeaderSection from "../../components/sections/headerSection/HeaderSection
 import reactLogo from "../../assets/image/react.svg";
 import TrainingCardSection from "../../components/sections/trainingSection/TrainingCardSection.jsx";
 import Card from "./../../data/training.json"
+import CardFallback from "../../assets/image/Card-Fallback.png"
+import LogosSection from "../../components/sections/logosSection/LogosSection.jsx";
+import CoverageSection from "../../components/sections/coverageSection/CoverageSection.jsx";
+import CoverageArea from "../../components/coverageArea/CoverageArea.jsx";
 
 
 
@@ -12,10 +16,10 @@ function HomePage() {
     const homeCards = Card.categories.map((category) => ({
         title: category.cardTitle,
         description: category.description,
-        image: category.image || '/images/fallback.jpg',
+        image: category.image || CardFallback,
         showPrice: false,
         buttonText: category.buttontext || 'Meer info',
-        buttonTo: `/training/${category.id}` // link naar subpagina
+        buttonTo: `/${category.id}`
     }));
 
     return (
@@ -26,13 +30,25 @@ function HomePage() {
                 backgroundImage={reactLogo}
             />
 
-            <TrainingCardSection title="Onze Trainingen" cards={homeCards} />
+            <TrainingCardSection title="Trainingsaanbod BHV Voorne aan Zee" cards={homeCards} />
             <section className="certificering-section">
 
-            </section>
-            <section className="footer-section">
+                <LogosSection />
+
+                {/*<CoverageSection*/}
+                {/*    id="verzorgingsgebied"*/}
+                {/*    ariaLabel="Verzorgingsgebied BHV Voorne aan Zee"*/}
+                {/*>*/}
+                {/*    /!*<h2 className="coverage-title">Ons Verzorgingsgebied</h2>*!/*/}
+                {/*    /!*<p className="coverage-subtext">*!/*/}
+                {/*    /!*    Wij verzorgen trainingen in Voorne aan Zee en omliggende gemeenten.*!/*/}
+                {/*    /!*</p>*!/*/}
+                {/*    <CoverageArea />*/}
+                {/*</CoverageSection>*/}
 
             </section>
+
+
         </>
     );
 }

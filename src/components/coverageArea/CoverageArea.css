@@ -1,0 +1,35 @@
+.coverage-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.coverage-subtext {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.coverage-map-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.coverage-map {
+    height: 400px;
+    width: 100%;
+}
+
+.leaflet-control-attribution {
+    opacity: 0.3;           /* maakt het logo/tekst semi-transparant */
+    font-size: 0.75rem;     /* iets kleiner lettertype */
+    transition: opacity 0.3s ease;
+    pointer-events: none;   /* zorgt dat je er niet per ongeluk op klikt */
+}
+
+/* Bij hover (optioneel), dan wordt het iets duidelijker */
+.leaflet-control-attribution:hover {
+    opacity: 0.7;
+    pointer-events: auto;
+}

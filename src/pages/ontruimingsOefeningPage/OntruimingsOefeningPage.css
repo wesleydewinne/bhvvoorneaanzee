@@ -1,0 +1,64 @@
+/* tile containers*/
+
+.inner-container-tile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: green;
+    color: white;
+}
+
+.inner-container-tile-reserve {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Text area */
+
+.text-ontruimingsoefening-top{
+    font-size: 1.6rem;
+    background-color: lightgray;
+    padding: 50px;
+}
+
+.text-buttons-ontruimingsoefening-bottum {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: lightgray;
+}
+
+.text-ontruimingsoefening-bottum {
+    display: flex;
+    font-size: 1.6rem;
+    margin: 25px 0 25px 50px;
+    justify-content: center;
+}
+
+.buttons-ontruimingsoefening {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 360px; /* Maximale breedte van de knoppencontainer */
+    margin: 0 auto; /* Center de knoppen met gelijke marges links en rechts */
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .text-buttons-ontruimingsoefening-bottum {
+        grid-template-columns: 1fr;
+    }
+
+    .text-ontruimingsoefening-bottum {
+        margin: 2rem; /* Voeg 20px marge toe aan alle zijdes */
+    }
+
+    .buttons-ontruimingsoefening {
+        width: 100%; /* Zorg dat de container flexibel blijft */
+        max-width: 360px; /* Behoud de maximale marge van 360px */
+        margin: 0 auto;
+    }
+}

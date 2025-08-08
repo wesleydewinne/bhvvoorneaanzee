@@ -1,0 +1,82 @@
+/* Algemeen voor secties */
+.section {
+    padding: 3rem 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    line-height: 1.7;
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #eee;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+/* Titels */
+.section h2 {
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+
+/* Paragrafen */
+.section p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 1rem;
+}
+
+/* Icon-lijsten */
+.icon-list,
+.section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-list li,
+.section ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.icon-list li svg,
+.section ul li svg {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+}
+
+/* Links */
+.section a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.section a:hover {
+    text-decoration: underline;
+    color: #004a99;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
+    .section p,
+    .section li {
+        font-size: 0.95rem;
+    }
+}

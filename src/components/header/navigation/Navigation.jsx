@@ -1,22 +1,28 @@
-import "./Navigation.css"
-import {NavLink} from "react-router-dom";
+import "./Navigation.css";
+import { NavLink } from "react-router-dom";
 
-
-function Navigation() {
+function Navigation({ isMenuOpen }) {
     return (
-        <>
-            <nav>
-                <ul className="navigation-links">
+        <nav className={isMenuOpen ? "open" : ""}>
+            <ul className="navigation-links">
+                <li>
+                    <NavLink className={({ isActive }) => isActive ? "active-link" : "default-link"} to="/bhv">
+                        BHV
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink className={({ isActive }) => isActive ? "active-link" : "default-link"} to="/ontruimingsoefening">
+                        Ontruimingsoefening
+                    </NavLink>
+                </li>
+            </ul>
+        </nav>
+    );
+}
 
-                    {/*<li>*/}
-                    {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
-                    {/*             to="/training/bhv">BHV</NavLink>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
-                    {/*             to="/ontruimingsoefening">Ontruimingsoefening</NavLink>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
+export default Navigation;
+
+{/*<li>*/}
                     {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
                     {/*             to="/ehbo">EHBO</NavLink>*/}
                     {/*</li>*/}
@@ -37,10 +43,3 @@ function Navigation() {
                     {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
                     {/*             to="/contact">Contact</NavLink>*/}
                     {/*</li>*/}
-                </ul>
-            </nav>
-        </>
-    );
-}
-
-export default Navigation;

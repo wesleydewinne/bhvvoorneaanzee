@@ -1,0 +1,42 @@
+/* Container van de hele sectie */
+.logos-section {
+    margin: 40px auto;      /* ruimte erboven en onder + centreren */
+    padding: 0 20px;        /* kleine padding aan zijkanten */
+    background-color: #fafafa;  /* lichte achtergrondkleur */
+    border-radius: 8px;     /* afgeronde hoeken */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* subtiele schaduw */
+    text-align: center;
+}
+
+/* Titel styling */
+.logos-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 2.4rem;
+    color: #222;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container voor logo's: flex rij met ruimte */
+.logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;  /* breekt netjes op kleinere schermen */
+}
+
+/* Elke logo afbeelding */
+.logo-image {
+    margin: 2rem 0;
+    height: 75px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    cursor: default;
+}
+
+/* Kleine hover animatie */
+.logo-image:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 4px rgba(0,0,0,0.2));
+}

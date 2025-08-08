@@ -1,0 +1,42 @@
+.checklist-section {
+    padding: 20px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.checklist-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.checklist li {
+    background-color: #f3f3f3;
+    padding: 16px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.checklist li:hover {
+    background-color: #e1f5e6;
+}
+
+/* Responsief: onder 700px alle items onder elkaar */
+@media (max-width: 700px) {
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+}

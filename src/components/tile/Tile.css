@@ -1,0 +1,42 @@
+.tile {
+    display: flex;
+    width: 500px;
+    height: auto;
+    margin: 20px 2px;
+    padding: 0;
+    text-align: center;
+}
+
+
+.tile img {
+    display: flex;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.tile-content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.tile h2 {
+    font-size: 2.5rem;
+    margin: 8px 0;
+}
+
+.tile i {
+    font-size: 1.6rem;
+    padding: 25px 0;
+
+}
+
+.tile p {
+    font-size: 1.6rem;
+    padding: 0 35px;
+}
+
+

@@ -1,0 +1,26 @@
+/* Basisstijl voor individuele navigatiebuttons */
+.navigation-button {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    margin: 0.5rem;
+    background-color: #e63946;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.navigation-button:hover {
+    background-color: #c62828;
+    transform: translateY(-2px);
+}
+
+/* Actieve knop */
+.navigation-button.active {
+    background-color: #1d3557;
+    pointer-events: none;
+    box-shadow: 0 0 8px rgba(29, 53, 87, 0.4);
+}

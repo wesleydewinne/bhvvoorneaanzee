@@ -1,0 +1,63 @@
+/* src/pages/ontruimingsOefeningPage/fase/Fase.css */
+
+.fase-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.fase-container h1 {
+    color: #cc3300;
+    margin-bottom: 1rem;
+}
+
+.fase-container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.fase-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.checklist {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+
+.checklist li {
+    background: #fff;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-left: 5px solid #cc3300;
+    border-radius: 4px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.fase-button {
+    display: inline-block;
+    background-color: #cc3300;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.fase-button:hover {
+    background-color: #b32a00;
+}
