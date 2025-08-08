@@ -15,6 +15,10 @@ function Navigation({ isMenuOpen }) {
                         Ontruimingsoefening
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}
+                             to="/ehbo">EHBO</NavLink>
+                </li>
             </ul>
         </nav>
     );
@@ -22,10 +26,7 @@ function Navigation({ isMenuOpen }) {
 
 export default Navigation;
 
-{/*<li>*/}
-                    {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
-                    {/*             to="/ehbo">EHBO</NavLink>*/}
-                    {/*</li>*/}
+
 
                     {/*<li>*/}
                     {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
