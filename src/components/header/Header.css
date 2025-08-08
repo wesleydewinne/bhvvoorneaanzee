@@ -17,5 +17,10 @@ header img {
     align-items: flex-start;
     align-content: flex-start;
     width: 100px;
+}
 
+@media (max-width: 768px) {
+    header img {
+        ;
+    }
 }

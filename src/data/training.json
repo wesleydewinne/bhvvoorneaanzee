@@ -4,14 +4,14 @@
       "id": "bhv",
       "cardTitle": "BHV Training",
       "description": "Volg een basis- of herhalingscursus",
-      "image": "https://i.imgur.com/QYWAcXk.jpeg",
+      "image": "",
       "alt": "Foto van een BHV-training",
       "buttontext": "Bekijk BHV-trainingen",
       "trainings": [
         {
           "type": "2 daagse basis cursus",
           "title": "Basiscursus BHV",
-          "cardImage": "https://i.imgur.com/QYWAcXk.jpeg",
+          "cardImage": "",
           "cardAlt": "Foto van een basiscursus BHV",
           "pricing": [
             {
@@ -35,7 +35,7 @@
         {
           "type": "1 daagse herhaling cursus",
           "title": "Herhaling BHV",
-          "cardImage": "https://i.imgur.com/QYWAcXk.jpeg",
+          "cardImage": "",
           "cardAlt": "Foto van een herhalingscursus BHV",
           "pricing": [
             {
@@ -47,7 +47,7 @@
         {
           "type": "1/2 dag herhaling met E-learning",
           "title": "Herhaling BHV met E-learning",
-          "cardImage": "https://i.imgur.com/QYWAcXk.jpeg",
+          "cardImage": "",
           "cardAlt": "Foto van een herhalingscursus BHV",
           "pricing": [
             {
@@ -62,7 +62,7 @@
       "id": "ploegleider",
       "cardTitle": "BHV Ploegleider Training",
       "description": "Volg een basis- of herhalingscursus",
-      "image": "https://i.imgur.com/QYWAcXk.jpeg",
+      "image": "",
       "alt": "Foto van een BHV Ploegleider-training",
       "buttontext": "Bekijk ploegleider-trainingen",
       "trainings": [
@@ -96,7 +96,7 @@
       "id": "ontruimingsoefening",
       "cardTitle": "Ontruimingsoefeningen",
       "description": "Volg een ontruimingsoefening op locatie",
-      "image": "https://i.imgur.com/QYWAcXk.jpeg",
+      "image": "",
       "alt": "Foto van een ontruimingsoefening",
       "buttontext": "Bekijk ontruimingsoefeningen",
       "trainings": [
@@ -141,7 +141,7 @@
       "id": "ehbo",
       "cardTitle": "EHBO Training",
       "description": "Volg een basis- of herhalingscursus EHBO",
-      "image": "https://i.imgur.com/QYWAcXk.jpeg",
+      "image": "",
       "alt": "Foto van een EHBO-training",
       "buttontext": "Bekijk EHBO-trainingen",
       "trainings": [
@@ -166,7 +166,7 @@
       "id": "workshop",
       "cardTitle": "Workshops",
       "description": "Volg diverse praktische workshops op het gebied van BHV en EHBO",
-      "image": "https://i.imgur.com/QYWAcXk.jpeg",
+      "image": "",
       "alt": "Foto van diverse workshops",
       "buttontext": "Bekijk workshops",
       "trainings": [
