@@ -16,7 +16,7 @@
           "pricing": [
             {
               "individualPrice": 395.00,
-              "groupPrice": 3700.00
+              "groupPrice": "prijs op aanvraag"
             }
           ]
         },
@@ -28,7 +28,7 @@
           "pricing": [
             {
               "individualPrice": 295.00,
-              "groupPrice": 2700.00
+              "groupPrice": "prijs op aanvraag"
             }
           ]
         },
@@ -40,7 +40,7 @@
           "pricing": [
             {
               "individualPrice": 210.00,
-              "groupPrice": 1950.00
+              "groupPrice": "prijs op aanvraag"
             }
           ]
         },
@@ -52,7 +52,7 @@
           "pricing": [
             {
               "individualPrice": 135.00,
-              "groupPrice": 1200.00
+              "groupPrice": "prijs op aanvraag"
             }
           ]
         }
@@ -74,7 +74,7 @@
           "pricing": [
             {
               "individualPrice": 135.00,
-              "groupPrice": 1200.00
+              "groupPrice": "prijs op aanvraag"
             }
           ]
         },
@@ -86,7 +86,7 @@
           "pricing": [
             {
               "individualPrice": 135.00,
-              "groupPrice": 1200.00
+              "groupPrice": "prijs op aanvraag"
             }
           ]
         }

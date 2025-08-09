@@ -9,7 +9,7 @@ import data from "../../data/training.json";
 import TrainingCardSection from '../../components/sections/trainingSection/TrainingCardSection.jsx';
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
-import headerImage from "../../assets/image/react.svg";
+
 import fallback from "../../assets/image/fallbackAfbeelding.png";
 import groepImage from "../../assets/image/algemeneAfbeeldingen/groep.png"
 
