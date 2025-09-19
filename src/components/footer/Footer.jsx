@@ -12,6 +12,7 @@ const Footer = () => {
                         <li><Link to="#">Trainingen</Link></li>
                         <li><Link to="#">Maatwerk training</Link></li>
                         <li><Link to="#">Modulair trainen</Link></li>
+                        <li><Link to="/blog">Blogs</Link></li>
                         {/*<li><Link to="/bedrijfsveiligheid-oefen-en-borgen">oefenen en borgen</Link></li>*/}
                         {/*<li><Link to="/sitemap">sitemap</Link></li>*/}
                     </ul>
@@ -23,6 +24,7 @@ const Footer = () => {
                         {/*<li><Link to="/leveringsvoorwaarden">Leveringsvoorwaarden</Link></li>*/}
                         {/*<li><Link to="/cookies">Cookiebeleid</Link></li>*/}
                         {/*<li><Link to="/privacy">Privacyverklaring</Link></li>*/}
+                        <li><Link to="/veelgestelde-vragen">Veelgestelde vragen</Link></li>
                         <li><Link to="#">Aanmelding nieuwsbrief</Link></li>
                     </ul>
                 </div>

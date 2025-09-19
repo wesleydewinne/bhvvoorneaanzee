@@ -1,154 +1,122 @@
-/* Algemeen voor de pagina */
-.section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-}
-
-/* Sectie titels */
-.section h2 {
-    font-size: 2.2rem;
-    color: #ff8000;
-    margin-bottom: 15px;
-    border-bottom: 3px solid #ff8000;
-    padding-bottom: 5px;
-    font-weight: 700;
-}
-
-/* Paragrafen */
-.section p {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-}
-
-/* Links */
-.section a {
-    color: #ff6f61;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-    font-size: 1.6rem;
-}
-.section a:hover,
-.section a:focus {
-    color: #ff8000;
-    text-decoration: underline;
-}
-
-/* Icon lijst styling */
-.icon-list {
-    list-style: none;
-    padding-left: 0;
+/* ---------- Basis layout ---------- */
+.bhv-info-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 30px;
+    flex-direction: column;
+    gap: 6rem;
+    padding: 5rem 2rem;
+    background: linear-gradient(180deg, #fff, #f9fafb);
+}
+
+/* ---------- Secties met diagonale achtergrond ---------- */
+.section {
+    position: relative;
+    padding: 4rem 3rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-light);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 150%;
+    height: 200px;
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-active-link));
+    transform: rotate(-3deg);
+    z-index: -1;
+    opacity: 0.08;
+}
+
+/* ---------- Icon tasks ---------- */
+.icon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    padding: 0;
+    list-style: none;
 }
 
 .icon-list li {
-    flex: 1 1 300px;
     display: flex;
     align-items: center;
-    background: #fff7ef;
-    border-radius: 8px;
-    padding: 12px 20px;
-    box-shadow: 0 4px 8px rgba(255, 128, 0, 0.15);
-    font-weight: 600;
-    color: #444;
-    font-size: 1.6rem;
-    transition: background 0.3s ease;
+    gap: 1rem;
+    padding: 1.6rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #ffffff, #f3f5ff);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.icon-list li svg {
-    margin-right: 15px;
-    flex-shrink: 0;
-    font-size: 1.8rem;
+.icon-list li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-/* Taken lijst (artikel 3 & 15) */
+/* ---------- Arbowet artikelen ---------- */
+.rie-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.rie-article {
+    background: linear-gradient(135deg, #fff, #fafafa);
+    border-left: 6px solid var(--color-secondary);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.rie-article:hover {
+    transform: translateY(-5px);
+}
+
+.rie-article h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+}
+
+.rie-article li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+}
+
+/* ---------- Maatgevende factoren ---------- */
 .section ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
     list-style: none;
-    padding-left: 0;
-    margin-bottom: 25px;
-    display: block;
+    padding: 0;
 }
 
 .section ul li {
-    position: relative;
-    padding-left: 30px;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
-    color: #555;
-    font-weight: 500;
+    padding: 1.2rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #fff, #f5f5f5);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
+    gap: 0.6rem;
 }
 
-.section ul li svg {
-    position: absolute;
-    left: 0;
-    font-size: 1.6rem;
-    flex-shrink: 0;
-    margin-right: 8px;
+/* ---------- Animaties ---------- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Maatgevende factoren lijst iets lichter */
-.section ul li:nth-child(n) {
-    font-weight: 400;
-    color: #666;
-}
-
-/* HeaderSection background image styling */
-.outer-container {
-    background: #fff9f3;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .icon-list {
-        flex-direction: column;
-    }
-
-    .icon-list li {
-        flex: 1 1 100%;
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+    .rie-layout {
+        grid-template-columns: 1fr;
     }
 }
-
-/* Rie layout sectie */
-.rie-layout {
-    display: flex;
-    gap: 40px;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgb(0 0 0 / 0.1);
-    color: #333;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Linkerkant: artikel 3 en 15 onder elkaar */
-.rie-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* Ieder artikel blok styling */
-.rie-article h2 {
-    color: #ff8000;
-    margin-bottom: 12px;
-    border-bottom: 3px solid #ff8000;
-    padding-bottom: 4px;
-    font-size: 2rem;
-}
-
-

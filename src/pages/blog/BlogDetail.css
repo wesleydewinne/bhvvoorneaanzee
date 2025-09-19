@@ -1,0 +1,202 @@
+/* ============================== */
+/* BLOG STYLING                   */
+/* ============================== */
+
+/* ---------- Container ---------- */
+.blog-container {
+    max-width: 80rem; /* 800px */
+    margin: 0 auto;
+    padding: var(--space-md);
+    font-family: var(--font-base);
+    line-height: 1.6;
+    color: var(--color-dark);
+}
+
+/* ---------- Header met afbeelding en overlay ---------- */
+.blog-header {
+    position: relative;
+    width: 100%;
+    height: 30rem; /* 300px */
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.blog-image,
+.blog-image-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #000;
+}
+
+.blog-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.blog-header h1 {
+    position: relative;
+    z-index: 2;
+    color: var(--color-light);
+    font-size: clamp(3rem, 5vw, 4rem);
+    margin: 0;
+    padding: 0 var(--space-md);
+}
+
+/* ---------- Blog content ---------- */
+.blog-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--space-lg);
+}
+
+.blog-detail-content .blog-block {
+    margin-bottom: var(--space-md);
+    max-width: 70rem; /* 700px */
+    width: 100%;
+    text-align: center;
+}
+
+/* Paragraphs */
+.blog-block p {
+    font-size: clamp(1.6rem, 2vw, 1.9rem);
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary);
+}
+
+/* Headings */
+.blog-block h2,
+.blog-block h3,
+.blog-block h4 {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin: var(--space-md) 0 var(--space-sm);
+    color: var(--color-dark);
+    text-align: center;
+}
+
+/* Lijsten */
+.blog-block ol,
+.blog-block ul {
+    margin: 0 auto var(--space-md);
+    text-align: left;
+    display: inline-block;
+}
+
+.blog-block li {
+    font-size: 1.7rem;
+    margin-bottom: 0.6rem;
+}
+
+/* Afbeeldingen */
+.blog-inline-image {
+    display: block;
+    margin: var(--space-md) auto;
+    border-radius: var(--radius-lg);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Video’s */
+.blog-block iframe {
+    display: block;
+    margin: var(--space-md) auto;
+    width: 100%;
+    max-width: 70rem;
+    height: 60rem;
+    border-radius: var(--radius-lg);
+    border: none;
+}
+
+/* Citaten */
+.blog-block blockquote {
+    font-style: italic;
+    border-left: 4px solid var(--color-secondary);
+    padding-left: var(--space-sm);
+    color: #555;
+    margin: var(--space-md) auto;
+    text-align: left;
+    max-width: 60rem;
+}
+
+/* Code blokken */
+.blog-block pre {
+    background: #f5f5f5;
+    padding: var(--space-sm);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--space-md) auto;
+    max-width: 70rem;
+    text-align: left;
+    font-size: 1.4rem;
+}
+
+/* Divider */
+.blog-block hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: var(--space-lg) auto;
+    width: 80%;
+}
+
+/* ---------- Footer ---------- */
+.blog-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-lg);
+    width: 100%;
+    max-width: 70rem;
+}
+
+.blog-meta {
+    font-size: 1.4rem;
+    color: #666;
+    margin: 0;
+    text-align: right;
+}
+
+.read-more {
+    background-color: var(--color-active-link);
+    color: var(--color-light);
+    border: none;
+    padding: 1rem 1.6rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: background 0.3s ease;
+}
+
+.read-more:hover {
+    background-color: #003bb5;
+    color: var(--color-light);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+    .blog-header {
+        height: 20rem;
+    }
+
+    .blog-block iframe {
+        height: 20rem;
+    }
+
+    .blog-footer {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+    }
+}

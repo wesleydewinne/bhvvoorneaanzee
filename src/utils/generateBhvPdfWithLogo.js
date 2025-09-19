@@ -1,5 +1,5 @@
 import { jsPDF } from 'jspdf';
-import logo from '../assets/image/logo.png';
+import logo from '../assets/image/algemeneAfbeeldingen/logo.png';
 
 // maximale breedte x 210
 // maximale hoogte Y 297

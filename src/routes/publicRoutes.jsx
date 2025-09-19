@@ -11,10 +11,17 @@ import Fase1 from "../pages/ontruimingsOefeningPage/fase/Fase1.jsx";
 import Fase2 from "../pages/ontruimingsOefeningPage/fase/Fase2.jsx";
 import Fase3 from "../pages/ontruimingsOefeningPage/fase/Fase3.jsx";
 import Fase4 from "../pages/ontruimingsOefeningPage/fase/Fase4.jsx";
+import Faq from "../pages/faq/Faq.jsx";
+import BlogPage from "../pages/blog/BlogPage.jsx";
+import BlogDetail from "../pages/blog/BlogDetail.jsx";
+
+
 
 const publicRoutes = [
     { path: '/', element: <HomePage />},
     { path: '/bhv', element: <BhvPage /> },
+    // { path: '/ploegleider' element: </ploegleiderPage /> },
+    // { path: '/ehbo' element: </ehboPage />
     { path: 'ontruimingsoefening', element: <OntruimingsPage /> },
     { path: 'ontruimingsoefening/fase0', element: <Fase0 /> },
     { path: 'ontruimingsoefening/fase1', element: <Fase1 /> },
@@ -22,6 +29,9 @@ const publicRoutes = [
     { path: 'ontruimingsoefening/fase3', element: <Fase3 /> },
     { path: 'ontruimingsoefening/fase4', element: <Fase4 /> },
     { path: '/landingpage', element: <LandingPage /> },
+    { path: '/veelgestelde-vragen', element: <Faq /> },
+    { path: '/blog', element: <BlogPage /> },
+    { path: '/blog/:slug', element: <BlogDetail />}
 
 
 ];

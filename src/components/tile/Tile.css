@@ -1,16 +1,19 @@
 .tile {
     display: flex;
-    width: 500px;
-    height: auto;
-    margin: 20px 2px;
-    padding: 0;
+    max-width: 500px;   /* max 500px */
+    width: 100%;        /* mag kleiner worden */
+    margin: 20px auto;  /* verticale ruimte + horizontaal centreren */
+    padding: 0 20px;    /* altijd wat binnenruimte aan de zijkanten */
     text-align: center;
+    justify-content: center;
+    box-sizing: border-box; /* zodat padding meetelt binnen de 100% breedte */
 }
 
-
 .tile img {
-    display: flex;
-    max-width: 100%;
+    max-width: 100%;      /* schaalt met de tile */
+    height: auto;
+    display: block;
+    margin: 0 auto;       /* centreert de afbeelding binnen de tile */
     border-radius: 10px;
 }
 

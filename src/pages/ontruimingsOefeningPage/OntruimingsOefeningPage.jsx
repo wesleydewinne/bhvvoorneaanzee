@@ -6,7 +6,7 @@ import { PersonSimpleRun } from "phosphor-react";
 
 import tabletop from "../../assets/image/ontruimingsoefening/Ontruimingsoefening tabletop.png";
 import ontruiming2 from "../../assets/image/ontruimingsoefening/ontruiming.png";
-import CardFallback from "../../assets/image/Card-Fallback.png";
+import CardFallback from "../../assets/image/algemeneAfbeeldingen/Card-Fallback.png";
 
 import React from "react";
 

@@ -1,0 +1,79 @@
+.faq-section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.faq-category {
+    margin-bottom: 1.5rem; /* ruimte tussen categorieën */
+}
+
+.faq-header {
+    display: flex;
+    justify-content: center; /* horizontaal centreren van de tekst */
+    align-items: center;     /* verticaal centreren */
+    cursor: pointer;
+    padding: 1rem 2rem;      /* meer ruimte rond de tekst */
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    font-size: 1.5rem;       /* grotere tekst */
+    font-weight: bold;        /* optioneel: dikgedrukt */
+    text-align: center;
+    position: relative;
+}
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: orange;
+}
+
+/* Zorg dat het + / x icoon rechts blijft */
+.faq-icon {
+    position: absolute;
+    right: 1rem;
+    font-size: 2.3rem;
+    transition: transform 0.9s;
+}
+
+
+
+.faq-icon.open {
+    transform: rotate(180deg);
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    transition: max-height 0.5s ease;
+}
+
+.faq-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center de inhoud horizontaal */
+    text-align: center;
+    padding: 1rem 0; /* ruimte boven en onder */
+    border-bottom: 1px solid #ddd; /* optionele scheidingslijn */
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    font-weight: bold;
+    font-size: 1.8rem;
+    padding-top: 0.5rem;
+    width: 100%;
+    max-width: 600px; /* optioneel: maximale breedte */
+}
+
+.faq-answer {
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 600px; /* zelfde als vraag */
+}

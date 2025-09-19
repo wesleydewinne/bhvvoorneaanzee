@@ -9,9 +9,8 @@ import data from "../../data/training.json";
 import TrainingCardSection from '../../components/sections/trainingSection/TrainingCardSection.jsx';
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
-
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-import groepImage from "../../assets/image/algemeneAfbeeldingen/groep.png"
+import groepImage from "../../assets/image/algemeneAfbeeldingen/groep.png";
 
 function BhvPage() {
     const bhvCategory = data.categories.find(category => category.id === "bhv");
@@ -40,18 +39,9 @@ function BhvPage() {
     });
 
     const bhvTasks = [
-        {
-            icon: <FirstAidKit size={25} color="#ff8000" weight="bold" />,
-            task: "Het verlenen van eerste hulp bij ongevallen"
-        },
-        {
-            icon: <FireExtinguisher size={25} color="#ff6f61" weight="regular" />,
-            task: "Het beperken en bestrijden van brand en het beperken van de gevolgen van ongevallen"
-        },
-        {
-            icon: <Fire size={25} color="#ff8000" weight="bold" />,
-            task: "Het in noodsituaties alarmeren en evacueren van alle aanwezigen"
-        },
+        { icon: <FirstAidKit size={25} color="#ff8000" weight="bold" />, task: "Het verlenen van eerste hulp bij ongevallen" },
+        { icon: <FireExtinguisher size={25} color="#ff6f61" weight="regular" />, task: "Het beperken en bestrijden van brand en het beperken van de gevolgen van ongevallen" },
+        { icon: <Fire size={25} color="#ff8000" weight="bold" />, task: "Het in noodsituaties alarmeren en evacueren van alle aanwezigen" },
     ];
 
     const articleThreeTasks = [
@@ -85,78 +75,101 @@ function BhvPage() {
                 backgroundImage={groepImage}
             />
 
-            <section className="section">
-                <h2>Wat is BHV?</h2>
-                <p>
-                    Bedrijfshulpverlening (BHV) is de georganiseerde hulp die bedrijven bieden in noodsituaties.
-                    Denk aan brand, ongevallen of evacuatie. Elk bedrijf in Nederland is verplicht om BHV goed te regelen.
-                    Dit betekent dat er altijd voldoende opgeleide BHV’ers aanwezig moeten zijn.
-                </p>
-            </section>
+            <main className="bhv-info-grid">
 
-            <section className="section">
-                <h2>Wat doet een BHV’er?</h2>
-                <ul className="icon-list">
-                    {bhvTasks.map((item, index) => (
-                        <li key={index}>
-                            {item.icon}
-                            <span>{item.task}</span>
-                        </li>
-                    ))}
-                </ul>
-            </section>
+                {/* Wat is BHV */}
+                <section className="section full-width-section">
+                    <article className="content-block">
+                        <header>
+                            <h2>Wat is BHV?</h2>
+                        </header>
+                        <p>
+                            Bedrijfshulpverlening (BHV) zorgt ervoor dat een bedrijf snel en effectief kan reageren
+                            in noodsituaties. Denk hierbij aan het verlenen van eerste hulp bij ongevallen, het
+                            beperken en bestrijden van brand, en het veilig evacueren van medewerkers en bezoekers.
+                            In Nederland is het verplicht dat bedrijven BHV goed regelen, zodat er altijd voldoende
+                            opgeleide BHV’ers aanwezig zijn en de juiste materialen en procedures beschikbaar zijn.
+                            Goed georganiseerde BHV helpt ernstige schade en letsel te voorkomen en geeft medewerkers
+                            en bezoekers de zekerheid dat er in noodsituaties adequaat wordt gehandeld.
+                        </p>
+                    </article>
+                </section>
 
-            <section className="section">
-                <h2>Artikel 3 Arbowet: Algemene zorgplicht</h2>
-                <ul>
-                    {articleThreeTasks.map((task, index) => (
-                        <li key={index}>
-                            <CheckCircle size={20} color="#ff8000" weight="bold" />
-                            {task}
-                        </li>
-                    ))}
-                </ul>
-                <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0010346&hoofdstuk=2&artikel=3" target="_blank" rel="noreferrer">
-                    Bekijk artikel 3 op overheid.nl
-                </a>
-            </section>
+                {/* Taken van een BHV'er */}
+                <div className="section icon-tasks">
+                    <h2>Wat doet een BHV’er?</h2>
+                    <ul className="icon-list">
+                        {bhvTasks.map((item, index) => (
+                            <li key={index}>
+                                {item.icon}
+                                <span>{item.task}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 
-            <section className="section">
-                <h2>Artikel 15 Arbowet: BHV-verplichting</h2>
-                <ul>
-                    {articleFifteenTasks.map((task, index) => (
-                        <li key={index}>
-                            <CheckCircle size={20} color="#ff8000" weight="bold" />
-                            {task}
-                        </li>
-                    ))}
-                </ul>
-                <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0010346&hoofdstuk=3&artikel=15" target="_blank" rel="noreferrer">
-                    Bekijk artikel 15 op overheid.nl
-                </a>
-            </section>
+                {/* Artikelen Arbowet + afbeelding */}
+                <section className="section rie-layout">
 
-            <section className="section">
-                <h2>Maatgevende factoren voor BHV</h2>
-                <ul>
-                    {maatgevendeFactoren.map((factor, index) => (
-                        <li key={index}>
-                            <CheckCircle size={18} color="#444" weight="regular" /> {factor}
-                        </li>
-                    ))}
-                </ul>
-                <p>
-                    Meer informatie over het maken van een RI&E vind je op&nbsp;
-                    <a href="https://www.rie.nl/over-rie/een-rie-maken#hoe-kies-je-het-juiste-hulpmiddel" target="_blank" rel="noreferrer">
-                        rie.nl
-                    </a>
-                </p>
-            </section>
+                    <article className="rie-article article-top">
+                        <h2>Artikel 3 Arbowet: Algemene zorgplicht</h2>
+                        <ul>
+                            {articleThreeTasks.map((task, index) => (
+                                <li key={index}>
+                                    <CheckCircle size={20} color="#ff8000" weight="bold" /> {task}
+                                </li>
+                            ))}
+                        </ul>
+                        <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0010346&hoofdstuk=2&artikel=3" target="_blank" rel="noreferrer">
+                            Bekijk artikel 3 op overheid.nl
+                        </a>
+                    </article>
 
-            <TrainingCardSection
-                title="Kies jouw BHV Training"
-                cards={bhvCards}
-            />
+                    <article className="rie-article article-bottom">
+                        <h2>Artikel 15 Arbowet: BHV-verplichting</h2>
+                        <ul>
+                            {articleFifteenTasks.map((task, index) => (
+                                <li key={index}>
+                                    <CheckCircle size={20} color="#ff8000" weight="bold" /> {task}
+                                </li>
+                            ))}
+                        </ul>
+                        <a href="https://wetten.overheid.nl/jci1.3:c:BWBR0010346&hoofdstuk=3&artikel=15" target="_blank" rel="noreferrer">
+                            Bekijk artikel 15 op overheid.nl
+                        </a>
+                    </article>
+
+                    <aside className="rie-right">
+                        <img src={groepImage} alt="BHV training"/>
+                    </aside>
+
+                </section>
+
+                {/* Maatgevende factoren */}
+                <section className="section">
+                    <h2>Maatgevende factoren voor BHV</h2>
+                    <ul>
+                        {maatgevendeFactoren.map((factor, index) => (
+                            <li key={index}>
+                                <CheckCircle size={18} color="#444" weight="regular"/> {factor}
+                            </li>
+                        ))}
+                    </ul>
+                    <p>
+                        Meer informatie over het maken van een RI&E vind je op&nbsp;
+                        <a href="https://www.rie.nl/over-rie/een-rie-maken#hoe-kies-je-het-juiste-hulpmiddel" target="_blank" rel="noreferrer">
+                            rie.nl
+                        </a>
+                    </p>
+                </section>
+
+                {/* Trainingskaarten */}
+                <TrainingCardSection
+                    title="Kies jouw BHV Training"
+                    cards={bhvCards}
+                />
+
+            </main>
         </>
     );
 }

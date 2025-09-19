@@ -1,0 +1,86 @@
+/* Grid container */
+.cta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1100px;
+    padding: 1rem;
+}
+
+/* Vanaf tablet naast elkaar */
+@media (min-width: 768px) {
+    .cta-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+    }
+}
+
+/* Ieder item als flexbox */
+.cta-item {
+    display: flex;
+    flex-direction: column;   /* Titel + tekst boven, button onder */
+    justify-content: space-between; /* Zorgt dat de button naar beneden gaat */
+    text-align: center;
+    padding: 0 1.5rem;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+/* Binnenste items krijgen geen dubbele lijnen */
+.cta-item:first-child {
+    border-left: none;
+}
+.cta-item:last-child {
+    border-right: none;
+}
+
+/* Titels */
+.cta-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+    display: inline-block;   /* zorgt dat de lijn net onder de tekst blijft */
+    position: relative;
+    padding-bottom: 0.25rem; /* ruimte voor de lijn */
+}
+
+.cta-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;                     /* startpunt in het midden */
+    transform: translateX(-50%);   /* schuif de lijn zelf terug zodat hij gecentreerd is */
+    width: 50%;                    /* lijn is 50% van de tekstbreedte */
+    height: 3px;
+    background-color: #e85c0d;     /* oranje kleur */
+    border-radius: 2px;
+}
+
+/* Tekst */
+.cta-item p {
+    flex-grow: 1; /* duwt de button naar beneden */
+    font-size: 1.6rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 1.3rem;
+}
+
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    background-color: #e85c0d;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: auto; /* extra zekerheid dat hij onderaan staat */
+}
+
+.cta-button:hover {
+    background-color: #c94d0b;
+    color: #fff
+}

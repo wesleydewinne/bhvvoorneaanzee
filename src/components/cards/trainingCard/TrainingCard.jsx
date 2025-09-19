@@ -54,8 +54,8 @@ const TrainingCard = ({
                             <p>Individueel: €{Number(pricing.individualPrice).toFixed(2)} excl. BTW</p>
                         ) : null}
                         {pricing.groupPrice ? (
-                            <p>Groep: €{Number(pricing.groupPrice).toFixed(2)} excl. BTW</p>
-                        ) : null}
+                            <p>Groepsprijs: €{Number(pricing.groupPrice).toFixed(2)} excl. BTW</p>
+                        ) : "Groepsprijs: op aanvraag"}
                         {!pricing.individualPrice && !pricing.groupPrice && (
                             <p>Prijs op te vragen via email</p>
                         )}

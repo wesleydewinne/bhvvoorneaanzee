@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Hoe kan ik mij inschrijven voor een training?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inschrijven voor een BHV-training is eenvoudig en kan op verschillende manieren. Je kunt je rechtstreeks aanmelden via ons online inschrijfformulier, waarbij je meteen je gegevens en gewenste datum kunt doorgeven. Werk je bij een organisatie die de trainingen centraal regelt, dan verloopt de inschrijving meestal via je werkgever of HR-afdeling.\n\nTwijfel je over de juiste trainingsdatum of heb je specifieke wensen? Neem gerust contact met ons op, dan kijken we samen naar de mogelijkheden. Zo weet je zeker dat je altijd op het juiste moment de juiste training volgt."
+      },
+      "link": "mailto:info@bhvvoorneaanzee.nl?subject=Aanmelding%20BHV%20training",
+      "linkName": "Inschrijven via e-mail",
+      "category": "Praktische-informatie",
+      "priority": 1
+    },
+    {
+      "@type": "Question",
+      "name": "Kan ik mijn inschrijving annuleren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, annuleren kan kosteloos tot 14 dagen voor aanvang. Daarna kunnen er kosten in rekening worden gebracht.\n\n<a href='https://example.com/contact'>Contact opnemen</a>"
+      },
+      "link": "mailto:info@bhvvoorneaanzee.nl?subject=Annulering%20BHV%20training",
+      "linkName": "Annulering",
+      "category": "Kosten",
+      "priority": 2
+    },
+    {
+      "@type": "Question",
+      "name": "Wordt een EHBO- of BHV-cursus vergoed door de zorgverzekering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alleen een EHBO- of reanimatiecursus komt soms (deels) in aanmerking voor vergoeding via de aanvullende zorgverzekering. Dit verschilt per verzekeraar. Voor BHV- en Ploegleidertrainingen geldt geen vergoeding; deze kosten worden meestal door de werkgever betaald. Wil je weten of jij recht hebt op een vergoeding? Bekijk dan het actuele overzicht van zorgverzekeraars via de link vergoeding EHBO-cursus"
+      },
+      "link": "https://www.zorgwijzer.nl/vergoeding/ehbo-cursus",
+      "linkName": "Vergoeding EHBO & Reanimatie cursus",
+      "category": "Kosten",
+      "priority": 3
+    },
+
+    {
+      "@type": "Question",
+      "name": "Waarom kiezen voor het NIBHV training?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bij BHV Voorne aan Zee kiezen we bewust voor onafhankelijke certificering via het NIBHV. Dit keurmerk staat voor kwaliteit, betrouwbaarheid en transparantie. Het NIBHV ontwikkelt het lesmateriaal, stelt de examens op en controleert periodiek of opleiders voldoen aan de gestelde eisen. Dat betekent dat onze trainingen niet alleen aansluiten bij de Arbowet en de richtlijnen van toonaangevende organisaties, maar ook objectief en eerlijk getoetst worden. Voor u als werkgever biedt dit de zekerheid dat uw medewerkers écht beschikken over de juiste kennis en vaardigheden om in noodsituaties adequaat te handelen. Na succesvolle afronding ontvangen deelnemers een landelijk erkend diploma dat één jaar geldig is. Door jaarlijks een herhalingstraining te volgen, blijven zij bekwaam en up-to-date. Zo weet u dat de veiligheid in uw organisatie blijvend goed is gewaarborgd.\n\n<a href='https://www.nibhv.nl/onafhankelijke-certificering-bhv'>NIBHV onafhankelijke certificering</a>"
+      },
+      "link": "https://www.zorgwijzer.nl/vergoeding/ehbo-cursus",
+      "linkName": "Vergoeding EHBO & Reanimatie cursus",
+      "category": "Certificering",
+      "priority": 4
+    },
+
+
+
+    {
+      "@type": "Question",
+      "name": "Waarom kiezen voor het NIBHV training?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bij BHV Voorne aan Zee kiezen we bewust voor onafhankelijke certificering via het NIBHV. Dit keurmerk staat voor kwaliteit, betrouwbaarheid en transparantie. Het NIBHV ontwikkelt het lesmateriaal, stelt de examens op en controleert periodiek of opleiders voldoen aan de gestelde eisen. Dat betekent dat onze trainingen niet alleen aansluiten bij de Arbowet en de richtlijnen van toonaangevende organisaties, maar ook objectief en eerlijk getoetst worden. Voor u als werkgever biedt dit de zekerheid dat uw medewerkers écht beschikken over de juiste kennis en vaardigheden om in noodsituaties adequaat te handelen. Na succesvolle afronding ontvangen deelnemers een landelijk erkend diploma dat één jaar geldig is. Door jaarlijks een herhalingstraining te volgen, blijven zij bekwaam en up-to-date. Zo weet u dat de veiligheid in uw organisatie blijvend goed is gewaarborgd.\n\n<a href='https://www.nibhv.nl/onafhankelijke-certificering-bhv'>NIBHV onafhankelijke certificering</a>"
+      },
+      "category": "Certificering",
+      "priority": 4
+    },
+    {
+      "@type": "Question",
+      "name": "Waarom kiezen voor onafhankelijke certificering bij EHBO-trainingen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bij BHV Voorne aan Zee kiezen we bewust voor onafhankelijke certificering via het Oranje Kruis. Dit garandeert dat onze BHV- en EHBO-trainingen voldoen aan strikte kwaliteitsnormen en dat examinering objectief en betrouwbaar verloopt. Deelnemers ontvangen een landelijk erkend diploma, inclusief aansprakelijkheidsdekking, en zijn verzekerd van actuele kennis en vaardigheden. Zo weet je zeker dat je als medewerker optimaal bent voorbereid, terwijl werkgevers kunnen vertrouwen op de bekwaamheid van hun team.\n\n<a href='https://www.hetoranjekruis.nl/over-ons/'>Het Oranje Kruis onafhankelijk certificering</a>"
+      },
+      "category": "Certificering",
+      "priority": 5
+    }
+  ]
+}

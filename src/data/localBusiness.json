@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "BHV Voorne aan zee",
+  "url": "https://www.bhvvoorneaanzee.nl",
+  "telephone": "+31-641719800",
+  "email": "mailto:info@bhvvoorneaanzee.nl",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Druivenhoek 12",
+    "postalCode": "3181 PK",
+    "addressLocality": "Rozenburg",
+    "addressCountry": "NL"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/bhvvoorneaanzee/"
+  ],
+  "openingHours": "Mo-Fr 08:00-17:00",
+  "logo": "assets/image/logo.png"
+}

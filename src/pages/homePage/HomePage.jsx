@@ -7,6 +7,10 @@ import CardFallback from "../../assets/image/Card-Fallback.png"
 import LogosSection from "../../components/sections/logosSection/LogosSection.jsx";
 import CoverageSection from "../../components/sections/coverageSection/CoverageSection.jsx";
 import CoverageArea from "../../components/coverageArea/CoverageArea.jsx";
+import BlogSection from "../../components/sections/blogSection/BlogSection.jsx";
+import { posts } from "../blog/posts.js";
+import CTAButtons from "../../components/button/cta/CTAButton.jsx";
+
 
 
 
@@ -29,11 +33,17 @@ function HomePage() {
                 subTitle="Professioneel en effectief trainen voor meer veiligheid."
                 backgroundImage={reactLogo}
             />
+            <CTAButtons />
 
             <TrainingCardSection title="Trainingsaanbod BHV Voorne aan Zee" cards={homeCards} />
             <section className="certificering-section">
 
+                <BlogSection posts={posts} limit={10} />
+
                 <LogosSection />
+
+
+
 
                 {/*<CoverageSection*/}
                 {/*    id="verzorgingsgebied"*/}

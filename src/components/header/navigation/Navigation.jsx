@@ -5,20 +5,20 @@ function Navigation({ isMenuOpen }) {
     return (
         <nav className={isMenuOpen ? "open" : ""}>
             <ul className="navigation-links">
-                {/*<li>*/}
-                {/*    <NavLink className={({ isActive }) => isActive ? "active-link" : "default-link"} to="/bhv">*/}
-                {/*        BHV*/}
-                {/*    </NavLink>*/}
-                {/*</li>*/}
+                <li>
+                    <NavLink className={({ isActive }) => isActive ? "active-link" : "default-link"} to="/bhv">
+                        BHV
+                    </NavLink>
+                </li>
                 <li>
                     <NavLink className={({ isActive }) => isActive ? "active-link" : "default-link"} to="/ontruimingsoefening">
                         Ontruimingsoefening
                     </NavLink>
                 </li>
-                {/*<li>*/}
-                {/*    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}*/}
-                {/*             to="/ehbo">EHBO</NavLink>*/}
-                {/*</li>*/}
+                <li>
+                    <NavLink className={({isActive}) => isActive ? "active-link" : "default-link"}
+                             to="/ehbo">EHBO</NavLink>
+                </li>
             </ul>
         </nav>
     );

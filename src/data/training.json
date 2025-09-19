@@ -16,7 +16,7 @@
           "pricing": [
             {
               "individualPrice": 395.00,
-              "groupPrice": "prijs op aanvraag"
+              "groupPrice": ""
             }
           ]
         },
@@ -27,8 +27,8 @@
           "cardAlt": "Foto van een basiscursus BHV",
           "pricing": [
             {
-              "individualPrice": 295.00,
-              "groupPrice": "prijs op aanvraag"
+              "individualPrice": 250.00,
+              "groupPrice": ""
             }
           ]
         },
@@ -40,7 +40,7 @@
           "pricing": [
             {
               "individualPrice": 210.00,
-              "groupPrice": "prijs op aanvraag"
+              "groupPrice": ""
             }
           ]
         },
@@ -52,7 +52,7 @@
           "pricing": [
             {
               "individualPrice": 135.00,
-              "groupPrice": "prijs op aanvraag"
+              "groupPrice": ""
             }
           ]
         }
