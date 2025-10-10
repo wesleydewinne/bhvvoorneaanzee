@@ -47,9 +47,27 @@ a:hover {
 /* ========================================
    3) Layout & Containers
 ======================================== */
-.app {
+/* Zorg dat alles netjes onder elkaar staat */
+.outer-container {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main groeit mee met beschikbare hoogte */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: var(--space-4);
+    background: var(--color-bg);
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
     min-height: 100vh;
     background: var(--color-bg);
 }
@@ -60,14 +78,6 @@ a:hover {
     display: flex;
     flex-direction: column;
 }
-
-.fullscreen-center {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 
 .container {
     width: 100%;
