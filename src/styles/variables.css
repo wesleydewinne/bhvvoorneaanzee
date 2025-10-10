@@ -1,0 +1,168 @@
+/* =========================================
+   Design Tokens — 10px baseline (1rem = 10px)
+   Gebruik samen met global.css (html: 62.5%)
+========================================= */
+:root {
+
+    --header-height: 100px;
+
+    /* ====== Kleuren (Light) ====== */
+    --color-primary: #004aad;
+    --color-primary-hover: #ffa500;
+    --color-secondary: #ffcc00;
+
+    --color-bg: #f9f9f9;
+    --color-surface: #ffffff;
+    --color-border: #e5e7eb;
+
+    --color-text: #1f2937;
+    --color-text-muted: #6b7280;
+    --color-heading: #111827;
+
+    --color-success: #16a34a;
+    --color-warning: #d97706;
+    --color-danger:  #dc2626;
+    --color-info:    #2563eb;
+
+    --color-active-link: #ffa500;
+    --color-hamburger-hover: #ff6600;
+
+    /* ====== Typografie ====== */
+    --font-base: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Font-weights */
+    --fw-light: 300;
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+    --fw-black: 900;
+
+    /* Line-heights */
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.7;
+
+    /* Font-schaal (statisch, 1rem = 10px) */
+    --fs-1: 1.2rem;  /* 12px  */
+    --fs-2: 1.4rem;  /* 14px  */
+    --fs-3: 1.6rem;  /* 16px  */
+    --fs-4: 1.8rem;  /* 18px  */
+    --fs-5: 2.0rem;  /* 20px  */
+    --fs-6: 2.4rem;  /* 24px  */
+    --fs-7: 3.2rem;  /* 32px  */
+    --fs-8: 4.0rem;  /* 40px  */
+    --fs-9: 4.8rem;  /* 48px  */
+    --fs-10: 5.6rem; /* 56px  */
+    --fs-11: 6.4rem; /* 64px  */
+
+    /* Fluid typography (automatisch schalend) */
+    --fluid-h1: clamp(3.2rem, 2.4rem + 2vw, 6.4rem); /* min 32px, max 64px */
+    --fluid-h2: clamp(2.8rem, 2rem + 1.5vw, 5.6rem); /* min 28px, max 56px */
+    --fluid-h3: clamp(2.4rem, 1.6rem + 1.2vw, 4.0rem); /* min 24px, max 40px */
+    --fluid-h4: clamp(2.0rem, 1.4rem + 1vw, 3.2rem);  /* min 20px, max 32px */
+    --fluid-body: clamp(1.4rem, 1.2rem + 0.3vw, 1.8rem); /* min 14px, max 18px */
+
+    /* ====== Spacing-schaal ====== */
+    --space-0: 0;
+    --space-1: 0.4rem;
+    --space-2: 0.8rem;
+    --space-3: 1.2rem;
+    --space-4: 1.6rem;
+    --space-5: 2.4rem;
+    --space-6: 3.2rem;
+    --space-7: 4.8rem;
+    --space-8: 6.4rem;
+    --space-9: 8.0rem;
+
+    /* Opacities */
+    --opacity-0: 0;
+    --opacity-25: 0.25;
+    --opacity-50: 0.5;
+    --opacity-75: 0.75;
+    --opacity-100: 1;
+
+    /* ====== Rounding & Shadows ====== */
+    --radius-sm: 0.4rem;
+    --radius-md: 0.8rem;
+    --radius-lg: 1.2rem;
+    --radius-xl: 2.0rem;
+
+    --shadow-sm: 0 0.1rem 0.2rem rgba(0,0,0,.06);
+    --shadow-md: 0 0.4rem 1.2rem rgba(0,0,0,.08);
+    --shadow-lg: 0 0.8rem 2.4rem rgba(0,0,0,.12);
+    --shadow-xl: 0 1.6rem 4.8rem rgba(0,0,0,.18);
+
+    /* ====== Z-index schaal ====== */
+    --z-base: 1;
+    --z-sticky: 1000;
+    --z-dropdown: 1100;
+    --z-popover: 1200;
+    --z-modal: 2000;
+    --z-toast: 3000;
+
+    /* ====== Container / Layout ====== */
+    --container-max: 120rem;   /* 1200px */
+    --container-narrow: 80rem; /* 800px  */
+
+    /* Breakpoints */
+    --bp-sm: 480px;
+    --bp-md: 768px;
+    --bp-lg: 1024px;
+    --bp-xl: 1280px;
+    --bp-2xl: 1536px;
+
+    /* ====== Transitions ====== */
+    --transition-fast: 150ms;
+    --transition-mid: 250ms;
+    --transition-slow: 400ms;
+
+    /* Animation easing curves */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ====== Grid gaps ====== */
+    --gap-sm: var(--space-3);
+    --gap-md: var(--space-4);
+    --gap-lg: var(--space-6);
+
+    /* ====== Misc ====== */
+    --overlay-color: rgba(0,0,0,.5);
+    --focus-ring: 0 0 0 0.3rem rgba(0, 74, 173, 0.4);
+}
+
+/* ====== Dark mode tokens ====== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #0f172a;
+        --color-surface: #111827;
+        --color-border: #1f2937;
+
+        --color-text: #e5e7eb;
+        --color-text-muted: #9ca3af;
+        --color-text-light: #ffffff;
+        --color-heading: #f3f4f6;
+        --color-header-bg: #000;
+
+        --color-primary: #60a5fa;
+        --color-primary-hover: #3b82f6;
+
+        --overlay-color: rgba(255,255,255,.15);
+    }
+}
+
+/* ====== Forceer dark theme via class ====== */
+.theme-dark {
+    --color-bg: #0f172a;
+    --color-surface: #111827;
+    --color-border: #1f2937;
+
+    --color-text: #e5e7eb;
+    --color-text-muted: #9ca3af;
+    --color-heading: #f3f4f6;
+
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+    --overlay-color: rgba(255,255,255,.15);
+}

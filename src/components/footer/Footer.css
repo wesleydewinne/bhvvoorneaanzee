@@ -3,7 +3,9 @@
     color: white;
     padding: 40px 20px;
     font-size: 0.95rem;
+    width: 100%;
 }
+
 
 .footer-top {
     display: flex;
@@ -32,21 +34,14 @@
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* 👉 Belangrijk: zet links onder elkaar */
+    flex-direction: column;
     gap: 6px;
 }
 
-.footer-column p {
-    padding-left: 2rem;
-}
-
-.footer-column ul li a,
-.footer-column p {
+.footer-column ul li a {
     color: #ccc;
     font-size: 1.6rem;
-    text-decoration: none;
 }
-
 .footer-column ul li a:hover {
     text-decoration: underline;
     color: var(--color-active-link);

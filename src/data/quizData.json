@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "type": "multiple",
+    "question": "Wat is het eerste dat je doet bij een ongeval?",
+    "options": ["112 bellen", "Eigen veiligheid controleren", "Slachtoffer verplaatsen"],
+    "correct": [1]
+  },
+  {
+    "id": 2,
+    "type": "multi-select",
+    "question": "Welke zaken horen in een EHBO-koffer?",
+    "options": ["Pleister", "AED", "Waterfles", "Verbandschaar", "Puntig pincet"],
+    "correct": [0, 3],
+    "showAnswerCount": false
+  },
+  {
+    "id": 3,
+    "type": "order",
+    "question": "Zet de stappen van reanimatie in de juiste volgorde:",
+    "options": ["112 bellen", "30 borstcompressies", "2 beademingen"],
+    "correct": [0, 1, 2],
+    "extra": ["Stoel pakken", "Koffie drinken"]
+  },
+  {
+    "id": 4,
+    "type": "dragdrop",
+    "question": "Sleep de AED naar de juiste plek op het lichaam.",
+    "image": "/assets/body.png",
+    "draggable": "/assets/aed.png",
+    "correctArea": { "x": 200, "y": 150, "width": 80, "height": 80 }
+  },
+  {
+    "id": 5,
+    "type": "open",
+    "question": "Wat is het alarmnummer in Nederland?",
+    "correct": ["112"]
+  },
+  {
+    "id": 6,
+    "type": "truefalse",
+    "question": "BHV staat voor Bedrijfs Hulp Verlener.",
+    "correct": true
+  },
+  {
+    "id": 7,
+    "type": "fillblank",
+    "textBefore": "Het Nederlandse alarmnummer is",
+    "textAfter": "",
+    "correct": ["112"]
+  },
+  {
+    "id": 8,
+    "type": "image",
+    "question": "Welke afbeelding toont de juiste houding?",
+    "options": ["/img/option1.png", "/img/option2.png", "/img/option3.png"],
+    "correct": 1
+  },
+  {
+    "id": 9,
+    "type": "audio",
+    "question": "Luister naar dit geluid. Wat hoor je?",
+    "audio": "/assets/breathing.mp3",
+    "options": ["Normale ademhaling", "Gasping", "Geen ademhaling"],
+    "correct": 1
+  },
+  {
+    "id": 10,
+    "type": "video",
+    "question": "Bekijk de video en kies de juiste handeling.",
+    "video": "/assets/reanimatie.mp4",
+    "options": ["Reanimatie starten", "112 bellen", "Slachtoffer verplaatsen"],
+    "correct": 0
+  },
+  {
+    "id": 11,
+    "type": "ranking",
+    "question": "Rangschik de volgende acties op prioriteit:",
+    "options": ["Eigen veiligheid", "112 bellen", "Slachtoffer helpen"],
+    "correct": [0, 1, 2],
+    "extra": ["Stoel pakken", "Koffie drinken"]
+  },
+  {
+    "id": 12,
+    "type": "simulation",
+    "question": "Brandalarm gaat af – wat doe je?",
+    "steps": [
+      {
+        "id": 0,
+        "text": "Het brandalarm gaat af 🔔",
+        "choices": [
+          { "label": "Ga naar de BMC", "next": 1 },
+          { "label": "Zoek naar een nevenindicator", "next": 2 }
+        ]
+      },
+      {
+        "id": 1,
+        "text": "Je bent bij de BMC. Wat doe je?",
+        "choices": [
+          { "label": "Lees de BMC uit", "next": 3 }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Onderweg zie je een nevenindicator branden 🚨",
+        "choices": [
+          { "label": "Check de nevenindicator", "next": 4 }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "De BMC geeft aan dat er een deur openstaat met brandmelding.",
+        "choices": [
+          { "label": "Ga naar de juiste deur", "next": "end" }
+        ]
+      },
+      {
+        "id": 4,
+        "text": "Je hebt de brandlocatie gevonden via de nevenindicator.",
+        "choices": [
+          { "label": "Bevestig locatie", "next": "end" }
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": 13,
+    "type": "poll",
+    "question": "Wat vind jij het moeilijkste onderdeel van BHV?",
+    "options": ["Reanimatie", "Brandbestrijding", "Ontruiming", "Communicatie"]
+  },
+  {
+    "id": 14,
+    "type": "checklist",
+    "question": "Welke handelingen voer je uit bij een bewusteloos slachtoffer?",
+    "options": ["112 bellen", "Ademhaling controleren", "Slachtoffer op de rug draaien", "In stabiele zijligging leggen"],
+    "correct": [0, 1, 3]
+  },
+  {
+    "id": 15,
+    "type": "memory",
+    "question": "Koppel de waarschuwings- en gevarenpictogrammen aan hun juiste betekenis.",
+    "pairs": [
+      [
+        { "icon": "/images/pictograms/flame.png", "label": "Licht ontvlambaar" },
+        { "icon": "Licht ontvlambaar", "label": "Licht ontvlambaar" }
+      ],
+      [
+        { "icon": "/images/pictograms/explosive.png", "label": "Explosief" },
+        { "icon": "Explosief", "label": "Explosief" }
+      ],
+      [
+        { "icon": "/images/pictograms/skull.png", "label": "Giftig" },
+        { "icon": "Giftig", "label": "Giftig" }
+      ],
+      [
+        { "icon": "/images/pictograms/corrosive.png", "label": "Bijtend" },
+        { "icon": "Bijtend", "label": "Bijtend" }
+      ],
+      [
+        { "icon": "/images/pictograms/health-hazard.png", "label": "Gezondheidsgevaar" },
+        { "icon": "Gezondheidsgevaar", "label": "Gezondheidsgevaar" }
+      ],
+      [
+        { "icon": "/images/pictograms/environment.png", "label": "Milieugevaarlijk" },
+        { "icon": "Milieugevaarlijk", "label": "Milieugevaarlijk" }
+      ]
+    ]
+  },
+  {
+    "id": 16,
+    "type": "slider",
+    "question": "Hoeveel minuten mag je gemiddeld reanimeren voordat professionele hulp moet overnemen?",
+    "min": 1,
+    "max": 10,
+    "correct": 2,
+    "showAnswerCorrect": true
+  },
+  {
+    "id": 17,
+    "type": "drag-to-rank",
+    "question": "Rangschik de taken van een ploegleider op belangrijkheid:",
+    "options": ["Nazorg bieden", "Alarm slaan", "Medewerkers instrueren", "Controle vluchtwegen"],
+    "correct": [1, 2, 3, 0]
+  },
+  {
+    "id": 18,
+    "type": "matching",
+    "question": "Koppel de gevarenpictogrammen aan de juiste betekenis.",
+    "pairs": [
+      { "left": { "type": "image", "value": "/images/pictograms/flame.png" }, "right": "Licht ontvlambaar" },
+      { "left": { "type": "image", "value": "/images/pictograms/skull.png" }, "right": "Giftig" },
+      { "left": { "type": "image", "value": "/images/pictograms/tree.png" }, "right": "Milieugevaarlijk" }
+    ]
+  },
+  {
+    "id": 19,
+    "type": "matrix",
+    "question": "Koppel de juiste actie aan de situatie:",
+    "rows": ["Kleine wond", "Ongeval", "Reanimatie"],
+    "columns": ["112 bellen", "Huisarts", "Zelf eerste hulp geven"],
+    "correct": {
+      "Kleine wond": "Zelf eerste hulp geven",
+      "Ongeval": "Huisarts",
+      "Reanimatie": "112 bellen"
+    }
+  },
+  {
+    "id": 20,
+    "type": "scenario",
+    "question": "Je treft iemand bewusteloos aan in het kantoor. Wat doe je?",
+    "scenario": "Een collega ligt op de grond en reageert niet.",
+    "subQuestions": [
+      {
+        "text": "Wat controleer je eerst?",
+        "options": ["Ademhaling", "Pols", "Temperatuur"],
+        "correct": 0
+      },
+      {
+        "text": "Wat doe je daarna?",
+        "options": ["In stabiele zijligging leggen", "112 bellen", "Slachtoffer water geven"],
+        "correct": 1
+      }
+    ]
+  }
+]

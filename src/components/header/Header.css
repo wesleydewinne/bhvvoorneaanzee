@@ -1,26 +1,15 @@
-header {
-    grid-area: header;
-    width: 100%;
-    padding: 0 100px;
+header.inner-container {
+    height: var(--header-height);
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 0 var(--space-6);
     background-color: black;
-
 }
 
-header img {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    width: 100px;
-}
-
-@media (max-width: 768px) {
-    header img {
-        ;
-    }
+header.inner-container img {
+    max-height: calc(var(--header-height) - 5px);
+    width: auto;
+    object-fit: contain;
+    display: block;
 }

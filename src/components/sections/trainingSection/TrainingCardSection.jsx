@@ -2,6 +2,22 @@ import React from 'react';
 import TrainingCard from '../../cards/trainingCard/TrainingCard.jsx';
 import './TrainingCardSection.css';
 
+// 🔹 automatische import van alle afbeeldingen in assets
+const images = import.meta.glob(
+    "../../../assets/image/cardImage/*.{png,jpg,jpeg,svg}",
+    { eager: true }
+);
+
+// fallback afbeelding
+import fallbackImage from "../../../assets/image/Card-Fallback.png";
+
+// helper functie
+function resolveImage(fileName) {
+    if (!fileName) return fallbackImage;
+    const match = Object.keys(images).find((key) => key.endsWith(fileName));
+    return match ? images[match].default : fallbackImage;
+}
+
 const TrainingCardSection = ({ title, cards = [], showPrice = false }) => {
     return (
         <section className="training-card-section">
@@ -13,10 +29,11 @@ const TrainingCardSection = ({ title, cards = [], showPrice = false }) => {
                         key={index}
                         title={card.title}
                         description={card.description}
-                        cardImage={card.cardImage || card.image || '/images/fallback.jpg'}
-                        cardAlt={card.cardAlt || card.alt || 'Afbeelding van training'}
+                        // 🔹 resolve image hier
+                        image={resolveImage(card.cardImage || card.image)}
+                        alt={card.cardAlt || card.alt || "Afbeelding van training"}
                         pricing={Array.isArray(card.pricing) ? card.pricing[0] : card.pricing || {}}
-                        showPrice={card.showPrice}
+                        showPrice={card.showPrice ?? showPrice}
                         buttonTo={card.buttonTo}
                         buttonText={card.buttonText}
                         buttonStyle={card.buttonStyle}

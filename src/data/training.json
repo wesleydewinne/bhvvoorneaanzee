@@ -4,7 +4,7 @@
       "id": "bhv",
       "cardTitle": "BHV Training",
       "description": "Volg een basis- of herhalingscursus",
-      "image": "",
+      "image": "BHVtraining.png",
       "alt": "Foto van een BHV-training",
       "buttontext": "Bekijk BHV-trainingen",
       "trainings": [
@@ -15,7 +15,7 @@
           "cardAlt": "Foto van een basiscursus BHV",
           "pricing": [
             {
-              "individualPrice": 395.00,
+              "individualPrice": 395.0,
               "groupPrice": ""
             }
           ]
@@ -27,7 +27,7 @@
           "cardAlt": "Foto van een basiscursus BHV",
           "pricing": [
             {
-              "individualPrice": 250.00,
+              "individualPrice": 250.0,
               "groupPrice": ""
             }
           ]
@@ -39,7 +39,7 @@
           "cardAlt": "Foto van een herhalingscursus BHV",
           "pricing": [
             {
-              "individualPrice": 210.00,
+              "individualPrice": 210.0,
               "groupPrice": ""
             }
           ]
@@ -51,7 +51,7 @@
           "cardAlt": "Foto van een herhalingscursus BHV",
           "pricing": [
             {
-              "individualPrice": 135.00,
+              "individualPrice": 135.0,
               "groupPrice": ""
             }
           ]
@@ -62,18 +62,18 @@
       "id": "ploegleider",
       "cardTitle": "BHV Ploegleider Training",
       "description": "Volg een basis- of herhalingscursus",
-      "image": "",
+      "image": "Ploegleider.png",
       "alt": "Foto van een BHV Ploegleider-training",
       "buttontext": "Bekijk ploegleider-trainingen",
       "trainings": [
         {
           "type": "basis",
           "title": "Basis BHV Ploegleider",
-          "cardimage": "",
-          "cardalt": "Foto van een basiscursus ploegleider",
+          "cardImage": "",
+          "cardAlt": "Foto van een basiscursus ploegleider",
           "pricing": [
             {
-              "individualPrice": 135.00,
+              "individualPrice": 135.0,
               "groupPrice": "prijs op aanvraag"
             }
           ]
@@ -81,11 +81,11 @@
         {
           "type": "herhaling",
           "title": "Herhaling Ploegleider BHV",
-          "cardimage": "",
-          "cardalt": "Foto van een herhalingscursus ploegleider",
+          "cardImage": "",
+          "cardAlt": "Foto van een herhalingscursus ploegleider",
           "pricing": [
             {
-              "individualPrice": 135.00,
+              "individualPrice": 135.0,
               "groupPrice": "prijs op aanvraag"
             }
           ]
@@ -96,44 +96,44 @@
       "id": "ontruimingsoefening",
       "cardTitle": "Ontruimingsoefeningen",
       "description": "Volg een ontruimingsoefening op locatie",
-      "image": "",
+      "image": "verzamelplaats.png",
       "alt": "Foto van een ontruimingsoefening",
       "buttontext": "Bekijk ontruimingsoefeningen",
       "trainings": [
         {
           "type": "fase0",
           "title": "Tabletop Ontruimingsoefening",
-          "price": 199.00,
-          "cardimage": "",
-          "cardalt": "Foto van een tabletop oefening"
+          "price": 199.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een tabletop oefening"
         },
         {
           "type": "fase1",
           "title": "Kleine Inzetoefeningen",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van een kleine inzetoefening"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een kleine inzetoefening"
         },
         {
           "type": "fase2",
           "title": "Aangekondigde Ontruimingsoefening",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van een aangekondigde oefening"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een aangekondigde oefening"
         },
         {
           "type": "fase3",
           "title": "Onaangekondigde Ontruimingsoefening",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van een onaangekondigde oefening"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een onaangekondigde oefening"
         },
         {
           "type": "fase4",
           "title": "Onaangekondigde Ontruimingsoefening (gevorderd)",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van een gevorderde onaangekondigde oefening"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een gevorderde onaangekondigde oefening"
         }
       ]
     },
@@ -141,76 +141,69 @@
       "id": "ehbo",
       "cardTitle": "EHBO Training",
       "description": "Volg een basis- of herhalingscursus EHBO",
-      "image": "",
+      "image": "ehbo.png",
       "alt": "Foto van een EHBO-training",
       "buttontext": "Bekijk EHBO-trainingen",
       "trainings": [
         {
           "type": "basis",
           "title": "Basis EHBO",
-          "price": 199.00,
-          "groupPrice": 1100.00,
-          "cardimage": "",
-          "cardalt": "Foto van een basiscursus EHBO"
+          "price": 199.0,
+          "groupPrice": 1100.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een basiscursus EHBO"
         },
         {
           "type": "herhaling",
           "title": "Herhaling EHBO",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van een herhalingscursus EHBO"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van een herhalingscursus EHBO"
         }
       ]
     },
     {
-      "id": "workshop",
+      "id": "workshops",
       "cardTitle": "Workshops",
-      "description": "Volg diverse praktische workshops op het gebied van BHV en EHBO",
-      "image": "",
-      "alt": "Foto van diverse workshops",
+      "description": "Diverse praktische workshops",
+      "image": "workshop.png",
+      "alt": "Foto van workshops",
       "buttontext": "Bekijk workshops",
       "trainings": [
         {
-          "type": "kleine-blusmiddelen",
-          "title": "Workshop Kleine Blusmiddelen",
-          "price": 550.00,
-          "cardimage": "",
-          "cardalt": "Foto van workshop kleine blusmiddelen"
-        },
-        {
           "type": "portofoon",
           "title": "Workshop Portofoongebruik",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van workshop portofoon"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van workshop portofoon"
         },
         {
           "type": "reanimatie-volwassene",
           "title": "Workshop Reanimatie Volwassene",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van workshop reanimatie volwassene"
+          "price": 149.0,
+          "cardImage": "reanimatievolwassenecard.png",
+          "cardAlt": "Foto van workshop reanimatie volwassene"
         },
         {
           "type": "reanimatie-kind-baby",
           "title": "Workshop Reanimatie Kind & Baby",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van workshop reanimatie kind en baby"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van workshop reanimatie kind en baby"
         },
         {
           "type": "stop-de-bloeding",
           "title": "Workshop Stop de Bloeding",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van workshop stop de bloeding"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van workshop stop de bloeding"
         },
         {
           "type": "waterongevallen",
           "title": "Workshop Waterongevallen",
-          "price": 149.00,
-          "cardimage": "",
-          "cardalt": "Foto van workshop waterongevallen"
+          "price": 149.0,
+          "cardImage": "",
+          "cardAlt": "Foto van workshop waterongevallen"
         }
       ]
     }
