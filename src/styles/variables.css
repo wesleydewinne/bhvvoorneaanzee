@@ -4,6 +4,7 @@
 ========================================= */
 :root {
 
+    color-scheme: light;
     --header-height: 100px;
 
     /* ====== Kleuren (Light) ====== */
@@ -130,39 +131,4 @@
     /* ====== Misc ====== */
     --overlay-color: rgba(0,0,0,.5);
     --focus-ring: 0 0 0 0.3rem rgba(0, 74, 173, 0.4);
-}
-
-/* ====== Dark mode tokens ====== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-bg: #0f172a;
-        --color-surface: #111827;
-        --color-border: #1f2937;
-
-        --color-text: #e5e7eb;
-        --color-text-muted: #9ca3af;
-        --color-text-light: #ffffff;
-        --color-heading: #f3f4f6;
-        --color-header-bg: #000;
-
-        --color-primary: #60a5fa;
-        --color-primary-hover: #3b82f6;
-
-        --overlay-color: rgba(255,255,255,.15);
-    }
-}
-
-/* ====== Forceer dark theme via class ====== */
-.theme-dark {
-    --color-bg: #0f172a;
-    --color-surface: #111827;
-    --color-border: #1f2937;
-
-    --color-text: #e5e7eb;
-    --color-text-muted: #9ca3af;
-    --color-heading: #f3f4f6;
-
-    --color-primary: #60a5fa;
-    --color-primary-hover: #3b82f6;
-    --overlay-color: rgba(255,255,255,.15);
 }
