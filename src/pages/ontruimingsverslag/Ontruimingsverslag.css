@@ -1,0 +1,260 @@
+/* ===============================
+   ALGEMENE PAGINAOPMAAK
+   =============================== */
+.ontruiming-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    color: var(--text-color, #333);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ===============================
+   TITELS
+   =============================== */
+.ontruiming-page h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-primary, #002b5c);
+    text-align: center;
+    border-bottom: 4px solid var(--color-accent, #fcb900);
+    display: inline-block;
+    margin: 0 auto;
+    padding-bottom: 0.3em;
+}
+
+.ontruiming-page h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-primary, #003366);
+    margin-bottom: 0.8rem;
+}
+
+.ontruiming-page h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary, #003366);
+    margin-bottom: 0.4rem;
+}
+
+.ontruiming-page p {
+    margin-bottom: 1rem;
+}
+
+/* ===============================
+   ALGEMENE BLOKKEN
+   =============================== */
+.section-block {
+    background: var(--surface-color, #fff);
+    border-radius: 1rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.section-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===============================
+   DOWNLOAD KNOP
+   =============================== */
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-accent, #fcb900);
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.6rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.download-link:hover {
+    background: var(--color-primary, #003366);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   SCENARIO KAARTEN
+   =============================== */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.scenario-card {
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.scenario-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.scenario-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.scenario-content {
+    padding: 1rem 1.25rem;
+}
+
+.scenario-content h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-primary, #003366);
+    margin-bottom: 0.3em;
+}
+
+.scenario-content p {
+    color: #555;
+    font-size: 1.5rem;
+}
+
+/* ===============================
+   FASE BLOKKEN
+   =============================== */
+.fase-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin: 1.9rem 4rem;
+
+}
+
+.fase-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 1.7rem;
+    border-top: 5px solid var(--color-accent, #fcb900);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fase-card h3 {
+    color: var(--color-primary, #003366);
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.fase-card p {
+    color: #444;
+    font-size: 1.6rem;
+    line-height: 1.7;
+}
+
+/* ===============================
+   INFO BLOKKEN / ACCENT
+   =============================== */
+.info {
+    background: #f7f9fb;
+    border-left: 5px solid var(--color-primary, #003366);
+}
+
+.highlight {
+    background: linear-gradient(90deg, #fff7e6, #fff);
+    border-left: 5px solid var(--color-accent, #fcb900);
+}
+
+/* ===============================
+   VERSLAG GRID (bijv. onderdelen)
+   =============================== */
+.verslag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.verslag-item {
+    background: #fff;
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.verslag-item strong {
+    color: var(--color-primary, #003366);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+/* ===============================
+   LINK BLOK ONDERAAN
+   =============================== */
+.link-list {
+    text-align: center;
+    background: #f9fafb;
+    border-radius: 0.8rem;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.link-list a {
+    color: var(--color-accent, #fcb900);
+    font-weight: 600;
+    margin: 0 0.75rem;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.link-list a:hover {
+    border-color: var(--color-accent, #fcb900);
+}
+
+/* ===============================
+   RESPONSIVE ONTWERP
+   =============================== */
+@media (max-width: 1024px) {
+    .ontruiming-page {
+        padding: 2rem 1.5rem;
+    }
+
+    .fase-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .fase-card p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .ontruiming-page {
+        padding: 2rem 1rem;
+    }
+
+    .download-link {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .scenario-card img {
+        height: 160px;
+    }
+
+    .fase-grid {
+        grid-template-columns: 1fr; /* altijd één kolom op mobiel */
+    }
+
+    .fase-card {
+        padding: 1.5rem;
+    }
+}

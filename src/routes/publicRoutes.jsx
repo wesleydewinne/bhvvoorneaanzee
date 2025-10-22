@@ -11,8 +11,16 @@ import Faq from "../pages/faq/Faq.jsx";
 import BlogPage from "../pages/blog/BlogPage.jsx";
 import BlogDetail from "../pages/blog/BlogDetail.jsx";
 
+//
+import Fases from "@/pages/ontruimingsverslag/Fases.jsx";
+
+
 // Quiz pages
 import AccessPage from "../pages/quiz/AccessPage.jsx";
+import Scenarios from "@/pages/ontruimingsverslag/Scenarios.jsx";
+import Verslag from "@/pages/ontruimingsverslag/Verslag.jsx";
+
+
 
 const publicRoutes = [
     { path: '/', element: <HomePage />},
@@ -27,6 +35,12 @@ const publicRoutes = [
     { path: '/veelgestelde-vragen', element: <Faq /> },
     { path: '/blog', element: <BlogPage /> },
     { path: '/blog/:slug', element: <BlogDetail /> },
+
+    // blog
+
+    { path: '/ontruimingsoefening/fases', element: <Fases />},
+    { path: '/ontruimingsoefening/scenarios', element: <Scenarios /> },
+    { path: '/ontruimingsoefening/verslag', element: <Verslag /> },
 
     // Quiz toegangspagina (publiek bereikbaar)
     { path: '/quiz-access', element: <AccessPage /> }
