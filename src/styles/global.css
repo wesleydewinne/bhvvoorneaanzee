@@ -79,6 +79,36 @@ a:hover {
     flex-direction: column;
 }
 
+/* ========================================
+   FIX – Content onder vaste header tonen
+======================================== */
+:root {
+    --header-height: 7rem; /* standaard hoogte van zwarte header */
+}
+
+/* ruimte toevoegen zodat de content niet onder de header valt */
+body {
+    padding-top: var(--header-height);
+}
+
+/* mobiele header is vaak iets hoger (hamburger + logo) */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 8rem;
+    }
+    body {
+        padding-top: var(--header-height);
+    }
+}
+
+/* eerste sectie netjes uitlijnen */
+.section:first-of-type,
+.ontruiming-page:first-of-type,
+.main:first-of-type {
+    margin-top: 0;
+}
+
+/* Containers */
 .container {
     width: 100%;
     max-width: var(--container-max);
