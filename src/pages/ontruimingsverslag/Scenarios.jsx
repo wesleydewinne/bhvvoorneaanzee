@@ -113,7 +113,7 @@ export default function Scenarios() {
             <h1>Voorbeeldscenario’s voor ontruimingsoefeningen</h1>
             <p>
                 Een goede ontruimingsoefening begint met een realistisch scenario.
-                Hieronder vind je twintig voorbeeldsituaties die wij regelmatig gebruiken
+                Hieronder vind je aantal voorbeeld situaties die wij regelmatig gebruiken
                 tijdens trainingen. Je kunt deze scenario’s ook gebruiken als inspiratie
                 voor je eigen oefening.
             </p>
@@ -132,8 +132,8 @@ export default function Scenarios() {
             <div className="link-list">
                 <p>Bekijk ook onze aanvullende informatie:</p>
                 <ul>
-                    <li><a href="/ontruimingsoefening/scenarios">Voorbeeldscenario’s</a></li>
-                    <li><a href="/ontruimingsoefening/fases">Fasen van de oefening</a></li>
+                    <li><a href="/ontruimingsoefening/verslag">Ontruimingsverslag</a></li>
+                    <li><a href="/ontruimingsoefening/fases">Fasen van de soort oefeningen</a></li>
                 </ul>
             </div>
         </div>

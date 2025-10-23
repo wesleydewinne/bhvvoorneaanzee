@@ -86,8 +86,9 @@ export default function Fases() {
             <div className="link-list">
                 <p>Bekijk ook onze aanvullende informatie:</p>
                 <ul>
-                    <li><a href="/ontruimingsoefening/scenarios">Voorbeeldscenario’s</a></li>
                     <li><a href="/ontruimingsoefening/verslag">Ontruimingsverslag</a></li>
+                    <li><a href="/ontruimingsoefening/scenarios">Voorbeeld scenario’s</a></li>
+
                 </ul>
             </div>
         </div>

@@ -131,8 +131,9 @@ export default function Verslag() {
             <div className="link-list">
                 <p>Meer informatie over de voorbereiding en uitvoering van oefeningen:</p>
                 <ul>
+                    <li><a href="/ontruimingsoefening/fases">Fasen de soort oefeningen</a></li>
                     <li><a href="/ontruimingsoefening/scenarios">Voorbeeldscenario’s</a></li>
-                    <li><a href="/ontruimingsoefening/fases">Fasen van de oefening</a></li>
+
                 </ul>
             </div>
         </div>

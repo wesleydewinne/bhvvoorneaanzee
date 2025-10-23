@@ -1,29 +1,87 @@
-import './Header.css';
-import Navigation from "./navigation/Navigation.jsx";
-import Logo from './logo/Logo.jsx';
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
+import logo from "../../assets/image/algemeneAfbeeldingen/logo.png";
+import "./Header.css";
 
-function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Header() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    // Schaduw bij scroll
+    useEffect(() => {
+        const handleScroll = () => {
+            const header = document.querySelector("header.inner-container");
+            if (window.scrollY > 10) header.classList.add("is-scrolled");
+            else header.classList.remove("is-scrolled");
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Sluit menu bij klik op link
+    const handleLinkClick = () => setMenuOpen(false);
 
     return (
         <header className="inner-container">
-            <Logo />
+            {/* LOGO */}
+            <div className="logo-container">
+                <Link to="/">
+                    <img src={logo} alt="BHV Voorne aan Zee logo" className="logo" />
+                </Link>
+            </div>
 
-            {/* Hamburger / kruis knop */}
+            {/* HAMBURGER MENU */}
             <button
-                className={`hamburger ${isMenuOpen ? "open" : ""}`}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
+                className={`hamburger ${menuOpen ? "open" : ""}`}
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle navigation menu"
             >
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
 
-            <Navigation isMenuOpen={isMenuOpen} />
+            {/* NAVIGATIE */}
+            <nav className={menuOpen ? "open" : ""}>
+                <ul>
+                    <li>
+                        <NavLink
+                            to="/bhv"
+                            onClick={handleLinkClick}
+                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                        >
+                            BHV
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/ontruimingsoefening"
+                            onClick={handleLinkClick}
+                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                        >
+                            Ontruimingsoefening
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/ehbo"
+                            onClick={handleLinkClick}
+                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                        >
+                            EHBO
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/workshops"
+                            onClick={handleLinkClick}
+                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                        >
+                            Workshops
+                        </NavLink>
+                    </li>
+                </ul>
+            </nav>
         </header>
     );
 }
-
-export default Header;
