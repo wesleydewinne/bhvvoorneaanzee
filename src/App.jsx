@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Meta } from 'react-head';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/Header.jsx';
@@ -16,30 +15,16 @@ import QuizPrivateRoute from './components/auth/QuizPrivateRoute.jsx';
 
 // Pages
 import NotFoundPage from './pages/notFoundPage/NotFoundPage.jsx';
-import localBusinessData from './data/localBusiness.json';
+import Head from "@/components/head/Head.jsx";
 
 function App() {
-    // Voeg JSON-LD structured data toe aan <head>
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.text = JSON.stringify(localBusinessData);
-        document.head.appendChild(script);
-
-        return () => {
-            document.head.removeChild(script);
-        };
-    }, []);
 
     return (
         <div className="outer-container">
             {/* ====================== */}
             {/* SEO Meta tags */}
             {/* ====================== */}
-            <Meta
-                name="description"
-                content="Professionele BHV-, EHBO-, ploegleiderstrainingen en ontruimingsoefeningen in Voorne aan Zee en omgeving. Praktische veiligheidstrainingen, volledig afgestemd op uw organisatie en medewerkers."
-            />
+            <Head />
 
             {/* ====================== */}
             {/* Header */}

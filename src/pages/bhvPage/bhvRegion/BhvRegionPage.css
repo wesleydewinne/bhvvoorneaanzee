@@ -1,0 +1,52 @@
+.bhv-region-page {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 80%);
+}
+
+/* Introblok */
+.bhv-region-intro {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    padding: 3rem 2rem;
+    line-height: 1.7;
+}
+
+.bhv-region-intro h1 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.bhv-region-intro p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.bhv-region-intro strong {
+    color: var(--color-primary-dark);
+}
+
+.region-hero {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.internal-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.internal-link:hover {
+    text-decoration: underline;
+}

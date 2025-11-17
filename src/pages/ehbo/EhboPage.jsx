@@ -1,13 +1,13 @@
-// src/pages/PloegleiderPage.jsx
+// src/pages/EhboPage.jsx
 import React from "react";
-import "./PloegleiderPage.css";
+import "./EhboPage.css";
 
 import {
-    UsersThree,
-    ClipboardText,
-    Fire,
-    Headset,
+    FirstAidKit,
+    Heartbeat,
+    Bandaids,
     CheckCircle,
+    HandHeart,
 } from "@phosphor-icons/react";
 
 import data from "../../data/training.json";
@@ -16,24 +16,22 @@ import TrainingCardSection from "../../components/sections/trainingSection/Train
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-//import ploegleiderImage from "../../assets/image/algemeneAfbeeldingen/ploegleider.png";
+// import ehboImage from "../../assets/image/algemeneAfbeeldingen/ehbo.png";
 
-function PloegleiderPage() {
-    const ploegleiderCategory = data.categories.find(
-        (category) => category.id === "ploegleider"
+function EhboPage() {
+    const ehboCategory = data.categories.find(
+        (category) => category.id === "ehbo"
     );
-    const ploegleiderTrainings = ploegleiderCategory
-        ? ploegleiderCategory.trainings
-        : [];
+    const ehboTrainings = ehboCategory ? ehboCategory.trainings : [];
 
-    const ploegleiderCards = ploegleiderTrainings.map((training) => {
+    const ehboCards = ehboTrainings.map((training) => {
         const resolvedImage = training.cardImage?.trim()
             ? training.cardImage
-            : ploegleiderCategory?.image || fallback;
+            : ehboCategory?.image || fallback;
 
         return {
             title: training.title,
-            description: `Ploegleidertraining - ${training.type}`,
+            description: `EHBO training - ${training.type}`,
             cardImage: resolvedImage,
             cardAlt: training.cardAlt || training.title,
             pricing: {
@@ -44,74 +42,73 @@ function PloegleiderPage() {
             buttonTo: `/training/${training.type}`,
             buttonText: "Meer informatie",
             buttonStyle: "primary",
-            buttonIcon: "👷‍♂️",
+            buttonIcon: "💉",
         };
     });
 
-    const taken = [
+    const ehboTaken = [
         {
-            icon: <UsersThree size={25} color="#ff8000" weight="bold" />,
-            task: "Aansturen van BHV-teams tijdens noodsituaties",
+            icon: <FirstAidKit size={25} color="#ff8000" weight="bold" />,
+            task: "Eerste hulp verlenen bij ongevallen en verwondingen",
         },
         {
-            icon: <ClipboardText size={25} color="#ff6f61" weight="regular" />,
-            task: "Coördineren van taken en verantwoordelijkheden binnen de ploeg",
+            icon: <Heartbeat size={25} color="#ff6f61" weight="regular" />,
+            task: "Reanimeren en AED bedienen bij hartstilstand",
         },
         {
-            icon: <Fire size={25} color="#ff8000" weight="bold" />,
-            task: "Beslissingen nemen bij brand, ontruiming of incidenten",
+            icon: <Bandaids size={25} color="#ff8000" weight="bold" />,
+            task: "Wondverzorging, verbinden en stabiele zijligging toepassen",
         },
         {
-            icon: <Headset size={25} color="#ff8000" weight="regular" />,
-            task: "Communiceren met hulpdiensten en management",
+            icon: <HandHeart size={25} color="#ff6f61" weight="regular" />,
+            task: "Omgaan met slachtoffers in shock of bewusteloosheid",
         },
     ];
 
     const leerdoelen = [
-        "Je kunt leidinggeven tijdens noodsituaties en effectief beslissingen nemen.",
-        "Je leert de taken van ploegleiders en BHV’ers coördineren.",
-        "Je herkent knelpunten in BHV-organisatie en lost deze op.",
-        "Je kunt een inzet evalueren en verbeterpunten formuleren.",
+        "Je weet hoe je adequaat eerste hulp verleent bij verschillende letsels.",
+        "Je kunt reanimeren en veilig gebruikmaken van een AED.",
+        "Je leert het verschil tussen levensreddende en niet-levensreddende handelingen.",
+        "Je weet hoe je rustig blijft en slachtoffers geruststelt.",
     ];
 
     const onderwerpen = [
-        "Leiderschapsvaardigheden en communicatie",
-        "Risico-inschatting en besluitvorming",
-        "Scenario-oefeningen met BHV-teams",
-        "Evaluatie en rapportage van incidenten",
+        "Reanimatie en AED-gebruik",
+        "Bloeding, wonden en botbreuken",
+        "Brandwonden, vergiftiging en bewusteloosheid",
+        "Oefeningen met realistische scenario’s",
     ];
 
     return (
         <>
             <HeaderSection
-                mainTitle="Ploegleider BHV Training"
-                // backgroundImage={ploegleiderImage}
+                mainTitle="EHBO Training"
+                //backgroundImage={ehboImage}
             />
 
-            <main className="ploegleider-info-grid">
+            <main className="ehbo-info-grid">
                 {/* Intro */}
                 <section className="section full-width-section">
                     <article className="content-block">
                         <header>
-                            <h2>Wat is een Ploegleider BHV?</h2>
+                            <h2>Wat is EHBO?</h2>
                         </header>
                         <p>
-                            De Ploegleider BHV is verantwoordelijk voor het aansturen van
-                            BHV-teams binnen een organisatie. Tijdens een incident of
-                            ontruiming bewaakt de ploegleider het overzicht, verdeelt taken en
-                            communiceert met hulpdiensten. De ploegleider zorgt dat alle
-                            BHV’ers weten wat ze moeten doen en dat de inzet efficiënt verloopt.
-                            Deze training is bedoeld voor ervaren BHV’ers die willen doorgroeien
-                            naar een coördinerende of leidinggevende rol.
+                            EHBO (Eerste Hulp Bij Ongevallen) is de directe hulp die wordt
+                            verleend aan een slachtoffer van een ongeval of plotselinge
+                            aandoening. Met de juiste kennis en handelingen kan je letsel
+                            beperken en zelfs levens redden.
+                            Tijdens de EHBO-training leer je om in noodsituaties snel en
+                            effectief te handelen tot professionele hulp aanwezig is.
                         </p>
                     </article>
                 </section>
 
                 {/* Taken */}
                 <section className="section icon-tasks">
-                    <h2>Wat doet een ploegleider?</h2>
+                    <h2>Wat doet een EHBO’er?</h2>
                     <ul className="icon-list">
-                        {taken.map((item, index) => (
+                        {ehboTaken.map((item, index) => (
                             <li key={index}>
                                 {item.icon}
                                 <span>{item.task}</span>
@@ -144,14 +141,14 @@ function PloegleiderPage() {
                     </ul>
                 </section>
 
-                {/* Trainingen uit JSON */}
+                {/* Trainingen */}
                 <TrainingCardSection
-                    title="Beschikbare Ploegleidertrainingen"
-                    cards={ploegleiderCards}
+                    title="Beschikbare EHBO-trainingen"
+                    cards={ehboCards}
                 />
             </main>
         </>
     );
 }
 
-export default PloegleiderPage;
+export default EhboPage;

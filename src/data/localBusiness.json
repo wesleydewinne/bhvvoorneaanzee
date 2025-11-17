@@ -4,7 +4,7 @@
   "name": "BHV Voorne aan zee",
   "url": "https://www.bhvvoorneaanzee.nl",
   "telephone": "+31-641719800",
-  "email": "mailto:info@bhvvoorneaanzee.nl",
+  "email": "mailto:algemeen@bhvvoorneaanzee.nl",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Druivenhoek 12",
@@ -12,9 +12,14 @@
     "addressLocality": "Rozenburg",
     "addressCountry": "NL"
   },
-  "sameAs": [
-    "https://www.linkedin.com/company/bhvvoorneaanzee/"
-  ],
+  "sameAs": ["https://www.linkedin.com/company/bhvvoorneaanzee/"],
   "openingHours": "Mo-Fr 08:00-17:00",
-  "logo": "assets/image/logo.png"
+  "logo": "assets/image/logo.png",
+  "areaServed": [
+    { "@type": "Place", "name": "Voorne aan Zee" },
+    { "@type": "Place", "name": "Rotterdam Rijnmond" },
+    { "@type": "Place", "name": "Haaglanden" },
+    { "@type": "Place", "name": "Zeeland" },
+    { "@type": "Place", "name": "midden- West- Brabant" }
+  ]
 }

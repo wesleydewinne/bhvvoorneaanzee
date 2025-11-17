@@ -48,16 +48,25 @@ export default function Header() {
                         <NavLink
                             to="/bhv"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                            className={({isActive}) => (isActive ? "active-link" : "default-link")}
                         >
                             BHV
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
+                            to="/ploegleider"
+                            onClick={handleLinkClick}
+                            className={({isActive}) => (isActive ? "active-link" : "default-link")}
+                        >
+                            Ploegleider
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
                             to="/ontruimingsoefening"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                            className={({isActive}) => (isActive ? "active-link" : "default-link")}
                         >
                             Ontruimingsoefening
                         </NavLink>
@@ -66,7 +75,7 @@ export default function Header() {
                         <NavLink
                             to="/ehbo"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                            className={({isActive}) => (isActive ? "active-link" : "default-link")}
                         >
                             EHBO
                         </NavLink>
@@ -75,7 +84,7 @@ export default function Header() {
                         <NavLink
                             to="/workshops"
                             onClick={handleLinkClick}
-                            className={({ isActive }) => (isActive ? "active-link" : "default-link")}
+                            className={({isActive}) => (isActive ? "active-link" : "default-link")}
                         >
                             Workshops
                         </NavLink>

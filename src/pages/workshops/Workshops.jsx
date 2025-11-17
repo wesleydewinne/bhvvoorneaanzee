@@ -1,12 +1,12 @@
-// src/pages/PloegleiderPage.jsx
+// src/pages/WorkshopsPage.jsx
 import React from "react";
-import "./PloegleiderPage.css";
+// import "./WorkshopsPage.css";
 
 import {
+    FireExtinguisher,
     UsersThree,
+    ChatCircleDots,
     ClipboardText,
-    Fire,
-    Headset,
     CheckCircle,
 } from "@phosphor-icons/react";
 
@@ -16,24 +16,22 @@ import TrainingCardSection from "../../components/sections/trainingSection/Train
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-//import ploegleiderImage from "../../assets/image/algemeneAfbeeldingen/ploegleider.png";
+// import workshopImage from "../../assets/image/algemeneAfbeeldingen/workshop.png";
 
-function PloegleiderPage() {
-    const ploegleiderCategory = data.categories.find(
-        (category) => category.id === "ploegleider"
+function Workshops() {
+    const workshopCategory = data.categories.find(
+        (category) => category.id === "workshops"
     );
-    const ploegleiderTrainings = ploegleiderCategory
-        ? ploegleiderCategory.trainings
-        : [];
+    const workshopTrainings = workshopCategory ? workshopCategory.trainings : [];
 
-    const ploegleiderCards = ploegleiderTrainings.map((training) => {
+    const workshopCards = workshopTrainings.map((training) => {
         const resolvedImage = training.cardImage?.trim()
             ? training.cardImage
-            : ploegleiderCategory?.image || fallback;
+            : workshopCategory?.image || fallback;
 
         return {
             title: training.title,
-            description: `Ploegleidertraining - ${training.type}`,
+            description: `Workshop - ${training.type}`,
             cardImage: resolvedImage,
             cardAlt: training.cardAlt || training.title,
             pricing: {
@@ -44,74 +42,73 @@ function PloegleiderPage() {
             buttonTo: `/training/${training.type}`,
             buttonText: "Meer informatie",
             buttonStyle: "primary",
-            buttonIcon: "👷‍♂️",
+            buttonIcon: "🎯",
         };
     });
 
-    const taken = [
+    const workshopTaken = [
         {
             icon: <UsersThree size={25} color="#ff8000" weight="bold" />,
-            task: "Aansturen van BHV-teams tijdens noodsituaties",
+            task: "Samenwerken tijdens noodsituaties en crisissimulaties",
+        },
+        {
+            icon: <ChatCircleDots size={25} color="#ff6f61" weight="regular" />,
+            task: "Effectief communiceren binnen het BHV-team",
+        },
+        {
+            icon: <FireExtinguisher size={25} color="#ff8000" weight="bold" />,
+            task: "Brandveiligheid en ontruimingsprocedures oefenen",
         },
         {
             icon: <ClipboardText size={25} color="#ff6f61" weight="regular" />,
-            task: "Coördineren van taken en verantwoordelijkheden binnen de ploeg",
-        },
-        {
-            icon: <Fire size={25} color="#ff8000" weight="bold" />,
-            task: "Beslissingen nemen bij brand, ontruiming of incidenten",
-        },
-        {
-            icon: <Headset size={25} color="#ff8000" weight="regular" />,
-            task: "Communiceren met hulpdiensten en management",
+            task: "Reflecteren op eigen handelen en leren van scenario’s",
         },
     ];
 
     const leerdoelen = [
-        "Je kunt leidinggeven tijdens noodsituaties en effectief beslissingen nemen.",
-        "Je leert de taken van ploegleiders en BHV’ers coördineren.",
-        "Je herkent knelpunten in BHV-organisatie en lost deze op.",
-        "Je kunt een inzet evalueren en verbeterpunten formuleren.",
+        "Verbeter je samenwerking binnen het BHV-team.",
+        "Leer effectief handelen onder druk.",
+        "Oefen realistische scenario’s uit de praktijk.",
+        "Versterk de veiligheidscultuur binnen je organisatie.",
     ];
 
     const onderwerpen = [
-        "Leiderschapsvaardigheden en communicatie",
-        "Risico-inschatting en besluitvorming",
-        "Scenario-oefeningen met BHV-teams",
-        "Evaluatie en rapportage van incidenten",
+        "Communicatie tijdens incidenten",
+        "Leiderschap en samenwerking",
+        "Omgaan met stress en beslissingen onder druk",
+        "Praktische oefeningen en simulaties",
     ];
 
     return (
         <>
             <HeaderSection
-                mainTitle="Ploegleider BHV Training"
-                // backgroundImage={ploegleiderImage}
+                mainTitle="Workshops Veiligheid & BHV"
+                // backgroundImage={workshopImage}
             />
 
-            <main className="ploegleider-info-grid">
+            <main className="workshops-info-grid">
                 {/* Intro */}
                 <section className="section full-width-section">
                     <article className="content-block">
                         <header>
-                            <h2>Wat is een Ploegleider BHV?</h2>
+                            <h2>Wat zijn onze workshops?</h2>
                         </header>
                         <p>
-                            De Ploegleider BHV is verantwoordelijk voor het aansturen van
-                            BHV-teams binnen een organisatie. Tijdens een incident of
-                            ontruiming bewaakt de ploegleider het overzicht, verdeelt taken en
-                            communiceert met hulpdiensten. De ploegleider zorgt dat alle
-                            BHV’ers weten wat ze moeten doen en dat de inzet efficiënt verloopt.
-                            Deze training is bedoeld voor ervaren BHV’ers die willen doorgroeien
-                            naar een coördinerende of leidinggevende rol.
+                            Onze BHV-workshops zijn korte, praktijkgerichte sessies gericht op
+                            specifieke veiligheidsthema’s. Ze zijn ideaal om kennis op te
+                            frissen of om medewerkers te betrekken bij veiligheid op de
+                            werkvloer.
+                            De workshops zijn interactief, met veel aandacht voor samenwerken,
+                            communicatie en handelen in noodsituaties.
                         </p>
                     </article>
                 </section>
 
                 {/* Taken */}
                 <section className="section icon-tasks">
-                    <h2>Wat doet een ploegleider?</h2>
+                    <h2>Wat leer je tijdens een workshop?</h2>
                     <ul className="icon-list">
-                        {taken.map((item, index) => (
+                        {workshopTaken.map((item, index) => (
                             <li key={index}>
                                 {item.icon}
                                 <span>{item.task}</span>
@@ -122,7 +119,7 @@ function PloegleiderPage() {
 
                 {/* Leerdoelen */}
                 <section className="section">
-                    <h2>Leerdoelen van de training</h2>
+                    <h2>Leerdoelen</h2>
                     <ul>
                         {leerdoelen.map((doel, index) => (
                             <li key={index}>
@@ -144,14 +141,14 @@ function PloegleiderPage() {
                     </ul>
                 </section>
 
-                {/* Trainingen uit JSON */}
+                {/* Workshops uit JSON */}
                 <TrainingCardSection
-                    title="Beschikbare Ploegleidertrainingen"
-                    cards={ploegleiderCards}
+                    title="Kies jouw Workshop"
+                    cards={workshopCards}
                 />
             </main>
         </>
     );
 }
 
-export default PloegleiderPage;
+export default Workshops;
