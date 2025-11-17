@@ -1,0 +1,19 @@
+.dashboard-container {
+    max-width: 350px;
+    padding: 20px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.dashboard-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.username {
+    font-size: 0.95rem;
+    color: #666;
+}
