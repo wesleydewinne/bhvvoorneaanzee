@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; // nodig als je routing gebruikt
 import "./Footer.css";
+import StatusCheck from "@/components/status/StatusCheck.jsx";
 
 const Footer = () => {
     return (
@@ -40,6 +41,8 @@ const Footer = () => {
 
             <div className="footer-bottom">
                 BHV Voorne aan zee &copy; {new Date().getFullYear()} – Alle rechten voorbehouden
+                <StatusCheck />
+                <StatusIndicator />
             </div>
         </footer>
     );
