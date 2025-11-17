@@ -143,7 +143,7 @@ function EhboPage() {
 
                 {/* Trainingen */}
                 <TrainingCardSection
-                    title="Beschikbare EHBO-trainingen"
+                    title="Beschikbare EHBO-training"
                     cards={ehboCards}
                 />
             </main>
