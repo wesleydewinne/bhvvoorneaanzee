@@ -74,7 +74,7 @@ const publicRoutes = [
 
 
     // Login & registreer
-    { path: '/login', element: <Login /> },
+    { path: '/auth/login', element: <Login /> },
 
     // Quiz toegangspagina (publiek bereikbaar)
     { path: '/quiz-access', element: <AccessPage /> },
