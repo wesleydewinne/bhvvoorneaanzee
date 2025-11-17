@@ -16,7 +16,7 @@ export default function LoginPage() {
 
             // NA LOGIN → naar protected route
             window.location.href = "/dashboard";
-        } catch (err) {
+        } catch {
             setError("Ongeldige login of serverfout.");
         }
     };
