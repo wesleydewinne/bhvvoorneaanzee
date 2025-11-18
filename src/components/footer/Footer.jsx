@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"; // nodig als je routing gebruikt
 import "./Footer.css";
 import StatusCheck from "@/components/status/StatusCheck.jsx";
+import StatusIndicator from "@/components/status/StatusIndicator.jsx";
 
 const Footer = () => {
     return (
