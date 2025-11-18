@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/header/Header.jsx';
@@ -42,13 +42,12 @@ function App() {
                             <Route key={path} path={path} element={element}/>
                         ))}
 
-                        {privateRoutes.map(({path, element}) => (
-                            <Route
-                                key={path}
-                                path={path}
-                                element={<PrivateRoute>{element}</PrivateRoute>}
-                            />
-                        ))}
+                            <Route element={<PrivateRoute />}>
+                                {privateRoutes.map(({ path, element }) => (
+                                    <Route key={path} path={path} element={element} />
+                                ))}
+                            </Route>
+
 
                         {quizRoutes.map(({path, element}) => (
                             <Route
