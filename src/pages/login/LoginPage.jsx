@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axiosClient from "@/api/axiosClient";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -12,11 +14,12 @@ export default function LoginPage() {
 
         try {
             const res = await axiosClient.post("/auth/login", { email, password });
+
             localStorage.setItem("token", res.data.token);
 
-            // NA LOGIN → naar protected route
-            window.location.href = "/dashboard";
-        } catch {
+            // NA LOGIN → direct via router navigeren
+            navigate("/dashboard");
+        } catch (err) {
             setError("Ongeldige login of serverfout.");
         }
     };
