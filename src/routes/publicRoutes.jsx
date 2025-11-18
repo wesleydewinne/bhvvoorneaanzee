@@ -33,6 +33,7 @@ import BhvRotterdamPage from "@/pages/bhvPage/bhvRegion/BhvRotterdamPage.jsx";
 import BhvZeelandPage from "@/pages/bhvPage/bhvRegion/BhvZeelandPage.jsx";
 import BhvWestlandPage from "@/pages/bhvPage/bhvRegion/BhvWestlandPage.jsx";
 import Login from "@/pages/login/LoginPage.jsx";
+import {Navigate} from "react-router-dom";
 
 const publicRoutes = [
     //home
@@ -75,6 +76,8 @@ const publicRoutes = [
 
     // Login & registreer
     { path: '/inloggen', element: <Login /> },
+    { path: '/inlog', element: <Navigate to="/inloggen" replace /> },
+
 
     // Quiz toegangspagina (publiek bereikbaar)
     { path: '/quiz-access', element: <AccessPage /> },
