@@ -5,7 +5,7 @@ export default function StatusIndicator() {
     const [online, setOnline] = useState(false);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/health`)
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/health`)
             .then(() => setOnline(true))
             .catch(() => setOnline(false));
     }, []);
