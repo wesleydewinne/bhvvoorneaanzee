@@ -11,7 +11,7 @@ function Dashboard() {
         const fetchUser = async () => {
             try {
                 const res = await axiosClient.get("/auth/me");
-                console.log("USER DATA FROM BACKEND:", res.data); // <- hier log je alles
+                console.log("USER DATA FROM BACKEND:", res.data);
                 setUser(res.data);
             } catch (err) {
                 console.error("Kon gebruikersdata niet ophalen:", err);
@@ -24,30 +24,46 @@ function Dashboard() {
         fetchUser();
     }, []);
 
+    // Loading state
     if (loading) {
         return <p>Gegevens laden...</p>;
     }
 
+    // Error state
     if (error) {
         return <p style={{ color: "red" }}>{error}</p>;
     }
 
+    // Geen user teruggekregen
     if (!user) {
-        // fallback, zou normaal niet voorkomen als loading klaar is
         return <p>Geen gebruikersgegevens gevonden.</p>;
     }
 
+    // ------- Rol netjes formatteren -------
+    // Backend: roles: ["ROLE_ADMIN"]
+    const roles = Array.isArray(user.roles) ? user.roles : [];
+    const primaryRole = roles.length > 0 ? roles[0] : "ROLE_ONBEKEND";
+
+    // "ROLE_ADMIN" -> "Admin"
+    const cleanedRoleRaw = primaryRole.replace("ROLE_", "").toLowerCase();
+    const cleanedRole =
+        cleanedRoleRaw.charAt(0).toUpperCase() + cleanedRoleRaw.slice(1);
+
+    // Naam fallback: gebruik name als die bestaat, anders username
+    const displayName = user.name ?? user.username ?? "Gebruiker";
+
     return (
         <div className="dashboard-container">
-            <h2>Welkom terug, {user.name}!</h2>
+            <h2>Welkom terug, {displayName}!</h2>
             <p className="username">Ingelogd als: {user.username}</p>
 
             <div className="info-box">
                 <h3>Jouw accountgegevens</h3>
                 <ul>
-                    <li>Naam: {user.name}</li>
+                    <li>Naam: {displayName}</li>
                     <li>Email: {user.email}</li>
-                    <li>Rol: {user.roles.replace("ROL_", "").toLowerCase().replace(/^\w/, c => c.toUpperCase())}</li>
+                    <li>Rol: {cleanedRole}</li>
+                    {user.location && <li>Locatie: {user.location}</li>}
                 </ul>
             </div>
         </div>
