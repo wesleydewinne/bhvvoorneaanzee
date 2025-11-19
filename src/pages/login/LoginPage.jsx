@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axiosClient from "@/api/axiosClient";
+import api, { setAccessToken } from "@/api/api.js";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -13,13 +13,15 @@ export default function LoginPage() {
         setError("");
 
         try {
-            const res = await axiosClient.post("/auth/login", { email, password });
+            const res = await api.post("/auth/login", { email, password });
 
-            localStorage.setItem("token", res.data.token);
+            // Nieuw token opslaan
+            setAccessToken(res.data.accessToken);
 
-            // NA LOGIN → direct via router navigeren
+            // Navigeren
             navigate("/dashboard");
         } catch (err) {
+            console.error("Login fout:", err);
             setError("Ongeldige login of serverfout.");
         }
     };
