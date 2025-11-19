@@ -5,7 +5,7 @@ export default function StatusCheck() {
     const [status, setStatus] = useState("Checking...");
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/health`)
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/health`)
             .then(() => setStatus("Backend is online"))
             .catch(() => setStatus("Backend is offline"));
     }, []);

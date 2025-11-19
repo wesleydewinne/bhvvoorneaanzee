@@ -47,7 +47,7 @@ function Dashboard() {
                 <ul>
                     <li>Naam: {user.name}</li>
                     <li>Email: {user.email}</li>
-                    <li>Rol: {user.roles.replace("ROL_","").toLowerCase().replace(/^\w/, c => c.toUpperCase())}</li>
+                    <li>Rol: {user.roles.replace("ROL_", "").toLowerCase().replace(/^\w/, c => c.toUpperCase())}</li>
                 </ul>
             </div>
         </div>
