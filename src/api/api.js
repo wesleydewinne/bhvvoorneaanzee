@@ -1,112 +1,93 @@
 import axios from "axios";
 
-/* -------------------------------------------------------------
-    Access token opslaan / wissen
-------------------------------------------------------------- */
-export function setAccessToken(token) {
-    if (token) {
-        localStorage.setItem("accessToken", token);
-    } else {
-        localStorage.removeItem("accessToken");
-    }
-}
-
-/* -------------------------------------------------------------
+/* =========================================================================
     Axios Client
-------------------------------------------------------------- */
+    - Werkt volledig met HttpOnly cookies (access + refresh)
+    - Geen localStorage meer
+    - Geen Authorization headers meer
+    - withCredentials = true → browser stuurt cookies automatisch mee
+    - Backend behandelt refresh logic zelf via /auth/refresh endpoint
+========================================================================= */
+
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
-    withCredentials: true, // refresh-cookie meesturen
+    withCredentials: true, // stuurt cookies mee
     headers: {
         "Content-Type": "application/json",
     },
 });
 
-/* -------------------------------------------------------------
-    Request Interceptor – Access token automatisch meesturen
-------------------------------------------------------------- */
-api.interceptors.request.use((config) => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
-
-/* -------------------------------------------------------------
-    Response Interceptor – Automatische Refresh Handler
-------------------------------------------------------------- */
-
-let isRefreshing = false;
-let failedQueue = [];
-
-function processQueue(newToken) {
-    failedQueue.forEach((cb) => cb(newToken));
-    failedQueue = [];
-}
+/* =========================================================================
+    Globale Response Interceptor
+    - Doel: Nettere foutmeldingen + juiste afhandeling van JWT expiratie
+    - LET OP:
+      Omdat je backend al een automatische refresh-cookie strategie gebruikt,
+      hoeft deze interceptor *geen* nieuwe tokens op te halen.
+      Alleen netjes afhandelen.
+========================================================================= */
 
 api.interceptors.response.use(
-    (response) => response, // gewoon doorgeven
+    (response) => response,
+
     async (error) => {
+        const status = error.response?.status;
         const originalRequest = error.config;
 
-        // Geen 401? Teruggeven
-        if (error.response?.status !== 401) {
-            return Promise.reject(error);
-        }
+        /* -------------------------------------------------------------
+            401 Unauthorized
+            Kan komen door:
+            - accessToken verlopen
+            - refresh token verlopen
+            - gebruiker uitgelogd
+        ------------------------------------------------------------- */
 
-        // Niet opnieuw proberen op login of refresh zelf
-        if (
-            originalRequest.url?.includes("/auth/login") ||
-            originalRequest.url?.includes("/auth/refresh")
-        ) {
-            setAccessToken(null);
-            return Promise.reject(error);
-        }
+        if (status === 401) {
+            console.warn("401 ontvangen → gebruiker waarschijnlijk niet ingelogd");
 
-        // Refresh bezig? Wacht in queue
-        if (isRefreshing) {
-            return new Promise((resolve, reject) => {
-                failedQueue.push((newToken) => {
-                    if (!newToken) reject(error);
-                    else {
-                        originalRequest.headers.Authorization = `Bearer ${newToken}`;
-                        resolve(api(originalRequest));
-                    }
-                });
+            // Als het een login of refresh call is → direct teruggeven
+            if (
+                originalRequest.url.includes("/auth/login") ||
+                originalRequest.url.includes("/auth/refresh")
+            ) {
+                return Promise.reject(error);
+            }
+
+            // → frontend moet gebruiker naar login sturen
+            return Promise.reject({
+                ...error,
+                autoLogout: true,
+                message: "Je sessie is verlopen. Log opnieuw in.",
             });
         }
 
-        // Start refresh één keer
-        isRefreshing = true;
-
-        try {
-            const res = await api.post("/auth/refresh");
-
-            // Nieuw access token uit backend response halen
-            const { accessToken: newToken } = res.data;
-
-            // Opslaan
-            setAccessToken(newToken);
-
-            // Queue afhandelen
-            processQueue(newToken);
-
-            // Reset flag
-            isRefreshing = false;
-
-            // Originele request opnieuw uitvoeren
-            originalRequest.headers.Authorization = `Bearer ${newToken}`;
-            return api(originalRequest);
-
-        } catch (refreshError) {
-            // Refresh mislukt → iedereen laten falen
-            processQueue(null);
-            setAccessToken(null);
-
-            isRefreshing = false;
-            return Promise.reject(refreshError);
+        /* -------------------------------------------------------------
+            403 Forbidden
+            Komt vooral door:
+            - CAPTCHA ongeldig
+            - ongeldige beveiligingscheck
+        ------------------------------------------------------------- */
+        if (status === 403) {
+            return Promise.reject({
+                ...error,
+                message: "Beveiligingscontrole mislukt (403).",
+            });
         }
+
+        /* -------------------------------------------------------------
+            429 Too Many Requests
+            Rate limiting
+        ------------------------------------------------------------- */
+        if (status === 429) {
+            return Promise.reject({
+                ...error,
+                message: "Te veel verzoeken. Wacht even en probeer opnieuw.",
+            });
+        }
+
+        /* -------------------------------------------------------------
+            Andere errors → gewoon doorgeven
+        ------------------------------------------------------------- */
+        return Promise.reject(error);
     }
 );
 
