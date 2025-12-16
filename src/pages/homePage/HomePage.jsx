@@ -41,11 +41,11 @@ function HomePage() {
             <TrainingCardSection title="Trainingsaanbod BHV Voorne aan Zee" cards={homeCards} />
 
             {/* ⭐ Reviews (na trainingen, zoals afgesproken) */}
-            <section className="section section--reviews">
-                <div className="container">
-                    <ReviewCarousel />
-                </div>
-            </section>
+            {/*<section className="section section--reviews">*/}
+            {/*    <div className="container">*/}
+            {/*        <ReviewCarousel />*/}
+            {/*    </div>*/}
+            {/*</section>*/}
 
 
 

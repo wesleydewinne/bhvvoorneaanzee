@@ -36,6 +36,8 @@ import Login from "@/pages/login/LoginPage.jsx";
 import { Navigate } from "react-router-dom";
 import AccessPage from "@/pages/quiz/AccessPage.jsx";
 import OfferteAanvraag from "@/pages/OffertePage/OfferteAanvraag.jsx";
+import OverOns from "@/pages/overOns/OverOns.jsx";
+import Bedrijfsgegevens from "@/components/bedrijfsgegevens/Bedrijfsgegevens.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -92,7 +94,10 @@ const publicRoutes = [
 
     { path: "/landingpage", element: <LandingPage /> },
     { path: "/veelgestelde-vragen", element: <Faq /> },
-    { path: "/offerte", element: <OfferteAanvraag />}
+    { path: "/offerte", element: <OfferteAanvraag />},
+
+    { path: "/overons", element: <OverOns />},
+    { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens />}
 ];
 
 export default publicRoutes;

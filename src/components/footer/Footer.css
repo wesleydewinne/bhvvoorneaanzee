@@ -54,3 +54,17 @@
     font-size: 1.4rem;
     color: #aaa;
 }
+
+.footer small {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+}
+
+.footer a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.footer a:hover {
+    color: var(--color-text-primary);
+}

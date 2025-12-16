@@ -34,15 +34,18 @@ const Footer = () => {
                 <div className="footer-column">
                     <h4>Bedrijfsgegevens</h4>
                     <ul>
-                        <li><Link to="#">Over ons</Link></li>
-                        <li><Link to="#">Contact ons</Link></li>
+                        <li><Link to="/overons">Over ons</Link></li>
+                        <li><Link to="/contact">Contact ons</Link></li>
                     </ul>
                 {/*  totale reviews  */}
                 </div>
             </div>
 
             <div className="footer-bottom">
-                BHV Voorne aan zee &copy; {new Date().getFullYear()} – Alle rechten voorbehouden
+                <small>
+                    bhvvoorneaanzee &copy; {new Date().getFullYear()} – Alle rechten voorbehouden ·{' '}
+                    <a href="/bedrijfsgegevens">Bedrijfsgegevens</a>
+                </small>
                 <StatusCheck />
                 <StatusIndicator />
             </div>
