@@ -129,47 +129,51 @@ export default function BhvRotterdamPage() {
                 <h2 className="region-title">Ook actief in omliggende regio’s</h2>
 
                 <div className="region-grid">
-                    <article className="region-card bhv-region" data-region="Zeeland">
-                        <div className="region-image">
-                            <img
-                                src={zeelandHeader}
-                                alt="Illustratie van Zeeland met kustlijn, molen en brug – BHV training Zeeland"
-                                loading="lazy"
-                            />
-                            <div className="image-overlay" />
-                        </div>
-                        <div className="region-content">
-                            <h2 className="region-heading">
-                                BHV training Regio Zeeland (bovenste gedeelte)
-                            </h2>
-                            <p>
-                                Actief in <strong>Ouddorp</strong>, <strong>Goedereede</strong>,{" "}
-                                <strong>Stellendam</strong>, <strong>Dirksland</strong> en{" "}
-                                <strong>Middelharnis</strong>.
-                            </p>
-                        </div>
-                    </article>
+                    <Link to="/bhv" className="region-link">
+                        <article className="region-card bhv-region" data-region="Zeeland">
+                            <div className="region-image">
+                                <img
+                                    src={zeelandHeader}
+                                    alt="Illustratie van Zeeland met kustlijn, molen en brug – BHV training Zeeland"
+                                    loading="lazy"
+                                />
+                                <div className="image-overlay" />
+                            </div>
+                            <div className="region-content">
+                                <h2 className="region-heading">
+                                    BHV training Regio Zeeland (bovenste gedeelte)
+                                </h2>
+                                <p>
+                                    Actief in <strong>Ouddorp</strong>, <strong>Goedereede</strong>,{" "}
+                                    <strong>Stellendam</strong>, <strong>Dirksland</strong> en{" "}
+                                    <strong>Middelharnis</strong>.
+                                </p>
+                            </div>
+                        </article>
+                    </Link>
 
-                    <article className="region-card bhv-region" data-region="Westland">
-                        <div className="region-image">
-                            <img
-                                src={westlandHeader}
-                                alt="Skyline van Den Haag met kassen uit het Westland – BHV training Den Haag en Westland"
-                                loading="lazy"
-                            />
-                            <div className="image-overlay" />
-                        </div>
-                        <div className="region-content">
-                            <h2 className="region-heading">
-                                BHV training Regio Westland & Haaglanden
-                            </h2>
-                            <p>
-                                Trainingen in <strong>Monster</strong>, <strong>Naaldwijk</strong>,{" "}
-                                <strong>’s-Gravenzande</strong> en omgeving{" "}
-                                <strong>Den Haag</strong>.
-                            </p>
-                        </div>
-                    </article>
+                    <Link to="/bhv" className="region-link">
+                        <article className="region-card bhv-region" data-region="Westland">
+                            <div className="region-image">
+                                <img
+                                    src={westlandHeader}
+                                    alt="Skyline van Den Haag met kassen uit het Westland – BHV training Den Haag en Westland"
+                                    loading="lazy"
+                                />
+                                <div className="image-overlay" />
+                            </div>
+                            <div className="region-content">
+                                <h2 className="region-heading">
+                                    BHV training Regio Westland & Haaglanden
+                                </h2>
+                                <p>
+                                    Trainingen in <strong>Monster</strong>, <strong>Naaldwijk</strong>,{" "}
+                                    <strong>’s-Gravenzande</strong> en omgeving{" "}
+                                    <strong>Den Haag</strong>.
+                                </p>
+                            </div>
+                        </article>
+                    </Link>
 
                     <Link to="/bhv" className="region-link">
                         <article className="region-card bhv-region" data-region="VoorneAanZee">

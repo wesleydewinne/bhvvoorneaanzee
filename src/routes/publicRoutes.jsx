@@ -35,6 +35,7 @@ import BhvWestlandPage from "@/pages/bhvPage/bhvRegion/BhvWestlandPage.jsx";
 import Login from "@/pages/login/LoginPage.jsx";
 import { Navigate } from "react-router-dom";
 import AccessPage from "@/pages/quiz/AccessPage.jsx";
+import OfferteAanvraag from "@/pages/OffertePage/OfferteAanvraag.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -91,6 +92,7 @@ const publicRoutes = [
 
     { path: "/landingpage", element: <LandingPage /> },
     { path: "/veelgestelde-vragen", element: <Faq /> },
+    { path: "/offerte", element: <OfferteAanvraag />}
 ];
 
 export default publicRoutes;

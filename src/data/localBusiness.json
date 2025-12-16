@@ -4,7 +4,7 @@
   "name": "BHV Voorne aan zee",
   "url": "https://www.bhvvoorneaanzee.nl",
   "telephone": "+31-641719800",
-  "email": "mailto:algemeen@bhvvoorneaanzee.nl",
+  "email": "mailto:klantenservice@bhvvoorneaanzee.nl",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Druivenhoek 12",
@@ -16,10 +16,49 @@
   "openingHours": "Mo-Fr 08:00-17:00",
   "logo": "assets/image/logo.png",
   "areaServed": [
-    { "@type": "Place", "name": "Voorne aan Zee" },
-    { "@type": "Place", "name": "Rotterdam Rijnmond" },
-    { "@type": "Place", "name": "Haaglanden" },
-    { "@type": "Place", "name": "Zeeland" },
-    { "@type": "Place", "name": "midden- West- Brabant" }
+    {
+      "@type": "AdministrativeArea",
+      "@id": "https://bhvvoorneaanzee.nl/geo/voorne-aan-zee",
+      "name": "Voorne aan Zee",
+      "description": "BHV, EHBO en reanimatie trainingen in Voorne aan Zee en omstreken.",
+      "availableLanguage": ["nl-NL"]
+    },
+    {
+      "@type": "AdministrativeArea",
+      "@id": "https://bhvvoorneaanzee.nl/geo/rotterdam-rijnmond",
+      "name": "Rotterdam-Rijnmond",
+      "alternateName": ["VRR", "Veiligheidsregio Rotterdam-Rijnmond"],
+      "description": "BHV trainingen op locatie binnen de veiligheidsregio Rotterdam-Rijnmond.",
+      "availableLanguage": ["nl-NL"]
+    },
+    {
+      "@type": "AdministrativeArea",
+      "@id": "https://bhvvoorneaanzee.nl/geo/haaglanden",
+      "name": "Haaglanden",
+      "description": "BHV en EHBO cursussen in regio Haaglanden voor bedrijven en organisaties.",
+      "availableLanguage": ["nl-NL"]
+    },
+    {
+      "@type": "AdministrativeArea",
+      "@id": "https://bhvvoorneaanzee.nl/geo/zeeland",
+      "name": "Zeeland",
+      "description": "BHV trainingen, reanimatie en Stop de Bloeding cursussen in provincie Zeeland.",
+      "availableLanguage": ["nl-NL"]
+    },
+    {
+      "@type": "AdministrativeArea",
+      "@id": "https://bhvvoorneaanzee.nl/geo/midden-west-brabant",
+      "name": "Midden- en West-Brabant",
+      "description": "BHV en EHBO trainingen op locatie in regio Midden- en West-Brabant.",
+      "availableLanguage": ["nl-NL"]
+    },
+
+    { "@type": "Place", "name": "Brielle" },
+    { "@type": "Place", "name": "Hellevoetsluis" },
+    { "@type": "Place", "name": "Oostvoorne" },
+    { "@type": "Place", "name": "Rotterdam" },
+    { "@type": "Place", "name": "Den Haag" },
+    { "@type": "Place", "name": "Goes" }
   ]
+
 }

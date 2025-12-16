@@ -152,7 +152,7 @@ function createContactPointSchema() {
         '@type': 'ContactPoint',
         contactType: 'customer service',
         telephone: '+31-641719800',
-        email: 'mailto:algemeen@bhvvoorneaanzee.nl',
+        email: 'mailto:klantenservice@bhvvoorneaanzee.nl',
         availableLanguage: ['Dutch'],
         areaServed: [
             'Gemeente Voorne aan Zee',

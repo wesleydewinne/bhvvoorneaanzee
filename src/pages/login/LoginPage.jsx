@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import api from "@/api/api.js";
 import { useNavigate } from "react-router-dom";
+import useAuth from "@/hooks/useAuth"; // blijft hetzelfde
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -14,12 +15,11 @@ export default function LoginPage() {
     const captchaRef = useRef(null);
     const widgetIdRef = useRef(null);
 
-    // Site key uit .env
+    const { refreshUser } = useAuth();
+
     const siteKey = import.meta.env.VITE_TURNSTILE_SITEKEY;
 
-    // Turnstile script laden + widget renderen
     useEffect(() => {
-        // Als script al geladen is
         if (window.turnstile && captchaRef.current && !widgetIdRef.current) {
             widgetIdRef.current = window.turnstile.render(captchaRef.current, {
                 sitekey: siteKey,
@@ -31,27 +31,26 @@ export default function LoginPage() {
             return;
         }
 
-        // Script nog niet aanwezig → toevoegen
         const script = document.createElement("script");
-        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.src =
+            "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
         script.async = true;
         script.defer = true;
         script.onload = () => {
             if (captchaRef.current && !widgetIdRef.current) {
-                widgetIdRef.current = window.turnstile.render(captchaRef.current, {
-                    sitekey: siteKey,
-                    callback: (token) => {
-                        setCaptchaToken(token);
-                        setCaptchaReady(true);
-                    },
-                });
+                widgetIdRef.current = window.turnstile.render(
+                    captchaRef.current,
+                    {
+                        sitekey: siteKey,
+                        callback: (token) => {
+                            setCaptchaToken(token);
+                            setCaptchaReady(true);
+                        },
+                    }
+                );
             }
         };
         document.body.appendChild(script);
-
-        return () => {
-            // optioneel: cleanup
-        };
     }, [siteKey]);
 
     const handleSubmit = async (e) => {
@@ -59,27 +58,30 @@ export default function LoginPage() {
         setError("");
 
         if (!captchaToken) {
-            setError("Bevestig eerst de beveiligingscheck (CAPTCHA).");
+            setError("Bevestig eerst de beveiligingscheck");
             return;
         }
 
         setLoading(true);
         try {
+            // 1️⃣ login bij backend → zet httpOnly cookies
             await api.post("/auth/login", {
                 email,
                 password,
                 captcha: captchaToken,
             });
 
-            // Geen token meer opslaan; cookies regelen alles
+            await refreshUser();
+
             navigate("/dashboard");
         } catch (err) {
             console.error("Login fout:", err);
+
             if (err.response?.status === 403) {
-                setError("Beveiligingscheck (CAPTCHA) ongeldig of verlopen.");
+                setError("Beveiligingscheck ongeldig of verlopen.");
             } else if (err.response?.status === 429) {
                 setError(
-                    "Te veel mislukte pogingen. Wacht even voordat je opnieuw probeert."
+                    "Te veel mislukte inlog pogingen. Wacht minimaal 15 en probeer opnieuw."
                 );
             } else if (err.response?.status === 401) {
                 setError("Onjuiste inloggegevens.");
@@ -103,7 +105,8 @@ export default function LoginPage() {
             <h1>Inloggen</h1>
 
             <form onSubmit={handleSubmit}>
-                <label>Email</label><br />
+                <label>Email</label>
+                <br />
                 <input
                     type="email"
                     value={email}
@@ -113,7 +116,8 @@ export default function LoginPage() {
 
                 <br />
 
-                <label>Wachtwoord</label><br />
+                <label>Wachtwoord</label>
+                <br />
                 <input
                     type="password"
                     value={password}
@@ -121,17 +125,15 @@ export default function LoginPage() {
                     required
                 />
 
-                <br /><br />
+                <br />
+                <br />
 
                 {/* Turnstile CAPTCHA */}
                 <div ref={captchaRef} style={{ marginBottom: "1rem" }} />
 
                 {error && <p style={{ color: "red" }}>{error}</p>}
 
-                <button
-                    type="submit"
-                    disabled={loading || !captchaReady}
-                >
+                <button type="submit" disabled={loading || !captchaReady}>
                     {loading ? "Bezig met inloggen..." : "Inloggen"}
                 </button>
             </form>

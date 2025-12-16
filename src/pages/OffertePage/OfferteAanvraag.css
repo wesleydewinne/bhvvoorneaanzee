@@ -1,0 +1,122 @@
+/* =====================================
+   OFFERTES — PREMIUM LAYOUT
+===================================== */
+
+/* ---- ALGEMENE BLOKKEN ---- */
+.offerte-block {
+    background: var(--color-surface);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--space-8);
+}
+
+/* ---- TITELS IN BLOKKEN ---- */
+.offerte-title {
+    text-align: center;
+    font-size: var(--fluid-h3);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-2);
+    border-bottom: 3px solid var(--color-primary);
+}
+
+/* ---- INPUT-GROUP ---- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-4);
+}
+
+.input-group label {
+    font-size: var(--fs-3);
+    font-weight: var(--fw-medium);
+}
+
+.input-group input,
+.input-group select {
+    padding: var(--space-3);
+    font-size: var(--fs-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--color-primary);
+    box-shadow: var(--focus-ring);
+}
+
+/* ---- ERROR ---- */
+.error-text {
+    color: var(--color-danger);
+    font-size: var(--fs-2);
+    margin-top: calc(-1 * var(--space-1));
+}
+
+/* ---- TRAINING CARDS ---- */
+.training-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-5);
+}
+
+.training-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Titel over kaart */
+.training-header {
+    font-size: var(--fs-4);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-3);
+}
+
+/* Verwijderknop */
+.training-remove {
+    color: var(--color-danger);
+    font-weight: var(--fw-medium);
+    margin-top: var(--space-2);
+    cursor: pointer;
+}
+
+.training-remove:hover {
+    text-decoration: underline;
+}
+
+/* ---- BUTTONS ---- */
+.btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--fs-4);
+    font-weight: var(--fw-bold);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background: var(--color-success);
+    color: #fff;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--fs-3);
+    font-weight: var(--fw-medium);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #0f8a3a;
+}

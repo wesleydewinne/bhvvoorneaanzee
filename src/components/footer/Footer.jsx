@@ -37,6 +37,7 @@ const Footer = () => {
                         <li><Link to="#">Over ons</Link></li>
                         <li><Link to="#">Contact ons</Link></li>
                     </ul>
+                {/*  totale reviews  */}
                 </div>
             </div>
 

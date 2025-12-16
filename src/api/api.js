@@ -1,29 +1,25 @@
 import axios from "axios";
 
 /* =========================================================================
-    Axios Client
-    - Werkt volledig met HttpOnly cookies (access + refresh)
-    - Geen localStorage meer
-    - Geen Authorization headers meer
-    - withCredentials = true → browser stuurt cookies automatisch mee
-    - Backend behandelt refresh logic zelf via /auth/refresh endpoint
+    AXIOS CLIENT – MET HTTPONLY COOKIES
+    - Cookies worden automatisch verstuurd dankzij withCredentials: true
+    - Geen Authorization headers of localStorage nodig
+    - Werkt perfect met jouw Spring Boot refresh-strategie
 ========================================================================= */
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
-    withCredentials: true, // stuurt cookies mee
+    withCredentials: true, // 🔥 verplicht voor httpOnly cookies
     headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
     },
 });
 
 /* =========================================================================
-    Globale Response Interceptor
-    - Doel: Nettere foutmeldingen + juiste afhandeling van JWT expiratie
-    - LET OP:
-      Omdat je backend al een automatische refresh-cookie strategie gebruikt,
-      hoeft deze interceptor *geen* nieuwe tokens op te halen.
-      Alleen netjes afhandelen.
+    RESPONSE INTERCEPTOR
+    - Vangt expired tokens (401) en forceert nette automatische logout
+    - Frontend hoeft geen refresh te doen → backend regelt dat al
 ========================================================================= */
 
 api.interceptors.response.use(
@@ -34,17 +30,12 @@ api.interceptors.response.use(
         const originalRequest = error.config;
 
         /* -------------------------------------------------------------
-            401 Unauthorized
-            Kan komen door:
-            - accessToken verlopen
-            - refresh token verlopen
-            - gebruiker uitgelogd
+            401 – Niet ingelogd of sessie verlopen
         ------------------------------------------------------------- */
-
         if (status === 401) {
-            console.warn("401 ontvangen → gebruiker waarschijnlijk niet ingelogd");
+            console.warn("⚠️ 401 ontvangen → gebruiker niet (meer) ingelogd");
 
-            // Als het een login of refresh call is → direct teruggeven
+            // login/refresh zelf niet onderscheppen
             if (
                 originalRequest.url.includes("/auth/login") ||
                 originalRequest.url.includes("/auth/refresh")
@@ -52,7 +43,6 @@ api.interceptors.response.use(
                 return Promise.reject(error);
             }
 
-            // → frontend moet gebruiker naar login sturen
             return Promise.reject({
                 ...error,
                 autoLogout: true,
@@ -61,10 +51,7 @@ api.interceptors.response.use(
         }
 
         /* -------------------------------------------------------------
-            403 Forbidden
-            Komt vooral door:
-            - CAPTCHA ongeldig
-            - ongeldige beveiligingscheck
+            403 – Verboden (o.a. reCAPTCHA mislukking)
         ------------------------------------------------------------- */
         if (status === 403) {
             return Promise.reject({
@@ -74,8 +61,7 @@ api.interceptors.response.use(
         }
 
         /* -------------------------------------------------------------
-            429 Too Many Requests
-            Rate limiting
+            429 – Rate limiting
         ------------------------------------------------------------- */
         if (status === 429) {
             return Promise.reject({
@@ -84,9 +70,6 @@ api.interceptors.response.use(
             });
         }
 
-        /* -------------------------------------------------------------
-            Andere errors → gewoon doorgeven
-        ------------------------------------------------------------- */
         return Promise.reject(error);
     }
 );

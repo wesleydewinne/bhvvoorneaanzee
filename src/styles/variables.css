@@ -131,4 +131,26 @@
     /* ====== Misc ====== */
     --overlay-color: rgba(0,0,0,.5);
     --focus-ring: 0 0 0 0.3rem rgba(0, 74, 173, 0.4);
+
+    /* ====== Component motion ====== */
+        --motion-distance-sm: 0.6rem;
+        --motion-distance-md: 1.2rem;
+        --motion-distance-lg: 2.4rem;
+
+        --motion-blur-sm: 1px;
+        --motion-blur-md: 2px;
+
+        /* ====== Review carousel ====== */
+        --review-height: 28rem;           /* 280px */
+        --review-card-width-sm: 32rem;    /* 320px */
+        --review-card-width-lg: 42rem;    /* 420px */
+        --review-visible-side-sm: 0.35;
+        --review-visible-side-lg: 0.25;
+
+        /* ====== Motion timing ====== */
+        --review-transition:
+                transform var(--transition-slow) var(--ease-in-out),
+                filter var(--transition-slow) var(--ease-in-out),
+                opacity var(--transition-slow) var(--ease-in-out);
+
 }

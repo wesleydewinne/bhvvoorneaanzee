@@ -10,6 +10,7 @@ import CoverageArea from "../../components/coverageArea/CoverageArea.jsx";
 import BlogSection from "../../components/sections/blogSection/BlogSection.jsx";
 import { posts } from "../blog/posts.js";
 import CTAButtons from "../../components/button/cta/CTAButton.jsx";
+import ReviewCarousel from "@/components/review/ReviewCarousel.jsx";
 
 
 
@@ -35,14 +36,25 @@ function HomePage() {
             />
             <CTAButtons />
 
+            {/*hier moet de google reviews staan*/}
+
             <TrainingCardSection title="Trainingsaanbod BHV Voorne aan Zee" cards={homeCards} />
+
+            {/* ⭐ Reviews (na trainingen, zoals afgesproken) */}
+            <section className="section section--reviews">
+                <div className="container">
+                    <ReviewCarousel />
+                </div>
+            </section>
+
+
+
             <section className="certificering-section">
+
 
                 <BlogSection posts={posts} limit={10} />
 
                 <LogosSection />
-
-
 
 
                 {/*<CoverageSection*/}

@@ -1,0 +1,99 @@
+/* ==============================
+   Review Carousel
+================================ */
+
+.review-stack {
+    position: relative;
+    height: var(--review-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+
+    --card-width: var(--review-card-width-sm);
+    --visible-side: var(--review-visible-side-sm);
+    --card-overlap: calc(var(--card-width) * (1 - var(--visible-side)));
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .review-stack {
+        --card-width: var(--review-card-width-lg);
+        --visible-side: var(--review-visible-side-lg);
+    }
+}
+
+/* ==============================
+   Review Card
+================================ */
+
+.review-card {
+    position: absolute;
+    width: var(--card-width);
+    padding: var(--space-5);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+
+    font-family: var(--font-base);
+    color: var(--color-text);
+
+    transform-style: preserve-3d;
+    transition: var(--review-transition);
+}
+
+/* ==============================
+   Review Content
+================================ */
+
+.review-text {
+    font-size: var(--fluid-body);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+}
+
+.review-author {
+    display: block;
+    margin-top: var(--space-3);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-muted);
+}
+
+/* ==============================
+   Fallback
+================================ */
+
+.review-fallback {
+    padding: var(--space-6);
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+/* ==============================
+   Skeleton Loader
+================================ */
+
+.review-card.skeleton {
+    animation: review-pulse 1.5s infinite;
+}
+
+.review-card.skeleton .skeleton-line {
+    height: 1.4rem;
+    background: var(--color-border);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-3);
+}
+
+.review-card.skeleton .skeleton-line.title {
+    width: 60%;
+}
+
+.review-card.skeleton .skeleton-line.short {
+    width: 80%;
+}
+
+@keyframes review-pulse {
+    0%   { opacity: var(--opacity-100); }
+    50%  { opacity: var(--opacity-50); }
+    100% { opacity: var(--opacity-100); }
+}

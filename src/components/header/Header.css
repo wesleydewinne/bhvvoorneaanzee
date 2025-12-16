@@ -1,187 +1,311 @@
-/* ========================================
-   HEADER BASIS
-======================================== */
-header.inner-container {
+/* =========================================================
+   BASIS HEADER
+========================================================= */
+.site-header {
+    width: 100%;
+    background-color: #000;
     position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
     z-index: 1000;
+    transition: box-shadow 0.25s ease;
+}
+
+.site-header.is-scrolled {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.header-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 9.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #000;
     padding: 0 2rem;
-    height: 10rem;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-/* Schaduw bij scroll */
-header.inner-container.is-scrolled {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* ========================================
-   LOGO
-======================================== */
-.logo-container {
+/* =========================================================
+   LOGO LINKS
+========================================================= */
+.header-left {
     display: flex;
     align-items: center;
 }
 
-.logo {
-    max-height: 9rem;
-    width: auto;
+.header-logo {
+    height: 9rem;
     object-fit: contain;
-    transition: max-height 0.3s ease;
 }
 
-/* ========================================
-   NAVIGATIE (DESKTOP)
-======================================== */
-nav {
+/* =========================================================
+   NAV MIDDEN — DESKTOP
+========================================================= */
+.main-nav {
+    flex: 1 1 auto;
     display: flex;
-    flex-direction: row;
     justify-content: center;
 }
 
-nav ul {
+.main-nav ul {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style: none;
+    gap: 3rem;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
-nav li {
-    padding: 0 1.6rem;
-}
-
-nav a {
-    text-decoration: none;
-    font-size: 1.6rem;
+.nav-link {
+    font-size: 1.7rem;
     font-weight: 500;
-    color: #fff;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    color: #ffffff;
+    text-decoration: none;
+    padding-bottom: 0.25rem;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.active-link {
-    color: var(--color-active-link, #fcb900);
-    border-bottom: 3px solid var(--color-active-link, #fcb900);
+/* Desktop hover (wel behouden!) */
+.nav-link:hover {
+    color: #fcb900;
 }
 
-.default-link {
-    color: #fff;
+.nav-link.active {
+    color: #fcb900;
+    border-color: #fcb900;
 }
 
-/* ========================================
-   HAMBURGER MENU
-======================================== */
+/* =========================================================
+   HAMBURGER BUTTON
+========================================================= */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* BUTTON */
 .hamburger {
     display: none;
-    position: absolute;
-    top: 50%;
-    right: 2rem;
-    transform: translateY(-50%);
     width: 30px;
-    height: 30px;
-    background: none;
+    height: 24px;
+    padding: 0;
     border: none;
+    background: none;
     cursor: pointer;
-    z-index: 1100;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* Lijntjes */
 .hamburger span {
-    position: absolute;
-    left: 0;
     width: 100%;
     height: 3px;
-    background-color: #fff;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.hamburger span:nth-child(1) { top: 6px; }
-.hamburger span:nth-child(2) { top: 13.5px; }
-.hamburger span:nth-child(3) { top: 21px; }
-
+/* STRAK & MOOI WIT KRUIS */
 .hamburger.open span:nth-child(1) {
-    transform: rotate(45deg);
-    top: 13.5px;
+    transform: translateY(10.5px) rotate(45deg);
 }
-.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
 .hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg);
-    top: 13.5px;
+    transform: translateY(-10.5px) rotate(-45deg);
 }
 
-/* ========================================
-   MOBIEL
-======================================== */
-@media (max-width: 768px) {
-    .logo {
-        max-height: 8rem;
+/* =========================================================
+   USER ICON + GLOWS
+========================================================= */
+.user-icon-wrapper {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Rode Offline Glow */
+.user-icon-wrapper.status-offline::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+    rgba(120, 0, 0, 0.85) 70%,
+    rgba(160, 0, 0, 0.55) 80%,
+    rgba(200, 0, 0, 0.28) 90%,
+    rgba(200, 0, 0, 0) 100%
+    );
+    filter: blur(7px);
+    z-index: 0;
+}
+
+/* Groene Online Glow */
+.user-icon-wrapper.status-online::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+    rgba(40, 224, 74, 0.6) 70%,
+    rgba(40, 224, 74, 0.35) 85%,
+    rgba(40, 224, 74, 0) 100%
+    );
+    filter: blur(6px);
+    z-index: 0;
+}
+
+.user-icon {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(2px);
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+/* poppetje */
+.user-icon::before,
+.user-icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+}
+
+.user-icon::before {
+    top: 7px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.user-icon::after {
+    bottom: 7px;
+    width: 20px;
+    height: 12px;
+    border-radius: 50% 50% 40% 40%;
+}
+
+.status-dot {
+    display: none !important;
+}
+
+/* =========================================================
+   USER MENU DROPDOWN
+========================================================= */
+.user-dropdown {
+    position: absolute;
+    top: 4.8rem;
+    right: 0;
+    background-color: #111;
+    border-radius: 10px;
+    min-width: 220px;
+    padding: 1.2rem;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    z-index: 1500;
+}
+
+.user-dropdown button {
+    background-color: #222;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    color: #fff;
+    font-size: 1.4rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.user-dropdown button:hover {
+    background-color: #333;
+}
+
+.logout-btn {
+    background-color: #8b0000 !important;
+}
+.logout-btn:hover {
+    background-color: #b00000 !important;
+}
+
+/* =========================================================
+   MOBIEL MENU
+========================================================= */
+@media (max-width: 900px) {
+
+    .header-inner {
+        height: 7.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .header-logo {
+        height: 6rem;
+    }
+
+    /* VOLLEDIG TRANSPARANT MENU */
+    .main-nav {
+        position: fixed;
+        top: 7.5rem;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 7.5rem);
+        background: rgba(0, 0, 0, 0.65); /* mooi transparant */
+        backdrop-filter: blur(4px);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 2.4rem;
+    }
+
+    /* MENU ITEMS → LICHTGRIJS & TRANSPARANT */
+    .nav-link {
+        font-size: 2.1rem;
+        color: rgba(255,255,255,0.85);
+        background: rgba(255,255,255,0.06);
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        border-bottom: none; /* geen underline */
+    }
+
+    /* OVERRULE DESKTOP HOVER */
+    .nav-link:hover {
+        color: white !important;
+        background: rgba(255,255,255,0.15) !important;
     }
 
     .hamburger {
-        display: block;
-    }
-
-    nav {
-        position: absolute;
-        top: 7rem;
-        right: 0;
-        width: 100%;
-        height: calc(100vh - 7rem);
-        background-color: rgba(0, 0, 0, 0.95);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    nav.open {
-        transform: translateX(0);
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    nav li {
-        padding: 0;
-    }
-
-    nav a {
-        font-size: 2rem;
-        color: #fff;
-    }
-
-    .active-link {
-        border-bottom: none;
-        color: var(--color-active-link, #fcb900);
+        display: flex;
     }
 }
-/* ========================================
-   FIX – hamburger-button overschrijven
-======================================== */
-.hamburger {
-    background: none !important;
-    border: none;
-}
 
-.hamburger:hover {
-    background: none !important;
-}
-
-.hamburger span {
-    background-color: #fff;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.hamburger:hover span {
-    background-color: #fff; /* blijft wit bij hover */
+/* =========================================================
+   DESKTOP SPECIFIEK
+========================================================= */
+@media (min-width: 901px) {
+    .hamburger {
+        display: none;
+    }
 }
