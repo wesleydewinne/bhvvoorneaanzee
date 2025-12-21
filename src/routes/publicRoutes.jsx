@@ -38,6 +38,7 @@ import AccessPage from "@/pages/quiz/AccessPage.jsx";
 import OfferteAanvraag from "@/pages/OffertePage/OfferteAanvraag.jsx";
 import OverOns from "@/pages/overOns/OverOns.jsx";
 import Bedrijfsgegevens from "@/components/bedrijfsgegevens/Bedrijfsgegevens.jsx";
+import ContactOns from "@/pages/contact/ContactOns.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -97,7 +98,8 @@ const publicRoutes = [
     { path: "/offerte", element: <OfferteAanvraag />},
 
     { path: "/overons", element: <OverOns />},
-    { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens />}
+    { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens />},
+    { path: "/contact", element: <ContactOns /> }
 ];
 
 export default publicRoutes;
