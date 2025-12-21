@@ -44,7 +44,7 @@
 
 .review-stars {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: var(--space-2);
     color: #d1d5db;
 }
@@ -54,13 +54,14 @@
 }
 
 .review-text {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     line-height: var(--lh-relaxed);
     text-align: center;
 }
 
 .review-footer {
     margin-top: var(--space-3);
+    gap: 1.4rem;
     text-align: center;
     font-size: var(--fs-1);
     color: var(--color-text-muted);

@@ -39,10 +39,12 @@ function HomePage() {
 
             {/*hier moet de google reviews staan*/}
 
-            <TrainingCardSection title="Trainingsaanbod BHV Voorne aan Zee" cards={homeCards} />
+            <TrainingCardSection
+                title="Trainingsaanbod BHV Voorne aan Zee"
+                cards={homeCards}
+            />
 
-             ⭐ Reviews (na trainingen, zoals afgesproken)
-            <ReviewSection />
+             <ReviewSection />
 
 
 
