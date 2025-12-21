@@ -1,4 +1,4 @@
-import { useGoogleReviews } from '../../hooks/useGoogleReviews';
+import { useGoogleReviews } from './useGoogleReviews';
 import ReviewCarousel from './ReviewCarousel';
 import './ReviewSection.css';
 
