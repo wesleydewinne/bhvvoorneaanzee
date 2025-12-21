@@ -3,8 +3,15 @@ import { useEffect, useState } from 'react';
 const PLACE_ID = import.meta.env.VITE_GOOGLE_PLACE_ID;
 const BANNED = ['wijkeurenalles'];
 
-const normalize = text =>
+const normalize = (text = '') =>
     text.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+const formatDateNL = (unixSeconds) =>
+    new Date(unixSeconds * 1000).toLocaleDateString('nl-NL', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
 
 export function useGoogleReviews() {
     const [status, setStatus] = useState('loading');
@@ -13,18 +20,23 @@ export function useGoogleReviews() {
     const [total, setTotal] = useState(null);
 
     useEffect(() => {
-        if (!window.google || !google.maps?.places) {
+        if (
+            !PLACE_ID ||
+            !window.google ||
+            !window.google.maps?.places
+        ) {
+            setStatus('fallback');
             return;
         }
 
-        const service = new google.maps.places.PlacesService(
+        const service = new window.google.maps.places.PlacesService(
             document.createElement('div')
         );
 
         service.getDetails(
             {
                 placeId: PLACE_ID,
-                fields: ['rating', 'user_ratings_total', 'reviews']
+                fields: ['rating', 'user_ratings_total', 'reviews'],
             },
             (place, resultStatus) => {
                 if (resultStatus !== 'OK' || !place) {
@@ -32,29 +44,29 @@ export function useGoogleReviews() {
                     return;
                 }
 
-                const rawReviews = place.reviews ?? [];
+                setRating(place.rating ?? null);
+                setTotal(place.user_ratings_total ?? null);
 
-                const filtered = rawReviews.filter(r => {
-                    if (!r?.text || r.text.length < 40) return false;
+                const filtered = (place.reviews ?? []).filter((r) => {
+                    if (!r?.text) return false;
+                    if (r.text.length < 40) return false;
                     if (r.rating < 4) return false;
 
                     const text = normalize(r.text);
-                    return !BANNED.some(b => text.includes(b));
+                    return !BANNED.some((b) => text.includes(b));
                 });
-
-                setRating(place.rating);
-                setTotal(place.user_ratings_total);
 
                 if (!filtered.length) {
                     setStatus('fallback');
-                    setReviews([]);
                     return;
                 }
 
                 setReviews(
-                    filtered.map(r => ({
+                    filtered.map((r) => ({
                         text: r.text,
-                        author: r.author_name
+                        author: r.author_name || 'Google review',
+                        rating: r.rating,
+                        date: r.time ? formatDateNL(r.time) : '',
                     }))
                 );
 

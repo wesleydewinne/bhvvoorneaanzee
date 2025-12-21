@@ -1,61 +1,48 @@
 import { useEffect, useState } from 'react';
-import { useGoogleReviews } from './useGoogleReviews';
-import ReviewSkeleton from './ReviewSkeleton';
-import './ReviewCarousel.css';
+import ReviewCard from './ReviewCard.jsx';
 
+const OFFSETS = [-2, -1, 0, 1, 2];
 const INTERVAL = 8000;
 
-export default function ReviewCarousel() {
-    const { status, reviews, rating, total } = useGoogleReviews();
+export default function ReviewCarousel({ status, reviews }) {
     const [active, setActive] = useState(0);
 
     useEffect(() => {
-        if (reviews.length === 0) return;
+        if (status !== 'success' || reviews.length === 0) return;
 
         const timer = setInterval(() => {
-            setActive(prev => (prev + 1) % reviews.length);
+            setActive((v) => (v + 1) % reviews.length);
         }, INTERVAL);
 
         return () => clearInterval(timer);
-    }, [reviews.length]);
+    }, [status, reviews.length]);
 
     if (status === 'loading') {
-        return (
-            <section className="review-carousel">
-                <ReviewSkeleton />
-            </section>
-        );
+        return <div className="review-loading">Reviews laden…</div>;
     }
 
-    if (status === 'fallback') {
+    if (status !== 'success') {
         return (
-            <section className="review-carousel review-fallback">
-                <strong>{rating} ★★★★★</strong>
-                <p>Gebaseerd op {total} Google reviews</p>
-            </section>
+            <div className="review-fallback">
+                Reviews zijn momenteel niet beschikbaar.
+            </div>
         );
     }
-
-    const review = reviews[active];
 
     return (
-        <section className="review-carousel">
-            <article className="review-card-main">
-                <div className="review-stars">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                        <span key={i} className={i < 5 ? 'filled' : ''}>★</span>
-                    ))}
-                </div>
+        <div className="reviews-track">
+            {OFFSETS.map((offset) => {
+                const index =
+                    (active + offset + reviews.length) % reviews.length;
 
-                <p className="review-text">“{review.text}”</p>
-
-                <footer className="review-footer">
-                    <span className="review-author">— {review.author}</span>
-                    {review.date && (
-                        <span className="review-date">{review.date}</span>
-                    )}
-                </footer>
-            </article>
-        </section>
+                return (
+                    <ReviewCard
+                        key={`${index}-${offset}`}
+                        review={reviews[index]}
+                        offset={offset}
+                    />
+                );
+            })}
+        </div>
     );
 }
