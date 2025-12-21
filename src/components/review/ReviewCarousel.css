@@ -1,99 +1,91 @@
-/* ==============================
-   Review Carousel
+/* ===============================
+   Review Carousel (Clean)
 ================================ */
 
-.review-stack {
-    position: relative;
-    height: var(--review-height);
+.review-carousel {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-6);
     display: flex;
     justify-content: center;
-    align-items: center;
-    perspective: 1200px;
-
-    --card-width: var(--review-card-width-sm);
-    --visible-side: var(--review-visible-side-sm);
-    --card-overlap: calc(var(--card-width) * (1 - var(--visible-side)));
 }
 
-/* Desktop */
-@media (min-width: 769px) {
-    .review-stack {
-        --card-width: var(--review-card-width-lg);
-        --visible-side: var(--review-visible-side-lg);
-    }
-}
-
-/* ==============================
-   Review Card
+/* ===============================
+   Main Card
 ================================ */
 
-.review-card {
-    position: absolute;
-    width: var(--card-width);
-    padding: var(--space-5);
+.review-card-main {
+    width: 100%;
     background: var(--color-surface);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
+    padding: var(--space-6);
+    text-align: center;
 
-    font-family: var(--font-base);
-    color: var(--color-text);
-
-    transform-style: preserve-3d;
-    transition: var(--review-transition);
+    animation: fadeSlide 0.6s ease;
 }
 
-/* ==============================
-   Review Content
+/* ===============================
+   Stars
+================================ */
+
+.review-stars {
+    font-size: 2rem;
+    color: var(--color-border);
+    margin-bottom: var(--space-3);
+}
+
+.review-stars .filled {
+    color: var(--color-warning);
+}
+
+/* ===============================
+   Text
 ================================ */
 
 .review-text {
     font-size: var(--fluid-body);
     line-height: var(--lh-relaxed);
     color: var(--color-text);
+    margin-bottom: var(--space-4);
 }
 
-.review-author {
-    display: block;
-    margin-top: var(--space-3);
-    font-weight: var(--fw-medium);
+/* ===============================
+   Footer
+================================ */
+
+.review-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: var(--fs-2);
     color: var(--color-text-muted);
 }
 
-/* ==============================
+.review-author {
+    font-weight: var(--fw-medium);
+}
+
+/* ===============================
+   Animations
+================================ */
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
    Fallback
 ================================ */
 
 .review-fallback {
-    padding: var(--space-6);
     text-align: center;
     color: var(--color-text-muted);
-}
-
-/* ==============================
-   Skeleton Loader
-================================ */
-
-.review-card.skeleton {
-    animation: review-pulse 1.5s infinite;
-}
-
-.review-card.skeleton .skeleton-line {
-    height: 1.4rem;
-    background: var(--color-border);
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-3);
-}
-
-.review-card.skeleton .skeleton-line.title {
-    width: 60%;
-}
-
-.review-card.skeleton .skeleton-line.short {
-    width: 80%;
-}
-
-@keyframes review-pulse {
-    0%   { opacity: var(--opacity-100); }
-    50%  { opacity: var(--opacity-50); }
-    100% { opacity: var(--opacity-100); }
 }

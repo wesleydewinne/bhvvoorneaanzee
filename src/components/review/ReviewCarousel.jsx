@@ -5,121 +5,57 @@ import './ReviewCarousel.css';
 
 const INTERVAL = 8000;
 
-/* ===== helper hook ===== */
-function useMediaQuery(query) {
-    const [matches, setMatches] = useState(
-        typeof window !== 'undefined'
-            ? window.matchMedia(query).matches
-            : false
-    );
-
-    useEffect(() => {
-        const media = window.matchMedia(query);
-        const listener = () => setMatches(media.matches);
-
-        media.addEventListener('change', listener);
-        return () => media.removeEventListener('change', listener);
-    }, [query]);
-
-    return matches;
-}
-
-/* ===== component ===== */
 export default function ReviewCarousel() {
     const { status, reviews, rating, total } = useGoogleReviews();
-
     const [active, setActive] = useState(0);
-    const [paused, setPaused] = useState(false);
-
-    const prefersReducedMotion = useMediaQuery(
-        '(prefers-reduced-motion: reduce)'
-    );
-    const isMobile = useMediaQuery('(max-width: 768px)');
-
-    const offsets = isMobile
-        ? [-1, 0, 1]
-        : [-2, -1, 0, 1, 2];
 
     useEffect(() => {
-        if (
-            paused ||
-            prefersReducedMotion ||
-            reviews.length === 0
-        ) return;
+        if (reviews.length === 0) return;
 
         const timer = setInterval(() => {
             setActive(prev => (prev + 1) % reviews.length);
         }, INTERVAL);
 
         return () => clearInterval(timer);
-    }, [paused, prefersReducedMotion, reviews.length]);
-
-    /* ===== states ===== */
+    }, [reviews.length]);
 
     if (status === 'loading') {
         return (
-            <div className="review-stack">
+            <section className="review-carousel">
                 <ReviewSkeleton />
-            </div>
+            </section>
         );
     }
 
     if (status === 'fallback') {
         return (
-            <div className="review-card review-fallback">
-                <strong>Uitstekend beoordeeld</strong>
-                <p>
-                    {rating} / 5 op basis van {total} Google reviews
-                </p>
-            </div>
+            <section className="review-carousel review-fallback">
+                <strong>{rating} ★★★★★</strong>
+                <p>Gebaseerd op {total} Google reviews</p>
+            </section>
         );
     }
 
-    /* ===== render ===== */
+    const review = reviews[active];
 
     return (
-        <div
-            className="review-stack"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onTouchStart={() => setPaused(true)}
-            onTouchEnd={() => setPaused(false)}
-        >
-            {offsets.map(offset => {
-                const index =
-                    (active + offset + reviews.length) % reviews.length;
+        <section className="review-carousel">
+            <article className="review-card-main">
+                <div className="review-stars">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                        <span key={i} className={i < 5 ? 'filled' : ''}>★</span>
+                    ))}
+                </div>
 
-                const review = reviews[index];
-                if (!review) return null;
+                <p className="review-text">“{review.text}”</p>
 
-                return (
-                    <div
-                        key={`${index}-${offset}`}
-                        className="review-card"
-                        style={getCardStyle(offset)}
-                    >
-                        <p className="review-text">“{review.text}”</p>
-                        <strong className="review-author">
-                            — {review.author}
-                        </strong>
-                    </div>
-                );
-            })}
-        </div>
+                <footer className="review-footer">
+                    <span className="review-author">— {review.author}</span>
+                    {review.date && (
+                        <span className="review-date">{review.date}</span>
+                    )}
+                </footer>
+            </article>
+        </section>
     );
-}
-
-/* ===== styling helper ===== */
-function getCardStyle(offset) {
-    return {
-        transform: `
-      translateX(calc(${offset} * var(--card-overlap)))
-      scale(${1 - Math.abs(offset) * 0.06})
-      rotateY(${offset * -6}deg)
-      translateZ(${offset === 0 ? '0px' : '-80px'})
-    `,
-        filter: `blur(${Math.abs(offset) * 1.5}px)`,
-        opacity: offset === 0 ? 1 : 0.55,
-        zIndex: 10 - Math.abs(offset)
-    };
 }
