@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "@/api/api";
+import { useNavigate, Link } from "react-router-dom";
+import api from "@/api/api.js";
+import contactBg from "@/assets/image/headerPicture/contact-bg.png";
 import "./ContactOns.css";
 
 function ContactOns() {
@@ -9,12 +10,14 @@ function ContactOns() {
     const [formData, setFormData] = useState({
         naam: "",
         email: "",
-        bericht: ""
+        bericht: "",
+        company: "" // honeypot
     });
 
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const [lastSubmit, setLastSubmit] = useState(null);
 
     const handleChange = (e) => {
         setFormData(prev => ({
@@ -23,18 +26,57 @@ function ContactOns() {
         }));
     };
 
+    const validateForm = () => {
+        if (!formData.naam.trim()) return "Naam is verplicht.";
+        if (!formData.email.trim()) return "E-mailadres is verplicht.";
+        if (!formData.bericht.trim()) return "Bericht is verplicht.";
+
+        if (formData.naam.length > 100) return "Naam is te lang.";
+        if (formData.bericht.length > 2000) return "Bericht is te lang.";
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) return "Ongeldig e-mailadres.";
+
+        return null;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (loading) return;
+
+        // Honeypot check
+        if (formData.company) {
+            console.warn("Bot detected");
+            return;
+        }
+
+        // Cooldown check (30 sec)
+        const now = Date.now();
+        if (lastSubmit && now - lastSubmit < 30000) {
+            setError("Je kunt maximaal één bericht per 30 seconden versturen.");
+            return;
+        }
+
+        const validationError = validateForm();
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
 
         setLoading(true);
         setError(null);
         setSuccess(false);
 
         try {
-            await api.post("/contact", formData);
+            await api.post("/contact", {
+                naam: formData.naam,
+                email: formData.email,
+                bericht: formData.bericht
+            });
+
             setSuccess(true);
-            setFormData({ naam: "", email: "", bericht: "" });
+            setLastSubmit(now);
+            setFormData({ naam: "", email: "", bericht: "", company: "" });
 
             setTimeout(() => {
                 navigate("/", { state: { contactSuccess: true } });
@@ -51,7 +93,11 @@ function ContactOns() {
         <div className="contact">
 
             {/* FIXED BACKGROUND */}
-            <div className="contact-background"></div>
+            <div
+                className="contact-background"
+                style={{ backgroundImage: `url(${contactBg})` }}
+            ></div>
+
             <div className="contact-overlay"></div>
 
             {/* HERO */}
@@ -60,8 +106,14 @@ function ContactOns() {
                     <h1>Contact</h1>
                     <p>
                         Heb je vragen over BHV, EHBO, ontruimingsoefeningen of veiligheidstrainingen?
-                        Of wil je een <a href="/offerte" className="contact-offerte-link">offerte op maat</a> voor jouw organisatie?
-                        Neem gerust contact met ons op — wij denken graag met je mee.
+                        Of wil je een{" "}
+                        <Link to="/offerte" className="contact-offerte-link">
+                            offerte op maat
+                        </Link>{" "}
+                        voor jouw organisatie?
+                        <br /><br />
+                        Neem gerust contact met ons op.<br />
+                        Wij denken graag met je mee.
                     </p>
                 </div>
             </section>
@@ -76,20 +128,16 @@ function ContactOns() {
 
                         <ul className="contact-list">
                             <li>✉️ klantenservice@bhvvoorneaanzee.nl</li>
-                            {/*<li>📞 </li>*/}
                         </ul>
 
                         <div className="contact-gebied">
                             <h3>Werkgebied</h3>
-
                             <p>
-                                BHV Voorne aan Zee verzorgt BHV- en EHBO-trainingen, ontruimingsoefeningen en
-                                veiligheidstrainingen in Voorne aan Zee en omliggende regio’s zoals
-                                Rotterdam-Rijnmond, Haaglanden, Zeeland en Midden- en West-Brabant.
-                            </p>
-
-                            <p>
-                                Trainingen vinden plaats op locatie bij de opdrachtgever of in overleg op een externe locatie.
+                                BHV Voorne aan Zee verzorgt BHV- en EHBO-trainingen,
+                                ontruimingsoefeningen en veiligheidstrainingen in
+                                Voorne aan Zee en omliggende regio’s zoals
+                                Rotterdam-Rijnmond, Haaglanden, Zeeland en Midden-
+                                en West-Brabant.
                             </p>
                         </div>
                     </aside>
@@ -99,6 +147,17 @@ function ContactOns() {
                         <h2>Stuur een bericht</h2>
 
                         <form onSubmit={handleSubmit} noValidate>
+
+                            {/* Honeypot veld */}
+                            <input
+                                type="text"
+                                name="company"
+                                value={formData.company}
+                                onChange={handleChange}
+                                style={{ display: "none" }}
+                                tabIndex="-1"
+                                autoComplete="off"
+                            />
 
                             <div className="form-row">
                                 <label htmlFor="naam">Naam</label>
@@ -126,14 +185,20 @@ function ContactOns() {
 
                             <div className="form-row">
                                 <label htmlFor="bericht">Bericht</label>
+
                                 <textarea
                                     id="bericht"
                                     name="bericht"
                                     rows="5"
                                     value={formData.bericht}
                                     onChange={handleChange}
+                                    maxLength={3000}
                                     required
                                 />
+
+                                <div className="char-counter">
+                                    {formData.bericht.length}/3000 tekens
+                                </div>
                             </div>
 
                             <button
@@ -157,6 +222,7 @@ function ContactOns() {
                             )}
                         </form>
                     </div>
+
                 </div>
             </section>
 

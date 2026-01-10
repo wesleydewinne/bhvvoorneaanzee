@@ -11,7 +11,7 @@ export default function ReviewSection() {
 
                 <header className="reviews-header">
                     <h2 className="reviews-title">
-                        ⭐ Reviews (na trainingen, zoals afgesproken)
+                        ⭐ Reviews (na trainingen)
                     </h2>
 
                     {status === 'success' && rating && total && (
