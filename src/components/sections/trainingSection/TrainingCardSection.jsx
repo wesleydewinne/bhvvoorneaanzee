@@ -4,7 +4,7 @@ import './TrainingCardSection.css';
 
 // 🔹 automatische import van alle afbeeldingen in assets
 const images = import.meta.glob(
-    "../../../assets/image/cardImage/*.{png,jpg,jpeg,svg}",
+    "../../../assets/images/cardImage/*.{png,jpg,jpeg,svg}",
     { eager: true }
 );
 
@@ -29,7 +29,7 @@ const TrainingCardSection = ({ title, cards = [], showPrice = false }) => {
                         key={index}
                         title={card.title}
                         description={card.description}
-                        // 🔹 resolve image hier
+                        // 🔹 resolve images hier
                         image={resolveImage(card.cardImage || card.image)}
                         alt={card.cardAlt || card.alt || "Afbeelding van training"}
                         pricing={Array.isArray(card.pricing) ? card.pricing[0] : card.pricing || {}}

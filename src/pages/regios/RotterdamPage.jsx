@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import "../BhvPage.css";
+import "./RegioPage.css";
 
 import {
     FirstAidKit,
@@ -18,7 +18,7 @@ import zeelandHeader from "@/assets/image/bhvPaginaFotos/bhv-zeeland-header.png"
 import westlandHeader from "@/assets/image/bhvPaginaFotos/bhv-westland-den-haag-header.png";
 import fallback from "@/assets/image/fallbackAfbeelding.png";
 
-export default function BhvRotterdamPage() {
+export default function RotterdamPage() {
     const bhvCategory = data.categories.find((category) => category.id === "bhv");
     const bhvTrainings = bhvCategory?.trainings || [];
 

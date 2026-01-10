@@ -2,7 +2,15 @@ import React from "react";
 import PublicRoute from "@/components/route/PublicRoute";
 
 import HomePage from "@/pages/homePage/HomePage.jsx";
+
+//bhv
 import BhvPage from "@/pages/bhvPage/BhvPage.jsx";
+import BhvBasis2 from "@/pages/bhvPage/bhvPages/BhvBasis2.jsx";
+import BhvBasis1Elearning from "@/pages/bhvPage/bhvPages/BhvBasis1Elearning.jsx";
+import BhvHerhaling from "@/pages/bhvPage/bhvPages/BhvHerhaling.jsx";
+import BhvHerhaling05Elearning from "@/pages/bhvPage/bhvPages/BhvHerhaling05Elearning.jsx";
+
+
 import PloegleiderPage from "@/pages/ploegleiderPage/PloegleiderPage.jsx";
 import LandingPage from "@/pages/landingPage/LandingPage.jsx";
 import OntruimingsPage from "@/pages/ontruimingsOefeningPage/OntruimingsOefeningPage.jsx";
@@ -20,6 +28,8 @@ import ReanimatieMetGebruikAedVolwassene from "@/pages/workshops/soortenWorkshop
 import ReanimatieMetGebruikAedKind from "@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDKind.jsx";
 import StopDeBloedingRedEenLeven from "@/pages/workshops/soortenWorkshops/StopDeBloedingRedEenLeven.jsx";
 
+import Maatwerk from "@/pages/MaatwerkPage/MaatwerkPagina.jsx";
+
 import Faq from "@/pages/faq/Faq.jsx";
 import BlogPage from "@/pages/blog/BlogPage.jsx";
 import BlogDetail from "@/pages/blog/BlogDetail.jsx";
@@ -28,9 +38,9 @@ import Fases from "@/pages/ontruimingsverslag/Fases.jsx";
 import Scenarios from "@/pages/ontruimingsverslag/Scenarios.jsx";
 import Verslag from "@/pages/ontruimingsverslag/Verslag.jsx";
 
-import BhvRotterdamPage from "@/pages/bhvPage/bhvRegion/BhvRotterdamPage.jsx";
-import BhvZeelandPage from "@/pages/bhvPage/bhvRegion/BhvZeelandPage.jsx";
-import BhvWestlandPage from "@/pages/bhvPage/bhvRegion/BhvWestlandPage.jsx";
+import RotterdamPage from "@/pages/regios/RotterdamPage.jsx";
+import ZeelandPage from "@/pages/regios/ZeelandPage.jsx";
+import WestlandPage from "@/pages/regios/WestlandPage.jsx";
 
 import Login from "@/pages/login/LoginPage.jsx";
 import { Navigate } from "react-router-dom";
@@ -45,12 +55,16 @@ const publicRoutes = [
 
     // BHV
     { path: "/bhv", element: <BhvPage /> },
-    { path: "/bhv-training-rotterdam", element: <BhvRotterdamPage /> },
-    { path: "/bhv-training-zeeland", element: <BhvZeelandPage /> },
-    { path: "/bhv-training-westland", element: <BhvWestlandPage /> },
+    { path: "/bhv/basis-2-daagse", element: <BhvBasis2 /> },
+    { path: "/bhv/basis-e-learning", element: <BhvBasis1Elearning /> },
+    { path: "/bhv/herhaling-1-dag", element: <BhvHerhaling /> },
+    { path: "/bhv/herhaling-e-learning", element: <BhvHerhaling05Elearning /> },
 
     // Ploegleider
     { path: "/ploegleider", element: <PloegleiderPage /> },
+    { path: "/ploegleider-basis-2-daagse", element: <PloegleiderPage /> },
+    { path: "/ploegleider-basis-1-dag-met-elearning", element: <PloegleiderPage /> },
+    { path: "/ploegleider-herhaling-halve-dag", element: <PloegleiderPage /> },
 
     // Ontruimingsoefening
     { path: "/ontruimingsoefening", element: <OntruimingsPage /> },
@@ -60,7 +74,17 @@ const publicRoutes = [
     { path: "/ontruimingsoefening/fase3", element: <Fase3 /> },
     { path: "/ontruimingsoefening/fase4", element: <Fase4 /> },
 
+    { path: "/ontruimingsoefening/fases", element: <Fases /> },
+    { path: "/ontruimingsoefening/scenarios", element: <Scenarios /> },
+    { path: "/ontruimingsoefening/verslag", element: <Verslag /> },
+
+    // EHBO
     { path: "/ehbo", element: <Ehbo /> },
+    { path: "/ehbo-basis-3-daagse", element: <Ehbo /> },
+    { path: "/ehbo-basis-2-daagse-met-elearning", element: <Ehbo /> },
+    { path: "/ehbo-herhaling-hele-dag", element: <Ehbo /> },
+    { path: "/ehbo-herhaling-halve-dag", element: <Ehbo /> },
+
 
     // Workshops
     { path: "/workshops", element: <Workshops /> },
@@ -70,14 +94,17 @@ const publicRoutes = [
     { path: "/workshops/reanimatie_kind_baby", element: <ReanimatieMetGebruikAedKind /> },
     { path: "/workshops/stop_de_bloeding_red_een_leven", element: <StopDeBloedingRedEenLeven /> },
 
+    //uitleg trainingen
+    { path: "/maatwerk", element: <Maatwerk /> },
+
+    // Regio's
+    { path: "/rotterdam-rijnmond", element: <RotterdamPage /> },
+    { path: "/zeeland", element: <ZeelandPage /> },
+    { path: "/den-haag-westland", element: <WestlandPage /> },
+
     // Blog
     { path: "/blog", element: <BlogPage /> },
     { path: "/blog/:slug", element: <BlogDetail /> },
-
-    // Ontruimingsverslagen
-    { path: "/ontruimingsoefening/fases", element: <Fases /> },
-    { path: "/ontruimingsoefening/scenarios", element: <Scenarios /> },
-    { path: "/ontruimingsoefening/verslag", element: <Verslag /> },
 
     // Login (nu correct beveiligd)
     {
@@ -97,7 +124,7 @@ const publicRoutes = [
     { path: "/veelgestelde-vragen", element: <Faq /> },
     { path: "/offerte", element: <OfferteAanvraag />},
 
-    { path: "/overons", element: <OverOns />},
+    { path: "/over-ons", element: <OverOns />},
     { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens />},
     { path: "/contact", element: <ContactOns /> }
 ];

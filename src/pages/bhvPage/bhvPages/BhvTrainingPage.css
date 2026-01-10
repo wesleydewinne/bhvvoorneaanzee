@@ -1,0 +1,284 @@
+/* PAGINA */
+.bhv-training-page {
+    width: 100%;
+}
+
+/* SECTIES */
+.bhv-training-page section {
+    padding: 4rem 1.5rem;
+}
+
+/* TYPOGRAFIE */
+.bhv-training-page h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.25rem;
+}
+
+.bhv-training-page p {
+    max-width: 70ch;
+    line-height: 1.7;
+}
+
+/* OVERVIEW */
+.overview-cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.overview-cards li {
+    background: #f7f7f7;
+    padding: 1.6rem;
+    border-radius: 10px;
+}
+
+.overview-cards strong {
+    display: block;
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* =====================================================
+   LEERDOELEN – GRID MET CERTIFICERING
+   ===================================================== */
+
+.bhv-training-leerdoelen {
+    background-color: #ffffff;
+}
+
+/* 2fr / 1fr layout */
+.leerdoelen-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+/* LEERDOELEN CONTENT (links) */
+.leerdoelen-content {
+    padding: 0 0 0 80px;
+}
+
+.leerdoelen-content ul {
+    list-style: none;
+    padding: 0 0 0 20px;
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.leerdoelen-content li {
+    position: relative;
+    padding-left: 2.2rem;
+    line-height: 1.6;
+}
+
+.leerdoelen-content li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    color: #ff8000;
+    font-weight: bold;
+}
+
+/* CERTIFICERING BLOK (rechts) */
+.certificering-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 1rem;
+}
+
+.nibhv-logo {
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+    opacity: 0.95;
+}
+
+/* OPZET */
+.bhv-training-opzet {
+    background: #fafafa;
+}
+
+.bhv-training-opzet h2 {
+    text-align: center;
+    font-size: 3.4rem;
+    line-height: 1.3;
+    margin-bottom: 3.5rem;
+}
+
+.training-onderdelen {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.training-onderdeel {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+/* OPSOMMING IN TRAINING-ONDERDEEL */
+.training-onderdeel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.training-onderdeel li {
+    position: relative;
+    padding-left: 2.8rem;   /* ruimte voor icoon */
+    line-height: 1.6;
+}
+
+.training-onderdeel li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    top: 0.01rem;
+    font-size: 1.6rem;
+    color: #ff8000;
+}
+
+.training-onderdeel .examen-info {
+    margin-top: 1.25rem;
+    font-size: 1.6rem;
+    color: #555;
+}
+
+
+/* USP */
+.bhv-training-usp {
+    background: #fff4e8;
+    border-left: 6px solid #ff8000;
+}
+
+.bhv-training-usp p {
+    margin: 0 auto;
+}
+
+/* =====================================================
+   CTA – EINDBLOK TRAINING
+   ===================================================== */
+
+.bhv-training-cta-eind {
+    position: relative;
+    padding: 6rem 1.5rem;
+    background-color: #f4f6f8;
+}
+
+/* subtiele scheidingslijn boven CTA */
+.bhv-training-cta-eind::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* =====================================================
+   CTA CARD
+   ===================================================== */
+
+.cta-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 3.5rem;
+    border-radius: 14px;
+
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.06),
+            0 2px 6px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* 🔑 alles centreren */
+    text-align: center;
+}
+
+/* =====================================================
+   CTA TEKST
+   ===================================================== */
+
+.cta-card h2 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.cta-card p {
+    max-width: 60ch;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* =====================================================
+   FAQ HINT
+   ===================================================== */
+
+.cta-hint {
+    margin-top: 1.75rem;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.cta-hint a {
+    color: #ff8000;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.cta-hint a:hover {
+    text-decoration: none;
+}
+
+/* =====================================================
+   CTA ACTIES
+   ===================================================== */
+
+.cta-actions {
+    margin-top: 2.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 768px) {
+    .cta-card {
+        padding: 2.5rem 2rem;
+    }
+
+    .cta-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .leerdoelen-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}

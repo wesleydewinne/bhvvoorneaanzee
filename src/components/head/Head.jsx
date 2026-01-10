@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import seoData from '../../data/seo.json'
+import seoData from '@/data/seo.json'
 
 /**
  * @typedef {{

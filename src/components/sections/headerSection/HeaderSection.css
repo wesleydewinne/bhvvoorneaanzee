@@ -1,35 +1,53 @@
-.header-section {
-    background-size: cover;                /* vult de hele header */
-    background-repeat: no-repeat;
-    background-position: center center;    /* skyline mooi aan onderzijde */
-    background-color: #f5f5f5;             /* lichte achtergrond als fallback */
+.site-hero {
+    position: relative;
     width: 100%;
-    height: 350px;                         /* past bij je nieuwe headers */
+    height: 350px;
+    max-height: 350px;
+    overflow: hidden;
+}
+
+.site-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0 0 50px 50px;
+}
+
+.site-hero-overlay {
+    position: absolute;
+    inset: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.site-hero-text {
     text-align: center;
-    position: relative;
-}
-
-.title-main {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #111827;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 0.75rem 1.25rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     max-width: 90%;
+
+    padding: 2.4rem 3.2rem;   /* meer ademruimte */
+    border-radius: 1.6rem;    /* mooie afgeronde hoeken */
+
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    );
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
-.title-sub {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #333;
-    background-color: rgba(255, 255, 255, 0.6);
-    padding: 0.3rem 0.75rem;
-    border-radius: 0.3rem;
-    margin-top: 0.25rem;
+.site-hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+
+.site-hero-subtitle {
+    font-size: clamp(1.6rem, 3vw, 1.9rem);
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }

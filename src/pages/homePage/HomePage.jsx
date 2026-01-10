@@ -13,63 +13,44 @@ import CTAButtons from "../../components/button/cta/CTAButton.jsx";
 import ReviewCarousel from "@/components/review/ReviewCarousel.jsx";
 import ReviewSection from "@/components/review/ReviewSection.jsx";
 
-
-
-
-
 function HomePage() {
-    // Verwerk de JSON naar cards
+
     const homeCards = Card.categories.map((category) => ({
         title: category.cardTitle,
         description: category.description,
         image: category.image || CardFallback,
         showPrice: false,
-        buttonText: category.buttontext || 'Meer info',
+        buttonText: category.buttontext || "Meer info",
         buttonTo: `/${category.id}`
     }));
 
     return (
         <>
+            {/* HERO */}
             <HeaderSection
                 mainTitle="Welkom bij BHV Voorne aan Zee"
                 subTitle="Professioneel en effectief trainen voor meer veiligheid."
-                backgroundImage={reactLogo}
-            />
-            <CTAButtons />
-
-            {/*hier moet de google reviews staan*/}
-
-            <TrainingCardSection
-                title="Trainingsaanbod BHV Voorne aan Zee"
-                cards={homeCards}
+                image={reactLogo}
             />
 
-             <ReviewSection />
+            {/* CONTENT */}
+            <div className="container">
 
+                <CTAButtons />
 
+                <TrainingCardSection
+                    title="Trainingsaanbod BHV Voorne aan Zee"
+                    cards={homeCards}
+                />
 
-            <section className="certificering-section">
+                <ReviewSection />
 
+                <section className="certificering-section">
+                    <BlogSection posts={posts} limit={10} />
+                    <LogosSection />
+                </section>
 
-                <BlogSection posts={posts} limit={10} />
-
-                <LogosSection />
-
-
-                {/*<CoverageSection*/}
-                {/*    id="verzorgingsgebied"*/}
-                {/*    ariaLabel="Verzorgingsgebied BHV Voorne aan Zee"*/}
-                {/*>*/}
-                {/*    /!*<h2 className="coverage-title">Ons Verzorgingsgebied</h2>*!/*/}
-                {/*    /!*<p className="coverage-subtext">*!/*/}
-                {/*    /!*    Wij verzorgen trainingen in Voorne aan Zee en omliggende gemeenten.*!/*/}
-                {/*    /!*</p>*!/*/}
-                {/*    <CoverageArea />*/}
-                {/*</CoverageSection>*/}
-
-            </section>
-
-
+            </div>
         </>
     );
 }

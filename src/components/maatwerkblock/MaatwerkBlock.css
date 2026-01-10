@@ -1,0 +1,79 @@
+/* 🔶 Card */
+.maatwerk-block {
+    max-width: 600px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Titel */
+.maatwerk-block-title {
+    font-size: 1.9rem;
+    margin: 0;
+}
+
+/* Afbeelding + lijst */
+.maatwerk-block-content {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* Afbeelding */
+.maatwerk-block-image img {
+    width: 140px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+/* Opsomming */
+.maatwerk-block-list {
+    margin: 0;
+    padding-left: 0;           /* iconen bepalen nu de inspringing */
+    list-style: none;
+}
+
+.maatwerk-block-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.4rem;
+
+    font-size: 1.4rem;         /* ✅ zelfde als beschrijving */
+    line-height: 1.5;
+}
+
+/* Icoon */
+.maatwerk-block-list-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    color: #2e7d32;
+    filter: invert(36%) sepia(88%) saturate(350%) hue-rotate(85deg) brightness(90%) contrast(95%);
+}
+
+/* Tekst onder */
+.maatwerk-block-description {
+    font-size: 1.4rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* 📱 Onder 400px: alles onder elkaar */
+@media (max-width: 400px) {
+    .maatwerk-block-content {
+        flex-direction: column;
+    }
+
+    .maatwerk-block-image img {
+        width: 100%;
+        max-width: 260px;
+    }
+}

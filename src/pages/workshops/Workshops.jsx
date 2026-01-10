@@ -16,7 +16,7 @@ import TrainingCardSection from "../../components/sections/trainingSection/Train
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-// import workshopImage from "../../assets/image/algemeneAfbeeldingen/workshop.png";
+// import workshopImage from "../../assets/images/algemeneAfbeeldingen/workshop.png";
 
 function Workshops() {
     const workshopCategory = data.categories.find(

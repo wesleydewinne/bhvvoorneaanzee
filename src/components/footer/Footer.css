@@ -4,8 +4,9 @@
     padding: 40px 20px;
     font-size: 0.95rem;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
-
 
 .footer-top {
     display: flex;

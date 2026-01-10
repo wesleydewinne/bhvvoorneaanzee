@@ -16,7 +16,7 @@ import TrainingCardSection from "../../components/sections/trainingSection/Train
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-//import ploegleiderImage from "../../assets/image/algemeneAfbeeldingen/ploegleider.png";
+//import ploegleiderImage from "../../assets/images/algemeneAfbeeldingen/ploegleider.png";
 
 function PloegleiderPage() {
     const ploegleiderCategory = data.categories.find(

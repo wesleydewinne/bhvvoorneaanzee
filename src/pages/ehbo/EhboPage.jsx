@@ -16,7 +16,7 @@ import TrainingCardSection from "../../components/sections/trainingSection/Train
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-// import ehboImage from "../../assets/image/algemeneAfbeeldingen/ehbo.png";
+// import ehboImage from "../../assets/images/algemeneAfbeeldingen/ehbo.png";
 
 function EhboPage() {
     const ehboCategory = data.categories.find(

@@ -12,7 +12,7 @@ const Footer = () => {
                     <h4>Website</h4>
                     <ul>
                         <li><Link to="#">Trainingen</Link></li>
-                        <li><Link to="#">Maatwerk training</Link></li>
+                        <li><Link to="/maatwerk">Maatwerk training</Link></li>
                         <li><Link to="#">Modulair trainen</Link></li>
                         <li><Link to="/blog">Blogs</Link></li>
                         {/*<li><Link to="/bedrijfsveiligheid-oefen-en-borgen">oefenen en borgen</Link></li>*/}
@@ -34,7 +34,7 @@ const Footer = () => {
                 <div className="footer-column">
                     <h4>Bedrijfsgegevens</h4>
                     <ul>
-                        <li><Link to="/overons">Over ons</Link></li>
+                        <li><Link to="/over-ons">Over ons</Link></li>
                         <li><Link to="/contact">Contact ons</Link></li>
                     </ul>
                 {/*  totale reviews  */}

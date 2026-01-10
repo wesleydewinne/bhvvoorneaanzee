@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import "./BhvRegionPage.css";
+import "./RegioPage.css";
 
 import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
 import TrainingCardSection from "@/components/sections/trainingSection/TrainingCardSection.jsx";
@@ -9,7 +9,7 @@ import data from "@/data/training.json";
 import fallback from "@/assets/image/fallbackAfbeelding.png";
 import zeelandHeader from "@/assets/image/bhvPaginaFotos/bhv-zeeland-header.png";
 
-export default function BhvZeelandPage() {
+export default function ZeelandPage() {
     const bhvCategory = data.categories.find((c) => c.id === "bhv");
     const bhvTrainings = bhvCategory?.trainings || [];
 

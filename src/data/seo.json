@@ -5,12 +5,42 @@
       "keywords": "BHV training Voorne aan Zee, EHBO cursus, BHV herhaling, BHV basis, EHBO herhaling, ontruimingsoefening, veiligheidstraining, Stop de Bloeding, reanimatie workshop",
       "canonical": "https://www.bhvvoorneaanzee.nl/"
 },
+
   "/bhv": {
-  "title": "BHV Trainingen | Basis en Herhaling - BHV Voorne aan Zee",
-      "description": "Volg een erkende BHV basiscursus of herhalingstraining bij BHV Voorne aan Zee. Praktijkgericht, realistisch en afgestemd op jouw werkomgeving. Beschikbaar met e-learning of klassikaal.",
-      "keywords": "BHV cursus, BHV basis, BHV herhaling, BHV training Voorne aan Zee, BHV met e-learning, bedrijfshulpverlening, BHV Rotterdam Rijnmond",
-      "canonical": "https://www.bhvvoorneaanzee.nl/bhv"
-},
+    "title": "BHV Trainingen | Basis & Herhaling (NIBHV) – BHV Voorne aan Zee",
+    "description": "Overzicht van erkende BHV-trainingen bij BHV Voorne aan Zee. BHV basis, herhaling en e-learning. Praktijkgericht, incompany en afgestemd op jouw organisatie in regio Voorne aan Zee en Rijnmond.",
+    "keywords": "BHV trainingen, BHV cursus, BHV basis, BHV herhaling, BHV opleiding Voorne aan Zee, BHV training Rijnmond, bedrijfshulpverlening",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv"
+  },
+
+  "/bhv/basis-2-daagse": {
+    "title": "BHV Basis 2-daagse Training (NIBHV) | BHV Voorne aan Zee",
+    "description": "Volg de NIBHV erkende BHV Basis 2-daagse training bij BHV Voorne aan Zee. Praktijkgericht, volledig incompany en afgestemd op jouw organisatie in regio Voorne aan Zee en Rotterdam-Rijnmond.",
+    "keywords": "BHV basis 2-daagse, BHV basiscursus, NIBHV BHV training, BHV cursus Voorne aan Zee, BHV training Rijnmond, BHV cursus Rotterdam, BHV incompany training, BHV opleiding Zuid-Holland",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/basis-2-daagse"
+  },
+
+  "/bhv/basis-e-learning": {
+    "title": "BHV Basis met E-learning (NIBHV) | BHV Voorne aan Zee",
+    "description": "De NIBHV erkende BHV Basis training met e-learning bij BHV Voorne aan Zee. Combinatie van online theorie en praktijkdag, incompany en afgestemd op jouw organisatie.",
+    "keywords": "BHV basis e-learning, BHV cursus online, NIBHV BHV e-learning, BHV blended learning, BHV training Voorne aan Zee, BHV cursus Rijnmond",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/basis-e-learning"
+  },
+
+  "/bhv/herhaling-1-dag": {
+    "title": "BHV Herhaling 1-daagse (NIBHV) | BHV Voorne aan Zee",
+    "description": "Volg de NIBHV erkende BHV herhalingstraining bij BHV Voorne aan Zee. Praktijkgericht, incompany en bedoeld voor BHV’ers die hun certificaat willen verlengen.",
+    "keywords": "BHV herhaling, BHV herhalingscursus, NIBHV BHV herhaling, BHV certificaat verlengen, BHV training Voorne aan Zee, BHV cursus Rijnmond",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/herhaling-1-dag"
+  },
+
+  "/bhv/herhaling-e-learning": {
+    "title": "BHV Herhaling met E-learning (NIBHV) | BHV Voorne aan Zee",
+    "description": "NIBHV erkende BHV herhaling met e-learning bij BHV Voorne aan Zee. Online theorie gecombineerd met praktijktraining, ideaal voor het verlengen van je BHV-certificaat.",
+    "keywords": "BHV herhaling e-learning, BHV herhalingscursus online, NIBHV BHV e-learning, BHV certificaat verlengen, BHV training Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/herhaling-e-learning"
+  },
+
   "/ploegleider": {
   "title": "BHV Ploegleider Training | Basis & Herhaling - BHV Voorne aan Zee",
       "description": "Word of blijf BHV Ploegleider met een praktijkgerichte training bij BHV Voorne aan Zee. Leer effectief aansturen bij calamiteiten en ontruimingen.",
@@ -108,9 +138,9 @@
       "canonical": "https://www.bhvvoorneaanzee.nl/contact"
 },
   "/over-ons": {
-  "title": "Over Ons | BHV Voorne aan Zee",
-      "description": "BHV Voorne aan Zee is specialist in praktijkgerichte veiligheidsopleidingen. Met ervaring in BHV, EHBO en ontruimingsoefeningen zorgen wij dat iedereen weet wat te doen bij noodsituaties.",
-      "keywords": "over BHV Voorne aan Zee, bedrijfshulpverlening, EHBO instructeur, BHV opleider, veiligheidsopleiding",
-      "canonical": "https://www.bhvvoorneaanzee.nl/over-ons"
-}
+    "title": "Over ons | BHV Voorne aan Zee – BHV & EHBO Trainingen",
+    "description": "BHV Voorne aan Zee verzorgt al meer dan 15 jaar praktijkgerichte BHV- en EHBO-trainingen in Voorne aan Zee en Rotterdam. Specialist in maatwerk veiligheidstrainingen.",
+    "keywords": "BHV training, EHBO cursus, bedrijfshulpverlening, ontruimingsoefening, veiligheidstraining, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/over-ons"
+  }
 }

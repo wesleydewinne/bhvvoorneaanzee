@@ -1,0 +1,563 @@
+{
+  "type": "faq",
+  "version": "1.0",
+  "meta": {
+    "language": "nl",
+    "audience": "informatief",
+    "goal": "kennisdeling",
+    "notes": "Vaste structuur zonder inhoud. Vragen en antwoorden worden handmatig ingevuld."
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "title": "Introductie",
+      "items": [
+        {
+          "id": "intro",
+          "question": "Introductie",
+          "answer": "Op deze pagina vind je uitgebreide antwoorden op veelgestelde vragen over onze veiligheidstrainingen. De focus ligt op inhoud, praktijk en het aantoonbaar beheersen van vaardigheden. Niet om iets te verkopen, maar om duidelijk te maken hoe wij opleiden, beoordelen en omgaan met certificering."
+        }
+      ]
+    },
+    {
+      "id": "wet-regelgeving",
+      "title": "Wet- en regelgeving BHV",
+      "intro": "In deze sectie wordt uitgelegd wat de wet zegt over bedrijfshulpverlening (BHV), waarom deze regels bestaan en wat dit concreet betekent voor werkgevers en werknemers. De uitleg is gebaseerd op de Arbeidsomstandighedenwet, het Burgerlijk Wetboek en aanverwante regelgeving.",
+      "items": [
+        {
+          "id": "wet-1",
+          "question": "Wat zegt de wet over de verantwoordelijkheid van een werkgever voor BHV?",
+          "answer": "De wet legt de verantwoordelijkheid voor veiligheid en gezondheid primair bij de werkgever. Dit betekent dat een werkgever verplicht is om het werk, de werkomgeving en de organisatie zo in te richten dat werknemers geen schade oplopen tijdens hun werkzaamheden. Deze zorgplicht houdt ook in dat de organisatie voorbereid moet zijn op noodsituaties zoals ongevallen, brand en ontruiming. BHV is één van de middelen waarmee een werkgever invulling geeft aan deze wettelijke verantwoordelijkheid."
+        },
+        {
+          "id": "wet-2",
+          "question": "Waarom is BHV wettelijk verplicht?",
+          "answer": "BHV is wettelijk verplicht omdat niet alle risico’s volledig kunnen worden weggenomen. Ondanks preventieve maatregelen kunnen zich altijd incidenten voordoen. De wet verlangt daarom dat organisaties voorbereid zijn om snel en adequaat te handelen wanneer zich een noodsituatie voordoet. BHV is erop gericht om de gevolgen van incidenten te beperken totdat professionele hulpdiensten het overnemen."
+        },
+        {
+          "id": "wet-3",
+          "question": "Wat verwacht de wet concreet van een werkgever bij het organiseren van BHV?",
+          "answer": "De wet verwacht dat een werkgever bewust en onderbouwd vaststelt hoe BHV binnen de organisatie wordt ingericht. Dit houdt in dat er voldoende personen worden aangewezen die taken kunnen uitvoeren op het gebied van eerste hulp, brandbestrijding en ontruiming. De inrichting van BHV moet aansluiten bij de risico’s van het bedrijf en mag geen papieren maatregel zijn. De werkgever blijft verantwoordelijk voor de werking en beschikbaarheid van BHV, ook bij ziekte, vakantie en wisselende werktijden."
+        },
+        {
+          "id": "wet-4",
+          "question": "Welke rol speelt de RI&E bij BHV?",
+          "answer": "De risico-inventarisatie en -evaluatie (RI&E) vormt de basis voor het organiseren van BHV. In de RI&E worden risico’s in kaart gebracht en wordt vastgesteld welke risico’s niet volledig kunnen worden voorkomen. Deze restrisico’s bepalen welke BHV-maatregelen nodig zijn. BHV is daarmee geen losstaand onderdeel, maar een logisch vervolg op de risicoanalyse van de organisatie."
+        },
+        {
+          "id": "wet-5",
+          "question": "Hoe wordt bepaald hoeveel BHV’ers nodig zijn?",
+          "answer": "De wet noemt geen vast aantal BHV’ers, maar verwacht dat het aantal voldoende is om bij incidenten effectief te kunnen handelen. Bij deze beoordeling wordt gekeken naar de uitkomsten van de RI&E, het aantal aanwezige personen, de grootte en indeling van het gebouw, werktijden, ploegendiensten en de mate van zelfredzaamheid van aanwezigen. Ook moet rekening worden gehouden met afwezigheid, zodat BHV continu beschikbaar blijft."
+        },
+        {
+          "id": "wet-6",
+          "question": "Wat zegt de wet over opleiding, oefening en herhaling van BHV?",
+          "answer": "De wet stelt dat BHV’ers hun taken goed en veilig moeten kunnen uitvoeren. Dit betekent dat zij passend moeten zijn opgeleid en hun vaardigheden moeten onderhouden. Hoewel de wet geen vaste herhalingsfrequentie voorschrijft, wordt van werkgevers verwacht dat zij ervoor zorgen dat kennis en vaardigheden actueel blijven. Regelmatig oefenen en herhalen is noodzakelijk om te voorkomen dat vaardigheden wegzakken."
+        },
+        {
+          "id": "wet-7",
+          "question": "Wat wordt er van werknemers verwacht binnen de BHV-organisatie?",
+          "answer": "Werknemers hebben de wettelijke plicht om mee te werken aan veiligheidsmaatregelen. Dit betekent dat zij instructies moeten opvolgen, deelnemen aan voorlichting, oefeningen en trainingen wanneer dat van hen wordt gevraagd. Van werknemers die zijn aangewezen als BHV’er wordt verwacht dat zij actief deelnemen aan opleidingen en hun rol serieus uitvoeren."
+        },
+        {
+          "id": "wet-8",
+          "question": "Moet BHV ook rekening houden met bezoekers, cliënten en externen?",
+          "answer": "De zorgplicht van de werkgever beperkt zich niet uitsluitend tot werknemers. Ook andere aanwezigen, zoals bezoekers, cliënten, patiënten en vaste externen, vallen onder de verantwoordelijkheid van de organisatie. Met name bij brand en ontruiming moet duidelijk zijn hoe deze personen veilig worden begeleid en welke rol BHV hierin heeft."
+        },
+        {
+          "id": "wet-9",
+          "question": "Wat zegt de wet over de minimale leeftijd van een BHV’er?",
+          "answer": "De wet staat toe dat jongeren vanaf 16 jaar BHV-vaardigheden leren en oefenen, bijvoorbeeld tijdens opleiding of training. Voor daadwerkelijke inzet als BHV’er geldt dat iemand 18 jaar of ouder moet zijn. Dit sluit aan bij de wettelijke regels die bepalen dat jeugdigen niet mogen worden blootgesteld aan gevaarlijke werkzaamheden."
+        }
+      ]
+    },
+
+
+    {
+      "id": "general",
+      "title": "Algemeen",
+      "intro": "Algemene vragen over onze werkwijze, visie op opleiden en uitgangspunten bij veiligheidstrainingen.",
+      "items": [
+        {
+          "id": "general-1",
+          "question": "Wat is de visie op opleiden van BHV Voorne aan Zee?",
+          "answer": "De visie op opleiden is gericht op praktijk en aantoonbare vaardigheden. Deelnemers moeten handelingen niet alleen kennen, maar deze ook correct en veilig kunnen uitvoeren in realistische situaties. Een certificaat is geen doel op zich, maar een bevestiging dat iemand daadwerkelijk bekwaam is om te handelen bij noodsituaties."
+        },
+        {
+          "id": "general-2",
+          "question": "Wie is BHV Voorne aan Zee?",
+          "answer": "BHV Voorne aan Zee is een opleider gespecialiseerd in praktijkgerichte veiligheidstrainingen voor bedrijven en organisaties. De trainingen bestaan onder andere uit BHV-, EHBO-, reanimatie- en ontruimingstrainingen, met nadruk op het daadwerkelijk uitvoeren en beheersen van vaardigheden. De focus ligt op realistische situaties, duidelijke instructie en aantoonbare bekwaamheid van deelnemers."
+        },
+        {
+          "id": "general-3",
+          "question": "Hoe ziet praktijkgericht opleiden er in de praktijk uit bij BHV Voorne aan Zee?",
+          "answer": "Bij BHV Voorne aan Zee houdt praktijkgericht opleiden in dat deelnemers handelingen zelf uitvoeren in realistische oefensituaties. De nadruk ligt op doen, ervaren en herhalen. Theorie wordt alleen behandeld wanneer dit nodig is om handelingen veilig en correct uit te voeren, zodat deelnemers weten wat zij in een echte noodsituatie moeten doen."
+        },
+        {
+          "id": "general-4",
+          "question": "Voor welke organisaties zijn de trainingen van BHV Voorne aan Zee geschikt?",
+          "answer": "De trainingen van BHV Voorne aan Zee zijn geschikt voor organisaties waar veiligheid een praktische rol speelt in de dagelijkse werkzaamheden. Dit varieert van kantoren en onderwijsinstellingen tot zorgorganisaties, productieomgevingen en andere werklocaties. De inhoud van de training wordt afgestemd op het type organisatie, de werkomgeving en de aanwezige risico’s."
+        },
+        {
+          "id": "general-5",
+          "question": "Is voorkennis nodig om een training bij BHV Voorne aan Zee te volgen?",
+          "answer": "Of voorkennis nodig is, hangt af van het type training. Voor een basistraining is geen eerdere ervaring of certificering vereist. Voor een herhalingstraining wordt ervan uitgegaan dat deelnemers de basisvaardigheden al beheersen en eerder zijn opgeleid. De keuze tussen een basis- of herhalingstraining wordt afgestemd op de ervaring en certificeringsstatus van de deelnemers."
+        },
+        {
+          "id": "general-6",
+          "question": "Hoe houdt BHV Voorne aan Zee rekening met de werksituatie en risico’s van een organisatie?",
+          "answer": "Bij de voorbereiding van een training wordt gekeken naar de werkomgeving, het type gebouw, de aanwezige risico’s en bestaande procedures binnen de organisatie. Waar mogelijk worden oefeningen en scenario’s hierop afgestemd, zodat de training aansluit bij de praktijksituatie van de deelnemers."
+        },
+        {
+          "id": "general-7",
+          "question": "Hoe flexibel is het lesprogramma van BHV Voorne aan Zee?",
+          "answer": "De trainingen zijn opgebouwd volgens geldende richtlijnen, maar bieden ruimte voor maatwerk. Afhankelijk van de organisatie, de werkomgeving en de risico’s kunnen accenten worden gelegd die aansluiten bij de praktijksituatie van de deelnemers."
+        },
+        {
+          "id": "general-8",
+          "question": "Wat is het doel van een training bij BHV Voorne aan Zee?",
+          "answer": "Het doel van een training is dat deelnemers weten wat zij moeten doen en dit ook daadwerkelijk kunnen uitvoeren in noodsituaties. Certificering is daarbij geen doel op zich, maar een bevestiging dat de vereiste vaardigheden aantoonbaar zijn beheerst. Bij sommige trainingen ligt de nadruk op oefenen, bewustwording of het trainen van specifieke vaardigheden."
+        },
+        {
+          "id": "general-9",
+          "question": "Hoe wordt de bekwaamheid van deelnemers tijdens de training geborgd?",
+          "answer": "Door deelnemers handelingen te laten uitvoeren, deze te bespreken en waar nodig te corrigeren. Competenties moeten zichtbaar en beoordeelbaar zijn voordat certificering plaatsvindt."
+        },
+        {
+          "id": "general-10",
+          "question": "Wat zegt de wet over BHV- en EHBO-trainingen en ontruimingsoefeningen?",
+          "answer": "De Arbowet verplicht werkgevers om te zorgen voor de veiligheid en gezondheid van werknemers en bezoekers. Dit betekent dat organisaties voorbereid moeten zijn op noodsituaties, zoals brand, ongevallen of een ontruiming. De wet schrijft niet exact voor hoe dit moet worden ingevuld, maar verlangt wel dat maatregelen passend zijn bij de risico’s binnen de organisatie. BHV-trainingen, EHBO-vaardigheidstrainingen en ontruimingsoefeningen zijn veelgebruikte middelen om deze voorbereiding in de praktijk te borgen."
+        }
+      ]
+    },
+
+    {
+      "id": "inhoud-praktijk",
+      "title": "Inhoud & praktijk",
+      "items": [
+        {
+          "id": "praktijk-1",
+          "question": "Hoe ziet de praktijkcomponent van een training eruit?",
+          "answer": "De praktijkcomponent vormt het grootste deel van de training. Deelnemers voeren handelingen zelf uit, zoals reanimatie, het gebruik van een AED, het blussen van een beginnende brand en het begeleiden van een ontruiming. De instructeur observeert, stuurt bij waar nodig en bespreekt handelingen direct, zodat vaardigheden aantoonbaar correct en veilig worden uitgevoerd."
+        },
+        {
+          "id": "praktijk-2",
+          "question": "Voeren deelnemers alle handelingen zelf uit tijdens de training?",
+          "answer": "Voor een goede leerervaring en beoordeling voeren deelnemers handelingen zelf uit. Alleen kijken of luisteren is onvoldoende om vaardigheden goed te beheersen en aantoonbaar uit te voeren."
+        },
+        {
+          "id": "praktijk-3",
+          "question": "Worden praktijkhandelingen herhaald geoefend?",
+          "answer": "Handelingen worden meerdere keren geoefend, zodat deelnemers vertrouwd raken met de volgorde, techniek en besluitvorming. Herhaling helpt om handelingen ook onder druk correct uit te voeren."
+        },
+        {
+          "id": "praktijk-4",
+          "question": "Wat gebeurt er als een handeling niet goed wordt uitgevoerd?",
+          "answer": "Wanneer een handeling niet correct wordt uitgevoerd, grijpt de instructeur in. De handeling wordt besproken en opnieuw geoefend totdat deze veilig en volgens de richtlijnen wordt uitgevoerd."
+        },
+        {
+          "id": "praktijk-5",
+          "question": "Wordt er tijdens de training gewerkt met realistische scenario’s?",
+          "answer": "Tijdens de training wordt gewerkt met realistische scenario’s die aansluiten bij mogelijke noodsituaties in de praktijk, zoals een onwelwording, een brandmelding of een ontruiming."
+        },
+        {
+          "id": "praktijk-6",
+          "question": "Is er ruimte voor vragen tijdens de praktijkoefeningen?",
+          "answer": "Tijdens praktijkoefeningen is ruimte om vragen te stellen. Instructeurs nemen de tijd om toe te lichten waarom handelingen op een bepaalde manier worden uitgevoerd, zodat deelnemers inzicht krijgen in het handelen."
+        },
+        {
+          "id": "praktijk-7",
+          "question": "Hoe wordt de praktijk afgestemd op het type organisatie?",
+          "answer": "De praktijk wordt afgestemd op het type organisatie, de werkomgeving en de aanwezige risico’s. Hierdoor sluiten oefeningen beter aan op situaties die deelnemers daadwerkelijk in hun werkomgeving kunnen tegenkomen."
+        },
+        {
+          "id": "praktijk-8",
+          "question": "Is er aandacht voor communicatie en samenwerking tijdens de training?",
+          "answer": "Naast technische handelingen is er aandacht voor communicatie en samenwerking, zoals het alarmeren van collega’s, het verdelen van taken en het duidelijk overbrengen van informatie."
+        },
+        {
+          "id": "praktijk-9",
+          "question": "Wordt er geoefend met tijdsdruk of onverwachte situaties?",
+          "answer": "In sommige oefeningen wordt gewerkt met beperkte tijd of onverwachte elementen. Dit helpt deelnemers om te leren handelen onder druk, zoals dat in echte noodsituaties kan voorkomen."
+        },
+        {
+          "id": "praktijk-10",
+          "question": "Hoe is de praktijktraining ingericht voor deelnemers zonder ervaring?",
+          "answer": "De praktijktraining is zo opgebouwd dat deelnemers zonder ervaring stap voor stap worden begeleid. De moeilijkheid en complexiteit worden afgestemd op het niveau van de groep."
+        }
+
+      ]
+    },
+
+    {
+      "id": "certification",
+      "title": "Certificaat & herhaling",
+      "items": [
+        {
+          "id": "certificaat-1",
+          "question": "Krijgen deelnemers na afloop een certificaat?",
+          "answer": "Na succesvolle afronding van de training ontvangen deelnemers een certificaat als bewijs van bekwaamheid."
+        },
+        {
+          "id": "certificaat-2",
+          "question": "Hoe lang is een BHV-certificaat geldig?",
+          "answer": "Een BHV-certificaat volgens de richtlijnen van het NIBHV is 1 jaar geldig. Om gecertificeerd en inzetbaar te blijven als BHV’er, moet de training jaarlijks worden herhaald."
+        },
+        {
+          "id": "certificaat-3",
+          "question": "Hoe lang is een EHBO-certificaat geldig?",
+          "answer": "Een EHBO-certificaat volgens de richtlijnen van Het Oranje Kruis is 2 jaar geldig. Om kennis en vaardigheden actueel te houden, wordt EHBO doorgaans jaarlijks herhaald. Na 2 jaar is hercertificering of verlenging nodig om gecertificeerd te blijven."
+        },
+        {
+          "id": "certificaat-4",
+          "question": "Waarom wordt een BHV-training jaarlijks herhaald?",
+          "answer": "BHV’ers moeten aantoonbaar bekwaam blijven. Door de training jaarlijks te herhalen blijven kennis en vaardigheden actueel en voldoet de organisatie aan de eisen vanuit de Arbowet."
+        },
+        {
+          "id": "certificaat-5",
+          "question": "Waarom moet EHBO jaarlijks worden herhaald als het certificaat 2 jaar geldig is?",
+          "answer": "EHBO-vaardigheden vragen onderhoud: zonder oefening neemt vaardigheid snel af. Jaarlijkse herhaling houdt handelingen scherp en maakt het mogelijk om na 2 jaar te verlengen of te hercertificeren."
+        },
+        {
+          "id": "certificaat-6",
+          "question": "Wat gebeurt er als een BHV-certificaat is verlopen?",
+          "answer": "Wanneer een BHV-certificaat is verlopen, is de deelnemer formeel niet meer gecertificeerd. Het is dan nodig om de training opnieuw te volgen."
+        },
+        {
+          "id": "certificaat-7",
+          "question": "Wat gebeurt er als een EHBO-certificaat is verlopen?",
+          "answer": "Wanneer een EHBO-certificaat is verlopen, is de deelnemer niet meer gecertificeerd. In dat geval is het nodig om opnieuw te trainen en te hercertificeren om de certificering te herstellen."
+        },
+        {
+          "id": "certificaat-8",
+          "question": "Wie beoordeelt of iemand opnieuw gecertificeerd wordt?",
+          "answer": "De instructeur beoordeelt of de deelnemer voldoet aan de vereiste kennis en vaardigheden om opnieuw gecertificeerd te worden."
+        },
+        {
+          "id": "certificaat-9",
+          "question": "Wat gebeurt er met het certificaat na een herhalingstraining?",
+          "answer": "Na het opnieuw volgen van de training en een positieve beoordeling wordt een nieuw certificaat verstrekt."
+        }
+      ]
+    },
+
+
+    {
+      "id": "organisatie",
+      "title": "Organisatie",
+      "items": [
+        {
+          "id": "organisatie-1",
+          "question": "Hoe worden trainingen organisatorisch voorbereid en afgestemd?",
+          "answer": "Voorafgaand aan een training wordt afgestemd op het type organisatie, de locatie en de doelstelling van de training. Hierbij wordt gekeken naar het aantal deelnemers, de beschikbare ruimte, aanwezige middelen en specifieke risico’s. Op basis daarvan wordt de training praktisch ingericht, zodat deze uitvoerbaar en relevant is voor de dagelijkse werksituatie."
+        },
+        {
+          "id": "organisatie-2",
+          "question": "Hoeveel deelnemers kunnen deelnemen aan een training?",
+          "answer": "Het aantal deelnemers is afhankelijk van het type training en de vorm waarin deze wordt uitgevoerd. Bij BHV- en EHBO-trainingen wordt gewerkt met kleine groepen van minimaal 3 en maximaal 10 deelnemers, zodat iedere deelnemer voldoende oefentijd en individuele begeleiding krijgt. Bij ontruimingsoefeningen geldt dat in fase 0 en fase 1 wordt gewerkt met een maximum van 12 deelnemers. Voor ontruimingsoefeningen in fase 2 tot en met fase 4 geldt geen vaste maximale groepsgrootte."
+        },
+        {
+          "id": "organisatie-3",
+          "question": "Hoe lang duurt een training?",
+          "answer": "De duur van een training verschilt per type en vorm. Dit kan variëren van een dagdeel tot een volledige dag. De exacte duur wordt vooraf afgestemd en vastgelegd."
+        },
+        {
+          "id": "organisatie-4",
+          "question": "Wat is nodig op locatie om een training te kunnen verzorgen?",
+          "answer": "Op locatie is een geschikte ruimte nodig waarin theorie en praktijkoefeningen veilig kunnen plaatsvinden. Daarnaast wordt vooraf afgestemd welke middelen al aanwezig zijn en welke materialen tijdens de training worden meegenomen."
+        },
+        {
+          "id": "organisatie-5",
+          "question": "Hoe worden trainingen ingepland in overleg met de organisatie?",
+          "answer": "Trainingen worden altijd in overleg gepland, zodat deze aansluiten bij de planning van de organisatie en de beschikbaarheid van deelnemers."
+        },
+        {
+          "id": "organisatie-6",
+          "question": "Hoe wordt rekening gehouden met wisselende diensten of ploegendiensten?",
+          "answer": "Bij de planning van trainingen wordt rekening gehouden met ploegendiensten en wisselende werktijden. Dit maakt het mogelijk om deelnemers te trainen zonder de bedrijfsvoering onnodig te verstoren."
+        },
+        {
+          "id": "organisatie-7",
+          "question": "Welke informatie wordt vooraf gedeeld met deelnemers?",
+          "answer": "De organisatie ontvangt vooraf praktische informatie over de training, zoals tijden, locatie, opzet van de training en eventuele voorbereidingen voor deelnemers."
+        },
+        {
+          "id": "organisatie-8",
+          "question": "Hoe wordt omgegaan met annuleringen of wijzigingen?",
+          "answer": "Annuleringen of wijzigingen worden in overleg besproken. De voorwaarden en mogelijkheden worden vooraf duidelijk gecommuniceerd."
+        }
+
+      ]
+    },
+
+    {
+      "id": "locatie",
+      "title": "Locatie",
+      "items": [
+        {
+          "id": "locatie-1",
+          "question": "In welke regio’s verzorgen jullie trainingen?",
+          "answer": "BHV-, EHBO- en ontruimingsoefeningen worden voornamelijk verzorgd in de regio Voorne aan Zee. Daarnaast vinden trainingen plaats in omliggende regio’s zoals Rotterdam, het Westland/Den Haag en Zeeland. Door deze regionale spreiding kunnen trainingen worden afgestemd op de specifieke werkomgeving en locatie."
+        },
+
+        {
+          "id": "locatie-2",
+          "question": "Worden BHV- en EHBO-trainingen ook in-company verzorgd?",
+          "answer": "BHV- en EHBO-trainingen worden in-company verzorgd en afgestemd op het gebouw, de vluchtroutes, aanwezige middelen en de werksituatie van de organisatie."
+        }
+
+      ]
+    },
+
+    {
+      "id": "bhv-training",
+      "title": "BHV-training",
+      "items": [
+        {
+          "id": "bhv-1",
+          "question": "Wat is BHV precies?",
+          "answer": "BHV staat voor Bedrijfshulpverlening. Een BHV’er is opgeleid om binnen een organisatie te handelen bij noodsituaties zoals brand, ongevallen en ontruimingen totdat professionele hulpdiensten aanwezig zijn."
+        },
+        {
+          "id": "bhv-4",
+          "question": "Welke vaardigheden worden tijdens de BHV-training beoordeeld?",
+          "answer": "Tijdens de BHV-training worden onder andere brandbestrijding met kleine blusmiddelen, eerste hulp handelingen, ontruiming en communicatie beoordeeld. De nadruk ligt op het aantoonbaar uitvoeren van deze competenties."
+        },
+        {
+          "id": "bhv-3",
+          "question": "Is een BHV-training vooral praktijkgericht?",
+          "answer": "Dat hangt af van de vorm van de training. Bij een klassikale BHV-basistraining wordt theorie afgewisseld met praktijk. Bij een BHV-herhaling of een BHV-basistraining met e-learning ligt de nadruk vooral op praktijkoefeningen, waarbij vaardigheden actief worden geoefend en beoordeeld."
+        },
+        {
+          "id": "bhv-4",
+          "question": "Welke vaardigheden worden tijdens de BHV-training beoordeeld?",
+          "answer": "Tijdens de BHV-training worden onder andere brandbestrijding met kleine blusmiddelen, eerstehulphandelingen, ontruiming en communicatie beoordeeld. De nadruk ligt op het aantoonbaar uitvoeren van deze competenties."
+        },
+        {
+          "id": "bhv-5",
+          "question": "Welk certificaat ontvangen deelnemers na een BHV-training?",
+          "answer": "Na succesvolle afronding van de BHV-training ontvangen deelnemers een BHV-certificaat volgens de richtlijnen van het NIBHV, mits de vereiste BHV-competenties aantoonbaar zijn uitgevoerd en beoordeeld."
+        },
+        {
+          "id": "bhv-6",
+          "question": "Hoe lang is een BHV-certificaat geldig?",
+          "answer": "Een BHV-certificaat volgens de richtlijnen van het NIBHV is 1 jaar geldig."
+        },
+        {
+          "id": "bhv-7",
+          "question": "Waarom wordt herhaling van de BHV-training sterk aangeraden?",
+          "answer": "BHV’ers moeten aantoonbaar bekwaam blijven. Regelmatige herhaling is nodig om kennis en vaardigheden actueel te houden en te blijven voldoen aan de eisen vanuit de Arbowet."
+        },
+        {
+          "id": "bhv-8",
+          "question": "Wordt de BHV-training afgestemd op het bedrijf en het gebouw?",
+          "answer": "Waar mogelijk wordt de BHV-training afgestemd op de specifieke risico’s, het type gebouw en de werkomgeving van de organisatie."
+        },
+        {
+          "id": "bhv-9",
+          "question": "Is voorkennis nodig om deel te nemen aan een BHV-training?",
+          "answer": "Voor deelname aan een BHV-basistraining is geen voorkennis vereist. Voor een BHV-herhalingstraining is een geldig of recent verlopen BHV-certificaat nodig."
+        },
+        {
+          "id": "bhv-10",
+          "question": "Moeten BHV-vaardigheden aantoonbaar worden uitgevoerd voor certificering?",
+          "answer": "Voor certificering moeten de vereiste BHV-vaardigheden aantoonbaar worden uitgevoerd en beoordeeld. De vorm waarin een handeling wordt uitgevoerd kan verschillen, zolang de competentie duidelijk zichtbaar en beoordeelbaar is."
+        },
+        {
+          "id": "bhv-11",
+          "question": "Hoe wordt beoordeeld of iemand voldoet aan de BHV-competenties?",
+          "answer": "De beoordeling vindt plaats aan de hand van de geldende NIBHV-richtlijnen. Daarbij wordt vastgesteld of de deelnemer de vereiste BHV-competenties aantoonbaar en correct uitvoert voordat certificering plaatsvindt."
+        },
+        {
+          "id": "bhv-12",
+          "question": "Worden BHV-trainingen gecontroleerd door het NIBHV?",
+          "answer": "Het NIBHV voert onaangekondigde controles uit tijdens BHV-trainingen. Tijdens deze controles wordt beoordeeld hoe de training wordt gegeven en of de gebruikte materialen en werkwijze voldoen aan de geldende richtlijnen."
+        },
+        {
+          "id": "bhv-13",
+          "question": "Wordt de identiteit van deelnemers gecontroleerd tijdens een BHV-training?",
+          "answer": "Tijdens BHV-trainingen worden de naam en geboortedatum van deelnemers gecontroleerd. Dit is nodig om vast te stellen dat de deelnemer overeenkomt met de gegevens die op het certificaat worden vermeld."
+        }
+      ]
+    },
+
+
+    {
+      "id": "ehbo-training",
+      "title": "EHBO-training",
+      "items": [
+        {
+          "id": "ehbo-1",
+          "question": "Wat is EHBO precies?",
+          "answer": "EHBO staat voor Eerste Hulp Bij Ongelukken. EHBO richt zich op het verlenen van eerste hulp bij letsel en acute ziektebeelden totdat professionele hulpdiensten de zorg overnemen."
+        },
+        {
+          "id": "ehbo-2",
+          "question": "Wat leer je tijdens een EHBO-training?",
+          "answer": "Tijdens een EHBO-training leer je eerste hulp verlenen bij onder andere bewusteloosheid, bloedingen, brandwonden, verstikking en reanimatie met een AED. De nadruk ligt op veilig en doeltreffend handelen."
+        },
+        {
+          "id": "ehbo-3",
+          "question": "Is een EHBO-training vooral praktijkgericht?",
+          "answer": "EHBO-trainingen zijn sterk praktijkgericht. Vaardigheden worden actief geoefend en herhaald, zodat deelnemers leren handelen in realistische situaties."
+        },
+        {
+          "id": "ehbo-4",
+          "question": "Hoe wordt beoordeeld of iemand de EHBO-vaardigheden beheerst?",
+          "answer": "Tijdens de training worden EHBO-vaardigheden beoordeeld aan de hand van vastgestelde competenties volgens de richtlijnen van Het Oranje Kruis."
+        },
+        {
+          "id": "ehbo-5",
+          "question": "Hoe ziet de beoordeling bij de EHBO-basistraining eruit?",
+          "answer": "De EHBO-basistraining wordt afgesloten met een praktijkbeoordeling volgens de richtlijnen van Het Oranje Kruis. Tijdens deze beoordeling zijn twee onafhankelijke examinatoren aanwezig die toetsen of de vereiste EHBO-competenties aantoonbaar en correct worden uitgevoerd."
+        },
+        {
+          "id": "ehbo-6",
+          "question": "Waarom wordt er gewerkt met lotussen tijdens de EHBO-beoordeling?",
+          "answer": "Lotussen maken het mogelijk om realistische letsels en scenario’s na te bootsen. Hierdoor kunnen EHBO-handelingen worden beoordeeld onder omstandigheden die zo dicht mogelijk bij de praktijk liggen."
+        },
+        {
+          "id": "ehbo-7",
+          "question": "Welk certificaat ontvangen deelnemers na een EHBO-training?",
+          "answer": "Na succesvolle afronding van de EHBO-training ontvangen deelnemers een EHBO-certificaat van Het Oranje Kruis, mits alle vereiste competenties aantoonbaar zijn uitgevoerd en beoordeeld."
+        },
+        {
+          "id": "ehbo-8",
+          "question": "Hoe lang is een EHBO-certificaat geldig?",
+          "answer": "Een EHBO-certificaat van Het Oranje Kruis is 2 jaar geldig."
+        },
+        {
+          "id": "ehbo-9",
+          "question": "Waarom wordt EHBO jaarlijks herhaald terwijl het certificaat 2 jaar geldig is?",
+          "answer": "EHBO-vaardigheden vragen onderhoud. Door EHBO jaarlijks te herhalen blijven vaardigheden actueel en worden alle vereiste competenties binnen de geldigheidsperiode aantoonbaar onderhouden en getoetst."
+        },
+        {
+          "id": "ehbo-10",
+          "question": "Moeten EHBO-vaardigheden aantoonbaar worden uitgevoerd voor certificering?",
+          "answer": "Voor certificering moeten de EHBO-competenties aantoonbaar kunnen worden uitgevoerd en beoordeeld. De manier waarop een handeling wordt uitgevoerd kan per situatie verschillen, zolang de competentie duidelijk zichtbaar en beoordeelbaar is."
+        }
+      ]
+    },
+
+    {
+      "id": "ontruiming-evacuatie",
+      "title": "Ontruiming & evacuatie",
+      "items": [
+        {
+          "id": "ontruiming-1",
+          "question": "Wat is een ontruimingsoefening?",
+          "answer": "Een ontruimingsoefening is een georganiseerde oefening waarbij wordt geoefend hoe een gebouw veilig en ordelijk wordt verlaten bij een noodsituatie, zoals brand of een andere calamiteit."
+        },
+        {
+          "id": "ontruiming-2",
+          "question": "Waarom wordt een ontruimingsoefening uitgevoerd?",
+          "answer": "Een ontruimingsoefening wordt uitgevoerd om te toetsen of alarmering, communicatie en procedures in de praktijk werken. Dit geeft inzicht in het gedrag van mensen en de effectiviteit van het ontruimingsplan."
+        },
+        {
+          "id": "ontruiming-3",
+          "question": "Is een ontruimingsoefening verplicht?",
+          "answer": "De Arbowet verplicht werkgevers om voorbereid te zijn op noodsituaties en passende maatregelen te treffen. Het uitvoeren van ontruimingsoefeningen wordt door onder andere het NIBHV beschreven als een belangrijk middel om deze voorbereiding in de praktijk te toetsen."
+        },
+        {
+          "id": "ontruiming-4",
+          "question": "Wat wordt bedoeld met de fasering van ontruimingsoefeningen?",
+          "answer": "Ontruimingsoefeningen kunnen worden uitgevoerd in verschillende fasen, van fase 0 tot en met fase 4. Deze fasering bepaalt hoe realistisch en grootschalig de oefening is en welke onderdelen van het ontruimingsplan worden getest."
+        },
+        {
+          "id": "ontruiming-5",
+          "question": "Wie nemen deel aan een ontruimingsoefening?",
+          "answer": "Wie deelnemen is afhankelijk van de fase waarin wordt geoefend. In de hogere fasen (fase 2, 3 en 4) nemen in principe alle aanwezige personen in het gebouw deel. In de lagere fasen (fase 0 en 1) wordt vaak geoefend met een beperkte groep of alleen met betrokken functionarissen."
+        },
+        {
+          "id": "ontruiming-6",
+          "question": "Wordt er tijdens een ontruimingsoefening beoordeeld?",
+          "answer": "Tijdens een ontruimingsoefening wordt gekeken hoe de ontruiming verloopt, zoals alarmering, communicatie, gebruik van vluchtroutes en het gedrag van aanwezigen. Er vindt geen individuele beoordeling of certificering plaats."
+        },
+        {
+          "id": "ontruiming-7",
+          "question": "Is een ontruimingsoefening hetzelfde als een BHV-training?",
+          "answer": "Een ontruimingsoefening is bedoeld om procedures en organisatie te testen. Een BHV-training richt zich op het aanleren en beoordelen van individuele vaardigheden en competenties."
+        },
+        {
+          "id": "ontruiming-8",
+          "question": "Hoe vaak wordt een ontruimingsoefening gehouden?",
+          "answer": "Er is geen vaste wettelijke frequentie vastgesteld voor ontruimingsoefeningen. Organisaties kiezen er vaak voor om periodiek te oefenen om procedures actueel en bekend te houden."
+        },
+        {
+          "id": "ontruiming-9",
+          "question": "Wordt een ontruimingsoefening afgestemd op het gebouw en de organisatie?",
+          "answer": "Een ontruimingsoefening wordt afgestemd op het type gebouw, de aanwezige risico’s en de interne procedures van de organisatie. Dit is nodig om de oefening realistisch en bruikbaar te maken voor de praktijk."
+        },
+        {
+          "id": "ontruiming-10",
+          "question": "Ontvangt de organisatie na afloop van een ontruimingsoefening een verslag?",
+          "answer": "Na afloop van een ontruimingsoefening ontvangt de organisatie een ontruimingsverslag. In dit verslag worden de oefening, bevindingen en aandachtspunten vastgelegd, zodat procedures waar nodig kunnen worden geëvalueerd en verbeterd."
+        },
+        {
+          "id": "ontruiming-11",
+          "question": "Kunnen medewerkers zonder BHV-certificaat deelnemen aan een ontruimingsoefening?",
+          "answer": "Medewerkers zonder BHV-certificaat kunnen deelnemen aan een ontruimingsoefening, bijvoorbeeld in de rol van ontruimer. Ontruimers begeleiden personen naar veilige plekken, maar voeren geen volledige BHV-taken uit."
+        },
+        {
+          "id": "ontruiming-12",
+          "question": "Wat wordt bedoeld met een ontruimer plus (Ontruimer+)?",
+          "answer": "Een ontruimer plus is een medewerker met een aanvullende rol bij ontruiming en het omgaan met een beginnende brand. De training wordt altijd op locatie gegeven en afgestemd op het specifieke gebouw, de aanwezige risico’s en de aanwezige blusmiddelen. De deelnemer wordt uitsluitend opgeleid in het gebruik van de middelen en procedures die op die locatie van toepassing zijn. De eventuele certificering is locatiegebonden en bedoeld voor inzet op die specifieke locatie. Deze rol en certificering zijn niet automatisch overdraagbaar naar een andere locatie."
+        }
+      ]
+    },
+
+
+    {
+      "id": "workshops",
+      "title": "Workshops",
+      "items": [
+        {
+          "id": "workshop-1",
+          "question": "Wat wordt bedoeld met een workshop?",
+          "answer": "Een workshop is een praktijkgerichte sessie waarin specifieke vaardigheden of thema’s worden behandeld. Workshops zijn bedoeld voor kennisdeling en vaardigheidstraining en zijn korter en gerichter dan volledige opleidingen zoals BHV of EHBO."
+        },
+        {
+          "id": "workshop-2",
+          "question": "Welke workshops verzorgen jullie?",
+          "answer": "Er worden praktijkgerichte workshops verzorgd op het gebied van veiligheid en levensreddend handelen. De inhoud van een workshop wordt afgestemd op het gekozen thema, het doel van de organisatie en de doelgroep."
+        },
+        {
+          "id": "workshop-3",
+          "question": "Is een workshop hetzelfde als een BHV- of EHBO-training?",
+          "answer": "Een workshop richt zich op één specifiek onderwerp en leidt niet automatisch tot een BHV- of EHBO-certificering. Workshops zijn bedoeld als aanvulling of verdieping, niet als vervanging van een volledige opleiding."
+        },
+        {
+          "id": "workshop-4",
+          "question": "Ontvangen deelnemers een certificaat na een workshop?",
+          "answer": "Dit verschilt per workshop. Sommige workshops worden afgesloten met een thematische of landelijke certificering waarin staat welke vaardigheden zijn geoefend. In andere gevallen ontvangen deelnemers een bewijs van deelname. Dit documenteert dat iemand aan de workshop heeft deelgenomen, zonder dat dit een formele certificering betreft."
+        },
+        {
+          "id": "workshop-5",
+          "question": "Welk certificaat ontvang je na een reanimatie- en AED-workshop?",
+          "answer": "Na een reanimatie- en AED-workshop kan een certificaat worden afgegeven dat is geregistreerd bij de Nederlandse Reanimatie Raad (NRR), mits de workshop wordt uitgevoerd volgens de geldende richtlijnen."
+        }
+      ,
+        {
+          "id": "workshop-6",
+          "question": "Welk certificaat ontvang je na een Stop de Bloeding-workshop?",
+          "answer": "Na een Stop de Bloeding-workshop ontvangen deelnemers een Stop de Bloeding-certificaat. Dit certificaat beschrijft welke vaardigheden zijn geoefend, zoals het stelpen van ernstige bloedingen en het veilig handelen bij levensbedreigend letsel."
+        },
+        {
+          "id": "workshop-7",
+          "question": "Hoe zit het met certificering bij andere workshops?",
+          "answer": "Voor sommige workshops wordt gewerkt met een eigen certificering waarin duidelijk staat omschreven welke onderdelen en vaardigheden zijn behandeld. Wanneer certificering niet passend is, ontvangen deelnemers een bewijs van deelname. Dit betreft geen landelijke certificering."
+        },
+        {
+          "id": "workshop-8",
+          "question": "Zijn workshops geschikt voor deelnemers zonder BHV- of EHBO-opleiding?",
+          "answer": "Workshops zijn geschikt voor deelnemers zonder BHV- of EHBO-opleiding en kunnen dienen als laagdrempelige kennismaking met veiligheids- en levensreddende handelingen."
+        },
+        {
+          "id": "workshop-9",
+          "question": "Worden workshops afgestemd op de locatie en organisatie?",
+          "answer": "Waar relevant worden workshops afgestemd op de locatie, de aanwezige middelen en de praktijksituatie van de organisatie."
+        }
+      ]
+    }
+  ]
+}

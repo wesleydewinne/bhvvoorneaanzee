@@ -13,6 +13,7 @@
             #ffffff 0%,
             #f8fafc 100%
     );
+    overflow-x: hidden;
 }
 
 /* ===== CONTENT WRAPPER ===== */
@@ -21,10 +22,37 @@
     max-width: 120rem;
     margin: 0 auto;
     padding: clamp(4rem, 6vw, 8rem) var(--space-6);
+    contain: layout style;
 }
 
 /* =================================================
-   INTRO / HERO
+   HERO → CONTENT SPACING
+================================================= */
+
+.header-section + .overons-inner {
+    padding-top: clamp(2rem, 4vw, 5rem);
+}
+
+/* =================================================
+   PREVENT LAYOUT SHIFT (CLS) — HERO
+================================================= */
+
+.header-section {
+    min-height: clamp(28rem, 45vw, 52rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Reserve space for hero background */
+.header-section::before {
+    content: "";
+    display: block;
+    padding-top: 45%;
+}
+
+/* =================================================
+   INTRO / HERO TEXT
 ================================================= */
 
 .overons-intro {
@@ -48,7 +76,7 @@
 }
 
 /* =================================================
-   SECTIONS (cards look)
+   SECTIONS (CARDS)
 ================================================= */
 
 .overons-section {
@@ -60,18 +88,51 @@
     box-shadow:
             0 10px 30px rgba(0, 0, 0, 0.05),
             0 2px 8px rgba(0, 0, 0, 0.04);
+    transition:
+            transform 300ms ease,
+            box-shadow 300ms ease;
+    will-change: transform;
+    contain: layout paint style;
 }
 
-/* Section title */
-.overons-section h2 {
+/* Hover interaction */
+.overons-section:hover {
+    transform: translateY(-4px);
+    box-shadow:
+            0 16px 40px rgba(0, 0, 0, 0.08),
+            0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* =================================================
+   SECTION TITLE WITH ICON
+================================================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.section-title svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.section-title h2 {
     font-size: clamp(2.4rem, 2rem + 1vw, 3.2rem);
     line-height: 1.2;
     letter-spacing: -0.01em;
-    margin-bottom: var(--space-4);
+    margin: 0;
     color: var(--color-heading);
 }
 
-/* Section text */
+/* =================================================
+   SECTION TEXT
+================================================= */
+
 .overons-section p {
     font-size: var(--fluid-body);
     line-height: 1.7;
@@ -80,7 +141,7 @@
 }
 
 /* =================================================
-   LISTS (modern)
+   LISTS (MODERN)
 ================================================= */
 
 .overons-section ul {
@@ -128,13 +189,15 @@
 .overons-cta {
     width: 100%;
     margin-top: clamp(6rem, 8vw, 10rem);
-    padding: clamp(5rem, 8vw, 8rem) var(--space-4);
+    padding: clamp(5rem, 8vw, 8rem) var(--space-2);
     background:
             linear-gradient(
                     135deg,
                     var(--color-primary),
                     #003b8f
             );
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .overons-cta-inner {
@@ -142,6 +205,7 @@
     margin: 0 auto;
     text-align: center;
     color: #ffffff;
+    contain: layout style;
 }
 
 .overons-cta-inner p {
@@ -173,6 +237,20 @@
 }
 
 /* =================================================
+   IMAGE & FONT PERFORMANCE
+================================================= */
+
+img {
+    content-visibility: auto;
+    contain-intrinsic-size: 800px 600px;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =================================================
    RESPONSIVE
 ================================================= */
 
@@ -184,4 +262,22 @@
     .overons-section {
         padding: var(--space-5);
     }
+
+    .section-title {
+        gap: var(--space-2);
+    }
+}
+
+/* =================================================
+   ACCESSIBILITY — REDUCED MOTION
+================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .overons-section,
+    .overons-cta .cta-button {
+        transition: none !important;
+        transform: none !important;
+    }
+
 }

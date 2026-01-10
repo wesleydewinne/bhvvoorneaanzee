@@ -1,8 +1,77 @@
-import './OverOns.css';
+import "./OverOns.css";
+import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
+import heroImage from "@/assets/image/algemeneAfbeeldingen/overons.png";
+import MotionSection from "@/components/sections/motionSection/MotionSection.jsx";
+import { Link } from "react-router-dom";
+
+import {
+    Shield,
+    CheckCircle,
+    Eye,
+    Users,
+    MapPin
+} from "lucide-react";
+
+/* ------------------------------------------
+   Content data
+------------------------------------------ */
+
+const aanpakList = [
+    "Praktijkgerichte trainingen met actieve deelname",
+    "Kleine groepen met veel persoonlijke aandacht",
+    "Realistische scenario’s gebaseerd op echte situaties",
+    "Trainingen afgestemd op jouw organisatie en gebouw",
+    "Opleidingen volgens de richtlijnen van het NIBHV"
+];
+
+const waaromList = [
+    "Ruime praktijkervaring in BHV, EHBO en ontruimingsoefeningen",
+    "Duidelijke uitleg, rust en overzicht tijdens trainingen",
+    "Focus op handelingsvermogen in noodsituaties",
+    "Trainingen op locatie in de eigen werkomgeving",
+    "Actief in de regio Voorne aan Zee, Rotterdam-Rijnmond en omliggende gemeenten"
+];
+
+const doelgroepList = [
+    "MKB-bedrijven en zelfstandige ondernemingen",
+    "Zorginstellingen, ziekenhuizen en woonzorglocaties",
+    "Scholen, kinderopvang en onderwijsinstellingen",
+    "Kantoren en bedrijfsverzamelgebouwen",
+    "Industrie, productiebedrijven en logistieke organisaties",
+    "Bouwbedrijven en technische dienstverleners",
+    "Retail, horeca en recreatiebedrijven",
+    "Overheidsinstellingen en maatschappelijke organisaties",
+    "Organisaties met verhoogde veiligheidsrisico’s"
+];
+
+/* ------------------------------------------
+   Reusable components
+------------------------------------------ */
+
+function List({ items }) {
+    return (
+        <ul>
+            {items.map((item, index) => (
+                <li key={index}>{item}</li>
+            ))}
+        </ul>
+    );
+}
+
+/* ------------------------------------------
+   Page
+------------------------------------------ */
 
 function OverOns() {
     return (
         <div className="overons">
+
+            {/* HERO HEADER */}
+            <HeaderSection
+                mainTitle="Over BHV Voorne aan Zee"
+                subTitle="Meer dan 15 jaar ervaring in praktijkgerichte veiligheidstrainingen"
+                image={heroImage}
+            />
 
             {/* CONTENT */}
             <div className="overons-inner">
@@ -24,88 +93,94 @@ function OverOns() {
                 </section>
 
                 {/* AANPAK */}
-                <section className="overons-section">
-                    <h2>Onze aanpak</h2>
+                <MotionSection title="Onze aanpak" icon={Shield}>
                     <p>
                         Iedere organisatie is anders. Daarom stemmen wij onze trainingen
                         af op de risico’s, het gebouw en de dagelijkse werksituatie.
                         Geen standaardprogramma, maar maatwerk dat aansluit bij de praktijk.
                     </p>
-
-                    <ul>
-                        <li>Praktijkgerichte trainingen met actieve deelname</li>
-                        <li>Kleine groepen met veel persoonlijke aandacht</li>
-                        <li>Realistische scenario’s gebaseerd op echte situaties</li>
-                        <li>Trainingen afgestemd op jouw organisatie en gebouw</li>
-                        <li>Opleidingen volgens de richtlijnen van het NIBHV</li>
-                    </ul>
-                </section>
+                    <List items={aanpakList} />
+                </MotionSection>
 
                 {/* WAAROM */}
-                <section className="overons-section overons-highlight">
-                    <h2>Waarom BHV Voorne aan Zee?</h2>
-                    <ul>
-                        <li>Ruime praktijkervaring in BHV, EHBO en ontruimingsoefeningen</li>
-                        <li>Duidelijke uitleg, rust en overzicht tijdens trainingen</li>
-                        <li>Focus op handelingsvermogen in noodsituaties</li>
-                        <li>Trainingen op locatie in de eigen werkomgeving</li>
-                        <li>Actief in de regio Voorne aan Zee en Rotterdam</li>
-                    </ul>
-                </section>
+                <MotionSection title="Waarom BHV Voorne aan Zee?" icon={CheckCircle} highlight>
+                    <List items={waaromList} />
+                </MotionSection>
 
                 {/* VISIE */}
-                <section className="overons-section">
-                    <h2>Onze visie op veiligheid</h2>
+                <MotionSection title="Onze visie op veiligheid" icon={Eye}>
                     <p>
                         Veiligheid is meer dan een verplichting of een certificaat.
                         Het gaat om weten wat je moet doen op het moment dat het ertoe doet.
                         Door realistisch te trainen vergroten we het vertrouwen en de
                         effectiviteit van medewerkers in noodsituaties.
                     </p>
-                </section>
+                </MotionSection>
 
                 {/* DIENSTEN */}
-                <section className="overons-section">
-                    <h2>Wat wij doen</h2>
+                <MotionSection title="Wat wij doen" icon={Shield}>
                     <p>
-                        Wij verzorgen BHV- en EHBO-trainingen voor bedrijven en organisaties,
-                        waaronder basistrainingen en herhalingen. Tijdens de trainingen
-                        oefenen deelnemers onder andere met reanimatie en het gebruik
-                        van een AED, eerste hulp, Stop de Bloeding en het bestrijden van
-                        beginnende branden.
+                        Wij verzorgen praktijkgerichte BHV-, BHV Ploegleider- en EHBO-trainingen voor bedrijven en
+                        organisaties,
+                        waaronder basistrainingen en herhalingen. De inhoud stemmen we af op de werkomgeving, risico’s
+                        en
+                        procedures binnen jouw organisatie.
                     </p>
+
                     <p>
-                        Daarnaast begeleiden wij ontruimingsoefeningen en trainen wij
-                        medewerkers in het veilig en gestructureerd ontruimen van een gebouw.
-                        Trainingen vinden voornamelijk plaats op locatie.
+                        Tijdens de trainingen leren deelnemers hoe zij moeten handelen bij medische noodsituaties, hoe
+                        zij een
+                        slachtoffer reanimeren en een AED gebruiken, hoe zij eerste hulp verlenen, een ernstige bloeding
+                        stoppen
+                        en beginnende branden bestrijden. Voor BHV-ploegleiders besteden we daarnaast aandacht aan het
+                        coördineren van de BHV-inzet en het aansturen van het team tijdens een incident.
                     </p>
-                </section>
+
+                    <p>
+                        Daarnaast begeleiden wij ontruimingsoefeningen en trainen wij medewerkers in het veilig, snel en
+                        gestructureerd ontruimen van een gebouw volgens de geldende noodprocedures. Trainingen vinden
+                        voornamelijk plaats op locatie, zodat medewerkers oefenen in hun eigen werkomgeving en precies
+                        weten
+                        wat zij moeten doen in een echte noodsituatie.
+                    </p>
+                </MotionSection>
 
                 {/* DOELGROEP */}
-                <section className="overons-section">
-                    <h2>Voor wie wij werken</h2>
-                    <ul>
-                        <li>MKB-bedrijven</li>
-                        <li>Zorginstellingen</li>
-                        <li>Scholen en kinderopvang</li>
-                        <li>Kantoren en bedrijfsverzamelgebouwen</li>
-                        <li>Organisaties met verhoogde veiligheidsrisico’s</li>
-                    </ul>
-                </section>
+                <MotionSection title="Voor wie wij werken" icon={Users}>
+                    <List items={doelgroepList} />
+                </MotionSection>
 
                 {/* REGIO */}
-                <section className="overons-section">
-                    <h2>Werkgebied</h2>
+                <MotionSection title="Werkgebied" icon={MapPin}>
                     <p>
-                        BHV Voorne aan Zee is actief in Voorne aan Zee, Rotterdam en
-                        omliggende regio’s. Door trainingen op locatie aan te bieden,
-                        sluiten deze direct aan bij de praktijk en bestaande procedures.
+                        BHV Voorne aan Zee is actief in de regio{" "}
+                        <a href="/regio/voorne-aan-zee">Voorne aan Zee</a>,{" "}
+                        <a href="/regio/rotterdam-rijnmond">Rotterdam-Rijnmond</a>{" "}
+                        en omliggende gemeenten.
                     </p>
-                </section>
+
+                    <p>
+                        Wij verzorgen BHV-, BHV Ploegleider- en EHBO-trainingen en begeleiden
+                        ontruimingsoefeningen bij bedrijven en organisaties in onder andere{" "}
+                        <Link to="/regio/spijkenisse">Spijkenisse</Link>,{" "}
+                        <Link to="/regio/hellevoetsluis">Hellevoetsluis</Link>,{" "}
+                        <Link to="/regio/brielle">Brielle</Link>,{" "}
+                        <Link to="/regio/rotterdam">Rotterdam</Link>
+
+                        en omliggende regio’s.
+                    </p>
+
+                    <p>
+                        Door trainingen op locatie aan te bieden, oefenen medewerkers in hun eigen
+                        werkomgeving en volgens de geldende procedures. Zo sluiten onze trainingen
+                        direct aan op de praktijk en zijn medewerkers optimaal voorbereid op
+                        noodsituaties.
+                    </p>
+                </MotionSection>
 
             </div>
 
-            {/* FULL WIDTH CTA */}
+            {/* CTA */}
             <section className="overons-cta">
                 <div className="overons-cta-inner">
                     <p>

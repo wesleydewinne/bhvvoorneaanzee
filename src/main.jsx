@@ -7,20 +7,22 @@ import { QuizProvider } from "./context/QuizContext.jsx";
 import { AuthProvider } from "@/context/AuthContext";
 
 import RouteTracker from "./components/analytics/RouteTracker.jsx";
+import ScrollToTop from "@/components/routing/ScrollToTop";
 
 import "./styles/global.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <BrowserRouter>
-            <RouteTracker />
-            <HeadProvider>
-                <AuthProvider>
-                    <QuizProvider>
-                        <App />
-                    </QuizProvider>
-                </AuthProvider>
-            </HeadProvider>
+            <ScrollToTop />
+                <RouteTracker />
+                    <HeadProvider>
+                        <AuthProvider>
+                            <QuizProvider>
+                                <App />
+                            </QuizProvider>
+                        </AuthProvider>
+                    </HeadProvider>
         </BrowserRouter>
     </React.StrictMode>
 );

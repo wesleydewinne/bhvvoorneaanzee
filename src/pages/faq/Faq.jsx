@@ -1,71 +1,126 @@
-// Faq.jsx
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import faqData from "@/data/faqs.json";
 import "./Faq.css";
-import faqData from "../../data/faqData.json"; // je JSON-LD bestand
 
 function Faq() {
-    const [openCategory, setOpenCategory] = useState(null);
+    const [openSection, setOpenSection] = useState(null);
+    const [openQuestion, setOpenQuestion] = useState(null);
 
-    // Alle categorieën verzamelen
-    const categories = Array.from(
-        new Set(faqData.mainEntity.map(item => item.category))
-    );
+    /* ===== Intro uit JSON halen ===== */
+    const introSection = faqData.sections.find(section => section.id === "intro");
+    const introText = introSection?.items[0]?.answer;
 
-    // Vragen per categorie groeperen + sorteren op priority
-    const faqByCategory = categories.reduce((acc, category) => {
-        acc[category] = faqData.mainEntity
-            .filter(item => item.category === category)
-            .sort((a, b) => (a.priority || 999) - (b.priority || 999));
-        return acc;
-    }, {});
+    /* ===== Alleen echte FAQ secties ===== */
+    const visibleSections = faqData.sections.filter(section => section.id !== "intro");
 
+    /* ---------- SEO: title + meta description ---------- */
     useEffect(() => {
-        // JSON-LD script in de head plaatsen
+        document.title =
+            "Veelgestelde vragen over BHV, EHBO en ontruiming | Voorne aan Zee";
+
+        const description =
+            "Antwoorden op veelgestelde vragen over BHV-, EHBO- en ontruimingstrainingen in Voorne aan Zee, Rotterdam en omgeving.";
+
+        let meta = document.querySelector('meta[name="description"]');
+        if (!meta) {
+            meta = document.createElement("meta");
+            meta.name = "description";
+            document.head.appendChild(meta);
+        }
+        meta.content = description;
+    }, []);
+
+    /* ---------- FAQPage JSON-LD ---------- */
+    useEffect(() => {
+        const faqEntities = visibleSections.flatMap(section =>
+            section.items
+                .filter(item => item.question && item.answer)
+                .map(item => ({
+                    "@type": "Question",
+                    "name": item.question,
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": item.answer
+                    }
+                }))
+        );
+
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqEntities
+        };
+
         const script = document.createElement("script");
         script.type = "application/ld+json";
-        script.text = JSON.stringify(faqData);
+        script.text = JSON.stringify(jsonLd);
         document.head.appendChild(script);
 
         return () => {
             document.head.removeChild(script);
         };
-    }, []);
+    }, [visibleSections]);
 
-    const toggleCategory = (category) => {
-        setOpenCategory(openCategory === category ? null : category);
+    const toggleSection = (id) => {
+        setOpenSection(openSection === id ? null : id);
+        setOpenQuestion(null); // sluit open vraag bij wisselen van hoofdstuk
+    };
+
+    const toggleQuestion = (id) => {
+        setOpenQuestion(openQuestion === id ? null : id);
     };
 
     return (
         <section className="faq-section">
-            <h1>Veelgestelde vragen</h1>
-            {categories.map((category) => (
-                <div key={category} className="faq-category">
-                    <div className="faq-header" onClick={() => toggleCategory(category)}>
-                        <span className="faq-title">
-                            {category.charAt(0).toUpperCase() + category.slice(1)}
-                        </span>
-                        <span className={`faq-icon ${openCategory === category ? "open" : ""}`}>
-                            {openCategory === category ? "x" : "+"}
+            <h1 className="faq-page-title">Veelgestelde vragen</h1>
+
+            {/* ===== INTRO (uit JSON, vast blok) ===== */}
+            {introText && (
+                <div className="faq-intro">
+                    <p>{introText}</p>
+                </div>
+            )}
+
+            {/* ===== FAQ ACCORDION ===== */}
+            {visibleSections.map(section => (
+                <div key={section.id} className="faq-category">
+
+                    <div
+                        className="faq-header"
+                        onClick={() => toggleSection(section.id)}
+                    >
+                        <span className="faq-title">{section.title}</span>
+                        <span className="faq-icon">
+                            {openSection === section.id ? "×" : "+"}
                         </span>
                     </div>
 
-                    {openCategory === category && (
+                    {openSection === section.id && (
                         <ul className="faq-list">
-                            {faqByCategory[category].map((item, index) => (
-                                <li key={index} className="faq-item">
-                                    <p className="faq-question">{item.name}</p>
-                                    <p className="faq-answer">{item.acceptedAnswer.text}</p>
+                            {section.items.map(item => (
+                                <li key={item.id} className="faq-item">
 
-                                    {/* Link tonen indien aanwezig */}
-                                    {item.link && item.linkName && (
-                                        <a
-                                            href={item.link}
-                                            className="faq-link-button"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                    <div
+                                        className="faq-question-header"
+                                        onClick={() => toggleQuestion(item.id)}
+                                    >
+                                        <span className="faq-question">
+                                            {item.question}
+                                        </span>
+
+                                        <span
+                                            className={`faq-question-icon ${
+                                                openQuestion === item.id ? "open" : ""
+                                            }`}
                                         >
-                                            {item.linkName}
-                                        </a>
+                                            {openQuestion === item.id ? "▲" : "▼"}
+                                        </span>
+                                    </div>
+
+                                    {openQuestion === item.id && (
+                                        <p className="faq-answer">
+                                            {item.answer}
+                                        </p>
                                     )}
                                 </li>
                             ))}

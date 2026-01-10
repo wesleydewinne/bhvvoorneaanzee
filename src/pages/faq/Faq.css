@@ -1,79 +1,192 @@
-.faq-section {
-    width: 80%;
-    margin: 0 auto;
-    padding: 2rem 0;
+.faq-page-title {
+    text-align: center;
+    font-size: var(--fluid-h1);
+    margin-bottom: var(--space-6);
+    color: var(--color-heading);
 }
 
-.faq-category {
-    margin-bottom: 1.5rem; /* ruimte tussen categorieën */
+.faq-intro {
+    max-width: var(--container-narrow);
+    margin: 0 auto var(--space-7) auto;
+    text-align: center;
+    font-size: var(--fluid-body);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-muted);
 }
+
+
+
+
+/* ===============================
+   FAQ – basis container
+   =============================== */
+
+.faq-section {
+    width: 80%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-6) 0;
+}
+
+
+/* ===============================
+   FAQ categorie = hoofdblok
+   =============================== */
+
+.faq-category {
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+
+    background-color: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ===============================
+   Klikbare categorie-header
+   =============================== */
 
 .faq-header {
     display: flex;
-    justify-content: center; /* horizontaal centreren van de tekst */
-    align-items: center;     /* verticaal centreren */
-    cursor: pointer;
-    padding: 1rem 2rem;      /* meer ruimte rond de tekst */
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    font-size: 1.5rem;       /* grotere tekst */
-    font-weight: bold;        /* optioneel: dikgedrukt */
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+
     position: relative;
-}
-.faq-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: orange;
+    cursor: pointer;
+
+    padding: var(--space-3) var(--space-5);
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+
+    font-size: var(--fs-4);
+    font-weight: var(--fw-bold);
+    text-align: center;
+
+    transition: background-color var(--transition-mid) var(--ease-in-out);
 }
 
-/* Zorg dat het + / x icoon rechts blijft */
+.faq-header:hover {
+    background-color: var(--color-border);
+}
+
+
+/* ===============================
+   Titel van categorie
+   =============================== */
+
+.faq-title {
+    font-size: var(--fluid-h4);
+    font-weight: var(--fw-bold);
+    color: var(--color-primary-hover);
+}
+
+
+/* ===============================
+   Plus / kruis icoon categorie
+   =============================== */
+
 .faq-icon {
     position: absolute;
-    right: 1rem;
-    font-size: 2.3rem;
-    transition: transform 0.9s;
+    right: var(--space-4);
+
+    font-size: var(--fs-6);
+    color: var(--color-text);
 }
 
 
-
-.faq-icon.open {
-    transform: rotate(180deg);
-}
+/* ===============================
+   Vragenlijst
+   =============================== */
 
 .faq-list {
-    display: flex;
-    flex-direction: column;
     list-style: none;
     padding: 0;
-    margin: 1rem 0 0 0;
-    transition: max-height 0.5s ease;
+    margin: var(--space-2) 0 0 0;
 }
+
+
+/* ===============================
+   Vraagkaart
+   =============================== */
 
 .faq-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* center de inhoud horizontaal */
-    text-align: center;
-    padding: 1rem 0; /* ruimte boven en onder */
-    border-bottom: 1px solid #ddd; /* optionele scheidingslijn */
+    width: 100%;
+    max-width: var(--container-narrow);
+    margin: var(--space-1) auto;
+
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+
+    position: relative; /* nodig voor absolute pijl */
 }
 
-.faq-item:last-child {
-    border-bottom: none;
+
+/* ===============================
+   Klikbare vraag-header
+   =============================== */
+
+.faq-question-header {
+    position: relative;
+    cursor: pointer;
+
+    padding: var(--space-4) var(--space-8) var(--space-4) var(--space-4);
 }
+
+
+/* ===============================
+   Vraagtekst
+   =============================== */
 
 .faq-question {
-    font-weight: bold;
-    font-size: 1.8rem;
-    padding-top: 0.5rem;
-    width: 100%;
-    max-width: 600px; /* optioneel: maximale breedte */
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-4);
+    line-height: var(--lh-normal);
+    color: var(--color-heading);
+    text-align: left;
 }
 
+
+/* ===============================
+   Pijl – altijd helemaal rechts
+   =============================== */
+
+.faq-question-icon {
+    position: absolute;
+    right: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-size: var(--fs-5);
+    color: var(--color-text-muted);
+
+    transition:
+            color var(--transition-fast) var(--ease-in-out),
+            transform var(--transition-fast) var(--ease-in-out);
+}
+
+
+/* ===============================
+   Actieve pijl
+   =============================== */
+
+.faq-question-icon.open {
+    color: var(--color-primary-hover);
+    transform: translateY(-50%) translateY(-2px);
+}
+
+
+/* ===============================
+   Antwoord
+   =============================== */
+
 .faq-answer {
-    font-size: 1.6rem;
-    margin-top: 0.5rem;
-    width: 100%;
-    max-width: 600px; /* zelfde als vraag */
+    padding: 0 var(--space-4) var(--space-5) var(--space-4);
+
+    font-size: var(--fluid-body);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text);
+
+    text-align: left;
 }
