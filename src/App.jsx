@@ -6,7 +6,7 @@ import AppRouter from "@/components/appRouter/AppRouter";
 import useSessionTimer from "@/hooks/useSessionTimer";
 import SessionWarningPopup from "@/components/sessionWarningPopup/SessionWarningPopup";
 import api from "@/api/api";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
 
