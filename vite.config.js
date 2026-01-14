@@ -9,7 +9,9 @@ export default defineConfig({
     react(),
     sitemap({
       hostname: "https://bhvvoorneaanzee.nl",
-      dynamicRoutes: SITEMAP_PATHS
+      dynamicRoutes: SITEMAP_PATHS,
+
+      robots: false
     })
   ],
 
