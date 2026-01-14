@@ -1,25 +1,21 @@
-import './HomePage.css';
-import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
-import reactLogo from "../../assets/image/react.svg";
-import TrainingCardSection from "../../components/sections/trainingSection/TrainingCardSection.jsx";
-import Card from "./../../data/training.json"
-import CardFallback from "../../assets/image/Card-Fallback.png"
-import LogosSection from "../../components/sections/logosSection/LogosSection.jsx";
-import CoverageSection from "../../components/sections/coverageSection/CoverageSection.jsx";
-import CoverageArea from "../../components/coverageArea/CoverageArea.jsx";
-import BlogSection from "../../components/sections/blogSection/BlogSection.jsx";
-import { posts } from "../blog/posts.js";
-import CTAButtons from "../../components/button/cta/CTAButton.jsx";
-import ReviewCarousel from "@/components/review/ReviewCarousel.jsx";
+import "./HomePage.css";
+import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
+import TrainingCardSection from "@/components/sections/trainingSection/TrainingCardSection.jsx";
+import LogosSection from "@/components/sections/logosSection/LogosSection.jsx";
+import BlogSection from "@/components/sections/blogSection/BlogSection.jsx";
+import CTAButtons from "@/components/button/cta/CTAButton.jsx";
 import ReviewSection from "@/components/review/ReviewSection.jsx";
+
+import reactLogo from "@/assets/image/react.svg";
+import trainingData from "@/data/training.json";
 
 function HomePage() {
 
-    const homeCards = Card.categories.map((category) => ({
+    const homeCards = trainingData.categories.map((category) => ({
+        id: category.id,
         title: category.cardTitle,
         description: category.description,
-        image: category.image || CardFallback,
-        showPrice: false,
+        image: category.image,
         buttonText: category.buttontext || "Meer info",
         buttonTo: `/${category.id}`
     }));
@@ -46,7 +42,7 @@ function HomePage() {
                 <ReviewSection />
 
                 <section className="certificering-section">
-                    <BlogSection posts={posts} limit={10} />
+                    <BlogSection limit={10} />
                     <LogosSection />
                 </section>
 

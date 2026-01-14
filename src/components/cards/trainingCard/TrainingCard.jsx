@@ -1,74 +1,84 @@
-import React from 'react';
-import './TrainingCard.css';
+import "./TrainingCard.css";
 
+/**
+ * TrainingCard
+ * Presentatiecomponent voor trainingskaarten
+ * Volledig compatibel met JSON data + Vite asset resolver
+ */
 const TrainingCard = ({
                           title = "Trainingstitel",
                           description,
-                          cardImage,
+
+                          // image props (nieuw & legacy)
                           image,
-                          cardAlt,
+                          cardImage,
+
+                          // alt props (nieuw & legacy)
                           alt = "Afbeelding van training",
-                          pricing= {},
-                          showPrice,
+                          cardAlt,
+
+                          // legacy props (worden bewust genegeerd)
+                          pricing = {},
+                          showPrice = false,
+
+                          // CTA
                           buttonTo = "#",
                           buttonStyle = "",
                           buttonIcon = null,
-                          buttonText = "Meer info"
+                          buttonText = "Meer info",
                       }) => {
+
+    // unified image & alt
     const finalImage = cardImage || image;
     const finalAlt = cardAlt || alt;
 
-    console.log("🎯 TrainingCard ontvangen props:", {
-        title,
-        finalImage,
-        showPrice,
-        pricing
-    });
-
     return (
-        <div className="training-card">
-            {/* Afbeelding */}
+        <article className="training-card">
+
+            {/* IMAGE */}
             {finalImage && (
                 <div className="training-card-image-wrapper">
                     <img
                         src={finalImage}
                         alt={finalAlt}
                         className="training-card-image"
+                        loading="lazy"
+                        decoding="async"
                     />
                 </div>
             )}
 
-            {/* Inhoud */}
+            {/* CONTENT */}
             <div className="training-card-content">
+
                 <div className="content-block">
-                    <h2 className="training-card-title">{title}</h2>
+                    <h3 className="training-card-title">
+                        {title}
+                    </h3>
 
                     {description && (
-                        <p className="training-card-description">{description}</p>
+                        <p className="training-card-description">
+                            {description}
+                        </p>
                     )}
                 </div>
-                {/* Prijsweergave */}
-                {showPrice && (
-                    <div className="training-card-pricing">
-                        {pricing.individualPrice ? (
-                            <p>Individueel: €{Number(pricing.individualPrice).toFixed(2)} excl. BTW</p>
-                        ) : null}
-                        {pricing.groupPrice ? (
-                            <p>Groepsprijs: €{Number(pricing.groupPrice).toFixed(2)} excl. BTW</p>
-                        ) : "Groepsprijs: op aanvraag"}
-                        {!pricing.individualPrice && !pricing.groupPrice && (
-                            <p>Prijs op te vragen via email</p>
-                        )}
-                    </div>
-                )}
 
-                {/* Button */}
-                <a href={buttonTo} className={`training-card-button ${buttonStyle}`}>
-                    {buttonIcon && <span className="icon">{buttonIcon}</span>}
+                {/* CTA BUTTON */}
+                <a
+                    href={buttonTo}
+                    className={`training-card-button ${buttonStyle}`}
+                >
+                    {buttonIcon && (
+                        <span className="icon">
+                            {buttonIcon}
+                        </span>
+                    )}
+
                     {buttonText}
                 </a>
+
             </div>
-        </div>
+        </article>
     );
 };
 
