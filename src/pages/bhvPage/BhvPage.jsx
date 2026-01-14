@@ -217,7 +217,7 @@ export default function BhvPage() {
                 <ServiceRegionsSection />
 
                 {/* 📞 CTA */}
-                <a href="/contact" className="btn-primary">Offerte aanvragen</a>
+                <a href="/contact" className="btn-primary">Offerte aanvragen!</a>
             </main>
         </>
     );
