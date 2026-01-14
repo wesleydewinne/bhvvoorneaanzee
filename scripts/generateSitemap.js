@@ -3,15 +3,20 @@ import path from "path";
 import { SITEMAP_PATHS } from "../src/routes/sitemapPaths.js";
 
 const DOMAIN = "https://bhvvoorneaanzee.nl";
+const OUTPUT_DIR = path.resolve("public");
+const OUTPUT_FILE = path.join(OUTPUT_DIR, "sitemap.xml");
 
-// Sitemap XML genereren
+// Huidige datum in ISO formaat (YYYY-MM-DD)
+const today = new Date().toISOString().split("T")[0];
+
 function generateSitemap() {
     const urls = SITEMAP_PATHS.map(route => {
         return `
   <url>
-    <loc>${DOMAIN}${route}</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>${DOMAIN}${route.path}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
   </url>`;
     }).join("");
 
@@ -22,17 +27,15 @@ function generateSitemap() {
 ${urls}
 </urlset>`;
 
-    const outputDir = path.resolve("public");
-    const outputPath = path.join(outputDir, "sitemap.xml");
-
     // Zorg dat public bestaat
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true });
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     }
 
-    fs.writeFileSync(outputPath, sitemap, "utf8");
+    fs.writeFileSync(OUTPUT_FILE, sitemap.trim(), "utf8");
 
-    console.log("✅ sitemap.xml gegenereerd in /public");
+    console.log("✅ sitemap.xml succesvol gegenereerd in /public");
+    console.log(`📄 Aantal URL's: ${SITEMAP_PATHS.length}`);
 }
 
 generateSitemap();
