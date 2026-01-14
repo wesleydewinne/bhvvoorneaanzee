@@ -1,13 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { PRIVATE_PATHS, QUIZ_PATHS } from "../src/routes/routePaths.js";
 
-import privateRoutes from "../src/routes/privateRoutes.jsx";
-import quizRoutes from "../src/routes/quizRoutes.jsx";
-
-const privateDisallows = privateRoutes.map(r => `Disallow: ${r.path}`);
-const quizDisallows = quizRoutes.map(r => `Disallow: ${r.path}`);
-
-const disallowRules = [...privateDisallows, ...quizDisallows].join("\n");
+const disallowRules = [...PRIVATE_PATHS, ...QUIZ_PATHS]
+    .map(p => `Disallow: ${p}`)
+    .join("\n");
 
 const sitemapUrl = "https://bhvvoorneaanzee.nl/sitemap.xml";
 

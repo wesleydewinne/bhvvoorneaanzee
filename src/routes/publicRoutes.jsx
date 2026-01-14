@@ -88,14 +88,13 @@ const publicRoutes = [
     { path: "/ehbo-herhaling-hele-dag", element: <Ehbo /> },
     { path: "/ehbo-herhaling-halve-dag", element: <Ehbo /> },
 
-
     // Workshops
     { path: "/workshops", element: <Workshops /> },
-    { path: "/workshops/gebruik_kleine_blusmiddelen", element: <KleineBlusmiddelen /> },
+    { path: "/workshops/gebruik-kleine-blusmiddelen", element: <KleineBlusmiddelen /> },
     { path: "/workshops/portofoongebruik", element: <Portofoongebruik /> },
-    { path: "/workshop/reanimatie_volwassene", element: <ReanimatieMetGebruikAedVolwassene /> },
-    { path: "/workshops/reanimatie_kind_baby", element: <ReanimatieMetGebruikAedKind /> },
-    { path: "/workshops/stop_de_bloeding_red_een_leven", element: <StopDeBloedingRedEenLeven /> },
+    { path: "/workshops/reanimatie-volwassene", element: <ReanimatieMetGebruikAedVolwassene /> },
+    { path: "/workshops/reanimatie-kind-baby", element: <ReanimatieMetGebruikAedKind /> },
+    { path: "/workshops/stop-de-bloeding-red-een-leven", element: <StopDeBloedingRedEenLeven /> },
 
     //uitleg trainingen
     { path: "/maatwerk", element: <Maatwerk /> },

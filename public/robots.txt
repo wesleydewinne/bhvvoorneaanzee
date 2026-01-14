@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /quiz-intro
+Disallow: /quiz
+Disallow: /quiz-result
+
+Sitemap: https://bhvvoorneaanzee.nl/sitemap.xml

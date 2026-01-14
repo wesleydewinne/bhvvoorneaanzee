@@ -1,12 +1,11 @@
-import React from "react";
 import ProtectedRoute from "@/components/route/ProtectedRoute";
-
 import Dashboard from "@/pages/dashboard/Dashboard.jsx";
 import Profile from "@/pages/profile/Profile.jsx";
+import { PRIVATE_PATHS } from "./routePaths";
 
 const privateRoutes = [
     {
-        path: "/dashboard",
+        path: PRIVATE_PATHS[0],
         element: (
             <ProtectedRoute>
                 <Dashboard />
@@ -14,13 +13,13 @@ const privateRoutes = [
         ),
     },
     {
-        path: "/profile",
+        path: PRIVATE_PATHS[1],
         element: (
             <ProtectedRoute>
                 <Profile />
             </ProtectedRoute>
         ),
-    }
+    },
 ];
 
 export default privateRoutes;
