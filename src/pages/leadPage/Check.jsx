@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./check.css";
+import "./Check.css";
 import SafetyWizard from "./SafetyWizard";
 
 import bgImage from "@/assets/image/headerPicture/veiligheidscheck-bg.jpg";
