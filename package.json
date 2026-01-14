@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "generate-sitemap": "node generate-sitemap.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -49,10 +48,5 @@
     "postcss": "^8.5.6",
     "vite": "^6.4.1",
     "vite-plugin-sitemap": "^0.8.2"
-  },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
