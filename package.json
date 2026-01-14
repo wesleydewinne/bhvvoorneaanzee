@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/generateRobots.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -47,7 +48,8 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "postcss": "^8.5.6",
-    "vite": "^6.4.1"
+    "vite": "^6.4.1",
+    "vite-plugin-sitemap": "^0.8.2"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "eslint.config.js",

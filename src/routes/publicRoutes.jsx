@@ -38,6 +38,8 @@ import Fases from "@/pages/ontruimingsverslag/Fases.jsx";
 import Scenarios from "@/pages/ontruimingsverslag/Scenarios.jsx";
 import Verslag from "@/pages/ontruimingsverslag/Verslag.jsx";
 
+import Veiligheidscheck from "@/pages/leadPage/Check.jsx"
+
 import RotterdamPage from "@/pages/regios/RotterdamPage.jsx";
 import ZeelandPage from "@/pages/regios/ZeelandPage.jsx";
 import WestlandPage from "@/pages/regios/WestlandPage.jsx";
@@ -49,6 +51,7 @@ import OfferteAanvraag from "@/pages/OffertePage/OfferteAanvraag.jsx";
 import OverOns from "@/pages/overOns/OverOns.jsx";
 import Bedrijfsgegevens from "@/components/bedrijfsgegevens/Bedrijfsgegevens.jsx";
 import ContactOns from "@/pages/contact/ContactOns.jsx";
+import VeiligheidscheckBedankt from "@/pages/leadPage/VeiligheidscheckBedankt.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -105,6 +108,10 @@ const publicRoutes = [
     // Blog
     { path: "/blog", element: <BlogPage /> },
     { path: "/blog/:slug", element: <BlogDetail /> },
+
+    // LeadPage
+    { path: "/veiligheidscheck", element: <Veiligheidscheck />},
+    { path: "/veiligheidscheck-bedankt", element: <VeiligheidscheckBedankt /> },
 
     // Login (nu correct beveiligd)
     {

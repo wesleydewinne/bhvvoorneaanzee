@@ -1,0 +1,4 @@
+User-agent: *
+{{DISALLOW_RULES}}
+
+Sitemap: {{SITEMAP_URL}}
