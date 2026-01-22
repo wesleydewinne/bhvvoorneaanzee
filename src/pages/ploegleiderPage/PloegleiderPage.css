@@ -1,0 +1,146 @@
+/* ============================================================
+   PLOEGLEIDER PAGINA – PAGE LAYOUT
+   ============================================================ */
+
+.ploegleider-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding: var(--space-8) 0 var(--space-9);
+    background: var(--color-bg);
+}
+
+/* ============================================================
+   INTRO GRID
+   ============================================================ */
+
+.ploegleider-intro-grid {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-6);
+    padding-inline: var(--space-4);
+}
+
+/* ============================================================
+   LINKER BLOK – CONTEXT / UITLEG
+   ============================================================ */
+
+.ploegleider-info {
+    background: var(--color-surface);
+    border-left: 0.5rem solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+}
+
+.ploegleider-info h2 {
+    color: var(--color-heading);
+}
+
+.ploegleider-info p {
+    color: var(--color-text);
+}
+
+/* ============================================================
+   RECHTER BLOK – TAKEN
+   ============================================================ */
+
+.ploegleider-tasks {
+    background: var(--color-surface);
+    border-top: 0.5rem solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+}
+
+.ploegleider-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.ploegleider-task-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-3);
+    color: var(--color-text);
+}
+
+/* ============================================================
+   FACTOREN SECTIE (HERGEBRUIKT UIT BHV)
+   ============================================================ */
+
+.factor-info-section {
+    width: 100%;
+    padding: var(--space-9) var(--space-4);
+    background: linear-gradient(
+            180deg,
+            var(--color-bg) 0%,
+            #e5e7eb 100%
+    );
+}
+
+.factor-info-grid {
+    max-width: 140rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: var(--space-6);
+    justify-items: center;
+}
+
+.factor-info-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: transform var(--transition-mid),
+    box-shadow var(--transition-mid);
+}
+
+.factor-info-card:hover {
+    transform: translateY(-0.6rem);
+    box-shadow: var(--shadow-xl);
+}
+
+.factor-info-title {
+    font-size: var(--fs-5);
+    font-weight: var(--fw-semibold);
+}
+
+.factor-info-text {
+    font-size: var(--fs-3);
+    color: var(--color-text-muted);
+}
+
+.training-card-section {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding-inline: var(--space-4);
+}
+
+
+/* ============================================================
+   CTA (gebruikt globale .btn-primary)
+   ============================================================ */
+
+.btn-primary {
+    margin-top: var(--space-8);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: var(--bp-lg)) {
+    .ploegleider-intro-grid {
+        grid-template-columns: 1fr;
+    }
+}

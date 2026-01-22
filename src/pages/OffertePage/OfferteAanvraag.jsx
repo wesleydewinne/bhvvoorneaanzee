@@ -11,7 +11,7 @@ export default function OfferteAanvraag() {
     const mockTrainingOpties = [
         { id: 1, code: "BHV_BASIS", naam: "BHV Basis" },
         { id: 2, code: "BHV_HERHALING", naam: "BHV Herhaling" },
-        { id: 3, code: "BHV_PLOEGLEIDER", naam: "BHV Ploegleider" },
+        { id: 3, code: "BHV_PLOEGLEIDER", naam: "BHV PloegleiderBasis2Daagse.jsx" },
         { id: 4, code: "EHBO", naam: "EHBO" },
         { id: 5, code: "ONTRUIMING", naam: "Ontruimingsoefening" }
     ];

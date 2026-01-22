@@ -18,7 +18,7 @@ const questions = [
         options: [
             "Eigenaar / directie",
             "HR / management",
-            "Ploegleider / BHV’er",
+            "PloegleiderBasis2Daagse.jsx / BHV’er",
             "Medewerker / anders"
         ]
     },

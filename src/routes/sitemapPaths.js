@@ -21,7 +21,7 @@ export const SITEMAP_PATHS = [
     { path: "/ehbo-herhaling-hele-dag", priority: "0.8", changefreq: "monthly" },
     { path: "/ehbo-herhaling-halve-dag", priority: "0.8", changefreq: "monthly" },
 
-    // Ploegleider trainingen
+    // Ploegleider
     { path: "/ploegleider-basis-2-daagse", priority: "0.8", changefreq: "monthly" },
     { path: "/ploegleider-basis-1-dag-met-elearning", priority: "0.8", changefreq: "monthly" },
     { path: "/ploegleider-herhaling-halve-dag", priority: "0.8", changefreq: "monthly" },

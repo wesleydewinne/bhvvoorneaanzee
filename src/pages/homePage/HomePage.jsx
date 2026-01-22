@@ -5,6 +5,7 @@ import LogosSection from "@/components/sections/logosSection/LogosSection.jsx";
 import BlogSection from "@/components/sections/blogSection/BlogSection.jsx";
 import CTAButtons from "@/components/button/cta/CTAButton.jsx";
 import ReviewSection from "@/components/review/ReviewSection.jsx";
+import { posts } from "@/pages/blog/posts.js";
 
 import reactLogo from "@/assets/image/react.svg";
 import trainingData from "@/data/training.json";
@@ -42,10 +43,10 @@ function HomePage() {
                 <ReviewSection />
 
                 <section className="certificering-section">
-                    <BlogSection limit={10} />
                     <LogosSection />
                 </section>
 
+                <BlogSection posts={posts} limit={10} />
             </div>
         </>
     );

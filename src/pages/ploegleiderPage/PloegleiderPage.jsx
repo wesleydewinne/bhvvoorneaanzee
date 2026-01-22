@@ -1,5 +1,4 @@
-// src/pages/PloegleiderPage.jsx
-import React from "react";
+import React, { useMemo } from "react";
 import "./PloegleiderPage.css";
 
 import {
@@ -8,6 +7,9 @@ import {
     Fire,
     Headset,
     CheckCircle,
+    Buildings,
+    WarningCircle,
+    Megaphone,
 } from "@phosphor-icons/react";
 
 import data from "../../data/training.json";
@@ -16,142 +18,165 @@ import TrainingCardSection from "../../components/sections/trainingSection/Train
 import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
 
 import fallback from "../../assets/image/fallbackAfbeelding.png";
-//import ploegleiderImage from "../../assets/images/algemeneAfbeeldingen/ploegleider.png";
+import ServiceRegionsSection from "@/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-function PloegleiderPage() {
+export default function PloegleiderPage() {
+
+    /* 🔹 Categorie ophalen */
     const ploegleiderCategory = data.categories.find(
         (category) => category.id === "ploegleider"
     );
-    const ploegleiderTrainings = ploegleiderCategory
-        ? ploegleiderCategory.trainings
-        : [];
 
-    const ploegleiderCards = ploegleiderTrainings.map((training) => {
-        const resolvedImage = training.cardImage?.trim()
-            ? training.cardImage
-            : ploegleiderCategory?.image || fallback;
+    const ploegleiderTrainings = ploegleiderCategory?.trainings || [];
 
-        return {
-            title: training.title,
-            description: `Ploegleidertraining - ${training.type}`,
-            cardImage: resolvedImage,
-            cardAlt: training.cardAlt || training.title,
-            pricing: {
-                individualPrice: training.pricing?.[0]?.individualPrice || null,
-                groupPrice: training.pricing?.[0]?.groupPrice || null,
-            },
-            showPrice: true,
-            buttonTo: `/training/${training.type}`,
-            buttonText: "Meer informatie",
-            buttonStyle: "primary",
-            buttonIcon: "👷‍♂️",
-        };
-    });
+    /* 🔹 Cards (zelfde architectuur als BHV) */
+    const ploegleiderCards = useMemo(
+        () =>
+            ploegleiderTrainings.map((training) => ({
+                title: training.title,
+                description: training.description,
+                image: training.cardImage?.trim()
+                    ? training.cardImage
+                    : ploegleiderCategory?.image || fallback,
+                alt: training.cardAlt || training.title,
+                buttonTo: training.slug,
+                buttonText: "Bekijk training",
+                buttonStyle: "primary",
+            })),
+        [ploegleiderTrainings, ploegleiderCategory]
+    );
 
-    const taken = [
+    /* 🔹 Taken ploegleider */
+    const ploegleiderTasks = [
         {
-            icon: <UsersThree size={25} color="#ff8000" weight="bold" />,
-            task: "Aansturen van BHV-teams tijdens noodsituaties",
+            icon: <UsersThree size={32} color="#ff8000" weight="bold" />,
+            task: "Aansturen en coördineren van BHV’ers tijdens incidenten.",
         },
         {
-            icon: <ClipboardText size={25} color="#ff6f61" weight="regular" />,
-            task: "Coördineren van taken en verantwoordelijkheden binnen de ploeg",
+            icon: <ClipboardText size={32} color="#ff8000" weight="bold" />,
+            task: "Verdelen van taken en bewaken van het overzicht.",
         },
         {
-            icon: <Fire size={25} color="#ff8000" weight="bold" />,
-            task: "Beslissingen nemen bij brand, ontruiming of incidenten",
+            icon: <Fire size={32} color="#ff8000" weight="bold" />,
+            task: "Beslissingen nemen bij brand, ontruiming en calamiteiten.",
         },
         {
-            icon: <Headset size={25} color="#ff8000" weight="regular" />,
-            task: "Communiceren met hulpdiensten en management",
+            icon: <Headset size={32} color="#ff8000" weight="bold" />,
+            task: "Communiceren met hulpdiensten, management en BHV-team.",
         },
     ];
 
-    const leerdoelen = [
-        "Je kunt leidinggeven tijdens noodsituaties en effectief beslissingen nemen.",
-        "Je leert de taken van ploegleiders en BHV’ers coördineren.",
-        "Je herkent knelpunten in BHV-organisatie en lost deze op.",
-        "Je kunt een inzet evalueren en verbeterpunten formuleren.",
-    ];
-
-    const onderwerpen = [
-        "Leiderschapsvaardigheden en communicatie",
-        "Risico-inschatting en besluitvorming",
-        "Scenario-oefeningen met BHV-teams",
-        "Evaluatie en rapportage van incidenten",
+    /* 🔹 Wanneer is een ploegleider nodig */
+    const maatgevendeFactoren = [
+        {
+            icon: <Buildings size={28} color="#ff8000" weight="bold" />,
+            title: "Grote of complexe organisatie",
+            description:
+                "Meerdere afdelingen, verdiepingen of gebouwen vragen om centrale aansturing.",
+        },
+        {
+            icon: <WarningCircle size={28} color="#ff8000" weight="bold" />,
+            title: "Verhoogde risico’s",
+            description:
+                "Bij verhoogde brand- of ontruimingsrisico’s is duidelijke coördinatie essentieel.",
+        },
+        {
+            icon: <Megaphone size={28} color="#ff8000" weight="bold" />,
+            title: "Communicatie & besluitvorming",
+            description:
+                "Tijdens een incident is één aanspreekpunt nodig voor snelle en duidelijke beslissingen.",
+        },
     ];
 
     return (
         <>
             <HeaderSection
-                mainTitle="Ploegleider BHV Training"
-                // backgroundImage={ploegleiderImage}
+                mainTitle="Ploegleider BHV Training – Leidinggeven tijdens noodsituaties"
             />
 
             <main className="ploegleider-info-grid">
+
                 {/* Intro */}
-                <section className="section full-width-section">
-                    <article className="content-block">
-                        <header>
-                            <h2>Wat is een Ploegleider BHV?</h2>
-                        </header>
+                <section className="ploegleider-intro-grid">
+
+                    <article className="ploegleider-info">
+                        <h2>Wat is een Ploegleider BHV?</h2>
+
                         <p>
-                            De Ploegleider BHV is verantwoordelijk voor het aansturen van
-                            BHV-teams binnen een organisatie. Tijdens een incident of
-                            ontruiming bewaakt de ploegleider het overzicht, verdeelt taken en
-                            communiceert met hulpdiensten. De ploegleider zorgt dat alle
-                            BHV’ers weten wat ze moeten doen en dat de inzet efficiënt verloopt.
-                            Deze training is bedoeld voor ervaren BHV’ers die willen doorgroeien
-                            naar een coördinerende of leidinggevende rol.
+                            De <strong>Ploegleider BHV</strong> is verantwoordelijk voor de
+                            aansturing van het BHV-team tijdens incidenten en ontruimingen.
+                            Waar BHV’ers uitvoerend handelen, bewaakt de ploegleider het
+                            overzicht, stelt prioriteiten en zorgt voor duidelijke communicatie.
+                        </p>
+
+                        <p>
+                            Deze rol is onmisbaar binnen organisaties waar meerdere BHV’ers
+                            tegelijk ingezet worden. De ploegleider vormt de schakel tussen
+                            het BHV-team, het management en de hulpdiensten.
+                        </p>
+
+                        <p>
+                            De <strong>Ploegleider BHV-training</strong> is bedoeld voor ervaren
+                            BHV’ers die willen doorgroeien naar een coördinerende of
+                            leidinggevende rol binnen de BHV-organisatie.
                         </p>
                     </article>
+
+                    <aside className="ploegleider-kstas">
+                        <h2>Wat doet een ploegleider?</h2>
+
+                        <ul className="ploegleider-task-list">
+                            {ploegleiderTasks.map((item, index) => (
+                                <li key={index}>
+                                    {item.icon}
+                                    <span>{item.task}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </aside>
+
                 </section>
 
-                {/* Taken */}
-                <section className="section icon-tasks">
-                    <h2>Wat doet een ploegleider?</h2>
-                    <ul className="icon-list">
-                        {taken.map((item, index) => (
-                            <li key={index}>
-                                {item.icon}
-                                <span>{item.task}</span>
-                            </li>
-                        ))}
-                    </ul>
+                {/* Trainingen */}
+                <section className="training-card-section">
+                    <TrainingCardSection
+                        title="Ploegleider BHV-trainingen"
+                        subtitle="Voor BHV’ers die verantwoordelijkheid nemen en overzicht houden."
+                        cards={ploegleiderCards}
+                    />
                 </section>
+                
+                    {/* Wanneer nodig */}
+                    <section className="factor-info-section">
+                        <h2>Wanneer is een Ploegleider BHV noodzakelijk?</h2>
 
-                {/* Leerdoelen */}
-                <section className="section">
-                    <h2>Leerdoelen van de training</h2>
-                    <ul>
-                        {leerdoelen.map((doel, index) => (
-                            <li key={index}>
-                                <CheckCircle size={18} color="#ff8000" weight="bold" /> {doel}
-                            </li>
-                        ))}
-                    </ul>
-                </section>
+                        <div className="factor-info-grid">
+                            {maatgevendeFactoren.map((factor, index) => (
+                                <div key={index} className="factor-info-card">
+                                    <div className="factor-info-icon">
+                                        {factor.icon}
+                                    </div>
+                                    <h3 className="factor-info-title">{factor.title}</h3>
+                                    <p className="factor-info-text">{factor.description}</p>
+                                </div>
+                            ))}
+                        </div>
 
-                {/* Onderwerpen */}
-                <section className="section">
-                    <h2>Onderwerpen die aan bod komen</h2>
-                    <ul>
-                        {onderwerpen.map((item, index) => (
-                            <li key={index}>
-                                <CheckCircle size={18} color="#444" weight="regular" /> {item}
-                            </li>
-                        ))}
-                    </ul>
-                </section>
+                        <p className="factor-footer">
+                            Een goed georganiseerde BHV-structuur voorkomt chaos tijdens
+                            incidenten en verhoogt de veiligheid binnen de organisatie.
+                        </p>
+                    </section>
 
-                {/* Trainingen uit JSON */}
-                <TrainingCardSection
-                    title="Beschikbare Ploegleidertrainingen"
-                    cards={ploegleiderCards}
-                />
+                    {/* Regio */}
+                    <ServiceRegionsSection/>
+
+                    {/* CTA */}
+                    <a href="/contact" className="btn-primary">
+                        Offerte aanvragen
+                    </a>
+
             </main>
         </>
-    );
+);
 }
-
-export default PloegleiderPage;

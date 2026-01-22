@@ -68,7 +68,7 @@ function ContactOns() {
         setSuccess(false);
 
         try {
-            await api.post("/contact", {
+            await api.post("/api/contact", {
                 naam: formData.naam,
                 email: formData.email,
                 bericht: formData.bericht
