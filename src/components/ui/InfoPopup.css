@@ -1,0 +1,90 @@
+/* =========================================
+   BODY OVERLAY
+========================================= */
+body.modal-open::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* =========================================
+   POPUP CONTAINER
+========================================= */
+.info-popup-fixed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+
+    background: #ffffff;
+    border-radius: 14px;
+
+    max-width: 520px;
+    width: 92%;
+    padding: 3.2rem 3.6rem 3rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================
+   TITEL
+========================================= */
+.info-popup-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.6rem;
+}
+
+/* =========================================
+   TEKST
+========================================= */
+.info-popup-message {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 1rem;
+    max-width: 42rem;
+}
+
+.info-popup-contact {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 1.2rem;
+}
+
+/* =========================================
+   EMAIL LINK
+========================================= */
+.info-popup-email {
+    color: #004aad;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.info-popup-email:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+.info-popup-button {
+    min-width: 220px;
+    padding: 1.4rem 2.6rem;
+    font-size: 1.6rem;
+    border-radius: 999px;
+}

@@ -83,7 +83,7 @@ function ContactOns() {
             }, 1500);
 
         } catch (err) {
-            setError("Versturen mislukt. Probeer het later opnieuw.");
+            setError("Helaas is het versturen mislukt. Stuur een e-mail naar klantenservice@bhvvoorneaanzee.nl");
         } finally {
             setLoading(false);
         }

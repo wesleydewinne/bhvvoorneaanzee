@@ -1,20 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import api from "@/api/api";
 import PhoneInput from "@/components/phoneInput/PhoneInput.jsx";
 import { validatePhone } from "@/helpers/validatePhone.js";
 import "./OfferteAanvraag.css";
+import InfoPopup from "@/components/ui/InfoPopup";
 
 export default function OfferteAanvraag() {
-
-    // ========================================
-    // MOCK TRAININGEN (tijdelijk)
-    // ========================================
-    const mockTrainingOpties = [
-        { id: 1, code: "BHV_BASIS", naam: "BHV Basis" },
-        { id: 2, code: "BHV_HERHALING", naam: "BHV Herhaling" },
-        { id: 3, code: "BHV_PLOEGLEIDER", naam: "BHV PloegleiderBasis2Daagse.jsx" },
-        { id: 4, code: "EHBO", naam: "EHBO" },
-        { id: 5, code: "ONTRUIMING", naam: "Ontruimingsoefening" }
-    ];
 
     // ========================================
     // STATES
@@ -32,9 +23,22 @@ export default function OfferteAanvraag() {
         { trainingType: "", aantal: 1, eigenLocatie: true }
     ]);
 
-    const [trainingOpties] = useState(mockTrainingOpties);
+    const [trainingOpties, setTrainingOpties] = useState([]);
     const [errors, setErrors] = useState({});
     const [verzonden, setVerzonden] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [showPopup, setShowPopup] = useState(true);
+
+    // ========================================
+    // TRAINING TYPES UIT BACKEND
+    // ========================================
+    useEffect(() => {
+        api.get("/training-types")
+            .then(res => setTrainingOpties(res.data))
+            .catch(err => {
+                console.error("Trainingstypes laden mislukt", err);
+            });
+    }, []);
 
     // ========================================
     // HANDLERS
@@ -81,14 +85,32 @@ export default function OfferteAanvraag() {
     };
 
     // ========================================
-    // MOCK SUBMIT
+    // SUBMIT
     // ========================================
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validate()) return;
 
-        console.log("Offerte (mock):", { klant, trainings });
-        setVerzonden(true);
+        setLoading(true);
+
+        try {
+            await api.post("/quotes\"", {
+                klant,
+                trainings
+            });
+
+            setVerzonden(true);
+
+        } catch (err) {
+            console.error(err);
+
+            alert(
+                err.message ||
+                "Helaas is het versturen mislukt. Stuur een e-mail naar klantenservice@bhvvoorneaanzee.nl."
+            );
+        } finally {
+            setLoading(false);
+        }
     };
 
     // ========================================
@@ -107,9 +129,19 @@ export default function OfferteAanvraag() {
     // FORM
     // ========================================
     return (
-        <div className="container-narrow">
+        <>
 
-            {/* BLOK — GEGEVENS */}
+            {showPopup && (
+            <InfoPopup
+                title="Pagina nog in ontwikkeling"
+                message="Deze pagina is momenteel nog niet volledig beschikbaar."
+                onClose={() => setShowPopup(false)}
+            />
+            )}
+
+            <div className="container-narrow">
+
+            {/* GEGEVENS */}
             <div className="offerte-block">
                 <div className="offerte-title">Gegevens</div>
 
@@ -153,7 +185,7 @@ export default function OfferteAanvraag() {
                 </div>
             </div>
 
-            {/* BLOK — TRAININGEN */}
+            {/* TRAININGEN */}
             <div className="offerte-block">
                 <div className="offerte-title">Trainingen</div>
 
@@ -175,7 +207,7 @@ export default function OfferteAanvraag() {
                                 >
                                     <option value="">-- Kies training --</option>
                                     {trainingOpties.map(t => (
-                                        <option key={t.id} value={t.code}>
+                                        <option key={t.code} value={t.code}>
                                             {t.naam}
                                         </option>
                                     ))}
@@ -228,11 +260,16 @@ export default function OfferteAanvraag() {
                 </button>
             </div>
 
-            {/* VERZEND BUTTON */}
-            <button className="btn-primary" onClick={handleSubmit}>
-                Offerte aanvragen
+            {/* VERZENDEN */}
+            <button
+                className="btn-primary"
+                onClick={handleSubmit}
+                disabled={loading}
+            >
+                {loading ? "Versturen..." : "Offerte aanvragen"}
             </button>
 
         </div>
+        </>
     );
 }
