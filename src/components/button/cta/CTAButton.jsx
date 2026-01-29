@@ -23,7 +23,7 @@ export default function CTASection() {
                     Incompany trainingen zorgen ervoor dat jouw team samen leert en direct oefent in de eigen werkomgeving.
                     Al vanaf 4 deelnemers regelen wij dit op locatie, en je profiteert van een aantrekkelijk tarief per persoon.
                 </p>
-                <Link to="/formulier?type=offerte" className="cta-button">
+                <Link to="/offerte" className="cta-button">
                     Offerte aanvragen
                 </Link>
             </div>
