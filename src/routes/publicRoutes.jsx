@@ -12,6 +12,11 @@ import BhvHerhaling05Elearning from "@/pages/bhvPage/bhvPages/BhvHerhaling05Elea
 
 
 import PloegleiderPage from "@/pages/ploegleiderPage/PloegleiderPage.jsx";
+import Ploegleider2DaagsePage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis2Daagse.jsx"
+import PloegleiderBasis1DaagseElearning from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis1daagseElearning.jsx";
+import PloegleiderHerhalingPage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderHerhaling.jsx";
+
+
 import LandingPage from "@/pages/landingPage/LandingPage.jsx";
 import OntruimingsPage from "@/pages/ontruimingsOefeningPage/OntruimingsOefeningPage.jsx";
 import Fase0 from "@/pages/ontruimingsOefeningPage/fase/Fase0.jsx";
@@ -65,9 +70,9 @@ const publicRoutes = [
 
     // Ploegleider
     { path: "/ploegleider", element: <PloegleiderPage /> },
-    { path: "/ploegleider-basis-2-daagse", element: <PloegleiderPage /> },
-    { path: "/ploegleider-basis-1-dag-met-elearning", element: <PloegleiderPage /> },
-    { path: "/ploegleider-herhaling-halve-dag", element: <PloegleiderPage /> },
+    { path: "/ploegleider-basis-2-daagse", element: <Ploegleider2DaagsePage /> },
+    { path: "/ploegleider-basis-1-dag-met-elearning", element: <PloegleiderBasis1DaagseElearning /> },
+    { path: "/ploegleider-herhaling-halve-dag", element: <PloegleiderHerhalingPage /> },
 
     // Ontruimingsoefening
     { path: "/ontruimingsoefening", element: <OntruimingsPage /> },

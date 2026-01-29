@@ -1,0 +1,290 @@
+/* =========================
+   PLOEGLEIDER DETAIL PAGE
+   Zelfde gedachtegoed, andere layout dan BHV
+   ========================= */
+
+.pl-detail-page {
+    width: 100%;
+    color: #1f2933;
+}
+
+/* Container binnen een section */
+.pl-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+}
+
+/* Section styling */
+.pl-section--surface {
+    background: #ffffff;
+}
+
+.pl-section--muted {
+    background: #f5f7fa;
+}
+
+.pl-section--accent {
+    background: #eef4ff;
+    border-left: 6px solid #1e88e5;
+}
+
+/* Typografie */
+.pl-detail-page h2 {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.pl-detail-page h3 {
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.pl-detail-page p {
+    max-width: 75ch;
+    line-height: 1.75;
+    margin: 0 0 1rem;
+}
+
+.pl-detail-page p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================
+   LAYOUT HELPERS
+   ========================= */
+
+.pl-grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.pl-grid-2-even {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.pl-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: stretch;
+}
+
+/* =========================
+   SIDEBAR / CALLOUT
+   ========================= */
+
+.pl-sidebar {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.75rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.pl-sidebar-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.pl-keypoints {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.pl-keypoints li {
+    position: relative;
+    padding-left: 1.5rem;
+    font-weight: 600;
+}
+
+.pl-keypoints li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    color: #1e88e5;
+    font-weight: 800;
+}
+
+/* =========================
+   CARDS
+   ========================= */
+
+.pl-card-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.pl-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1.75rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.pl-card-title {
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.pl-card p {
+    margin: 0;
+    max-width: none;
+}
+
+/* =========================
+   PHASES / 3-COLUMN
+   ========================= */
+
+.pl-phase-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.pl-phase-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.pl-phase-card li {
+    position: relative;
+    padding-left: 1.6rem;
+    line-height: 1.6;
+}
+
+.pl-phase-card li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #1e88e5;
+    font-weight: 800;
+}
+
+/* =========================
+   PROGRAM / DAY SPLIT
+   ========================= */
+
+.pl-program {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.pl-program-day {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.pl-program-day ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    display: grid;
+    gap: 0.6rem;
+}
+
+.pl-program-day li {
+    position: relative;
+    padding-left: 1.8rem;
+    line-height: 1.6;
+}
+
+.pl-program-day li::before {
+    content: "➜";
+    position: absolute;
+    left: 0;
+    top: 0.02rem;
+    color: #1e88e5;
+    font-weight: 800;
+}
+
+/* =========================
+   ACCENT USP
+   ========================= */
+
+.pl-usp-text {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* =========================
+   CTA
+   ========================= */
+
+.pl-cta-wrap {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: center;
+    text-align: center;
+}
+
+.pl-cta-button {
+    display: inline-block;
+    padding: 0.95rem 2.2rem;
+    background: #1e88e5;
+    color: #ffffff;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+.pl-cta-button:hover {
+    background: #1565c0;
+}
+
+/* Kleine link in tekst (optioneel) */
+.pl-inline-link {
+    color: #1e88e5;
+    font-weight: 700;
+    text-decoration: underline;
+}
+.pl-inline-link:hover {
+    text-decoration: none;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 980px) {
+    .pl-grid-2,
+    .pl-grid-2-even,
+    .pl-grid-3,
+    .pl-program {
+        grid-template-columns: 1fr;
+    }
+
+    .pl-container {
+        padding: 3.5rem 1.25rem;
+    }
+
+    .pl-detail-page h2 {
+        font-size: 1.65rem;
+    }
+}

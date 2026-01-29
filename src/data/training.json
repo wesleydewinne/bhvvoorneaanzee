@@ -50,10 +50,19 @@
       "alt": "Foto van een BHV ploegleider training",
       "trainings": [
         {
+          "type": "ploegleider-basis-2-daags",
+          "title": "Ploegleider BHV – 2 dagen",
+          "description": "Verdieping in coördinatie, opschaling en leiderschap",
+          "slug": "/ploegleider-basis-2-daagse",
+          "cardImage": "ploegleider-basis-2daags.png",
+          "cardAlt": "Tweedaagse BHV ploegleider training"
+        },
+
+        {
           "type": "ploegleider-basis",
           "title": "Basis BHV Ploegleider",
           "description": "Leidinggeven aan BHV tijdens incidenten",
-          "slug": "/ploegleider/basis",
+          "slug": "/ploegleider-basis-1-dag-met-elearning",
           "cardImage": "ploegleider-basis.png",
           "cardAlt": "Basistraining BHV ploegleider"
         },
@@ -61,7 +70,7 @@
           "type": "ploegleider-herhaling",
           "title": "Herhaling BHV Ploegleider",
           "description": "Actualiseren van kennis en vaardigheden",
-          "slug": "/ploegleider/herhaling",
+          "slug": "/ploegleider-herhaling-halve-dag",
           "cardImage": "ploegleider-herhaling.png",
           "cardAlt": "Herhalingstraining BHV ploegleider"
         }
