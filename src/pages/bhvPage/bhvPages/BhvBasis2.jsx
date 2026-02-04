@@ -23,7 +23,7 @@ export default function BhvBasis2() {
 
     useEffect(() => {
         axios
-            .get("/api/trainings/BHV_BASIS_2_DAAGSE/pricing")
+            .get("/trainings/BHV_BASIC_2_DAYS/pricing")
             .then(res => setPriceFrom(res.data.priceFrom))
             .catch(() => setPriceFrom(null));
     }, []);

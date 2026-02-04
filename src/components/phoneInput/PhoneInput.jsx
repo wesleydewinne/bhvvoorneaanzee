@@ -18,7 +18,7 @@ export default function PhoneInput({ value, onChange, error }) {
 
     return (
         <div className="space-y-1">
-            <label className="font-semibold">Telefoonnummer</label>
+            <label className="font-semibold">Telefoonnummer waarop we je kunnen bereiken *</label>
 
             <div className="d-flex gap-2">
                 <select
@@ -39,7 +39,7 @@ export default function PhoneInput({ value, onChange, error }) {
 
                 <input
                     className="border p-2 flex-1 rounded-md"
-                    placeholder="612345678"
+                    placeholder="0612345678"
                     onChange={handleChange}
                 />
             </div>

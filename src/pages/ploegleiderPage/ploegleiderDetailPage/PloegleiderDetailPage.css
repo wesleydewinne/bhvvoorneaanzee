@@ -105,7 +105,7 @@
 
 .pl-keypoints li {
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 2rem;
     font-weight: 600;
 }
 
@@ -114,7 +114,7 @@
     position: absolute;
     left: 0;
     top: 0.05rem;
-    color: #1e88e5;
+    color: var(--color-primary-hover);
     font-weight: 800;
 }
 
