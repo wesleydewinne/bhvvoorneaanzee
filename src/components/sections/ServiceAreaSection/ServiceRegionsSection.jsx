@@ -94,7 +94,7 @@ function ServiceRegionsSection() {
 
                 {/* WESTLAND / DEN HAAG */}
                 <Link
-                    to="/den_haag-westland"
+                    to="/den-haag-westland"
                     className="region-link"
                     aria-label="BHV training regio Den Haag en Westland"
                 >
