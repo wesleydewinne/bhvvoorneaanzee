@@ -1,107 +1,123 @@
-import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
 import "./RegioPage.css";
 
 import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
-import TrainingCardSection from "@/components/sections/trainingSection/TrainingCardSection.jsx";
+import ServiceRegionsSection from "@/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-import data from "@/data/training.json";
-import fallback from "@/assets/image/fallbackAfbeelding.png";
 import westlandHeader from "@/assets/image/bhvPaginaFotos/bhv-westland-den-haag-header.png";
 
+import {
+    Fire,
+    Users,
+    Siren,
+    MapPin,
+} from "@phosphor-icons/react";
+
 export default function WestlandPage() {
-    const bhvCategory = data.categories.find((c) => c.id === "bhv");
-    const bhvTrainings = bhvCategory?.trainings || [];
-
-    const bhvCards = useMemo(
-        () =>
-            bhvTrainings.map((training) => ({
-                title: training.title,
-                description: `BHV incompany training - ${training.type}`,
-                cardImage: training.cardImage?.trim() || fallback,
-                cardAlt: training.cardAlt || training.title,
-                pricing: {
-                    individualPrice: training.pricing?.[0]?.individualPrice || null,
-                    groupPrice: training.pricing?.[0]?.groupPrice || null,
-                },
-                showPrice: true,
-                buttonTo: `/training/${training.type}`,
-                buttonText: "Vraag offerte aan",
-                buttonStyle: "primary",
-                buttonIcon: "📘",
-            })),
-        [bhvTrainings]
-    );
-
     return (
-        <main className="bhv-region-page">
-            {/* 🏙️ Header */}
+        <main className="region-page">
+
+            {/* HEADER */}
             <HeaderSection
-                mainTitle="BHV-training Westland & Haaglanden – Incompany & Praktijkgericht"
-                backgroundImage={westlandHeader}
+                mainTitle="BHV-trainingen in Westland"
+                subTitle="Incompany BHV, ploegleider-trainingen en ontruimingsoefeningen op locatie"
+                image={westlandHeader}
             />
 
-            {/* 📍 Regionale introductie */}
-            <section
-                className="bhv-region-intro"
-                aria-label="BHV-trainingen in regio Westland en Haaglanden"
-            >
-                <h1>BHV-trainingen in regio Westland & Haaglanden</h1>
+            {/* INTRO + WERKGEBIED */}
+            <section className="region-top-grid">
+                <article className="region-intro">
+                    <h2>Trainingen voor bedrijfsveiligheid in Westland</h2>
 
-                <img
-                    src={westlandHeader}
-                    alt="Skyline van Den Haag met kassen uit het Westland – BHV training Westland en Haaglanden"
-                    className="region-hero"
-                    loading="lazy"
-                />
-
-                <div className="region-text">
                     <p>
-                        <strong>BHV Voorne aan Zee</strong> verzorgt{" "}
-                        <strong>incompany BHV-trainingen</strong> in het{" "}
-                        <strong>Westland en Haaglanden</strong>. Wij zijn actief in{" "}
-                        <strong>Naaldwijk</strong>, <strong>Monster</strong>,{" "}
-                        <strong>’s-Gravenzande</strong> en de{" "}
-                        <strong>omgeving van Den Haag</strong>.
+                        <strong>BHV Voorne aan Zee</strong> verzorgt
+                        <strong> incompany BHV-trainingen</strong>,
+                        <strong> BHV ploegleider-trainingen</strong> en
+                        <strong> ontruimingsoefeningen</strong> bij organisaties
+                        in het <strong>Westland</strong>.
                     </p>
 
                     <p>
-                        Onze praktijkgerichte trainingen worden gegeven bij jouw bedrijf op
-                        locatie. We richten ons op realistische situaties die passen bij jouw{" "}
-                        <strong>werkvloer en risico’s</strong>, of het nu gaat om kantoorgebouwen,
-                        glastuinbouw, onderwijs of zorginstellingen.
+                        Alle trainingen worden verzorgd <strong>op locatie</strong> en
+                        afgestemd op jouw <strong>organisatie, werkvloer en risico’s</strong>.
+                        Hierdoor trainen medewerkers in hun eigen omgeving, wat zorgt voor
+                        een <strong>realistische en effectieve leerervaring</strong>.
                     </p>
+                </article>
 
-                    <p>
-                        Tijdens de training leren deelnemers hoe ze adequaat kunnen handelen
-                        bij <strong>brand, ontruiming en eerste hulp</strong>, met oefeningen
-                        die passen bij de dagelijkse praktijk. De opleiding voldoet aan de
-                        actuele eisen volgens de <strong>Arbowet</strong> en NIBHV-richtlijnen.
-                    </p>
+                <aside className="region-coverage">
+                    <h3>
+                        <MapPin size={22} className="icon-accent" /> Werkgebied Westland
+                    </h3>
 
-                    <p>
-                        Naast Haaglanden zijn wij ook actief in{" "}
-                        <a href="/bhv-training-rotterdam" className="internal-link">
-                            Rotterdam-Rijnmond
-                        </a>{" "}
-                        en{" "}
-                        <a href="/bhv-training-zeeland" className="internal-link">
-                            Zeeland
-                        </a>
-                        . Zo kun je in de volledige regio Zuidwest-Nederland rekenen op
-                        één ervaren <strong>BHV-partner</strong>.
+                    <ul className="coverage-list">
+                        <li><strong>Den Haag</strong></li>
+                        <li><strong>Naaldwijk</strong></li>
+                        <li><strong>’s-Gravenzande</strong></li>
+                        <li><strong>Monster</strong></li>
+                        <li><strong>De Lier</strong></li>
+                        <li><strong>Wateringen</strong></li>
+                        <li><strong>Honselersdijk</strong></li>
+                        <li><strong>Poeldijk</strong></li>
+                    </ul>
+
+                    <p className="coverage-note">
+                        Alle trainingen worden verzorgd <strong>op locatie</strong> binnen
+                        deze regio.
                     </p>
+                </aside>
+            </section>
+
+            {/* DIENSTEN */}
+            <section className="region-services">
+                <h2>Trainingen die wij verzorgen in deze regio</h2>
+
+                <div className="service-grid">
+                    <article className="service-card">
+                        <Fire size={40} className="service-icon" />
+                        <h3>BHV-training</h3>
+                        <p>
+                            Basis- en herhalingstrainingen voor BHV’ers,
+                            volledig praktijkgericht en incompany.
+                        </p>
+                        <Link to="/bhv">Bekijk BHV-trainingen</Link>
+                    </article>
+
+                    <article className="service-card">
+                        <Users size={40} className="service-icon" />
+                        <h3>BHV Ploegleider</h3>
+                        <p>
+                            Training voor medewerkers met een coördinerende rol
+                            tijdens incidenten en ontruimingen.
+                        </p>
+                        <Link to="/ploegleider">Bekijk ploegleider training</Link>
+                    </article>
+
+                    <article className="service-card">
+                        <Siren size={40} className="service-icon" />
+                        <h3>Ontruimingsoefeningen</h3>
+                        <p>
+                            Realistische ontruimingsoefeningen afgestemd op
+                            gebouw, bezetting en risico’s.
+                        </p>
+                        <Link to="/ontruimingsoefening">Bekijk ontruimingsoefeningen</Link>
+                    </article>
                 </div>
             </section>
 
-            {/* 🎓 Trainingskaarten */}
-            <TrainingCardSection
-                title="BHV-trainingen in Westland & Haaglanden"
-                subtitle="Erkende, praktijkgerichte incompany trainingen voor bedrijven in de regio."
-                cards={bhvCards}
-            />
+            {/* ANDERE REGIO’S */}
+            <ServiceRegionsSection />
 
-            {/* 🌍 Regionale blokken */}
-            <RegionSection />
+            {/* CTA */}
+            <section className="region-cta">
+                <h2>BHV-trainingen op locatie in Westland?</h2>
+                <p>Vraag vrijblijvend een offerte aan voor jouw organisatie.</p>
+
+                <Link to="/contact" className="btn-primary">
+                    Offerte aanvragen
+                </Link>
+            </section>
+
         </main>
     );
 }

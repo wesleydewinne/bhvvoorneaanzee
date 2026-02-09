@@ -88,7 +88,7 @@ export default function RotterdamPage() {
                             Training voor medewerkers met een coördinerende rol
                             tijdens incidenten en ontruimingen.
                         </p>
-                        <Link to="/bhv-ploegleider">Bekijk ploegleider training</Link>
+                        <Link to="/ploegleider">Bekijk ploegleider training</Link>
                     </article>
 
                     <article className="service-card">
@@ -111,7 +111,7 @@ export default function RotterdamPage() {
                 <h2>BHV-trainingen op locatie in Rotterdam-Rijnmond?</h2>
                 <p>Vraag vrijblijvend een offerte aan voor jouw organisatie.</p>
 
-                <Link to="/contact" className="btn-primary">
+                <Link to="/offerte" className="btn-primary">
                     Offerte aanvragen
                 </Link>
             </section>
