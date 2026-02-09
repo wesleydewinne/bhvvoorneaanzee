@@ -1,7 +1,6 @@
 import HeaderSection from "@/components/sections/headerSection/HeaderSection";
 import "./BhvTrainingPage.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import NIBHV from "@/assets/icons/certificeringlogo/badgeNIBHV.png";
 
@@ -12,25 +11,47 @@ import {
     Users
 } from "@phosphor-icons/react";
 
+import api from "@/api/api.js";
+
 export default function BhvBasis1Elearning() {
 
     const [priceFrom, setPriceFrom] = useState(null);
 
-    const priceText = priceFrom
-        ? `vanaf € ${priceFrom} per persoon`
+    /* ============================================================
+       PRIJS FORMATTERING (EURO, NL NOTATIE)
+       ============================================================ */
+    const formattedPrice = priceFrom !== null
+        ? new Intl.NumberFormat("nl-NL", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: 2,
+        }).format(priceFrom)
+        : null;
+
+    const priceText = formattedPrice
+        ? `vanaf ${formattedPrice} per persoon`
         : "op aanvraag";
 
+    /* ============================================================
+       PRICING API CALL
+       ============================================================ */
     useEffect(() => {
-        axios
-            .get("/api/trainings/BHV_BASIS_ELEARNING/pricing")
-            .then(res => setPriceFrom(res.data.priceFrom))
-            .catch(() => setPriceFrom(null));
+        api
+            .get("/trainings/BHV_BASIC_ELEARNING_1_DAY/pricing")
+            .then(res => {
+                console.log("PRICING RESPONSE", res.data);
+                setPriceFrom(res.data.basePrice);
+            })
+            .catch(err => {
+                console.error("Pricing ophalen mislukt", err);
+                setPriceFrom(null);
+            });
     }, []);
 
     return (
         <>
             <HeaderSection
-                mainTitle="BHV Basis met e-learning"
+                mainTitle="BHV Basis met e-learning (NIBHV)"
                 subTitle="Theorie online, praktijkgericht trainen op locatie"
             />
 
@@ -74,7 +95,6 @@ export default function BhvBasis1Elearning() {
                 <section className="bhv-training-leerdoelen">
                     <div className="leerdoelen-grid">
 
-                        {/* LEERDOELEN */}
                         <div className="leerdoelen-content">
                             <h2>Wat leert een BHV’er?</h2>
                             <ul>
@@ -86,7 +106,6 @@ export default function BhvBasis1Elearning() {
                             </ul>
                         </div>
 
-                        {/* NIBHV */}
                         <div className="leerdoelen-certificering">
                             <a
                                 href="/certificering/nibhv"
@@ -109,7 +128,6 @@ export default function BhvBasis1Elearning() {
 
                     <div className="training-onderdelen">
 
-                        {/* E-LEARNING */}
                         <div className="training-onderdeel">
                             <h3>Onderdeel 1 – E-learning (theorie)</h3>
 
@@ -133,7 +151,6 @@ export default function BhvBasis1Elearning() {
                             </p>
                         </div>
 
-                        {/* PRAKTIJK */}
                         <div className="training-onderdeel">
                             <h3>Onderdeel 2 – Praktijktraining</h3>
 
@@ -141,8 +158,7 @@ export default function BhvBasis1Elearning() {
                                 Tijdens de praktijktraining worden de vaardigheden uit de e-learning
                                 actief geoefend.
                                 Deelnemers trainen realistische scenario’s onder begeleiding van
-                                een ervaren instructeur, waarbij de nadruk ligt op praktisch handelen
-                                en samenwerken.
+                                een ervaren instructeur.
                             </p>
 
                             <ul>
@@ -188,7 +204,7 @@ export default function BhvBasis1Elearning() {
                         </p>
 
                         <p>
-                            Omdat iedere organisatie anders is, ontvang je altijd een
+                            Omdat iedere organisatie anders is, ontvang je altijd een{" "}
                             <Link to="/offerte" className="inline-link">
                                 offerte op maat
                             </Link>,

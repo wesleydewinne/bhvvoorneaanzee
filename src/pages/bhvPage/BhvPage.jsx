@@ -167,33 +167,43 @@ export default function BhvPage() {
                         <h2>Incompany BHV-training in gemeente Voorne aan Zee</h2>
 
                         <p>
-                            <strong>BHV Voorne aan Zee</strong> verzorgt erkende
-                            <strong> incompany BHV-trainingen</strong> bij bedrijven in de
-                            <strong> gemeente Voorne aan Zee</strong>, waaronder
+                            <strong>BHV Voorne aan Zee</strong> verzorgt
+                            <strong> erkende <em><abbr title="Nederlands Instituut voor Bedrijfshulpverlening">( NIBHV )</abbr></em> incompany BHV-trainingen</strong> voor bedrijven in de
+                            <strong> gemeente Voorne aan Zee</strong>.
+                            Wij trainen organisaties in onder andere
                             <strong> Brielle</strong>,
                             <strong> Hellevoetsluis</strong>,
                             <strong> Oostvoorne</strong> en
                             <strong> Rockanje</strong>.
-                            Wij komen rechtstreeks naar jouw locatie om jouw medewerkers
-                            praktijkgericht te trainen in bedrijfshulpverlening:
-                            levensreddend handelen, brandbestrijding en ontruiming.
+                            Onze instructeurs komen op locatie om medewerkers praktisch en doelgericht
+                            op te leiden in bedrijfshulpverlening.
                         </p>
 
                         <p>
-                            Iedere <strong>BHV-training in Voorne aan Zee</strong> wordt volledig
-                            afgestemd op jouw organisatie, werkomgeving en risico’s.
-                            Zo trainen medewerkers in hun eigen praktijkomgeving –
-                            wat zorgt voor een realistische, veilige en effectieve leerervaring.
+                            Tijdens de training ligt de focus op
+                            <strong> levensreddend handelen</strong>,
+                            <strong> brandbestrijding</strong> en
+                            <strong> ontruiming</strong>.
+                            De oefeningen zijn realistisch en sluiten aan op de werksituatie van jouw organisatie,
+                            zodat medewerkers weten wat zij moeten doen wanneer het er écht toe doet.
+                        </p>
+
+                        <p>
+                            Iedere <strong>BHV-training in Voorne aan Zee</strong> wordt volledig afgestemd
+                            op jouw organisatie, werkomgeving en specifieke risico’s.
+                            Door te trainen in de eigen praktijkomgeving ontstaat een veilige,
+                            herkenbare en effectieve leerervaring die direct toepasbaar is op de werkvloer.
                         </p>
 
                         <p>
                             Onze instructeurs zijn actief in de volledige gemeente
-                            <strong> Voorne aan Zee</strong> en omliggende gebieden zoals
+                            <strong> Voorne aan Zee</strong> en ook in omliggende regio’s zoals
                             <a href="/rotterdam"> Rotterdam-Rijnmond</a>,
                             <a href="/zeeland"> Zeeland</a> en
-                            <a href="/westland&Haaglanden"> het Westland & omg. Den Haag</a>.
+                            <a href="/westland&Haaglanden"> het Westland & omgeving Den Haag</a>.
                         </p>
                     </article>
+
 
                     <aside className="bhv-tasks">
                         <h2>Wat leert een BHV’er tijdens de training?</h2>

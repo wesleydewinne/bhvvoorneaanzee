@@ -1,7 +1,6 @@
 import HeaderSection from "@/components/sections/headerSection/HeaderSection";
 import "./BhvTrainingPage.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import NIBHV from "@/assets/icons/certificeringlogo/badgeNIBHV.png";
 
@@ -12,25 +11,47 @@ import {
     Users
 } from "@phosphor-icons/react";
 
+import api from "@/api/api.js";
+
 export default function BhvHerhaling05Elearning() {
 
     const [priceFrom, setPriceFrom] = useState(null);
 
-    const priceText = priceFrom
-        ? `vanaf € ${priceFrom} per persoon`
+    /* ============================================================
+       PRIJS FORMATTERING (EURO, NL NOTATIE)
+       ============================================================ */
+    const formattedPrice = priceFrom !== null
+        ? new Intl.NumberFormat("nl-NL", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: 2,
+        }).format(priceFrom)
+        : null;
+
+    const priceText = formattedPrice
+        ? `vanaf ${formattedPrice} per persoon`
         : "op aanvraag";
 
+    /* ============================================================
+       PRICING API CALL
+       ============================================================ */
     useEffect(() => {
-        axios
-            .get("/api/trainings/BHV_HERHALING_ELEARNING/pricing")
-            .then(res => setPriceFrom(res.data.priceFrom))
-            .catch(() => setPriceFrom(null));
+        api
+            .get("/trainings/BHV_REFRESHER_ELEARNING_HALF_DAY/pricing")
+            .then(res => {
+                console.log("PRICING RESPONSE", res.data);
+                setPriceFrom(res.data.basePrice);
+            })
+            .catch(err => {
+                console.error("Pricing ophalen mislukt", err);
+                setPriceFrom(null);
+            });
     }, []);
 
     return (
         <>
             <HeaderSection
-                mainTitle="BHV Herhaling met e-learning"
+                mainTitle="BHV Herhaling met e-learning (NIBHV)"
                 subTitle="Theorie online, praktische handelingen aftoetsen"
             />
 
@@ -106,7 +127,6 @@ export default function BhvHerhaling05Elearning() {
 
                     <div className="training-onderdelen">
 
-                        {/* E-LEARNING */}
                         <div className="training-onderdeel">
                             <h3>Onderdeel 1 – E-learning (theorie)</h3>
 
@@ -130,7 +150,6 @@ export default function BhvHerhaling05Elearning() {
                             </p>
                         </div>
 
-                        {/* PRAKTIJKTOETSING */}
                         <div className="training-onderdeel">
                             <h3>Onderdeel 2 – Praktische handelingen aftoetsen</h3>
 
@@ -185,7 +204,7 @@ export default function BhvHerhaling05Elearning() {
                         </p>
 
                         <p>
-                            Omdat iedere organisatie anders is, ontvang je altijd een
+                            Omdat iedere organisatie anders is, ontvang je altijd een{" "}
                             <Link to="/offerte" className="inline-link">
                                 offerte op maat
                             </Link>,

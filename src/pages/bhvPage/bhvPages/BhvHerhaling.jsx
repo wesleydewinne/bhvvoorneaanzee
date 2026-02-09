@@ -1,7 +1,6 @@
 import HeaderSection from "@/components/sections/headerSection/HeaderSection";
 import "./BhvTrainingPage.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import NIBHV from "@/assets/icons/certificeringlogo/badgeNIBHV.png";
 
@@ -12,25 +11,47 @@ import {
     Users
 } from "@phosphor-icons/react";
 
+import api from "@/api/api.js";
+
 export default function BhvHerhaling() {
 
     const [priceFrom, setPriceFrom] = useState(null);
 
-    const priceText = priceFrom
-        ? `vanaf € ${priceFrom} per persoon`
+    /* ============================================================
+       PRIJS FORMATTERING (EURO, NL NOTATIE)
+       ============================================================ */
+    const formattedPrice = priceFrom !== null
+        ? new Intl.NumberFormat("nl-NL", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: 2,
+        }).format(priceFrom)
+        : null;
+
+    const priceText = formattedPrice
+        ? `vanaf ${formattedPrice} per persoon`
         : "op aanvraag";
 
+    /* ============================================================
+       PRICING API CALL
+       ============================================================ */
     useEffect(() => {
-        axios
-            .get("/api/trainings/BHV_HERHALING/pricing")
-            .then(res => setPriceFrom(res.data.priceFrom))
-            .catch(() => setPriceFrom(null));
+        api
+            .get("/trainings/BHV_REFRESHER_1_DAY/pricing")
+            .then(res => {
+                console.log("PRICING RESPONSE", res.data);
+                setPriceFrom(res.data.basePrice);
+            })
+            .catch(err => {
+                console.error("Pricing ophalen mislukt", err);
+                setPriceFrom(null);
+            });
     }, []);
 
     return (
         <>
             <HeaderSection
-                mainTitle="BHV Herhalingstraining"
+                mainTitle="BHV Herhalingstraining (NIBHV)"
                 subTitle="Praktijkgericht opfrissen en actualiseren van BHV-vaardigheden"
             />
 
@@ -105,7 +126,6 @@ export default function BhvHerhaling() {
                     <h2>Zo ziet de training eruit</h2>
 
                     <div className="training-onderdelen">
-
                         <div className="training-onderdeel">
                             <h3>Praktijkgerichte herhalingstraining</h3>
 
@@ -129,7 +149,6 @@ export default function BhvHerhaling() {
                                 BHV-vaardigheden nog voldoende worden beheerst.
                             </p>
                         </div>
-
                     </div>
                 </section>
 
@@ -158,7 +177,7 @@ export default function BhvHerhaling() {
                         </p>
 
                         <p>
-                            Omdat iedere organisatie anders is, ontvang je altijd een
+                            Omdat iedere organisatie anders is, ontvang je altijd een{" "}
                             <Link to="/offerte" className="inline-link">
                                 offerte op maat
                             </Link>,
