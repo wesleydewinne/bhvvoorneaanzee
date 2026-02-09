@@ -1,0 +1,14 @@
+.bedrijfsgegevens {
+    max-width: 800px;
+    margin: 0 auto;          /* centreert het blok */
+    padding: 4rem 1.5rem;
+}
+
+.bedrijfsgegevens h1 {
+    color: var(--color-primary-hover);
+    margin-bottom: 2rem;
+}
+
+.bedrijfsgegevens p {
+    line-height: 1.8;
+}

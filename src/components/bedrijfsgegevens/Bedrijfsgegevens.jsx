@@ -7,8 +7,11 @@ function Bedrijfsgegevens() {
             <p>
                 Handelsnaam: bhvvoorneaanzee<br />
                 Juridische entiteit: W&amp;S Adviesgroep B.V.<br />
-                KvK: [kvk-nummer]<br />
-                BTW: [btw-nummer]
+                KvK: 84746823<br />
+                BTW: NL863345918B01<br/> <br/>
+                Adres: Druivenhoek 12<br/>
+                Postcode: 3181 PK<br/>
+                Plaats: Rozenburg
             </p>
         </div>
     );
