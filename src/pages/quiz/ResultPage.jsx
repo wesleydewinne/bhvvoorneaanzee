@@ -1,5 +1,5 @@
-import { useQuiz } from "../../context/QuizContext.jsx";
-import quizData from "../../data/quizData.json";
+import { useQuiz } from "@/features/quiz/context/QuizContext.jsx";
+import quizData from "@/shared/data/quizData.json";
 
 function ResultPage() {
     const { answers } = useQuiz();

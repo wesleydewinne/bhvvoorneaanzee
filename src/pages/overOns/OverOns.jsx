@@ -1,7 +1,7 @@
 import "./OverOns.css";
-import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
-import heroImage from "@/assets/image/headerPicture/overons-header.jpg";
-import MotionSection from "@/components/sections/motionSection/MotionSection.jsx";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import heroImage from "@/assets/image/common/headerimage/overons-header.jpg";
+import MotionSection from "@/shared/components/sections/motionSection/MotionSection.jsx";
 import { Link } from "react-router-dom";
 
 import {

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import "./RegioPage.css";
 
-import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
-import ServiceRegionsSection from "@/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-import westlandHeader from "@/assets/image/bhvPaginaFotos/bhv-westland-den-haag-header.png";
+import westlandHeader from "@/assets/image/regio/bhv-westland-den-haag-header.png";
 
 import {
     Fire,

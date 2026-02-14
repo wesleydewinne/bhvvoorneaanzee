@@ -2,12 +2,12 @@ import React, { useMemo } from "react";
 import "./MaatwerkPagina.css";
 import { Link } from "react-router-dom";
 
-import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
-import MaatwerkBlock from "@/components/maatwerkblock/MaatwerkBlock.jsx"
-import maatwerkBranches from "@/data/maatwerkBranches";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import MaatwerkBlock from "@/features/maatwerk/components/maatwerkblock/MaatwerkBlock.jsx"
+import maatwerkBranches from "@/shared/data/maatwerkBranches";
 
 // Header afbeelding
-import maatwerkHeader from "@/assets/image/maatwerkImage/maatwerk-standaard.png";
+import maatwerkHeader from "@/assets/image/maatwerk/maatwerk-standaard.png";
 
 export default function MaatwerkPagina() {
     // 🔁 Data voorbereiden (zelfde patroon als BhvPage)

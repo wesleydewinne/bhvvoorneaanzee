@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./RegioPage.css";
 
-import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
-import ServiceRegionsSection from "@/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
-import rotterdamHeader from "@/assets/image/bhvPaginaFotos/bhv-rotterdam-rijnmond-header.png";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
+import rotterdamHeader from "@/assets/image/regio/bhv-rotterdam-rijnmond-header.png";
 
 import {
     Fire,

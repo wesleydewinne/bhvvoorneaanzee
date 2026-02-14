@@ -1,12 +1,12 @@
 import './OntruimingsOefeningPage.css';
 
-import Tile from "../../components/tile/Tile.jsx";
-import GeneralButton from "../../components/button/GeneralButton/GeneralButton.jsx";
+import Tile from "@/shared/components/ui/tile/Tile.jsx";
+import GeneralButton from "@/shared/components/ui/button/GeneralButton/GeneralButton.jsx";
 import { PersonSimpleRun } from "phosphor-react";
 
-import tabletop from "../../assets/image/ontruimingsoefening/Ontruimingsoefening tabletop.png";
-import ontruiming2 from "../../assets/image/ontruimingsoefening/ontruiming.png";
-import CardFallback from "../../assets/image/algemeneAfbeeldingen/Card-Fallback.png";
+import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png";
+import ontruiming2 from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png";
+import CardFallback from "@/assets/image/common/fallback/Card-Fallback.png";
 
 import React from "react";
 

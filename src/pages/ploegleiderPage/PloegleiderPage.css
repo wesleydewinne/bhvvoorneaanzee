@@ -112,7 +112,7 @@
 
 .factor-info-title {
     font-size: var(--fs-5);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--fw-medium);
 }
 
 .factor-info-text {

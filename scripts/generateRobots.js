@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { PRIVATE_PATHS, QUIZ_PATHS } from "../src/routes/routePaths.js";
+import { PRIVATE_PATHS, QUIZ_PATHS } from "../src/app/routes/routePaths.js";
 
 const disallowRules = [...PRIVATE_PATHS, ...QUIZ_PATHS]
     .map(p => `Disallow: ${p}`)

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./Check.css";
 import SafetyWizard from "./SafetyWizard";
 
-import bgImage from "@/assets/image/headerPicture/veiligheidscheck-bg.jpg";
-import ongevalBg from "@/assets/image/headerPicture/aanrijding-bg.jpg";
+import bgImage from "@/assets/image/common/headerimage/veiligheidscheck-bg.jpg";
+import ongevalBg from "@/assets/image/common/headerimage/aanrijding-bg.jpg";
 
 export default function Check() {
     const [wizardActive, setWizardActive] = useState(false);

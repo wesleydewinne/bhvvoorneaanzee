@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
+import App from "./app/App.jsx";
 import { HeadProvider } from "react-head";
-import { QuizProvider } from "./context/QuizContext.jsx";
-import { AuthProvider } from "@/context/AuthContext";
+import { QuizProvider } from "@/features/quiz/context/QuizContext.jsx";
+import { AuthProvider } from "@/features/auth/context/AuthContext.jsx";
 
-import RouteTracker from "./components/analytics/RouteTracker.jsx";
-import ScrollToTop from "@/components/routing/ScrollToTop";
+import RouteTracker from "./features/analytics/RouteTracker.jsx";
+import ScrollToTop from "@/app/routes/ScrollToTop";
 
 import "./styles/global.css";
 

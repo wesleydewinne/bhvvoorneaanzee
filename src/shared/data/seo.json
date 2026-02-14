@@ -1,0 +1,183 @@
+{
+  "/": {
+    "title": "BHV Voorne aan Zee | BHV & EHBO trainingen in Voorne, Rijnmond, Haaglanden & Zeeland",
+    "description": "BHV Voorne aan Zee verzorgt praktijkgerichte BHV, EHBO en ontruimingstrainingen voor bedrijven en particulieren in Zuidwest-Nederland. Erkende opleidingen met ervaren instructeurs, op locatie of incompany.",
+    "keywords": "BHV training Voorne aan Zee, EHBO cursus, BHV herhaling, BHV basis, EHBO herhaling, ontruimingsoefening, veiligheidstraining, Stop de Bloeding, reanimatie workshop",
+    "canonical": "https://www.bhvvoorneaanzee.nl/"
+  },
+
+  "/bhv": {
+    "title": "BHV Trainingen | Basis & Herhaling (NIBHV) – BHV Voorne aan Zee",
+    "description": "Overzicht van erkende BHV-trainingen bij BHV Voorne aan Zee. BHV basis, herhaling en e-learning. Praktijkgericht, incompany en afgestemd op jouw organisatie in regio Voorne aan Zee en Rijnmond.",
+    "keywords": "BHV trainingen, BHV cursus, BHV basis, BHV herhaling, BHV opleiding Voorne aan Zee, BHV training Rijnmond, bedrijfshulpverlening",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv"
+  },
+
+  "/bhv/basis-2-daagse": {
+    "title": "BHV Basis 2-daagse Training (NIBHV) | BHV Voorne aan Zee",
+    "description": "Volg de NIBHV erkende BHV Basis 2-daagse training bij BHV Voorne aan Zee. Praktijkgericht, volledig incompany en afgestemd op jouw organisatie in regio Voorne aan Zee en Rotterdam-Rijnmond.",
+    "keywords": "BHV basis 2-daagse, BHV basiscursus, NIBHV BHV training, BHV cursus Voorne aan Zee, BHV training Rijnmond, BHV cursus Rotterdam, BHV incompany training, BHV opleiding Zuid-Holland",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/basis-2-daagse"
+  },
+
+  "/bhv/basis-e-learning": {
+    "title": "BHV Basis met E-learning (NIBHV) | BHV Voorne aan Zee",
+    "description": "De NIBHV erkende BHV Basis training met e-learning bij BHV Voorne aan Zee. Combinatie van online theorie en praktijkdag, incompany en afgestemd op jouw organisatie.",
+    "keywords": "BHV basis e-learning, BHV cursus online, NIBHV BHV e-learning, BHV blended learning, BHV training Voorne aan Zee, BHV cursus Rijnmond",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/basis-e-learning"
+  },
+
+  "/bhv/herhaling-1-dag": {
+    "title": "BHV Herhaling 1-daagse (NIBHV) | BHV Voorne aan Zee",
+    "description": "Volg de NIBHV erkende BHV herhalingstraining bij BHV Voorne aan Zee. Praktijkgericht, incompany en bedoeld voor BHV’ers die hun certificaat willen verlengen.",
+    "keywords": "BHV herhaling, BHV herhalingscursus, NIBHV BHV herhaling, BHV certificaat verlengen, BHV training Voorne aan Zee, BHV cursus Rijnmond",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/herhaling-1-dag"
+  },
+
+  "/bhv/herhaling-e-learning": {
+    "title": "BHV Herhaling met E-learning (NIBHV) | BHV Voorne aan Zee",
+    "description": "NIBHV erkende BHV herhaling met e-learning bij BHV Voorne aan Zee. Online theorie gecombineerd met praktijktraining, ideaal voor het verlengen van je BHV-certificaat.",
+    "keywords": "BHV herhaling e-learning, BHV herhalingscursus online, NIBHV BHV e-learning, BHV certificaat verlengen, BHV training Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/bhv/herhaling-e-learning"
+  },
+
+  "/ploegleider": {
+    "title": "BHV Ploegleider Training | Basis & Herhaling - BHV Voorne aan Zee",
+    "description": "Word of blijf BHV Ploegleider met een praktijkgerichte training bij BHV Voorne aan Zee. Leer effectief aansturen bij calamiteiten en ontruimingen.",
+    "keywords": "ploegleider BHV, BHV ploegleider cursus, ploegleider herhaling, BHV training ploegleider, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ploegleider"
+  },
+
+  "/ploegleider/basis-2-daagse": {
+    "title": "BHV Ploegleider Training (2-daags) | Basis & Herhaling",
+    "description": "Volg de 2-daagse BHV Ploegleider training bij BHV Voorne aan Zee. Praktijkgericht leren leidinggeven tijdens calamiteiten en ontruimingen. Basis en herhaling.",
+    "keywords": "BHV ploegleider training, ploegleider BHV cursus, BHV ploegleider 2-daags, ploegleider herhaling BHV, leidinggeven bij ontruiming, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ploegleider/basis-2-daagse"
+  },
+
+  "/ploegleider/basis-1-dag-met-elearning": {
+    "title": "BHV Ploegleider Training (1 dag + e-learning) | Basis",
+    "description": "Volg de BHV Ploegleider training in 1 praktijkdag met e-learning vooraf. Leer effectief aansturen bij calamiteiten en ontruimingen met BHV Voorne aan Zee.",
+    "keywords": "BHV ploegleider training, ploegleider BHV 1 dag, BHV ploegleider e-learning, basis ploegleider BHV, leidinggeven bij calamiteiten, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ploegleider/basis-1-dag-met-elearning"
+  },
+
+  "/ploegleider/herhaling-halve-dag": {
+    "title": "BHV Ploegleider Herhaling (halve dag) | Praktijkgericht",
+    "description": "Volg de BHV Ploegleider herhaling in een halve dag. Frisse kennis op, scherp je aansturing aan bij calamiteiten en ontruimingen met BHV Voorne aan Zee.",
+    "keywords": "BHV ploegleider herhaling, ploegleider BHV halve dag, herhaling ploegleider BHV, BHV ploegleider opfriscursus, leidinggeven bij ontruiming, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ploegleider/herhaling-halve-dag"
+  },
+
+  "/ehbo": {
+    "title": "EHBO Trainingen | Basis en Herhaling - BHV Voorne aan Zee",
+    "description": "Leer levensreddend handelen met onze erkende EHBO trainingen. Basis of herhaling, inclusief kinder-EHBO en reanimatie met AED. Praktisch en erkend volgens de richtlijnen van Het Oranje Kruis.",
+    "keywords": "EHBO cursus, EHBO training, kinder EHBO, EHBO herhaling, EHBO basis, reanimatie met AED, EHBO Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ehbo"
+  },
+
+  "/ontruimingsoefening": {
+    "title": "Ontruimingsoefeningen | Fase 0 t/m 4 - BHV Voorne aan Zee",
+    "description": "Volg praktijkgerichte ontruimingsoefeningen bij BHV Voorne aan Zee. Van tabletop tot onaangekondigde evacuatie: wij helpen jouw organisatie oefenen, evalueren en verbeteren.",
+    "keywords": "ontruimingsoefening, BHV ontruiming, ontruiming oefenen, ontruimingstraining, evacuatieoefening, BHV oefeningen Voorne aan Zee, veiligheidsoefening",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ontruimingsoefening"
+  },
+
+  "/ontruimingsoefening/fase0": {
+    "title": "Fase 0 – Tabletop Ontruimingsoefening | BHV Voorne aan Zee",
+    "description": "Start met een Tabletop ontruimingsoefening: bespreek het ontruimingsplan in een veilige setting en verbeter de interne communicatie. Ideaal als voorbereiding op praktijkoefeningen.",
+    "keywords": "tabletop ontruimingsoefening, fase 0, ontruimingsoefening voorbereiding, BHV plan evaluatie, veiligheidsoverleg BHV, ontruimingsplan bespreken",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ontruimingsoefening/fase0"
+  },
+
+  "/ontruimingsoefening/fase1": {
+    "title": "Fase 1 – Kleine Inzetoefening | BHV Voorne aan Zee",
+    "description": "Train het BHV-team met een kleine inzetoefening. Gericht op snelle alarmering, communicatie en eerste inzet bij brand of ontruiming. Compact, praktisch en effectief.",
+    "keywords": "kleine inzetoefening, fase 1, BHV inzet oefening, communicatie BHV, ontruimingstraining, kleine BHV oefening",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ontruimingsoefening/fase1"
+  },
+
+  "/ontruimingsoefening/fase2": {
+    "title": "Fase 2 – Aangekondigde Ontruimingsoefening | BHV Voorne aan Zee",
+    "description": "Test het volledige ontruimingsplan met een aangekondigde oefening. Onze instructeurs begeleiden, observeren en evalueren zodat jouw team optimaal voorbereid is op noodsituaties.",
+    "keywords": "aangekondigde ontruimingsoefening, fase 2, ontruiming oefenen, BHV training evacuatie, BHV Voorne aan Zee, oefening ontruimingsplan",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ontruimingsoefening/fase2"
+  },
+
+  "/ontruimingsoefening/fase3": {
+    "title": "Fase 3 – Onaangekondigde Ontruimingsoefening | BHV Voorne aan Zee",
+    "description": "Daag jouw organisatie uit met een onaangekondigde ontruimingsoefening. Realistische praktijksituatie waarmee de paraatheid van medewerkers écht wordt getest.",
+    "keywords": "onaangekondigde ontruimingsoefening, fase 3, ontruimingstest, BHV oefening praktijk, BHV Voorne aan Zee, evacuatie training",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ontruimingsoefening/fase3"
+  },
+
+  "/ontruimingsoefening/fase4": {
+    "title": "Fase 4 – Gevorderde Onaangekondigde Ontruimingsoefening | BHV Voorne aan Zee",
+    "description": "De ultieme toets: een complexe onaangekondigde ontruimingsoefening met realistische scenario’s. Geschikt voor grote organisaties en gevorderde BHV-teams.",
+    "keywords": "gevorderde ontruimingsoefening, fase 4, realistische BHV oefening, onaangekondigde evacuatie, BHV training gevorderd, veiligheid Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/ontruimingsoefening/fase4"
+  },
+
+  "/workshops": {
+    "title": "Workshops | Reanimatie, Kinder-EHBO, Portofoongebruik, Kleine Blusmiddelen - BHV Voorne aan Zee",
+    "description": "Volg praktische workshops bij BHV Voorne aan Zee: leer reanimeren, AED gebruiken, communiceren via portofoon of omgaan met kleine blusmiddelen. Geschikt voor bedrijven en particulieren.",
+    "keywords": "workshops BHV, reanimatie workshop, kinder EHBO, portofoon workshop, kleine blusmiddelen, Stop de Bloeding, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops"
+  },
+
+  "/workshops/gebruik-kleine-blusmiddelen": {
+    "title": "Workshop Gebruik Kleine Blusmiddelen | BHV Voorne aan Zee",
+    "description": "Leer in deze praktijkworkshop hoe je kleine blusmiddelen effectief gebruikt bij beginnende branden. Oefen met echte blussers onder begeleiding van een ervaren instructeur.",
+    "keywords": "workshop kleine blusmiddelen, brand blussen, BHV blusmiddelen, oefening brandblusser, brandveiligheid training, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops/gebruik-kleine-blusmiddelen"
+  },
+
+  "/workshops/portofoongebruik": {
+    "title": "Workshop Portofoongebruik | BHV Voorne aan Zee",
+    "description": "Leer effectief communiceren tijdens noodsituaties met portofoons. Deze workshop is ideaal voor BHV-teams, ploegleiders en communicatiemedewerkers.",
+    "keywords": "workshop portofoon, portofoongebruik BHV, communicatie noodsituatie, BHV portofoon training, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops/portofoongebruik"
+  },
+
+  "/workshops/reanimatie-volwassene": {
+    "title": "Workshop Reanimatie Volwassene | BHV Voorne aan Zee",
+    "description": "Leer reanimeren en een AED gebruiken tijdens deze intensieve praktijkworkshop voor volwassenen. Onmisbaar voor BHV’ers en medewerkers in iedere organisatie.",
+    "keywords": "workshop reanimatie, AED training, reanimatie cursus, BHV reanimatie, levensreddend handelen, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops/reanimatie-volwassene"
+  },
+
+  "/workshops/reanimatie-kind-baby": {
+    "title": "Workshop Reanimatie Kind & Baby | BHV Voorne aan Zee",
+    "description": "Speciaal voor ouders en zorgverleners: leer wat te doen bij verslikking, bewusteloosheid of hartstilstand bij kinderen en baby’s. Inclusief oefening met kinderpoppen en AED.",
+    "keywords": "kinder reanimatie, baby reanimatie, EHBO kinderen, kinder EHBO cursus, reanimatie workshop, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops/reanimatie-kind-baby"
+  },
+
+  "/workshops/stop-de-bloeding-red-een-leven": {
+    "title": "Workshop Stop de Bloeding – Red een Leven | BHV Voorne aan Zee",
+    "description": "Leer levensreddend handelen bij ernstige bloedingen. Tijdens deze workshop oefen je met tourniquets, drukverbanden en het herkennen van levensbedreigende situaties.",
+    "keywords": "stop de bloeding, stop de bloeding cursus, workshop stop de bloeding, BHV EHBO training, levensreddend handelen, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops/stop-de-bloeding-red-een-leven"
+  },
+
+  "/workshops/waterongevallen": {
+    "title": "Workshop Waterongevallen | BHV Voorne aan Zee",
+    "description": "Weet wat je moet doen bij verdrinking, val in water of incidenten rondom water. Praktische workshop gericht op snelle eerste hulp en reanimatie bij waterongevallen.",
+    "keywords": "workshop waterongevallen, verdrinking EHBO, reanimatie water, BHV EHBO waterveiligheid, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/workshops/waterongevallen"
+  },
+
+  "/contact": {
+    "title": "Contact | BHV Voorne aan Zee",
+    "description": "Neem contact op met BHV Voorne aan Zee voor vragen, offertes of het plannen van een incompany training. Wij staan klaar voor bedrijven en particulieren in Zuidwest-Nederland.",
+    "keywords": "contact BHV, contact EHBO, offerte BHV Voorne aan Zee, BHV cursus aanvragen, EHBO training contact",
+    "canonical": "https://www.bhvvoorneaanzee.nl/contact"
+  },
+
+  "/over-ons": {
+    "title": "Over ons | BHV Voorne aan Zee – BHV & EHBO Trainingen",
+    "description": "BHV Voorne aan Zee verzorgt al meer dan 15 jaar praktijkgerichte BHV- en EHBO-trainingen in Voorne aan Zee en Rotterdam. Specialist in maatwerk veiligheidstrainingen.",
+    "keywords": "BHV training, EHBO cursus, bedrijfshulpverlening, ontruimingsoefening, veiligheidstraining, BHV Voorne aan Zee",
+    "canonical": "https://www.bhvvoorneaanzee.nl/over-ons"
+  }
+}

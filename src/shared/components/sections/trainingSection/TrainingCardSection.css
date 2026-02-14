@@ -1,0 +1,30 @@
+/* ===============================
+   Training Card Section
+================================ */
+
+.training-card-section {
+    padding: 3rem 2rem;
+    width: 100%;
+}
+
+/* Titel */
+.training-card-section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #1f2937;
+}
+
+/* ===============================
+   Grid layout (DE OPLOSSING)
+================================ */
+
+.training-card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem 1.5rem;
+    justify-content: center;
+    /*max-width: 1400px;*/
+    margin: 0 auto;
+}

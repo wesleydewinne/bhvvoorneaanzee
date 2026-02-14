@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import alarmSound from "../../assets/sound/alarm.mp3";
+import alarmSound from "@/assets/sound/alarm.mp3";
 
 function Alarm() {
     const audioRef = useRef(null);

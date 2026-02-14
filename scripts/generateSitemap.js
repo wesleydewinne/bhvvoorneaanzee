@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { SITEMAP_PATHS } from "../src/routes/sitemapPaths.js";
+import { SITEMAP_PATHS } from "../src/app/routes/sitemapPaths.js";
 
 const DOMAIN = "https://bhvvoorneaanzee.nl";
 const OUTPUT_DIR = path.resolve("public");

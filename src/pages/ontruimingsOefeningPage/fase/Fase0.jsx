@@ -1,14 +1,14 @@
 // src/pages/ontruimingsOefeningPage/fase/Fase0.jsx
 import React from "react";
-import NavigationSection from "../../../components/sections/navigationSection/NavigationSection.jsx";
-import fase0Image from "../../../assets/image/ontruimingsoefening/ontruiming.png";
+import NavigationSection from "@/shared/components/sections/navigationSection/NavigationSection.jsx";
+import fase0Image from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png";
 import "./Fase.css";
-import reactLogo from "../../../assets/image/react.svg";
-import HeaderSection from "../../../components/sections/headerSection/HeaderSection.jsx";
-import Tile from "../../../components/sections/tileSection/TileSection.jsx";
-import tabletop from "../../../assets/image/ontruimingsoefening/Ontruimingsoefening tabletop.png";
-import TileSection from "../../../components/sections/tileSection/TileSection.jsx";
-import ChecklistSection from "../../../components/sections/ChecklistSection/ChecklistSection.jsx";
+import reactLogo from "@/assets/image/react.svg";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import Tile from "@/shared/components/sections/tileSection/TileSection.jsx";
+import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png";
+import TileSection from "@/shared/components/sections/tileSection/TileSection.jsx";
+import ChecklistSection from "@/shared/components/sections/ChecklistSection/ChecklistSection.jsx";
 
 function Fase0() {
     const checklist = [

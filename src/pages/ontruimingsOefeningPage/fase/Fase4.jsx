@@ -1,12 +1,12 @@
 // src/pages/ontruimingsOefeningPage/fase/Fase4.jsx
 import React from "react";
-import NavigationSection from "../../../components/sections/navigationSection/NavigationSection.jsx";
-import fase4Image from "../../../assets/image/ontruimingsoefening/ontruiming.png";
+import NavigationSection from "@/shared/components/sections/navigationSection/NavigationSection.jsx";
+import fase4Image from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png";
 import "./Fase.css";
-import reactLogo from "../../../assets/image/react.svg";
-import HeaderSection from "../../../components/sections/headerSection/HeaderSection.jsx";
-import TileSection from "../../../components/sections/tileSection/TileSection.jsx";
-import ChecklistSection from "../../../components/sections/ChecklistSection/ChecklistSection.jsx";
+import reactLogo from "@/assets/image/react.svg";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import TileSection from "@/shared/components/sections/tileSection/TileSection.jsx";
+import ChecklistSection from "@/shared/components/sections/ChecklistSection/ChecklistSection.jsx";
 
 function Fase4() {
     const checklist = [

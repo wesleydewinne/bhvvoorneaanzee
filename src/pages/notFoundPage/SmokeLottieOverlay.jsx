@@ -1,7 +1,7 @@
 // SmokeLottieOverlay.jsx
 import React from "react";
 import Lottie from "lottie-react";
-import smokeAnimation from "../../assets/animatie/smoke.json"; // pad naar jouw bestand
+import smokeAnimation from "@/assets/animatie/smoke.json"; // pad naar jouw bestand
 
 const SmokeLottieOverlay = () => {
     return (

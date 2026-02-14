@@ -1,7 +1,7 @@
-import blogOntruimenImg from "../../assets/image/blogImage/Blog_Ontruimen.png"
-import blogArbeidsOngevallen from "../../assets/image/blogImage/Blog_arbeidsongevallen.png"
-import header112Img from "../../assets/image/blogImage/Blog_112_Header.png";
-import poster112Img from "../../assets/image/blogImage/Blog_112_Poster.jpeg";
+import blogOntruimenImg from "@/assets/image/blog/ontruimen/Blog_Ontruimen.png"
+import blogArbeidsOngevallen from "@/assets/image/blog/arbeidsongevallen/Blog_arbeidsongevallen.png"
+import header112Img from "@/assets/image/blog/112app/Blog_112_Header.png";
+import poster112Img from "@/assets/image/blog/112app/Blog_112_Poster.jpeg";
 
 
 

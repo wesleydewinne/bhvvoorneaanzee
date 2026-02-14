@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuiz } from "../../context/QuizContext.jsx";
-import QuestionRenderer from "../../components/quiz/QuestionRenderer.jsx";
-import quizData from "../../data/quizData.json";
+import { useQuiz } from "@/features/quiz/context/QuizContext.jsx";
+import QuestionRenderer from "@/features/quiz/components/QuestionRenderer.jsx";
+import quizData from "../../shared/data/quizData.json";
 import "./QuizPage.css";
 
 function QuizPage() {

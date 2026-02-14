@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import api from "@/api/api";
-import PhoneInput from "@/components/phoneInput/PhoneInput.jsx";
-import { validatePhone } from "@/helpers/validatePhone.js";
+import PhoneInput from "@/shared/components/form/phoneInput/PhoneInput.jsx";
+import { validatePhone } from "@/shared/utils/validatePhone.js";
 import "./OfferteAanvraag.css";
-import InfoPopup from "@/components/ui/InfoPopup";
+import InfoPopup from "@/shared/components/ui/popup/InfoPopup";
 
 export default function OfferteAanvraag() {
 

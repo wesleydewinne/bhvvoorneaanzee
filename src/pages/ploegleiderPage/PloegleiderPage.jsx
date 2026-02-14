@@ -12,13 +12,13 @@ import {
     Megaphone,
 } from "@phosphor-icons/react";
 
-import data from "../../data/training.json";
+import data from "../../shared/data/training.json";
 
-import TrainingCardSection from "../../components/sections/trainingSection/TrainingCardSection.jsx";
-import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
+import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 
-import fallback from "../../assets/image/fallbackAfbeelding.png";
-import ServiceRegionsSection from "@/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
+import fallback from "@/assets/image/common/fallback/Card-Fallback.png";
+import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
 export default function PloegleiderPage() {
 

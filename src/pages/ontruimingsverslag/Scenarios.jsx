@@ -1,13 +1,13 @@
 import React from "react";
-import Keukenbrand from "../../assets/image/scenarios/Keukenbrand.png";
-import BrandServiceRuimte from "../../assets/image/scenarios/Brand_serverruimte.png";
-import RookTechnischeRuimte from "../../assets/image/scenarios/Rookontwikkeling_technische_ruimte.png"
-import OnwelPersoon from "../../assets/image/scenarios/Bewusteloze_slachtoffer.png";
-import StroomUitval from "../../assets/image/scenarios/Stroomuitval.png"
-import Gaslek from "../../assets/image/scenarios/Gaslek.png"
-import BrandContainer from "../../assets/image/scenarios/Containerbrand_tegen_pand.png"
-import KortsluitingPrinter from "../../assets/image/scenarios/Kopieerappartaat_kortsluiting.png"
-import VerdachtPakketje from "../../assets/image/scenarios/VerdachtPakketje.png"
+import Keukenbrand from "@/assets/image/scenarios/Keukenbrand.png";
+import BrandServiceRuimte from "@/assets/image/scenarios/Brand_serverruimte.png";
+import RookTechnischeRuimte from "@/assets/image/scenarios/Rookontwikkeling_technische_ruimte.png"
+import OnwelPersoon from "@/assets/image/scenarios/Bewusteloze_slachtoffer.png";
+import StroomUitval from "@/assets/image/scenarios/Stroomuitval.png"
+import Gaslek from "@/assets/image/scenarios/Gaslek.png"
+import BrandContainer from "@/assets/image/scenarios/Containerbrand_tegen_pand.png"
+import KortsluitingPrinter from "@/assets/image/scenarios/Kopieerappartaat_kortsluiting.png"
+import VerdachtPakketje from "@/assets/image/scenarios/VerdachtPakketje.png"
 
 export default function Scenarios() {
     const scenarios = [

@@ -17,13 +17,13 @@ import {
     Megaphone
 } from "@phosphor-icons/react";
 
-import data from "../../data/training.json";
+import data from "../../shared/data/training.json";
 
-import TrainingCardSection from "../../components/sections/trainingSection/TrainingCardSection.jsx";
-import HeaderSection from "../../components/sections/headerSection/HeaderSection.jsx";
-import ServiceRegionsSection from "@/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
+import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection";
+import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-import VoorneAanZeeHeader from "@/assets/image/bhvPaginaFotos/bhv-voorne-aan-zee-header.png";
+import VoorneAanZeeHeader from "@/assets/image/regio/bhv-voorne-aan-zee-header.png";
 
 export default function BhvPage() {
 

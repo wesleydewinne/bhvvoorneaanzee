@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "@/api/api.js";
-import contactBg from "@/assets/image/headerPicture/contact-bg.jpg";
+import contactBg from "@/assets/image/common/backgrounds/contact-bg.jpg";
 import "./ContactOns.css";
 
 function ContactOns() {

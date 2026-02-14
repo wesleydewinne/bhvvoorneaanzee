@@ -1,14 +1,16 @@
 import "./HomePage.css";
-import HeaderSection from "@/components/sections/headerSection/HeaderSection.jsx";
-import TrainingCardSection from "@/components/sections/trainingSection/TrainingCardSection.jsx";
-import LogosSection from "@/components/sections/logosSection/LogosSection.jsx";
-import BlogSection from "@/components/sections/blogSection/BlogSection.jsx";
-import CTAButtons from "@/components/button/cta/CTAButton.jsx";
-import ReviewSection from "@/components/review/ReviewSection.jsx";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
+import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
+import LogosSection from "@/shared/components/sections/logosSection/LogosSection.jsx";
+import BlogSection from "@/shared/components/sections/blogSection/BlogSection.jsx";
+import CTAButtons from "@/shared/components/ui/button/cta/CTAButton.jsx";
+import ReviewSection from "@/features/reviews/components/ReviewSection.jsx";
 import { posts } from "@/pages/blog/posts.js";
 
 import reactLogo from "@/assets/image/react.svg";
-import trainingData from "@/data/training.json";
+import trainingData from "@/shared/data/training.json";
+
+import { imageMap } from "@/shared/utils/imageMap";
 
 function HomePage() {
 
@@ -16,7 +18,8 @@ function HomePage() {
         id: category.id,
         title: category.cardTitle,
         description: category.description,
-        image: category.image,
+        image: category.image, // GEEN imageMap hier
+        alt: category.alt,
         buttonText: category.buttontext || "Meer info",
         buttonTo: `/${category.id}`
     }));
@@ -34,20 +37,19 @@ function HomePage() {
             <div className="container">
 
                 <CTAButtons />
-
+            </div>
                 <TrainingCardSection
                     title="Trainingsaanbod BHV Voorne aan Zee"
                     cards={homeCards}
                 />
 
-                <ReviewSection />
-
-                <section className="certificering-section">
-                    <LogosSection />
-                </section>
-
-                <BlogSection posts={posts} limit={10} />
-            </div>
+                <div className="container">
+                    <ReviewSection />
+                    <section className="certificering-section">
+                        <LogosSection />
+                    </section>
+                    <BlogSection posts={posts} limit={10} />
+                </div>
         </>
     );
 }

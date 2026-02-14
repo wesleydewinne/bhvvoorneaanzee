@@ -1,4 +1,4 @@
-import HeaderSection from "@/components/sections/headerSection/HeaderSection";
+import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection";
 import "./PloegleiderDetailPage.css";
 import { Link } from "react-router-dom";
 

@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { SitemapStream, streamToPromise } from 'sitemap';
-import publicRoutes from './src/routes/publicRoutes.jsx';
+import publicRoutes from './src/app/routes/publicRoutes.jsx';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
