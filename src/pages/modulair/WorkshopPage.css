@@ -1,0 +1,42 @@
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.module-card {
+    border: 2px solid #e5e7eb;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.module-card:hover {
+    border-color: #ff8000;
+}
+
+.module-card.active {
+    border-color: #ff8000;
+    background-color: #fff7ed;
+}
+
+.training-summary {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.selected-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.selected-list li {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}

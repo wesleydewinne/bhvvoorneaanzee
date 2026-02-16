@@ -27,7 +27,7 @@ import Fase4 from "@/pages/ontruimingsOefeningPage/fase/Fase4.jsx";
 import Ehbo from "@/pages/ehbo/EhboPage.jsx";
 
 import Workshops from "@/pages/workshops/Workshops.jsx";
-import KleineBlusmiddelen from "@/pages/workshops/soortenWorkshops/Kleine_Blusmiddelen.jsx";
+import KleineBlusmiddelen from "@/pages/workshops/soortenWorkshops/KleineBlusmiddelen.jsx";
 import Portofoongebruik from "@/pages/workshops/soortenWorkshops/Portofoongebruik.jsx";
 import ReanimatieMetGebruikAedVolwassene from "@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDVolwassene.jsx";
 import ReanimatieMetGebruikAedKind from "@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDKind.jsx";
@@ -57,6 +57,11 @@ import OverOns from "@/pages/overOns/OverOns.jsx";
 import Bedrijfsgegevens from "@/features/bedrijfsgegevens/Bedrijfsgegevens.jsx";
 import ContactOns from "@/pages/contact/ContactOns.jsx";
 import VeiligheidscheckBedankt from "@/pages/leadPage/VeiligheidscheckBedankt.jsx";
+import ModulaireTraining from "@/pages/modulair/ModulaireTraining.jsx";
+import ModulaireOverzicht from "@/pages/modulair/ModulaireOverzicht.jsx";
+import BedienaarBrandmeldcentrale from "@/pages/workshops/soortenWorkshops/BedienaarBrandmeldcentrale.jsx";
+import Waterongevallen from "@/pages/workshops/soortenWorkshops/Waterongevallen.jsx";
+import KinderEhboHuiskamertraining from "@/pages/workshops/soortenWorkshops/KinderEhboHuiskamertraining.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -95,14 +100,19 @@ const publicRoutes = [
 
     // Workshops
     { path: "/workshops", element: <Workshops /> },
-    { path: "/workshops/gebruik-kleine-blusmiddelen", element: <KleineBlusmiddelen /> },
+    { path: "/workshops/kleine-blusmiddelen", element: <KleineBlusmiddelen /> },
+    { path: "/workshops/bedienaar-brandmeldcentrale", element: <BedienaarBrandmeldcentrale /> },
     { path: "/workshops/portofoongebruik", element: <Portofoongebruik /> },
     { path: "/workshops/reanimatie-volwassene", element: <ReanimatieMetGebruikAedVolwassene /> },
     { path: "/workshops/reanimatie-kind-baby", element: <ReanimatieMetGebruikAedKind /> },
-    { path: "/workshops/stop-de-bloeding-red-een-leven", element: <StopDeBloedingRedEenLeven /> },
+    { path: "/workshops/stop-de-bloeding", element: <StopDeBloedingRedEenLeven /> },
+    { path: "/workshops/waterongevallen", element: <Waterongevallen /> },
+    { path: "/workshops/kinder-ehbo-huiskamertraining", element: <KinderEhboHuiskamertraining /> },
 
     //uitleg trainingen
     { path: "/maatwerk", element: <Maatwerk /> },
+    { path: "/modulaire-trainen", element: <ModulaireTraining /> },
+    { path: "/modulair-overzicht", element: <ModulaireOverzicht /> },
 
     // Regio's
     { path: "/rotterdam-rijnmond", element: <RotterdamPage /> },

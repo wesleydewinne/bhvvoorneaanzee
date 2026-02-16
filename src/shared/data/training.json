@@ -161,10 +161,26 @@
       "alt": "Foto van workshops",
       "trainings": [
         {
+          "type": "kleine-blusmiddelen",
+          "title": "Workshop Kleine Blusmiddelen",
+          "description": "Veilig en effectief blussen met schuimblussers en blusdekens",
+          "slug": "/workshops/kleine-blusmiddelen",
+          "cardImage": "workshop-kleine-blusmiddelen.png",
+          "cardAlt": "Workshop kleine blusmiddelen training"
+        },
+        {
+          "type": "bedienaar-brandmeldcentrale",
+          "title": "Workshop Bedienaar Brandmeldcentrale",
+          "description": "Professioneel handelen bij brandmeldingen, storingen en doormeldingen",
+          "slug": "/workshops/bedienaar-brandmeldcentrale",
+          "cardImage": "workshop-bedienaar-brandmeldcentrale.png",
+          "cardAlt": "Training bedienaar brandmeldcentrale"
+        },
+        {
           "type": "portofoon",
           "title": "Workshop Portofoongebruik",
           "description": "Effectief communiceren tijdens incidenten",
-          "slug": "/workshops/portofoon",
+          "slug": "/workshops/portofoongebruik",
           "cardImage": "workshop-portofoon.png",
           "cardAlt": "Workshop portofoongebruik"
         },
@@ -199,6 +215,14 @@
           "slug": "/workshops/waterongevallen",
           "cardImage": "workshop-waterongevallen.png",
           "cardAlt": "Workshop waterongevallen"
+        },
+        {
+          "type": "kinder-ehbo-huiskamertraining",
+          "title": "Kinder-EHBO Huiskamertraining",
+          "description": "Zeker handelen bij verslikken, vallen en spoedsituaties bij kinderen",
+          "slug": "/workshops/kinder-ehbo-huiskamertraining",
+          "cardImage": "workshop-kinder-ehbo-huiskamertraining.png",
+          "cardAlt": "Kinder EHBO training voor ouders aan huis"
         }
       ]
     }

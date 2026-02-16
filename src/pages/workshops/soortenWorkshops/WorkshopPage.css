@@ -1,0 +1,349 @@
+/* ================================
+   INTRO + PROGRAMMA LAYOUT
+================================ */
+
+.workshop__layout {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .workshop__layout {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+    }
+}
+
+
+/* ================================
+   BASIS
+================================ */
+
+.workshop {
+    background-color: var(--color-bg-light, #f9fafb);
+}
+
+.workshop__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* ================================
+   TYPOGRAFIE
+================================ */
+
+.workshop h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.workshop h2 {
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+}
+
+.workshop p {
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+}
+
+.workshop ul {
+    padding-left: 1.3rem;
+    line-height: 1.8;
+}
+
+.workshop__intro {
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: 3rem 3.2rem 3rem 4.5rem; /* extra ruimte links */
+    border-radius: 1.4rem;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    border: 1px solid #eef2f7;
+    overflow: hidden;
+}
+
+.workshop__intro strong {
+    color: var(--color-accent, #ff8000);
+    font-weight: 600;
+}
+
+/* Subtiel accent element */
+.workshop__intro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--color-accent, #ff8000);
+}
+
+/* Titel sterker maken */
+.workshop__intro h1 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    margin-bottom: 1.4rem;
+    color: var(--color-text-dark, #111827);
+}
+
+/* Paragraaf iets rustiger */
+.workshop__intro p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--color-text, #374151);
+    max-width: 95%;
+}
+
+
+/* ================================
+   PROGRAMMA TABEL
+================================ */
+.workshop__program {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    border: 1px solid #eef2f7;
+}
+
+.workshop__table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.workshop__table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.workshop__table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.workshop__table td {
+    padding: 0.9rem 1.2rem;   /* verticale + horizontale padding */
+    border-bottom: 1px solid #eef2f7;
+    font-size: 0.95rem;
+}
+
+.workshop__table td:first-child {
+    color: var(--color-text-dark, #111827);
+    font-size: 1.4rem;
+}
+
+.workshop__table td:last-child {
+    width: 110px;              /* vaste kolombreedte */
+    text-align: center;        /* horizontaal gecentreerd */
+    vertical-align: middle;    /* verticaal gecentreerd */
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--color-accent, #ff8000);
+}
+
+/* ================================
+   DRIE BLOKKEN
+================================ */
+
+.workshop__three {
+    display: grid;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 900px) {
+    .workshop__three {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card basis */
+.workshop__card {
+    background: #ffffff;
+    padding: 2.8rem;
+    border-radius: 1.4rem;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+    border: 1px solid #eef2f7;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Titel */
+.workshop__card h2 {
+    font-size: 1.9rem; /* 19px bij 62.5% */
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* Accent lijntje onder titel */
+.workshop__card h2::after {
+    content: "";
+    width: 200px;
+    height: 3px;
+    background: var(--color-accent, #ff8000);
+    display: block;
+    margin-top: 1rem;
+    border-radius: 2px;
+}
+
+/* Lijst reset */
+.workshop__card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.workshop__card li {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.4rem;
+    font-size: 1.6rem;
+    line-height: 1.7;
+}
+
+/* Groene check */
+.workshop__card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #16a34a; /* professionele groen tint */
+}
+
+
+/* ================================
+   HIGHLIGHT
+================================ */
+
+.workshop__highlight {
+    background: #fff7ed;
+    border-left: 6px solid var(--color-accent, #ff8000);
+    padding: 3rem 4rem;
+    border-radius: 0.75rem;
+    margin-bottom: 4rem;
+    text-align: center; /* 👈 alles centreren */
+}
+
+/* Titel */
+.workshop__highlight h2 {
+    font-size: 1.9rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Paragraaf */
+.workshop__highlight p {
+    font-size: 1.6rem; /* 16px bij 62.5% */
+    line-height: 1.8;
+    max-width: 80rem; /* zorgt dat tekst niet te breed wordt */
+    margin: 0 auto;   /* centreert de tekstblok */
+}
+
+/* =========================================
+   FAQ SECTIE
+========================================= */
+
+.workshop__faq {
+    padding: 5rem 2rem;
+    background-color: #f3f4f6;
+}
+
+/* Inner container */
+.workshop__faq-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Titel */
+.workshop__faq-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Accent lijn onder titel */
+.workshop__faq-title::after {
+    content: "";
+    width: 200px;
+    height: 4px;
+    background-color: var(--color-accent, #ff8000);
+    display: block;
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+/* =========================================
+   FAQ GRID
+========================================= */
+
+.workshop__faq-cards {
+    display: grid;
+    gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+    .workshop__faq-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =========================================
+   FAQ CARD
+========================================= */
+
+.workshop__faq-card {
+    background: #ffffff;
+    padding: 2.8rem;
+    border-radius: 1.4rem;
+    border: 1px solid #eef2f7;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Vraag */
+.workshop__faq-card h3 {
+    font-size: 1.7rem; /* 17px */
+    margin-bottom: 1.2rem;
+    color: var(--color-text-dark, #111827);
+}
+
+/* Antwoord */
+.workshop__faq-card p {
+    font-size: 1.6rem; /* 16px */
+    line-height: 1.8;
+    margin: 0;
+    color: var(--color-text, #374151);
+}
+
+
+/* ================================
+   CTA
+================================ */
+
+.workshop__cta {
+    background: linear-gradient(135deg, #ff8000, #ff5c00);
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.workshop__button {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: #ffffff;
+    color: #ff5c00;
+    font-weight: 600;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.workshop__button:hover {
+    background: #111827;
+    color: white;
+}
