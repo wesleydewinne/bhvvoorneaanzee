@@ -1,187 +1,185 @@
-/* =========================================
-   BASIS
-========================================= */
+/* ========================================
+   🌐 REGIONALE SERVICEGEBIED SECTIE
+   ======================================== */
 
-.workshops {
-    background-color: var(--color-bg-light, #f9fafb);
-}
-
-.workshops__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-}
-
-
-/* =========================================
-   TYPOGRAFIE (ALLEEN BINNEN WORKSHOP BLOKKEN)
-   ⚠️ GEEN globale .workshops p of h2 meer
-========================================= */
-
-.workshops__intro h2,
-.workshops__difference h2 {
-    font-size: 2.6rem;
-    margin-bottom: 2rem;
-    color: var(--color-text-dark, #111827);
-}
-
-.workshops__intro p,
-.workshops__difference p {
-    font-size: 1.6rem;
-    line-height: 1.8;
-    margin-bottom: 1.6rem;
-    color: var(--color-text, #374151);
-}
-
-
-/* =========================================
-   INTRO BLOK
-========================================= */
-
-.workshops__intro {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: 3.5rem 4rem;
-    border-radius: 1.4rem;
-    border: 1px solid #eef2f7;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-    margin-bottom: 5rem;
-}
-
-
-/* =========================================
-   GRID BLOKKEN (3 KAARTEN)
-========================================= */
-
-.workshops__grid {
-    display: grid;
-    gap: 2.5rem;
-    margin-bottom: 6rem;
-}
-
-@media (min-width: 900px) {
-    .workshops__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-/* =========================================
-   CARD
-========================================= */
-
-.workshops__card {
-    background: #ffffff;
-    padding: 3rem;
-    border-radius: 1.4rem;
-    border: 1px solid #eef2f7;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.workshops__card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
-}
-
-/* Titel met icon */
-.workshops__card-title {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-/* Icon badge */
-.workshops__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 4rem;
-    height: 4rem;
-    background: linear-gradient(135deg, #ff8000, #ff5c00);
-    color: #ffffff;
+.region-section {
+    margin-top: 4rem;
+    padding: 4rem 2rem 5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
     border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    animation: fadeInDown 0.6s ease-in-out;
 }
 
+/* ========================================
+   TITEL
+   ======================================== */
 
-/* =========================================
-   LIJST STYLING
-========================================= */
-
-.workshops__card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.workshops__card li {
-    position: relative;
-    padding-left: 2.8rem;
-    margin-bottom: 1.2rem;
-    font-size: 1.6rem;
-    line-height: 1.7;
-}
-
-.workshops__card li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    top: 0.2rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #16a34a;
-}
-
-
-/* =========================================
-   WAAROM WORKSHOP BLOK
-========================================= */
-
-.workshops__difference {
-    background: #fff7ed;
-    padding: 4rem;
-    border-radius: 1.2rem;
-    border-left: 6px solid var(--color-accent, #ff8000);
-    margin-bottom: 6rem;
+.region-title {
     text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #111827;
+    position: relative;
+    margin-bottom: 3rem;
 }
 
-.workshops__difference p {
-    max-width: 75rem;
-    margin: 0 auto 1.8rem auto;
+.region-title::after {
+    content: "";
+    width: 200px;
+    height: 4px;
+    background-color: #ff8000;
+    display: block;
+    margin: 1rem auto 0;
+    border-radius: 2px;
 }
 
+/* ========================================
+   GRID LAYOUT
+   ======================================== */
 
-/* =========================================
-   WORKSHOP CARDS SECTION
-========================================= */
+.region-grid {
+    max-width: 1400px;
+    margin: 0 auto;
 
-.workshops__cards {
-    margin-bottom: 6rem;
+    display: flex;
+    gap: 2.5rem;
+
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
+/* Link wrapper */
 
-/* =========================================
+.region-link {
+    display: flex;
+    justify-content: center;
+
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ========================================
+   CARD
+   ======================================== */
+
+.region-card {
+    width: 100%;
+    max-width: 420px;
+
+    background-color: #fff;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    position: relative;
+
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.region-link:hover .region-card {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================
+   AFBEELDING
+   ======================================== */
+
+.region-image {
+    position: relative;
+    height: 180px;
+    background: #f9fafb;
+    overflow: hidden;
+    border-bottom: 3px solid #ff8000;
+}
+
+.region-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 0.5rem 0;
+}
+
+/* Hover overlay */
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to bottom,
+            rgba(255, 128, 0, 0.25),
+            rgba(255, 128, 0, 0.05)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.region-link:hover .image-overlay {
+    opacity: 1;
+}
+
+.region-link:hover .region-image img {
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* ========================================
+   CONTENT
+   ======================================== */
+
+.region-content {
+    padding: 1.6rem 1.8rem 2rem;
+}
+
+.region-heading {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.6rem;
+}
+
+.region-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.region-content strong {
+    color: #000;
+    font-weight: 600;
+}
+
+/* ========================================
    RESPONSIVE
-========================================= */
+   ======================================== */
 
 @media (max-width: 768px) {
 
-    .workshops__container {
-        padding: 4rem 1.5rem;
+    .region-title {
+        font-size: 1.9rem;
+        margin-bottom: 2.5rem;
     }
 
-    .workshops__intro {
-        padding: 3rem 2.5rem;
+    .region-image {
+        height: 160px;
     }
 
-    .workshops__difference {
-        padding: 3rem 2.5rem;
+    .region-content {
+        padding: 1.4rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .region-section {
+        padding: 3rem 1.2rem 4rem;
     }
 
-    .workshops__intro h2,
-    .workshops__difference h2 {
-        font-size: 2.2rem;
+    .region-heading {
+        font-size: 1.2rem;
+    }
+
+    .region-content p {
+        font-size: 0.95rem;
     }
 }

@@ -137,6 +137,7 @@ function Workshops() {
 
 
            {/*<ServiceRegionsSection />*/}
+            <ServiceRegionsSection />
 
         </div>
     );
