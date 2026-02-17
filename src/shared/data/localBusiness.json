@@ -53,12 +53,12 @@
       "availableLanguage": ["nl-NL"]
     },
 
+    { "@type": "Place", "name": "Maassluis" },
     { "@type": "Place", "name": "Brielle" },
     { "@type": "Place", "name": "Hellevoetsluis" },
     { "@type": "Place", "name": "Oostvoorne" },
     { "@type": "Place", "name": "Rotterdam" },
-    { "@type": "Place", "name": "Den Haag" },
-    { "@type": "Place", "name": "Goes" }
+
   ]
 
 }

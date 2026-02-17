@@ -4,7 +4,7 @@
       "id": "bhv",
       "cardTitle": "BHV Training",
       "description": "Basis- en herhalingstrainingen bedrijfshulpverlening",
-      "image": "bhvtraining.png",
+      "image": "bhvtraining.webp",
       "alt": "Foto van een BHV-training",
       "trainings": [
         {
@@ -12,7 +12,7 @@
           "title": "Basiscursus BHV (2-daags)",
           "description": "Volledige praktijkgerichte BHV-basistraining",
           "slug": "/bhv/basis-2-daagse",
-          "cardImage": "bhvbasiscursus.png",
+          "cardImage": "bhvbasiscursus.webp",
           "cardAlt": "Basiscursus BHV praktijktraining"
         },
         {
@@ -20,7 +20,7 @@
           "title": "Basiscursus BHV met E-learning",
           "description": "Combinatie van e-learning en praktijkdag",
           "slug": "/bhv/basis-e-learning",
-          "cardImage": "bhvbasiscursusmetelearning.png",
+          "cardImage": "bhvbasiscursusmetelearning.webp",
           "cardAlt": "Basiscursus BHV met e-learning"
         },
         {
@@ -28,7 +28,7 @@
           "title": "Herhaling BHV",
           "description": "Opfrissen van kennis en vaardigheden",
           "slug": "/bhv/herhaling-1-dag",
-          "cardImage": "bhvherhalingcursus.png",
+          "cardImage": "bhvherhalingcursus.webp",
           "cardAlt": "Herhalingstraining BHV"
         },
         {
@@ -36,7 +36,7 @@
           "title": "Herhaling BHV met E-learning",
           "description": "Efficiënte herhaling met e-learning vooraf",
           "slug": "/bhv/herhaling-e-learning",
-          "cardImage": "bhvherhalingcursusmetelearning.png",
+          "cardImage": "bhvherhalingcursusmetelearning.webp",
           "cardAlt": "Herhaling BHV met e-learning"
         }
       ]
@@ -46,7 +46,7 @@
       "id": "ploegleider",
       "cardTitle": "BHV Ploegleider Training",
       "description": "Voor BHV’ers met een coördinerende rol",
-      "image": "Ploegleider.png",
+      "image": "Ploegleider.webp",
       "alt": "Foto van een BHV ploegleider training",
       "trainings": [
         {
@@ -54,7 +54,7 @@
           "title": "Ploegleider BHV – 2 dagen",
           "description": "Verdieping in coördinatie, opschaling en leiderschap",
           "slug": "/ploegleider/basis-2-daagse",
-          "cardImage": "ploegleiderbasis2daags.png",
+          "cardImage": "ploegleiderbasis2daags.webp",
           "cardAlt": "Tweedaagse BHV ploegleider training"
         },
 
@@ -63,7 +63,7 @@
           "title": "Basis BHV Ploegleider",
           "description": "Leidinggeven aan BHV tijdens incidenten",
           "slug": "/ploegleider/basis-1-dag-met-elearning",
-          "cardImage": "ploegleiderbasismetelearning.png",
+          "cardImage": "ploegleiderbasismetelearning.webp",
           "cardAlt": "Basistraining BHV ploegleider"
         },
         {
@@ -71,7 +71,7 @@
           "title": "Herhaling BHV Ploegleider",
           "description": "Actualiseren van kennis en vaardigheden",
           "slug": "/ploegleider/herhaling-halve-dag",
-          "cardImage": "ploegleiderherhaling.png",
+          "cardImage": "ploegleiderherhaling.webp",
           "cardAlt": "Herhalingstraining BHV ploegleider"
         }
       ]
@@ -81,7 +81,7 @@
       "id": "ontruiming",
       "cardTitle": "Ontruimingsoefeningen",
       "description": "Praktische ontruimingsoefeningen op locatie",
-      "image": "verzamelplaats.png",
+      "image": "verzamelplaats.webp",
       "alt": "Foto van een ontruimingsoefening",
       "trainings": [
         {
@@ -131,7 +131,7 @@
       "id": "ehbo",
       "cardTitle": "EHBO Training",
       "description": "Eerste hulp opleidingen voor bedrijven",
-      "image": "ehbo.png",
+      "image": "ehbo.webp",
       "alt": "Foto van een EHBO-training",
       "trainings": [
         {
@@ -157,7 +157,7 @@
       "id": "workshops",
       "cardTitle": "Workshops",
       "description": "Praktische veiligheidstrainingen",
-      "image": "workshop.png",
+      "image": "workshop.webp",
       "alt": "Foto van workshops",
       "trainings": [
         {

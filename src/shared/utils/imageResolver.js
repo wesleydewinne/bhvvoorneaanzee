@@ -2,7 +2,7 @@
 
 // Alle images automatisch laten bundlen door Vite
 const images = import.meta.glob(
-    "@/assets/image/trainingen/cardImage/**/*.{png,jpg,jpeg,svg}",
+    "@/assets/image/trainingen/cardImage/**/*.{png,jpg,jpeg,svg,webp}",
     { eager: true }
 );
 

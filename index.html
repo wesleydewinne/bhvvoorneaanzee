@@ -1,25 +1,29 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="src/assets/image/common/logo/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BHV Voorne aan Zee</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KNSP4TFGL3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-KNSP4TFGL3');
-    </script>
-    <script
-            src="https://maps.googleapis.com/maps/api/js?key=%VITE_GOOGLE_MAPS_API_KEY%&libraries=places"
-            async
-    ></script>
-  </body>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BHV Voorne aan Zee</title>
+</head>
+
+<body>
+<div id="root"></div>
+
+<!-- React entry -->
+<script type="module" src="/src/main.jsx"></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KNSP4TFGL3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-KNSP4TFGL3');
+</script>
+
+</body>
 </html>
