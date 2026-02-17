@@ -1,8 +1,8 @@
 // ======================================================
 // TRAINING CARD IMAGES (400px)
 // ======================================================
-
-import bhv from "@/assets/image/trainingen/cardImage/bhvtraining.png?w=400&format=webp&quality=70";
+//
+// import bhv from "@/assets/image/trainingen/cardImage/bhvtraining.png?w=400&format=webp&quality=70";
 // import brandblussen from "@/assets/image/trainingen/cardImage/brandblussen.png?w=400&format=webp&quality=70";
 // import ehbo from "@/assets/image/trainingen/cardImage/ehbo.png?w=400&format=webp&quality=70";
 // import ploegleider from "@/assets/image/trainingen/cardImage/Ploegleider.png?w=400&format=webp&quality=70";
