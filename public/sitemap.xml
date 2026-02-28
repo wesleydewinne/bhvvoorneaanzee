@@ -1,186 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/bhv</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/bhv/basis-2-daagse</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/bhv/basis-e-learning</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/bhv/herhaling-1-dag</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/bhv/herhaling-e-learning</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ehbo</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ehbo-basis-3-daagse</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ehbo-basis-2-daagse-met-elearning</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ehbo-herhaling-hele-dag</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ehbo-herhaling-halve-dag</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ploegleider</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ploegleider-basis-2-daagse</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ploegleider-basis-1-dag-met-elearning</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ploegleider-herhaling-halve-dag</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ontruimingsoefening</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ontruimingsoefening/fase0</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ontruimingsoefening/fase1</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ontruimingsoefening/fase2</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ontruimingsoefening/fase3</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/ontruimingsoefening/fase4</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/workshops</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/workshops/gebruik-kleine-blusmiddelen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/workshops/portofoongebruik</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/workshops/reanimatie-volwassene</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/workshops/reanimatie-kind-baby</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/workshops/stop-de-bloeding-red-een-leven</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/maatwerk</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/rotterdam-rijnmond</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/zeeland</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/den-haag-westland</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/blog</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/veelgestelde-vragen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/offerte</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/over-ons</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bhvvoorneaanzee.nl/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Core -->
+  <url><loc>https://bhvvoorneaanzee.nl/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/landingpage</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- BHV -->
+  <url><loc>https://bhvvoorneaanzee.nl/bhv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/bhv-basis-2-daagse</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/bhv-basis-e-learning</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/bhv-herhaling-1-dag</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/bhv-herhaling-e-learning</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/bhv-ritme</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- EHBO -->
+  <url><loc>https://bhvvoorneaanzee.nl/ehbo</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ehbo-basis-3-daagse</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ehbo-basis-2-daagse-met-elearning</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ehbo-herhaling-hele-dag</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ehbo-herhaling-halve-dag</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Ploegleider -->
+  <url><loc>https://bhvvoorneaanzee.nl/ploegleider</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ploegleider-basis-2-daagse</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ploegleider-basis-1-dag-met-elearning</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ploegleider-herhaling-halve-dag</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Ontruimingsoefening -->
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase0</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase1</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase2</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase3</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase4</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Ontruimingsverslag (public routes volgens je lijst) -->
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fases</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-scenarios</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-verslag</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- Workshops -->
+  <url><loc>https://bhvvoorneaanzee.nl/workshops</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-kleine-blusmiddelen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-bedienaar-brandmeldcentrale</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-portofoongebruik</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-reanimatie-volwassene</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-reanimatie-kind-baby</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-stop-de-bloeding</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-waterongevallen</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/workshops-kinder-ehbo-huiskamertraining</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Training uitleg -->
+  <url><loc>https://bhvvoorneaanzee.nl/maatwerk</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/modulaire-trainen</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/modulair-overzicht</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Regio -->
+  <url><loc>https://bhvvoorneaanzee.nl/rotterdam-rijnmond</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/zeeland</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/den-haag-westland</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://bhvvoorneaanzee.nl/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- Lead -->
+  <url><loc>https://bhvvoorneaanzee.nl/veiligheidscheck</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/veiligheidscheck-bedankt</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+
+  <!-- Overig -->
+  <url><loc>https://bhvvoorneaanzee.nl/veelgestelde-vragen</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/offerte</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/over-ons</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/bedrijfsgegevens</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://bhvvoorneaanzee.nl/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Quiz public toegang -->
+  <url><loc>https://bhvvoorneaanzee.nl/quiz-access</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+
 </urlset>

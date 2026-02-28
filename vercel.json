@@ -1,8 +1,11 @@
 {
-  "routes": [
-    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
-    { "src": "/robots.txt", "dest": "/robots.txt" },
-    { "src": "/(assets/.*)", "dest": "/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "redirects": [
+    { "source": "/:section/:slug", "destination": "/:section-:slug", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/assets/:path*", "destination": "/assets/:path*" },
+    { "source": "/:path*", "destination": "/index.html" }
   ]
 }
