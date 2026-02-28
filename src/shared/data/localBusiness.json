@@ -20,7 +20,7 @@
       "@type": "AdministrativeArea",
       "@id": "https://bhvvoorneaanzee.nl/geo/voorne-aan-zee",
       "name": "Voorne aan Zee",
-      "description": "BHV, EHBO en reanimatie trainingen in Voorne aan Zee en omstreken.",
+      "description": "BHV, ploegleider en ontruimingsoefeningen in Voorne aan Zee en omstreken.",
       "availableLanguage": ["nl-NL"]
     },
     {
@@ -28,7 +28,7 @@
       "@id": "https://bhvvoorneaanzee.nl/geo/rotterdam-rijnmond",
       "name": "Rotterdam-Rijnmond",
       "alternateName": ["VRR", "Veiligheidsregio Rotterdam-Rijnmond"],
-      "description": "BHV trainingen op locatie binnen de veiligheidsregio Rotterdam-Rijnmond.",
+      "description": "BHV trainingen op locatie binnen de regio Rotterdam-Rijnmond.",
       "availableLanguage": ["nl-NL"]
     },
     {
@@ -57,7 +57,7 @@
     { "@type": "Place", "name": "Brielle" },
     { "@type": "Place", "name": "Hellevoetsluis" },
     { "@type": "Place", "name": "Oostvoorne" },
-    { "@type": "Place", "name": "Rotterdam" },
+    { "@type": "Place", "name": "Rotterdam" }
 
   ]
 
