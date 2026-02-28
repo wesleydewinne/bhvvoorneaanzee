@@ -1,17 +1,14 @@
 // src/context/AuthContext.jsx
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+    createContext,
+    useContext,
+    useState,
+    useCallback,
+    useEffect
+} from "react";
 import api from "@/api/api.js";
 
-// Vorm van de context
-const AuthContext = createContext({
-    user: null,
-    roles: [],
-    authenticated: false,
-    loading: true,
-    login: async () => {},
-    logout: async () => {},
-    refreshUser: async () => {},
-});
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
@@ -19,35 +16,47 @@ export function AuthProvider({ children }) {
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    // 🔄 User ophalen via /auth/me (wordt gebruikt bij load én na login)
-    const fetchCurrentUser = async () => {
+    /**
+     * Huidige gebruiker ophalen (cookie-validatie)
+     */
+    const fetchCurrentUser = useCallback(async () => {
         try {
+            setLoading(true);
+
             const response = await api.get("/auth/me");
             const data = response.data;
 
             setUser(data || null);
-
-            // ga er vanuit dat backend roles zo terugstuurt: ["ROLE_ADMIN", ...]
-            const userRoles = data?.roles || [];
-            setRoles(userRoles);
-
+            setRoles(data?.roles || []);
             setAuthenticated(true);
         } catch (err) {
-            // 401 etc → niet ingelogd
             setUser(null);
             setRoles([]);
             setAuthenticated(false);
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
 
-    // 🔐 Login: backend zet httpOnly cookies, daarna opnieuw /auth/me ophalen
+    /**
+     * Automatische auth-check bij app start
+     */
+    useEffect(() => {
+        fetchCurrentUser();
+    }, [fetchCurrentUser]);
+
+    /**
+     * Login
+     */
     const login = async (credentials) => {
         setLoading(true);
+
         try {
             await api.post("/auth/login", credentials);
+
+            // Na login opnieuw profiel ophalen
             await fetchCurrentUser();
+
             return { success: true };
         } catch (err) {
             setUser(null);
@@ -64,7 +73,9 @@ export function AuthProvider({ children }) {
         }
     };
 
-    // 🚪 Logout
+    /**
+     * Logout
+     */
     const logout = async () => {
         try {
             await api.post("/auth/logout");
@@ -77,13 +88,9 @@ export function AuthProvider({ children }) {
         }
     };
 
-    // Bij eerste load: check of er al een geldige sessie is
-    useEffect(() => {
-        fetchCurrentUser();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    // Eventueel: automatische afhandeling van 401 met autoLogout uit je axios interceptor
+    /**
+     * Axios interceptor voor auto-logout
+     */
     useEffect(() => {
         const interceptorId = api.interceptors.response.use(
             (response) => response,
@@ -119,11 +126,6 @@ export function AuthProvider({ children }) {
     );
 }
 
-// Eigen hook om de context te gebruiken
 export function useAuthContext() {
-    const ctx = useContext(AuthContext);
-    if (!ctx) {
-        throw new Error("useAuthContext moet binnen een AuthProvider gebruikt worden");
-    }
-    return ctx;
+    return useContext(AuthContext);
 }

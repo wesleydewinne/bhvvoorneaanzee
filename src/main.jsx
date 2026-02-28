@@ -6,7 +6,7 @@ import { HeadProvider } from "react-head";
 import { QuizProvider } from "@/features/quiz/context/QuizContext.jsx";
 import { AuthProvider } from "@/features/auth/context/AuthContext.jsx";
 
-import RouteTracker from "./features/analytics/RouteTracker.jsx";
+import RouteTracker from "@/features/analytics/RouteTracker.jsx";
 import ScrollToTop from "@/app/routes/ScrollToTop";
 
 import "./styles/global.css";

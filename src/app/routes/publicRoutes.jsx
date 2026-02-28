@@ -36,8 +36,8 @@ import StopDeBloedingRedEenLeven from "@/pages/workshops/soortenWorkshops/StopDe
 import Maatwerk from "@/pages/MaatwerkPage/MaatwerkPagina.jsx";
 
 import Faq from "@/pages/faq/Faq.jsx";
-import BlogPage from "@/pages/blog/BlogPage.jsx";
-import BlogDetail from "@/pages/blog/BlogDetail.jsx";
+import BlogPage from "@/features/blog/BlogPage.jsx";
+import BlogDetail from "@/features/blog/BlogDetail.jsx";
 
 import Fases from "@/pages/ontruimingsverslag/Fases.jsx";
 import Scenarios from "@/pages/ontruimingsverslag/Scenarios.jsx";
@@ -62,34 +62,36 @@ import ModulaireOverzicht from "@/pages/modulair/ModulaireOverzicht.jsx";
 import BedienaarBrandmeldcentrale from "@/pages/workshops/soortenWorkshops/BedienaarBrandmeldcentrale.jsx";
 import Waterongevallen from "@/pages/workshops/soortenWorkshops/Waterongevallen.jsx";
 import KinderEhboHuiskamertraining from "@/pages/workshops/soortenWorkshops/KinderEhboHuiskamertraining.jsx";
+import BhvRitme from "@/pages/bhvPage/bhvPages/BhvRitme.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
 
     // BHV
     { path: "/bhv", element: <BhvPage /> },
-    { path: "/bhv/basis-2-daagse", element: <BhvBasis2 /> },
-    { path: "/bhv/basis-e-learning", element: <BhvBasis1Elearning /> },
-    { path: "/bhv/herhaling-1-dag", element: <BhvHerhaling /> },
-    { path: "/bhv/herhaling-e-learning", element: <BhvHerhaling05Elearning /> },
+    { path: "/bhv-basis-2-daagse", element: <BhvBasis2 /> },
+    { path: "/bhv-basis-e-learning", element: <BhvBasis1Elearning /> },
+    { path: "/bhv-herhaling-1-dag", element: <BhvHerhaling /> },
+    { path: "/bhv-herhaling-e-learning", element: <BhvHerhaling05Elearning /> },
+    { path: "/bhv-ritme", element: <BhvRitme /> },
 
     // Ploegleider
     { path: "/ploegleider", element: <PloegleiderPage /> },
-    { path: "/ploegleider/basis-2-daagse", element: <Ploegleider2DaagsePage /> },
-    { path: "/ploegleider/basis-1-dag-met-elearning", element: <PloegleiderBasis1DaagseElearning /> },
-    { path: "/ploegleider/herhaling-halve-dag", element: <PloegleiderHerhalingPage /> },
+    { path: "/ploegleider-basis-2-daagse", element: <Ploegleider2DaagsePage /> },
+    { path: "/ploegleider-basis-1-dag-met-elearning", element: <PloegleiderBasis1DaagseElearning /> },
+    { path: "/ploegleider-herhaling-halve-dag", element: <PloegleiderHerhalingPage /> },
 
     // Ontruimingsoefening
     { path: "/ontruimingsoefening", element: <OntruimingsPage /> },
-    { path: "/ontruimingsoefening/fase0", element: <Fase0 /> },
-    { path: "/ontruimingsoefening/fase1", element: <Fase1 /> },
-    { path: "/ontruimingsoefening/fase2", element: <Fase2 /> },
-    { path: "/ontruimingsoefening/fase3", element: <Fase3 /> },
-    { path: "/ontruimingsoefening/fase4", element: <Fase4 /> },
+    { path: "/ontruimingsoefening-fase0", element: <Fase0 /> },
+    { path: "/ontruimingsoefening-fase1", element: <Fase1 /> },
+    { path: "/ontruimingsoefening-fase2", element: <Fase2 /> },
+    { path: "/ontruimingsoefening-fase3", element: <Fase3 /> },
+    { path: "/ontruimingsoefening-fase4", element: <Fase4 /> },
 
-    { path: "/ontruimingsoefening/fases", element: <Fases /> },
-    { path: "/ontruimingsoefening/scenarios", element: <Scenarios /> },
-    { path: "/ontruimingsoefening/verslag", element: <Verslag /> },
+    { path: "/ontruimingsoefening-fases", element: <Fases /> },
+    { path: "/ontruimingsoefening-scenarios", element: <Scenarios /> },
+    { path: "/ontruimingsoefening-verslag", element: <Verslag /> },
 
     // EHBO
     { path: "/ehbo", element: <Ehbo /> },
@@ -100,14 +102,14 @@ const publicRoutes = [
 
     // Workshops
     { path: "/workshops", element: <Workshops /> },
-    { path: "/workshops/kleine-blusmiddelen", element: <KleineBlusmiddelen /> },
-    { path: "/workshops/bedienaar-brandmeldcentrale", element: <BedienaarBrandmeldcentrale /> },
-    { path: "/workshops/portofoongebruik", element: <Portofoongebruik /> },
-    { path: "/workshops/reanimatie-volwassene", element: <ReanimatieMetGebruikAedVolwassene /> },
-    { path: "/workshops/reanimatie-kind-baby", element: <ReanimatieMetGebruikAedKind /> },
-    { path: "/workshops/stop-de-bloeding", element: <StopDeBloedingRedEenLeven /> },
-    { path: "/workshops/waterongevallen", element: <Waterongevallen /> },
-    { path: "/workshops/kinder-ehbo-huiskamertraining", element: <KinderEhboHuiskamertraining /> },
+    { path: "/workshops-kleine-blusmiddelen", element: <KleineBlusmiddelen /> },
+    { path: "/workshops-bedienaar-brandmeldcentrale", element: <BedienaarBrandmeldcentrale /> },
+    { path: "/workshops-portofoongebruik", element: <Portofoongebruik /> },
+    { path: "/workshops-reanimatie-volwassene", element: <ReanimatieMetGebruikAedVolwassene /> },
+    { path: "/workshops-reanimatie-kind-baby", element: <ReanimatieMetGebruikAedKind /> },
+    { path: "/workshops-stop-de-bloeding", element: <StopDeBloedingRedEenLeven /> },
+    { path: "/workshops-waterongevallen", element: <Waterongevallen /> },
+    { path: "/workshops-kinder-ehbo-huiskamertraining", element: <KinderEhboHuiskamertraining /> },
 
     //uitleg trainingen
     { path: "/maatwerk", element: <Maatwerk /> },
@@ -121,7 +123,7 @@ const publicRoutes = [
 
     // Blog
     { path: "/blog", element: <BlogPage /> },
-    { path: "/blog/:slug", element: <BlogDetail /> },
+    { path: "/blog-:slug", element: <BlogDetail /> },
 
     // LeadPage
     { path: "/veiligheidscheck", element: <Veiligheidscheck />},

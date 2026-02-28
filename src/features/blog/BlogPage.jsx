@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { posts } from "./posts";
+import { posts } from "./posts.js";
 import "./BlogPage.css";
 
 const BlogPage = () => {

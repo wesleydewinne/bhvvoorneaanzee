@@ -11,7 +11,7 @@
           "type": "basis-2-daagse",
           "title": "Basiscursus BHV (2-daags)",
           "description": "Volledige praktijkgerichte BHV-basistraining",
-          "slug": "/bhv/basis-2-daagse",
+          "slug": "/bhv-basis-2-daagse",
           "cardImage": "bhvbasiscursus.webp",
           "cardAlt": "Basiscursus BHV praktijktraining"
         },
@@ -19,7 +19,7 @@
           "type": "basis-elearning",
           "title": "Basiscursus BHV met E-learning",
           "description": "Combinatie van e-learning en praktijkdag",
-          "slug": "/bhv/basis-e-learning",
+          "slug": "/bhv-basis-e-learning",
           "cardImage": "bhvbasiscursusmetelearning.webp",
           "cardAlt": "Basiscursus BHV met e-learning"
         },
@@ -27,7 +27,7 @@
           "type": "herhaling-hele-dag",
           "title": "Herhaling BHV",
           "description": "Opfrissen van kennis en vaardigheden",
-          "slug": "/bhv/herhaling-1-dag",
+          "slug": "/bhv-herhaling-1-dag",
           "cardImage": "bhvherhalingcursus.webp",
           "cardAlt": "Herhalingstraining BHV"
         },
@@ -35,7 +35,7 @@
           "type": "herhaling-elearning",
           "title": "Herhaling BHV met E-learning",
           "description": "Efficiënte herhaling met e-learning vooraf",
-          "slug": "/bhv/herhaling-e-learning",
+          "slug": "/bhv-herhaling-e-learning",
           "cardImage": "bhvherhalingcursusmetelearning.webp",
           "cardAlt": "Herhaling BHV met e-learning"
         }
@@ -53,7 +53,7 @@
           "type": "ploegleider-basis-2-daags",
           "title": "Ploegleider BHV – 2 dagen",
           "description": "Verdieping in coördinatie, opschaling en leiderschap",
-          "slug": "/ploegleider/basis-2-daagse",
+          "slug": "/ploegleider-basis-2-daagse",
           "cardImage": "ploegleiderbasis2daags.webp",
           "cardAlt": "Tweedaagse BHV ploegleider training"
         },
@@ -62,7 +62,7 @@
           "type": "ploegleider-basis",
           "title": "Basis BHV Ploegleider",
           "description": "Leidinggeven aan BHV tijdens incidenten",
-          "slug": "/ploegleider/basis-1-dag-met-elearning",
+          "slug": "/ploegleider-basis-1-dag-met-elearning",
           "cardImage": "ploegleiderbasismetelearning.webp",
           "cardAlt": "Basistraining BHV ploegleider"
         },
@@ -70,7 +70,7 @@
           "type": "ploegleider-herhaling",
           "title": "Herhaling BHV Ploegleider",
           "description": "Actualiseren van kennis en vaardigheden",
-          "slug": "/ploegleider/herhaling-halve-dag",
+          "slug": "/ploegleider-herhaling-halve-dag",
           "cardImage": "ploegleiderherhaling.webp",
           "cardAlt": "Herhalingstraining BHV ploegleider"
         }
@@ -88,7 +88,7 @@
           "type": "fase0",
           "title": "Tabletop ontruimingsoefening",
           "description": "Scenario- en besluitvormingsoefening",
-          "slug": "/ontruiming/fase-0",
+          "slug": "/ontruiming-fase-0",
           "cardImage": "ontruiming-tabletop.png",
           "cardAlt": "Tabletop ontruimingsoefening"
         },
@@ -96,7 +96,7 @@
           "type": "fase1",
           "title": "Kleine inzetoefeningen",
           "description": "Oefenen van deelhandelingen",
-          "slug": "/ontruiming/fase-1",
+          "slug": "/ontruiming-fase-1",
           "cardImage": "ontruiming-fase1.png",
           "cardAlt": "Kleine inzetoefeningen BHV"
         },
@@ -104,7 +104,7 @@
           "type": "fase2",
           "title": "Aangekondigde ontruimingsoefening",
           "description": "Realistische oefening met voorbereiding",
-          "slug": "/ontruiming/fase-2",
+          "slug": "/ontruiming-fase-2",
           "cardImage": "ontruiming-fase2.png",
           "cardAlt": "Aangekondigde ontruimingsoefening"
         },
@@ -112,7 +112,7 @@
           "type": "fase3",
           "title": "Onaangekondigde ontruimingsoefening",
           "description": "Realistische oefening zonder aankondiging",
-          "slug": "/ontruiming/fase-3",
+          "slug": "/ontruiming-fase-3",
           "cardImage": "ontruiming-fase3.png",
           "cardAlt": "Onaangekondigde ontruimingsoefening"
         },
@@ -120,7 +120,7 @@
           "type": "fase4",
           "title": "Onaangekondigde ontruimingsoefening (gevorderd)",
           "description": "Complexe scenario’s en evaluatie",
-          "slug": "/ontruiming/fase-4",
+          "slug": "/ontruiming-fase-4",
           "cardImage": "ontruiming-fase4.png",
           "cardAlt": "Gevorderde ontruimingsoefening"
         }
@@ -138,7 +138,7 @@
           "type": "ehbo-basis",
           "title": "Basis EHBO",
           "description": "Eerste hulp bij ongevallen",
-          "slug": "/ehbo/basis",
+          "slug": "/ehbo-basis",
           "cardImage": "ehbo-basis.png",
           "cardAlt": "Basiscursus EHBO"
         },
@@ -146,7 +146,7 @@
           "type": "ehbo-herhaling",
           "title": "Herhaling EHBO",
           "description": "Opfrissen van EHBO-vaardigheden",
-          "slug": "/ehbo/herhaling",
+          "slug": "/ehbo-herhaling",
           "cardImage": "ehbo-herhaling.png",
           "cardAlt": "Herhaling EHBO"
         }
@@ -164,7 +164,7 @@
           "type": "kleine-blusmiddelen",
           "title": "Workshop Kleine Blusmiddelen",
           "description": "Veilig en effectief blussen met schuimblussers en blusdekens",
-          "slug": "/workshops/kleine-blusmiddelen",
+          "slug": "/workshops-kleine-blusmiddelen",
           "cardImage": "workshop-kleine-blusmiddelen.png",
           "cardAlt": "Workshop kleine blusmiddelen training"
         },
@@ -172,7 +172,7 @@
           "type": "bedienaar-brandmeldcentrale",
           "title": "Workshop Bedienaar Brandmeldcentrale",
           "description": "Professioneel handelen bij brandmeldingen, storingen en doormeldingen",
-          "slug": "/workshops/bedienaar-brandmeldcentrale",
+          "slug": "/workshops-bedienaar-brandmeldcentrale",
           "cardImage": "workshop-bedienaar-brandmeldcentrale.png",
           "cardAlt": "Training bedienaar brandmeldcentrale"
         },
@@ -180,7 +180,7 @@
           "type": "portofoon",
           "title": "Workshop Portofoongebruik",
           "description": "Effectief communiceren tijdens incidenten",
-          "slug": "/workshops/portofoongebruik",
+          "slug": "/workshops-portofoongebruik",
           "cardImage": "workshop-portofoon.png",
           "cardAlt": "Workshop portofoongebruik"
         },
@@ -188,7 +188,7 @@
           "type": "reanimatie-volwassene",
           "title": "Workshop Reanimatie Volwassene",
           "description": "Reanimatie en AED bij volwassenen",
-          "slug": "/workshops/reanimatie-volwassene",
+          "slug": "/workshops-reanimatie-volwassene",
           "cardImage": "workshop-reanimatie-volwassene.png",
           "cardAlt": "Workshop reanimatie volwassene"
         },
@@ -196,7 +196,7 @@
           "type": "reanimatie-kind-baby",
           "title": "Workshop Reanimatie Kind & Baby",
           "description": "Reanimatie bij kinderen en baby’s",
-          "slug": "/workshops/reanimatie-kind-baby",
+          "slug": "/workshops-reanimatie-kind-baby",
           "cardImage": "workshop-reanimatie-kind-baby.png",
           "cardAlt": "Workshop reanimatie kind en baby"
         },
@@ -204,7 +204,7 @@
           "type": "stop-de-bloeding",
           "title": "Workshop Stop de Bloeding",
           "description": "Levensreddend handelen bij ernstige bloedingen",
-          "slug": "/workshops/stop-de-bloeding",
+          "slug": "/workshops-stop-de-bloeding",
           "cardImage": "workshop-stop-de-bloeding.png",
           "cardAlt": "Workshop stop de bloeding"
         },
@@ -212,7 +212,7 @@
           "type": "waterongevallen",
           "title": "Workshop Waterongevallen",
           "description": "Handelen bij incidenten op en rond water",
-          "slug": "/workshops/waterongevallen",
+          "slug": "/workshops-waterongevallen",
           "cardImage": "workshop-waterongevallen.png",
           "cardAlt": "Workshop waterongevallen"
         },
@@ -220,7 +220,7 @@
           "type": "kinder-ehbo-huiskamertraining",
           "title": "Kinder-EHBO Huiskamertraining",
           "description": "Zeker handelen bij verslikken, vallen en spoedsituaties bij kinderen",
-          "slug": "/workshops/kinder-ehbo-huiskamertraining",
+          "slug": "/workshops-kinder-ehbo-huiskamertraining",
           "cardImage": "workshop-kinder-ehbo-huiskamertraining.png",
           "cardAlt": "Kinder EHBO training voor ouders aan huis"
         }

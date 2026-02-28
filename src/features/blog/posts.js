@@ -1,13 +1,87 @@
 import blogOntruimenImg from "@/assets/image/blog/ontruimen/Blog_Ontruimen.png"
 import blogArbeidsOngevallen from "@/assets/image/blog/arbeidsongevallen/Blog_arbeidsongevallen.png"
-import header112Img from "@/assets/image/blog/112app/Blog_112_Header.png";
-import poster112Img from "@/assets/image/blog/112app/Blog_112_Poster.jpeg";
+import header112Img from "@/assets/image/blog/112app/Blog_112_Header.webp";
+import poster112Img from "@/assets/image/blog/112app/Blog_112_Poster.webp";
+import headerBurgerhulpImg from "@/assets/image/blog/burgerhulpverlener/headerBurgerhulpImg.webp";
 
 
 
 export const posts = [
+
     {
-        // Post 1
+        slug: "tekort-burgerhulpverleners-lokaal",
+        title: "Tekort aan burgerhulpverleners: elke minuut telt",
+        date: "18 februari 2026",
+        author: "Wesley",
+        image: headerBurgerhulpImg,
+        content: [
+            {
+                id: "intro1",
+                type: "paragraph",
+                text: "In het nieuws was het opnieuw te horen: er zijn te weinig burgerhulpverleners in Nederland. En dat is zorgelijk. Bij een hartstilstand buiten het ziekenhuis zijn de eerste 6 minuten cruciaal. Hoe sneller gestart wordt met reanimatie en een AED wordt ingezet, hoe groter de overlevingskans."
+            },
+
+            {id: "heading1", type: "heading", level: 2, text: "Wat is een burgerhulpverlener?"},
+            {
+                id: "text1",
+                type: "paragraph",
+                text: "Een burgerhulpverlener is iemand die via het oproepsysteem van HartslagNu wordt gealarmeerd bij een mogelijke hartstilstand in de buurt. Je ontvangt een melding op je telefoon en gaat direct naar het slachtoffer of haalt een AED op. Zo wordt de tijd tot de eerste hulpverlening drastisch verkort."
+            },
+
+            // {id: "image1", type: "image", src: burgerhulpImg, alt: "Burgerhulpverlener met AED in woonwijk"},
+
+            {id: "heading2", type: "heading", level: 2, text: "Waarom zijn er meer nodig?"},
+            {
+                id: "list1",
+                type: "list",
+                items: [
+                    "Niet elke regio heeft voldoende actieve hulpverleners.",
+                    "Overdag zijn veel mensen niet in hun woonwijk aanwezig.",
+                    "Snelle start van reanimatie verdubbelt of verdrievoudigt de overlevingskans.",
+                    "Meer aanmeldingen betekent kortere responstijd."
+                ]
+            },
+
+            {id: "heading3", type: "heading", level: 2, text: "Aanmelden als burgerhulpverlener"},
+            {
+                id: "text2",
+                type: "paragraph",
+                text: "Wil jij het verschil maken? Meld je aan via HartslagNu. Na registratie kun je worden opgeroepen bij een reanimatiemelding in jouw buurt. Een geldig reanimatiecertificaat is vereist."
+            },
+
+            {
+                id: "link1",
+                type: "link",
+                text: "Meld je aan als burgerhulpverlener via HartslagNu",
+                href: "https://hartslagnu.nl/burgerhulpverlening/aanmelden/"
+            },
+
+            {id: "heading4", type: "heading", level: 2, text: "Nog geen certificaat?"},
+            {
+                id: "text3",
+                type: "paragraph",
+                text: "Heb je nog geen geldig reanimatiecertificaat of wil je je vaardigheden opfrissen? Dan kun je bij mij een praktijkgerichte training volgen. Ik train cursisten in de regio Voorne aan Zee, Rozenburg, Maassluis en Vlaardingen. Kleine groepen, veel praktijk en realistische scenario’s."
+            },
+
+            {
+                id: "link2",
+                type: "link",
+                text: "Neem contact op voor training of meer informatie",
+                href: "/contact"
+            },
+
+            {
+                id: "quote1",
+                type: "blockquote",
+                text: "Een burgerhulpverlener kan het verschil maken tussen leven en dood – ook in jouw straat."
+            }
+        ]
+    },
+
+    {
+
+
+    // Post 1
         slug: "bhv-training-veiligheid-werkvloer",
         title: "Waarom een BHV-training onmisbaar is voor veiligheid op de werkvloer",
         date: "5 september 2025",
@@ -27,7 +101,7 @@ export const posts = [
                     "Eerste hulp bij verwondingen zoals snijwonden of botbreuken"
                 ] },
 
-            { "id": "image1", "type": "image", "src": "https://via.placeholder.com/800x400", "alt": "Illustratie BHV-training op de werkvloer" },
+            { "id": "image1", "type": "image", "src": blogArbeidsOngevallen, "alt": "Illustratie BHV-training op de werkvloer" },
 
             { "id": "heading3", "type": "heading", "level": 2, "text": "BHV bij incidenten" },
             { "id": "text4", "type": "paragraph", "text": "De meeste mensen associëren BHV met preventie, maar het grootste belang ligt vaak in actief handelen bij incidenten. Wanneer een ongeval zich voordoet, telt elke seconde. Een goed opgeleide BHV’er kan eerste hulp verlenen, paniek voorkomen en hulpdiensten inschakelen." },
@@ -150,7 +224,7 @@ export const posts = [
         title: "Waarom BHV-training cruciaal is",
         date: "5 september 2025",
         author: "Wesley",
-        image: "https://via.placeholder.com/800x300?text=BHV+Training",
+        image: "",
         content: [
             { id: "heading1", type: "heading", level: 2, text: "Introductie" },
             { id: "text1", type: "paragraph", text: "Een goede BHV-training redt levens." },

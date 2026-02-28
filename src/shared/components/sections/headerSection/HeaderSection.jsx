@@ -3,7 +3,7 @@ import "./HeaderSection.css";
 function HeaderSection({ mainTitle, subTitle, image }) {
     return (
         <section className="site-hero">
-            <img src={image} alt="" className="site-hero-image" loading="eager" fetchpriority="high" />
+            <img src={image} alt="" className="site-hero-image" loading="eager" fetchPriority="high" />
 
             <div className="site-hero-overlay">
                 <div className="site-hero-text">

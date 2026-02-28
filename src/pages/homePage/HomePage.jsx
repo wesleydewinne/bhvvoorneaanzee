@@ -2,10 +2,10 @@ import "./HomePage.css";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
 import LogosSection from "@/shared/components/sections/logosSection/LogosSection.jsx";
-import BlogSection from "@/shared/components/sections/blogSection/BlogSection.jsx";
+import BlogSection from "@/features/blog/BlogSection.jsx";
 import CTAButtons from "@/shared/components/ui/button/cta/CTAButton.jsx";
 import ReviewSection from "@/features/reviews/components/ReviewSection.jsx";
-import { posts } from "@/pages/blog/posts.js";
+import { posts } from "@/features/blog/posts.js";
 
 import reactLogo from "@/assets/image/react.svg";
 import trainingData from "@/shared/data/training.json";

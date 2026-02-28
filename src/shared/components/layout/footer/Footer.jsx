@@ -1,8 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom"; // nodig als je routing gebruikt
+import React, { lazy, Suspense } from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
-import StatusCheck from "@/shared/components/ui/status/StatusCheck.jsx";
-import StatusIndicator from "@/shared/components/ui/status/StatusIndicator.jsx";
+
+// Lazy load BackendStatus
+const BackendStatus = lazy(() =>
+    import("@/shared/components/ui/status/BackendStatus.jsx")
+);
 
 const Footer = () => {
     return (
@@ -37,17 +40,18 @@ const Footer = () => {
                         <li><Link to="/over-ons">Over ons</Link></li>
                         <li><Link to="/contact">Contact ons</Link></li>
                     </ul>
-                {/*  totale reviews  */}
                 </div>
             </div>
 
             <div className="footer-bottom">
                 <small>
-                    bhvvoorneaanzee &copy; {new Date().getFullYear()} – Alle rechten voorbehouden ·{' '}
+                    bhvvoorneaanzee &copy; {new Date().getFullYear()} – Alle rechten voorbehouden ·{" "}
                     <a href="/bedrijfsgegevens">Bedrijfsgegevens</a>
                 </small>
-                <StatusCheck />
-                <StatusIndicator />
+
+                <Suspense fallback={null}>
+                    <BackendStatus />
+                </Suspense>
             </div>
         </footer>
     );
