@@ -1,6 +1,8 @@
 {
   "redirects": [
-    { "source": "/:section/:slug", "destination": "/:section-:slug", "permanent": true }
+    { "source": "/bhv/:slug", "destination": "/bhv-:slug", "permanent": true },
+    { "source": "/workshops/:slug", "destination": "/workshops-:slug", "permanent": true },
+    { "source": "/ontruimingsoefening/:slug", "destination": "/ontruimingsoefening-:slug", "permanent": true }
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
