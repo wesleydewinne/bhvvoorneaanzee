@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import api from "@/api/api.js";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@/features/auth/hooks/useAuth.js";
+import "./LoginPage.css";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -38,16 +39,13 @@ export default function LoginPage() {
         script.defer = true;
         script.onload = () => {
             if (captchaRef.current && !widgetIdRef.current) {
-                widgetIdRef.current = window.turnstile.render(
-                    captchaRef.current,
-                    {
-                        sitekey: siteKey,
-                        callback: (token) => {
-                            setCaptchaToken(token);
-                            setCaptchaReady(true);
-                        },
-                    }
-                );
+                widgetIdRef.current = window.turnstile.render(captchaRef.current, {
+                    sitekey: siteKey,
+                    callback: (token) => {
+                        setCaptchaToken(token);
+                        setCaptchaReady(true);
+                    },
+                });
             }
         };
         document.body.appendChild(script);
@@ -64,7 +62,6 @@ export default function LoginPage() {
 
         setLoading(true);
         try {
-            // 1️⃣ login bij backend → zet httpOnly cookies
             await api.post("/auth/login", {
                 email,
                 password,
@@ -72,7 +69,6 @@ export default function LoginPage() {
             });
 
             await refreshUser();
-
             navigate("/dashboard");
         } catch (err) {
             console.error("Login fout:", err);
@@ -80,16 +76,13 @@ export default function LoginPage() {
             if (err.response?.status === 403) {
                 setError("Beveiligingscheck ongeldig of verlopen.");
             } else if (err.response?.status === 429) {
-                setError(
-                    "Te veel mislukte inlog pogingen. Wacht minimaal 15 en probeer opnieuw."
-                );
+                setError("Te veel mislukte inlog pogingen. Wacht minimaal 15 en probeer opnieuw.");
             } else if (err.response?.status === 401) {
                 setError("Onjuiste inloggegevens.");
             } else {
                 setError("Ongeldige login of serverfout.");
             }
 
-            // CAPTCHA resetten na fout
             if (window.turnstile && widgetIdRef.current) {
                 window.turnstile.reset(widgetIdRef.current);
                 setCaptchaToken("");
@@ -101,42 +94,69 @@ export default function LoginPage() {
     };
 
     return (
-        <div>
-            <h1>Inloggen</h1>
+        <div className="login">
+            <div className="login__card">
+                <div className="login__header">
+                    <h1 className="login__title">Inloggen</h1>
+                    <p className="login__subtitle">Gebruik je accountgegevens om door te gaan.</p>
+                </div>
 
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <br />
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+                <form className="login__form" onSubmit={handleSubmit}>
+                    <div className="login__field">
+                        <label className="login__label" htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            className="login__input"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            autoComplete="email"
+                            required
+                        />
+                    </div>
 
-                <br />
+                    <div className="login__field">
+                        <label className="login__label" htmlFor="password">Wachtwoord</label>
+                        <input
+                            id="password"
+                            className="login__input"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="current-password"
+                            required
+                        />
+                    </div>
 
-                <label>Wachtwoord</label>
-                <br />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
+                    <div className="login__captcha">
+                        <div ref={captchaRef} />
+                        {!captchaReady && (
+                            <p className="login__hint">Bevestig de beveiligingscheck om te kunnen inloggen.</p>
+                        )}
+                    </div>
 
-                <br />
-                <br />
+                    {error && (
+                        <div className="login__error" role="alert" aria-live="polite">
+                            {error}
+                        </div>
+                    )}
 
-                {/* Turnstile CAPTCHA */}
-                <div ref={captchaRef} style={{ marginBottom: "1rem" }} />
-
-                {error && <p style={{ color: "red" }}>{error}</p>}
-
-                <button type="submit" disabled={loading || !captchaReady}>
-                    {loading ? "Bezig met inloggen..." : "Inloggen"}
-                </button>
-            </form>
+                    <button
+                        className="login__button"
+                        type="submit"
+                        disabled={loading || !captchaReady}
+                    >
+                        {loading ? (
+                            <>
+                                <span className="login__spinner" aria-hidden="true" />
+                                Bezig met inloggen...
+                            </>
+                        ) : (
+                            "Inloggen"
+                        )}
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

@@ -3,6 +3,7 @@ import Dashboard from "@/pages/dashboard/Dashboard.jsx";
 import Profile from "@/pages/profile/ProfilePage.jsx";
 import { PRIVATE_PATHS } from "./routePaths.js";
 import AdminUsersPage from "@/features/admin/pages/AdminUsersPage.jsx";
+import AdminUserDetailPage from "@/features/admin/pages/AdminUserDetailPage.jsx";
 
 const privateRoutes = [
     {
@@ -26,6 +27,14 @@ const privateRoutes = [
         element: (
             <ProtectedRoute>
                 <AdminUsersPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/users/:id",
+        element: (
+            <ProtectedRoute>
+                <AdminUserDetailPage />
             </ProtectedRoute>
         ),
     }

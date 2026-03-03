@@ -54,9 +54,14 @@ api.interceptors.response.use(
             403 – Verboden (o.a. reCAPTCHA mislukking)
         ------------------------------------------------------------- */
         if (status === 403) {
+            const backendMsg =
+                error.response?.data?.message ||
+                error.response?.data?.error ||
+                (typeof error.response?.data === "string" ? error.response.data : null);
+
             return Promise.reject({
                 ...error,
-                message: "Beveiligingscontrole mislukt (403).",
+                message: backendMsg || "Geen toestemming (403).",
             });
         }
 

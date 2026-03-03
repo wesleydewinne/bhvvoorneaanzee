@@ -1,17 +1,41 @@
-import api from "@/api/api.js";
+import api from "@/api/api";
 
-const profileService = {
-
-    async getMyProfile() {
-        const response = await api.get("/users/me");
-        return response.data;
+const userService = {
+    getAll: async () => {
+        const res = await api.get("/users");
+        return res.data;
     },
 
-    async updateProfile(data) {
-        const response = await api.put("/users/me", data);
-        return response.data;
-    }
+    getRoles: async () => {
+        const res = await api.get("/users/roles/assignable");
+        return res.data; // ["ADMIN","TRAINING_MANAGER",...]
+    },
 
+    create: async (form) => {
+        const roleName = normalizeRole(form.role);
+
+        const payload = {
+            firstName: form.firstname,
+            lastName: form.lastname,
+            email: form.email,
+            password: form.password,
+            roleName: roleName,
+        };
+
+        console.log("POST /users payload:", payload);
+
+        const res = await api.post("/users", payload);
+        return res.data;
+    },
+
+    deactivate: async (id) => {
+        await api.delete(`/users/${id}`);
+    },
 };
 
-export default profileService;
+function normalizeRole(role) {
+    if (!role) return "";
+    return role.startsWith("ROLE_") ? role.replace("ROLE_", "") : role;
+}
+
+export default userService;
