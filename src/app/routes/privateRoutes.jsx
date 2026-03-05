@@ -5,6 +5,8 @@ import { PRIVATE_PATHS } from "./routePaths.js";
 import AdminUsersPage from "@/features/admin/pages/AdminUsersPage.jsx";
 import AdminUserDetailPage from "@/features/admin/pages/AdminUserDetailPage.jsx";
 import AdminEvaluationQrPage from "@/features/admin/pages/AdminEvaluationQrPage.jsx";
+import AdminEvaluationsOverviewPage from "@/features/admin/pages/AdminEvaluationsOverviewPage.jsx";
+import AdminEvaluationDetailPage from "@/features/admin/pages/AdminEvaluationDetailPage.jsx";
 
 const privateRoutes = [
     {
@@ -44,6 +46,22 @@ const privateRoutes = [
         element: (
             <ProtectedRoute>
                 <AdminEvaluationQrPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/evaluations",
+        element: (
+            <ProtectedRoute>
+                <AdminEvaluationsOverviewPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/evaluations/:trainingId",
+        element: (
+            <ProtectedRoute>
+                <AdminEvaluationDetailPage />
             </ProtectedRoute>
         ),
     },
