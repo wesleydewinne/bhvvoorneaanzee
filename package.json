@@ -29,6 +29,7 @@
     "react-head": "^3.4.2",
     "react-leaflet": "^5.0.0",
     "react-meta-elements": "^1.0.0",
+    "react-qr-code": "^2.0.18",
     "react-router-dom": "^7.6.2",
     "react-smoke": "^1.1.0",
     "sitemap": "^7.1.1",

@@ -4,6 +4,7 @@ import Profile from "@/pages/profile/ProfilePage.jsx";
 import { PRIVATE_PATHS } from "./routePaths.js";
 import AdminUsersPage from "@/features/admin/pages/AdminUsersPage.jsx";
 import AdminUserDetailPage from "@/features/admin/pages/AdminUserDetailPage.jsx";
+import AdminEvaluationQrPage from "@/features/admin/pages/AdminEvaluationQrPage.jsx";
 
 const privateRoutes = [
     {
@@ -37,7 +38,15 @@ const privateRoutes = [
                 <AdminUserDetailPage />
             </ProtectedRoute>
         ),
-    }
+    },
+    {
+        path: "/admin/evaluations/qr",
+        element: (
+            <ProtectedRoute>
+                <AdminEvaluationQrPage />
+            </ProtectedRoute>
+        ),
+    },
 ];
 
 export default privateRoutes;

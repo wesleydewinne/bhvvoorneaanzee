@@ -64,6 +64,8 @@ import Waterongevallen from "@/pages/workshops/soortenWorkshops/Waterongevallen.
 import KinderEhboHuiskamertraining from "@/pages/workshops/soortenWorkshops/KinderEhboHuiskamertraining.jsx";
 import BhvRitme from "@/pages/bhvPage/bhvPages/BhvRitme.jsx";
 
+import EvaluationPage from "@/features/evaluation/pages/EvaluationPage.jsx";
+
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
 
@@ -139,6 +141,8 @@ const publicRoutes = [
         ),
     },
     { path: "/inlog", element: <Navigate to="/inloggen" replace /> },
+
+    { path: "/evaluatie", element: <EvaluationPage /> },
 
     // Quiz publique toegang
     { path: "/quiz-access", element: <AccessPage /> },
