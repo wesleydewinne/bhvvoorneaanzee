@@ -1,0 +1,99 @@
+.admin-evaluation-qr-page {
+    width: 100%;
+    padding: var(--space-5) 0;
+}
+
+.admin-evaluation-qr-page__container {
+    width: 100%;
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    display: grid;
+    gap: var(--space-5);
+}
+
+.admin-evaluation-qr-page__header {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.admin-evaluation-qr-page__intro {
+    color: var(--color-text-muted);
+    max-width: 65ch;
+}
+
+.admin-evaluation-qr-page__message {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-evaluation-qr-page__message--error {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+.evaluation-qr-panel {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.evaluation-qr-panel__meta {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.evaluation-qr-panel__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+.evaluation-qr-panel__figure {
+    display: grid;
+    gap: var(--space-2);
+    justify-items: start;
+    padding: var(--space-4);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+}
+
+.evaluation-qr-panel__image {
+    width: 100%;
+    max-width: 28rem;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+
+.evaluation-qr-panel__link {
+    word-break: break-word;
+}
+
+.evaluation-qr-panel__token {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-full);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    font-size: var(--fs-2);
+}
+
+@media (min-width: 768px) {
+    .evaluation-qr-panel__layout {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: var(--space-5);
+        align-items: start;
+    }
+}

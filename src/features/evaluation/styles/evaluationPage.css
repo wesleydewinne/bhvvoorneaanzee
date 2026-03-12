@@ -1,0 +1,129 @@
+.evaluation-page {
+    width: 100%;
+    padding: var(--space-5) 0;
+}
+
+.evaluation-page__container {
+    width: 100%;
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    display: grid;
+    gap: var(--space-5);
+}
+
+.evaluation-page__header {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.evaluation-page__intro {
+    color: var(--color-text-muted);
+    max-width: 65ch;
+}
+
+.evaluation-page__message {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.evaluation-page__message--success {
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+
+.evaluation-page__message--error {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+.evaluation-context {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.evaluation-context__list {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.evaluation-context__item {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.evaluation-form-section {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.evaluation-form {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.evaluation-form fieldset {
+    display: grid;
+    gap: var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    background: var(--color-bg);
+}
+
+.evaluation-form legend {
+    padding: 0 var(--space-2);
+    font-weight: var(--fw-bold);
+    color: var(--color-heading);
+}
+
+.evaluation-form__group {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.evaluation-form__field {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.evaluation-form__hint {
+    font-size: var(--fs-2);
+    color: var(--color-text-muted);
+}
+
+.evaluation-form textarea {
+    min-height: 12rem;
+    resize: vertical;
+}
+
+.evaluation-form__actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.evaluation-form__submit {
+    min-width: 20rem;
+}
+
+@media (min-width: 768px) {
+    .evaluation-form__group--two-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

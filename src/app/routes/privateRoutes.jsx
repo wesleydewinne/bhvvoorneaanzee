@@ -1,12 +1,20 @@
 import ProtectedRoute from "@/features/auth/components/route/ProtectedRoute.jsx";
-import Dashboard from "@/pages/dashboard/Dashboard.jsx";
+import Dashboard from "@/features/dashboard/pages/Dashboard.jsx";
 import Profile from "@/pages/profile/ProfilePage.jsx";
 import { PRIVATE_PATHS } from "./routePaths.js";
+
 import AdminUsersPage from "@/features/admin/pages/AdminUsersPage.jsx";
 import AdminUserDetailPage from "@/features/admin/pages/AdminUserDetailPage.jsx";
-import AdminEvaluationQrPage from "@/features/admin/pages/AdminEvaluationQrPage.jsx";
-import AdminEvaluationsOverviewPage from "@/features/admin/pages/AdminEvaluationsOverviewPage.jsx";
-import AdminEvaluationDetailPage from "@/features/admin/pages/AdminEvaluationDetailPage.jsx";
+
+import AdminEvaluationQrPage from "@/features/evaluation/pages/AdminEvaluationQrPage.jsx";
+import AdminEvaluationResultsPage from "@/features/evaluation/pages/AdminEvaluationResultsPage.jsx";
+import AdminEvaluationDetailPage from "@/features/evaluation/pages/AdminEvaluationDetailPage.jsx";
+import AdminEvaluationGeneratePage from "@/features/evaluation/pages/AdminEvaluationGeneratePage.jsx";
+
+import AdminLocationsPage from "@/features/locations/pages/AdminLocationsPage.jsx";
+import LocationDetailPage from "@/features/locations/pages/LocationDetailPage.jsx";
+import CreateLocationPage from "@/features/locations/pages/CreateLocationPage.jsx";
+import EditLocationPage from "@/features/locations/pages/EditLocationPage.jsx";
 
 const privateRoutes = [
     {
@@ -25,6 +33,10 @@ const privateRoutes = [
             </ProtectedRoute>
         ),
     },
+
+    // =========================================================
+    // USERS
+    // =========================================================
     {
         path: "/admin/users",
         element: (
@@ -41,19 +53,67 @@ const privateRoutes = [
             </ProtectedRoute>
         ),
     },
+
+    // =========================================================
+    // LOCATIONS
+    // =========================================================
     {
-        path: "/admin/evaluations/qr",
+        path: "/admin/locations",
         element: (
             <ProtectedRoute>
-                <AdminEvaluationQrPage />
+                <AdminLocationsPage />
             </ProtectedRoute>
         ),
     },
     {
+        path: "/admin/locations/new",
+        element: (
+            <ProtectedRoute>
+                <CreateLocationPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/locations/:id",
+        element: (
+            <ProtectedRoute>
+                <LocationDetailPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/locations/:id/edit",
+        element: (
+            <ProtectedRoute>
+                <EditLocationPage />
+            </ProtectedRoute>
+        ),
+    },
+
+    // =========================================================
+    // EVALUATIONS
+    // =========================================================
+    {
         path: "/admin/evaluations",
         element: (
             <ProtectedRoute>
-                <AdminEvaluationsOverviewPage />
+                <AdminEvaluationResultsPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/evaluations/generate",
+        element: (
+            <ProtectedRoute>
+                <AdminEvaluationGeneratePage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/evaluations/:trainingId/qr",
+        element: (
+            <ProtectedRoute>
+                <AdminEvaluationQrPage />
             </ProtectedRoute>
         ),
     },

@@ -1,358 +1,424 @@
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import evaluationService from "@/features/evaluation/services/evaluationService";
+import { useEffect, useState } from "react";
+import evaluationService from "../services/evaluationService";
+import "../styles/evaluationPage.css";
 
-function groupBySection(questions = []) {
-    return questions.reduce((acc, question) => {
-        if (!acc[question.section]) {
-            acc[question.section] = [];
-        }
-        acc[question.section].push(question);
-        return acc;
-    }, {});
-}
-
-function ScoreSlider({ value, onChange }) {
-    const safeValue = value ?? 0;
-
-    return (
-        <div style={styles.sliderWrapper}>
-            <input
-                type="range"
-                min="0"
-                max="10"
-                step="0.5"
-                value={safeValue}
-                onChange={(e) => onChange(Number(e.target.value))}
-                style={styles.slider}
-            />
-            <span style={styles.scoreValue}>{safeValue.toFixed(1)}</span>
-        </div>
-    );
-}
+const initialForm = {
+    trainingValue: "",
+    practiceUse: "",
+    theoryPracticeBalance: "",
+    paceTiming: "",
+    metExpectations: "",
+    instructorClarity: "",
+    instructorGuidance: "",
+    instructorExpertise: "",
+    locationSuitability: "",
+    locationAccess: "",
+    recommend: "",
+    commentStrong: "",
+    commentImprove: "",
+    commentOther: "",
+    token: "",
+};
 
 export default function EvaluationPage() {
-    const [searchParams] = useSearchParams();
-    const token = searchParams.get("t");
-
-    const [loading, setLoading] = useState(true);
+    const [formData, setFormData] = useState(initialForm);
     const [context, setContext] = useState(null);
-    const [answers, setAnswers] = useState({});
-    const [comments, setComments] = useState({
-        commentStrong: "",
-        commentImprove: "",
-        commentOther: "",
-    });
-    const [error, setError] = useState("");
+    const [loadingContext, setLoadingContext] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-
-    const groupedQuestions = useMemo(
-        () => groupBySection(context?.questions || []),
-        [context]
-    );
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
-        const loadContext = async () => {
-            if (!token) {
-                setError("Geen geldige evaluatielink gevonden.");
-                setLoading(false);
-                return;
-            }
-
+        async function loadContext() {
             try {
-                const data = await evaluationService.getContext(token);
-                setContext(data);
+                setLoadingContext(true);
+                setErrorMessage("");
+
+                const searchParams = new URLSearchParams(window.location.search);
+                const token = searchParams.get("t") || "";
+
+                if (!token) {
+                    setErrorMessage("Geen geldig evaluatietoken gevonden.");
+                    return;
+                }
+
+                const contextData = await evaluationService.getContext(token);
+
+                setContext(contextData);
+                setFormData((prev) => ({
+                    ...prev,
+                    token,
+                }));
             } catch (err) {
-                setError(err?.message || "Evaluatie kon niet worden geladen.");
+                console.error(err);
+                setErrorMessage("Het laden van de evaluatiecontext is mislukt.");
             } finally {
-                setLoading(false);
+                setLoadingContext(false);
             }
-        };
-
-        loadContext();
-    }, [token]);
-
-    const updateAnswer = (key, value) => {
-        setAnswers((prev) => ({
-            ...prev,
-            [key]: value,
-        }));
-    };
-
-    const getMissingQuestions = () => {
-        const questions = context?.questions || [];
-        return questions.filter((q) => answers[q.key] === undefined || answers[q.key] === null);
-    };
-
-    const handleSubmit = async () => {
-        setError("");
-
-        const missingQuestions = getMissingQuestions();
-        if (missingQuestions.length > 0) {
-            setError(`Je hebt nog ${missingQuestions.length} vraag(en) niet ingevuld.`);
-            return;
         }
 
+        loadContext();
+    }, []);
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    }
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+
         try {
+            setSubmitting(true);
+            setErrorMessage("");
+            setSuccessMessage("");
+
             await evaluationService.submitEvaluation({
-                token,
-                answers,
-                comments,
+                ...formData,
+                trainingValue: Number(formData.trainingValue),
+                practiceUse: Number(formData.practiceUse),
+                theoryPracticeBalance: Number(formData.theoryPracticeBalance),
+                paceTiming: Number(formData.paceTiming),
+                metExpectations: Number(formData.metExpectations),
+                instructorClarity: Number(formData.instructorClarity),
+                instructorGuidance: Number(formData.instructorGuidance),
+                instructorExpertise: Number(formData.instructorExpertise),
+                locationSuitability: Number(formData.locationSuitability),
+                locationAccess: Number(formData.locationAccess),
+                recommend: Number(formData.recommend),
             });
 
             setSubmitted(true);
+            setSuccessMessage("Bedankt! Je evaluatie is succesvol verzonden.");
         } catch (err) {
-            setError(err?.message || "Versturen van de evaluatie is niet gelukt.");
+            console.error(err);
+            setErrorMessage("Het versturen van de evaluatie is mislukt.");
+        } finally {
+            setSubmitting(false);
         }
-    };
-
-    if (loading) {
-        return (
-            <div style={styles.page}>
-                <div style={styles.card}>Laden...</div>
-            </div>
-        );
-    }
-
-    if (error && !context) {
-        return (
-            <div style={styles.page}>
-                <div style={styles.card}>
-                    <h2>Oeps</h2>
-                    <p>{error}</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (!context) {
-        return (
-            <div style={styles.page}>
-                <div style={styles.card}>Geen evaluatie gevonden.</div>
-            </div>
-        );
-    }
-
-    if (submitted) {
-        return (
-            <div style={styles.page}>
-                <div style={styles.card}>
-                    <h2>Bedankt voor je evaluatie</h2>
-                    <p>Je feedback is succesvol verstuurd.</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (context.status === "INVALID") {
-        return (
-            <div style={styles.page}>
-                <div style={styles.card}>
-                    <h2>Ongeldige link</h2>
-                    <p>Deze evaluatielink is niet geldig.</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (context.status === "EXPIRED") {
-        return (
-            <div style={styles.page}>
-                <div style={styles.card}>
-                    <h2>Link verlopen</h2>
-                    <p>Deze evaluatielink is verlopen.</p>
-                </div>
-            </div>
-        );
     }
 
     return (
-        <div style={styles.page}>
-            <div style={styles.card}>
-                <h1 style={styles.pageTitle}>Evaluatie</h1>
-                <p style={styles.pageSubtitle}>{context.trainingTitle}</p>
+        <main className="evaluation-page">
+            <div className="evaluation-page__container">
+                <header className="evaluation-page__header">
+                    <h1>Training evalueren</h1>
+                    <p className="evaluation-page__intro">
+                        Vul hieronder jouw evaluatie van de training in.
+                    </p>
+                </header>
 
-                {Object.entries(groupedQuestions).map(([section, questions]) => (
-                    <section key={section} style={styles.section}>
-                        <div style={styles.sectionHeader}>{section}</div>
-                        <div style={styles.sectionBody}>
-                            {questions.map((question) => (
-                                <div key={question.key} style={styles.questionRow}>
-                                    <div style={styles.questionText}>{question.label}</div>
-                                    <ScoreSlider
-                                        value={answers[question.key]}
-                                        onChange={(value) => updateAnswer(question.key, value)}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                ))}
-
-                <section style={styles.section}>
-                    <div style={styles.sectionHeader}>Opmerkingen (optioneel)</div>
-                    <div style={styles.sectionBody}>
-                        <CommentField
-                            label="Wat was het sterkste onderdeel?"
-                            value={comments.commentStrong}
-                            onChange={(value) =>
-                                setComments((prev) => ({ ...prev, commentStrong: value }))
-                            }
-                        />
-
-                        <CommentField
-                            label="Wat zou je volgende keer anders willen zien?"
-                            value={comments.commentImprove}
-                            onChange={(value) =>
-                                setComments((prev) => ({ ...prev, commentImprove: value }))
-                            }
-                        />
-
-                        <CommentField
-                            label="Overige opmerkingen"
-                            value={comments.commentOther}
-                            onChange={(value) =>
-                                setComments((prev) => ({ ...prev, commentOther: value }))
-                            }
-                        />
+                {loadingContext && (
+                    <div className="evaluation-page__message">
+                        <p>Gegevens laden...</p>
                     </div>
-                </section>
+                )}
 
-                {error && <div style={styles.errorBox}>{error}</div>}
+                {errorMessage && (
+                    <div className="evaluation-page__message evaluation-page__message--error">
+                        <p>{errorMessage}</p>
+                    </div>
+                )}
 
-                <div style={styles.submitRow}>
-                    <button style={styles.submitButton} onClick={handleSubmit}>
-                        Versturen
-                    </button>
-                </div>
+                {successMessage && (
+                    <div className="evaluation-page__message evaluation-page__message--success">
+                        <p>{successMessage}</p>
+                    </div>
+                )}
+
+                {!loadingContext && !errorMessage && (
+                    <>
+                        <section
+                            className="evaluation-context"
+                            aria-labelledby="evaluation-context-title"
+                        >
+                            <h2 id="evaluation-context-title">Trainingsgegevens</h2>
+
+                            <div className="evaluation-context__list">
+                                <div className="evaluation-context__item">
+                                    <p>
+                                        <strong>Training:</strong> {context?.trainingTitle ?? "-"}
+                                    </p>
+                                </div>
+
+                                <div className="evaluation-context__item">
+                                    <p>
+                                        <strong>Locatie:</strong> {context?.locationName ?? "-"}
+                                    </p>
+                                </div>
+
+                                <div className="evaluation-context__item">
+                                    <p>
+                                        <strong>Datum:</strong> {context?.trainingDate ?? "-"}
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        {!submitted && (
+                            <section
+                                className="evaluation-form-section"
+                                aria-labelledby="evaluation-form-title"
+                            >
+                                <h2 id="evaluation-form-title">Evaluatieformulier</h2>
+
+                                <form className="evaluation-form" onSubmit={handleSubmit}>
+                                    <fieldset>
+                                        <legend>Training</legend>
+
+                                        <div className="evaluation-form__group evaluation-form__group--two-columns">
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="trainingValue">Waarde training</label>
+                                                <input
+                                                    id="trainingValue"
+                                                    name="trainingValue"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.trainingValue}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="practiceUse">Praktisch toepasbaar</label>
+                                                <input
+                                                    id="practiceUse"
+                                                    name="practiceUse"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.practiceUse}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="theoryPracticeBalance">
+                                                    Balans theorie / praktijk
+                                                </label>
+                                                <input
+                                                    id="theoryPracticeBalance"
+                                                    name="theoryPracticeBalance"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.theoryPracticeBalance}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="paceTiming">Tempo / timing</label>
+                                                <input
+                                                    id="paceTiming"
+                                                    name="paceTiming"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.paceTiming}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="metExpectations">
+                                                    Voldeed aan verwachting
+                                                </label>
+                                                <input
+                                                    id="metExpectations"
+                                                    name="metExpectations"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.metExpectations}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Instructeur</legend>
+
+                                        <div className="evaluation-form__group evaluation-form__group--two-columns">
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="instructorClarity">
+                                                    Duidelijkheid instructeur
+                                                </label>
+                                                <input
+                                                    id="instructorClarity"
+                                                    name="instructorClarity"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.instructorClarity}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="instructorGuidance">
+                                                    Begeleiding instructeur
+                                                </label>
+                                                <input
+                                                    id="instructorGuidance"
+                                                    name="instructorGuidance"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.instructorGuidance}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="instructorExpertise">
+                                                    Deskundigheid instructeur
+                                                </label>
+                                                <input
+                                                    id="instructorExpertise"
+                                                    name="instructorExpertise"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.instructorExpertise}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Locatie</legend>
+
+                                        <div className="evaluation-form__group evaluation-form__group--two-columns">
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="locationSuitability">
+                                                    Geschiktheid locatie
+                                                </label>
+                                                <input
+                                                    id="locationSuitability"
+                                                    name="locationSuitability"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.locationSuitability}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="locationAccess">
+                                                    Bereikbaarheid locatie
+                                                </label>
+                                                <input
+                                                    id="locationAccess"
+                                                    name="locationAccess"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.locationAccess}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Algemeen</legend>
+
+                                        <div className="evaluation-form__group">
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="recommend">
+                                                    Zou je deze training aanbevelen?
+                                                </label>
+                                                <input
+                                                    id="recommend"
+                                                    name="recommend"
+                                                    type="number"
+                                                    min="1"
+                                                    max="5"
+                                                    value={formData.recommend}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                                <p className="evaluation-form__hint">
+                                                    Geef een score van 1 tot en met 5.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>Opmerkingen</legend>
+
+                                        <div className="evaluation-form__group">
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="commentStrong">Wat vond je sterk?</label>
+                                                <textarea
+                                                    id="commentStrong"
+                                                    name="commentStrong"
+                                                    rows="4"
+                                                    value={formData.commentStrong}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="commentImprove">Wat kan beter?</label>
+                                                <textarea
+                                                    id="commentImprove"
+                                                    name="commentImprove"
+                                                    rows="4"
+                                                    value={formData.commentImprove}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+
+                                            <div className="evaluation-form__field">
+                                                <label htmlFor="commentOther">Overige opmerkingen</label>
+                                                <textarea
+                                                    id="commentOther"
+                                                    name="commentOther"
+                                                    rows="4"
+                                                    value={formData.commentOther}
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div className="evaluation-form__actions">
+                                        <button
+                                            className="evaluation-form__submit"
+                                            type="submit"
+                                            disabled={submitting}
+                                        >
+                                            {submitting ? "Bezig met verzenden..." : "Evaluatie versturen"}
+                                        </button>
+                                    </div>
+                                </form>
+                            </section>
+                        )}
+                    </>
+                )}
             </div>
-        </div>
+        </main>
     );
 }
-
-function CommentField({ label, value, onChange }) {
-    return (
-        <div style={styles.commentField}>
-            <label style={styles.commentLabel}>{label}</label>
-            <textarea
-                rows={4}
-                value={value}
-                onChange={(e) => onChange(e.target.value)}
-                maxLength={2000}
-                style={styles.textarea}
-                placeholder="Typ hier je antwoord..."
-            />
-            <div style={styles.counter}>{value.length}/2000</div>
-        </div>
-    );
-}
-
-const styles = {
-    page: {
-        minHeight: "100vh",
-        background: "#f3f4f6",
-        padding: "24px",
-        display: "flex",
-        justifyContent: "center",
-    },
-    card: {
-        width: "100%",
-        maxWidth: "1000px",
-        background: "#fff",
-        borderRadius: "16px",
-        border: "1px solid #e5e7eb",
-        padding: "24px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.04)",
-    },
-    pageTitle: {
-        marginTop: 0,
-        marginBottom: "8px",
-    },
-    pageSubtitle: {
-        marginTop: 0,
-        color: "#6b7280",
-        marginBottom: "24px",
-    },
-    section: {
-        marginTop: "18px",
-        borderRadius: "14px",
-        overflow: "hidden",
-        border: "1px solid #e5e7eb",
-    },
-    sectionHeader: {
-        background: "#dbeafe",
-        padding: "12px 16px",
-        fontWeight: 700,
-    },
-    sectionBody: {
-        padding: "16px",
-        background: "#f8fbff",
-    },
-    questionRow: {
-        display: "grid",
-        gridTemplateColumns: "1fr 340px",
-        gap: "16px",
-        padding: "12px 0",
-        alignItems: "center",
-        borderBottom: "1px solid #e5e7eb",
-    },
-    questionText: {
-        fontSize: "15px",
-        lineHeight: 1.5,
-    },
-    sliderWrapper: {
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-    },
-    slider: {
-        width: "240px",
-    },
-    scoreValue: {
-        minWidth: "44px",
-        fontWeight: 700,
-    },
-    commentField: {
-        marginBottom: "16px",
-    },
-    commentLabel: {
-        display: "block",
-        fontWeight: 600,
-        marginBottom: "8px",
-    },
-    textarea: {
-        width: "100%",
-        borderRadius: "10px",
-        border: "1px solid #d1d5db",
-        padding: "12px",
-        fontSize: "14px",
-        resize: "vertical",
-    },
-    counter: {
-        marginTop: "4px",
-        fontSize: "12px",
-        color: "#6b7280",
-    },
-    errorBox: {
-        marginTop: "16px",
-        background: "#fee2e2",
-        color: "#991b1b",
-        border: "1px solid #fecaca",
-        borderRadius: "10px",
-        padding: "12px",
-    },
-    submitRow: {
-        display: "flex",
-        justifyContent: "flex-end",
-        marginTop: "20px",
-    },
-    submitButton: {
-        padding: "12px 20px",
-        borderRadius: "10px",
-        border: "none",
-        background: "#2563eb",
-        color: "#fff",
-        fontWeight: 700,
-        cursor: "pointer",
-    },
-};
