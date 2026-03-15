@@ -137,7 +137,7 @@ function createOrganizationSchema() {
         contactPoint: {
             '@type': 'ContactPoint',
             telephone: '+31-641719800',
-            contactType: 'customer service',
+            contactType: 'customer services',
             areaServed: ['Nederland'],
             availableLanguage: ['Dutch']
         }
@@ -150,7 +150,7 @@ function createOrganizationSchema() {
 function createContactPointSchema() {
     return {
         '@type': 'ContactPoint',
-        contactType: 'customer service',
+        contactType: 'customer services',
         telephone: '+31-641719800',
         email: 'mailto:klantenservice@bhvvoorneaanzee.nl',
         availableLanguage: ['Dutch'],

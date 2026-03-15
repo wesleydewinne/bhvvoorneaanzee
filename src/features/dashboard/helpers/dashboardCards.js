@@ -14,7 +14,7 @@ export function getDashboardCards({ roles, user, navigate }) {
                     "Later uit te breiden met planning en status",
                 ],
                 actionLabel: "Open trainingen",
-                action: () => navigate("/admin/trainings"),
+                action: () => navigate("/admin/trainingen"),
             },
             {
                 key: "users",
@@ -50,7 +50,7 @@ export function getDashboardCards({ roles, user, navigate }) {
                     "Bekijk berichten van het contactformulier en handel ze af.",
                 meta: ["Nieuw / in behandeling / afgerond", "Later ook verwijderen"],
                 actionLabel: "Open contactberichten",
-                action: () => navigate("/admin/contact-messages"),
+                action: () => navigate("/admin/contact-berichten"),
             },
             {
                 key: "quotes",

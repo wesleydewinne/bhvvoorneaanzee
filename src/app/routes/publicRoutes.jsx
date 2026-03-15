@@ -55,7 +55,7 @@ import AccessPage from "@/pages/quiz/AccessPage.jsx";
 import OfferteAanvraag from "@/pages/OffertePage/OfferteAanvraag.jsx";
 import OverOns from "@/pages/overOns/OverOns.jsx";
 import Bedrijfsgegevens from "@/features/bedrijfsgegevens/Bedrijfsgegevens.jsx";
-import ContactOns from "@/pages/contact/ContactOns.jsx";
+import ContactOns from "@/features/contact/pages/ContactOns.jsx";
 import VeiligheidscheckBedankt from "@/pages/leadPage/VeiligheidscheckBedankt.jsx";
 import ModulaireTraining from "@/pages/modulair/ModulaireTraining.jsx";
 import ModulaireOverzicht from "@/pages/modulair/ModulaireOverzicht.jsx";
@@ -65,6 +65,8 @@ import KinderEhboHuiskamertraining from "@/pages/workshops/soortenWorkshops/Kind
 import BhvRitme from "@/pages/bhvPage/bhvPages/BhvRitme.jsx";
 
 import EvaluationPage from "@/features/evaluation/pages/EvaluationPage.jsx";
+
+import ContactBedanktPage from "@/features/contact/pages/ContactBedanktPage.jsx";
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -153,7 +155,8 @@ const publicRoutes = [
 
     { path: "/over-ons", element: <OverOns />},
     { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens />},
-    { path: "/contact", element: <ContactOns /> }
+    { path: "/contact", element: <ContactOns /> },
+    { path: "/contact/bedankt", element: <ContactBedanktPage /> }
 ];
 
 export default publicRoutes;

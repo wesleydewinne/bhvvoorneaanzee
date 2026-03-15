@@ -1,0 +1,288 @@
+/* src/features/contact/styles/Contact.css */
+
+.contact {
+    position: relative;
+    min-height: 100vh;
+    color: #1f2937;
+}
+
+.contact-background {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.contact-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
+
+.contact-hero {
+    padding: 4rem 1.5rem 2rem;
+    color: #ffffff;
+}
+
+.contact-hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contact-hero-inner h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.contact-hero-inner p {
+    max-width: 800px;
+    line-height: 1.7;
+}
+
+.contact-offerte-link {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.contact-content {
+    padding: 2rem 1.5rem 4rem;
+}
+
+.contact-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 2rem;
+}
+
+.contact-info,
+.contact-formulier,
+.contact-detail-card,
+.contact-admin-page {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 1.5rem;
+}
+
+.contact-info,
+.contact-formulier {
+    padding: 2rem;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 2rem;
+}
+
+.contact-gebied p {
+    line-height: 1.8;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-row label {
+    font-weight: 600;
+}
+
+.form-row input,
+.form-row textarea,
+.contact-search-bar input {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.85rem;
+    font: inherit;
+    background: #ffffff;
+}
+
+.char-counter {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-align: right;
+}
+
+.cta-button,
+.contact-page-link,
+.contact-secondary-button,
+.contact-status-actions button,
+.contact-table-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.2rem;
+    border-radius: 999px;
+    border: none;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.cta-button,
+.contact-page-link,
+.contact-table-link,
+.contact-status-actions button.is-active {
+    background: #0b4dbb;
+    color: #ffffff;
+}
+
+.contact-secondary-button,
+.contact-status-actions button {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.cta-button:disabled,
+.contact-status-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-success {
+    margin-top: 1rem;
+    color: #166534;
+    font-weight: 600;
+}
+
+.form-error {
+    margin-top: 1rem;
+    color: #b91c1c;
+    font-weight: 600;
+}
+
+.contact-admin-page {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.contact-admin-header,
+.contact-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-detail-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.contact-search-bar {
+    margin-bottom: 1.5rem;
+}
+
+.contact-table-wrapper {
+    overflow-x: auto;
+}
+
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.contact-table th,
+.contact-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+.contact-table th {
+    background: #f9fafb;
+    font-weight: 700;
+}
+
+.contact-status-badge {
+    display: inline-flex;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.contact-status-badge--ontvangen {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.contact-status-badge--in_behandeling {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.contact-status-badge--afgehandeld {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.contact-empty-state {
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 1rem;
+}
+
+.contact-detail-card {
+    padding: 2rem;
+}
+
+.contact-detail-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.contact-detail-message {
+    padding: 1rem 0;
+}
+
+.contact-detail-message p {
+    margin-top: 0.75rem;
+    white-space: pre-wrap;
+    line-height: 1.7;
+}
+
+.contact-detail-actions {
+    margin-top: 2rem;
+}
+
+.contact-status-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-admin-header,
+    .contact-detail-header {
+        flex-direction: column;
+    }
+
+    .contact-detail-row {
+        grid-template-columns: 1fr;
+    }
+}

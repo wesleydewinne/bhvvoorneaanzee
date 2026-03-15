@@ -1,10 +1,10 @@
 import ProtectedRoute from "@/features/auth/components/route/ProtectedRoute.jsx";
 import Dashboard from "@/features/dashboard/pages/Dashboard.jsx";
-import Profile from "@/pages/profile/ProfilePage.jsx";
+import ProfilePage from "@/features/profile/pages/ProfilePage.jsx";
 import { PRIVATE_PATHS } from "./routePaths.js";
 
-import AdminUsersPage from "@/features/admin/pages/AdminUsersPage.jsx";
-import AdminUserDetailPage from "@/features/admin/pages/AdminUserDetailPage.jsx";
+import UsersManagementPage from "@/features/user-management/pages/UsersManagementPage.jsx";
+import UserDetailPage from "@/features/user-management/pages/UserDetailPage.jsx";
 
 import AdminEvaluationQrPage from "@/features/evaluation/pages/AdminEvaluationQrPage.jsx";
 import AdminEvaluationResultsPage from "@/features/evaluation/pages/AdminEvaluationResultsPage.jsx";
@@ -16,9 +16,18 @@ import LocationDetailPage from "@/features/locations/pages/LocationDetailPage.js
 import CreateLocationPage from "@/features/locations/pages/CreateLocationPage.jsx";
 import EditLocationPage from "@/features/locations/pages/EditLocationPage.jsx";
 
+import AdminTrainingenPage from "@/features/trainingen/pages/AdminTrainingenPage.jsx";
+import CreateTrainingPage from "@/features/trainingen/pages/CreateTrainingPage.jsx";
+import EditTrainingPage from "@/features/trainingen/pages/EditTrainingPage.jsx";
+import TrainingDetailPage from "@/features/trainingen/pages/TrainingDetailPage.jsx";
+
+import AdminContactMessagesPage from "@/features/contact/pages/AdminContactMessagesPage.jsx";
+import ContactMessageDetailPage from "@/features/contact/pages/ContactMessageDetailPage.jsx";
+import ArchivedContactMessagesPage from "@/features/contact/pages/ArchivedContactMessagesPage.jsx";
+
 const privateRoutes = [
     {
-        path: PRIVATE_PATHS[0],
+        path: PRIVATE_PATHS.dashboard,
         element: (
             <ProtectedRoute>
                 <Dashboard />
@@ -26,10 +35,10 @@ const privateRoutes = [
         ),
     },
     {
-        path: PRIVATE_PATHS[1],
+        path: PRIVATE_PATHS.profile,
         element: (
             <ProtectedRoute>
-                <Profile />
+                <ProfilePage />
             </ProtectedRoute>
         ),
     },
@@ -41,7 +50,7 @@ const privateRoutes = [
         path: "/admin/users",
         element: (
             <ProtectedRoute>
-                <AdminUsersPage />
+                <UsersManagementPage />
             </ProtectedRoute>
         ),
     },
@@ -49,7 +58,7 @@ const privateRoutes = [
         path: "/admin/users/:id",
         element: (
             <ProtectedRoute>
-                <AdminUserDetailPage />
+                <UserDetailPage />
             </ProtectedRoute>
         ),
     },
@@ -122,6 +131,70 @@ const privateRoutes = [
         element: (
             <ProtectedRoute>
                 <AdminEvaluationDetailPage />
+            </ProtectedRoute>
+        ),
+    },
+
+    // =========================================================
+    // TRAININGEN
+    // =========================================================
+    {
+        path: "/admin/trainingen",
+        element: (
+            <ProtectedRoute>
+                <AdminTrainingenPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/trainingen/new",
+        element: (
+            <ProtectedRoute>
+                <CreateTrainingPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/trainingen/:id",
+        element: (
+            <ProtectedRoute>
+                <TrainingDetailPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/trainingen/:id/edit",
+        element: (
+            <ProtectedRoute>
+                <EditTrainingPage />
+            </ProtectedRoute>
+        ),
+    },
+
+    // =========================================================
+    // CONTACTBERICHTEN
+    // =========================================================
+    {
+        path: "/admin/contact-berichten",
+        element: (
+            <ProtectedRoute>
+                <AdminContactMessagesPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/contact-berichten/archief",
+        element: (
+            <ProtectedRoute>
+                <ArchivedContactMessagesPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/admin/contact-berichten/:id",
+        element: (
+            <ProtectedRoute>
+                <ContactMessageDetailPage />
             </ProtectedRoute>
         ),
     },

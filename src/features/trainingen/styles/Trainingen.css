@@ -1,0 +1,642 @@
+/* =========================================
+   PAGINA LAYOUT
+========================================= */
+.trainingen-page {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 2rem auto 3rem;
+}
+
+.trainingen-page__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.trainingen-page__header h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.05;
+    color: #0f172a;
+    font-weight: 800;
+}
+
+.trainingen-page__header p {
+    margin: 0;
+    font-size: 1.95rem;
+    color: #475467;
+    line-height: 1.5;
+}
+
+.trainingen-page__header-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+.trainingen-page__button,
+.training-form__actions button,
+.training-status-form__actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #f59e0b;
+    background: #f59e0b;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.18);
+}
+
+.trainingen-page__button:hover,
+.training-form__actions button:hover,
+.training-status-form__actions button:hover {
+    background: #d97706;
+    border-color: #d97706;
+    transform: translateY(-1px);
+}
+
+.trainingen-page__button--secondary {
+    background: #ffffff;
+    color: #0f172a;
+    border: 1px solid #d0d5dd;
+    box-shadow: none;
+}
+
+.trainingen-page__button--secondary:hover {
+    background: #f8fafc;
+    border-color: #98a2b3;
+}
+
+.trainingen-page__button--danger {
+    background: #fff7ed;
+    color: #c2410c;
+    border-color: #fdba74;
+    box-shadow: none;
+}
+
+.trainingen-page__button--danger:hover {
+    background: #ffedd5;
+    border-color: #fb923c;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+.training-form {
+    background: #ffffff;
+    border: 1px solid #eaecf0;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    padding: 1.5rem;
+}
+
+.training-form__error,
+.trainingen-page__error {
+    margin-bottom: 1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 12px;
+    border: 1px solid #fecdca;
+    background: #fef3f2;
+    color: #b42318;
+    font-size: 1.5rem;
+}
+
+/* =========================================
+   GRID
+========================================= */
+.training-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 1.25rem;
+}
+
+.training-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.training-form__field--checkbox {
+    grid-column: 1 / -1;
+    margin-top: 0.35rem;
+}
+
+.training-form__field--checkbox label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #344054;
+    cursor: pointer;
+}
+
+.training-form__field--checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-height: auto;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    accent-color: #f59e0b;
+    flex-shrink: 0;
+}
+
+.training-form__field--checkbox input[type="checkbox"]:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Velden die volle breedte mogen pakken */
+.training-form__field:has(textarea),
+.location-search-select,
+.training-form__actions {
+    grid-column: 1 / -1;
+}
+
+/* =========================================
+   LABELS
+========================================= */
+.training-form__field label,
+.training-status-form__field label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #344054;
+    line-height: 1.4;
+}
+
+/* =========================================
+   INPUTS / SELECTS
+========================================= */
+.training-form__field input,
+.training-form__field select,
+.training-form__field textarea,
+.training-status-form__field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.82rem 0.95rem;
+    border: 1px solid #d0d5dd;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #101828;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.training-form__field textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.training-form__field input::placeholder,
+.training-form__field textarea::placeholder {
+    color: #98a2b3;
+}
+
+.training-form__field input:focus,
+.training-form__field select:focus,
+.training-form__field textarea:focus,
+.training-status-form__field select:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);
+}
+
+.training-form__field input:disabled,
+.training-form__field select:disabled,
+.training-form__field textarea:disabled,
+.training-status-form__field select:disabled {
+    background: #f8fafc;
+    color: #98a2b3;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   HINTS / ERRORS
+========================================= */
+.training-form__hint {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 1.5rem;
+    color: #667085;
+    line-height: 1.4;
+}
+
+.training-form__field-error {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 1.5rem;
+    color: #b42318;
+    line-height: 1.4;
+}
+
+/* =========================================
+   FORM ACTIONS
+========================================= */
+.training-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   LOCATION SEARCH SELECT
+========================================= */
+.location-search-select {
+    position: relative;
+    width: 100%;
+}
+
+.location-search-select__input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.location-search-select__input-wrapper input {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.82rem 2.8rem 0.82rem 0.95rem;
+    border: 1px solid #d0d5dd;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #101828;
+    font-size: 1.5rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-search-select__input-wrapper input:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);
+}
+
+.location-search-select__input-wrapper input::placeholder {
+    color: #98a2b3;
+}
+
+.location-search-select__clear {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: #667085;
+    font-size: 1.63rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.location-search-select__clear:hover {
+    background: #f2f4f7;
+    color: #344054;
+}
+
+.location-search-select__dropdown {
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 0.35rem;
+    background: #ffffff;
+    border: 1px solid #eaecf0;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(16, 24, 40, 0.14);
+}
+
+.location-search-select__option {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.18rem;
+    padding: 0.85rem 0.9rem;
+    border: none;
+    border-radius: 10px;
+    background: #ffffff;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.18s ease;
+}
+
+.location-search-select__option:hover {
+    background: #fffaf0;
+}
+
+.location-search-select__option-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.location-search-select__option-meta {
+    font-size: 1.5rem;
+    color: #667085;
+    line-height: 1.4;
+}
+
+.location-search-select__empty {
+    padding: 1rem;
+    color: #667085;
+    font-size: 1.5rem;
+}
+
+/* =========================================
+   DETAIL CARD
+========================================= */
+.training-detail-card {
+    background: #ffffff;
+    border: 1px solid #eaecf0;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    padding: 1.5rem;
+}
+
+.training-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
+}
+
+.training-detail-grid > div {
+    padding: 1rem;
+    border: 1px solid #f2f4f7;
+    border-radius: 14px;
+    background: #fcfcfd;
+}
+
+.training-detail-grid strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.5rem;
+    color: #667085;
+}
+
+.training-detail-grid p {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #101828;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.training-detail-divider {
+    margin: 1.5rem 0;
+    border: none;
+    border-top: 1px solid #eaecf0;
+}
+
+.training-status-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.training-status-form__field {
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.training-status-form__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   TABLE
+========================================= */
+.trainingen-table-card {
+    background: #ffffff;
+    border: 1px solid #eaecf0;
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(16, 24, 40, 0.07);
+    overflow: hidden;
+}
+
+.trainingen-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.trainingen-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+}
+
+.trainingen-table thead th {
+    padding: 1rem 1.1rem;
+    text-align: left;
+    background: #f8fafc;
+    color: #344054;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px solid #eaecf0;
+}
+
+.trainingen-table tbody td {
+    padding: 1rem 1.1rem;
+    color: #101828;
+    border-bottom: 1px solid #f2f4f7;
+    vertical-align: middle;
+}
+
+.trainingen-table tbody tr:hover {
+    background: #fcfcfd;
+}
+
+.trainingen-table__actions-column,
+.trainingen-table__actions-cell {
+    text-align: right;
+}
+
+/* =========================================
+   STATUS BADGES
+========================================= */
+.training-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 0.28rem 0.72rem;
+    border-radius: 999px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.training-status-badge--planned {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.training-status-badge--in-progress {
+    background: #fffaeb;
+    color: #b54708;
+}
+
+.training-status-badge--completed {
+    background: #ecfdf3;
+    color: #027a48;
+}
+
+.training-status-badge--cancelled {
+    background: #fef3f2;
+    color: #b42318;
+}
+
+.training-status-badge--unknown {
+    background: #f2f4f7;
+    color: #475467;
+}
+
+/* =========================================
+   ACTION ICONS
+========================================= */
+.training-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.training-actions__icon-button {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #344054;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.training-actions__icon-button:hover {
+    background: #f8fafc;
+    border-color: #98a2b3;
+    color: #101828;
+}
+
+.training-actions__icon-button--edit:hover {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.training-actions__icon-button--archive:hover {
+    background: #fff7ed;
+    border-color: #fdba74;
+    color: #c2410c;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+.trainingen-empty-state {
+    padding: 2rem;
+    border: 1px dashed #d0d5dd;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #475467;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 900px) {
+    .training-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .training-detail-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .training-form__actions {
+        justify-content: stretch;
+    }
+
+    .training-form__actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .trainingen-page {
+        width: min(100%, calc(100% - 1rem));
+        margin: 1rem auto 2rem;
+    }
+
+    .trainingen-page__header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .trainingen-page__header-actions {
+        width: 100%;
+    }
+
+    .trainingen-page__button {
+        width: 100%;
+    }
+
+    .training-form,
+    .training-detail-card {
+        padding: 1rem;
+        border-radius: 16px;
+    }
+
+    .training-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .training-status-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .training-status-form__field,
+    .training-status-form__actions {
+        width: 100%;
+    }
+
+    .training-status-form__actions button {
+        width: 100%;
+    }
+}

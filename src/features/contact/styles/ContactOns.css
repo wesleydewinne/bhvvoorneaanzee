@@ -268,6 +268,124 @@
     font-weight: 600;
 }
 
+
+
+.contact-bedankt {
+    position: relative;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-bedankt-background {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.contact-bedankt-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -1;
+}
+
+.contact-bedankt-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem 4rem;
+}
+
+.contact-bedankt-card {
+    width: 100%;
+    max-width: 820px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 1.75rem;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
+
+.contact-bedankt-badge {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #15803d;
+    font-weight: 700;
+    font-size: 1.7rem;
+    line-height: 1;
+}
+
+.contact-bedankt-card h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    color: #0f172a;
+    line-height: 1.1;
+}
+
+.contact-bedankt-card p {
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 1.65rem;
+    color: #374151;
+}
+
+.contact-bedankt-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact-secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: #e5e7eb;
+    color: #111827;
+    transition: 0.2s ease;
+}
+
+.contact-secondary-button:hover,
+.cta-button:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .contact-bedankt-section {
+        padding: 2.5rem 1rem 3rem;
+    }
+
+    .contact-bedankt-card {
+        padding: 2rem 1.25rem;
+    }
+
+    .contact-bedankt-actions {
+        flex-direction: column;
+    }
+
+    .contact-bedankt-actions a {
+        width: 100%;
+    }
+
+    .contact-bedankt-badge {
+        font-size: 1.5rem;
+        padding: 0.65rem 1rem;
+    }
+}
+
 /* =================================================
    RESPONSIVE
 ================================================= */
