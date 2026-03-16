@@ -88,7 +88,7 @@
           "type": "fase0",
           "title": "Tabletop ontruimingsoefening",
           "description": "Scenario- en besluitvormingsoefening",
-          "slug": "/ontruiming-fase-0",
+          "slug": "/ontruimingsoefening-fase0",
           "cardImage": "ontruiming-tabletop.png",
           "cardAlt": "Tabletop ontruimingsoefening"
         },
@@ -96,7 +96,7 @@
           "type": "fase1",
           "title": "Kleine inzetoefeningen",
           "description": "Oefenen van deelhandelingen",
-          "slug": "/ontruiming-fase-1",
+          "slug": "/ontruimingsoefening-fase1",
           "cardImage": "ontruiming-fase1.png",
           "cardAlt": "Kleine inzetoefeningen BHV"
         },
@@ -104,7 +104,7 @@
           "type": "fase2",
           "title": "Aangekondigde ontruimingsoefening",
           "description": "Realistische oefening met voorbereiding",
-          "slug": "/ontruiming-fase-2",
+          "slug": "/ontruimingsoefening-fase2",
           "cardImage": "ontruiming-fase2.png",
           "cardAlt": "Aangekondigde ontruimingsoefening"
         },
@@ -112,7 +112,7 @@
           "type": "fase3",
           "title": "Onaangekondigde ontruimingsoefening",
           "description": "Realistische oefening zonder aankondiging",
-          "slug": "/ontruiming-fase-3",
+          "slug": "/ontruimingsoefening-fase3",
           "cardImage": "ontruiming-fase3.png",
           "cardAlt": "Onaangekondigde ontruimingsoefening"
         },
@@ -120,7 +120,7 @@
           "type": "fase4",
           "title": "Onaangekondigde ontruimingsoefening (gevorderd)",
           "description": "Complexe scenario’s en evaluatie",
-          "slug": "/ontruiming-fase-4",
+          "slug": "/ontruimingsoefening-fase4",
           "cardImage": "ontruiming-fase4.png",
           "cardAlt": "Gevorderde ontruimingsoefening"
         }
@@ -135,20 +135,36 @@
       "alt": "Foto van een EHBO-training",
       "trainings": [
         {
-          "type": "ehbo-basis",
-          "title": "Basis EHBO",
-          "description": "Eerste hulp bij ongevallen",
-          "slug": "/ehbo-basis",
+          "type": "ehbo-basis-3-daagse",
+          "title": "Basis EHBO (3-daagse)",
+          "description": "Volledige basisopleiding eerste hulp",
+          "slug": "/ehbo-basis-3-daagse",
           "cardImage": "ehbo-basis.png",
           "cardAlt": "Basiscursus EHBO"
         },
         {
-          "type": "ehbo-herhaling",
-          "title": "Herhaling EHBO",
-          "description": "Opfrissen van EHBO-vaardigheden",
-          "slug": "/ehbo-herhaling",
+          "type": "ehbo-basis-elearning",
+          "title": "Basis EHBO met E-learning",
+          "description": "Combinatie van e-learning en praktijkdagen",
+          "slug": "/ehbo-basis-2-daagse-met-elearning",
+          "cardImage": "ehbo-basis-elearning.png",
+          "cardAlt": "EHBO basis met e-learning"
+        },
+        {
+          "type": "ehbo-herhaling-hele-dag",
+          "title": "Herhaling EHBO hele dag",
+          "description": "Opfrissen van EHBO-vaardigheden in een hele dag",
+          "slug": "/ehbo-herhaling-hele-dag",
           "cardImage": "ehbo-herhaling.png",
-          "cardAlt": "Herhaling EHBO"
+          "cardAlt": "Herhaling EHBO hele dag"
+        },
+        {
+          "type": "ehbo-herhaling-halve-dag",
+          "title": "Herhaling EHBO halve dag",
+          "description": "Compacte herhaling van EHBO-vaardigheden",
+          "slug": "/ehbo-herhaling-halve-dag",
+          "cardImage": "ehbo-herhaling-halve-dag.png",
+          "cardAlt": "Herhaling EHBO halve dag"
         }
       ]
     },
