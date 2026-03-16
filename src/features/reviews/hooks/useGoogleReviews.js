@@ -1,79 +1,127 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const PLACE_ID = import.meta.env.VITE_GOOGLE_PLACE_ID;
-const BANNED = ['wijkeurenalles'];
+const BANNED = ["wijkeurenalles"];
 
-const normalize = (text = '') =>
-    text.toLowerCase().replace(/[^a-z0-9]/g, '');
+const normalize = (text = "") =>
+    text.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 const formatDateNL = (unixSeconds) =>
-    new Date(unixSeconds * 1000).toLocaleDateString('nl-NL', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
+    new Date(unixSeconds * 1000).toLocaleDateString("nl-NL", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
     });
 
 export function useGoogleReviews() {
-    const [status, setStatus] = useState('loading');
+    const [status, setStatus] = useState("loading");
     const [reviews, setReviews] = useState([]);
     const [rating, setRating] = useState(null);
     const [total, setTotal] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (
-            !PLACE_ID ||
-            !window.google ||
-            !window.google.maps?.places
-        ) {
-            setStatus('fallback');
-            return;
-        }
+        let isMounted = true;
 
-        const service = new window.google.maps.places.PlacesService(
-            document.createElement('div')
-        );
+        const fail = (message) => {
+            console.error("[Google Reviews]", message);
 
-        service.getDetails(
-            {
-                placeId: PLACE_ID,
-                fields: ['rating', 'user_ratings_total', 'reviews'],
-            },
-            (place, resultStatus) => {
-                if (resultStatus !== 'OK' || !place) {
-                    setStatus('fallback');
-                    return;
-                }
+            if (!isMounted) return;
 
-                setRating(place.rating ?? null);
-                setTotal(place.user_ratings_total ?? null);
+            setError(message);
+            setStatus("fallback");
+        };
 
-                const filtered = (place.reviews ?? []).filter((r) => {
-                    if (!r?.text) return false;
-                    if (r.text.length < 40) return false;
-                    if (r.rating < 4) return false;
+        const loadReviews = () => {
+            if (!PLACE_ID) {
+                fail("VITE_GOOGLE_PLACE_ID ontbreekt.");
+                return;
+            }
 
-                    const text = normalize(r.text);
-                    return !BANNED.some((b) => text.includes(b));
-                });
+            if (!window.google) {
+                fail("Google Maps script is niet geladen.");
+                return;
+            }
 
-                if (!filtered.length) {
-                    setStatus('fallback');
-                    return;
-                }
+            if (!window.google.maps) {
+                fail("window.google.maps is niet beschikbaar.");
+                return;
+            }
 
-                setReviews(
-                    filtered.map((r) => ({
-                        text: r.text,
-                        author: r.author_name || 'Google review',
-                        rating: r.rating,
-                        date: r.time ? formatDateNL(r.time) : '',
-                    }))
+            if (!window.google.maps.places) {
+                fail("Google Places library is niet geladen.");
+                return;
+            }
+
+            try {
+                const service = new window.google.maps.places.PlacesService(
+                    document.createElement("div")
                 );
 
-                setStatus('success');
+                service.getDetails(
+                    {
+                        placeId: PLACE_ID,
+                        fields: ["rating", "user_ratings_total", "reviews"],
+                    },
+                    (place, resultStatus) => {
+                        if (!isMounted) return;
+
+                        console.log("[Google Reviews] getDetails status:", resultStatus);
+                        console.log("[Google Reviews] place result:", place);
+
+                        if (resultStatus !== "OK" || !place) {
+                            fail(`Google Places gaf status terug: ${resultStatus}`);
+                            return;
+                        }
+
+                        setRating(place.rating ?? null);
+                        setTotal(place.user_ratings_total ?? null);
+
+                        const rawReviews = place.reviews ?? [];
+
+                        const filtered = rawReviews.filter((r) => {
+                            if (!r?.text) return false;
+                            if (r.text.length < 40) return false;
+                            if ((r.rating ?? 0) < 4) return false;
+
+                            const text = normalize(r.text);
+                            return !BANNED.some((b) => text.includes(b));
+                        });
+
+                        console.log("[Google Reviews] raw reviews:", rawReviews.length);
+                        console.log("[Google Reviews] filtered reviews:", filtered.length);
+
+                        if (!filtered.length) {
+                            fail("Er zijn geen reviews over na filtering.");
+                            return;
+                        }
+
+                        setReviews(
+                            filtered.map((r) => ({
+                                text: r.text,
+                                author: r.author_name || "Google review",
+                                rating: r.rating ?? 5,
+                                date: r.time ? formatDateNL(r.time) : "",
+                            }))
+                        );
+
+                        setError(null);
+                        setStatus("success");
+                    }
+                );
+            } catch (err) {
+                fail(`Onverwachte fout in PlacesService: ${err.message}`);
             }
-        );
+        };
+
+        // Kleine vertraging zodat extern script eerst kan laden
+        const timer = window.setTimeout(loadReviews, 300);
+
+        return () => {
+            isMounted = false;
+            window.clearTimeout(timer);
+        };
     }, []);
 
-    return { status, reviews, rating, total };
+    return { status, reviews, rating, total, error };
 }
