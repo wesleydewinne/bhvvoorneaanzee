@@ -33,8 +33,6 @@
   <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase2</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase3</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fase4</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- Ontruimingsverslag (public routes volgens je lijst) -->
   <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-fases</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-scenarios</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://bhvvoorneaanzee.nl/ontruimingsoefening-verslag</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
@@ -65,7 +63,6 @@
 
   <!-- Lead -->
   <url><loc>https://bhvvoorneaanzee.nl/veiligheidscheck</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://bhvvoorneaanzee.nl/veiligheidscheck-bedankt</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
   <!-- Overig -->
   <url><loc>https://bhvvoorneaanzee.nl/veelgestelde-vragen</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -73,8 +70,5 @@
   <url><loc>https://bhvvoorneaanzee.nl/over-ons</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://bhvvoorneaanzee.nl/bedrijfsgegevens</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url><loc>https://bhvvoorneaanzee.nl/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- Quiz public toegang -->
-  <url><loc>https://bhvvoorneaanzee.nl/quiz-access</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
 
 </urlset>
