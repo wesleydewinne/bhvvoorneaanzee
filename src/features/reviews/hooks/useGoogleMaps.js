@@ -1,61 +1,61 @@
 import { useEffect, useState } from "react";
 
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
 export function useGoogleMaps() {
     const [loaded, setLoaded] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!GOOGLE_MAPS_API_KEY) {
-            setError("VITE_GOOGLE_MAPS_API_KEY ontbreekt.");
-            return;
-        }
-
         if (window.google?.maps?.places) {
             setLoaded(true);
             return;
         }
 
         const existingScript = document.querySelector(
-            'script[data-google-maps="true"]'
+            'script[src*="maps.googleapis.com/maps/api/js"]'
         );
 
         if (existingScript) {
-            const handleLoad = () => setLoaded(true);
-            const handleError = () =>
-                setError("Google Maps script kon niet geladen worden.");
+            const checkGoogleLoaded = () => {
+                if (window.google?.maps?.places) {
+                    setLoaded(true);
+                } else {
+                    setError("Google Maps script geladen, maar Places library ontbreekt.");
+                }
+            };
 
-            existingScript.addEventListener("load", handleLoad);
-            existingScript.addEventListener("error", handleError);
+            existingScript.addEventListener("load", checkGoogleLoaded);
+            checkGoogleLoaded();
 
             return () => {
-                existingScript.removeEventListener("load", handleLoad);
-                existingScript.removeEventListener("error", handleError);
+                existingScript.removeEventListener("load", checkGoogleLoaded);
             };
         }
 
+        const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+        if (!apiKey) {
+            setError("VITE_GOOGLE_MAPS_API_KEY ontbreekt.");
+            return;
+        }
+
         const script = document.createElement("script");
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
         script.async = true;
         script.defer = true;
-        script.setAttribute("data-google-maps", "true");
 
         script.onload = () => {
             if (window.google?.maps?.places) {
                 setLoaded(true);
             } else {
-                setError("Google Places library is niet beschikbaar na laden.");
+                setError("Google Maps script geladen, maar Places library ontbreekt.");
             }
         };
 
         script.onerror = () => {
-            setError("Google Maps script kon niet geladen worden.");
+            setError("Google Maps script kon niet laden.");
         };
 
         document.head.appendChild(script);
-
-        return () => {};
     }, []);
 
     return { loaded, error };

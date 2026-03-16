@@ -24,17 +24,6 @@ export function useGoogleReviews() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (mapsError) {
-            console.error("[Google Reviews]", mapsError);
-            setError(mapsError);
-            setStatus("fallback");
-            return;
-        }
-
-        if (!loaded) {
-            return;
-        }
-
         let isMounted = true;
 
         const fail = (message) => {
@@ -46,14 +35,31 @@ export function useGoogleReviews() {
             setStatus("fallback");
         };
 
+        if (mapsError) {
+            fail(mapsError);
+            return () => {
+                isMounted = false;
+            };
+        }
+
+        if (!loaded) {
+            return () => {
+                isMounted = false;
+            };
+        }
+
         if (!PLACE_ID) {
             fail("VITE_GOOGLE_PLACE_ID ontbreekt.");
-            return;
+            return () => {
+                isMounted = false;
+            };
         }
 
         if (!window.google?.maps?.places) {
             fail("Google Places library is niet geladen.");
-            return;
+            return () => {
+                isMounted = false;
+            };
         }
 
         try {
