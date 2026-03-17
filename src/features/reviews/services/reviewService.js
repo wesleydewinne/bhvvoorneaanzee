@@ -10,6 +10,11 @@ const reviewService = {
         const response = await api.get("/public/reviews/schema");
         return response.data;
     },
+
+    async refreshReviews() {
+        const response = await api.post("/admin/reviews/refresh");
+        return response.data;
+    },
 };
 
 export default reviewService;

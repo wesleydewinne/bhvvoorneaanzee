@@ -25,6 +25,8 @@ import AdminContactMessagesPage from "@/features/contact/pages/AdminContactMessa
 import ContactMessageDetailPage from "@/features/contact/pages/ContactMessageDetailPage.jsx";
 import ArchivedContactMessagesPage from "@/features/contact/pages/ArchivedContactMessagesPage.jsx";
 
+import AdminReviewsPage from "@/features/reviews/pages/AdminReviewsPage.jsx";
+
 const privateRoutes = [
     {
         path: PRIVATE_PATHS.dashboard,
@@ -195,6 +197,18 @@ const privateRoutes = [
         element: (
             <ProtectedRoute>
                 <ContactMessageDetailPage />
+            </ProtectedRoute>
+        ),
+    },
+
+    // =========================================================
+    // REVIEWS
+    // =========================================================
+    {
+        path: "/admin/reviews",
+        element: (
+            <ProtectedRoute>
+                <AdminReviewsPage />
             </ProtectedRoute>
         ),
     },

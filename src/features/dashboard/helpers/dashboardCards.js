@@ -44,6 +44,15 @@ export function getDashboardCards({ roles, user, navigate }) {
                 action: () => navigate("/admin/evaluations"),
             },
             {
+                key: "reviews",
+                title: "Reviews",
+                description:
+                    "Beheer Google reviews, ververs de gegevens en controleer later zichtbaarheid en moderatie.",
+                meta: ["Google reviews verversen", "Later moderatie en zichtbaarheid"],
+                actionLabel: "Open reviews",
+                action: () => navigate("/admin/reviews"),
+            },
+            {
                 key: "contact",
                 title: "Contact",
                 description:
