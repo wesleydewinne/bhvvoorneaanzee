@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import ReviewCard from './ReviewCard.jsx';
+import { useEffect, useState } from "react";
+import ReviewCard from "./ReviewCard.jsx";
 
-const OFFSETS = [-2, -1, 0, 1, 2];
 const INTERVAL = 8000;
 
 export default function ReviewCarousel({ status, reviews }) {
     const [active, setActive] = useState(0);
 
     useEffect(() => {
-        if (status !== 'success' || reviews.length === 0) return;
+        if (status !== "success" || reviews.length <= 1) return;
 
         const timer = setInterval(() => {
             setActive((v) => (v + 1) % reviews.length);
@@ -17,23 +16,30 @@ export default function ReviewCarousel({ status, reviews }) {
         return () => clearInterval(timer);
     }, [status, reviews.length]);
 
-    if (status === 'loading') {
+    if (status === "loading") {
         return <div className="review-loading">Reviews laden…</div>;
     }
 
-    if (status !== 'success') {
-        return (
-            <div className="review-fallback">
-                Reviews zijn momenteel niet beschikbaar.
-            </div>
-        );
+    // 👇 GEEN fallback meer hier
+    if (status !== "success" || reviews.length === 0) {
+        return null;
     }
+
+    const offsets =
+        reviews.length >= 5
+            ? [-2, -1, 0, 1, 2]
+            : reviews.length === 4
+                ? [-1, 0, 1, 2]
+                : reviews.length === 3
+                    ? [-1, 0, 1]
+                    : reviews.length === 2
+                        ? [0, 1]
+                        : [0];
 
     return (
         <div className="reviews-track">
-            {OFFSETS.map((offset) => {
-                const index =
-                    (active + offset + reviews.length) % reviews.length;
+            {offsets.map((offset) => {
+                const index = (active + offset + reviews.length) % reviews.length;
 
                 return (
                     <ReviewCard
