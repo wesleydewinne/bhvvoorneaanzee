@@ -68,7 +68,7 @@ export function getDashboardCards({ roles, user, navigate }) {
                     "Bekijk offerteaanvragen en werk ze bij via een duidelijke status.",
                 meta: ["Nieuw / in behandeling / afgerond", "Later ook afwijzen"],
                 actionLabel: "Open offerteaanvragen",
-                action: () => navigate("/admin/quote-requests"),
+                action: () => navigate("/admin/offertes"),
             },
             {
                 key: "profile",

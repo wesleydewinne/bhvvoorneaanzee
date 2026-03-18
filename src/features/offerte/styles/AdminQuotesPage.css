@@ -1,0 +1,133 @@
+.admin-quotes-page {
+    padding: var(--space-7);
+}
+
+.admin-quotes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.admin-quotes-header h1 {
+    margin: 0 0 0.6rem;
+}
+
+.admin-quotes-header p {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+.quote-page-refresh-btn {
+    border: 1px solid var(--color-border);
+    background: #fff;
+    padding: 1rem 1.4rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.quote-filter-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.quote-filter-tab {
+    border: 1px solid var(--color-border);
+    background: #fff;
+    padding: 1rem 1.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.quote-filter-tab.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+}
+
+.quote-feedback {
+    margin-bottom: var(--space-5);
+    padding: 1.2rem 1.4rem;
+    border-radius: var(--radius-md);
+    background: #f8fafc;
+}
+
+.quote-feedback-error {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.quote-feedback-success {
+    background: #ecfdf5;
+    color: #166534;
+}
+
+.quote-empty-state {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+.quote-table-wrapper {
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.quote-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.quote-table th,
+.quote-table td {
+    padding: 1.4rem;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+    text-align: left;
+}
+
+.quote-table thead th {
+    background: #f8fafc;
+    font-weight: 700;
+}
+
+.quote-address-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.quote-action-link {
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+.quote-status-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.6rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    white-space: nowrap;
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.quote-status-requested { background: #dbeafe; color: #1d4ed8; }
+.quote-status-in_progress { background: #fef3c7; color: #92400e; }
+.quote-status-waiting_for_customer { background: #ede9fe; color: #6d28d9; }
+.quote-status-ready_to_send { background: #cffafe; color: #155e75; }
+.quote-status-sent { background: #e0f2fe; color: #0369a1; }
+.quote-status-accepted { background: #dcfce7; color: #166534; }
+.quote-status-rejected { background: #fee2e2; color: #991b1b; }
+.quote-status-expired { background: #f3f4f6; color: #4b5563; }
+.quote-status-archived { background: #e5e7eb; color: #374151; }

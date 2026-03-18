@@ -52,7 +52,7 @@ import WestlandPage from "@/pages/regios/WestlandPage.jsx";
 import Login from "@/features/auth/pages/LoginPage.jsx";
 import { Navigate } from "react-router-dom";
 import AccessPage from "@/pages/quiz/AccessPage.jsx";
-import OfferteAanvraag from "@/pages/OffertePage/OfferteAanvraag.jsx";
+import OfferteAanvraag from "@/features/offerte/pages/OfferteAanvraagPage.jsx";
 import OverOns from "@/pages/overOns/OverOns.jsx";
 import Bedrijfsgegevens from "@/features/bedrijfsgegevens/Bedrijfsgegevens.jsx";
 import ContactOns from "@/features/contact/pages/ContactOns.jsx";

@@ -1,23 +1,12 @@
-/* ============================================================
-   OFFERTES — OVERRIDE-PROOF CSS (GRID FIX)
-   JSX ONGEWIJZIGD
-============================================================ */
-
-
-/* ============================================================
-   CONTAINER
-============================================================ */
-
 .container-narrow {
     max-width: 1100px;
     margin: 0 auto;
     padding: var(--space-8) var(--space-4);
 }
 
-
-/* ============================================================
-   BLOKKEN
-============================================================ */
+.offerte-form {
+    width: 100%;
+}
 
 .offerte-block {
     width: 100%;
@@ -29,11 +18,6 @@
     margin-bottom: var(--space-9);
 }
 
-
-/* ============================================================
-   TITELS
-============================================================ */
-
 .offerte-title {
     text-align: center;
     font-size: var(--fluid-h3);
@@ -43,51 +27,29 @@
     border-bottom: 4px solid var(--color-primary);
 }
 
-
-/* ============================================================
-   GRID SYSTEM — SCOPED + MOBILE FIRST (BELANGRIJK)
-   We scopen expres naar .container-narrow zodat globale .grid
-   classes elders deze layout niet kunnen saboteren.
-============================================================ */
-
-/* Baseline: mobiel = 1 kolom (MOBILE FIRST) */
 .container-narrow .grid {
     display: grid;
-    grid-template-columns: 1fr !important; /* wint van globale overrides */
+    grid-template-columns: 1fr !important;
     gap: var(--space-5);
-}
-
-/* Jouw utilities blijven bestaan (JSX gebruikt ze) */
-.container-narrow .grid-2 {
-    /* semantisch */
 }
 
 .container-narrow .gap-4 {
     gap: var(--space-5);
 }
 
-/* col-span werkt alleen als er >= 2 kolommen zijn */
 .container-narrow .col-span-2 {
-    grid-column: span 1; /* mobiel: span 1 */
+    grid-column: span 1;
 }
 
-
-/* Desktop / groot scherm = 2 kolommen */
 @media (min-width: 901px) {
-
     .container-narrow .grid.grid-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important; /* wint van globale overrides */
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 
     .container-narrow .col-span-2 {
         grid-column: span 2;
     }
 }
-
-
-/* ============================================================
-   INPUTS & SELECTS (GRID-SAFE)
-============================================================ */
 
 .input-group {
     display: flex;
@@ -103,7 +65,8 @@
 }
 
 .input-group input,
-.input-group select {
+.input-group select,
+.input-group textarea {
     min-width: 0;
     padding: 1.4rem 1.6rem;
     font-size: var(--fs-3);
@@ -114,27 +77,18 @@
 }
 
 .input-group input:focus,
-.input-group select:focus {
+.input-group select:focus,
+.input-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: var(--focus-ring);
 }
-
-
-/* ============================================================
-   ERROR STATES
-============================================================ */
 
 .error-text {
     color: var(--color-danger);
     font-size: var(--fs-2);
     margin-top: 0.4rem;
 }
-
-
-/* ============================================================
-   TRAINING BLOKKEN
-============================================================ */
 
 .offerte-training-block {
     width: 100%;
@@ -166,7 +120,6 @@
     width: 100%;
 }
 
-/* Desktop training row: 2 kolommen */
 @media (min-width: 901px) {
     .offerte-training-row {
         grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
@@ -203,10 +156,44 @@
     text-decoration: underline;
 }
 
+.offerte-info-text {
+    line-height: 1.7;
+    color: var(--color-text-muted);
+}
 
-/* ============================================================
-   BUTTONS
-============================================================ */
+.offerte-submit-block {
+    text-align: center;
+}
+
+.offerte-submit-text {
+    margin-bottom: var(--space-5);
+}
+
+.offerte-turnstile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+.offerte-turnstile-hint {
+    color: var(--color-text-muted);
+    font-size: var(--fs-2);
+}
+
+.offerte-submit-error {
+    margin-bottom: var(--space-4);
+}
+
+.offerte-submit-button {
+    margin-top: var(--space-2);
+}
+
+.offerte-submit-validation-message {
+    margin-top: var(--space-4);
+    text-align: center;
+}
 
 .btn-primary {
     width: 100%;
@@ -227,6 +214,13 @@
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
+.btn-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
 .btn-secondary {
     margin-top: var(--space-4);
     background: linear-gradient(135deg, #16a34a, #15803d);
@@ -242,4 +236,8 @@
 
 .btn-secondary:hover {
     background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.offerte-honeypot {
+    display: none !important;
 }
