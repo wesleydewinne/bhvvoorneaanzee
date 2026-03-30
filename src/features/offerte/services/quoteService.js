@@ -1,37 +1,25 @@
 import api from "@/api/api";
 
 const quoteService = {
-    getTrainingTypes() {
-        return api.get("/training-types/offer");
-    },
+    getTrainingTypes: () => api.get("/training-types/offer"),
 
-    createQuote(payload) {
-        return api.post("/quotes", payload);
-    },
+    createQuote: (payload) => api.post("/quotes", payload),
 
-    getAllQuotes() {
-        return api.get("/quotes");
-    },
+    getAllQuotes: () => api.get("/quotes"),
 
-    getOpenQuotes() {
-        return api.get("/quotes/open");
-    },
+    getOpenQuotes: () => api.get("/quotes/open"),
 
-    getArchivedQuotes() {
-        return api.get("/quotes/archived");
-    },
+    getArchivedQuotes: () => api.get("/quotes/archived"),
 
-    getQuoteById(id) {
-        return api.get(`/quotes/${id}`);
-    },
+    getQuoteById: (id) => api.get(`/quotes/${id}`),
 
-    updateQuote(id, payload) {
-        return api.put(`/quotes/${id}`, payload);
-    },
+    updateQuote: (id, payload) => api.put(`/quotes/${id}`, payload),
 
-    archiveQuote(id) {
-        return api.patch(`/quotes/${id}/archive`);
-    }
+    patchQuote: (id, payload) => api.patch(`/quotes/${id}`, payload),
+
+    archiveQuote: (id) => api.patch(`/quotes/${id}/archive`),
+
+    getDiscountCodes: () => api.get("/quotes/discount-codes"),
 };
 
 export default quoteService;

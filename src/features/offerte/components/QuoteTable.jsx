@@ -17,6 +17,8 @@ export default function QuoteTable({ quotes }) {
                     <th>ID</th>
                     <th>Offertenummer</th>
                     <th>Datum aanvraag</th>
+                    <th>Bedrijf</th>
+                    <th>Type</th>
                     <th>Adres</th>
                     <th>Status</th>
                     <th>Actie</th>

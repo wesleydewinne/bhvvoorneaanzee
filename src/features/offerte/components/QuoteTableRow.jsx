@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import QuoteStatusBadge from "./QuoteStatusBadge.jsx";
 import QuoteAddressBlock from "./QuoteAddressBlock.jsx";
-import { formatDateTime } from "../helpers/quoteFormatters.js";
+import { formatDateTime, formatMode } from "../helpers/quoteFormatters.js";
 
 export default function QuoteTableRow({ quote }) {
     return (
         <tr>
             <td>{quote.id}</td>
-            <td>{quote.quoteNumber}</td>
+            <td>{quote.quoteNumber || "-"}</td>
             <td>{formatDateTime(quote.createdAt)}</td>
+            <td>{quote.company || "-"}</td>
+            <td>{formatMode(quote.mode)}</td>
             <td>
                 <QuoteAddressBlock
                     street={quote.street}

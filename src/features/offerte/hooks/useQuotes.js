@@ -22,10 +22,38 @@ export default function useQuotes(initialFilter = "open") {
                 response = await quoteService.getOpenQuotes();
             }
 
-            setQuotes(response.data ?? []);
+            console.log("[useQuotes] activeFilter:", activeFilter);
+            console.log("[useQuotes] raw response:", response);
+            console.log("[useQuotes] response.data:", response?.data);
+
+            const data = response?.data;
+
+            // 🔥 FIX: werkt met array én pageable response
+            let normalizedQuotes = [];
+
+            if (Array.isArray(data)) {
+                normalizedQuotes = data;
+            } else if (Array.isArray(data?.content)) {
+                normalizedQuotes = data.content;
+            } else if (Array.isArray(data?.data)) {
+                normalizedQuotes = data.data;
+            } else {
+                normalizedQuotes = [];
+            }
+
+            console.log("[useQuotes] normalizedQuotes:", normalizedQuotes);
+
+            setQuotes(normalizedQuotes);
+
         } catch (err) {
-            console.error("Offertes laden mislukt:", err);
-            setError("Het laden van de offertes is mislukt.");
+            console.error("❌ Offertes laden mislukt:", err);
+            console.error("[useQuotes] status:", err?.response?.status);
+            console.error("[useQuotes] data:", err?.response?.data);
+
+            setError(
+                err?.response?.data?.message ||
+                "Het laden van de offertes is mislukt."
+            );
         } finally {
             setLoading(false);
         }

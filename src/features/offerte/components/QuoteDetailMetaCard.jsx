@@ -6,7 +6,14 @@ import {
 } from "../helpers/quoteFormatters.js";
 import { quoteStatusOptions } from "../helpers/quoteStatusLabels.js";
 
-export default function QuoteDetailMetaCard({ quote, formState, onFieldChange }) {
+export default function QuoteDetailMetaCard({
+                                                quote,
+                                                formState,
+                                                onFieldChange,
+                                                onSaveStatus,
+                                                patchSaving,
+                                                statusChanged
+                                            }) {
     return (
         <section className="quote-detail-card">
             <h2>Offertegegevens</h2>
@@ -49,7 +56,10 @@ export default function QuoteDetailMetaCard({ quote, formState, onFieldChange })
                     <select
                         id="status"
                         value={formState.status}
-                        onChange={(e) => onFieldChange("status", e.target.value)}
+                        onChange={(e) => {
+                            console.log("[QuoteDetailMetaCard] gekozen status", e.target.value);
+                            onFieldChange("status", e.target.value)
+                        }}
                     >
                         {quoteStatusOptions.map((option) => (
                             <option key={option.value} value={option.value}>
@@ -57,6 +67,17 @@ export default function QuoteDetailMetaCard({ quote, formState, onFieldChange })
                             </option>
                         ))}
                     </select>
+
+                    <div style={{ marginTop: "1rem" }}>
+                        <button
+                            type="button"
+                            className="quote-inline-save-btn"
+                            onClick={onSaveStatus}
+                            disabled={patchSaving || !statusChanged}
+                        >
+                            {patchSaving ? "Status opslaan..." : "Status opslaan"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
