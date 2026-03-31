@@ -45,6 +45,18 @@ const BlogBlock = ({ block }) => {
                 ></iframe>
             );
 
+        case "link":
+            return (
+                <a
+                    className={blockClass}
+                    href={block.href}
+                    target={block.href?.startsWith("http") ? "_blank" : "_self"}
+                    rel={block.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                >
+                    {block.text}
+                </a>
+            );
+
         case "separator":
             return <hr className={blockClass} />;
 

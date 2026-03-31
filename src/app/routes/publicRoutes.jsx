@@ -127,7 +127,7 @@ const publicRoutes = [
 
     // Blog
     { path: "/blog", element: <BlogPage /> },
-    { path: "/blog-:slug", element: <BlogDetail /> },
+    { path: "/blog/:slug", element: <BlogDetail /> },
 
     // LeadPage
     { path: "/veiligheidscheck", element: <Veiligheidscheck />},

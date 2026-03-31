@@ -3,10 +3,85 @@ import blogArbeidsOngevallen from "@/assets/image/blog/arbeidsongevallen/Blog_ar
 import header112Img from "@/assets/image/blog/112app/Blog_112_Header.webp";
 import poster112Img from "@/assets/image/blog/112app/Blog_112_Poster.webp";
 import headerBurgerhulpImg from "@/assets/image/blog/burgerhulpverlener/headerBurgerhulpImg.webp";
-
+import weekVanDeTeek from "@/assets/image/blog/weekVanDeTeek/Deweekvandeteek.webp";
 
 
 export const posts = [
+
+    {
+        slug: "week-van-de-teek-controleer-op-tijd",
+        title: "Week van de Teek: controleren voorkomt problemen",
+        date: "30 maart 2026",
+        author: "Wesley",
+        image: weekVanDeTeek,
+        content: [
+            {
+                id: "intro1",
+                type: "paragraph",
+                text: "Het is deze week de Week van de Teek. Een goed moment om extra stil te staan bij tekenbeten en het voorkomen van klachten. Teken komen niet alleen voor in bossen en duinen, maar ook in parken, tuinen, bermen en hoog gras. Juist daarom is het verstandig om jezelf, kinderen en huisdieren te controleren nadat je in het groen bent geweest."
+            },
+
+            { id: "heading1", type: "heading", level: 2, text: "Waarom een tekencheck belangrijk is" },
+            {
+                id: "text1",
+                type: "paragraph",
+                text: "Een teek is klein en wordt daardoor makkelijk gemist. Toch kan een tekenbeet gevolgen hebben voor je gezondheid. Hoe sneller je een teek ontdekt en verwijdert, hoe kleiner de kans op problemen. Even controleren kost maar een paar minuten en kan veel ellende voorkomen."
+            },
+
+            { id: "heading2", type: "heading", level: 2, text: "Waar moet je op letten?" },
+            {
+                id: "list1",
+                type: "list",
+                items: [
+                    "Controleer jezelf na een bezoek aan bos, park, tuin, duinen of hoog gras.",
+                    "Let extra op knieholtes, liezen, oksels, achter de oren, bij de haargrens en rond de taille.",
+                    "Controleer ook kinderen en huisdieren als zij buiten zijn geweest.",
+                    "Zie je een teek? Verwijder deze dan zo snel mogelijk."
+                ]
+            },
+
+            { id: "heading3", type: "heading", level: 2, text: "Hoe verwijder je een teek?" },
+            {
+                id: "text2",
+                type: "paragraph",
+                text: "Gebruik een puntig pincet of een speciale tekenverwijderaar. Pak de teek zo dicht mogelijk op de huid vast en trek hem rustig eruit. Gebruik vooraf geen olie, alcohol, zeep of andere middelen. Maak daarna het plekje schoon en noteer de datum van de beet."
+            },
+
+            { id: "heading4", type: "heading", level: 2, text: "Wanneer neem je contact op met de huisarts?" },
+            {
+                id: "text3",
+                type: "paragraph",
+                text: "Houd de plek van de beet daarna goed in de gaten. Ontstaat er na enkele dagen of weken een rode vlek of ring, of krijg je griepachtige klachten zoals koorts, spierpijn, hoofdpijn of gewrichtspijn? Neem dan contact op met de huisarts en vertel dat je een tekenbeet hebt gehad."
+            },
+
+            { id: "heading5", type: "heading", level: 2, text: "Meer weten?" },
+            {
+                id: "text4",
+                type: "paragraph",
+                text: "Wil je meer lezen over teken, veilig verwijderen en wanneer je medische hulp moet inschakelen? Bekijk dan de duidelijke uitleg van GGD Leefomgeving. Daar vind je ook extra informatie en doorverwijzingen naar betrouwbare bronnen."
+            },
+
+            {
+                id: "link1",
+                type: "link",
+                text: "Lees meer op GGD Leefomgeving over teken",
+                href: "https://ggdleefomgeving.nl/ongedierte-en-schadelijke-planten/teken/"
+            },
+
+            {
+                id: "link2",
+                type: "link",
+                text: "Bekijk ook Tekenradar voor extra informatie en een tekencheck",
+                href: "https://www.tekenradar.nl/"
+            },
+
+            {
+                id: "quote1",
+                type: "blockquote",
+                text: "Een tekencheck duurt maar even, maar kan veel problemen voorkomen."
+            }
+        ]
+    },
 
     {
         slug: "tekort-burgerhulpverleners-lokaal",
