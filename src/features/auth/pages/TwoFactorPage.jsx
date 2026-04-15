@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
+import "./TwoFactorPage.css";
 
 export default function TwoFactorPage() {
     const {
@@ -18,6 +19,7 @@ export default function TwoFactorPage() {
     const [code, setCode] = useState("");
     const [error, setError] = useState("");
     const [setupComplete, setSetupComplete] = useState(false);
+    const [setupLoading, setSetupLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -32,11 +34,16 @@ export default function TwoFactorPage() {
         }
 
         const loadSetup = async () => {
+            setSetupLoading(true);
+            setError("");
+
             try {
                 const data = await initTwoFactorSetup();
                 setSetupData(data);
             } catch (err) {
                 setError(err.message || "Kan 2FA setup niet laden.");
+            } finally {
+                setSetupLoading(false);
             }
         };
 
@@ -47,6 +54,11 @@ export default function TwoFactorPage() {
         initTwoFactorSetup,
         navigate,
     ]);
+
+    const handleCodeChange = (e) => {
+        const sanitizedValue = e.target.value.replace(/\D/g, "").slice(0, 6);
+        setCode(sanitizedValue);
+    };
 
     const handleVerifySetup = async (e) => {
         e.preventDefault();
@@ -65,92 +77,125 @@ export default function TwoFactorPage() {
         e.preventDefault();
         setError("");
 
-        const result = await verifyTwoFactorLogin(code);
+        try {
+            const result = await verifyTwoFactorLogin(code);
 
-        if (!result.success) {
-            setError(result.error || "2FA verificatie mislukt.");
-            return;
+            if (!result.success) {
+                setError(result.error || "2FA verificatie mislukt.");
+                return;
+            }
+
+            await refreshUser();
+            navigate("/dashboard", { replace: true });
+        } catch (err) {
+            setError(err.message || "2FA verificatie mislukt.");
         }
-
-        await refreshUser();
-        navigate("/dashboard", { replace: true });
     };
 
+    const showSetupFlow = requiresTwoFactorSetup && !setupComplete;
+
     return (
-        <div className="login">
-            <div className="login__card">
-                <div className="login__header">
-                    <h1 className="login__title">Tweefactorauthenticatie</h1>
-                    <p className="login__subtitle">
+        <div className="twofactor-page">
+            <div className="twofactor-card">
+                <div className="twofactor-header">
+                    <h1 className="twofactor-title">Tweefactorauthenticatie</h1>
+                    <p className="twofactor-subtitle">
                         Rond je aanmelding af met je authenticatie-app.
                     </p>
                 </div>
 
-                {requiresTwoFactorSetup && !setupComplete && setupData && (
-                    <div className="space-y-4">
-                        <p>Scan deze QR-code met Microsoft Authenticator.</p>
+                {showSetupFlow && setupLoading && (
+                    <div className="twofactor-state">
+                        Setup wordt geladen...
+                    </div>
+                )}
 
-                        <QRCodeCanvas value={setupData.otpauthUri} size={220} />
-
-                        <p>
-                            Handmatige code: <strong>{setupData.secret}</strong>
+                {showSetupFlow && !setupLoading && setupData && (
+                    <div className="twofactor-setup">
+                        <p className="twofactor-text">
+                            Scan deze QR-code met Microsoft Authenticator of Google Authenticator.
                         </p>
 
-                        <form onSubmit={handleVerifySetup} className="login__form">
-                            <div className="login__field">
-                                <label className="login__label" htmlFor="setupCode">
+                        <div className="twofactor-qr">
+                            <QRCodeCanvas value={setupData.otpauthUri} size={220} />
+                        </div>
+
+                        <div className="twofactor-manual-code">
+                            <span>Handmatige code:</span>
+                            <strong>{setupData.secret}</strong>
+                        </div>
+
+                        <form onSubmit={handleVerifySetup} className="twofactor-form">
+                            <div className="twofactor-field">
+                                <label className="twofactor-label" htmlFor="setupCode">
                                     Bevestig met je 6-cijferige code
                                 </label>
                                 <input
                                     id="setupCode"
-                                    className="login__input"
+                                    className="twofactor-input"
                                     type="text"
                                     inputMode="numeric"
+                                    autoComplete="one-time-code"
                                     maxLength={6}
                                     value={code}
-                                    onChange={(e) => setCode(e.target.value)}
+                                    onChange={handleCodeChange}
                                     required
                                 />
                             </div>
 
                             {error && (
-                                <div className="login__error" role="alert" aria-live="polite">
+                                <div className="twofactor-error" role="alert" aria-live="polite">
                                     {error}
                                 </div>
                             )}
 
-                            <button className="login__button" type="submit" disabled={loading}>
+                            <button
+                                className="twofactor-button"
+                                type="submit"
+                                disabled={loading || code.length !== 6}
+                            >
                                 2FA activeren
                             </button>
                         </form>
                     </div>
                 )}
 
+                {showSetupFlow && !setupLoading && !setupData && (
+                    <div className="twofactor-error" role="alert" aria-live="polite">
+                        {error || "2FA setup kon niet worden geladen."}
+                    </div>
+                )}
+
                 {(!requiresTwoFactorSetup || setupComplete) && (
-                    <form onSubmit={handleVerifyLogin} className="login__form">
-                        <div className="login__field">
-                            <label className="login__label" htmlFor="code">
+                    <form onSubmit={handleVerifyLogin} className="twofactor-form">
+                        <div className="twofactor-field">
+                            <label className="twofactor-label" htmlFor="code">
                                 Vul je authenticatiecode in
                             </label>
                             <input
                                 id="code"
-                                className="login__input"
+                                className="twofactor-input"
                                 type="text"
                                 inputMode="numeric"
+                                autoComplete="one-time-code"
                                 maxLength={6}
                                 value={code}
-                                onChange={(e) => setCode(e.target.value)}
+                                onChange={handleCodeChange}
                                 required
                             />
                         </div>
 
                         {error && (
-                            <div className="login__error" role="alert" aria-live="polite">
+                            <div className="twofactor-error" role="alert" aria-live="polite">
                                 {error}
                             </div>
                         )}
 
-                        <button className="login__button" type="submit" disabled={loading}>
+                        <button
+                            className="twofactor-button"
+                            type="submit"
+                            disabled={loading || code.length !== 6}
+                        >
                             Code bevestigen
                         </button>
                     </form>
