@@ -1,0 +1,62 @@
+.trustbar-section {
+    position: relative;
+    z-index: 10;
+    margin-top: -4rem;
+}
+
+.trustbar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    background: #ffffff;
+    border: 1px solid rgba(229, 231, 235, 0.9);
+    border-radius: 1.25rem;
+    padding: 1.5rem;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.trustbar-card {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.trustbar-card__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-text-dark, #111827);
+}
+
+.trustbar-card__text {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--color-text-muted, #4b5563);
+}
+
+@media (max-width: 992px) {
+    .trustbar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .trustbar-section {
+        margin-top: -2.5rem;
+    }
+
+    .trustbar {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .trustbar-card {
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 0;
+    }
+
+    .trustbar-card:last-child {
+        border-bottom: none;
+    }
+}

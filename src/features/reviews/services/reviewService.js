@@ -11,6 +11,11 @@ const reviewService = {
         return response.data;
     },
 
+    async getReviewSummary() {
+        const response = await api.get("/public/reviews/summary");
+        return response.data;
+    },
+
     async refreshReviews() {
         const response = await api.post("/admin/reviews/refresh");
         return response.data;

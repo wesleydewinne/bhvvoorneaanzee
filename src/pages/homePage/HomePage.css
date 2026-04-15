@@ -1,3 +1,7 @@
+.homepage {
+    overflow-x: clip;
+}
+
 /* ========================================
    HERO
 ======================================== */
@@ -88,10 +92,26 @@
     text-wrap: pretty;
 }
 
+.homepage-hero__actions {
+    margin-top: var(--space-4);
+    width: 100%;
+}
+
 /* CTAButtons wrapper */
 .homepage-hero > .container > *:last-child,
 .homepage-hero__inner > *:last-child {
     width: 100%;
+}
+
+/* ========================================
+   EXTRA SECTIONS
+======================================== */
+.homepage__reviews {
+    padding: 4rem 0 0;
+}
+
+.homepage__blog {
+    padding: 4rem 0 5rem;
 }
 
 /* ========================================
@@ -141,6 +161,14 @@
 
     .homepage-hero__subtitle {
         max-width: 100%;
+    }
+
+    .homepage__reviews {
+        padding-top: 3rem;
+    }
+
+    .homepage__blog {
+        padding: 3rem 0 4rem;
     }
 }
 

@@ -1,0 +1,315 @@
+.region-section {
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 0;
+    background:
+            radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 35%),
+            radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.08), transparent 30%),
+            #ffffff;
+}
+
+.region-section__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.region-section__content {
+    max-width: 640px;
+}
+
+.region-section__eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    font-size: 1.475rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary, #0f766e);
+}
+
+.region-section__title {
+    margin: 0 0 1.25rem;
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    line-height: 1.12;
+    color: var(--color-text-dark, #111827);
+    text-wrap: balance;
+}
+
+.region-section__text {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--color-text-muted, #4b5563);
+}
+
+.region-section__visual {
+    position: relative;
+    display: grid;
+    gap: 1.25rem;
+}
+
+.region-section__map-card,
+.region-section__info-card {
+    border: 1px solid rgba(229, 231, 235, 0.9);
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+.region-section__map-card {
+    padding: 1.25rem;
+}
+
+.region-section__map-bg {
+    position: relative;
+    min-height: 430px;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background:
+            radial-gradient(circle at 50% 50%, rgba(15, 118, 110, 0.16), transparent 28%),
+            linear-gradient(135deg, #f8fafc 0%, #eefaf8 45%, #f8fbff 100%);
+}
+
+.region-section__map-bg::before,
+.region-section__map-bg::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(15, 118, 110, 0.08);
+    filter: blur(6px);
+}
+
+.region-section__map-bg::before {
+    width: 220px;
+    height: 220px;
+    top: 10%;
+    left: -30px;
+}
+
+.region-section__map-bg::after {
+    width: 180px;
+    height: 180px;
+    right: 2%;
+    bottom: 6%;
+}
+
+.region-badge {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(229, 231, 235, 0.95);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+}
+
+.region-badge--1 {
+    bottom: 14%;
+    left: 10%;
+}
+
+.region-badge--2 {
+    top: 30%;
+    right: 8%;
+}
+
+.region-badge--3 {
+    top: 27%;
+    right: 30%;
+}
+
+.region-badge--4 {
+    top: 20%;
+    right: 16%;
+}
+
+.region-badge--5 {
+    bottom: 14%;
+    left: 12%;
+}
+
+.region-badge--6 {
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.region-section__center-pin {
+    position: absolute;
+    top: 48%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.region-section__pin-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary, #0f766e);
+    box-shadow: 0 0 0 10px rgba(15, 118, 110, 0.14);
+}
+
+.region-section__pin-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    text-align: center;
+}
+
+.region-section__pin-card strong {
+    font-size: 1.5rem;
+    color: #111827;
+}
+
+.region-section__pin-card span {
+    font-size: 1.475rem;
+    color: #4b5563;
+}
+
+.region-section__info-card {
+    padding: 1.5rem;
+}
+
+.region-section__info-title {
+    margin: 0 0 1rem;
+    font-size: 1.7rem;
+    color: var(--color-text-dark, #111827);
+}
+
+.region-section__feature-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1rem;
+    padding: 0;
+    margin: 0 0 1.25rem;
+    list-style: none;
+}
+
+.region-section__feature-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--color-text-muted, #4b5563);
+}
+
+.region-section__feature-list li::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-primary, #0f766e);
+}
+
+.region-section__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.region-section__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(15, 118, 110, 0.08);
+    color: var(--color-primary, #0f766e);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+@media (max-width: 991px) {
+    .region-section {
+        padding: 4rem 0;
+    }
+
+    .region-section__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .region-section__content {
+        max-width: 100%;
+    }
+
+    .region-section__map-bg {
+        min-height: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+    .region-section {
+        padding: 3.5rem 0;
+    }
+
+    .region-section__title {
+        font-size: 1.95rem;
+    }
+
+    .region-section__map-card {
+        padding: 0.9rem;
+    }
+
+    .region-section__map-bg {
+        min-height: 360px;
+    }
+
+    .region-badge {
+        font-size: 1.4rem;
+        padding: 0.5rem 0.7rem;
+    }
+
+    .region-badge--1 {
+        top: 10%;
+        left: 6%;
+    }
+
+    .region-badge--2 {
+        top: 14%;
+        right: 4%;
+    }
+
+    .region-badge--3 {
+        top: 38%;
+        right: 6%;
+    }
+
+    .region-badge--4 {
+        bottom: 22%;
+        right: 8%;
+    }
+
+    .region-badge--5 {
+        bottom: 14%;
+        left: 6%;
+    }
+
+    .region-badge--6 {
+        bottom: 7%;
+        left: 50%;
+    }
+
+    .region-section__feature-list {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,231 @@
+.about-trainer {
+    padding: 5rem 0;
+    background: #ffffff;
+}
+
+.about-trainer__top {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-areas:
+        "media header"
+        "media text";
+    gap: 3.5rem;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+
+.about-trainer__media {
+    grid-area: media;
+    position: relative;
+}
+
+.about-trainer__header {
+    grid-area: header;
+}
+
+.about-trainer__text {
+    grid-area: text;
+    max-width: 74rem;
+}
+
+.about-trainer__image {
+    overflow: hidden;
+    border-radius: 1.8rem;
+    box-shadow: 0 1.8rem 5rem rgba(15, 23, 42, 0.12);
+    background: #e5e7eb;
+}
+
+.about-trainer__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-trainer__image--primary {
+    aspect-ratio: 4 / 5;
+}
+
+.about-trainer__eyebrow {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-primary, #0f766e);
+}
+
+.about-trainer__title {
+    margin: 0 0 1.6rem;
+    font-size: clamp(3.2rem, 4vw, 4.8rem);
+    line-height: 1.12;
+    color: var(--color-text-dark, #111827);
+    text-wrap: balance;
+}
+
+.about-trainer__intro {
+    margin: 0 0 1.2rem;
+    font-size: 1.6rem;
+    line-height: 1.85;
+    color: var(--color-text-muted, #4b5563);
+}
+
+.about-trainer__highlights {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.4rem;
+    margin-bottom: 2.8rem;
+}
+
+.about-trainer__card {
+    background: #f8fafc;
+    border: 0.1rem solid #e5e7eb;
+    border-radius: 1.6rem;
+    padding: 1.8rem;
+}
+
+.about-trainer__card-title {
+    margin: 0 0 0.8rem;
+    font-size: 1.9rem;
+    line-height: 1.3;
+    color: var(--color-text-dark, #111827);
+}
+
+.about-trainer__card-text {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: var(--color-text-muted, #4b5563);
+}
+
+/* onderste rij */
+.about-trainer__bottom {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.about-trainer__certifications {
+    min-width: 0;
+}
+
+.about-trainer__certifications-title {
+    margin: 0 0 1rem;
+    font-size: 1.8rem;
+    color: var(--color-text-dark, #111827);
+}
+
+.about-trainer__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-content: flex-start;
+}
+
+.about-trainer__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(15, 118, 110, 0.08);
+    color: var(--color-primary, #0f766e);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.about-trainer__bottom-image {
+    overflow: hidden;
+    border-radius: 1.8rem;
+    box-shadow: 0 1.8rem 5rem rgba(15, 23, 42, 0.12);
+    background: #e5e7eb;
+}
+
+.about-trainer__bottom-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+}
+
+/* responsive */
+@media (max-width: 1200px) {
+    .about-trainer__highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-trainer__bottom {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media (max-width: 991px) {
+    .about-trainer {
+        padding: 4rem 0;
+    }
+
+    .about-trainer__top {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "media"
+            "text";
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .about-trainer__text {
+        max-width: 100%;
+    }
+
+    .about-trainer__highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-trainer__bottom {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-trainer__bottom-image img {
+        aspect-ratio: 16 / 8;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-trainer {
+        padding: 3.5rem 0;
+    }
+
+    .about-trainer__title {
+        font-size: 3rem;
+    }
+
+    .about-trainer__intro {
+        font-size: 1.5rem;
+        line-height: 1.75;
+    }
+
+    .about-trainer__highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .about-trainer__card {
+        padding: 1.4rem;
+    }
+
+    .about-trainer__card-title {
+        font-size: 1.8rem;
+    }
+
+    .about-trainer__card-text {
+        font-size: 1.5rem;
+    }
+
+    .about-trainer__tag {
+        font-size: 1.3rem;
+    }
+}

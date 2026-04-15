@@ -51,7 +51,7 @@
     bottom: 0;
     left: 50%;                     /* startpunt in het midden */
     transform: translateX(-50%);   /* schuif de lijn zelf terug zodat hij gecentreerd is */
-    width: 50%;                    /* lijn is 50% van de tekstbreedte */
+    width: 70%;                    /* lijn is 50% van de tekstbreedte */
     height: 3px;
     background-color: #e85c0d;     /* oranje kleur */
     border-radius: 2px;

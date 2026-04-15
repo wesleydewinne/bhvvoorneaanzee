@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import api from "@/api/api.js";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import "./LoginPage.css";
@@ -9,14 +8,13 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [captchaToken, setCaptchaToken] = useState("");
     const [captchaReady, setCaptchaReady] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
     const captchaRef = useRef(null);
     const widgetIdRef = useRef(null);
 
-    const { refreshUser } = useAuth();
+    const { login, refreshUser, loading } = useAuth();
 
     const siteKey = import.meta.env.VITE_TURNSTILE_SITEKEY;
 
@@ -32,9 +30,16 @@ export default function LoginPage() {
             return;
         }
 
+        const existingScript = document.querySelector(
+            'script[src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"]'
+        );
+
+        if (existingScript) {
+            return;
+        }
+
         const script = document.createElement("script");
-        script.src =
-            "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
         script.async = true;
         script.defer = true;
         script.onload = () => {
@@ -48,49 +53,46 @@ export default function LoginPage() {
                 });
             }
         };
+
         document.body.appendChild(script);
     }, [siteKey]);
+
+    const resetCaptcha = () => {
+        if (window.turnstile && widgetIdRef.current) {
+            window.turnstile.reset(widgetIdRef.current);
+        }
+        setCaptchaToken("");
+        setCaptchaReady(false);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
         if (!captchaToken) {
-            setError("Bevestig eerst de beveiligingscheck");
+            setError("Bevestig eerst de beveiligingscheck.");
             return;
         }
 
-        setLoading(true);
-        try {
-            await api.post("/auth/login", {
-                email,
-                password,
-                captcha: captchaToken,
-            });
+        const result = await login({
+            email,
+            password,
+            captcha: captchaToken,
+        });
 
-            await refreshUser();
-            navigate("/dashboard");
-        } catch (err) {
-            console.error("Login fout:", err);
-
-            if (err.response?.status === 403) {
-                setError("Beveiligingscheck ongeldig of verlopen.");
-            } else if (err.response?.status === 429) {
-                setError("Te veel mislukte inlog pogingen. Wacht minimaal 15 en probeer opnieuw.");
-            } else if (err.response?.status === 401) {
-                setError("Onjuiste inloggegevens.");
-            } else {
-                setError("Ongeldige login of serverfout.");
-            }
-
-            if (window.turnstile && widgetIdRef.current) {
-                window.turnstile.reset(widgetIdRef.current);
-                setCaptchaToken("");
-                setCaptchaReady(false);
-            }
-        } finally {
-            setLoading(false);
+        if (!result.success) {
+            setError(result.error || "Ongeldige login of serverfout.");
+            resetCaptcha();
+            return;
         }
+
+        if (result.requiresTwoFactor) {
+            navigate("/inloggen/2fa", { replace: true });
+            return;
+        }
+
+        await refreshUser();
+        navigate("/dashboard", { replace: true });
     };
 
     return (
@@ -98,12 +100,16 @@ export default function LoginPage() {
             <div className="login__card">
                 <div className="login__header">
                     <h1 className="login__title">Inloggen</h1>
-                    <p className="login__subtitle">Gebruik je accountgegevens om door te gaan.</p>
+                    <p className="login__subtitle">
+                        Gebruik je accountgegevens om door te gaan.
+                    </p>
                 </div>
 
                 <form className="login__form" onSubmit={handleSubmit}>
                     <div className="login__field">
-                        <label className="login__label" htmlFor="email">Email</label>
+                        <label className="login__label" htmlFor="email">
+                            Email
+                        </label>
                         <input
                             id="email"
                             className="login__input"
@@ -116,7 +122,9 @@ export default function LoginPage() {
                     </div>
 
                     <div className="login__field">
-                        <label className="login__label" htmlFor="password">Wachtwoord</label>
+                        <label className="login__label" htmlFor="password">
+                            Wachtwoord
+                        </label>
                         <input
                             id="password"
                             className="login__input"
@@ -131,7 +139,9 @@ export default function LoginPage() {
                     <div className="login__captcha">
                         <div ref={captchaRef} />
                         {!captchaReady && (
-                            <p className="login__hint">Bevestig de beveiligingscheck om te kunnen inloggen.</p>
+                            <p className="login__hint">
+                                Bevestig de beveiligingscheck om te kunnen inloggen.
+                            </p>
                         )}
                     </div>
 
@@ -146,14 +156,7 @@ export default function LoginPage() {
                         type="submit"
                         disabled={loading || !captchaReady}
                     >
-                        {loading ? (
-                            <>
-                                <span className="login__spinner" aria-hidden="true" />
-                                Bezig met inloggen...
-                            </>
-                        ) : (
-                            "Inloggen"
-                        )}
+                        {loading ? "Bezig met inloggen..." : "Inloggen"}
                     </button>
                 </form>
             </div>

@@ -3,28 +3,112 @@
 ================================ */
 
 .training-card-section {
-    padding: 3rem 2rem;
+    position: relative;
     width: 100%;
+    padding: 8rem 2rem 9rem;
+    background:
+            radial-gradient(circle at top right, rgba(15, 118, 110, 0.28) 0%, transparent 28%),
+            radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.18) 0%, transparent 30%),
+            linear-gradient(135deg, #0f172a 0%, #111827 45%, #1f2937 100%);
+    overflow: hidden;
+}
+
+/* extra accentlaag */
+.training-card-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.02) 0%,
+                    rgba(255, 255, 255, 0) 20%,
+                    rgba(255, 255, 255, 0) 80%,
+                    rgba(255, 255, 255, 0.02) 100%
+            );
+    pointer-events: none;
+}
+
+.training-card-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1200px, calc(100% - 4rem));
+    height: 1px;
+    background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.15) 20%,
+            rgba(45, 212, 191, 0.45) 50%,
+            rgba(255, 255, 255, 0.15) 80%,
+            transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* content boven decoratie houden */
+.training-card-section > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* Titel */
 .training-card-section-title {
+    max-width: 82rem;
+    margin: 0 auto 4.5rem;
     text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #1f2937;
+    font-size: clamp(3.2rem, 4vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: #ffffff;
+    text-wrap: balance;
+    text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* ===============================
-   Grid layout (DE OPLOSSING)
-================================ */
-
+/* subtiele introregel boven grid */
 .training-card-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem 1.5rem;
+    gap: 3rem 1.8rem;
     justify-content: center;
-    /*max-width: 1400px;*/
     margin: 0 auto;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 991px) {
+    .training-card-section {
+        padding: 6rem 1.5rem 7rem;
+        background:
+                radial-gradient(circle at top right, rgba(15, 118, 110, 0.22) 0%, transparent 24%),
+                radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.14) 0%, transparent 26%),
+                linear-gradient(135deg, #0f172a 0%, #111827 45%, #1f2937 100%);
+    }
+
+    .training-card-section-title {
+        margin-bottom: 3.5rem;
+    }
+
+    .training-card-grid {
+        gap: 2.4rem 1.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .training-card-section {
+        padding: 4.8rem 1.2rem 5.5rem;
+    }
+
+    .training-card-section-title {
+        font-size: 2.9rem;
+        margin-bottom: 2.8rem;
+    }
+
+    .training-card-grid {
+        gap: 2rem;
+    }
 }

@@ -1,0 +1,364 @@
+.client-experiences-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+    min-height: 72rem;
+    overflow: hidden;
+    border-radius: 3.2rem;
+    background:
+            radial-gradient(circle at 78% 42%, rgba(41, 107, 255, 0.08), transparent 22%),
+            linear-gradient(145deg, #04070d 0%, #08111d 44%, #05080f 100%);
+    border: 0.1rem solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+            inset 0 0.1rem 0 rgba(255, 255, 255, 0.04),
+            0 2.8rem 8rem rgba(0, 0, 0, 0.34);
+    isolation: isolate;
+}
+
+.client-experiences-section__media,
+.client-experiences-section__right {
+    min-width: 0;
+}
+
+/* LINKS: 40% FOTO */
+.client-experiences-section__media {
+    position: relative;
+    min-height: 72rem;
+    overflow: hidden;
+}
+
+.client-experiences-section__image-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    -webkit-mask-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 40%,
+            rgba(0, 0, 0, 0.92) 56%,
+            rgba(0, 0, 0, 0.54) 74%,
+            rgba(0, 0, 0, 0.16) 90%,
+            rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 40%,
+            rgba(0, 0, 0, 0.92) 56%,
+            rgba(0, 0, 0, 0.54) 74%,
+            rgba(0, 0, 0, 0.16) 90%,
+            rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.client-experiences-section__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transform: scale(1.03);
+    filter: saturate(0.96) contrast(1.02);
+}
+
+/* RECHTS: 60% CONTENT */
+.client-experiences-section__right {
+    position: relative;
+    min-height: 72rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3.2rem 3.2rem 3.2rem 2rem;
+    background:
+            linear-gradient(
+                    to right,
+                    rgba(4, 7, 13, 0.18) 0%,
+                    rgba(4, 7, 13, 0.54) 10%,
+                    rgba(4, 7, 13, 0.86) 22%,
+                    rgba(4, 7, 13, 0.96) 100%
+            );
+}
+
+/* TEKST BOVEN CAROUSEL */
+.client-experiences-section__text {
+    width: 100%;
+    max-width: 62rem;
+    margin-bottom: 1.8rem;
+    text-align: center;
+}
+
+.client-experiences-section__eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.24rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.client-experiences-section__title {
+    margin: 0 auto 1.2rem;
+    max-width: 17ch;
+    font-size: clamp(3.8rem, 4.8vw, 5.8rem);
+    line-height: 1.02;
+    font-weight: 800;
+    text-align: center;
+    color: #ffffff;
+}
+
+.client-experiences-section__subtitle {
+    margin: 0 auto;
+    max-width: 34rem;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.76);
+}
+
+/* GLOBE */
+.client-experiences-section__globe {
+    position: relative;
+    width: min(100%, 76rem);
+    min-height: 47rem;
+    display: grid;
+    place-items: center;
+    perspective: 140rem;
+}
+
+.client-experiences-section__core {
+    position: absolute;
+    inset: 13%;
+    border-radius: 50%;
+    background:
+            radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.10), transparent 14%),
+            radial-gradient(circle at center, rgba(40, 107, 255, 0.16), transparent 58%),
+            repeating-linear-gradient(
+                    to bottom,
+                    transparent 0 2.8rem,
+                    rgba(255, 255, 255, 0.04) 2.8rem 2.9rem
+            ),
+            repeating-linear-gradient(
+                    to right,
+                    transparent 0 4rem,
+                    rgba(255, 255, 255, 0.035) 4rem 4.1rem
+            ),
+            radial-gradient(circle at center, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    box-shadow:
+            inset 0 0 9rem rgba(255, 255, 255, 0.03),
+            0 0 10rem rgba(31, 96, 255, 0.07);
+    opacity: 0.92;
+}
+
+.client-experiences-section__ring {
+    position: absolute;
+    inset: 18%;
+    border-radius: 50%;
+    border: 0.1rem solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.client-experiences-section__ring--one {
+    transform: rotateX(72deg);
+}
+
+.client-experiences-section__ring--two {
+    transform: rotateY(90deg) rotateX(72deg);
+}
+
+.client-experiences-section__glow {
+    position: absolute;
+    width: 22rem;
+    height: 22rem;
+    border-radius: 50%;
+    filter: blur(9rem);
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.client-experiences-section__glow--left {
+    left: 8%;
+    top: 24%;
+    background: rgba(38, 110, 255, 0.75);
+}
+
+.client-experiences-section__glow--right {
+    right: 8%;
+    bottom: 16%;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.client-experiences-section__orbit {
+    position: relative;
+    width: 100%;
+    min-height: 47rem;
+    transform-style: preserve-3d;
+}
+
+/* CARD */
+.client-experiences-section__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(36rem, 76%);
+    min-height: 22rem;
+    padding: 2rem 1.8rem 1.8rem;
+    border-radius: 2.4rem;
+    background:
+            linear-gradient(180deg, rgba(14, 24, 40, 0.94) 0%, rgba(8, 14, 24, 0.90) 100%);
+    border: 0.1rem solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(1.8rem);
+    box-shadow:
+            0 1.8rem 5.2rem rgba(0, 0, 0, 0.38),
+            inset 0 0.1rem 0 rgba(255, 255, 255, 0.045);
+    transform-origin: center center;
+    transition:
+            transform var(--card-transition-duration, 1000ms) cubic-bezier(0.22, 1, 0.36, 1),
+            opacity var(--card-transition-duration, 1000ms) ease,
+            filter var(--card-transition-duration, 1000ms) ease,
+            box-shadow var(--card-transition-duration, 1000ms) ease;
+}
+
+.client-experiences-section__card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 0.1rem;
+    background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.02)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.client-experiences-section__card.is-active {
+    box-shadow:
+            0 2.4rem 7rem rgba(0, 0, 0, 0.46),
+            0 0 4.2rem rgba(49, 116, 255, 0.14);
+}
+
+.client-experiences-section__logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.4rem;
+    margin-bottom: 1.6rem;
+}
+
+.client-experiences-section__logo {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 15rem;
+    max-height: 4.2rem;
+    object-fit: contain;
+    filter: brightness(1.05);
+}
+
+.client-experiences-section__quote {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.95);
+    white-space: pre-line;
+    text-align: center;
+}
+
+/* TABLET: PAS HIER MAG HIJ STAPELEN */
+@media (max-width: 1200px) {
+    .client-experiences-section {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 1.8rem;
+        gap: 1.8rem;
+    }
+
+    .client-experiences-section__media {
+        min-height: 34rem;
+        border-radius: 2.4rem;
+        overflow: hidden;
+    }
+
+    .client-experiences-section__image-wrap {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 100%;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .client-experiences-section__right {
+        min-height: auto;
+        padding: 0;
+    }
+
+    .client-experiences-section__title {
+        max-width: none;
+    }
+
+    .client-experiences-section__globe,
+    .client-experiences-section__orbit {
+        min-height: 50rem;
+    }
+}
+
+/* MOBIEL */
+@media (max-width: 768px) {
+    .client-experiences-section {
+        border-radius: 2.4rem;
+        padding: 1.2rem;
+        gap: 1.2rem;
+    }
+
+    .client-experiences-section__media {
+        min-height: 25rem;
+    }
+
+    .client-experiences-section__right {
+        padding: 0;
+    }
+
+    .client-experiences-section__eyebrow {
+        font-size: 1.1rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .client-experiences-section__title {
+        font-size: 3.8rem;
+    }
+
+    .client-experiences-section__subtitle {
+        max-width: 32rem;
+        font-size: 1.7rem;
+    }
+
+    .client-experiences-section__globe,
+    .client-experiences-section__orbit {
+        min-height: 42rem;
+    }
+
+    .client-experiences-section__card {
+        width: min(31rem, 88%);
+        min-height: 21rem;
+        padding: 1.2rem;
+    }
+
+    .client-experiences-section__logo {
+        max-width: 13rem;
+        max-height: 3.8rem;
+    }
+
+    .client-experiences-section__quote {
+        font-size: 1.5rem;
+        line-height: 1.6;
+    }
+}

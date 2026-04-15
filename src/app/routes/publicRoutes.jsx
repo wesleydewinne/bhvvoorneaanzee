@@ -3,19 +3,17 @@ import PublicRoute from "@/features/auth/components/route/PublicRoute.jsx";
 
 import HomePage from "@/pages/homePage/HomePage.jsx";
 
-//bhv
+// bhv
 import BhvPage from "@/pages/bhvPage/BhvPage.jsx";
 import BhvBasis2 from "@/pages/bhvPage/bhvPages/BhvBasis2.jsx";
 import BhvBasis1Elearning from "@/pages/bhvPage/bhvPages/BhvBasis1Elearning.jsx";
 import BhvHerhaling from "@/pages/bhvPage/bhvPages/BhvHerhaling.jsx";
 import BhvHerhaling05Elearning from "@/pages/bhvPage/bhvPages/BhvHerhaling05Elearning.jsx";
 
-
 import PloegleiderPage from "@/pages/ploegleiderPage/PloegleiderPage.jsx";
-import Ploegleider2DaagsePage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis2Daagse.jsx"
+import Ploegleider2DaagsePage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis2Daagse.jsx";
 import PloegleiderBasis1DaagseElearning from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis1daagseElearning.jsx";
 import PloegleiderHerhalingPage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderHerhaling.jsx";
-
 
 import LandingPage from "@/pages/landingPage/LandingPage.jsx";
 import OntruimingsPage from "@/pages/ontruimingsOefeningPage/OntruimingsOefeningPage.jsx";
@@ -43,13 +41,15 @@ import Fases from "@/pages/ontruimingsverslag/Fases.jsx";
 import Scenarios from "@/pages/ontruimingsverslag/Scenarios.jsx";
 import Verslag from "@/pages/ontruimingsverslag/Verslag.jsx";
 
-import Veiligheidscheck from "@/pages/leadPage/Check.jsx"
+import Veiligheidscheck from "@/pages/leadPage/Check.jsx";
 
 import RotterdamPage from "@/pages/regios/RotterdamPage.jsx";
 import ZeelandPage from "@/pages/regios/ZeelandPage.jsx";
 import WestlandPage from "@/pages/regios/WestlandPage.jsx";
 
-import Login from "@/features/auth/pages/LoginPage.jsx";
+import LoginPage from "@/features/auth/pages/LoginPage.jsx";
+import TwoFactorPage from "@/features/auth/pages/TwoFactorPage.jsx";
+
 import { Navigate } from "react-router-dom";
 import AccessPage from "@/pages/quiz/AccessPage.jsx";
 import OfferteAanvraag from "@/features/offerte/pages/OfferteAanvraagPage.jsx";
@@ -65,7 +65,6 @@ import KinderEhboHuiskamertraining from "@/pages/workshops/soortenWorkshops/Kind
 import BhvRitme from "@/pages/bhvPage/bhvPages/BhvRitme.jsx";
 
 import EvaluationPage from "@/features/evaluation/pages/EvaluationPage.jsx";
-
 import ContactBedanktPage from "@/features/contact/pages/ContactBedanktPage.jsx";
 
 const publicRoutes = [
@@ -115,7 +114,7 @@ const publicRoutes = [
     { path: "/workshops-waterongevallen", element: <Waterongevallen /> },
     { path: "/workshops-kinder-ehbo-huiskamertraining", element: <KinderEhboHuiskamertraining /> },
 
-    //uitleg trainingen
+    // uitleg trainingen
     { path: "/maatwerk", element: <Maatwerk /> },
     { path: "/modulaire-trainen", element: <ModulaireTraining /> },
     { path: "/modulair-overzicht", element: <ModulaireOverzicht /> },
@@ -130,33 +129,37 @@ const publicRoutes = [
     { path: "/blog/:slug", element: <BlogDetail /> },
 
     // LeadPage
-    { path: "/veiligheidscheck", element: <Veiligheidscheck />},
+    { path: "/veiligheidscheck", element: <Veiligheidscheck /> },
     { path: "/veiligheidscheck-bedankt", element: <VeiligheidscheckBedankt /> },
 
-    // Login (nu correct beveiligd)
+    // Login + 2FA
     {
         path: "/inloggen",
         element: (
             <PublicRoute>
-                <Login />
+                <LoginPage />
             </PublicRoute>
         ),
+    },
+    {
+        path: "/inloggen/2fa",
+        element: <TwoFactorPage />,
     },
     { path: "/inlog", element: <Navigate to="/inloggen" replace /> },
 
     { path: "/evaluatie", element: <EvaluationPage /> },
 
-    // Quiz publique toegang
+    // Quiz publieke toegang
     { path: "/quiz-access", element: <AccessPage /> },
 
     { path: "/landingpage", element: <LandingPage /> },
     { path: "/veelgestelde-vragen", element: <Faq /> },
-    { path: "/offerte", element: <OfferteAanvraag />},
+    { path: "/offerte", element: <OfferteAanvraag /> },
 
-    { path: "/over-ons", element: <OverOns />},
-    { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens />},
+    { path: "/over-ons", element: <OverOns /> },
+    { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens /> },
     { path: "/contact", element: <ContactOns /> },
-    { path: "/contact/bedankt", element: <ContactBedanktPage /> }
+    { path: "/contact/bedankt", element: <ContactBedanktPage /> },
 ];
 
 export default publicRoutes;

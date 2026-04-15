@@ -18,13 +18,14 @@ export default function CTASection() {
 
             {/* Kolom 2 */}
             <div className="cta-item">
-                <h3 className="cta-heading">Offerte</h3>
+                <h3 className="cta-heading">Incompany training</h3>
                 <p>
-                    Incompany trainingen zorgen ervoor dat jouw team samen leert en direct oefent in de eigen werkomgeving.
-                    Al vanaf 4 deelnemers regelen wij dit op locatie, en je profiteert van een aantrekkelijk tarief per persoon.
+                    Trainingen op jullie eigen locatie zorgen voor herkenbare praktijksituaties en direct
+                    toepasbare vaardigheden. De inhoud wordt afgestemd op de werkomgeving, risico’s en
+                    deelnemers, zodat het team leert in de context waarin het ook echt moet handelen.
                 </p>
-                <Link to="/offerte" className="cta-button">
-                    Offerte aanvragen
+                <Link to="/contact" className="cta-button">
+                    Meer over incompany
                 </Link>
             </div>
 
