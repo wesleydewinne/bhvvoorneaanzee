@@ -145,6 +145,7 @@ const publicRoutes = [
         path: "/inloggen/2fa",
         element: <TwoFactorPage />,
     },
+
     { path: "/inlog", element: <Navigate to="/inloggen" replace /> },
 
     { path: "/evaluatie", element: <EvaluationPage /> },

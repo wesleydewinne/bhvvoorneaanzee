@@ -2,9 +2,9 @@ import { Navigate } from "react-router-dom";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 
 export default function PublicRoute({ children }) {
-    const { authenticated, loading } = useAuth();
+    const { authenticated, authInitialized } = useAuth();
 
-    if (loading) {
+    if (!authInitialized) {
         return null;
     }
 

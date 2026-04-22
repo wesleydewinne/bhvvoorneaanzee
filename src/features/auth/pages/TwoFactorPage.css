@@ -36,44 +36,10 @@
     color: #64748b;
 }
 
-.twofactor-setup,
 .twofactor-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.twofactor-text {
-    margin: 0;
-    color: #334155;
-    line-height: 1.6;
-}
-
-.twofactor-qr {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-}
-
-.twofactor-manual-code {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 14px 16px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    color: #334155;
-    word-break: break-word;
-}
-
-.twofactor-manual-code strong {
-    font-size: 1rem;
-    color: #0f172a;
-    letter-spacing: 0.08em;
 }
 
 .twofactor-field {
@@ -143,6 +109,45 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     color: #334155;
+}
+
+.twofactor-setup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.twofactor-text {
+    margin: 0;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.twofactor-qr {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+}
+
+.twofactor-manual-code {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    color: #334155;
+    word-break: break-word;
+}
+
+.twofactor-manual-code strong {
+    font-size: 1rem;
+    color: #0f172a;
+    letter-spacing: 0.08em;
 }
 
 @media (max-width: 640px) {

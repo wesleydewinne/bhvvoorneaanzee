@@ -1,77 +1,66 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import "./TwoFactorPage.css";
 
-export default function TwoFactorPage() {
+export default function TwoFactorSettingsPage() {
     const {
-        requiresTwoFactor,
-        requiresTwoFactorSetup,
-        verifyTwoFactorLogin,
+        user,
         initTwoFactorSetup,
         verifyTwoFactorSetup,
+        disableTwoFactor,
         loading,
     } = useAuth();
 
     const [setupData, setSetupData] = useState(null);
-    const [code, setCode] = useState("");
+    const [setupCode, setSetupCode] = useState("");
+    const [disableCode, setDisableCode] = useState("");
     const [error, setError] = useState("");
-    const [setupComplete, setSetupComplete] = useState(false);
+    const [success, setSuccess] = useState("");
 
-    const navigate = useNavigate();
+    const isTwoFactorEnabled = Boolean(user?.twoFactorEnabled);
 
-    useEffect(() => {
-        if (!requiresTwoFactor) {
-            navigate("/inloggen", { replace: true });
-            return;
-        }
-
-        if (!requiresTwoFactorSetup) {
-            return;
-        }
-
-        const loadSetup = async () => {
-            try {
-                const data = await initTwoFactorSetup();
-                setSetupData(data);
-            } catch (err) {
-                setError(err.message || "Kan 2FA setup niet laden.");
-            }
-        };
-
-        loadSetup();
-    }, [requiresTwoFactor, requiresTwoFactorSetup, initTwoFactorSetup, navigate]);
-
-    const handleCodeChange = (e) => {
-        const sanitizedValue = e.target.value.replace(/\D/g, "").slice(0, 6);
-        setCode(sanitizedValue);
-    };
-
-    const handleVerifyLogin = async (e) => {
-        e.preventDefault();
+    const handleInitSetup = async () => {
         setError("");
+        setSuccess("");
 
-        const result = await verifyTwoFactorLogin(code);
-
-        if (!result.success) {
-            setError(result.error || "2FA verificatie mislukt.");
-            return;
+        try {
+            const data = await initTwoFactorSetup();
+            setSetupData(data);
+        } catch (err) {
+            setError(err.message || "Kan 2FA setup niet laden.");
         }
-
-        navigate("/dashboard", { replace: true });
     };
 
     const handleVerifySetup = async (e) => {
         e.preventDefault();
         setError("");
+        setSuccess("");
 
         try {
-            await verifyTwoFactorSetup(code);
-            setSetupComplete(true);
-            navigate("/dashboard", { replace: true });
+            await verifyTwoFactorSetup(setupCode);
+            setSetupCode("");
+            setDisableCode("");
+            setSetupData(null);
+            setSuccess("2FA is succesvol geactiveerd.");
         } catch (err) {
             setError(err.message || "2FA activeren is mislukt.");
+        }
+    };
+
+    const handleDisable = async (e) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+
+        try {
+            await disableTwoFactor(disableCode);
+            setDisableCode("");
+            setSetupCode("");
+            setSetupData(null);
+            setSuccess("2FA is succesvol uitgeschakeld.");
+        } catch (err) {
+            setError(err.message || "2FA uitschakelen is mislukt.");
         }
     };
 
@@ -79,13 +68,9 @@ export default function TwoFactorPage() {
         <div className="twofactor-page">
             <div className="twofactor-card">
                 <div className="twofactor-header">
-                    <h1 className="twofactor-title">
-                        {requiresTwoFactorSetup ? "2FA instellen" : "Tweefactorauthenticatie"}
-                    </h1>
+                    <h1 className="twofactor-title">2FA beveiliging</h1>
                     <p className="twofactor-subtitle">
-                        {requiresTwoFactorSetup
-                            ? "Dit account vereist tweefactorauthenticatie. Scan eerst de QR-code en bevestig daarna met je 6-cijferige code."
-                            : "Vul de 6-cijferige code uit je authenticator-app in."}
+                        Beheer hier de tweefactorauthenticatie van je account.
                     </p>
                 </div>
 
@@ -95,11 +80,24 @@ export default function TwoFactorPage() {
                     </div>
                 )}
 
-                {requiresTwoFactorSetup && !setupData && !error && (
-                    <div className="twofactor-state">QR-code wordt geladen...</div>
+                {success && (
+                    <div className="twofactor-state" aria-live="polite">
+                        {success}
+                    </div>
                 )}
 
-                {requiresTwoFactorSetup && setupData && !setupComplete && (
+                {!isTwoFactorEnabled && !setupData && (
+                    <button
+                        className="twofactor-button"
+                        type="button"
+                        onClick={handleInitSetup}
+                        disabled={loading}
+                    >
+                        2FA inschakelen
+                    </button>
+                )}
+
+                {!isTwoFactorEnabled && setupData && (
                     <div className="twofactor-setup">
                         <p className="twofactor-text">
                             Scan deze QR-code met Microsoft Authenticator of Google Authenticator.
@@ -116,18 +114,20 @@ export default function TwoFactorPage() {
 
                         <form onSubmit={handleVerifySetup} className="twofactor-form">
                             <div className="twofactor-field">
-                                <label className="twofactor-label" htmlFor="code">
+                                <label className="twofactor-label" htmlFor="setupCode">
                                     Bevestig met je 6-cijferige code
                                 </label>
                                 <input
-                                    id="code"
+                                    id="setupCode"
                                     className="twofactor-input"
                                     type="text"
                                     inputMode="numeric"
                                     autoComplete="one-time-code"
                                     maxLength={6}
-                                    value={code}
-                                    onChange={handleCodeChange}
+                                    value={setupCode}
+                                    onChange={(e) =>
+                                        setSetupCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                                    }
                                     required
                                 />
                             </div>
@@ -135,7 +135,7 @@ export default function TwoFactorPage() {
                             <button
                                 className="twofactor-button"
                                 type="submit"
-                                disabled={loading || code.length !== 6}
+                                disabled={loading || setupCode.length !== 6}
                             >
                                 {loading ? "Bezig met activeren..." : "2FA activeren"}
                             </button>
@@ -143,21 +143,23 @@ export default function TwoFactorPage() {
                     </div>
                 )}
 
-                {!requiresTwoFactorSetup && (
-                    <form onSubmit={handleVerifyLogin} className="twofactor-form">
+                {isTwoFactorEnabled && (
+                    <form onSubmit={handleDisable} className="twofactor-form">
                         <div className="twofactor-field">
-                            <label className="twofactor-label" htmlFor="code">
-                                Authenticatiecode
+                            <label className="twofactor-label" htmlFor="disableCode">
+                                Vul je huidige 2FA-code in om 2FA uit te schakelen
                             </label>
                             <input
-                                id="code"
+                                id="disableCode"
                                 className="twofactor-input"
                                 type="text"
                                 inputMode="numeric"
                                 autoComplete="one-time-code"
                                 maxLength={6}
-                                value={code}
-                                onChange={handleCodeChange}
+                                value={disableCode}
+                                onChange={(e) =>
+                                    setDisableCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                                }
                                 required
                             />
                         </div>
@@ -165,9 +167,9 @@ export default function TwoFactorPage() {
                         <button
                             className="twofactor-button"
                             type="submit"
-                            disabled={loading || code.length !== 6}
+                            disabled={loading || disableCode.length !== 6}
                         >
-                            {loading ? "Bezig met verifiëren..." : "Code bevestigen"}
+                            {loading ? "Bezig met uitschakelen..." : "2FA uitschakelen"}
                         </button>
                     </form>
                 )}

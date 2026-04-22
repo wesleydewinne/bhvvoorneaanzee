@@ -1,10 +1,12 @@
-import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import { Navigate } from "react-router-dom";
+import useAuth from "@/features/auth/hooks/useAuth.js";
 
 export default function ProtectedRoute({ children }) {
-    const { authenticated, loading } = useAuthContext();
+    const { authenticated, authInitialized } = useAuth();
 
-    if (loading) return <p>Bezig met laden...</p>;
+    if (!authInitialized) {
+        return <p>Bezig met laden...</p>;
+    }
 
     if (!authenticated) {
         return <Navigate to="/inloggen" replace />;

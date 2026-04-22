@@ -30,6 +30,8 @@ import AdminReviewsPage from "@/features/reviews/pages/AdminReviewsPage.jsx";
 import AdminQuotesPage from "@/features/offerte/pages/AdminQuotesPage.jsx";
 import AdminQuoteDetailPage from "@/features/offerte/pages/AdminQuoteDetailPage.jsx";
 
+import TwoFactorSettingsPage from "@/features/auth/pages/TwoFactorSettingsPage.jsx";
+
 const privateRoutes = [
     {
         path: PRIVATE_PATHS.dashboard,
@@ -51,6 +53,15 @@ const privateRoutes = [
     // =========================================================
     // USERS
     // =========================================================
+    {
+        path: "/account/beveiliging/2fa",
+        element: (
+            <ProtectedRoute>
+                <TwoFactorSettingsPage />
+            </ProtectedRoute>
+        ),
+    },
+
     {
         path: "/admin/users",
         element: (

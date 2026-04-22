@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import "./LoginPage.css";
@@ -14,19 +14,35 @@ export default function LoginPage() {
     const captchaRef = useRef(null);
     const widgetIdRef = useRef(null);
 
-    const { login, refreshUser, loading } = useAuth();
+    const { login, loading } = useAuth();
 
     const siteKey = import.meta.env.VITE_TURNSTILE_SITEKEY;
 
     useEffect(() => {
-        if (window.turnstile && captchaRef.current && !widgetIdRef.current) {
+        const renderTurnstile = () => {
+            if (!window.turnstile || !captchaRef.current || widgetIdRef.current) {
+                return;
+            }
+
             widgetIdRef.current = window.turnstile.render(captchaRef.current, {
                 sitekey: siteKey,
                 callback: (token) => {
                     setCaptchaToken(token);
                     setCaptchaReady(true);
                 },
+                "expired-callback": () => {
+                    setCaptchaToken("");
+                    setCaptchaReady(false);
+                },
+                "error-callback": () => {
+                    setCaptchaToken("");
+                    setCaptchaReady(false);
+                },
             });
+        };
+
+        if (window.turnstile) {
+            renderTurnstile();
             return;
         }
 
@@ -35,32 +51,29 @@ export default function LoginPage() {
         );
 
         if (existingScript) {
-            return;
+            existingScript.addEventListener("load", renderTurnstile);
+            return () => {
+                existingScript.removeEventListener("load", renderTurnstile);
+            };
         }
 
         const script = document.createElement("script");
         script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
         script.async = true;
         script.defer = true;
-        script.onload = () => {
-            if (captchaRef.current && !widgetIdRef.current) {
-                widgetIdRef.current = window.turnstile.render(captchaRef.current, {
-                    sitekey: siteKey,
-                    callback: (token) => {
-                        setCaptchaToken(token);
-                        setCaptchaReady(true);
-                    },
-                });
-            }
-        };
-
+        script.addEventListener("load", renderTurnstile);
         document.body.appendChild(script);
+
+        return () => {
+            script.removeEventListener("load", renderTurnstile);
+        };
     }, [siteKey]);
 
     const resetCaptcha = () => {
         if (window.turnstile && widgetIdRef.current) {
             window.turnstile.reset(widgetIdRef.current);
         }
+
         setCaptchaToken("");
         setCaptchaReady(false);
     };
@@ -91,7 +104,6 @@ export default function LoginPage() {
             return;
         }
 
-        await refreshUser();
         navigate("/dashboard", { replace: true });
     };
 
@@ -108,7 +120,7 @@ export default function LoginPage() {
                 <form className="login__form" onSubmit={handleSubmit}>
                     <div className="login__field">
                         <label className="login__label" htmlFor="email">
-                            Email
+                            E-mailadres
                         </label>
                         <input
                             id="email"

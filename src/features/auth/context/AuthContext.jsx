@@ -1,104 +1,129 @@
-import React, {
-    createContext,
-    useContext,
-    useState,
-    useCallback,
-    useEffect,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import api from "@/api/api.js";
 
-const AuthContext = createContext();
+export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
-    const [roles, setRoles] = useState([]);
-    const [authenticated, setAuthenticated] = useState(false);
-    const [loading, setLoading] = useState(true);
-
+    const [loading, setLoading] = useState(false);
+    const [authInitialized, setAuthInitialized] = useState(false);
     const [requiresTwoFactor, setRequiresTwoFactor] = useState(false);
     const [requiresTwoFactorSetup, setRequiresTwoFactorSetup] = useState(false);
     const [tempLoginToken, setTempLoginToken] = useState(null);
 
-    const clearAuthState = useCallback(() => {
-        setUser(null);
-        setRoles([]);
-        setAuthenticated(false);
-        setRequiresTwoFactor(false);
-        setRequiresTwoFactorSetup(false);
-        setTempLoginToken(null);
+    const authenticated = Boolean(user);
+
+    const getErrorMessage = useCallback((err, fallbackMessage) => {
+        return (
+            err?.response?.data?.message ||
+            (typeof err?.response?.data === "string" ? err.response.data : null) ||
+            err?.message ||
+            fallbackMessage
+        );
     }, []);
 
-    const fetchCurrentUser = useCallback(async () => {
+    const refreshUser = useCallback(async () => {
         try {
-            setLoading(true);
-
             const response = await api.get("/auth/me");
-            const data = response.data;
-
-            setUser(data || null);
-            setRoles(data?.globalRoles || []);
-            setAuthenticated(true);
-
-            return data;
+            setUser(response.data);
+            return response.data;
         } catch (err) {
-            clearAuthState();
-            return null;
-        } finally {
-            setLoading(false);
+            setUser(null);
+            throw err;
         }
-    }, [clearAuthState]);
+    }, []);
 
     useEffect(() => {
-        fetchCurrentUser();
-    }, [fetchCurrentUser]);
+        let isMounted = true;
 
-    const login = async (credentials) => {
+        const initializeAuth = async () => {
+            try {
+                const response = await api.get("/auth/me");
+
+                if (!isMounted) {
+                    return;
+                }
+
+                setUser(response.data);
+            } catch {
+                if (!isMounted) {
+                    return;
+                }
+
+                setUser(null);
+            } finally {
+                if (isMounted) {
+                    setAuthInitialized(true);
+                }
+            }
+        };
+
+        initializeAuth();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const login = useCallback(async (payload) => {
         setLoading(true);
 
         try {
-            const response = await api.post("/auth/login", credentials);
+            const response = await api.post("/auth/login", payload);
             const data = response.data;
 
-            if (data?.requiresTwoFactor) {
+            if (data.requiresTwoFactor) {
+                setUser(null);
                 setRequiresTwoFactor(true);
                 setRequiresTwoFactorSetup(Boolean(data.requiresTwoFactorSetup));
-                setTempLoginToken(data.tempLoginToken || null);
-                setAuthenticated(false);
+                setTempLoginToken(data.tempLoginToken ?? null);
 
                 return {
                     success: true,
                     requiresTwoFactor: true,
                     requiresTwoFactorSetup: Boolean(data.requiresTwoFactorSetup),
+                    message: data.message ?? "",
                 };
             }
 
-            await fetchCurrentUser();
+            setRequiresTwoFactor(false);
+            setRequiresTwoFactorSetup(false);
+            setTempLoginToken(null);
+
+            await refreshUser();
 
             return {
                 success: true,
                 requiresTwoFactor: false,
+                requiresTwoFactorSetup: false,
             };
         } catch (err) {
-            clearAuthState();
+            setUser(null);
+            setRequiresTwoFactor(false);
+            setRequiresTwoFactorSetup(false);
+            setTempLoginToken(null);
 
             return {
                 success: false,
-                error:
-                    err.response?.data?.message ||
-                    (typeof err.response?.data === "string" ? err.response.data : null) ||
-                    err.message ||
-                    "Inloggen mislukt. Controleer je gegevens.",
+                error: getErrorMessage(err, "Inloggen mislukt."),
             };
         } finally {
             setLoading(false);
         }
-    };
+    }, [getErrorMessage, refreshUser]);
 
-    const verifyTwoFactorLogin = async (code) => {
+    const verifyTwoFactorLogin = useCallback(async (code) => {
+        if (!tempLoginToken) {
+            return {
+                success: false,
+                error: "Geen tijdelijke login token gevonden.",
+            };
+        }
+
         setLoading(true);
 
         try {
-            await api.post("/auth/2fa/verify-login", {
+            await api.post("/auth/2fa/login/verify", {
                 tempLoginToken,
                 code,
             });
@@ -107,97 +132,109 @@ export function AuthProvider({ children }) {
             setRequiresTwoFactorSetup(false);
             setTempLoginToken(null);
 
-            await fetchCurrentUser();
+            await refreshUser();
 
             return { success: true };
         } catch (err) {
             return {
                 success: false,
-                error:
-                    err.response?.data?.message ||
-                    (typeof err.response?.data === "string" ? err.response.data : null) ||
-                    err.message ||
-                    "2FA verificatie mislukt.",
+                error: getErrorMessage(err, "2FA verificatie mislukt."),
             };
         } finally {
             setLoading(false);
         }
-    };
+    }, [getErrorMessage, refreshUser, tempLoginToken]);
 
-    const initTwoFactorSetup = async () => {
+    const initTwoFactorSetup = useCallback(async () => {
+        setLoading(true);
+
         try {
-            const response = await api.post("/auth/2fa/setup/init", {
-                tempLoginToken,
-            });
+            const response = await api.post("/auth/2fa/setup/init");
             return response.data;
         } catch (err) {
-            throw new Error(
-                err.response?.data?.message ||
-                (typeof err.response?.data === "string" ? err.response.data : null) ||
-                err.message ||
-                "Kan 2FA setup niet laden."
-            );
+            throw new Error(getErrorMessage(err, "Kan 2FA setup niet laden."));
+        } finally {
+            setLoading(false);
         }
-    };
+    }, [getErrorMessage]);
 
-    const verifyTwoFactorSetup = async (code) => {
+    const verifyTwoFactorSetup = useCallback(async (code) => {
+        setLoading(true);
+
         try {
-            const response = await api.post("/auth/2fa/setup/verify", {
-                tempLoginToken,
-                code,
-            });
-            return response.data;
-        } catch (err) {
-            throw new Error(
-                err.response?.data?.message ||
-                (typeof err.response?.data === "string" ? err.response.data : null) ||
-                err.message ||
-                "Ongeldige 2FA code."
-            );
-        }
-    };
+            await api.post("/auth/2fa/setup/verify", { code });
 
-    const logout = async () => {
+            setRequiresTwoFactor(false);
+            setRequiresTwoFactorSetup(false);
+
+            await refreshUser();
+        } catch (err) {
+            throw new Error(getErrorMessage(err, "2FA activeren is mislukt."));
+        } finally {
+            setLoading(false);
+        }
+    }, [getErrorMessage, refreshUser]);
+
+    const disableTwoFactor = useCallback(async (code) => {
+        setLoading(true);
+
+        try {
+            await api.post("/auth/2fa/disable", { code });
+            await refreshUser();
+        } catch (err) {
+            throw new Error(getErrorMessage(err, "2FA uitschakelen is mislukt."));
+        } finally {
+            setLoading(false);
+        }
+    }, [getErrorMessage, refreshUser]);
+
+    const logout = useCallback(async () => {
+        setLoading(true);
+
         try {
             await api.post("/auth/logout");
-        } catch (err) {
-            console.error("Fout bij uitloggen:", err);
+        } catch {
+            // bewust leeg
         } finally {
-            clearAuthState();
+            setUser(null);
+            setRequiresTwoFactor(false);
+            setRequiresTwoFactorSetup(false);
+            setTempLoginToken(null);
+            setLoading(false);
         }
-    };
+    }, []);
 
-    useEffect(() => {
-        const interceptorId = api.interceptors.response.use(
-            (response) => response,
-            (error) => {
-                if (error.autoLogout) {
-                    clearAuthState();
-                }
-                return Promise.reject(error);
-            }
-        );
-
-        return () => {
-            api.interceptors.response.eject(interceptorId);
-        };
-    }, [clearAuthState]);
-
-    const value = {
+    const value = useMemo(() => ({
         user,
-        roles,
         authenticated,
         loading,
+        authInitialized,
         requiresTwoFactor,
         requiresTwoFactorSetup,
         tempLoginToken,
         login,
         logout,
-        refreshUser: fetchCurrentUser,
+        refreshUser,
         verifyTwoFactorLogin,
         initTwoFactorSetup,
         verifyTwoFactorSetup,
-    };
+        disableTwoFactor,
+    }), [
+        user,
+        authenticated,
+        loading,
+        authInitialized,
+        requiresTwoFactor,
+        requiresTwoFactorSetup,
+        tempLoginToken,
+        login,
+        logout,
+        refreshUser,
+        verifyTwoFactorLogin,
+        initTwoFactorSetup,
+        verifyTwoFactorSetup,
+        disableTwoFactor,
+    ]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
