@@ -3,29 +3,29 @@ import "./FaqSection.css";
 
 const faqItems = [
     {
-        question: "Is een training op locatie mogelijk?",
+        question: "Geven jullie trainingen op locatie of hebben jullie een eigen trainingslocatie?",
         answer:
-            "Ja, trainingen en ontruimingsoefeningen kunnen incompany worden verzorgd. Hierdoor sluiten inhoud, oefensituaties en werkwijze beter aan op de praktijk van jullie organisatie.",
+            "Wij verzorgen alle trainingen en ontruimingsoefeningen op locatie (incompany) bij de klant. Wij beschikken niet over een vaste trainingslocatie. Het voordeel hiervan is dat de training volledig aansluit op de werkomgeving, risico’s en praktijksituaties binnen jullie organisatie.",
     },
     {
         question: "Voor hoeveel deelnemers zijn de trainingen geschikt?",
         answer:
-            "Wij werken bij voorkeur met kleine groepen tot maximaal 10 deelnemers. Dat zorgt voor meer persoonlijke aandacht, betere begeleiding en meer ruimte om praktisch te oefenen.",
+            "Voor trainingen, workshops en ontruimingsoefeningen (fase 0 en 1) werken wij met kleine groepen van maximaal 10 deelnemers. Dit zorgt voor optimale begeleiding, persoonlijke aandacht en voldoende ruimte om praktisch te oefenen.\n\nVoor ontruimingsoefeningen (fase 2, 3 en 4) geldt geen maximum. Hierbij wordt geoefend met de daadwerkelijke bezetting van het pand of de omgeving, zodat de situatie zo realistisch mogelijk aansluit op een mogelijke noodsituatie.",
     },
     {
         question: "Kunnen trainingen worden afgestemd op onze organisatie?",
         answer:
-            "Ja, maatwerk is mogelijk. Trainingen kunnen worden afgestemd op de locatie, risico’s, werkzaamheden en leerbehoefte van de deelnemers.",
+            "Ja, trainingen worden altijd afgestemd op de locatie en de specifieke risico’s binnen jullie organisatie.\n\nBij herhalingstrainingen ligt de nadruk sterk op praktijksituaties uit de eigen werkomgeving. Bij basistrainingen ligt de focus vooral op het aanleren van de juiste vaardigheden en basiskennis. Afstemming op de locatie en risico’s wordt hierbij waar mogelijk meegenomen, afhankelijk van de beschikbare tijd.",
     },
     {
-        question: "In welke regio geven jullie training?",
+        question: "In welke regio geven jullie trainingen?",
         answer:
-            "BHV Voorne aan Zee is actief in Voorne aan Zee, Rotterdam, Rijnmond, Westland, Den Haag en breder in Zuidwest-Nederland.",
+            "BHV Voorne aan Zee is actief in de regio’s Voorne aan Zee, Nissewaard, Goeree-Overflakkee, Rotterdam, Barendrecht, Westland, Maassluis, Vlaardingen, Schiedam en Den Haag. Daarnaast verzorgen wij trainingen in een breder gebied binnen Zuidwest-Nederland, waaronder Zeeland en delen van West-Brabant.",
     },
     {
-        question: "Wat is het verschil tussen basis en herhaling?",
+        question: "Wat is het verschil tussen een basisopleiding en een herhalingstraining?",
         answer:
-            "Bij een basisopleiding is er meer aandacht voor uitleg van vaardigheden en de theorie daarachter. Bij herhaling ligt de nadruk juist meer op actief oefenen, toepassen in praktijksituaties en waar nodig verdieping.",
+            "Bij een basisopleiding ligt de nadruk op het aanleren van de juiste vaardigheden en het begrijpen van de theorie daarachter. Deelnemers maken voor het eerst kennis met onderwerpen zoals reanimatie, brandbestrijding en ontruiming, waarbij stap voor stap wordt geoefend om een goede basis te leggen.\n\nBij een herhalingstraining ligt de focus juist op het opfrissen en verdiepen van bestaande kennis en vaardigheden. Er wordt minder tijd besteed aan uitleg en juist meer aan actief oefenen en realistische praktijksituaties, afgestemd op de werkomgeving en risico’s binnen de organisatie.",
     },
 ];
 

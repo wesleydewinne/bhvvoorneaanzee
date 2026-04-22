@@ -6,6 +6,7 @@ import "./TwoFactorPage.css";
 
 export default function TwoFactorPage() {
     const {
+        authInitialized,
         requiresTwoFactor,
         requiresTwoFactorSetup,
         verifyTwoFactorLogin,
@@ -17,31 +18,46 @@ export default function TwoFactorPage() {
     const [setupData, setSetupData] = useState(null);
     const [code, setCode] = useState("");
     const [error, setError] = useState("");
-    const [setupComplete, setSetupComplete] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!requiresTwoFactor) {
-            navigate("/inloggen", { replace: true });
+        if (!authInitialized) {
             return;
         }
 
-        if (!requiresTwoFactorSetup) {
+        if (!requiresTwoFactor) {
+            navigate("/inloggen", { replace: true });
+        }
+    }, [authInitialized, requiresTwoFactor, navigate]);
+
+    useEffect(() => {
+        if (!authInitialized || !requiresTwoFactor || !requiresTwoFactorSetup) {
             return;
         }
+
+        let cancelled = false;
 
         const loadSetup = async () => {
             try {
                 const data = await initTwoFactorSetup();
-                setSetupData(data);
+
+                if (!cancelled) {
+                    setSetupData(data);
+                }
             } catch (err) {
-                setError(err.message || "Kan 2FA setup niet laden.");
+                if (!cancelled) {
+                    setError(err.message || "Kan 2FA setup niet laden.");
+                }
             }
         };
 
         loadSetup();
-    }, [requiresTwoFactor, requiresTwoFactorSetup, initTwoFactorSetup, navigate]);
+
+        return () => {
+            cancelled = true;
+        };
+    }, [authInitialized, requiresTwoFactor, requiresTwoFactorSetup, initTwoFactorSetup]);
 
     const handleCodeChange = (e) => {
         const sanitizedValue = e.target.value.replace(/\D/g, "").slice(0, 6);
@@ -68,12 +84,20 @@ export default function TwoFactorPage() {
 
         try {
             await verifyTwoFactorSetup(code);
-            setSetupComplete(true);
-            navigate("/dashboard", { replace: true });
+            setCode("");
+            setSetupData(null);
         } catch (err) {
             setError(err.message || "2FA activeren is mislukt.");
         }
     };
+
+    if (!authInitialized) {
+        return (
+            <div className="twofactor-page">
+                <div className="twofactor-card">Laden...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="twofactor-page">
@@ -99,7 +123,7 @@ export default function TwoFactorPage() {
                     <div className="twofactor-state">QR-code wordt geladen...</div>
                 )}
 
-                {requiresTwoFactorSetup && setupData && !setupComplete && (
+                {requiresTwoFactorSetup && setupData && (
                     <div className="twofactor-setup">
                         <p className="twofactor-text">
                             Scan deze QR-code met Microsoft Authenticator of Google Authenticator.

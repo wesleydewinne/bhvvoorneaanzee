@@ -10,6 +10,7 @@ export default function TwoFactorSettingsPage() {
         verifyTwoFactorSetup,
         disableTwoFactor,
         loading,
+        refreshUser,
     } = useAuth();
 
     const [setupData, setSetupData] = useState(null);
@@ -39,6 +40,8 @@ export default function TwoFactorSettingsPage() {
 
         try {
             await verifyTwoFactorSetup(setupCode);
+            await refreshUser();
+
             setSetupCode("");
             setDisableCode("");
             setSetupData(null);
