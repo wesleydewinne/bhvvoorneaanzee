@@ -43,14 +43,16 @@ api.interceptors.response.use(
         const status = error.response?.status;
         const originalRequest = error.config;
 
-        /* -------------------------------------------------------------
-           401 – TOKEN VERLOPEN → probeer refresh
-        ------------------------------------------------------------- */
         if (status === 401) {
             console.warn("⚠️ 401 ontvangen");
 
-            // voorkom loop
+            if (!originalRequest) {
+                return Promise.reject(error);
+            }
+
             if (originalRequest._retry) {
+                window.dispatchEvent(new CustomEvent("auth:logout-required"));
+
                 return Promise.reject({
                     ...error,
                     autoLogout: true,
@@ -58,19 +60,15 @@ api.interceptors.response.use(
                 });
             }
 
-            // login/refresh zelf overslaan
             if (
-                originalRequest?.url?.includes("/auth/login") ||
-                originalRequest?.url?.includes("/auth/refresh")
+                originalRequest.url?.includes("/auth/login") ||
+                originalRequest.url?.includes("/auth/refresh")
             ) {
                 return Promise.reject(error);
             }
 
             originalRequest._retry = true;
 
-            /* ---------------------------------------------------------
-               ALS AL BEZIG MET REFRESH → queue
-            --------------------------------------------------------- */
             if (isRefreshing) {
                 return new Promise((resolve, reject) => {
                     refreshQueue.push({
@@ -89,29 +87,26 @@ api.interceptors.response.use(
 
                 console.log("✅ Refresh gelukt");
 
+                isRefreshing = false;
                 processQueue();
 
                 return api(originalRequest);
-
             } catch (refreshError) {
                 console.warn("❌ Refresh mislukt");
 
+                isRefreshing = false;
                 processQueue(refreshError);
+
+                window.dispatchEvent(new CustomEvent("auth:logout-required"));
 
                 return Promise.reject({
                     ...refreshError,
                     autoLogout: true,
                     message: "Je sessie is verlopen. Log opnieuw in.",
                 });
-
-            } finally {
-                isRefreshing = false;
             }
         }
 
-        /* -------------------------------------------------------------
-           403 – Forbidden
-        ------------------------------------------------------------- */
         if (status === 403) {
             const backendMsg =
                 error.response?.data?.message ||
@@ -126,9 +121,6 @@ api.interceptors.response.use(
             });
         }
 
-        /* -------------------------------------------------------------
-           429 – Rate limiting
-        ------------------------------------------------------------- */
         if (status === 429) {
             return Promise.reject({
                 ...error,

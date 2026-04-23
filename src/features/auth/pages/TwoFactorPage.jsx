@@ -22,9 +22,7 @@ export default function TwoFactorPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!authInitialized) {
-            return;
-        }
+        if (!authInitialized) return;
 
         if (!requiresTwoFactor) {
             navigate("/inloggen", { replace: true });
@@ -32,19 +30,14 @@ export default function TwoFactorPage() {
     }, [authInitialized, requiresTwoFactor, navigate]);
 
     useEffect(() => {
-        if (!authInitialized || !requiresTwoFactor || !requiresTwoFactorSetup) {
-            return;
-        }
+        if (!authInitialized || !requiresTwoFactor || !requiresTwoFactorSetup) return;
 
         let cancelled = false;
 
         const loadSetup = async () => {
             try {
                 const data = await initTwoFactorSetup();
-
-                if (!cancelled) {
-                    setSetupData(data);
-                }
+                if (!cancelled) setSetupData(data);
             } catch (err) {
                 if (!cancelled) {
                     setError(err.message || "Kan 2FA setup niet laden.");
@@ -52,7 +45,7 @@ export default function TwoFactorPage() {
             }
         };
 
-        loadSetup();
+        void loadSetup();
 
         return () => {
             cancelled = true;
@@ -60,8 +53,8 @@ export default function TwoFactorPage() {
     }, [authInitialized, requiresTwoFactor, requiresTwoFactorSetup, initTwoFactorSetup]);
 
     const handleCodeChange = (e) => {
-        const sanitizedValue = e.target.value.replace(/\D/g, "").slice(0, 6);
-        setCode(sanitizedValue);
+        const sanitized = e.target.value.replace(/\D/g, "").slice(0, 6);
+        setCode(sanitized);
     };
 
     const handleVerifyLogin = async (e) => {
@@ -93,109 +86,138 @@ export default function TwoFactorPage() {
 
     if (!authInitialized) {
         return (
-            <div className="twofactor-page">
-                <div className="twofactor-card">Laden...</div>
-            </div>
+            <main className="twofactor-page">
+                <section className="twofactor-card">Laden...</section>
+            </main>
         );
     }
 
     return (
-        <div className="twofactor-page">
-            <div className="twofactor-card">
-                <div className="twofactor-header">
+        <main className="twofactor-page">
+            <article className="twofactor-card">
+                <header className="twofactor-header">
                     <h1 className="twofactor-title">
                         {requiresTwoFactorSetup ? "2FA instellen" : "Tweefactorauthenticatie"}
                     </h1>
+
                     <p className="twofactor-subtitle">
                         {requiresTwoFactorSetup
-                            ? "Dit account vereist tweefactorauthenticatie. Scan eerst de QR-code en bevestig daarna met je 6-cijferige code."
-                            : "Vul de 6-cijferige code uit je authenticator-app in."}
+                            ? "Scan de QR-code met Microsoft Authenticator en bevestig daarna met je code."
+                            : "Voer de 6-cijferige code uit je authenticator-app in om door te gaan."}
                     </p>
-                </div>
+                </header>
 
                 {error && (
-                    <div className="twofactor-error" role="alert" aria-live="polite">
+                    <p className="twofactor-error" role="alert">
                         {error}
-                    </div>
+                    </p>
                 )}
 
                 {requiresTwoFactorSetup && !setupData && !error && (
-                    <div className="twofactor-state">QR-code wordt geladen...</div>
+                    <p className="twofactor-state">QR-code wordt geladen...</p>
                 )}
 
+                {/* =========================
+                   2FA SETUP
+                ========================= */}
                 {requiresTwoFactorSetup && setupData && (
-                    <div className="twofactor-setup">
-                        <p className="twofactor-text">
-                            Scan deze QR-code met Microsoft Authenticator of Google Authenticator.
-                        </p>
+                    <section className="twofactor-layout">
+                        <article className="twofactor-panel twofactor-panel--qr">
+                            <header>
+                                <h2 className="twofactor-section-title">
+                                    Stap 1 · Scan de QR-code
+                                </h2>
+                            </header>
 
-                        <div className="twofactor-qr">
-                            <QRCodeCanvas value={setupData.otpauthUri} size={220} />
-                        </div>
+                            <section className="twofactor-qr-section">
+                                <figure className="twofactor-qr-box">
+                                    <QRCodeCanvas value={setupData.otpauthUri} size={180} />
+                                </figure>
 
-                        <div className="twofactor-manual-code">
-                            <span>Handmatige code:</span>
-                            <strong>{setupData.secret}</strong>
-                        </div>
+                                <section className="twofactor-manual">
+                                    <p className="twofactor-manual-label">
+                                        Handmatige code
+                                    </p>
+                                    <p className="twofactor-manual-value">
+                                        {setupData.secret}
+                                    </p>
+                                </section>
+                            </section>
+                        </article>
 
-                        <form onSubmit={handleVerifySetup} className="twofactor-form">
-                            <div className="twofactor-field">
-                                <label className="twofactor-label" htmlFor="code">
-                                    Bevestig met je 6-cijferige code
-                                </label>
-                                <input
-                                    id="code"
-                                    className="twofactor-input"
-                                    type="text"
-                                    inputMode="numeric"
-                                    autoComplete="one-time-code"
-                                    maxLength={6}
-                                    value={code}
-                                    onChange={handleCodeChange}
-                                    required
-                                />
-                            </div>
+                        <article className="twofactor-panel twofactor-panel--form">
+                            <header>
+                                <h2 className="twofactor-section-title">
+                                    Stap 2 · Bevestig je code
+                                </h2>
+                            </header>
 
-                            <button
-                                className="twofactor-button"
-                                type="submit"
-                                disabled={loading || code.length !== 6}
-                            >
-                                {loading ? "Bezig met activeren..." : "2FA activeren"}
-                            </button>
-                        </form>
-                    </div>
+                            <form onSubmit={handleVerifySetup} className="twofactor-form">
+                                <section className="twofactor-field">
+                                    <label className="twofactor-label" htmlFor="code">
+                                        6-cijferige code
+                                    </label>
+
+                                    <input
+                                        id="code"
+                                        className="twofactor-code-input"
+                                        type="text"
+                                        inputMode="numeric"
+                                        autoComplete="one-time-code"
+                                        maxLength={6}
+                                        placeholder="123456"
+                                        value={code}
+                                        onChange={handleCodeChange}
+                                        required
+                                    />
+                                </section>
+
+                                <button
+                                    className="twofactor-button"
+                                    type="submit"
+                                    disabled={loading || code.length !== 6}
+                                >
+                                    {loading ? "Bezig..." : "2FA activeren"}
+                                </button>
+                            </form>
+                        </article>
+                    </section>
                 )}
 
+                {/* =========================
+                   2FA LOGIN
+                ========================= */}
                 {!requiresTwoFactorSetup && (
                     <form onSubmit={handleVerifyLogin} className="twofactor-form">
-                        <div className="twofactor-field">
+                        <section className="twofactor-field">
                             <label className="twofactor-label" htmlFor="code">
                                 Authenticatiecode
                             </label>
+
                             <input
                                 id="code"
-                                className="twofactor-input"
+                                className="twofactor-code-input"
                                 type="text"
                                 inputMode="numeric"
                                 autoComplete="one-time-code"
                                 maxLength={6}
+                                placeholder="123456"
                                 value={code}
                                 onChange={handleCodeChange}
                                 required
                             />
-                        </div>
+                        </section>
 
                         <button
                             className="twofactor-button"
                             type="submit"
                             disabled={loading || code.length !== 6}
                         >
-                            {loading ? "Bezig met verifiëren..." : "Code bevestigen"}
+                            {loading ? "Bezig..." : "Code bevestigen"}
                         </button>
                     </form>
                 )}
-            </div>
-        </div>
+            </article>
+        </main>
     );
 }

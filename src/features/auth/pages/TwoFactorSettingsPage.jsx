@@ -68,115 +68,162 @@ export default function TwoFactorSettingsPage() {
     };
 
     return (
-        <div className="twofactor-page">
-            <div className="twofactor-card">
-                <div className="twofactor-header">
-                    <h1 className="twofactor-title">2FA beveiliging</h1>
-                    <p className="twofactor-subtitle">
-                        Beheer hier de tweefactorauthenticatie van je account.
-                    </p>
-                </div>
-
-                {error && (
-                    <div className="twofactor-error" role="alert" aria-live="polite">
-                        {error}
-                    </div>
-                )}
-
-                {success && (
-                    <div className="twofactor-state" aria-live="polite">
-                        {success}
-                    </div>
-                )}
-
-                {!isTwoFactorEnabled && !setupData && (
-                    <button
-                        className="twofactor-button"
-                        type="button"
-                        onClick={handleInitSetup}
-                        disabled={loading}
-                    >
-                        2FA inschakelen
-                    </button>
-                )}
-
-                {!isTwoFactorEnabled && setupData && (
-                    <div className="twofactor-setup">
-                        <p className="twofactor-text">
-                            Scan deze QR-code met Microsoft Authenticator of Google Authenticator.
+        <main className="twofactor-page">
+            <section className="twofactor-shell" aria-labelledby="twofactor-settings-title">
+                <article className="twofactor-card">
+                    <header className="twofactor-header">
+                        <h1 id="twofactor-settings-title" className="twofactor-title">
+                            2FA beveiliging
+                        </h1>
+                        <p className="twofactor-subtitle">
+                            Beheer hier de tweefactorauthenticatie van je account.
                         </p>
+                    </header>
 
-                        <div className="twofactor-qr">
-                            <QRCodeCanvas value={setupData.otpauthUri} size={220} />
-                        </div>
+                    {error && (
+                        <p className="twofactor-error" role="alert" aria-live="polite">
+                            {error}
+                        </p>
+                    )}
 
-                        <div className="twofactor-manual-code">
-                            <span>Handmatige code:</span>
-                            <strong>{setupData.secret}</strong>
-                        </div>
+                    {success && (
+                        <p className="twofactor-state" aria-live="polite">
+                            {success}
+                        </p>
+                    )}
 
-                        <form onSubmit={handleVerifySetup} className="twofactor-form">
-                            <div className="twofactor-field">
-                                <label className="twofactor-label" htmlFor="setupCode">
-                                    Bevestig met je 6-cijferige code
-                                </label>
-                                <input
-                                    id="setupCode"
-                                    className="twofactor-input"
-                                    type="text"
-                                    inputMode="numeric"
-                                    autoComplete="one-time-code"
-                                    maxLength={6}
-                                    value={setupCode}
-                                    onChange={(e) =>
-                                        setSetupCode(e.target.value.replace(/\D/g, "").slice(0, 6))
-                                    }
-                                    required
-                                />
-                            </div>
-
-                            <button
-                                className="twofactor-button"
-                                type="submit"
-                                disabled={loading || setupCode.length !== 6}
-                            >
-                                {loading ? "Bezig met activeren..." : "2FA activeren"}
-                            </button>
-                        </form>
-                    </div>
-                )}
-
-                {isTwoFactorEnabled && (
-                    <form onSubmit={handleDisable} className="twofactor-form">
-                        <div className="twofactor-field">
-                            <label className="twofactor-label" htmlFor="disableCode">
-                                Vul je huidige 2FA-code in om 2FA uit te schakelen
-                            </label>
-                            <input
-                                id="disableCode"
-                                className="twofactor-input"
-                                type="text"
-                                inputMode="numeric"
-                                autoComplete="one-time-code"
-                                maxLength={6}
-                                value={disableCode}
-                                onChange={(e) =>
-                                    setDisableCode(e.target.value.replace(/\D/g, "").slice(0, 6))
-                                }
-                                required
-                            />
-                        </div>
-
+                    {!isTwoFactorEnabled && !setupData && (
                         <button
                             className="twofactor-button"
-                            type="submit"
-                            disabled={loading || disableCode.length !== 6}
+                            type="button"
+                            onClick={handleInitSetup}
+                            disabled={loading}
                         >
-                            {loading ? "Bezig met uitschakelen..." : "2FA uitschakelen"}
+                            {loading ? "Bezig..." : "2FA inschakelen"}
                         </button>
-                    </form>
-                )}
-            </div>
-        </div>
+                    )}
+
+                    {!isTwoFactorEnabled && setupData && (
+                        <section className="twofactor-layout" aria-label="Tweefactorauthenticatie instellen">
+                            <article
+                                className="twofactor-panel twofactor-panel--qr"
+                                aria-labelledby="twofactor-setup-scan-title"
+                            >
+                                <header className="twofactor-panel-header">
+                                    <h2 id="twofactor-setup-scan-title" className="twofactor-section-title">
+                                        Stap 1 · Scan de QR-code
+                                    </h2>
+                                    <p className="twofactor-help">
+                                        Open Microsoft Authenticator en scan de QR-code hieronder.
+                                    </p>
+                                </header>
+
+                                <section className="twofactor-qr-section" aria-label="QR-code voor Microsoft Authenticator">
+                                    <div className="twofactor-qr-box">
+                                        <QRCodeCanvas value={setupData.otpauthUri} size={180} />
+                                    </div>
+
+                                    <section className="twofactor-manual" aria-label="Handmatige instelcode">
+                                        <p className="twofactor-manual-label">
+                                            Lukt scannen niet? Gebruik dan deze handmatige code.
+                                        </p>
+                                        <p className="twofactor-manual-value">{setupData.secret}</p>
+                                    </section>
+                                </section>
+                            </article>
+
+                            <article
+                                className="twofactor-panel twofactor-panel--form"
+                                aria-labelledby="twofactor-setup-confirm-title"
+                            >
+                                <header className="twofactor-panel-header">
+                                    <h2 id="twofactor-setup-confirm-title" className="twofactor-section-title">
+                                        Stap 2 · Bevestig je code
+                                    </h2>
+                                    <p className="twofactor-help">
+                                        Voer de 6-cijferige code uit Microsoft Authenticator in om 2FA te activeren.
+                                    </p>
+                                </header>
+
+                                <form onSubmit={handleVerifySetup} className="twofactor-form">
+                                    <section className="twofactor-field">
+                                        <label className="twofactor-label" htmlFor="setupCode">
+                                            6-cijferige code
+                                        </label>
+                                        <input
+                                            id="setupCode"
+                                            className="twofactor-code-input"
+                                            type="text"
+                                            inputMode="numeric"
+                                            autoComplete="one-time-code"
+                                            maxLength={6}
+                                            placeholder="123456"
+                                            value={setupCode}
+                                            onChange={(e) =>
+                                                setSetupCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                                            }
+                                            required
+                                        />
+                                    </section>
+
+                                    <button
+                                        className="twofactor-button"
+                                        type="submit"
+                                        disabled={loading || setupCode.length !== 6}
+                                    >
+                                        {loading ? "Bezig met activeren..." : "2FA activeren"}
+                                    </button>
+                                </form>
+                            </article>
+                        </section>
+                    )}
+
+                    {isTwoFactorEnabled && (
+                        <section className="twofactor-layout twofactor-layout--single" aria-label="Tweefactorauthenticatie uitschakelen">
+                            <article className="twofactor-panel twofactor-panel--form" aria-labelledby="twofactor-disable-title">
+                                <header className="twofactor-panel-header">
+                                    <h2 id="twofactor-disable-title" className="twofactor-section-title">
+                                        2FA uitschakelen
+                                    </h2>
+                                    <p className="twofactor-help">
+                                        Vul je huidige code uit Microsoft Authenticator in om tweefactorauthenticatie uit te schakelen.
+                                    </p>
+                                </header>
+
+                                <form onSubmit={handleDisable} className="twofactor-form">
+                                    <section className="twofactor-field">
+                                        <label className="twofactor-label" htmlFor="disableCode">
+                                            6-cijferige code
+                                        </label>
+                                        <input
+                                            id="disableCode"
+                                            className="twofactor-code-input"
+                                            type="text"
+                                            inputMode="numeric"
+                                            autoComplete="one-time-code"
+                                            maxLength={6}
+                                            placeholder="123456"
+                                            value={disableCode}
+                                            onChange={(e) =>
+                                                setDisableCode(e.target.value.replace(/\D/g, "").slice(0, 6))
+                                            }
+                                            required
+                                        />
+                                    </section>
+
+                                    <button
+                                        className="twofactor-button"
+                                        type="submit"
+                                        disabled={loading || disableCode.length !== 6}
+                                    >
+                                        {loading ? "Bezig met uitschakelen..." : "2FA uitschakelen"}
+                                    </button>
+                                </form>
+                            </article>
+                        </section>
+                    )}
+                </article>
+            </section>
+        </main>
     );
 }

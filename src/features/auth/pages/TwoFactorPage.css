@@ -1,29 +1,28 @@
 .twofactor-page {
-    min-height: calc(100vh - 120px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px 16px;
+    min-height: calc(100vh - 12rem);
+    padding: 4rem 1.6rem;
     background: #f5f7fb;
 }
 
+.twofactor-shell {
+    max-width: 96rem;
+    margin: 0 auto;
+}
+
 .twofactor-card {
-    width: 100%;
-    max-width: 560px;
     background: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
-    padding: 32px;
+    border-radius: 2.4rem;
+    box-shadow: 0 2rem 5rem rgba(15, 23, 42, 0.08);
+    padding: 3.2rem;
 }
 
 .twofactor-header {
-    margin-bottom: 24px;
-    text-align: left;
+    margin-bottom: 2.8rem;
 }
 
 .twofactor-title {
-    margin: 0 0 8px;
-    font-size: 2rem;
+    margin: 0 0 0.8rem;
+    font-size: 3.8rem;
     line-height: 1.1;
     font-weight: 800;
     color: #0f172a;
@@ -31,136 +30,219 @@
 
 .twofactor-subtitle {
     margin: 0;
-    font-size: 1rem;
+    max-width: 58rem;
+    font-size: 1.7rem;
+    line-height: 1.6;
+    color: #64748b;
+}
+
+.twofactor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.4rem;
+    align-items: start;
+}
+
+.twofactor-panel {
+    border: 0.1rem solid #e2e8f0;
+    border-radius: 2rem;
+    background: #f8fafc;
+    padding: 2.4rem;
+}
+
+.twofactor-panel-header {
+    margin-bottom: 2rem;
+}
+
+.twofactor-section-title {
+    margin: 0 0 1rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.twofactor-help {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #475569;
+}
+
+.twofactor-panel--qr .twofactor-qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.twofactor-qr-box {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1.6rem;
+    background: #eef2f7;
+}
+
+.twofactor-qr-box canvas {
+    display: block;
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 0.8rem 2rem rgba(15, 23, 42, 0.08);
+}
+
+.twofactor-manual {
+    width: 100%;
+    max-width: 32rem;
+    padding: 1.6rem 2rem;
+    border-radius: 1.4rem;
+    background: #ffffff;
+    border: 0.1rem solid #dbe3ee;
+    text-align: center;
+}
+
+.twofactor-manual-label {
+    margin: 0 0 0.8rem;
+    font-size: 1.4rem;
     line-height: 1.5;
     color: #64748b;
+}
+
+.twofactor-manual-value {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.4;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #0f172a;
+    word-break: break-word;
 }
 
 .twofactor-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .twofactor-field {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.8rem;
 }
 
 .twofactor-label {
-    font-size: 0.95rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #0f172a;
 }
 
-.twofactor-input {
+.twofactor-code-input {
     width: 100%;
-    min-height: 48px;
-    padding: 12px 14px;
-    border: 1px solid #cbd5e1;
-    border-radius: 12px;
+    min-height: 5.8rem;
+    padding: 1.4rem 1.8rem;
+    border: 0.1rem solid #cbd5e1;
+    border-radius: 1.4rem;
     background: #ffffff;
     color: #0f172a;
-    font-size: 1rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.6rem;
+    text-align: center;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
 }
 
-.twofactor-input:focus {
+.twofactor-code-input::placeholder {
+    color: #94a3b8;
+    letter-spacing: 0.6rem;
+}
+
+.twofactor-code-input:focus {
     border-color: #ea580c;
-    box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.12);
+    box-shadow: 0 0 0 0.4rem rgba(234, 88, 12, 0.12);
 }
 
 .twofactor-button {
-    min-height: 48px;
+    min-height: 5.8rem;
     border: none;
-    border-radius: 12px;
-    background: #ea580c;
+    border-radius: 1.4rem;
+    background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
     color: #ffffff;
-    font-size: 1rem;
+    font-size: 1.7rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 1rem 2rem rgba(234, 88, 12, 0.18);
 }
 
 .twofactor-button:hover:not(:disabled) {
-    background: #c2410c;
+    transform: translateY(-0.1rem);
+    box-shadow: 0 1.4rem 2.6rem rgba(234, 88, 12, 0.24);
 }
 
 .twofactor-button:disabled {
-    opacity: 0.6;
+    opacity: 0.65;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
-.twofactor-error {
-    padding: 12px 14px;
-    border-radius: 12px;
-    background: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #b91c1c;
-    font-size: 0.95rem;
-}
-
-.twofactor-state {
-    padding: 16px;
-    border-radius: 12px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #334155;
-}
-
-.twofactor-setup {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.twofactor-text {
-    margin: 0;
-    color: #334155;
-    line-height: 1.6;
-}
-
-.twofactor-qr {
-    display: flex;
-    justify-content: center;
-    padding: 16px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-}
-
-.twofactor-manual-code {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 14px 16px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    color: #334155;
-    word-break: break-word;
-}
-
-.twofactor-manual-code strong {
-    font-size: 1rem;
-    color: #0f172a;
-    letter-spacing: 0.08em;
-}
-
-@media (max-width: 640px) {
-    .twofactor-page {
-        padding: 24px 12px;
+@media (max-width: 76.8rem) {
+    .twofactor-layout {
+        grid-template-columns: 1fr;
     }
 
     .twofactor-card {
-        padding: 24px 20px;
-        border-radius: 18px;
+        padding: 2.4rem;
     }
 
     .twofactor-title {
+        font-size: 3rem;
+    }
+
+    .twofactor-subtitle {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 48rem) {
+    .twofactor-page {
+        padding: 2.4rem 1.2rem;
+    }
+
+    .twofactor-card {
+        padding: 2rem;
+        border-radius: 2rem;
+    }
+
+    .twofactor-panel {
+        padding: 1.8rem;
+        border-radius: 1.6rem;
+    }
+
+    .twofactor-title {
+        font-size: 2.6rem;
+    }
+
+    .twofactor-section-title {
         font-size: 1.7rem;
+    }
+
+    .twofactor-subtitle,
+    .twofactor-help,
+    .twofactor-label {
+        font-size: 1.5rem;
+    }
+
+    .twofactor-manual-value {
+        font-size: 1.8rem;
+        letter-spacing: 0.1em;
+    }
+
+    .twofactor-code-input {
+        font-size: 2rem;
+        letter-spacing: 0.35rem;
     }
 }

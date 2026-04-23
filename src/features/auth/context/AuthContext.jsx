@@ -81,7 +81,7 @@ export function AuthProvider({ children }) {
             }
         };
 
-        initializeAuth();
+        void initializeAuth();
 
         return () => {
             isMounted = false;
@@ -200,6 +200,19 @@ export function AuthProvider({ children }) {
             clearTwoFactorState();
             setLoading(false);
         }
+    }, [clearTwoFactorState]);
+
+    useEffect(() => {
+        const handleLogoutRequired = async () => {
+            setUser(null);
+            clearTwoFactorState();
+        };
+
+        window.addEventListener("auth:logout-required", handleLogoutRequired);
+
+        return () => {
+            window.removeEventListener("auth:logout-required", handleLogoutRequired);
+        };
     }, [clearTwoFactorState]);
 
     const value = useMemo(() => ({
