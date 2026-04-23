@@ -43,10 +43,19 @@ api.interceptors.response.use(
         const status = error.response?.status;
         const originalRequest = error.config;
 
-        if (status === 401) {
-            console.warn("⚠️ 401 ontvangen");
+        const isAuthCandidate = status === 401 || status === 403;
+
+        if (isAuthCandidate) {
+            console.warn(`⚠️ ${status} ontvangen`);
 
             if (!originalRequest) {
+                return Promise.reject(error);
+            }
+
+            if (
+                originalRequest.url?.includes("/auth/login") ||
+                originalRequest.url?.includes("/auth/refresh")
+            ) {
                 return Promise.reject(error);
             }
 
@@ -58,13 +67,6 @@ api.interceptors.response.use(
                     autoLogout: true,
                     message: "Je sessie is verlopen. Log opnieuw in.",
                 });
-            }
-
-            if (
-                originalRequest.url?.includes("/auth/login") ||
-                originalRequest.url?.includes("/auth/refresh")
-            ) {
-                return Promise.reject(error);
             }
 
             originalRequest._retry = true;
@@ -107,20 +109,6 @@ api.interceptors.response.use(
             }
         }
 
-        if (status === 403) {
-            const backendMsg =
-                error.response?.data?.message ||
-                error.response?.data?.error ||
-                (typeof error.response?.data === "string"
-                    ? error.response.data
-                    : null);
-
-            return Promise.reject({
-                ...error,
-                message: backendMsg || "Geen toestemming (403).",
-            });
-        }
-
         if (status === 429) {
             return Promise.reject({
                 ...error,
@@ -128,7 +116,17 @@ api.interceptors.response.use(
             });
         }
 
-        return Promise.reject(error);
+        const backendMsg =
+            error.response?.data?.message ||
+            error.response?.data?.error ||
+            (typeof error.response?.data === "string"
+                ? error.response.data
+                : null);
+
+        return Promise.reject({
+            ...error,
+            message: backendMsg || error.message || "Er is een fout opgetreden.",
+        });
     }
 );
 
