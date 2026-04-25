@@ -29,6 +29,7 @@ const processQueue = (error) => {
             promise.resolve();
         }
     });
+
     refreshQueue = [];
 };
 
@@ -43,7 +44,13 @@ api.interceptors.response.use(
         const status = error.response?.status;
         const originalRequest = error.config;
 
-        const isAuthCandidate = status === 401 || status === 403;
+        /*
+           Alleen 401 mag refresh triggeren.
+
+           401 = access cookie verlopen / niet ingelogd
+           403 = verboden / captcha fout / onvoldoende rechten
+        */
+        const isAuthCandidate = status === 401;
 
         if (isAuthCandidate) {
             console.warn(`⚠️ ${status} ontvangen`);
@@ -107,6 +114,22 @@ api.interceptors.response.use(
                     message: "Je sessie is verlopen. Log opnieuw in.",
                 });
             }
+        }
+
+        if (status === 403) {
+            const backendMsg =
+                error.response?.data?.message ||
+                error.response?.data?.error ||
+                (typeof error.response?.data === "string"
+                    ? error.response.data
+                    : null);
+
+            return Promise.reject({
+                ...error,
+                message:
+                    backendMsg ||
+                    "Geen toegang of beveiligingscheck ongeldig.",
+            });
         }
 
         if (status === 429) {
