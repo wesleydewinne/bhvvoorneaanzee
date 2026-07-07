@@ -1,7 +1,7 @@
 .region-section {
     position: relative;
     overflow: hidden;
-    padding: 5rem 0;
+    padding: var(--space-7) 0;
     background:
             radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 35%),
             radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.08), transparent 30%),
@@ -15,8 +15,13 @@
     align-items: center;
 }
 
+/* Linkerkant / content */
 .region-section__content {
     max-width: 640px;
+}
+
+.region-section__header {
+    margin-bottom: 1.25rem;
 }
 
 .region-section__eyebrow {
@@ -31,7 +36,7 @@
 
 .region-section__title {
     margin: 0 0 1.25rem;
-    font-size: clamp(2rem, 4vw, 2.9rem);
+    font-size: var(--fs-6);
     line-height: 1.12;
     color: var(--color-text-dark, #111827);
     text-wrap: balance;
@@ -44,6 +49,180 @@
     color: var(--color-text-muted, #4b5563);
 }
 
+.region-section__places {
+    margin: 1.5rem 0 1.4rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(15, 118, 110, 0.12);
+    border-radius: 1.25rem;
+    background:
+            linear-gradient(135deg, rgba(15, 118, 110, 0.06), rgba(14, 165, 233, 0.04)),
+            rgba(255, 255, 255, 0.72);
+}
+
+.region-section__places-title {
+    margin: 0 0 0.9rem;
+    color: var(--color-text-dark, #111827);
+    font-size: 1.55rem;
+    line-height: 1.25;
+}
+
+.region-section__place-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.region-section__place-list a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--color-primary, #0f766e);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    font-size: 1.34rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.region-section__place-list a:hover,
+.region-section__place-list a:focus-visible {
+    background: rgba(15, 118, 110, 0.1);
+}
+
+/* Tekstlinks */
+.region-section__link {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+    text-decoration-thickness: 1px;
+    transition:
+            color 0.2s ease,
+            text-decoration-color 0.2s ease;
+}
+
+.region-section__link:hover,
+.region-section__link:focus-visible {
+    color: var(--color-primary, #0f766e);
+    text-decoration-color: var(--color-primary, #0f766e);
+}
+
+/* Afkortingen met tooltip */
+.abbr-tooltip {
+    position: relative;
+    display: inline-block;
+    text-decoration: underline dotted;
+    text-underline-offset: 0.25rem;
+    cursor: help;
+}
+
+.abbr-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: 135%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.5rem;
+    background: #111827;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+    z-index: 30;
+    transition:
+            opacity 0.2s ease,
+            visibility 0.2s ease;
+}
+
+.abbr-tooltip::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 118%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    border-width: 0.45rem;
+    border-style: solid;
+    border-color: #111827 transparent transparent transparent;
+    z-index: 30;
+    transition:
+            opacity 0.2s ease,
+            visibility 0.2s ease;
+}
+
+.abbr-tooltip:hover::after,
+.abbr-tooltip:hover::before,
+.region-section__link:focus-visible .abbr-tooltip::after,
+.region-section__link:focus-visible .abbr-tooltip::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Actieknoppen */
+.region-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.region-section__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.4rem;
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            background-color 0.2s ease;
+}
+
+.region-section__button:hover,
+.region-section__button:focus-visible {
+    transform: translateY(-1px);
+}
+
+.region-section__button--primary {
+    background: var(--color-primary, #0f766e);
+    color: #ffffff;
+    box-shadow: 0 12px 25px rgba(15, 118, 110, 0.22);
+}
+
+.region-section__button--primary:hover,
+.region-section__button--primary:focus-visible {
+    background: #115e59;
+}
+
+.region-section__button--secondary {
+    background: rgba(15, 118, 110, 0.08);
+    color: var(--color-primary, #0f766e);
+}
+
+.region-section__button--secondary:hover,
+.region-section__button--secondary:focus-visible {
+    background: rgba(15, 118, 110, 0.14);
+}
+
+/* Rechterkant / visual */
 .region-section__visual {
     position: relative;
     display: grid;
@@ -63,9 +242,13 @@
     padding: 1.25rem;
 }
 
+/* Werkgebied-kaart */
 .region-section__map-bg {
     position: relative;
     min-height: 430px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     border-radius: 1.25rem;
     overflow: hidden;
     background:
@@ -96,61 +279,92 @@
     bottom: 6%;
 }
 
+/* Regio-badges op de kaart */
 .region-badge {
     position: absolute;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     padding: 0.65rem 0.9rem;
+    border: 1px solid rgba(229, 231, 235, 0.95);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(229, 231, 235, 0.95);
     box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
     font-size: 1.4rem;
     font-weight: 600;
     color: #0f172a;
     white-space: nowrap;
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
 }
 
+.region-badge:hover,
+.region-badge:focus-within {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+.region-badge a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.region-badge a:hover,
+.region-badge a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+}
+
+/* Voorne aan Zee - links onder */
 .region-badge--1 {
-    bottom: 14%;
+    bottom: 16%;
     left: 10%;
 }
 
+/* Rotterdam - rechts midden */
 .region-badge--2 {
-    top: 30%;
+    top: 46%;
     right: 8%;
 }
 
+/* Rijnmond - tussen Voorne en Rotterdam */
 .region-badge--3 {
-    top: 27%;
-    right: 30%;
+    top: 57%;
+    right: 25%;
 }
 
+/* Westland - links boven */
 .region-badge--4 {
-    top: 20%;
-    right: 16%;
-}
-
-.region-badge--5 {
-    bottom: 14%;
+    top: 24%;
     left: 12%;
 }
 
-.region-badge--6 {
-    bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
+/* Den Haag - boven midden */
+.region-badge--5 {
+    top: 10%;
+    left: 42%;
 }
 
+/* Zuidwest-Nederland - onder midden */
+.region-badge--6 {
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Centrale pin */
 .region-section__center-pin {
     position: absolute;
-    top: 48%;
-    left: 48%;
-    transform: translate(-50%, -50%);
+    z-index: 3;
+    top: 50%;
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.85rem;
+    transform: translate(-50%, -50%);
+    list-style: none;
 }
 
 .region-section__pin-dot {
@@ -166,9 +380,9 @@
     flex-direction: column;
     gap: 0.2rem;
     padding: 0.85rem 1rem;
+    border: 1px solid #e5e7eb;
     border-radius: 1rem;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     text-align: center;
 }
@@ -183,6 +397,7 @@
     color: #4b5563;
 }
 
+/* Info-card */
 .region-section__info-card {
     padding: 1.5rem;
 }
@@ -221,10 +436,29 @@
     background: var(--color-primary, #0f766e);
 }
 
+.region-section__feature-list a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.region-section__feature-list a:hover,
+.region-section__feature-list a:focus-visible {
+    color: var(--color-primary, #0f766e);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+}
+
+/* Regio chips */
 .region-section__chips {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
+}
+
+.region-section__chips--places {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(229, 231, 235, 0.9);
 }
 
 .region-section__chip {
@@ -236,11 +470,28 @@
     color: var(--color-primary, #0f766e);
     font-size: 1.4rem;
     font-weight: 600;
+    text-decoration: none;
+    transition:
+            transform 0.2s ease,
+            background-color 0.2s ease;
 }
 
+.region-section__chip:hover,
+.region-section__chip:focus-visible {
+    transform: translateY(-1px);
+    background: rgba(15, 118, 110, 0.14);
+}
+
+/* Algemene focus-state voor toegankelijkheid */
+.region-section a:focus-visible {
+    outline: 3px solid rgba(15, 118, 110, 0.35);
+    outline-offset: 4px;
+}
+
+/* Tablet */
 @media (max-width: 991px) {
     .region-section {
-        padding: 4rem 0;
+        padding: var(--space-6) 0;
     }
 
     .region-section__grid {
@@ -253,17 +504,40 @@
     }
 
     .region-section__map-bg {
-        min-height: 380px;
+        min-height: 400px;
     }
 }
 
+/* Mobiel */
 @media (max-width: 576px) {
     .region-section {
-        padding: 3.5rem 0;
+        padding: var(--space-6) 0;
     }
 
     .region-section__title {
         font-size: 1.95rem;
+    }
+
+    .region-section__text {
+        font-size: 1.45rem;
+        line-height: 1.7;
+    }
+
+    .region-section__places {
+        padding: 1rem;
+    }
+
+    .region-section__place-list a {
+        font-size: 1.2rem;
+    }
+
+    .region-section__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .region-section__button {
+        width: 100%;
     }
 
     .region-section__map-card {
@@ -271,45 +545,66 @@
     }
 
     .region-section__map-bg {
-        min-height: 360px;
+        min-height: 440px;
     }
 
     .region-badge {
-        font-size: 1.4rem;
-        padding: 0.5rem 0.7rem;
+        padding: 0.45rem 0.65rem;
+        font-size: 1.2rem;
     }
 
     .region-badge--1 {
-        top: 10%;
-        left: 6%;
+        bottom: 15%;
+        left: 5%;
     }
 
     .region-badge--2 {
-        top: 14%;
+        top: 46%;
         right: 4%;
     }
 
     .region-badge--3 {
-        top: 38%;
-        right: 6%;
-    }
-
-    .region-badge--4 {
-        bottom: 22%;
+        top: 67%;
         right: 8%;
     }
 
+    .region-badge--4 {
+        top: 23%;
+        left: 5%;
+    }
+
     .region-badge--5 {
-        bottom: 14%;
-        left: 6%;
+        top: 10%;
+        left: 36%;
     }
 
     .region-badge--6 {
-        bottom: 7%;
+        top: 39%;
         left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .region-section__center-pin {
+        top: 76%;
+        left: 50%;
+    }
+
+    .region-section__pin-card strong {
+        font-size: 1.35rem;
+    }
+
+    .region-section__pin-card span {
+        font-size: 1.25rem;
     }
 
     .region-section__feature-list {
         grid-template-columns: 1fr;
+    }
+
+    .abbr-tooltip::after {
+        width: max-content;
+        max-width: min(26rem, 80vw);
+        white-space: normal;
+        text-align: center;
     }
 }

@@ -1,57 +1,80 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+
 import "./Footer.css";
 
-// Lazy load BackendStatus
 const BackendStatus = lazy(() =>
     import("@/shared/components/ui/status/BackendStatus.jsx")
 );
 
+const footerGroups = [
+    {
+        title: "Trainingen",
+        links: [
+            { label: "BHV trainingen", to: "/bhv" },
+            { label: "Ploegleider BHV", to: "/ploegleider" },
+            { label: "Ontruimingsoefening", to: "/ontruimingsoefening" },
+            { label: "EHBO", to: "/ehbo" },
+            { label: "Workshops", to: "/workshops" },
+        ],
+    },
+    {
+        title: "Voor jouw organisatie",
+        links: [
+            { label: "Werkgebied", to: "/regio" },
+            { label: "Maatwerk training", to: "/maatwerk" },
+            { label: "Modulair trainen", to: "/modulaire-trainen" },
+            { label: "Veiligheidscheck", to: "/veiligheidscheck" },
+            { label: "Veelgestelde vragen", to: "/veelgestelde-vragen" },
+        ],
+    },
+    {
+        title: "BHV Voorne aan Zee",
+        links: [
+            { label: "Over ons", to: "/over-ons" },
+            { label: "Contact", to: "/contact" },
+            { label: "Blog", to: "/blog" },
+            { label: "Bedrijfsgegevens", to: "/bedrijfsgegevens" },
+        ],
+    },
+];
+
 const Footer = () => {
     return (
         <footer className="footer">
-            <div className="footer-top">
-                <div className="footer-column">
-                    <h4>Website</h4>
-                    <ul>
-                        <li><Link to="#">Trainingen</Link></li>
-                        <li><Link to="/maatwerk">Maatwerk training</Link></li>
-                        <li><Link to="/modulaire-trainen">Modulair trainen</Link></li>
-                        <li><Link to="/blog">Blogs</Link></li>
-                        {/*<li><Link to="/bedrijfsveiligheid-oefen-en-borgen">oefenen en borgen</Link></li>*/}
-                        {/*<li><Link to="/sitemap">sitemap</Link></li>*/}
-                    </ul>
-                </div>
+            <div className="footer-inner">
+                <div className="footer-links">
+                    {footerGroups.map((group) => (
+                        <nav
+                            className="footer-column"
+                            aria-label={group.title}
+                            key={group.title}
+                        >
+                            <h4>{group.title}</h4>
 
-                <div className="footer-column">
-                    <h4>Documenten</h4>
-                    <ul>
-                        {/*<li><Link to="/leveringsvoorwaarden">Leveringsvoorwaarden</Link></li>*/}
-                        {/*<li><Link to="/cookies">Cookiebeleid</Link></li>*/}
-                        {/*<li><Link to="/privacy">Privacyverklaring</Link></li>*/}
-                        <li><Link to="/veelgestelde-vragen">Veelgestelde vragen</Link></li>
-                        <li><Link to="#">Aanmelding nieuwsbrief</Link></li>
-                    </ul>
-                </div>
-
-                <div className="footer-column">
-                    <h4>Bedrijfsgegevens</h4>
-                    <ul>
-                        <li><Link to="/over-ons">Over ons</Link></li>
-                        <li><Link to="/contact">Contact ons</Link></li>
-                    </ul>
+                            <ul>
+                                {group.links.map((link) => (
+                                    <li key={link.to}>
+                                        <Link to={link.to}>{link.label}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    ))}
                 </div>
             </div>
 
             <div className="footer-bottom">
-                <small>
-                    bhvvoorneaanzee &copy; {new Date().getFullYear()} – Alle rechten voorbehouden ·{" "}
-                    <a href="/bedrijfsgegevens">Bedrijfsgegevens</a>
-                </small>
+                <div className="footer-status">
+                    <Suspense fallback={null}>
+                        <BackendStatus />
+                    </Suspense>
+                </div>
 
-                <Suspense fallback={null}>
-                    <BackendStatus />
-                </Suspense>
+                <small className="footer-copy">
+                    BHV Voorne aan Zee &copy; {new Date().getFullYear()} - Alle rechten voorbehouden -{" "}
+                    <Link to="/bedrijfsgegevens">Bedrijfsgegevens</Link>
+                </small>
             </div>
         </footer>
     );

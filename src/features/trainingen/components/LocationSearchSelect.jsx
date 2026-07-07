@@ -4,6 +4,7 @@ function LocationSearchSelect({
                                   locations = [],
                                   value = "",
                                   onChange,
+                                  onSelectLocation,
                                   label = "Locatie",
                                   placeholder = "Zoek op naam, adres, postcode of plaats...",
                                   required = false,
@@ -64,6 +65,7 @@ function LocationSearchSelect({
                     location.phoneNumber,
                     location.locationEmail,
                     location.email,
+                    location.companyName,
                 ]
                     .filter(Boolean)
                     .join(" ")
@@ -81,14 +83,18 @@ function LocationSearchSelect({
 
         if (!nextValue.trim()) {
             onChange?.("");
+            onSelectLocation?.(null);
         }
     };
 
     const handleSelectLocation = (location) => {
         onChange?.(String(location.id));
+        onSelectLocation?.(location);
+
         setQuery(
             `${location.locationName || "-"}${location.city ? ` - ${location.city}` : ""}`
         );
+
         setIsOpen(false);
     };
 
@@ -101,6 +107,7 @@ function LocationSearchSelect({
     const handleClear = () => {
         setQuery("");
         onChange?.("");
+        onSelectLocation?.(null);
         setIsOpen(false);
     };
 
@@ -160,6 +167,7 @@ function LocationSearchSelect({
 
                                     <span className="location-search-select__option-meta">
                                         ID: {location.id}
+                                        {location.companyId ? ` • Bedrijf ID: ${location.companyId}` : ""}
                                         {location.city ? ` • ${location.city}` : ""}
                                         {location.address ? ` • ${location.address}` : ""}
                                         {location.postalCode ? ` • ${location.postalCode}` : ""}
@@ -179,6 +187,7 @@ function LocationSearchSelect({
                 <small className="training-form__hint">
                     Geselecteerd: #{selectedLocation.id} - {selectedLocation.locationName}
                     {selectedLocation.city ? ` (${selectedLocation.city})` : ""}
+                    {selectedLocation.companyId ? ` • Bedrijf ID: ${selectedLocation.companyId}` : ""}
                 </small>
             )}
 

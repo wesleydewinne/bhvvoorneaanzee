@@ -1,7 +1,7 @@
 // src/pages/ontruimingsOefeningPage/fase/Fase1.jsx
 import React from "react";
 import NavigationSection from "@/shared/components/sections/navigationSection/NavigationSection.jsx";
-import fase1Image from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png";
+import fase1Image from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png?w=900&format=webp&quality=72";
 import "./Fase.css";
 import reactLogo from "@/assets/image/react.svg";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";

@@ -7,7 +7,7 @@ import MaatwerkBlock from "@/features/maatwerk/components/maatwerkblock/Maatwerk
 import maatwerkBranches from "@/shared/data/maatwerkBranches";
 
 // Header afbeelding
-import maatwerkHeader from "@/assets/image/maatwerk/maatwerk-standaard.png";
+import maatwerkHeader from "@/assets/image/maatwerk/maatwerk-standaard.png?w=1400&format=webp&quality=72";
 
 export default function MaatwerkPagina() {
     // 🔁 Data voorbereiden (zelfde patroon als BhvPage)
@@ -29,7 +29,7 @@ export default function MaatwerkPagina() {
                     <p>
                         Geen enkele organisatie is hetzelfde. Iedere werkomgeving kent zijn eigen risico’s, processen en mensen.
                         Daarom verzorgen wij maatwerk <strong><Link to="/bhv">BHV-trainingen</Link>,
-                        <Link to="/ehbo"> EHBO-trainingen</Link> en <Link to="/ontruiming">Ontruimingsoefeningen</Link>
+                        <Link to="/ehbo"> EHBO-trainingen</Link> en <Link to="/ontruimingsoefening">Ontruimingsoefeningen</Link>
                         </strong>, volledig afgestemd op jouw organisatie, branche en dagelijkse praktijk.
                     </p>
                     <p>

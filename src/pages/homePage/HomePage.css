@@ -12,14 +12,13 @@
     background-color: var(--color-surface);
 }
 
-.homepage-hero::before {
-    content: "";
+.homepage-hero__image {
     position: absolute;
     inset: 0;
-    background-image: var(--hero-bg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     transform: scale(1.03);
     z-index: -3;
 }
@@ -47,35 +46,32 @@
     gap: var(--space-6);
     width: 100%;
     padding-top: var(--space-8);
-    padding-bottom: calc(var(--space-8) + var(--space-7));
+    padding-bottom: var(--space-8);
 }
 
 .homepage-hero__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-4);
-    max-width: 78rem;
+    gap: var(--space-5);
+    width: 100%;
 }
 
-.homepage-hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    min-height: 4.2rem;
-    padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.82);
-    color: var(--color-text-muted);
-    font-size: var(--fs-2);
-    font-weight: var(--fw-medium);
-    box-shadow: var(--shadow-sm);
-    backdrop-filter: blur(0.4rem);
+.homepage-hero__title-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: clamp(2rem, 5vw, 7rem);
+    width: 100%;
+}
+
+.homepage-hero__title-row .google-review-badge {
+    margin-top: 0.6rem;
 }
 
 .homepage-hero__title {
     margin: 0;
-    max-width: 20ch;
+    max-width: 18ch;
     color: var(--color-heading);
     font-size: clamp(4rem, 3rem + 2.2vw, 6.8rem);
     line-height: 1.05;
@@ -93,7 +89,7 @@
 }
 
 .homepage-hero__actions {
-    margin-top: var(--space-4);
+    margin-top: var(--space-3);
     width: 100%;
 }
 
@@ -111,7 +107,42 @@
 }
 
 .homepage__blog {
-    padding: 4rem 0 5rem;
+    position: relative;
+    isolation: isolate;
+    margin-top: clamp(4rem, 7vw, 9rem);
+    padding: clamp(13rem, 16vw, 21rem) 0 clamp(7rem, 9vw, 11rem);
+    overflow: hidden;
+    background:
+            radial-gradient(circle at 18% 18%, rgba(255, 160, 0, 0.16), transparent 23%),
+            radial-gradient(circle at 86% 30%, rgba(20, 184, 166, 0.12), transparent 27%),
+            linear-gradient(180deg, #ffffff 0%, #f7f8f9 18%, rgba(37, 42, 50, 0.74) 38%, #252a32 58%, #252a32 100%);
+}
+
+.homepage__blog::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: clamp(12rem, 15vw, 20rem);
+    background:
+            radial-gradient(120% 95% at 10% 0%, rgba(255, 255, 255, 0.95) 0 32%, transparent 58%),
+            radial-gradient(110% 80% at 38% 0%, rgba(255, 255, 255, 0.86) 0 28%, transparent 56%),
+            radial-gradient(120% 90% at 70% 0%, rgba(255, 255, 255, 0.8) 0 24%, transparent 54%),
+            linear-gradient(174deg, #ffffff 0 36%, rgba(255, 255, 255, 0.54) 52%, transparent 74%);
+    content: "";
+    filter: blur(0.2px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.homepage__blog::after {
+    position: absolute;
+    inset: clamp(8rem, 11vw, 15rem) 0 0;
+    background:
+            linear-gradient(180deg, rgba(37, 42, 50, 0) 0%, rgba(37, 42, 50, 0.84) 28%, rgba(37, 42, 50, 0) 62%),
+            repeating-linear-gradient(174deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 18px);
+    content: "";
+    opacity: 0.38;
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ========================================
@@ -120,11 +151,7 @@
 @media (max-width: 1024px) {
     .homepage-hero__inner {
         padding-top: var(--space-7);
-        padding-bottom: calc(var(--space-8) + var(--space-6));
-    }
-
-    .homepage-hero__content {
-        max-width: 70rem;
+        padding-bottom: var(--space-7);
     }
 
     .homepage-hero__title {
@@ -146,12 +173,17 @@
     .homepage-hero__inner {
         gap: var(--space-5);
         padding-top: var(--space-6);
-        padding-bottom: calc(var(--space-7) + var(--space-5));
+        padding-bottom: var(--space-6);
     }
 
     .homepage-hero__content {
-        max-width: 100%;
         gap: var(--space-3);
+    }
+
+    .homepage-hero__title-row {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: var(--space-4);
     }
 
     .homepage-hero__title {
@@ -168,17 +200,12 @@
     }
 
     .homepage__blog {
-        padding: 3rem 0 4rem;
+        margin-top: 3rem;
+        padding: 11rem 0 6rem;
     }
 }
 
 @media (max-width: 480px) {
-    .homepage-hero__eyebrow {
-        min-height: auto;
-        padding: var(--space-2) var(--space-3);
-        font-size: var(--fs-1);
-    }
-
     .homepage-hero__title {
         font-size: clamp(2.8rem, 2.4rem + 1.6vw, 4.2rem);
         line-height: 1.08;

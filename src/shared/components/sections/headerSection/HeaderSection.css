@@ -27,8 +27,8 @@
     text-align: center;
     max-width: 90%;
 
-    padding: 2.4rem 3.2rem;   /* meer ademruimte */
-    border-radius: 1.6rem;    /* mooie afgeronde hoeken */
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-lg);
 
     background: linear-gradient(
             rgba(0, 0, 0, 0.45),
@@ -39,7 +39,7 @@
 }
 
 .site-hero-title {
-    font-size: clamp(2.5rem, 5vw, 3.4rem);
+    font-size: var(--fs-7);
     font-weight: 700;
     color: #fff;
     margin-bottom: 1rem;
@@ -47,7 +47,7 @@
 }
 
 .site-hero-subtitle {
-    font-size: clamp(1.6rem, 3vw, 1.9rem);
+    font-size: var(--fs-4);
     color: rgba(255,255,255,0.9);
     text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }

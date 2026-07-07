@@ -51,7 +51,7 @@ export default function Verslag() {
                     <li>
                         <strong>Fase van de oefening:</strong> Noteer of het om een <em>voorbereidende</em> (fase 1),
                         <em> uitvoerende</em> (fase 2) of <em>evaluerende</em> (fase 3/4) oefening gaat.
-                        <a href="/ontruimingsoefening/fases"> Lees meer over de fasen.</a>
+                        <a href="/ontruimingsoefening-fases"> Lees meer over de fasen.</a>
                     </li>
                 </ul>
             </div>
@@ -70,7 +70,7 @@ export default function Verslag() {
                     <li><strong>Scenario 2 (optioneel):</strong> Gebruik bij meerdere situaties, zoals brand én medische nood.</li>
                     <li>
                         Gebruik concrete doelen (bijv. “evacuatie binnen 3 minuten”). Zie ook
-                        <a href="/ontruimingsoefening/scenarios"> onze voorbeeldscenario’s</a>.
+                        <a href="/ontruimingsoefening-scenarios"> onze voorbeeldscenario’s</a>.
                     </li>
                 </ul>
             </div>
@@ -131,8 +131,8 @@ export default function Verslag() {
             <div className="link-list">
                 <p>Meer informatie over de voorbereiding en uitvoering van oefeningen:</p>
                 <ul>
-                    <li><a href="/ontruimingsoefening/fases">Fasen de soort oefeningen</a></li>
-                    <li><a href="/ontruimingsoefening/scenarios">Voorbeeldscenario’s</a></li>
+                    <li><a href="/ontruimingsoefening-fases">Fasen de soort oefeningen</a></li>
+                    <li><a href="/ontruimingsoefening-scenarios">Voorbeeldscenario’s</a></li>
 
                 </ul>
             </div>

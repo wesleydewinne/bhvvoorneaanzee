@@ -124,8 +124,9 @@
    ============================================================ */
 
 .training-card-section {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
 }
 
 /* ============================================================

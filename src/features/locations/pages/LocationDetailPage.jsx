@@ -22,7 +22,13 @@ function LocationDetailPage() {
                 setLocation(data);
             } catch (err) {
                 console.error("Fout bij ophalen locatie:", err);
-                setError("De locatie kon niet worden opgehaald.");
+
+                const backendMessage =
+                    err?.response?.data?.message ||
+                    err?.response?.data?.error ||
+                    (typeof err?.response?.data === "string" ? err.response.data : null);
+
+                setError(backendMessage || "De locatie kon niet worden opgehaald.");
             } finally {
                 setLoading(false);
             }
@@ -50,7 +56,13 @@ function LocationDetailPage() {
             navigate("/admin/locations");
         } catch (err) {
             console.error("Fout bij verwijderen locatie:", err);
-            alert("Verwijderen van locatie is mislukt.");
+
+            const backendMessage =
+                err?.response?.data?.message ||
+                err?.response?.data?.error ||
+                (typeof err?.response?.data === "string" ? err.response.data : null);
+
+            alert(backendMessage || "Verwijderen van locatie is mislukt.");
         } finally {
             setDeleting(false);
         }
@@ -155,6 +167,22 @@ function LocationDetailPage() {
                         <div>
                             <strong>E-mail</strong>
                             <p>{location.email || "-"}</p>
+                        </div>
+
+                        <div className="location-detail-grid__full">
+                            <strong>Gekoppelde bedrijven</strong>
+
+                            {Array.isArray(location.companies) && location.companies.length > 0 ? (
+                                <ul className="location-company-list">
+                                    {location.companies.map((company) => (
+                                        <li key={company.id}>
+                                            #{company.id} - {company.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p>-</p>
+                            )}
                         </div>
 
                         <div className="location-detail-grid__full">

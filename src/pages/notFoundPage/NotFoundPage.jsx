@@ -1,6 +1,6 @@
 import React from "react";
 import SmokeLottieOverlay from "./SmokeLottieOverlay";
-import serverImg from "@/assets/image/system/notfound/server.png";
+import serverImg from "@/assets/image/system/notfound/server.png?w=900&format=webp&quality=72";
 import "./NotFoundPage.css";
 import {Link} from "react-router-dom";
 import nooduitgangImg from '@/assets/image/system/notfound/nooduitgang.webp';

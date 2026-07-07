@@ -2,7 +2,32 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
+import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./TwoFactorPage.css";
+
+function isCookieSessionError(message) {
+    const normalizedMessage = String(message || "").toLowerCase();
+
+    return (
+        normalizedMessage.includes("pre-2fa") ||
+        normalizedMessage.includes("pre two factor") ||
+        normalizedMessage.includes("geen geldige authenticatie") ||
+        normalizedMessage.includes("sessie gevonden")
+    );
+}
+
+function getTwoFactorErrorMessage(message, fallbackMessage) {
+    const finalMessage = message || fallbackMessage;
+
+    if (!isCookieSessionError(finalMessage)) {
+        return finalMessage;
+    }
+
+    return [
+        finalMessage,
+        "De browser blokkeert waarschijnlijk de tijdelijke 2FA-cookie. Open de website rechtstreeks via bhvvoorneaanzee.nl en log opnieuw in.",
+    ].join(" ");
+}
 
 export default function TwoFactorPage() {
     const {
@@ -40,7 +65,7 @@ export default function TwoFactorPage() {
                 if (!cancelled) setSetupData(data);
             } catch (err) {
                 if (!cancelled) {
-                    setError(err.message || "Kan 2FA setup niet laden.");
+                    setError(getTwoFactorErrorMessage(err.message, "Kan 2FA setup niet laden."));
                 }
             }
         };
@@ -64,11 +89,11 @@ export default function TwoFactorPage() {
         const result = await verifyTwoFactorLogin(code);
 
         if (!result.success) {
-            setError(result.error || "2FA verificatie mislukt.");
+            setError(getTwoFactorErrorMessage(result.error, "2FA verificatie mislukt."));
             return;
         }
 
-        navigate("/dashboard", { replace: true });
+        navigate(getPostLoginPath(result.user), { replace: true });
     };
 
     const handleVerifySetup = async (e) => {
@@ -80,7 +105,7 @@ export default function TwoFactorPage() {
             setCode("");
             setSetupData(null);
         } catch (err) {
-            setError(err.message || "2FA activeren is mislukt.");
+            setError(getTwoFactorErrorMessage(err.message, "2FA activeren is mislukt."));
         }
     };
 

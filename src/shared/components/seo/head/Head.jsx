@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import seoData from '@/shared/data/seo.json'
+import localBusinessData from '@/shared/data/localBusiness.json'
 
 /**
  * @typedef {{
@@ -10,6 +11,7 @@ import seoData from '@/shared/data/seo.json'
  *     trainings: {
  *       type: string,
  *       title: string,
+ *       price?: number | string,
  *       pricing?: { individualPrice?: number, groupPrice?: number | string }[]
  *     }[]
  *   }[]
@@ -18,6 +20,9 @@ import seoData from '@/shared/data/seo.json'
 
 /** @type {TrainingsData} */
 import trainings from '@/shared/data/training.json'
+
+const SITE_URL = 'https://bhvvoorneaanzee.nl'
+const LOGO_URL = `${SITE_URL}/assets/image/logo.png`
 
 export default function Head() {
     const { pathname } = useLocation()
@@ -30,20 +35,8 @@ export default function Head() {
     useEffect(() => {
         if (!meta) return
 
-        // 🧩 Basis meta
-        document.title = meta.title || 'BHV Voorne aan Zee'
-        updateTag('meta[name="description"]', 'content', meta.description)
-        updateTag('meta[name="keywords"]', 'content', meta.keywords)
-        updateLink('link[rel="canonical"]', meta.canonical)
+        updateDocumentMeta(meta)
 
-        // 🌐 Open Graph (social previews)
-        updateTag('meta[property="og:title"]', 'content', meta.title)
-        updateTag('meta[property="og:description"]', 'content', meta.description)
-        updateTag('meta[property="og:url"]', 'content', meta.canonical)
-        updateTag('meta[property="og:type"]', 'content', 'website')
-        updateTag('meta[property="og:site_name"]', 'content', 'BHV Voorne aan Zee')
-
-        // 🧱 Structured Data (schema.org)
         const schemas = [
             createLocalBusinessSchema(),
             createOrganizationSchema(),
@@ -51,21 +44,29 @@ export default function Head() {
             ...getCourseSchemas(pathname)
         ]
 
-        injectJSONLD({ '@graph': schemas })
-    }, [pathname, meta]) // ✅ dependency array compleet
+        injectJSONLD({ '@context': 'https://schema.org', '@graph': schemas })
+    }, [pathname, meta])
 
     return null
 }
 
-/* ------------------------------------------ */
-/* 🔧 Helpers                                 */
-/* ------------------------------------------ */
+function updateDocumentMeta(meta) {
+    document.title = meta.title || 'BHV Voorne aan Zee'
+    updateTag('meta[name="description"]', 'content', meta.description)
+    updateTag('meta[name="keywords"]', 'content', meta.keywords)
+    updateLink('link[rel="canonical"]', meta.canonical)
+
+    updateTag('meta[property="og:title"]', 'content', meta.title)
+    updateTag('meta[property="og:description"]', 'content', meta.description)
+    updateTag('meta[property="og:url"]', 'content', meta.canonical)
+    updateTag('meta[property="og:type"]', 'content', 'website')
+    updateTag('meta[property="og:site_name"]', 'content', 'BHV Voorne aan Zee')
+}
 
 function updateTag(selector, attr, value) {
     let tag = document.head.querySelector(selector)
     if (!tag) {
         tag = document.createElement('meta')
-        // ✅ Regex fix: backslash verwijderd
         const match = selector.match(/meta\[(?:name|property)="([^"]+)"]/)
         if (match) tag.setAttribute(match[1].startsWith('og:') ? 'property' : 'name', match[1])
         document.head.appendChild(tag)
@@ -93,82 +94,51 @@ function injectJSONLD(json) {
     script.textContent = JSON.stringify(json)
 }
 
-/* ------------------------------------------ */
-/* 🏢 LocalBusiness schema                    */
-/* ------------------------------------------ */
 function createLocalBusinessSchema() {
+    const { '@context': _context, ...schema } = localBusinessData
+
     return {
-        '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: 'BHV Voorne aan Zee',
-        image: 'https://www.bhvvoorneaanzee.nl/assets/image/logo.png',
-        url: 'https://www.bhvvoorneaanzee.nl',
-        telephone: '+31-641719800',
-        email: 'mailto:algemeen@bhvvoorneaanzee.nl',
-        address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Druivenhoek 12',
-            postalCode: '3181 PK',
-            addressLocality: 'Rozenburg',
-            addressCountry: 'NL'
-        },
-        areaServed: [
-            'Gemeente Voorne aan Zee',
-            'Regio Rotterdam-Rijnmond',
-            'Regio Haaglanden',
-            'Provincie Zeeland',
-            'Provincie Noord-Brabant (Midden & West, tot Breda)'
-        ],
-        openingHours: 'Mo-Fr 08:00-17:00',
-        sameAs: ['https://www.linkedin.com/company/bhvvoorneaanzee/']
+        ...schema,
+        '@id': `${SITE_URL}/#localbusiness`,
+        url: SITE_URL,
+        logo: LOGO_URL,
+        image: LOGO_URL
     }
 }
 
-/* ------------------------------------------ */
-/* 🧾 Organization schema                     */
-/* ------------------------------------------ */
 function createOrganizationSchema() {
     return {
         '@type': 'Organization',
+        '@id': `${SITE_URL}/#organization`,
         name: 'BHV Voorne aan Zee',
-        url: 'https://www.bhvvoorneaanzee.nl',
-        logo: 'https://www.bhvvoorneaanzee.nl/assets/image/logo.png',
-        sameAs: ['https://www.linkedin.com/company/bhvvoorneaanzee/'],
+        url: SITE_URL,
+        logo: LOGO_URL,
+        sameAs: localBusinessData.sameAs,
         contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+31-641719800',
+            telephone: localBusinessData.telephone,
+            email: localBusinessData.email,
             contactType: 'customer services',
-            areaServed: ['Nederland'],
-            availableLanguage: ['Dutch']
+            areaServed: ['NL'],
+            availableLanguage: ['nl-NL']
         }
     }
 }
 
-/* ------------------------------------------ */
-/* ☎️ ContactPoint schema                     */
-/* ------------------------------------------ */
 function createContactPointSchema() {
     return {
         '@type': 'ContactPoint',
         contactType: 'customer services',
-        telephone: '+31-641719800',
-        email: 'mailto:klantenservice@bhvvoorneaanzee.nl',
-        availableLanguage: ['Dutch'],
-        areaServed: [
-            'Gemeente Voorne aan Zee',
-            'Regio Rotterdam-Rijnmond',
-            'Regio Haaglanden',
-            'Provincie Zeeland',
-            'Provincie Noord-Brabant (Midden & West, tot Breda)'
-        ]
+        telephone: localBusinessData.telephone,
+        email: localBusinessData.email,
+        availableLanguage: ['nl-NL'],
+        areaServed: localBusinessData.areaServed
     }
 }
 
-/* ------------------------------------------ */
-/* 🎓 Course schemas (automatisch)            */
-/* ------------------------------------------ */
 function getCourseSchemas(pathname) {
     const result = []
+
     trainings.categories.forEach((category) => {
         if (pathname.includes(category.id)) {
             category.trainings.forEach((training) => {
@@ -177,14 +147,16 @@ function getCourseSchemas(pathname) {
                     training.pricing?.[0]?.individualPrice ||
                     training.pricing?.[0]?.groupPrice ||
                     'Op aanvraag'
+
                 result.push({
                     '@type': 'Course',
                     name: training.title,
                     description: category.description,
                     provider: {
                         '@type': 'Organization',
+                        '@id': `${SITE_URL}/#organization`,
                         name: 'BHV Voorne aan Zee',
-                        url: 'https://www.bhvvoorneaanzee.nl'
+                        url: SITE_URL
                     },
                     hasCourseInstance: {
                         '@type': 'CourseInstance',
@@ -192,7 +164,7 @@ function getCourseSchemas(pathname) {
                         courseMode: training.type,
                         offers: {
                             '@type': 'Offer',
-                            price: price,
+                            price,
                             priceCurrency: 'EUR',
                             availability: 'https://schema.org/InStock'
                         }
@@ -201,5 +173,6 @@ function getCourseSchemas(pathname) {
             })
         }
     })
+
     return result
 }

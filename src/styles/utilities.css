@@ -1,0 +1,186 @@
+/* ========================================
+   Utilities - Spacing
+======================================== */
+.m-0 { margin: 0; }
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-5 { margin: var(--space-5); }
+.m-6 { margin: var(--space-6); }
+
+.mx-1 { margin-left: var(--space-1); margin-right: var(--space-1); }
+.my-1 { margin-top: var(--space-1); margin-bottom: var(--space-1); }
+.mt-1 { margin-top: var(--space-1); }
+.mr-1 { margin-right: var(--space-1); }
+.mb-1 { margin-bottom: var(--space-1); }
+.ml-1 { margin-left: var(--space-1); }
+
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+
+/* ========================================
+   Utilities - Width & Height
+======================================== */
+.w-100 { width: 100%; }
+
+.max-w-300 { max-width: 30rem; }
+.max-w-350 { max-width: 35rem; }
+.max-w-400 { max-width: 40rem; }
+.max-w-450 { max-width: 45rem; }
+.max-w-500 { max-width: 50rem; }
+.max-w-600 { max-width: 60rem; }
+.max-w-800 { max-width: 80rem; }
+.max-w-1000 { max-width: 100rem; }
+
+.h-100 { height: 100%; }
+.min-h-400 { min-height: 40rem; }
+.min-h-600 { min-height: 60rem; }
+.min-h-800 { min-height: 80rem; }
+
+/* ========================================
+   Utilities - Display & Flex
+======================================== */
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+.d-grid { display: grid; }
+.d-none { display: none !important; }
+
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-5 { gap: var(--space-5); }
+
+/* ========================================
+   Utilities - Grid helpers
+======================================== */
+.grid { display: grid; gap: var(--space-4); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-6 { grid-template-columns: repeat(6, 1fr); }
+
+@media (max-width: 1024px) {
+    .lg-grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .md-grid-1 { grid-template-columns: 1fr; }
+    .md-grid-2 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+    .sm-grid-1 { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   Utilities - Text & Font
+======================================== */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--color-text-muted); }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.font-base { font-family: var(--font-base); }
+.font-mono { font-family: var(--font-mono); }
+
+/* ========================================
+   Utilities - Backgrounds & Borders
+======================================== */
+.bg-primary { background-color: var(--color-primary); color: #fff; }
+.bg-secondary { background-color: var(--color-secondary); color: #111; }
+.bg-surface { background-color: var(--color-surface); }
+.bg-muted { background-color: var(--color-text-muted); color: #fff; }
+.bg-success { background-color: var(--color-success); color: #fff; }
+.bg-warning { background-color: var(--color-warning); color: #111; }
+.bg-danger  { background-color: var(--color-danger); color: #fff; }
+.bg-info    { background-color: var(--color-info); color: #fff; }
+.bg-transparent { background-color: transparent; }
+
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-danger  { color: var(--color-danger); }
+.text-info    { color: var(--color-info); }
+
+.border { border: 1px solid var(--color-border); }
+.border-0 { border: none; }
+.border-primary { border: 1px solid var(--color-primary); }
+.border-secondary { border: 1px solid var(--color-secondary); }
+.border-success { border: 1px solid var(--color-success); }
+.border-warning { border: 1px solid var(--color-warning); }
+.border-danger  { border: 1px solid var(--color-danger); }
+.border-info    { border: 1px solid var(--color-info); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: 9999px; }
+
+/* ========================================
+   Utilities - Shadows
+======================================== */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-xl { box-shadow: var(--shadow-xl); }
+.shadow-none { box-shadow: none; }
+
+/* ========================================
+   Utilities - Transition & Animations
+======================================== */
+.transition { transition: all var(--transition-mid) var(--ease-in-out); }
+.transition-fast { transition: all var(--transition-fast) var(--ease-in-out); }
+.transition-slow { transition: all var(--transition-slow) var(--ease-in-out); }
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+.fade-in { animation: fadeIn 0.4s var(--ease-in) forwards; }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.slide-up { animation: slideUp 0.4s var(--ease-out) forwards; }
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ========================================
+   Utilities - Z-index & Sticky
+======================================== */
+.z-base { z-index: var(--z-base); }
+.z-sticky { z-index: var(--z-sticky); }
+.z-dropdown { z-index: var(--z-dropdown); }
+.z-popover { z-index: var(--z-popover); }
+.z-modal { z-index: var(--z-modal); }
+.z-toast { z-index: var(--z-toast); }
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background: var(--color-surface);
+}

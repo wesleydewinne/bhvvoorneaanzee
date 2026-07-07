@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProfileLayout from "../components/ProfileLayout.jsx";
 import profileService from "../services/profileService.js";
 import { mapProfileResponseToViewModel } from "../helpers/profileMapper.js";
@@ -6,8 +6,40 @@ import "../styles/Profile.css";
 
 export default function ProfilePage() {
     const [profile, setProfile] = useState(null);
+    const [profilePhotoUrl, setProfilePhotoUrl] = useState("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const photoObjectUrlRef = useRef("");
+
+    const replaceProfilePhotoUrl = (nextUrl) => {
+        if (photoObjectUrlRef.current) {
+            URL.revokeObjectURL(photoObjectUrlRef.current);
+        }
+
+        photoObjectUrlRef.current = nextUrl || "";
+        setProfilePhotoUrl(nextUrl || "");
+    };
+
+    const loadProfilePhoto = async (canApply = () => true) => {
+        try {
+            const photoBlob = await profileService.getProfilePhoto();
+            const nextPhotoUrl = URL.createObjectURL(photoBlob);
+
+            if (canApply()) {
+                replaceProfilePhotoUrl(nextPhotoUrl);
+            } else {
+                URL.revokeObjectURL(nextPhotoUrl);
+            }
+        } catch (err) {
+            if (err?.status !== 404) {
+                console.warn("Profielfoto kon niet worden geladen:", err);
+            }
+
+            if (canApply()) {
+                replaceProfilePhotoUrl("");
+            }
+        }
+    };
 
     useEffect(() => {
         let isMounted = true;
@@ -22,6 +54,8 @@ export default function ProfilePage() {
                 if (!isMounted) return;
 
                 setProfile(mapProfileResponseToViewModel(data));
+
+                await loadProfilePhoto(() => isMounted);
             } catch (err) {
                 console.error("Fout bij laden profiel:", err);
                 if (!isMounted) return;
@@ -37,11 +71,24 @@ export default function ProfilePage() {
 
         return () => {
             isMounted = false;
+
+            if (photoObjectUrlRef.current) {
+                URL.revokeObjectURL(photoObjectUrlRef.current);
+                photoObjectUrlRef.current = "";
+            }
         };
     }, []);
 
     const handleProfileUpdated = (updatedData) => {
         setProfile(mapProfileResponseToViewModel(updatedData));
+    };
+
+    const handlePhotoUploaded = async (updatedData) => {
+        if (updatedData && typeof updatedData === "object") {
+            setProfile(mapProfileResponseToViewModel(updatedData));
+        }
+
+        await loadProfilePhoto();
     };
 
     if (loading) {
@@ -78,7 +125,9 @@ export default function ProfilePage() {
         <section className="profile-page">
             <ProfileLayout
                 profile={profile}
+                profilePhotoUrl={profilePhotoUrl}
                 onProfileUpdated={handleProfileUpdated}
+                onPhotoUploaded={handlePhotoUploaded}
             />
         </section>
     );

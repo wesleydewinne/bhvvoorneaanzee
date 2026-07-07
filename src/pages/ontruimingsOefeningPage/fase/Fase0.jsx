@@ -1,12 +1,12 @@
 // src/pages/ontruimingsOefeningPage/fase/Fase0.jsx
 import React from "react";
 import NavigationSection from "@/shared/components/sections/navigationSection/NavigationSection.jsx";
-import fase0Image from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png";
+import fase0Image from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png?w=900&format=webp&quality=72";
 import "./Fase.css";
 import reactLogo from "@/assets/image/react.svg";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import Tile from "@/shared/components/sections/tileSection/TileSection.jsx";
-import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png";
+import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png?w=720&format=webp&quality=72";
 import TileSection from "@/shared/components/sections/tileSection/TileSection.jsx";
 import ChecklistSection from "@/shared/components/sections/ChecklistSection/ChecklistSection.jsx";
 

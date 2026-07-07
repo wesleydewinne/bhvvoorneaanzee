@@ -3,46 +3,70 @@ import { Link } from "react-router-dom";
 import { posts } from "./posts.js";
 import "./BlogPage.css";
 
+const getExcerpt = (post) => {
+    const text = post.content
+        ?.filter((block) => block.type === "paragraph")
+        .map((block) => block.text)
+        .join(" ");
+
+    if (!text) {
+        return "";
+    }
+
+    return text.length > 155 ? `${text.slice(0, 155).trim()}...` : text;
+};
+
 const BlogPage = () => {
     return (
         <section className="blog-page">
-            <h1>Overzicht van de blogs</h1>
+            <div className="blog-page__overlay" aria-hidden="true" />
+
+            <header className="blog-page__header">
+                <p className="blog-page__label">Kennisbank</p>
+
+                <h1>Veiligheidsinzichten uit de praktijk</h1>
+
+                <p className="blog-page__intro">
+                    Artikelen over BHV, ontruiming en veilig werken binnen organisaties.
+                </p>
+            </header>
 
             <div className="blog-list">
                 {posts.map((post) => (
-                    <article key={post.slug} className="blog-card">
+                    <Link
+                        key={post.slug}
+                        to={`/blog/${post.slug}`}
+                        className="blog-card"
+                        aria-label={`Lees meer over ${post.title}`}
+                    >
                         {post.image && (
-                            <img
-                                src={post.image}
-                                alt={post.title}
-                                className="blog-card-image"
-                            />
-                        )}
-                        <h2>{post.title}</h2>
-                        <p>
-                            {post.content
-                                .filter((block) => block.type === "paragraph")
-                                .map((block) => block.text)
-                                .join(" ")
-                                .slice(0, 150)}
-                            ...
-                        </p>
-
-                        <div className="blog-card-footer">
-                            <Link to={`/blog/${post.slug}`} className="read-more">
-                                Lees meer →
-                            </Link>
-                            <div className="blog-meta">
-                                <p className="date">{post.date}</p>
-                                <p className="author">Geschreven door {post.author}</p>
+                            <div className="blog-card__image-wrapper">
+                                <img
+                                    src={post.image}
+                                    alt={post.title}
+                                    className="blog-card__image"
+                                />
                             </div>
+                        )}
 
+                        <div className="blog-card__content">
+                            <span className="blog-card__tag">
+                                {post.category || "Praktijktip"}
+                            </span>
+
+                            <h2>{post.title}</h2>
+
+                            <p>{getExcerpt(post)}</p>
+
+                            <div className="blog-card__footer">
+                                <span>Lees artikel</span>
+                                <span aria-hidden="true">→</span>
+                            </div>
                         </div>
-                    </article>
+                    </Link>
                 ))}
             </div>
         </section>
-
     );
 };
 

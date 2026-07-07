@@ -1,36 +1,116 @@
 export const CATEGORY_OPTIONS = [
     { value: "BHV", label: "BHV" },
+    { value: "PLOEGLEIDER", label: "BHV Ploegleider" },
     { value: "EHBO", label: "EHBO" },
     { value: "ONTRUIMING", label: "Ontruimingsoefening" },
     { value: "WORKSHOP", label: "Workshop" },
 ];
 
-export const VARIANT_OPTIONS = [
-    { value: "BASIS", label: "Basis" },
-    { value: "HERHALING", label: "Herhaling" },
-    { value: "BASIS_ELEARNING", label: "Basis e-learning" },
-    { value: "HERHALING_ELEARNING", label: "Herhaling e-learning" },
+export const BHV_TRAINING_TYPE_OPTIONS = [
+    {
+        value: "BHV_BASIC_2_DAYS",
+        label: "BHV Basisopleiding (2 dagen)",
+    },
+    {
+        value: "BHV_BASIC_ELEARNING_1_DAY",
+        label: "BHV Basis e-learning + 1 dag praktijk",
+    },
+    {
+        value: "BHV_REFRESHER_1_DAY",
+        label: "BHV Herhaling (1 dag)",
+    },
+    {
+        value: "BHV_REFRESHER_ELEARNING_HALF_DAY",
+        label: "BHV Herhaling e-learning + 0,5 dag praktijk",
+    },
+];
+
+export const PLOEGLEIDER_TRAINING_TYPE_OPTIONS = [
+    {
+        value: "BHV_PLOEGLEIDER_BASIC_2_DAYS",
+        label: "BHV Ploegleider Basis (2 dagen)",
+    },
+    {
+        value: "BHV_PLOEGLEIDER_BASIC_ELEARNING_1_DAY",
+        label: "BHV Ploegleider Herhaling e-learning + 1 dag",
+    },
+    {
+        value: "BHV_PLOEGLEIDER_ELEARNING_HALF_DAY",
+        label: "BHV Ploegleider 0,5 dag praktijk",
+    },
+];
+
+export const EHBO_TRAINING_TYPE_OPTIONS = [
+    {
+        value: "EHBO_BASIC_3_DAYS",
+        label: "EHBO Basisopleiding (3 dagen)",
+    },
+    {
+        value: "EHBO_BASIC_2_DAYS_ELEARNING",
+        label: "EHBO Basis e-learning + 2 dagen",
+    },
+    {
+        value: "EHBO_REFRESHER_1_DAY",
+        label: "EHBO Herhaling (1 dag)",
+    },
 ];
 
 export const EVACUATION_PHASE_OPTIONS = [
-    { value: "FASE_0_TABLETOP", label: "Fase 0 - Tabletop" },
-    { value: "FASE_1_KLEINE_SCENARIOS", label: "Fase 1 - Kleine scenario's" },
-    { value: "FASE_2_AANGEKONDIGDE_OEFENING", label: "Fase 2 - Aangekondigde oefening" },
-    { value: "FASE_3_ONAANGEKONDIGDE_OEFENING", label: "Fase 3 - Onaangekondigde oefening" },
     {
-        value: "FASE_4_ONAANGEKONDIGDE_OEFENING_MET_MEER_UITDAGING",
+        value: "EVACUATION_DRILL_PHASE_0",
+        label: "Fase 0 - Tabletop",
+    },
+    {
+        value: "EVACUATION_DRILL_PHASE_1",
+        label: "Fase 1 - Kleine scenario's",
+    },
+    {
+        value: "EVACUATION_DRILL_PHASE_2",
+        label: "Fase 2 - Aangekondigde oefening",
+    },
+    {
+        value: "EVACUATION_DRILL_PHASE_3",
+        label: "Fase 3 - Onaangekondigde oefening",
+    },
+    {
+        value: "EVACUATION_DRILL_PHASE_4",
         label: "Fase 4 - Onaangekondigd met meer uitdaging",
     },
 ];
 
 export const WORKSHOP_TYPE_OPTIONS = [
-    { value: "REANIMATIE_AED", label: "Reanimatie & AED" },
-    { value: "STOP_DE_BLOEDING", label: "Stop de Bloeding" },
-    { value: "BRAND_BLUSSEN", label: "Brand blussen" },
-    { value: "ONTRUIMING_TOOLBOX", label: "Ontruiming toolbox" },
-    { value: "EHBO_BASIS", label: "EHBO basis" },
-    { value: "EHBO_HERHALING", label: "EHBO herhaling" },
-    { value: "BHV_PRAKTIJKMODULE", label: "BHV praktijkmodule" },
+    {
+        value: "WORKSHOP_SMALL_FIRE_EXTINGUISHERS",
+        label: "Workshop Kleine Blusmiddelen",
+    },
+    {
+        value: "WORKSHOP_FIRE_ALARM_PANEL_OPERATOR",
+        label: "Workshop Bedienaar Brandmeldcentrale",
+    },
+    {
+        value: "WORKSHOP_RADIO_COMMUNICATION",
+        label: "Workshop Portofoongebruik",
+    },
+    {
+        value: "WORKSHOP_ADULT_RESUSCITATION",
+        label: "Workshop Reanimatie Volwassene",
+    },
+    {
+        value: "WORKSHOP_CHILD_BABY_RESUSCITATION",
+        label: "Workshop Reanimatie Kind en Baby",
+    },
+    {
+        value: "WORKSHOP_STOP_THE_BLEEDING",
+        label: "Workshop Stop de Bloeding",
+    },
+    {
+        value: "WORKSHOP_WATER_INCIDENTS",
+        label: "Workshop Waterongevallen",
+    },
+    {
+        value: "WORKSHOP_CHILD_FIRST_AID_HOME_TRAINING",
+        label: "Kinder-EHBO Huiskamertraining",
+    },
 ];
 
 export const STATUS_OPTIONS = [
@@ -40,12 +120,88 @@ export const STATUS_OPTIONS = [
     { value: "CANCELLED", label: "Geannuleerd" },
 ];
 
+/*
+ * Course participants
+ */
+
+export const ATTENDANCE_STATUS_OPTIONS = [
+    { value: "REGISTERED", label: "Aangemeld" },
+    { value: "PRESENT", label: "Aanwezig" },
+    { value: "ABSENT", label: "Afwezig" },
+];
+
+export const RESULT_STATUS_OPTIONS = [
+    { value: "NOT_ASSESSED", label: "Nog niet beoordeeld" },
+    { value: "PASSED", label: "Geslaagd" },
+    { value: "FAILED", label: "Niet geslaagd" },
+];
+
+export function getTrainingTypeOptionsByCategory(category) {
+    if (category === "BHV") {
+        return BHV_TRAINING_TYPE_OPTIONS;
+    }
+
+    if (category === "PLOEGLEIDER") {
+        return PLOEGLEIDER_TRAINING_TYPE_OPTIONS;
+    }
+
+    if (category === "EHBO") {
+        return EHBO_TRAINING_TYPE_OPTIONS;
+    }
+
+    if (category === "ONTRUIMING") {
+        return EVACUATION_PHASE_OPTIONS;
+    }
+
+    if (category === "WORKSHOP") {
+        return WORKSHOP_TYPE_OPTIONS;
+    }
+
+    return [];
+}
+
+export function resolveTrainingType(formData) {
+    if (formData.category === "BHV") {
+        return formData.variant || null;
+    }
+
+    if (formData.category === "PLOEGLEIDER") {
+        return formData.variant || null;
+    }
+
+    if (formData.category === "EHBO") {
+        return formData.variant || null;
+    }
+
+    if (formData.category === "ONTRUIMING") {
+        return formData.evacuationPhase || null;
+    }
+
+    if (formData.category === "WORKSHOP") {
+        return formData.workshopType || null;
+    }
+
+    return formData.trainingType || null;
+}
+
 export function getCategoryLabel(value) {
     return CATEGORY_OPTIONS.find((option) => option.value === value)?.label || value || "-";
 }
 
+export function getTrainingTypeLabel(value) {
+    const allTrainingTypes = [
+        ...BHV_TRAINING_TYPE_OPTIONS,
+        ...PLOEGLEIDER_TRAINING_TYPE_OPTIONS,
+        ...EHBO_TRAINING_TYPE_OPTIONS,
+        ...EVACUATION_PHASE_OPTIONS,
+        ...WORKSHOP_TYPE_OPTIONS,
+    ];
+
+    return allTrainingTypes.find((option) => option.value === value)?.label || value || "-";
+}
+
 export function getVariantLabel(value) {
-    return VARIANT_OPTIONS.find((option) => option.value === value)?.label || value || "-";
+    return getTrainingTypeLabel(value);
 }
 
 export function getEvacuationPhaseLabel(value) {
@@ -60,10 +216,19 @@ export function getStatusLabel(value) {
     return STATUS_OPTIONS.find((option) => option.value === value)?.label || value || "-";
 }
 
+export function getAttendanceStatusLabel(value) {
+    return ATTENDANCE_STATUS_OPTIONS.find((option) => option.value === value)?.label || value || "-";
+}
+
+export function getResultStatusLabel(value) {
+    return RESULT_STATUS_OPTIONS.find((option) => option.value === value)?.label || value || "-";
+}
+
 export function formatDate(value) {
     if (!value) return "-";
 
     const date = new Date(value);
+
     if (Number.isNaN(date.getTime())) {
         return value;
     }
@@ -87,24 +252,18 @@ export function toNullableNumber(value) {
 
 export function buildCreateTrainingPayload(formData) {
     return {
-        category: formData.category || null,
-        variant:
-            formData.category === "BHV" || formData.category === "EHBO"
-                ? formData.variant || null
-                : null,
-        evacuationPhase:
-            formData.category === "ONTRUIMING"
-                ? formData.evacuationPhase || null
-                : null,
-        workshopType:
-            formData.category === "WORKSHOP"
-                ? formData.workshopType || null
-                : null,
+        trainingType: resolveTrainingType(formData),
         courseDate: formData.courseDate || null,
         startTime: formData.startTime || null,
         endTime: formData.endTime || null,
         locationId: toNullableNumber(formData.locationId),
+        companyId: toNullableNumber(formData.companyId),
         trainerId: toNullableNumber(formData.trainerId),
+
+        competencyFirstAidEmergency: Boolean(formData.competencyFirstAidEmergency),
+        competencyFirstAidNonEmergency: Boolean(formData.competencyFirstAidNonEmergency),
+        competencyFireFighting: Boolean(formData.competencyFireFighting),
+        competencyEvacuation: Boolean(formData.competencyEvacuation),
     };
 }
 
@@ -114,15 +273,14 @@ export function buildUpdateTrainingPayload(formData) {
         startTime: formData.startTime || null,
         endTime: formData.endTime || null,
         locationId: toNullableNumber(formData.locationId),
-        evacuationPhase:
-            formData.category === "ONTRUIMING"
-                ? formData.evacuationPhase || null
-                : null,
-        workshopType:
-            formData.category === "WORKSHOP"
-                ? formData.workshopType || null
-                : null,
+        companyId: toNullableNumber(formData.companyId),
         trainerId: toNullableNumber(formData.trainerId),
+
+        competencyFirstAidEmergency: Boolean(formData.competencyFirstAidEmergency),
+        competencyFirstAidNonEmergency: Boolean(formData.competencyFirstAidNonEmergency),
+        competencyFireFighting: Boolean(formData.competencyFireFighting),
+        competencyEvacuation: Boolean(formData.competencyEvacuation),
+
         adminOverrideAllowed: Boolean(formData.adminOverrideAllowed),
     };
 }

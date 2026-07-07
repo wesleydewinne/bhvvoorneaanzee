@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@/features/auth/hooks/useAuth.js";
+import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./LoginPage.css";
 
 export default function LoginPage() {
@@ -14,7 +15,7 @@ export default function LoginPage() {
     const captchaRef = useRef(null);
     const widgetIdRef = useRef(null);
 
-    const { login, loading } = useAuth();
+    const { login, loginWithPasskey, loading } = useAuth();
 
     const siteKey = import.meta.env.VITE_TURNSTILE_SITEKEY;
 
@@ -104,6 +105,19 @@ export default function LoginPage() {
             return;
         }
 
+        navigate(getPostLoginPath(result.user), { replace: true });
+    };
+
+    const handlePasskeyLogin = async () => {
+        setError("");
+
+        const result = await loginWithPasskey();
+
+        if (!result.success) {
+            setError(result.error || "Passkey-login is niet gelukt.");
+            return;
+        }
+
         navigate("/dashboard", { replace: true });
     };
 
@@ -169,6 +183,15 @@ export default function LoginPage() {
                         disabled={loading || !captchaReady}
                     >
                         {loading ? "Bezig met inloggen..." : "Inloggen"}
+                    </button>
+
+                    <button
+                        className="login__button login__button--secondary"
+                        type="button"
+                        disabled={loading}
+                        onClick={handlePasskeyLogin}
+                    >
+                        {loading ? "Bezig met passkey..." : "Inloggen met passkey"}
                     </button>
                 </form>
             </div>

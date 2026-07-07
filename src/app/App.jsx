@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Head from "@/shared/components/seo/head/Head.jsx";
 import Layout from "@/shared/components/layout/layout/Layout.jsx";
 import AppRouter from "@/app/appRouter/AppRouter.jsx";
@@ -7,6 +7,8 @@ import useSessionTimer from "@/shared/hooks/useSessionTimer.js";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import api from "@/api/api.js";
 import { Analytics } from "@vercel/analytics/react";
+
+const isProduction = import.meta.env.PROD;
 
 function App() {
     const [showPopup, setShowPopup] = useState(false);
@@ -57,7 +59,7 @@ function App() {
     return (
         <>
             <Head />
-            <Analytics />
+            {isProduction && <Analytics />}
 
             {authenticated && showPopup && (
                 <SessionWarningPopup
@@ -67,11 +69,13 @@ function App() {
                 />
             )}
 
-            <Layout>
-                <main className="content">
-                    <AppRouter />
-                </main>
-            </Layout>
+            <Suspense fallback={null}>
+                <Layout>
+                    <main className="content">
+                        <AppRouter />
+                    </main>
+                </Layout>
+            </Suspense>
         </>
     );
 }

@@ -1,14 +1,35 @@
 import { useEffect, useState } from "react";
-import { fetchInvoices } from "@/api/api.js";
+import invoiceService from "../service/invoiceService.js";
 
-export function useFetchInvoices(klantId) {
+export function useFetchInvoices(invoiceId) {
     const [invoices, setInvoices] = useState([]);
 
     useEffect(() => {
-        if (klantId) {
-            fetchInvoices(klantId).then(setInvoices);
+        let mounted = true;
+
+        async function loadInvoice() {
+            if (!invoiceId) {
+                setInvoices([]);
+                return;
+            }
+
+            const invoice = await invoiceService.getById(invoiceId);
+
+            if (mounted) {
+                setInvoices(invoice ? [invoice] : []);
+            }
         }
-    }, [klantId]);
+
+        loadInvoice().catch(() => {
+            if (mounted) {
+                setInvoices([]);
+            }
+        });
+
+        return () => {
+            mounted = false;
+        };
+    }, [invoiceId]);
 
     return invoices;
 }

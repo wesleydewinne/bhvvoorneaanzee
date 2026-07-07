@@ -1,6 +1,6 @@
 // src/features/contact/pages/ContactBedanktPage.jsx
 import { Link } from "react-router-dom";
-import contactBg from "@/assets/image/common/backgrounds/contact-bg.jpg";
+import contactBg from "@/assets/image/common/backgrounds/contact-bg.jpg?w=1400&format=webp&quality=72";
 import "../styles/ContactOns.css";
 
 function ContactBedanktPage() {

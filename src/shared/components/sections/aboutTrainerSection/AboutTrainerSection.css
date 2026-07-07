@@ -1,38 +1,154 @@
 .about-trainer {
-    padding: 5rem 0;
-    background: #ffffff;
-}
-
-.about-trainer__top {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    grid-template-areas:
-        "media header"
-        "media text";
-    gap: 3.5rem;
-    align-items: start;
-    margin-bottom: 3rem;
-}
-
-.about-trainer__media {
-    grid-area: media;
     position: relative;
+    margin-top: -1px;
+    margin-bottom: clamp(3rem, 5vw, 6rem);
+    padding: calc(var(--space-8) + clamp(8rem, 11vw, 15rem)) 0 clamp(5rem, 7vw, 9rem);
+    overflow: hidden;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    clip-path: polygon(0 clamp(10rem, 14vw, 18rem), 100% clamp(3rem, 5vw, 7rem), 100% 100%, 0 100%);
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 160, 0, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(20, 184, 166, 0.16), transparent 32%),
+        linear-gradient(180deg, rgba(37, 42, 50, 0) 0%, rgba(37, 42, 50, 0) 64%, rgba(255, 255, 255, 0.9) 92%, #ffffff 100%),
+        linear-gradient(135deg, #252a32 0%, #1f2933 48%, #26343a 100%);
+    color: #ffffff;
 }
 
-.about-trainer__header {
-    grid-area: header;
+.about-trainer::before {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 42%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 26%, transparent 100%);
+    content: "";
+    pointer-events: none;
+}
+
+.about-trainer > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.about-trainer__shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+    align-items: start;
+}
+
+.about-trainer__content {
+    max-width: none;
+}
+
+.about-trainer__body {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(34rem, 1.05fr);
+    gap: clamp(3rem, 5vw, 7rem);
+    align-items: center;
+}
+
+.about-trainer__text-panel {
+    max-width: 72rem;
+}
+
+.about-trainer__eyebrow,
+.about-trainer__certifications-kicker {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #60a5fa;
+    font-size: 1.45rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.about-trainer__title {
+    max-width: 120rem;
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(3.4rem, 4.2vw, 5.8rem);
+    font-weight: 950;
+    line-height: 0.98;
+    text-wrap: balance;
+    text-shadow: none;
+}
+
+.about-trainer__title span {
+    display: block;
+}
+
+.about-trainer__title span:first-child {
+    white-space: nowrap;
+}
+
+.about-trainer__lead {
+    max-width: 72rem;
+    margin: 0 0 1.6rem;
+    color: #f8fafc;
+    font-size: 1.82rem;
+    font-weight: 600;
+    line-height: 1.78;
 }
 
 .about-trainer__text {
-    grid-area: text;
-    max-width: 74rem;
+    max-width: 72rem;
+    margin: 0;
+    color: #d1d5db;
+    font-size: 1.62rem;
+    line-height: 1.82;
+}
+
+.about-trainer__proof-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.4rem;
+}
+
+.about-trainer__proof-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.8rem;
+    padding: 0.9rem 1.35rem;
+    border: 1px solid rgba(96, 165, 250, 0.24);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.46);
+    box-shadow:
+        0 1.2rem 2.8rem rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: #f8fafc;
+    font-size: 1.42rem;
+    font-weight: 850;
+}
+
+.about-trainer__media {
+    position: relative;
+    min-height: 42rem;
+    perspective: 1200px;
 }
 
 .about-trainer__image {
+    position: relative;
     overflow: hidden;
-    border-radius: 1.8rem;
-    box-shadow: 0 1.8rem 5rem rgba(15, 23, 42, 0.12);
-    background: #e5e7eb;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 2.4rem;
+    background: #111827;
+    box-shadow:
+        0 3rem 7rem rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.about-trainer__image::after {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 30%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.42), transparent 44%);
+    content: "";
+    pointer-events: none;
 }
 
 .about-trainer__image img {
@@ -43,189 +159,259 @@
 }
 
 .about-trainer__image--primary {
-    aspect-ratio: 4 / 5;
+    height: clamp(46rem, 58vw, 68rem);
+    transform: rotateX(1.5deg);
+    transform-origin: center;
 }
 
-.about-trainer__eyebrow {
-    display: inline-block;
-    margin-bottom: 0.8rem;
-    font-size: 1.5rem;
+.about-trainer__floating-card {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+    width: min(31rem, 78%);
+    padding: 1.7rem;
+    border: 1px solid rgba(255, 160, 0, 0.34);
+    border-radius: 1.8rem;
+    background:
+        radial-gradient(circle at 16% 8%, rgba(255, 160, 0, 0.2), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(226, 232, 240, 0.82));
+    box-shadow:
+        0 2.4rem 5rem rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    color: #0f172a;
+    backdrop-filter: blur(12px);
+}
+
+.about-trainer__floating-card strong,
+.about-trainer__floating-card span {
+    display: block;
+}
+
+.about-trainer__floating-card strong {
+    margin-bottom: 0.45rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.about-trainer__floating-card span {
+    color: #475569;
+    font-size: 1.42rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--color-primary, #0f766e);
-}
-
-.about-trainer__title {
-    margin: 0 0 1.6rem;
-    font-size: clamp(3.2rem, 4vw, 4.8rem);
-    line-height: 1.12;
-    color: var(--color-text-dark, #111827);
-    text-wrap: balance;
-}
-
-.about-trainer__intro {
-    margin: 0 0 1.2rem;
-    font-size: 1.6rem;
-    line-height: 1.85;
-    color: var(--color-text-muted, #4b5563);
+    line-height: 1.45;
 }
 
 .about-trainer__highlights {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.4rem;
-    margin-bottom: 2.8rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.6rem;
+    margin-top: 3rem;
 }
 
 .about-trainer__card {
-    background: #f8fafc;
-    border: 0.1rem solid #e5e7eb;
-    border-radius: 1.6rem;
-    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 25rem;
+    padding: 2.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2rem;
+    background:
+        radial-gradient(circle at 92% 0%, rgba(255, 160, 0, 0.2), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(15, 23, 42, 0.5));
+    box-shadow:
+        0 2rem 4rem rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.about-trainer__card-stat {
+    display: inline-grid;
+    gap: 0.1rem;
+    min-width: 8.4rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 1.5rem;
+    background: #fff7e6;
+}
+
+.about-trainer__card-stat strong {
+    color: #ffa000;
+    font-size: 3rem;
+    font-weight: 950;
+    line-height: 1;
+}
+
+.about-trainer__card-stat span {
+    color: #d1d5db;
+    font-size: 1.15rem;
+    font-weight: 850;
+    text-transform: uppercase;
 }
 
 .about-trainer__card-title {
-    margin: 0 0 0.8rem;
-    font-size: 1.9rem;
-    line-height: 1.3;
-    color: var(--color-text-dark, #111827);
+    margin: 0 0 1rem;
+    color: #ffffff;
+    font-size: 2.1rem;
+    font-weight: 900;
+    line-height: 1.2;
+    text-wrap: balance;
 }
 
 .about-trainer__card-text {
     margin: 0;
-    font-size: 1.6rem;
-    line-height: 1.7;
-    color: var(--color-text-muted, #4b5563);
+    color: #d1d5db;
+    font-size: 1.52rem;
+    line-height: 1.72;
 }
 
-/* onderste rij */
 .about-trainer__bottom {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: minmax(0, 1.25fr) minmax(30rem, 0.75fr);
     gap: 2rem;
-    align-items: start;
-}
-
-.about-trainer__certifications {
-    min-width: 0;
-}
-
-.about-trainer__certifications-title {
-    margin: 0 0 1rem;
-    font-size: 1.8rem;
-    color: var(--color-text-dark, #111827);
-}
-
-.about-trainer__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    align-content: flex-start;
-}
-
-.about-trainer__tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.8rem 1.1rem;
-    border-radius: 999px;
-    background: rgba(15, 118, 110, 0.08);
-    color: var(--color-primary, #0f766e);
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1;
+    align-items: stretch;
+    margin-top: 2rem;
 }
 
 .about-trainer__bottom-image {
     overflow: hidden;
-    border-radius: 1.8rem;
-    box-shadow: 0 1.8rem 5rem rgba(15, 23, 42, 0.12);
-    background: #e5e7eb;
+    min-height: 32rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2rem;
+    background: #111827;
+    box-shadow: 0 2.4rem 5rem rgba(0, 0, 0, 0.28);
 }
 
 .about-trainer__bottom-image img {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 7;
+    height: 100%;
+    min-height: 32rem;
     object-fit: cover;
 }
 
-/* responsive */
-@media (max-width: 1200px) {
-    .about-trainer__highlights {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+.about-trainer__certifications {
+    padding: 2.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2rem;
+    background:
+        radial-gradient(circle at 100% 0%, rgba(20, 184, 166, 0.18), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(15, 23, 42, 0.5));
+    box-shadow:
+        0 2rem 4rem rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.about-trainer__certifications-title {
+    margin: 0 0 1rem;
+    color: #ffffff;
+    font-size: 2.6rem;
+    font-weight: 950;
+    line-height: 1.1;
+}
+
+.about-trainer__certifications-text {
+    margin: 0 0 1.8rem;
+    color: #d1d5db;
+    font-size: 1.5rem;
+    line-height: 1.7;
+}
+
+.about-trainer__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+}
+
+.about-trainer__tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 3.4rem;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid rgba(96, 165, 250, 0.24);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.52);
+    color: #f8fafc;
+    font-size: 1.32rem;
+    font-weight: 850;
+    line-height: 1;
+}
+
+@media (max-width: 1100px) {
+    .about-trainer__body,
+    .about-trainer__bottom {
+        grid-template-columns: 1fr;
     }
 
-    .about-trainer__bottom {
-        grid-template-columns: 1fr 2fr;
+    .about-trainer__media {
+        min-height: auto;
+    }
+
+    .about-trainer__image--primary {
+        height: auto;
+        aspect-ratio: 16 / 11;
+        transform: none;
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 860px) {
     .about-trainer {
-        padding: 4rem 0;
-    }
-
-    .about-trainer__top {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "header"
-            "media"
-            "text";
-        gap: 2rem;
-        margin-bottom: 2.5rem;
-    }
-
-    .about-trainer__text {
-        max-width: 100%;
+        padding: var(--space-7) 0;
     }
 
     .about-trainer__highlights {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .about-trainer__bottom {
         grid-template-columns: 1fr;
-        gap: 2rem;
     }
 
+    .about-trainer__bottom-image,
     .about-trainer__bottom-image img {
-        aspect-ratio: 16 / 8;
+        min-height: 26rem;
     }
 }
 
 @media (max-width: 576px) {
     .about-trainer {
-        padding: 3.5rem 0;
+        padding: var(--space-6) 0;
+    }
+
+    .about-trainer__shell {
+        gap: 2.4rem;
     }
 
     .about-trainer__title {
-        font-size: 3rem;
+        font-size: clamp(3rem, 10vw, 3.8rem);
+        line-height: 1.05;
     }
 
-    .about-trainer__intro {
-        font-size: 1.5rem;
-        line-height: 1.75;
+    .about-trainer__title span:first-child {
+        white-space: normal;
     }
 
-    .about-trainer__highlights {
-        grid-template-columns: 1fr;
+    .about-trainer__lead {
+        font-size: 1.58rem;
+        line-height: 1.72;
     }
 
-    .about-trainer__card {
-        padding: 1.4rem;
+    .about-trainer__text,
+    .about-trainer__card-text,
+    .about-trainer__certifications-text {
+        font-size: 1.45rem;
     }
 
-    .about-trainer__card-title {
-        font-size: 1.8rem;
+    .about-trainer__image--primary {
+        aspect-ratio: 4 / 5;
     }
 
-    .about-trainer__card-text {
-        font-size: 1.5rem;
+    .about-trainer__floating-card {
+        right: 1rem;
+        bottom: 1rem;
+        width: calc(100% - 2rem);
     }
 
+    .about-trainer__card,
+    .about-trainer__certifications {
+        padding: 1.6rem;
+    }
+
+    .about-trainer__proof-pill,
     .about-trainer__tag {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
 }

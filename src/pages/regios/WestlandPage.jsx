@@ -4,7 +4,7 @@ import "./RegioPage.css";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-import westlandHeader from "@/assets/image/regio/bhv-westland-den-haag-header.png";
+import westlandHeader from "@/assets/image/regio/bhv-westland-den-haag-header.png?w=1400&format=webp&quality=72";
 
 import {
     Fire,

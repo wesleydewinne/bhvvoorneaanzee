@@ -1,13 +1,13 @@
 import React from "react";
-import Keukenbrand from "@/assets/image/scenarios/Keukenbrand.png";
-import BrandServiceRuimte from "@/assets/image/scenarios/Brand_serverruimte.png";
-import RookTechnischeRuimte from "@/assets/image/scenarios/Rookontwikkeling_technische_ruimte.png"
-import OnwelPersoon from "@/assets/image/scenarios/Bewusteloze_slachtoffer.png";
-import StroomUitval from "@/assets/image/scenarios/Stroomuitval.png"
-import Gaslek from "@/assets/image/scenarios/Gaslek.png"
-import BrandContainer from "@/assets/image/scenarios/Containerbrand_tegen_pand.png"
-import KortsluitingPrinter from "@/assets/image/scenarios/Kopieerappartaat_kortsluiting.png"
-import VerdachtPakketje from "@/assets/image/scenarios/VerdachtPakketje.png"
+import Keukenbrand from "@/assets/image/scenarios/Keukenbrand.png?w=900&format=webp&quality=72";
+import BrandServiceRuimte from "@/assets/image/scenarios/Brand_serverruimte.png?w=900&format=webp&quality=72";
+import RookTechnischeRuimte from "@/assets/image/scenarios/Rookontwikkeling_technische_ruimte.png?w=900&format=webp&quality=72";
+import OnwelPersoon from "@/assets/image/scenarios/Bewusteloze_slachtoffer.png?w=900&format=webp&quality=72";
+import StroomUitval from "@/assets/image/scenarios/Stroomuitval.png?w=900&format=webp&quality=72";
+import Gaslek from "@/assets/image/scenarios/Gaslek.png?w=900&format=webp&quality=72";
+import BrandContainer from "@/assets/image/scenarios/Containerbrand_tegen_pand.png?w=900&format=webp&quality=72";
+import KortsluitingPrinter from "@/assets/image/scenarios/Kopieerappartaat_kortsluiting.png?w=900&format=webp&quality=72";
+import VerdachtPakketje from "@/assets/image/scenarios/VerdachtPakketje.png?w=900&format=webp&quality=72";
 
 export default function Scenarios() {
     const scenarios = [
@@ -132,8 +132,8 @@ export default function Scenarios() {
             <div className="link-list">
                 <p>Bekijk ook onze aanvullende informatie:</p>
                 <ul>
-                    <li><a href="/ontruimingsoefening/verslag">Ontruimingsverslag</a></li>
-                    <li><a href="/ontruimingsoefening/fases">Fasen van de soort oefeningen</a></li>
+                    <li><a href="/ontruimingsoefening-verslag">Ontruimingsverslag</a></li>
+                    <li><a href="/ontruimingsoefening-fases">Fasen van de soort oefeningen</a></li>
                 </ul>
             </div>
         </div>

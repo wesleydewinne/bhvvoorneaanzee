@@ -1,4 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import companyService from "@/features/companies/services/companyService.js";
+
+const emptyLocationForm = {
+    locationName: "",
+    address: "",
+    postalCode: "",
+    city: "",
+    phone: "",
+    email: "",
+    description: "",
+    companyIds: [],
+};
 
 function LocationForm({
                           initialValues,
@@ -7,8 +19,44 @@ function LocationForm({
                           loading = false,
                           serverError = "",
                       }) {
-    const [form, setForm] = useState(initialValues);
+    const [form, setForm] = useState(initialValues || emptyLocationForm);
     const [errors, setErrors] = useState({});
+
+    const [companies, setCompanies] = useState([]);
+    const [companiesLoading, setCompaniesLoading] = useState(true);
+    const [companiesError, setCompaniesError] = useState("");
+
+    useEffect(() => {
+        setForm(initialValues || emptyLocationForm);
+    }, [initialValues]);
+
+    useEffect(() => {
+        const loadCompanies = async () => {
+            try {
+                setCompaniesLoading(true);
+                setCompaniesError("");
+
+                const data = await companyService.getAll();
+                setCompanies(Array.isArray(data) ? data : []);
+            } catch (err) {
+                console.error("Fout bij ophalen bedrijven:", err);
+
+                const backendMessage =
+                    err?.response?.data?.message ||
+                    err?.response?.data?.error ||
+                    (typeof err?.response?.data === "string" ? err.response.data : null);
+
+                setCompaniesError(
+                    backendMessage || err?.message || "Bedrijven konden niet worden opgehaald."
+                );
+                setCompanies([]);
+            } finally {
+                setCompaniesLoading(false);
+            }
+        };
+
+        loadCompanies();
+    }, []);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -22,6 +70,25 @@ function LocationForm({
             ...prev,
             [name]: "",
         }));
+    };
+
+    const handleCompanyToggle = (companyId) => {
+        const companyIdAsString = String(companyId);
+
+        setForm((prev) => {
+            const currentCompanyIds = Array.isArray(prev.companyIds)
+                ? prev.companyIds
+                : [];
+
+            const nextCompanyIds = currentCompanyIds.includes(companyIdAsString)
+                ? currentCompanyIds.filter((id) => id !== companyIdAsString)
+                : [...currentCompanyIds, companyIdAsString];
+
+            return {
+                ...prev,
+                companyIds: nextCompanyIds,
+            };
+        });
     };
 
     const validate = () => {
@@ -58,6 +125,12 @@ function LocationForm({
             return;
         }
 
+        const companyIds = Array.isArray(form.companyIds)
+            ? form.companyIds
+                .map((companyId) => Number(companyId))
+                .filter((companyId) => !Number.isNaN(companyId))
+            : [];
+
         await onSubmit({
             locationName: form.locationName.trim(),
             address: form.address.trim(),
@@ -66,6 +139,7 @@ function LocationForm({
             phone: form.phone.trim(),
             email: form.email.trim(),
             description: form.description.trim(),
+            companyIds,
         });
     };
 
@@ -167,10 +241,62 @@ function LocationForm({
                         onChange={handleChange}
                     />
                 </div>
+
+                <div className="form-field form-field--full">
+                    <label>Bedrijven koppelen</label>
+
+                    {companiesLoading ? (
+                        <p className="form-help">Bedrijven laden...</p>
+                    ) : null}
+
+                    {companiesError ? (
+                        <p className="form-error">{companiesError}</p>
+                    ) : null}
+
+                    {!companiesLoading && !companiesError && companies.length === 0 ? (
+                        <p className="form-help">
+                            Er zijn nog geen bedrijven beschikbaar.
+                        </p>
+                    ) : null}
+
+                    {!companiesLoading && !companiesError && companies.length > 0 ? (
+                        <div className="company-checkbox-list">
+                            {companies.map((company) => {
+                                const companyIdAsString = String(company.id);
+                                const checked = Array.isArray(form.companyIds)
+                                    ? form.companyIds.includes(companyIdAsString)
+                                    : false;
+
+                                return (
+                                    <label
+                                        key={company.id}
+                                        className="company-checkbox-list__item"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={checked}
+                                            onChange={() => handleCompanyToggle(company.id)}
+                                            disabled={loading}
+                                        />
+                                        <span>{company.name}</span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+                    ) : null}
+
+                    <small className="form-help">
+                        Een locatie kan aan meerdere bedrijven gekoppeld zijn.
+                    </small>
+                </div>
             </div>
 
             <div className="location-form__actions">
-                <button type="submit" className="button" disabled={loading}>
+                <button
+                    type="submit"
+                    className="button"
+                    disabled={loading || companiesLoading}
+                >
                     {loading ? "Bezig..." : submitLabel}
                 </button>
             </div>

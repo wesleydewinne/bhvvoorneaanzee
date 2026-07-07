@@ -101,6 +101,12 @@
     cursor: not-allowed;
 }
 
+.login__button--secondary {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
 /* Spinner met tokens */
 .login__spinner {
     width: 1.6rem;

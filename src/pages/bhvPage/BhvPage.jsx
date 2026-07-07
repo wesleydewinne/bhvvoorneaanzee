@@ -23,7 +23,7 @@ import TrainingCardSection from "@/shared/components/sections/trainingSection/Tr
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-import VoorneAanZeeHeader from "@/assets/image/regio/bhv-voorne-aan-zee-header.png";
+import VoorneAanZeeHeader from "@/assets/image/regio/bhv-voorne-aan-zee-header.png?w=1400&format=webp&quality=72";
 
 export default function BhvPage() {
 
@@ -198,9 +198,9 @@ export default function BhvPage() {
                         <p>
                             Onze instructeurs zijn actief in de volledige gemeente
                             <strong> Voorne aan Zee</strong> en ook in omliggende regio’s zoals
-                            <a href="/rotterdam"> Rotterdam-Rijnmond</a>,
+                            <a href="/rotterdam-rijnmond"> Rotterdam-Rijnmond</a>,
                             <a href="/zeeland"> Zeeland</a> en
-                            <a href="/westland&Haaglanden"> het Westland & omgeving Den Haag</a>.
+                            <a href="/den-haag-westland"> het Westland & omgeving Den Haag</a>.
                         </p>
                     </article>
 
@@ -316,7 +316,7 @@ export default function BhvPage() {
                 <ServiceRegionsSection/>
 
                 {/* CTA */}
-                <a href="/contact" className="btn-primary">
+                <a href="/offerte" className="btn-primary">
                     Offerte aanvragen
                 </a>
 

@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import publicRoutes from "@/app/routes/publicRoutes.jsx";
@@ -5,7 +6,8 @@ import privateRoutes from "@/app/routes/privateRoutes.jsx";
 import quizRoutes from "@/app/routes/quizRoutes.jsx";
 
 import QuizPrivateRoute from "@/features/auth/components/route/QuizPrivateRoute.jsx";
-import NotFoundPage from "@/pages/notFoundPage/NotFoundPage.jsx";
+
+const NotFoundPage = lazy(() => import("@/pages/notFoundPage/NotFoundPage.jsx"));
 
 function AppRouter() {
     return (

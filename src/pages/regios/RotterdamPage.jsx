@@ -3,7 +3,7 @@ import "./RegioPage.css";
 
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
-import rotterdamHeader from "@/assets/image/regio/bhv-rotterdam-rijnmond-header.png";
+import rotterdamHeader from "@/assets/image/regio/bhv-rotterdam-rijnmond-header.png?w=1400&format=webp&quality=72";
 
 import {
     Fire,

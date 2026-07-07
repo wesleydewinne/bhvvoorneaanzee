@@ -1,7 +1,7 @@
 import "./OverOns.css";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
-import heroImage from "@/assets/image/common/headerimage/overons-header.jpg";
-import MotionSection from "@/shared/components/sections/motionSection/MotionSection.jsx";
+import heroImage from "@/assets/image/common/headerimage/overons-header.jpg?w=1400&format=webp&quality=72";
+import MotionSection from "@/pages/overOns/components/MotionSection.jsx";
 import { Link } from "react-router-dom";
 
 import {
@@ -154,18 +154,18 @@ function OverOns() {
                 <MotionSection title="Werkgebied" icon={MapPin}>
                     <p>
                         BHV Voorne aan Zee is actief in de regio{" "}
-                        <a href="/regio/voorne-aan-zee">Voorne aan Zee</a>,{" "}
-                        <a href="/regio/rotterdam-rijnmond">Rotterdam-Rijnmond</a>{" "}
+                        <a href="/bhv">Voorne aan Zee</a>,{" "}
+                        <a href="/rotterdam-rijnmond">Rotterdam-Rijnmond</a>{" "}
                         en omliggende gemeenten.
                     </p>
 
                     <p>
                         Wij verzorgen BHV-, BHV Ploegleider- en EHBO-trainingen en begeleiden
                         ontruimingsoefeningen bij bedrijven en organisaties in onder andere{" "}
-                        <Link to="/regio/spijkenisse">Spijkenisse</Link>,{" "}
-                        <Link to="/regio/hellevoetsluis">Hellevoetsluis</Link>,{" "}
-                        <Link to="/regio/brielle">Brielle</Link>,{" "}
-                        <Link to="/regio/rotterdam">Rotterdam</Link>
+                        <Link to="/bhv">Spijkenisse</Link>,{" "}
+                        <Link to="/bhv">Hellevoetsluis</Link>,{" "}
+                        <Link to="/bhv">Brielle</Link>,{" "}
+                        <Link to="/rotterdam-rijnmond">Rotterdam</Link>
 
                         en omliggende regio’s.
                     </p>

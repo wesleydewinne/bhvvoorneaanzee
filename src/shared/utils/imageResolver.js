@@ -7,7 +7,7 @@ const images = import.meta.glob(
 );
 
 // Fallback image
-import fallbackImage from "@/assets/image/common/fallback/Card-Fallback.png";
+import fallbackImage from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
 
 /**
  * Zet een bestandsnaam uit JSON om naar een echte Vite asset URL

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import reviewService from "../services/reviewService.js";
 
 export function useCachedReviews() {
     const [status, setStatus] = useState("loading");
@@ -7,22 +8,30 @@ export function useCachedReviews() {
     const [total, setTotal] = useState(null);
 
     useEffect(() => {
-        fetch("https://jouw-backend-domein.nl/api/public/reviews")
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Kan reviews niet ophalen");
-                }
-                return res.json();
-            })
-            .then((data) => {
+        let mounted = true;
+
+        const loadReviews = async () => {
+            try {
+                const data = await reviewService.getPublicReviews();
+
+                if (!mounted) return;
+
                 setReviews(data.reviews ?? []);
                 setRating(data.rating ?? null);
                 setTotal(data.total ?? null);
                 setStatus("success");
-            })
-            .catch(() => {
+            } catch {
+                if (!mounted) return;
+
                 setStatus("fallback");
-            });
+            }
+        };
+
+        loadReviews();
+
+        return () => {
+            mounted = false;
+        };
     }, []);
 
     return { status, reviews, rating, total };

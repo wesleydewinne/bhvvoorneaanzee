@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import api from "@/api/api.js";
 
 export default function BackendStatus({ showText = true }) {
     const [online, setOnline] = useState(false);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/health`)
+        api.get("/health")
             .then(() => setOnline(true))
             .catch(() => setOnline(false));
     }, []);

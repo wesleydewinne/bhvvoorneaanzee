@@ -1,12 +1,14 @@
-import QuizIntroPage from "../../pages/quiz/QuizIntroPage.jsx";
-import QuizPage from "../../pages/quiz/QuizPage.jsx";
-import ResultPage from "../../pages/quiz/ResultPage.jsx";
+import { lazy } from "react";
 import { QUIZ_PATHS } from "./routePaths.js";
 
+const QuizIntroPage = lazy(() => import("../../pages/quiz/QuizIntroPage.jsx"));
+const QuizPage = lazy(() => import("../../pages/quiz/QuizPage.jsx"));
+const ResultPage = lazy(() => import("../../pages/quiz/ResultPage.jsx"));
+
 const quizRoutes = [
-    { path: QUIZ_PATHS[0], element: <QuizIntroPage /> },
-    { path: QUIZ_PATHS[1], element: <QuizPage /> },
-    { path: QUIZ_PATHS[2], element: <ResultPage /> },
+    { path: QUIZ_PATHS.intro, element: <QuizIntroPage /> },
+    { path: QUIZ_PATHS.quiz, element: <QuizPage /> },
+    { path: QUIZ_PATHS.result, element: <ResultPage /> },
 ];
 
 export default quizRoutes;

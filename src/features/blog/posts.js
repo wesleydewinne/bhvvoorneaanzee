@@ -1,5 +1,5 @@
-import blogOntruimenImg from "@/assets/image/blog/ontruimen/Blog_Ontruimen.png"
-import blogArbeidsOngevallen from "@/assets/image/blog/arbeidsongevallen/Blog_arbeidsongevallen.png"
+import blogOntruimenImg from "@/assets/image/blog/ontruimen/Blog_Ontruimen.png?w=1000&format=webp&quality=72";
+import blogArbeidsOngevallen from "@/assets/image/blog/arbeidsongevallen/Blog_arbeidsongevallen.png?w=1000&format=webp&quality=72";
 import header112Img from "@/assets/image/blog/112app/Blog_112_Header.webp";
 import poster112Img from "@/assets/image/blog/112app/Blog_112_Poster.webp";
 import headerBurgerhulpImg from "@/assets/image/blog/burgerhulpverlener/headerBurgerhulpImg.webp";

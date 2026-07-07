@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./Check.css";
 import SafetyWizard from "./SafetyWizard";
 
-import bgImage from "@/assets/image/common/headerimage/veiligheidscheck-bg.jpg";
-import ongevalBg from "@/assets/image/common/headerimage/aanrijding-bg.jpg";
+import bgImage from "@/assets/image/common/headerimage/veiligheidscheck-bg.jpg?w=1400&format=webp&quality=72";
+import ongevalBg from "@/assets/image/common/headerimage/aanrijding-bg.jpg?w=1400&format=webp&quality=72";
 
 export default function Check() {
     const [wizardActive, setWizardActive] = useState(false);
@@ -157,13 +157,15 @@ export default function Check() {
                         backgroundPosition: "center"
                     }}
                 >
-                    <SafetyWizard onSubmit={handleWizardSubmit} />
+                    <div className="wizard-shell">
+                        <SafetyWizard onSubmit={handleWizardSubmit} />
 
-                    {submitError && (
-                        <p className="wizard-error">
-                            {submitError}
-                        </p>
-                    )}
+                        {submitError && (
+                            <p className="wizard-error" role="alert" aria-live="polite">
+                                {submitError}
+                            </p>
+                        )}
+                    </div>
                 </section>
             )}
         </div>

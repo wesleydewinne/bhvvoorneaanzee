@@ -28,7 +28,7 @@ function ModulaireOverzicht() {
                     <h1>Geen modules geselecteerd</h1>
                     <button
                         className="workshop-button"
-                        onClick={() => navigate("#")}
+                        onClick={() => navigate("/modulaire-trainen")}
                     >
                         Terug naar samenstellen
                     </button>
@@ -59,7 +59,7 @@ function ModulaireOverzicht() {
                 <button
                     className="workshop-button"
                     onClick={() =>
-                        navigate("/offerte/modulair", {
+                        navigate("/offerte", {
                             state: {
                                 selectedModules,
                                 totalDuration

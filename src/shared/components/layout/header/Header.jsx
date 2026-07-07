@@ -1,9 +1,18 @@
-// src/components/header/Header.jsx
-import React, { useState, useEffect } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
-import logo from "@/assets/image/common/logo/logo.png";
-import "./Header.css";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 import useAuth from "@/features/auth/hooks/useAuth.js";
+import logo from "@/assets/image/common/logo/logo.png";
+
+import "./Header.css";
+
+const mainNavItems = [
+    { to: "/bhv", label: "BHV" },
+    { to: "/ploegleider", label: "Ploegleider" },
+    { to: "/ontruimingsoefening", label: "Ontruiming" },
+    { to: "/ehbo", label: "EHBO" },
+    { to: "/workshops", label: "Workshops" },
+];
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -13,36 +22,37 @@ export default function Header() {
     const { authenticated, loading, roles = [], logout } = useAuth();
     const navigate = useNavigate();
 
-    // Rollen
     const isAdmin = roles.includes("ROLE_ADMIN");
     const isTrainer = roles.includes("ROLE_TRAINER");
     const isStudent = roles.includes("ROLE_STUDENT");
     const isSafety = roles.includes("ROLE_SAFETY_MANAGER");
 
-    // Glow
     const userStatusClass = authenticated ? "status-online" : "status-offline";
 
-    // Scroll effect
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 10);
+
+        onScroll();
         window.addEventListener("scroll", onScroll);
+
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    // Navigeren
     const handleNavigate = (to) => {
         setMenuOpen(false);
         setUserMenuOpen(false);
         navigate(to);
     };
 
-    // 🔥 NIEUWE logout: geen witte pagina meer
+    const handleNavLinkClick = () => {
+        setMenuOpen(false);
+        setUserMenuOpen(false);
+    };
+
     const handleLogout = async () => {
         try {
-            await logout(); // AuthContext zorgt voor het legen van state
-            setUserMenuOpen(false);
-            setMenuOpen(false);
-            navigate("/inloggen"); // Zonder reload = geen witte pagina
+            await logout();
+            handleNavigate("/inloggen");
         } catch (err) {
             console.error("Uitloggen mislukt:", err);
         }
@@ -51,74 +61,101 @@ export default function Header() {
     return (
         <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
             <div className="header-inner">
+                <Link
+                    to="/"
+                    className="header-brand"
+                    onClick={handleNavLinkClick}
+                    aria-label="Ga naar de homepage van BHV Voorne aan Zee"
+                >
+                    <img
+                        src={logo}
+                        alt="BHV Voorne aan Zee"
+                        className="header-logo"
+                    />
+                </Link>
 
-                {/* LOGO */}
-                <div className="header-left">
-                    <Link to="/" onClick={() => handleNavigate("/")}>
-                        <img
-                            src={logo}
-                            alt="BHV Voorne aan Zee"
-                            className="header-logo"
-                        />
-                    </Link>
-                </div>
-
-                {/* NAV */}
-                <nav className={`main-nav ${menuOpen ? "open" : ""}`}>
+                <nav
+                    id="main-navigation"
+                    className={`main-nav ${menuOpen ? "open" : ""}`}
+                    aria-label="Hoofdnavigatie"
+                >
                     <ul>
-                        <li><NavLink to="/bhv" className="nav-link" onClick={() => handleNavigate("/bhv")}>BHV</NavLink></li>
-                        <li><NavLink to="/ploegleider" className="nav-link" onClick={() => handleNavigate("/ploegleider")}>Ploegleider</NavLink></li>
-                        <li><NavLink to="/ontruimingsoefening" className="nav-link" onClick={() => handleNavigate("/ontruimingsoefening")}>Ontruimingsoefening</NavLink></li>
-                        <li><NavLink to="/ehbo" className="nav-link" onClick={() => handleNavigate("/ehbo")}>EHBO</NavLink></li>
-                        <li><NavLink to="/workshops" className="nav-link" onClick={() => handleNavigate("/workshops")}>Workshops</NavLink></li>
+                        {mainNavItems.map((item) => (
+                            <li key={item.to}>
+                                <NavLink
+                                    to={item.to}
+                                    className="nav-link"
+                                    onClick={handleNavLinkClick}
+                                >
+                                    {item.label}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </nav>
 
-                {/* RECHTS */}
-                <div className="header-right">
-
-                    {/* Hamburger */}
+                <div className="header-actions">
                     <button
-                        className={`hamburger ${menuOpen ? "open" : ""}`}
-                        onClick={() => setMenuOpen(prev => !prev)}
-                    >
-                        <span></span><span></span><span></span>
-                    </button>
-
-                    {/* USER ICON */}
-                    <div
+                        type="button"
                         className={`user-icon-wrapper ${userStatusClass}`}
-                        onClick={() => setUserMenuOpen(prev => !prev)}
+                        onClick={() => setUserMenuOpen((prev) => !prev)}
+                        aria-label={authenticated ? "Accountmenu openen" : "Inloggen of accountmenu openen"}
+                        aria-expanded={userMenuOpen}
+                        aria-controls="user-dropdown"
                         title={authenticated ? "Ingelogd" : "Niet ingelogd - klik om in te loggen"}
                     >
-                        <div className="user-icon"></div>
-                    </div>
+                        <span className="user-icon" aria-hidden="true" />
+                    </button>
 
-                    {/* DROPDOWN */}
+                    <button
+                        type="button"
+                        className={`hamburger ${menuOpen ? "open" : ""}`}
+                        onClick={() => setMenuOpen((prev) => !prev)}
+                        aria-label={menuOpen ? "Menu sluiten" : "Menu openen"}
+                        aria-expanded={menuOpen}
+                        aria-controls="main-navigation"
+                    >
+                        <span aria-hidden="true" />
+                        <span aria-hidden="true" />
+                        <span aria-hidden="true" />
+                    </button>
+
                     {userMenuOpen && !loading && (
-                        <div className="user-dropdown">
-
+                        <div id="user-dropdown" className="user-dropdown">
                             {!authenticated && (
-                                <button onClick={() => handleNavigate("/inloggen")}>Inloggen</button>
+                                <button type="button" onClick={() => handleNavigate("/inloggen")}>
+                                    Inloggen
+                                </button>
                             )}
 
                             {authenticated && (
                                 <>
                                     <div className="user-dropdown-section-title">Mijn account</div>
-                                    <button onClick={() => handleNavigate("/dashboard")}>Dashboard</button>
-                                    <button onClick={() => handleNavigate("/profile")}>Profiel</button>
-                                    <button className="logout-btn" onClick={handleLogout}>Uitloggen</button>
+
+                                    <button type="button" onClick={() => handleNavigate("/dashboard")}>
+                                        Dashboard
+                                    </button>
+                                    <button type="button" onClick={() => handleNavigate("/profile")}>
+                                        Profiel
+                                    </button>
+                                    <button type="button" className="logout-btn" onClick={handleLogout}>
+                                        Uitloggen
+                                    </button>
 
                                     {isAdmin && (
                                         <>
                                             <div className="user-dropdown-section-title">Admin</div>
-                                            <button onClick={() => handleNavigate("/admin/users")}>Gebruikersbeheer
+                                            <button type="button" onClick={() => handleNavigate("/admin/users")}>
+                                                Gebruikersbeheer
                                             </button>
-                                            <button onClick={() => handleNavigate("/admin/trainings")}>Trainingbeheer
+                                            <button type="button" onClick={() => handleNavigate("/admin/trainingen")}>
+                                                Trainingbeheer
                                             </button>
-                                            <button onClick={() => handleNavigate("/admin/invoices")}>Facturen
+                                            <button type="button" onClick={() => handleNavigate("/admin/invoices")}>
+                                                Facturen
                                             </button>
-                                            <button onClick={() => handleNavigate("/admin/gebouwbeheer")}>Gebouw beheer
+                                            <button type="button" onClick={() => handleNavigate("/admin/locations")}>
+                                                Locatiebeheer
                                             </button>
                                         </>
                                     )}
@@ -126,14 +163,14 @@ export default function Header() {
                                     {isTrainer && (
                                         <>
                                             <div className="user-dropdown-section-title">Trainer</div>
-                                            <button onClick={() => handleNavigate("/trainer/trainings")}>Mijn
-                                                trainingen
+                                            <button type="button" onClick={() => handleNavigate("/admin/trainingen")}>
+                                                Mijn trainingen
                                             </button>
-                                            <button
-                                                onClick={() => handleNavigate("/trainer/students")}>Cursistenbeheer
+                                            <button type="button" onClick={() => handleNavigate("/admin/trainingen")}>
+                                                Cursistenbeheer
                                             </button>
-                                            <button
-                                                onClick={() => handleNavigate("/trainer/verslagen")}>Ontruimingsverslagen
+                                            <button type="button" onClick={() => handleNavigate("/dashboard")}>
+                                                Ontruimingsverslagen
                                             </button>
                                         </>
                                     )}
@@ -141,11 +178,11 @@ export default function Header() {
                                     {isStudent && (
                                         <>
                                             <div className="user-dropdown-section-title">Cursist</div>
-                                            <button onClick={() => handleNavigate("/student/trainings")}>Mijn
-                                                trainingen
+                                            <button type="button" onClick={() => handleNavigate("/dashboard")}>
+                                                Mijn trainingen
                                             </button>
-                                            <button onClick={() => handleNavigate("/student/certificaten")}>Mijn
-                                                certificaten
+                                            <button type="button" onClick={() => handleNavigate("/profile")}>
+                                                Mijn certificaten
                                             </button>
                                         </>
                                     )}
@@ -153,14 +190,13 @@ export default function Header() {
                                     {isSafety && (
                                         <>
                                             <div className="user-dropdown-section-title">Veiligheid</div>
-                                            <button
-                                                onClick={() => handleNavigate("/safety/verslagen")}>Veiligheidsrapportage
+                                            <button type="button" onClick={() => handleNavigate("/admin/locations")}>
+                                                Veiligheidsrapportage
                                             </button>
                                         </>
                                     )}
                                 </>
                             )}
-
                         </div>
                     )}
                 </div>

@@ -26,6 +26,20 @@ const locationService = {
     async remove(id) {
         await apiClient.delete(`${BASE_URL}/${id}`);
     },
+
+    async addCompany(locationId, companyId) {
+        const response = await apiClient.patch(
+            `${BASE_URL}/${locationId}/companies/${companyId}`
+        );
+        return response.data;
+    },
+
+    async removeCompany(locationId, companyId) {
+        const response = await apiClient.delete(
+            `${BASE_URL}/${locationId}/companies/${companyId}`
+        );
+        return response.data;
+    },
 };
 
 export default locationService;

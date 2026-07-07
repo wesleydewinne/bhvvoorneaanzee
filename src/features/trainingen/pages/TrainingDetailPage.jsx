@@ -1,24 +1,114 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TrainingStatusBadge from "../components/TrainingStatusBadge.jsx";
+import TrainingParticipantsSection from "../components/TrainingParticipantsSection.jsx";
 import trainingService from "../services/trainingService.js";
+import locationService from "@/features/locations/services/locationService.js";
 import {
     formatDate,
     formatTime,
     getCategoryLabel,
-    getEvacuationPhaseLabel,
     getStatusLabel,
-    getVariantLabel,
-    getWorkshopTypeLabel,
+    getTrainingTypeLabel,
     STATUS_OPTIONS,
 } from "../helpers/trainingHelpers.js";
 import "../styles/Trainingen.css";
+
+function getBackendMessage(err, fallbackMessage) {
+    return (
+        err?.response?.data?.message ||
+        err?.response?.data?.error ||
+        err?.response?.data?.detail ||
+        (typeof err?.response?.data === "string" ? err.response.data : null) ||
+        err?.message ||
+        fallbackMessage
+    );
+}
+
+function getCompanyDisplayName(training) {
+    return training?.companyName || training?.company?.name || "-";
+}
+
+function getTrainingTypeDisplayName(training) {
+    return getTrainingTypeLabel(
+        training?.trainingType ||
+        training?.variant ||
+        training?.evacuationPhase ||
+        training?.workshopType
+    );
+}
+
+function getLocationDisplayName(training, locationDetails) {
+    return (
+        training?.locationName ||
+        training?.location?.locationName ||
+        locationDetails?.locationName ||
+        "-"
+    );
+}
+
+function getLocationAddress(training, locationDetails) {
+    const address =
+        training?.locationAddress ||
+        training?.address ||
+        training?.location?.address ||
+        locationDetails?.address ||
+        "";
+
+    const postalCode =
+        training?.locationPostalCode ||
+        training?.postalCode ||
+        training?.location?.postalCode ||
+        locationDetails?.postalCode ||
+        "";
+
+    const city =
+        training?.locationCity ||
+        training?.city ||
+        training?.location?.city ||
+        locationDetails?.city ||
+        "";
+
+    const fullAddress = [address, [postalCode, city].filter(Boolean).join(" ")]
+        .filter(Boolean)
+        .join(", ");
+
+    return fullAddress || "-";
+}
+
+function isTrainingComplete(training) {
+    const hasTrainingNumber = Boolean(training?.trainingNumber);
+    const hasTrainingType = Boolean(
+        training?.trainingType ||
+        training?.variant ||
+        training?.evacuationPhase ||
+        training?.workshopType
+    );
+    const hasCompany = Boolean(training?.companyName || training?.company?.name);
+    const hasLocation = Boolean(training?.locationName || training?.location?.locationName);
+    const hasCourseDate = Boolean(training?.courseDate);
+    const hasStartTime = Boolean(training?.startTime);
+    const hasEndTime = Boolean(training?.endTime);
+    const hasStatus = Boolean(training?.status);
+
+    return (
+        hasTrainingNumber &&
+        hasTrainingType &&
+        hasCompany &&
+        hasLocation &&
+        hasCourseDate &&
+        hasStartTime &&
+        hasEndTime &&
+        hasStatus
+    );
+}
 
 function TrainingDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
 
     const [training, setTraining] = useState(null);
+    const [locationDetails, setLocationDetails] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [statusValue, setStatusValue] = useState("PLANNED");
@@ -28,19 +118,24 @@ function TrainingDetailPage() {
         try {
             setLoading(true);
             setError("");
+            setLocationDetails(null);
 
             const data = await trainingService.getById(id);
+
             setTraining(data);
             setStatusValue(data?.status || "PLANNED");
+
+            if (data?.locationId) {
+                try {
+                    const locationData = await locationService.getById(data.locationId);
+                    setLocationDetails(locationData);
+                } catch (locationErr) {
+                    console.warn("Locatie-adres kon niet extra worden opgehaald:", locationErr);
+                }
+            }
         } catch (err) {
             console.error("Fout bij ophalen training:", err);
-
-            const backendMessage =
-                err?.response?.data?.message ||
-                err?.response?.data?.error ||
-                (typeof err?.response?.data === "string" ? err.response.data : null);
-
-            setError(backendMessage || err?.message || "Kon training niet ophalen.");
+            setError(getBackendMessage(err, "Kon training niet ophalen."));
         } finally {
             setLoading(false);
         }
@@ -62,25 +157,14 @@ function TrainingDetailPage() {
             setStatusLoading(true);
             setError("");
 
-            const updatedTraining = await trainingService.updateStatus(id, {
+            await trainingService.updateStatus(id, {
                 status: statusValue,
             });
 
-            setTraining(updatedTraining);
-            setStatusValue(updatedTraining?.status || statusValue);
-
-            const freshTraining = await trainingService.getById(id);
-            setTraining(freshTraining);
-            setStatusValue(freshTraining?.status || statusValue);
+            await loadTraining();
         } catch (err) {
             console.error("Fout bij wijzigen status:", err);
-
-            const backendMessage =
-                err?.response?.data?.message ||
-                err?.response?.data?.error ||
-                (typeof err?.response?.data === "string" ? err.response.data : null);
-
-            setError(backendMessage || err?.message || "Kon status niet wijzigen.");
+            setError(getBackendMessage(err, "Kon status niet wijzigen."));
         } finally {
             setStatusLoading(false);
         }
@@ -105,13 +189,7 @@ function TrainingDetailPage() {
             navigate("/admin/trainingen");
         } catch (err) {
             console.error("Fout bij archiveren training:", err);
-
-            const backendMessage =
-                err?.response?.data?.message ||
-                err?.response?.data?.error ||
-                (typeof err?.response?.data === "string" ? err.response.data : null);
-
-            setError(backendMessage || err?.message || "Kon training niet archiveren.");
+            setError(getBackendMessage(err, "Kon training niet archiveren."));
         }
     };
 
@@ -127,6 +205,7 @@ function TrainingDetailPage() {
         return (
             <section className="trainingen-page">
                 <p className="trainingen-page__error">{error}</p>
+
                 <Link to="/admin/trainingen" className="trainingen-page__button">
                     Terug naar overzicht
                 </Link>
@@ -134,12 +213,14 @@ function TrainingDetailPage() {
         );
     }
 
+    const complete = isTrainingComplete(training);
+
     return (
         <section className="trainingen-page">
             <div className="trainingen-page__header">
                 <div>
                     <h1>Training details</h1>
-                    <p>Bekijk en beheer de gegevens van deze training.</p>
+                    <p>Overzicht van de training, locatie en status.</p>
                 </div>
 
                 <div className="trainingen-page__header-actions">
@@ -169,101 +250,120 @@ function TrainingDetailPage() {
                 </div>
             )}
 
-            <div className="training-detail-card">
-                <div className="training-detail-grid">
+            <div className="training-detail-overview">
+                <div className="training-detail-overview__top">
                     <div>
-                        <strong>ID</strong>
-                        <p>{training?.id ?? "-"}</p>
+                        <span className="training-detail-overview__label">
+                            Trainingsnummer
+                        </span>
+                        <h2>{training?.trainingNumber || "-"}</h2>
                     </div>
 
-                    <div>
-                        <strong>Trainingsnummer</strong>
-                        <p>{training?.trainingNumber ?? "-"}</p>
-                    </div>
+                    <div className="training-detail-overview__status">
+                        <TrainingStatusBadge status={training?.status} />
 
-                    <div>
-                        <strong>Categorie</strong>
-                        <p>{getCategoryLabel(training?.category)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Variant</strong>
-                        <p>{getVariantLabel(training?.variant)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Ontruimingsfase</strong>
-                        <p>{getEvacuationPhaseLabel(training?.evacuationPhase)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Workshop type</strong>
-                        <p>{getWorkshopTypeLabel(training?.workshopType)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Datum</strong>
-                        <p>{formatDate(training?.courseDate)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Starttijd</strong>
-                        <p>{formatTime(training?.startTime)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Eindtijd</strong>
-                        <p>{formatTime(training?.endTime)}</p>
-                    </div>
-
-                    <div>
-                        <strong>Status</strong>
-                        <p>
-                            <TrainingStatusBadge status={training?.status} />
-                        </p>
-                    </div>
-
-                    <div>
-                        <strong>Locatie ID</strong>
-                        <p>{training?.locationId ?? "-"}</p>
-                    </div>
-
-                    <div>
-                        <strong>Locatie naam</strong>
-                        <p>{training?.locationName ?? "-"}</p>
-                    </div>
-
-                    <div>
-                        <strong>Trainer ID</strong>
-                        <p>{training?.trainerId ?? "-"}</p>
-                    </div>
-
-                    <div>
-                        <strong>Minimum deelnemers</strong>
-                        <p>{training?.minParticipants ?? "-"}</p>
-                    </div>
-
-                    <div>
-                        <strong>Maximum deelnemers</strong>
-                        <p>{training?.maxParticipants ?? "-"}</p>
-                    </div>
-
-                    <div>
-                        <strong>Admin override</strong>
-                        <p>{training?.adminOverrideAllowed ? "Ja" : "Nee"}</p>
-                    </div>
-
-                    <div>
-                        <strong>Gearchiveerd</strong>
-                        <p>{training?.deleted ? "Ja" : "Nee"}</p>
+                        <span
+                            className={
+                                complete
+                                    ? "training-detail-check training-detail-check--done"
+                                    : "training-detail-check training-detail-check--pending"
+                            }
+                            title={
+                                complete
+                                    ? "Basisgegevens zijn compleet"
+                                    : "Er ontbreken nog basisgegevens"
+                            }
+                        >
+                            {complete ? "V" : "-"}
+                        </span>
                     </div>
                 </div>
 
-                <hr className="training-detail-divider" />
+                <div className="training-detail-overview__main">
+                    <div className="training-detail-section">
+                        <h3>Training</h3>
 
-                <form className="training-status-form" onSubmit={handleStatusUpdate}>
-                    <div className="training-status-form__field">
+                        <dl className="training-detail-list">
+                            <div>
+                                <dt>Trainingstype</dt>
+                                <dd>{getTrainingTypeDisplayName(training)}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Categorie</dt>
+                                <dd>{getCategoryLabel(training?.category)}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Datum</dt>
+                                <dd>{formatDate(training?.courseDate)}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Tijd</dt>
+                                <dd>
+                                    {formatTime(training?.startTime)} -{" "}
+                                    {formatTime(training?.endTime)}
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div className="training-detail-section">
+                        <h3>Locatie en bedrijf</h3>
+
+                        <dl className="training-detail-list">
+                            <div>
+                                <dt>Bedrijf</dt>
+                                <dd>{getCompanyDisplayName(training)}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Locatie</dt>
+                                <dd>{getLocationDisplayName(training, locationDetails)}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Adres</dt>
+                                <dd>{getLocationAddress(training, locationDetails)}</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div className="training-detail-section">
+                        <h3>Instellingen</h3>
+
+                        <dl className="training-detail-list">
+                            <div>
+                                <dt>Minimum deelnemers</dt>
+                                <dd>{training?.minParticipants ?? "-"}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Maximum deelnemers</dt>
+                                <dd>{training?.maxParticipants ?? "-"}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Admin override</dt>
+                                <dd>{training?.adminOverrideAllowed ? "Ja" : "Nee"}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Gearchiveerd</dt>
+                                <dd>{training?.deleted ? "Ja" : "Nee"}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+                <form
+                    className="training-detail-status-bar"
+                    onSubmit={handleStatusUpdate}
+                >
+                    <div className="training-detail-status-bar__field">
                         <label htmlFor="status">Status wijzigen</label>
+
                         <select
                             id="status"
                             value={statusValue}
@@ -278,10 +378,11 @@ function TrainingDetailPage() {
                         </select>
                     </div>
 
-                    <div className="training-status-form__actions">
+                    <div className="training-detail-status-bar__actions">
                         <button
                             type="submit"
                             disabled={statusLoading || training?.deleted}
+                            className="trainingen-page__button"
                         >
                             {statusLoading ? "Opslaan..." : "Status opslaan"}
                         </button>
@@ -298,6 +399,11 @@ function TrainingDetailPage() {
                     </div>
                 </form>
             </div>
+
+            <TrainingParticipantsSection
+                courseId={id}
+                disabled={Boolean(training?.deleted)}
+            />
         </section>
     );
 }

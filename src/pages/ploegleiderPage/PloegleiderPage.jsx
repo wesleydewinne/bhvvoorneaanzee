@@ -17,7 +17,7 @@ import data from "../../shared/data/training.json";
 import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 
-import fallback from "@/assets/image/common/fallback/Card-Fallback.png";
+import fallback from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
 export default function PloegleiderPage() {
@@ -138,13 +138,11 @@ export default function PloegleiderPage() {
                 </section>
 
                 {/* Trainingen */}
-                <section className="training-card-section">
-                    <TrainingCardSection
+                <TrainingCardSection
                         title="Ploegleider BHV-trainingen"
                         subtitle="Voor BHV’ers die verantwoordelijkheid nemen en overzicht houden."
                         cards={ploegleiderCards}
-                    />
-                </section>
+                />
                 
                     {/* Wanneer nodig */}
                     <section className="factor-info-section">

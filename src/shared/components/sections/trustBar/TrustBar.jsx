@@ -3,19 +3,19 @@ import "./TrustBar.css";
 const trustItems = [
     {
         title: "Praktijkgericht",
-        text: "Trainingen gericht op echte situaties",
+        text: "Oefenen met herkenbare noodsituaties",
     },
     {
-        title: "Incompany mogelijk",
-        text: "Op locatie of op trainingslocatie",
+        title: "Incompany op locatie",
+        text: "Training bij jullie organisatie",
     },
     {
         title: "Kleine groepen",
-        text: "Meer aandacht en duidelijke begeleiding",
+        text: "Ruimte voor vragen en begeleiding",
     },
     {
         title: "Regionaal inzetbaar",
-        text: "Voorne aan Zee en omgeving",
+        text: "Voorne aan Zee, Rijnmond en Westland",
     },
 ];
 

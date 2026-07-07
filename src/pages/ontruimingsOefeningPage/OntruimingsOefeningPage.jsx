@@ -4,9 +4,9 @@ import Tile from "@/shared/components/ui/tile/Tile.jsx";
 import GeneralButton from "@/shared/components/ui/button/GeneralButton/GeneralButton.jsx";
 import { PersonSimpleRun } from "phosphor-react";
 
-import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png";
-import ontruiming2 from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png";
-import CardFallback from "@/assets/image/common/fallback/Card-Fallback.png";
+import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png?w=720&format=webp&quality=72";
+import ontruiming2 from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png?w=720&format=webp&quality=72";
+import CardFallback from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
 
 import React from "react";
 
@@ -86,31 +86,31 @@ function OntruimingsOefeningPage() {
 
             <GeneralButton
                 text='Ontruimingsoefening fase 0'
-                to="/ontruimingsoefening/fase0"
+                to="/ontruimingsoefening-fase0"
                 icon= {<PersonSimpleRun size={20} />}
                 buttonstyle="button-dark"
             />
             <GeneralButton
                 text='Ontruimingsoefening fase 1'
-                to="/ontruimingsoefening/fase1"
+                to="/ontruimingsoefening-fase1"
                 icon= {<PersonSimpleRun size={20} />}
                 buttonstyle="button-dark"
             />
             <GeneralButton
                 text='ontruimingsoefening fase 2'
-                to="/ontruimingsoefening/fase2"
+                to="/ontruimingsoefening-fase2"
                 icon= {<PersonSimpleRun size={20} />}
                 buttonstyle="button-dark"
             />
             <GeneralButton
                 text='Ontruimingsoefening fase 3'
-                to="/ontruimingsoefening/fase3"
+                to="/ontruimingsoefening-fase3"
                 icon= {<PersonSimpleRun size={20} />}
                 buttonstyle="button-dark"
             />
             <GeneralButton
                 text="Ontruimingsoefening fase 4"
-                to="/ontruimingsoefening/fase4"
+                to="/ontruimingsoefening-fase4"
                 icon={<PersonSimpleRun size={20} />}
                 buttonClass="button-dark"
             />

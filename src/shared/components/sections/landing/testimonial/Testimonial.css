@@ -1,6 +1,6 @@
 .testimonial-section {
     background-color: #fff;
-    padding: 60px 20px;
+    padding: var(--space-7) var(--space-5);
     text-align: center;
 }
 
@@ -13,14 +13,14 @@
 .testimonial-cards {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: var(--space-6);
     max-width: 900px;
     margin: 0 auto;
 }
 
 .testimonial-card {
     background: #f0f0f0;
-    padding: 24px;
+    padding: var(--space-5);
     border-radius: 10px;
     font-style: italic;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);

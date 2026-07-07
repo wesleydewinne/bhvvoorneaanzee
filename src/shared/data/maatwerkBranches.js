@@ -1,13 +1,13 @@
 // 🔶 Afbeeldingen (lokaal, SEO-vriendelijk benoemd)
-import fabriek from "@/assets/image/maatwerk/fabriek/maatwerk-fabriek.png";
-import kantoor from "@/assets/image/maatwerk/kantoor/maatwerk-kantoor.png";
-import scholen from "@/assets/image/maatwerk/scholen/maatwerk-scholen.png";
-import winkels from "@/assets/image/maatwerk/winkel/maatwerk-winkels.png";
-import zwembaden from "@/assets/image/maatwerk/zwembad/maatwerk-zwembaden.png";
-import zorginstellingen from "@/assets/image/maatwerk/zorginstelling/maatwerk-zorginstellingen.png";
-import vakantieparken from "@/assets/image/maatwerk/vakantiepark/maatwerk-vakantieparken-en-camping.png";
-import autogarage from "@/assets/image/maatwerk/autogarage/maatwerk-autogarage-showroom.png";
-import standaard from "@/assets/image/maatwerk/maatwerk-standaard.png";
+import fabriek from "@/assets/image/maatwerk/fabriek/maatwerk-fabriek.png?w=720&format=webp&quality=72";
+import kantoor from "@/assets/image/maatwerk/kantoor/maatwerk-kantoor.png?w=720&format=webp&quality=72";
+import scholen from "@/assets/image/maatwerk/scholen/maatwerk-scholen.png?w=720&format=webp&quality=72";
+import winkels from "@/assets/image/maatwerk/winkel/maatwerk-winkels.png?w=720&format=webp&quality=72";
+import zwembaden from "@/assets/image/maatwerk/zwembad/maatwerk-zwembaden.png?w=720&format=webp&quality=72";
+import zorginstellingen from "@/assets/image/maatwerk/zorginstelling/maatwerk-zorginstellingen.png?w=720&format=webp&quality=72";
+import vakantieparken from "@/assets/image/maatwerk/vakantiepark/maatwerk-vakantieparken-en-camping.png?w=720&format=webp&quality=72";
+import autogarage from "@/assets/image/maatwerk/autogarage/maatwerk-autogarage-showroom.png?w=720&format=webp&quality=72";
+import standaard from "@/assets/image/maatwerk/maatwerk-standaard.png?w=720&format=webp&quality=72";
 
 // 🔹 Centrale branchedefinitie
 const maatwerkBranches = [

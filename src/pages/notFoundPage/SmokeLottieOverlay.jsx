@@ -1,28 +1,15 @@
-// SmokeLottieOverlay.jsx
-import React from "react";
-import Lottie from "lottie-react";
-import smokeAnimation from "@/assets/animatie/smoke.json"; // pad naar jouw bestand
+import "./NotFoundPage.css";
 
-const SmokeLottieOverlay = () => {
+function SmokeLottieOverlay() {
     return (
-        <div style={{
-            top: 0,
-            left: 0,
-            pointerEvents: "none",
-            zIndex: 9999,
-            opacity: 0.7, // rook wat transparant maken
-        }}>
-            <Lottie
-                animationData={smokeAnimation}
-                loop
-                autoplay
-                style={{
-                    width: "100%",
-                    height: "100%",
-                }}
-            />
+        <div className="smoke-effect" aria-hidden="true">
+            <span className="smoke-effect__puff smoke-effect__puff--1" />
+            <span className="smoke-effect__puff smoke-effect__puff--2" />
+            <span className="smoke-effect__puff smoke-effect__puff--3" />
+            <span className="smoke-effect__puff smoke-effect__puff--4" />
+            <span className="smoke-effect__puff smoke-effect__puff--5" />
         </div>
     );
-};
+}
 
 export default SmokeLottieOverlay;

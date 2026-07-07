@@ -47,7 +47,6 @@ export default function ProfileDetailsCard({ profile, onProfileUpdated }) {
                 firstName: normalizeOptionalString(formData.firstName),
                 lastName: normalizeOptionalString(formData.lastName),
                 phoneNumber: normalizeOptionalString(formData.phoneNumber),
-                profileImageUrl: normalizeOptionalString(formData.profileImageUrl),
                 dateOfBirth: normalizeOptionalString(formData.dateOfBirth),
                 companyName: normalizeOptionalString(formData.companyName),
                 functionTitle: normalizeOptionalString(formData.functionTitle),
@@ -206,18 +205,6 @@ export default function ProfileDetailsCard({ profile, onProfileUpdated }) {
                                 maxLength={100}
                             />
                         </div>
-
-                        <div className="profile-form__field profile-form__field--full">
-                            <label htmlFor="profileImageUrl">Profielfoto URL</label>
-                            <input
-                                id="profileImageUrl"
-                                name="profileImageUrl"
-                                type="text"
-                                value={formData.profileImageUrl}
-                                onChange={handleChange}
-                                maxLength={255}
-                            />
-                        </div>
                     </div>
 
                     <div className="profile-form__actions">
@@ -258,7 +245,6 @@ function createInitialFormState(profile) {
         firstName: profile?.firstName ?? "",
         lastName: profile?.lastName ?? "",
         phoneNumber: profile?.phoneNumber ?? "",
-        profileImageUrl: profile?.profileImageUrl ?? "",
         dateOfBirth: profile?.dateOfBirth ?? "",
         companyName: profile?.companyName ?? "",
         functionTitle: profile?.functionTitle ?? "",

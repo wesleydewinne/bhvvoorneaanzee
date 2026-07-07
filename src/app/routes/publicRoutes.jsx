@@ -1,71 +1,70 @@
-import React from "react";
-import PublicRoute from "@/features/auth/components/route/PublicRoute.jsx";
-
-import HomePage from "@/pages/homePage/HomePage.jsx";
-
-// bhv
-import BhvPage from "@/pages/bhvPage/BhvPage.jsx";
-import BhvBasis2 from "@/pages/bhvPage/bhvPages/BhvBasis2.jsx";
-import BhvBasis1Elearning from "@/pages/bhvPage/bhvPages/BhvBasis1Elearning.jsx";
-import BhvHerhaling from "@/pages/bhvPage/bhvPages/BhvHerhaling.jsx";
-import BhvHerhaling05Elearning from "@/pages/bhvPage/bhvPages/BhvHerhaling05Elearning.jsx";
-
-import PloegleiderPage from "@/pages/ploegleiderPage/PloegleiderPage.jsx";
-import Ploegleider2DaagsePage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis2Daagse.jsx";
-import PloegleiderBasis1DaagseElearning from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis1daagseElearning.jsx";
-import PloegleiderHerhalingPage from "@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderHerhaling.jsx";
-
-import LandingPage from "@/pages/landingPage/LandingPage.jsx";
-import OntruimingsPage from "@/pages/ontruimingsOefeningPage/OntruimingsOefeningPage.jsx";
-import Fase0 from "@/pages/ontruimingsOefeningPage/fase/Fase0.jsx";
-import Fase1 from "@/pages/ontruimingsOefeningPage/fase/Fase1.jsx";
-import Fase2 from "@/pages/ontruimingsOefeningPage/fase/Fase2.jsx";
-import Fase3 from "@/pages/ontruimingsOefeningPage/fase/Fase3.jsx";
-import Fase4 from "@/pages/ontruimingsOefeningPage/fase/Fase4.jsx";
-import Ehbo from "@/pages/ehbo/EhboPage.jsx";
-
-import Workshops from "@/pages/workshops/Workshops.jsx";
-import KleineBlusmiddelen from "@/pages/workshops/soortenWorkshops/KleineBlusmiddelen.jsx";
-import Portofoongebruik from "@/pages/workshops/soortenWorkshops/Portofoongebruik.jsx";
-import ReanimatieMetGebruikAedVolwassene from "@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDVolwassene.jsx";
-import ReanimatieMetGebruikAedKind from "@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDKind.jsx";
-import StopDeBloedingRedEenLeven from "@/pages/workshops/soortenWorkshops/StopDeBloedingRedEenLeven.jsx";
-
-import Maatwerk from "@/pages/MaatwerkPage/MaatwerkPagina.jsx";
-
-import Faq from "@/pages/faq/Faq.jsx";
-import BlogPage from "@/features/blog/BlogPage.jsx";
-import BlogDetail from "@/features/blog/BlogDetail.jsx";
-
-import Fases from "@/pages/ontruimingsverslag/Fases.jsx";
-import Scenarios from "@/pages/ontruimingsverslag/Scenarios.jsx";
-import Verslag from "@/pages/ontruimingsverslag/Verslag.jsx";
-
-import Veiligheidscheck from "@/pages/leadPage/Check.jsx";
-
-import RotterdamPage from "@/pages/regios/RotterdamPage.jsx";
-import ZeelandPage from "@/pages/regios/ZeelandPage.jsx";
-import WestlandPage from "@/pages/regios/WestlandPage.jsx";
-
-import LoginPage from "@/features/auth/pages/LoginPage.jsx";
-import TwoFactorPage from "@/features/auth/pages/TwoFactorPage.jsx";
-
+import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
-import AccessPage from "@/pages/quiz/AccessPage.jsx";
-import OfferteAanvraag from "@/features/offerte/pages/OfferteAanvraagPage.jsx";
-import OverOns from "@/pages/overOns/OverOns.jsx";
-import Bedrijfsgegevens from "@/features/bedrijfsgegevens/Bedrijfsgegevens.jsx";
-import ContactOns from "@/features/contact/pages/ContactOns.jsx";
-import VeiligheidscheckBedankt from "@/pages/leadPage/VeiligheidscheckBedankt.jsx";
-import ModulaireTraining from "@/pages/modulair/ModulaireTraining.jsx";
-import ModulaireOverzicht from "@/pages/modulair/ModulaireOverzicht.jsx";
-import BedienaarBrandmeldcentrale from "@/pages/workshops/soortenWorkshops/BedienaarBrandmeldcentrale.jsx";
-import Waterongevallen from "@/pages/workshops/soortenWorkshops/Waterongevallen.jsx";
-import KinderEhboHuiskamertraining from "@/pages/workshops/soortenWorkshops/KinderEhboHuiskamertraining.jsx";
-import BhvRitme from "@/pages/bhvPage/bhvPages/BhvRitme.jsx";
+import PublicRoute from "@/features/auth/components/route/PublicRoute.jsx";
+import BhvPage from "@/pages/bhvPage/BhvPage.jsx";
 
-import EvaluationPage from "@/features/evaluation/pages/EvaluationPage.jsx";
-import ContactBedanktPage from "@/features/contact/pages/ContactBedanktPage.jsx";
+const HomePage = lazy(() => import("@/pages/homePage/HomePage.jsx"));
+
+const BhvBasis2 = lazy(() => import("@/pages/bhvPage/bhvPages/BhvBasis2.jsx"));
+const BhvBasis1Elearning = lazy(() => import("@/pages/bhvPage/bhvPages/BhvBasis1Elearning.jsx"));
+const BhvHerhaling = lazy(() => import("@/pages/bhvPage/bhvPages/BhvHerhaling.jsx"));
+const BhvHerhaling05Elearning = lazy(() => import("@/pages/bhvPage/bhvPages/BhvHerhaling05Elearning.jsx"));
+const BhvRitme = lazy(() => import("@/pages/bhvPage/bhvPages/BhvRitme.jsx"));
+
+const PloegleiderPage = lazy(() => import("@/pages/ploegleiderPage/PloegleiderPage.jsx"));
+const Ploegleider2DaagsePage = lazy(() => import("@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis2Daagse.jsx"));
+const PloegleiderBasis1DaagseElearning = lazy(() => import("@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderBasis1daagseElearning.jsx"));
+const PloegleiderHerhalingPage = lazy(() => import("@/pages/ploegleiderPage/ploegleiderDetailPage/PloegleiderHerhaling.jsx"));
+
+const LandingPage = lazy(() => import("@/pages/landingPage/LandingPage.jsx"));
+const OntruimingsPage = lazy(() => import("@/pages/ontruimingsOefeningPage/OntruimingsOefeningPage.jsx"));
+const Fase0 = lazy(() => import("@/pages/ontruimingsOefeningPage/fase/Fase0.jsx"));
+const Fase1 = lazy(() => import("@/pages/ontruimingsOefeningPage/fase/Fase1.jsx"));
+const Fase2 = lazy(() => import("@/pages/ontruimingsOefeningPage/fase/Fase2.jsx"));
+const Fase3 = lazy(() => import("@/pages/ontruimingsOefeningPage/fase/Fase3.jsx"));
+const Fase4 = lazy(() => import("@/pages/ontruimingsOefeningPage/fase/Fase4.jsx"));
+
+const Ehbo = lazy(() => import("@/pages/ehbo/EhboPage.jsx"));
+
+const Workshops = lazy(() => import("@/pages/workshops/Workshops.jsx"));
+const KleineBlusmiddelen = lazy(() => import("@/pages/workshops/soortenWorkshops/KleineBlusmiddelen.jsx"));
+const Portofoongebruik = lazy(() => import("@/pages/workshops/soortenWorkshops/Portofoongebruik.jsx"));
+const ReanimatieMetGebruikAedVolwassene = lazy(() => import("@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDVolwassene.jsx"));
+const ReanimatieMetGebruikAedKind = lazy(() => import("@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDKind.jsx"));
+const StopDeBloedingRedEenLeven = lazy(() => import("@/pages/workshops/soortenWorkshops/StopDeBloedingRedEenLeven.jsx"));
+const BedienaarBrandmeldcentrale = lazy(() => import("@/pages/workshops/soortenWorkshops/BedienaarBrandmeldcentrale.jsx"));
+const Waterongevallen = lazy(() => import("@/pages/workshops/soortenWorkshops/Waterongevallen.jsx"));
+const KinderEhboHuiskamertraining = lazy(() => import("@/pages/workshops/soortenWorkshops/KinderEhboHuiskamertraining.jsx"));
+
+const Maatwerk = lazy(() => import("@/pages/MaatwerkPage/MaatwerkPagina.jsx"));
+const ModulaireTraining = lazy(() => import("@/pages/modulair/ModulaireTraining.jsx"));
+const ModulaireOverzicht = lazy(() => import("@/pages/modulair/ModulaireOverzicht.jsx"));
+
+const RegioOverzichtPage = lazy(() => import("@/pages/regios/RegioOverzichtPage.jsx"));
+const RotterdamPage = lazy(() => import("@/pages/regios/RotterdamPage.jsx"));
+const ZeelandPage = lazy(() => import("@/pages/regios/ZeelandPage.jsx"));
+const WestlandPage = lazy(() => import("@/pages/regios/WestlandPage.jsx"));
+
+const Faq = lazy(() => import("@/pages/faq/Faq.jsx"));
+const BlogPage = lazy(() => import("@/features/blog/BlogPage.jsx"));
+const BlogDetail = lazy(() => import("@/features/blog/BlogDetail.jsx"));
+
+const Fases = lazy(() => import("@/pages/ontruimingsverslag/Fases.jsx"));
+const Scenarios = lazy(() => import("@/pages/ontruimingsverslag/Scenarios.jsx"));
+const Verslag = lazy(() => import("@/pages/ontruimingsverslag/Verslag.jsx"));
+
+const Veiligheidscheck = lazy(() => import("@/pages/leadPage/Check.jsx"));
+const VeiligheidscheckBedankt = lazy(() => import("@/pages/leadPage/VeiligheidscheckBedankt.jsx"));
+const EvaluationPage = lazy(() => import("@/features/evaluation/pages/EvaluationPage.jsx"));
+
+const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage.jsx"));
+const TwoFactorPage = lazy(() => import("@/features/auth/pages/TwoFactorPage.jsx"));
+const AccessPage = lazy(() => import("@/pages/quiz/AccessPage.jsx"));
+const OfferteAanvraag = lazy(() => import("@/features/offerte/pages/OfferteAanvraagPage.jsx"));
+const OverOns = lazy(() => import("@/pages/overOns/OverOns.jsx"));
+const Bedrijfsgegevens = lazy(() => import("@/features/bedrijfsgegevens/Bedrijfsgegevens.jsx"));
+const ContactOns = lazy(() => import("@/features/contact/pages/ContactOns.jsx"));
+const ContactBedanktPage = lazy(() => import("@/features/contact/pages/ContactBedanktPage.jsx"));
 
 const publicRoutes = [
     { path: "/", element: <HomePage /> },
@@ -114,12 +113,13 @@ const publicRoutes = [
     { path: "/workshops-waterongevallen", element: <Waterongevallen /> },
     { path: "/workshops-kinder-ehbo-huiskamertraining", element: <KinderEhboHuiskamertraining /> },
 
-    // uitleg trainingen
+    // Uitleg trainingen
     { path: "/maatwerk", element: <Maatwerk /> },
     { path: "/modulaire-trainen", element: <ModulaireTraining /> },
     { path: "/modulair-overzicht", element: <ModulaireOverzicht /> },
 
     // Regio's
+    { path: "/regio", element: <RegioOverzichtPage /> },
     { path: "/rotterdam-rijnmond", element: <RotterdamPage /> },
     { path: "/zeeland", element: <ZeelandPage /> },
     { path: "/den-haag-westland", element: <WestlandPage /> },

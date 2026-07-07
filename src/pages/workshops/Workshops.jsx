@@ -16,7 +16,7 @@ import TrainingCardSection from "@/shared/components/sections/trainingSection/Tr
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
 
-import fallback from "@/assets/image/common/fallback/Card-Fallback.png";
+import fallback from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
 
 function Workshops() {
     const workshopCategory = data.categories.find(

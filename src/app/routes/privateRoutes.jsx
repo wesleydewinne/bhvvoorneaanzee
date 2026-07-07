@@ -1,250 +1,185 @@
+import { lazy } from "react";
 import ProtectedRoute from "@/features/auth/components/route/ProtectedRoute.jsx";
-import Dashboard from "@/features/dashboard/pages/Dashboard.jsx";
-import ProfilePage from "@/features/profile/pages/ProfilePage.jsx";
 import { PRIVATE_PATHS } from "./routePaths.js";
 
-import UsersManagementPage from "@/features/user-management/pages/UsersManagementPage.jsx";
-import UserDetailPage from "@/features/user-management/pages/UserDetailPage.jsx";
+const Dashboard = lazy(() => import("@/features/dashboard/pages/Dashboard.jsx"));
+const ProfilePage = lazy(() => import("@/features/profile/pages/ProfilePage.jsx"));
+const TwoFactorSettingsPage = lazy(() => import("@/features/auth/pages/TwoFactorSettingsPage.jsx"));
+const PasskeySetupPage = lazy(() => import("@/features/auth/pages/PasskeySetupPage.jsx"));
 
-import AdminEvaluationQrPage from "@/features/evaluation/pages/AdminEvaluationQrPage.jsx";
-import AdminEvaluationResultsPage from "@/features/evaluation/pages/AdminEvaluationResultsPage.jsx";
-import AdminEvaluationDetailPage from "@/features/evaluation/pages/AdminEvaluationDetailPage.jsx";
-import AdminEvaluationGeneratePage from "@/features/evaluation/pages/AdminEvaluationGeneratePage.jsx";
+const UsersManagementPage = lazy(() => import("@/features/user-management/pages/UsersManagementPage.jsx"));
+const UserDetailPage = lazy(() => import("@/features/user-management/pages/UserDetailPage.jsx"));
 
-import AdminLocationsPage from "@/features/locations/pages/AdminLocationsPage.jsx";
-import LocationDetailPage from "@/features/locations/pages/LocationDetailPage.jsx";
-import CreateLocationPage from "@/features/locations/pages/CreateLocationPage.jsx";
-import EditLocationPage from "@/features/locations/pages/EditLocationPage.jsx";
+const AdminEvaluationQrPage = lazy(() => import("@/features/evaluation/pages/AdminEvaluationQrPage.jsx"));
+const AdminEvaluationResultsPage = lazy(() => import("@/features/evaluation/pages/AdminEvaluationResultsPage.jsx"));
+const AdminEvaluationDetailPage = lazy(() => import("@/features/evaluation/pages/AdminEvaluationDetailPage.jsx"));
+const AdminEvaluationGeneratePage = lazy(() => import("@/features/evaluation/pages/AdminEvaluationGeneratePage.jsx"));
 
-import AdminTrainingenPage from "@/features/trainingen/pages/AdminTrainingenPage.jsx";
-import CreateTrainingPage from "@/features/trainingen/pages/CreateTrainingPage.jsx";
-import EditTrainingPage from "@/features/trainingen/pages/EditTrainingPage.jsx";
-import TrainingDetailPage from "@/features/trainingen/pages/TrainingDetailPage.jsx";
+const AdminLocationsPage = lazy(() => import("@/features/locations/pages/AdminLocationsPage.jsx"));
+const LocationDetailPage = lazy(() => import("@/features/locations/pages/LocationDetailPage.jsx"));
+const CreateLocationPage = lazy(() => import("@/features/locations/pages/CreateLocationPage.jsx"));
+const EditLocationPage = lazy(() => import("@/features/locations/pages/EditLocationPage.jsx"));
 
-import AdminContactMessagesPage from "@/features/contact/pages/AdminContactMessagesPage.jsx";
-import ContactMessageDetailPage from "@/features/contact/pages/ContactMessageDetailPage.jsx";
-import ArchivedContactMessagesPage from "@/features/contact/pages/ArchivedContactMessagesPage.jsx";
+const AdminCompaniesPage = lazy(() => import("@/features/companies/pages/AdminCompaniesPage.jsx"));
+const CreateCompanyPage = lazy(() => import("@/features/companies/pages/CreateCompanyPage.jsx"));
+const CompanyDetailPage = lazy(() => import("@/features/companies/pages/CompanyDetailPage.jsx"));
+const EditCompanyPage = lazy(() => import("@/features/companies/pages/EditCompanyPage.jsx"));
 
-import AdminReviewsPage from "@/features/reviews/pages/AdminReviewsPage.jsx";
+const AdminTrainingenPage = lazy(() => import("@/features/trainingen/pages/AdminTrainingenPage.jsx"));
+const CreateTrainingPage = lazy(() => import("@/features/trainingen/pages/CreateTrainingPage.jsx"));
+const EditTrainingPage = lazy(() => import("@/features/trainingen/pages/EditTrainingPage.jsx"));
+const TrainingDetailPage = lazy(() => import("@/features/trainingen/pages/TrainingDetailPage.jsx"));
 
-import AdminQuotesPage from "@/features/offerte/pages/AdminQuotesPage.jsx";
-import AdminQuoteDetailPage from "@/features/offerte/pages/AdminQuoteDetailPage.jsx";
+const AdminContactMessagesPage = lazy(() => import("@/features/contact/pages/AdminContactMessagesPage.jsx"));
+const ContactMessageDetailPage = lazy(() => import("@/features/contact/pages/ContactMessageDetailPage.jsx"));
+const ArchivedContactMessagesPage = lazy(() => import("@/features/contact/pages/ArchivedContactMessagesPage.jsx"));
 
-import TwoFactorSettingsPage from "@/features/auth/pages/TwoFactorSettingsPage.jsx";
+const AdminReviewsPage = lazy(() => import("@/features/reviews/pages/AdminReviewsPage.jsx"));
+
+const AdminQuotesPage = lazy(() => import("@/features/offerte/pages/AdminQuotesPage.jsx"));
+const AdminQuoteDetailPage = lazy(() => import("@/features/offerte/pages/AdminQuoteDetailPage.jsx"));
+const AdminInvoicesPage = lazy(() => import("@/features/invoice/pages/AdminInvoicesPage.jsx"));
+
+const protect = (element) => (
+    <ProtectedRoute>
+        {element}
+    </ProtectedRoute>
+);
 
 const privateRoutes = [
     {
         path: PRIVATE_PATHS.dashboard,
-        element: (
-            <ProtectedRoute>
-                <Dashboard />
-            </ProtectedRoute>
-        ),
+        element: protect(<Dashboard />),
     },
     {
         path: PRIVATE_PATHS.profile,
-        element: (
-            <ProtectedRoute>
-                <ProfilePage />
-            </ProtectedRoute>
-        ),
+        element: protect(<ProfilePage />),
     },
 
-    // =========================================================
-    // USERS
-    // =========================================================
+    // Users
     {
         path: "/account/beveiliging/2fa",
-        element: (
-            <ProtectedRoute>
-                <TwoFactorSettingsPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<TwoFactorSettingsPage />),
     },
-
+    {
+        path: "/account/passkey-aanmaken",
+        element: protect(<PasskeySetupPage />),
+    },
     {
         path: "/admin/users",
-        element: (
-            <ProtectedRoute>
-                <UsersManagementPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<UsersManagementPage />),
     },
     {
         path: "/admin/users/:id",
-        element: (
-            <ProtectedRoute>
-                <UserDetailPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<UserDetailPage />),
     },
 
-    // =========================================================
-    // LOCATIONS
-    // =========================================================
+    // Locations
     {
         path: "/admin/locations",
-        element: (
-            <ProtectedRoute>
-                <AdminLocationsPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminLocationsPage />),
     },
     {
         path: "/admin/locations/new",
-        element: (
-            <ProtectedRoute>
-                <CreateLocationPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<CreateLocationPage />),
     },
     {
         path: "/admin/locations/:id",
-        element: (
-            <ProtectedRoute>
-                <LocationDetailPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<LocationDetailPage />),
     },
     {
         path: "/admin/locations/:id/edit",
-        element: (
-            <ProtectedRoute>
-                <EditLocationPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<EditLocationPage />),
     },
 
-    // =========================================================
-    // EVALUATIONS
-    // =========================================================
+    // Companies
+    {
+        path: "/admin/companies",
+        element: protect(<AdminCompaniesPage />),
+    },
+    {
+        path: "/admin/companies/new",
+        element: protect(<CreateCompanyPage />),
+    },
+    {
+        path: "/admin/companies/:id",
+        element: protect(<CompanyDetailPage />),
+    },
+    {
+        path: "/admin/companies/:id/edit",
+        element: protect(<EditCompanyPage />),
+    },
+
+    // Evaluations
     {
         path: "/admin/evaluations",
-        element: (
-            <ProtectedRoute>
-                <AdminEvaluationResultsPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminEvaluationResultsPage />),
     },
     {
         path: "/admin/evaluations/generate",
-        element: (
-            <ProtectedRoute>
-                <AdminEvaluationGeneratePage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminEvaluationGeneratePage />),
     },
     {
         path: "/admin/evaluations/:trainingId/qr",
-        element: (
-            <ProtectedRoute>
-                <AdminEvaluationQrPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminEvaluationQrPage />),
     },
     {
         path: "/admin/evaluations/:trainingId",
-        element: (
-            <ProtectedRoute>
-                <AdminEvaluationDetailPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminEvaluationDetailPage />),
     },
 
-    // =========================================================
-    // TRAININGEN
-    // =========================================================
+    // Trainingen
     {
         path: "/admin/trainingen",
-        element: (
-            <ProtectedRoute>
-                <AdminTrainingenPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminTrainingenPage />),
     },
     {
         path: "/admin/trainingen/new",
-        element: (
-            <ProtectedRoute>
-                <CreateTrainingPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<CreateTrainingPage />),
     },
     {
         path: "/admin/trainingen/:id",
-        element: (
-            <ProtectedRoute>
-                <TrainingDetailPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<TrainingDetailPage />),
     },
     {
         path: "/admin/trainingen/:id/edit",
-        element: (
-            <ProtectedRoute>
-                <EditTrainingPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<EditTrainingPage />),
     },
 
-    // =========================================================
-    // CONTACTBERICHTEN
-    // =========================================================
+    // Contactberichten
     {
         path: "/admin/contact-berichten",
-        element: (
-            <ProtectedRoute>
-                <AdminContactMessagesPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminContactMessagesPage />),
     },
     {
         path: "/admin/contact-berichten/archief",
-        element: (
-            <ProtectedRoute>
-                <ArchivedContactMessagesPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<ArchivedContactMessagesPage />),
     },
     {
         path: "/admin/contact-berichten/:id",
-        element: (
-            <ProtectedRoute>
-                <ContactMessageDetailPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<ContactMessageDetailPage />),
     },
 
-    // =========================================================
-    // OFFERTES
-    // =========================================================
+    // Offertes
     {
         path: "/admin/offertes",
-        element: (
-            <ProtectedRoute>
-                <AdminQuotesPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminQuotesPage />),
     },
     {
         path: "/admin/offertes/:id",
-        element: (
-            <ProtectedRoute>
-                <AdminQuoteDetailPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminQuoteDetailPage />),
     },
 
-    // =========================================================
-    // REVIEWS
-    // =========================================================
+    // Facturen
+    {
+        path: "/admin/invoices",
+        element: protect(<AdminInvoicesPage />),
+    },
+
+    // Reviews
     {
         path: "/admin/reviews",
-        element: (
-            <ProtectedRoute>
-                <AdminReviewsPage />
-            </ProtectedRoute>
-        ),
+        element: protect(<AdminReviewsPage />),
     },
 ];
 

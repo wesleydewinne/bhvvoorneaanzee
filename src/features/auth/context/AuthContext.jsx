@@ -5,6 +5,8 @@ import {
     persistPendingTwoFactorState,
     readPendingTwoFactorState,
 } from "@/features/auth/utils/twoFactorStorage.js";
+import { getAuthRoles } from "@/features/auth/helpers/passkeyPolicy.js";
+import { normalizePasskeyOptions, serializePasskeyCredential } from "@/features/auth/utils/passkeyUtils.js";
 
 export const AuthContext = createContext(null);
 
@@ -59,6 +61,8 @@ export function AuthProvider({ children }) {
         let isMounted = true;
 
         const initializeAuth = async () => {
+            setLoading(true);
+
             try {
                 const response = await authService.getMe();
 
@@ -77,6 +81,7 @@ export function AuthProvider({ children }) {
             } finally {
                 if (isMounted) {
                     setAuthInitialized(true);
+                    setLoading(false);
                 }
             }
         };
@@ -108,12 +113,13 @@ export function AuthProvider({ children }) {
             }
 
             clearTwoFactorState();
-            await refreshUser();
+            const refreshedUser = await refreshUser();
 
             return {
                 success: true,
                 requiresTwoFactor: false,
                 requiresTwoFactorSetup: false,
+                user: refreshedUser,
             };
         } catch (err) {
             setUser(null);
@@ -134,9 +140,9 @@ export function AuthProvider({ children }) {
         try {
             await authService.verifyTwoFactorLogin(code);
             clearTwoFactorState();
-            await refreshUser();
+            const refreshedUser = await refreshUser();
 
-            return { success: true };
+            return { success: true, user: refreshedUser };
         } catch (err) {
             return {
                 success: false,
@@ -188,6 +194,73 @@ export function AuthProvider({ children }) {
         }
     }, [getErrorMessage, refreshUser]);
 
+    const loginWithPasskey = useCallback(async () => {
+        setLoading(true);
+
+        try {
+            const response = await authService.startPasskeyLogin();
+            const options = normalizePasskeyOptions(response.data);
+
+            const credential = await navigator.credentials.get({ publicKey: options });
+            const payload = serializePasskeyCredential(credential);
+
+            await authService.finishPasskeyLogin(payload);
+            clearTwoFactorState();
+            await refreshUser();
+
+            return { success: true };
+        } catch (err) {
+            return {
+                success: false,
+                error: getErrorMessage(err, "Passkey-login mislukt."),
+            };
+        } finally {
+            setLoading(false);
+        }
+    }, [clearTwoFactorState, getErrorMessage, refreshUser]);
+
+    const registerPasskey = useCallback(async () => {
+        setLoading(true);
+
+        try {
+            const response = await authService.startPasskeyRegistration();
+            const options = normalizePasskeyOptions(response.data);
+
+            const credential = await navigator.credentials.create({ publicKey: options });
+            const payload = serializePasskeyCredential(credential);
+
+            await authService.finishPasskeyRegistration(payload);
+            await refreshUser();
+
+            return { success: true };
+        } catch (err) {
+            return {
+                success: false,
+                error: getErrorMessage(err, "Passkey-aanmaken mislukt."),
+            };
+        } finally {
+            setLoading(false);
+        }
+    }, [getErrorMessage, refreshUser]);
+
+    const deletePasskey = useCallback(async (id) => {
+        setLoading(true);
+
+        try {
+            await authService.deletePasskey(id);
+            await refreshUser();
+
+            return { success: true };
+        } catch (err) {
+            return {
+                success: false,
+                error: getErrorMessage(err, "Passkey verwijderen mislukt."),
+            };
+        } finally {
+            setLoading(false);
+        }
+    }, [getErrorMessage, refreshUser]);
+
     const logout = useCallback(async () => {
         setLoading(true);
 
@@ -215,14 +288,20 @@ export function AuthProvider({ children }) {
         };
     }, [clearTwoFactorState]);
 
+    const roles = useMemo(() => getAuthRoles(user), [user]);
+
     const value = useMemo(() => ({
         user,
+        roles,
         authenticated,
         loading,
         authInitialized,
         requiresTwoFactor,
         requiresTwoFactorSetup,
         login,
+        loginWithPasskey,
+        registerPasskey,
+        deletePasskey,
         logout,
         refreshUser,
         verifyTwoFactorLogin,
@@ -231,12 +310,16 @@ export function AuthProvider({ children }) {
         disableTwoFactor,
     }), [
         user,
+        roles,
         authenticated,
         loading,
         authInitialized,
         requiresTwoFactor,
         requiresTwoFactorSetup,
         login,
+        loginWithPasskey,
+        registerPasskey,
+        deletePasskey,
         logout,
         refreshUser,
         verifyTwoFactorLogin,

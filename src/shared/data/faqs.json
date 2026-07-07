@@ -310,6 +310,44 @@
     },
 
     {
+      "id": "regio-werkgebied",
+      "title": "Regio & werkgebied",
+      "intro": "Vragen over het werkgebied van BHV Voorne aan Zee en trainingen op locatie in omliggende gemeenten.",
+      "items": [
+        {
+          "id": "regio-1",
+          "question": "In welke plaatsen verzorgt BHV Voorne aan Zee trainingen?",
+          "answer": "BHV Voorne aan Zee verzorgt trainingen op locatie in Voorne aan Zee, Rotterdam-Rijnmond, Den Haag en Westland, Zeeland en omliggende plaatsen. In de regio Rijnmond gaat het onder andere om Rotterdam, Spijkenisse, Hoogvliet, Pernis, Vlaardingen, Schiedam en Maassluis."
+        },
+        {
+          "id": "regio-2",
+          "question": "Geven jullie BHV-training in Spijkenisse?",
+          "answer": "Ja, BHV Voorne aan Zee verzorgt BHV-trainingen op locatie in Spijkenisse. De training kan worden afgestemd op het gebouw, de aanwezige risico's, de vluchtroutes en de werksituatie van de organisatie."
+        },
+        {
+          "id": "regio-3",
+          "question": "Geven jullie BHV- of EHBO-training in Vlaardingen en Schiedam?",
+          "answer": "Ja, trainingen kunnen op locatie worden verzorgd in Vlaardingen en Schiedam. Dit geldt voor BHV-trainingen, EHBO-trainingen, ploegleider-trainingen en ontruimingsoefeningen, afhankelijk van de behoefte van de organisatie."
+        },
+        {
+          "id": "regio-4",
+          "question": "Komen jullie ook naar Pernis en Hoogvliet voor trainingen?",
+          "answer": "Ja, BHV Voorne aan Zee verzorgt trainingen op locatie in Pernis en Hoogvliet. Door de regionale ligging kunnen trainingen praktisch worden ingepland voor organisaties in dit deel van Rotterdam-Rijnmond."
+        },
+        {
+          "id": "regio-5",
+          "question": "Waarom is een regionale BHV-opleider handig?",
+          "answer": "Een regionale BHV-opleider kent de omgeving, kan makkelijker op locatie trainen en kan de inhoud beter afstemmen op het type organisatie en gebouw. Dat maakt de training praktischer dan een algemene opleiding op afstand."
+        },
+        {
+          "id": "regio-6",
+          "question": "Staat mijn plaats niet genoemd, kan ik dan toch een training aanvragen?",
+          "answer": "Ja, ook wanneer een plaats niet expliciet wordt genoemd, kan een training vaak op locatie worden verzorgd. Neem contact op om te bespreken of BHV Voorne aan Zee beschikbaar is voor jouw organisatie en regio."
+        }
+      ]
+    },
+
+    {
       "id": "bhv-training",
       "title": "BHV-training",
       "items": [
@@ -319,7 +357,7 @@
           "answer": "BHV staat voor Bedrijfshulpverlening. Een BHV’er is opgeleid om binnen een organisatie te handelen bij noodsituaties zoals brand, ongevallen en ontruimingen totdat professionele hulpdiensten aanwezig zijn."
         },
         {
-          "id": "bhv-4",
+          "id": "bhv-2",
           "question": "Welke vaardigheden worden tijdens de BHV-training beoordeeld?",
           "answer": "Tijdens de BHV-training worden onder andere brandbestrijding met kleine blusmiddelen, eerste hulp handelingen, ontruiming en communicatie beoordeeld. De nadruk ligt op het aantoonbaar uitvoeren van deze competenties."
         },

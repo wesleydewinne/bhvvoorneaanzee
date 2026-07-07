@@ -28,7 +28,7 @@ const clientExperiences = [
     },
     // {
     //     id: 4,
-    //     company: "Bedrijf 4",
+    //     companies: "Bedrijf 4",
     //     logo: "/logos/bedrijf-4.png",
     //     quote:
     //         "De training sloot goed aan op onze werksituatie en risico’s.",

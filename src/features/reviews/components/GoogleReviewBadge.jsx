@@ -4,6 +4,9 @@ import "@/features/reviews/style/GoogleReviewBadge.css";
 function GoogleReviewBadge() {
     const { summary, loading, error } = useReviewSummary();
 
+    const googleReviewsUrl =
+        "https://www.google.com/maps/search/?api=1&query=BHV%20Voorne%20aan%20Zee%20Druivenhoek%2012%203181%20PK%20Rozenburg";
+
     if (loading || error || !summary) {
         return null;
     }
@@ -16,13 +19,13 @@ function GoogleReviewBadge() {
             const fillPercentage = Math.max(0, Math.min(1, rating - index)) * 100;
 
             return (
-                <span key={index} className="google-review-badge__star">
-                    <span className="google-review-badge__star-base">★</span>
+                <span key={index} className="google-review-badge__star" aria-hidden="true">
+                    <span className="google-review-badge__star-base">{"\u2605"}</span>
                     <span
                         className="google-review-badge__star-fill"
                         style={{ width: `${fillPercentage}%` }}
                     >
-                        ★
+                        {"\u2605"}
                     </span>
                 </span>
             );
@@ -31,19 +34,47 @@ function GoogleReviewBadge() {
 
     return (
         <a
-            href={summary.profileUrl}
+            href={googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="google-review-badge"
+            aria-label={`${formattedRating} van 5 op basis van ${summary.reviewCount} Google reviews`}
         >
-            <div className="google-review-badge__stars">
-                {renderStars(averageRating)}
-            </div>
+            <span className="google-review-badge__header">
+                <span className="google-review-badge__brand" aria-hidden="true">
+                    <span className="google-review-badge__brand-blue">G</span>
+                    <span className="google-review-badge__brand-red">o</span>
+                    <span className="google-review-badge__brand-yellow">o</span>
+                    <span className="google-review-badge__brand-blue">g</span>
+                    <span className="google-review-badge__brand-green">l</span>
+                    <span className="google-review-badge__brand-red">e</span>
+                </span>
 
-            <div className="google-review-badge__content">
-                <strong>{formattedRating} / 5</strong>
-                <span>op basis van {summary.reviewCount} Google reviews</span>
-            </div>
+                <span className="google-review-badge__shop" aria-hidden="true">
+                    <span className="google-review-badge__awning" />
+                    <span className="google-review-badge__shop-body">G</span>
+                </span>
+            </span>
+
+            <span className="google-review-badge__subbrand">My Business</span>
+
+            <span className="google-review-badge__review-content">
+                <span className="google-review-badge__review-row">
+                    <strong>Reviews</strong>
+                </span>
+
+                <span className="google-review-badge__stars">
+                    {renderStars(averageRating)}
+                </span>
+
+                <span className="google-review-badge__score">
+                    {formattedRating} / 5 uit {summary.reviewCount} reviews
+                </span>
+
+                <span className="google-review-badge__source">
+                    Bekijk reviews
+                </span>
+            </span>
         </a>
     );
 }

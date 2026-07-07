@@ -1,311 +1,334 @@
-/* =========================================================
-   BASIS HEADER
-========================================================= */
 .site-header {
     width: 100%;
-    background-color: #000;
+    background: #000000;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    transition: box-shadow 0.25s ease;
+    z-index: var(--z-sticky);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: box-shadow var(--transition-mid) var(--ease-out), background var(--transition-mid) var(--ease-out);
 }
 
 .site-header.is-scrolled {
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    background: #000000;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.28);
 }
 
 .header-inner {
-    max-width: 1440px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--container-max);
+    min-height: var(--header-height);
     margin: 0 auto;
-    height: 9.5rem;
-    display: flex;
+    padding: 0 clamp(var(--space-3), 3vw, var(--space-5));
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
+    gap: var(--space-5);
 }
 
-/* =========================================================
-   LOGO LINKS
-========================================================= */
-.header-left {
-    display: flex;
+.header-brand {
+    display: inline-flex;
     align-items: center;
+    min-width: 0;
 }
 
 .header-logo {
-    height: 9rem;
+    width: auto;
+    height: 8.4rem;
     object-fit: contain;
 }
 
-/* =========================================================
-   NAV MIDDEN — DESKTOP
-========================================================= */
 .main-nav {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
+    justify-self: center;
+    min-width: 0;
 }
 
 .main-nav ul {
     display: flex;
-    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-5);
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
 .nav-link {
-    font-size: 1.7rem;
-    font-weight: 500;
-    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    min-height: 4rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: var(--fs-3);
+    font-weight: var(--fw-medium);
     text-decoration: none;
-    padding-bottom: 0.25rem;
-    border-bottom: 3px solid transparent;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    border-bottom: 0.2rem solid transparent;
+    transition: color var(--transition-fast) var(--ease-out), border-color var(--transition-fast) var(--ease-out);
 }
 
-/* Desktop hover (wel behouden!) */
-.nav-link:hover {
-    color: #fcb900;
-}
-
+.nav-link:hover,
 .nav-link.active {
-    color: #fcb900;
-    border-color: #fcb900;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    text-decoration: none;
 }
 
-/* =========================================================
-   HAMBURGER BUTTON
-========================================================= */
-.header-right {
+.header-actions {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: flex-end;
+    gap: var(--space-3);
 }
 
-/* BUTTON */
+.hamburger,
+.user-icon-wrapper {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
 .hamburger {
     display: none;
-    width: 30px;
-    height: 24px;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
+    width: 3rem;
+    height: 2.4rem;
     flex-direction: column;
     justify-content: space-between;
 }
 
-/* Lijntjes */
 .hamburger span {
+    display: block;
     width: 100%;
-    height: 3px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    height: 0.3rem;
+    background: #ffffff;
+    border-radius: 999px;
+    transition: transform var(--transition-mid) var(--ease-out), opacity var(--transition-mid) var(--ease-out), background var(--transition-fast) var(--ease-out);
 }
 
-/* STRAK & MOOI WIT KRUIS */
-.hamburger.open span:nth-child(1) {
-    transform: translateY(10.5px) rotate(45deg);
+.hamburger:hover,
+.hamburger:focus-visible {
+    background: transparent;
 }
+
+.hamburger:hover span,
+.hamburger:focus-visible span {
+    background: #ffffff;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(1.05rem) rotate(45deg);
+}
+
 .hamburger.open span:nth-child(2) {
     opacity: 0;
 }
+
 .hamburger.open span:nth-child(3) {
-    transform: translateY(-10.5px) rotate(-45deg);
+    transform: translateY(-1.05rem) rotate(-45deg);
 }
 
-/* =========================================================
-   USER ICON + GLOWS
-========================================================= */
+.hamburger:focus-visible,
+.user-icon-wrapper:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 0.5rem;
+    border-radius: var(--radius-sm);
+}
+
 .user-icon-wrapper {
     position: relative;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
+    width: 4rem;
+    height: 4rem;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    isolation: isolate;
 }
 
-/* Rode Offline Glow */
-.user-icon-wrapper.status-offline::before {
+.user-icon-wrapper::before {
     content: "";
     position: absolute;
-    inset: -4px;
+    inset: -0.3rem;
     border-radius: 50%;
-    background: radial-gradient(circle,
-    rgba(120, 0, 0, 0.85) 70%,
-    rgba(160, 0, 0, 0.55) 80%,
-    rgba(200, 0, 0, 0.28) 90%,
-    rgba(200, 0, 0, 0) 100%
-    );
-    filter: blur(7px);
-    z-index: 0;
+    opacity: 0.8;
+    filter: blur(0.5rem);
+    pointer-events: none;
 }
 
-/* Groene Online Glow */
 .user-icon-wrapper.status-online::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle,
-    rgba(40, 224, 74, 0.6) 70%,
-    rgba(40, 224, 74, 0.35) 85%,
-    rgba(40, 224, 74, 0) 100%
-    );
-    filter: blur(6px);
-    z-index: 0;
+    background: rgba(22, 163, 74, 0.75);
+}
+
+.user-icon-wrapper.status-offline::before {
+    background: rgba(220, 38, 38, 0.65);
 }
 
 .user-icon {
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.2);
-    backdrop-filter: blur(2px);
-    border-radius: 50%;
+    display: block;
     position: relative;
     z-index: 1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
-/* poppetje */
 .user-icon::before,
 .user-icon::after {
     content: "";
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    background: #fff;
+    background: #ffffff;
 }
 
 .user-icon::before {
-    top: 7px;
-    width: 14px;
-    height: 14px;
+    top: 0.7rem;
+    width: 1.4rem;
+    height: 1.4rem;
     border-radius: 50%;
 }
 
 .user-icon::after {
-    bottom: 7px;
-    width: 20px;
-    height: 12px;
+    bottom: 0.7rem;
+    width: 2rem;
+    height: 1.2rem;
     border-radius: 50% 50% 40% 40%;
 }
 
-.status-dot {
-    display: none !important;
-}
-
-/* =========================================================
-   USER MENU DROPDOWN
-========================================================= */
 .user-dropdown {
     position: absolute;
-    top: 4.8rem;
+    top: calc(100% + var(--space-3));
     right: 0;
-    background-color: #111;
-    border-radius: 10px;
-    min-width: 220px;
-    padding: 1.2rem;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    width: min(28rem, calc(100vw - 3.2rem));
+    max-height: calc(100vh - var(--header-height) - var(--space-5));
+    overflow: auto;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    z-index: 1500;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    background: #111;
+    box-shadow: var(--shadow-xl);
+    z-index: var(--z-dropdown);
 }
 
 .user-dropdown button {
-    background-color: #222;
-    border: none;
-    border-radius: 6px;
-    padding: 0.7rem 1rem;
-    color: #fff;
-    font-size: 1.4rem;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: var(--fs-2);
     text-align: left;
     cursor: pointer;
 }
 
-.user-dropdown button:hover {
-    background-color: #333;
+.user-dropdown button:hover,
+.user-dropdown button:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    outline: none;
 }
 
-.logout-btn {
-    background-color: #8b0000 !important;
-}
-.logout-btn:hover {
-    background-color: #b00000 !important;
+.user-dropdown-section-title {
+    margin: var(--space-2) 0 0;
+    color: var(--color-accent);
+    font-size: var(--fs-1);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
 }
 
-/* =========================================================
-   MOBIEL MENU
-========================================================= */
-@media (max-width: 900px) {
+.user-dropdown .logout-btn {
+    background: rgba(220, 38, 38, 0.82);
+}
 
+.user-dropdown .logout-btn:hover,
+.user-dropdown .logout-btn:focus-visible {
+    background: var(--color-danger);
+}
+
+@media (max-width: 1100px) {
     .header-inner {
-        height: 7.5rem;
-        padding: 0 1.5rem;
+        gap: var(--space-3);
+    }
+
+    .main-nav ul {
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 900px) {
+    .header-inner {
+        min-height: 7.6rem;
+        grid-template-columns: auto auto;
     }
 
     .header-logo {
-        height: 6rem;
+        height: 6.4rem;
     }
 
-    /* VOLLEDIG TRANSPARANT MENU */
+    .header-actions {
+        justify-self: end;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
     .main-nav {
         position: fixed;
-        top: 7.5rem;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 7.5rem);
-        background: rgba(0, 0, 0, 0.65); /* mooi transparant */
-        backdrop-filter: blur(4px);
+        top: 7.6rem;
+        left: 50%;
+        right: auto;
+        width: 100vw;
+        margin-left: -50vw;
+        z-index: 1;
+        min-height: calc(100vh - 7.6rem);
+        min-height: calc(100dvh - 7.6rem);
+        padding: var(--space-5);
+        background: rgba(0, 0, 0, 0.86);
+        backdrop-filter: blur(0.6rem);
         transform: translateY(-100%);
         opacity: 0;
         pointer-events: none;
-        transition: transform 0.25s ease, opacity 0.25s ease;
-        display: flex;
-        justify-content: center;
+        transition: transform var(--transition-mid) var(--ease-out), opacity var(--transition-mid) var(--ease-out);
     }
 
     .main-nav.open {
         transform: translateY(0);
         opacity: 1;
-        pointer-events: all;
+        pointer-events: auto;
     }
 
     .main-nav ul {
+        width: min(42rem, 100%);
+        margin: 0 auto;
         flex-direction: column;
-        gap: 2.4rem;
+        align-items: stretch;
+        gap: var(--space-3);
     }
 
-    /* MENU ITEMS → LICHTGRIJS & TRANSPARANT */
     .nav-link {
-        font-size: 2.1rem;
-        color: rgba(255,255,255,0.85);
-        background: rgba(255,255,255,0.06);
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        border-bottom: none; /* geen underline */
+        width: 100%;
+        min-height: 5rem;
+        justify-content: center;
+        padding: 0 var(--space-4);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: var(--fs-4);
     }
 
-    /* OVERRULE DESKTOP HOVER */
-    .nav-link:hover {
-        color: white !important;
-        background: rgba(255,255,255,0.15) !important;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-}
-
-/* =========================================================
-   DESKTOP SPECIFIEK
-========================================================= */
-@media (min-width: 901px) {
-    .hamburger {
-        display: none;
+    .nav-link:hover,
+    .nav-link.active {
+        border-color: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.06);
     }
 }

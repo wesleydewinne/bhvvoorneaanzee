@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { formatLocationCompanies } from "../helpers/locationHelpers.js";
 
-function LocationsTable({ locations }) {
+function LocationsTable({ locations, onDelete }) {
     const navigate = useNavigate();
 
     if (!locations.length) {
@@ -17,6 +18,7 @@ function LocationsTable({ locations }) {
                 <thead>
                 <tr>
                     <th>Locatienaam</th>
+                    <th>Bedrijven</th>
                     <th>Adres</th>
                     <th>Postcode</th>
                     <th>Plaats</th>
@@ -25,15 +27,18 @@ function LocationsTable({ locations }) {
                     <th className="locations-table__actions-column">Acties</th>
                 </tr>
                 </thead>
+
                 <tbody>
                 {locations.map((location) => (
                     <tr key={location.id}>
                         <td>{location.locationName || "-"}</td>
+                        <td>{formatLocationCompanies(location)}</td>
                         <td>{location.address || "-"}</td>
                         <td>{location.postalCode || "-"}</td>
                         <td>{location.city || "-"}</td>
                         <td>{location.phone || "-"}</td>
                         <td>{location.email || "-"}</td>
+
                         <td className="locations-table__actions-cell">
                             <div className="locations-table__icon-actions">
                                 <button
@@ -55,6 +60,18 @@ function LocationsTable({ locations }) {
                                 >
                                     ✏️
                                 </button>
+
+                                {onDelete ? (
+                                    <button
+                                        type="button"
+                                        className="icon-action-button icon-action-button--danger"
+                                        onClick={() => onDelete(location)}
+                                        aria-label={`Verwijder locatie ${location.locationName}`}
+                                        title="Verwijderen"
+                                    >
+                                        🗑
+                                    </button>
+                                ) : null}
                             </div>
                         </td>
                     </tr>

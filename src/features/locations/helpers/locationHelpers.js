@@ -7,6 +7,7 @@ export function createEmptyLocationForm() {
         phone: "",
         email: "",
         description: "",
+        companyIds: [],
     };
 }
 
@@ -19,7 +20,21 @@ export function mapLocationToForm(location) {
         phone: location?.phone ?? "",
         email: location?.email ?? "",
         description: location?.description ?? "",
+        companyIds: Array.isArray(location?.companies)
+            ? location.companies.map((company) => String(company.id))
+            : [],
     };
+}
+
+export function formatLocationCompanies(location) {
+    if (!Array.isArray(location?.companies) || location.companies.length === 0) {
+        return "-";
+    }
+
+    return location.companies
+        .map((company) => company.name)
+        .filter(Boolean)
+        .join(", ");
 }
 
 export function filterLocations(locations, searchTerm) {
@@ -28,6 +43,10 @@ export function filterLocations(locations, searchTerm) {
     if (!term) return locations;
 
     return locations.filter((location) => {
+        const companiesText = Array.isArray(location.companies)
+            ? location.companies.map((company) => company.name).join(" ")
+            : "";
+
         return [
             String(location.id ?? ""),
             location.locationName,
@@ -37,8 +56,9 @@ export function filterLocations(locations, searchTerm) {
             location.phone,
             location.email,
             location.description,
+            companiesText,
         ]
             .filter(Boolean)
-            .some((value) => value.toLowerCase().includes(term));
+            .some((value) => String(value).toLowerCase().includes(term));
     });
 }

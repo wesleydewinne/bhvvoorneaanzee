@@ -15,7 +15,7 @@ import data from "@/shared/data/training.json";
 import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 
-import fallback from "@/assets/image/common/fallback/Card-Fallback.png";
+import fallback from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
 // import ehboImage from "../../assets/images/algemeneAfbeeldingen/ehbo.png";
 
 function EhboPage() {

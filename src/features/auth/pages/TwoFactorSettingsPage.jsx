@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
+import authService from "@/features/auth/services/authService.js";
 import "./TwoFactorPage.css";
 
 export default function TwoFactorSettingsPage() {
@@ -9,6 +10,8 @@ export default function TwoFactorSettingsPage() {
         initTwoFactorSetup,
         verifyTwoFactorSetup,
         disableTwoFactor,
+        registerPasskey,
+        deletePasskey,
         loading,
         refreshUser,
     } = useAuth();
@@ -18,6 +21,20 @@ export default function TwoFactorSettingsPage() {
     const [disableCode, setDisableCode] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [passkeys, setPasskeys] = useState([]);
+
+    useEffect(() => {
+        const fetchPasskeys = async () => {
+            try {
+                const response = await authService.listPasskeys();
+                setPasskeys(response.data ?? []);
+            } catch {
+                setPasskeys([]);
+            }
+        };
+
+        void fetchPasskeys();
+    }, [user]);
 
     const isTwoFactorEnabled = Boolean(user?.twoFactorEnabled);
 
@@ -65,6 +82,36 @@ export default function TwoFactorSettingsPage() {
         } catch (err) {
             setError(err.message || "2FA uitschakelen is mislukt.");
         }
+    };
+
+    const handleRegisterPasskey = async () => {
+        setError("");
+        setSuccess("");
+
+        const result = await registerPasskey();
+
+        if (!result.success) {
+            setError(result.error || "Passkey-aanmaken mislukt.");
+            return;
+        }
+
+        setSuccess("Passkey is succesvol aangemaakt.");
+        await refreshUser();
+    };
+
+    const handleDeletePasskey = async (id) => {
+        setError("");
+        setSuccess("");
+
+        const result = await deletePasskey(id);
+
+        if (!result.success) {
+            setError(result.error || "Passkey verwijderen mislukt.");
+            return;
+        }
+
+        setSuccess("Passkey is succesvol verwijderd.");
+        await refreshUser();
     };
 
     return (
@@ -177,6 +224,51 @@ export default function TwoFactorSettingsPage() {
                             </article>
                         </section>
                     )}
+
+                    <section className="twofactor-layout twofactor-layout--single" aria-label="Passkeys beheren">
+                        <article className="twofactor-panel twofactor-panel--form" aria-labelledby="passkeys-title">
+                            <header className="twofactor-panel-header">
+                                <h2 id="passkeys-title" className="twofactor-section-title">
+                                    Passkeys beheren
+                                </h2>
+                                <p className="twofactor-help">
+                                    Maak een beveiligde passkey aan voor snelle inlog zonder wachtwoord.
+                                </p>
+                            </header>
+
+                            <button
+                                className="twofactor-button"
+                                type="button"
+                                onClick={handleRegisterPasskey}
+                                disabled={loading}
+                            >
+                                {loading ? "Bezig..." : "Passkey aanmaken"}
+                            </button>
+
+                            {passkeys.length > 0 ? (
+                                <ul className="twofactor-passkey-list">
+                                    {passkeys.map((passkey) => (
+                                        <li key={passkey.id} className="twofactor-passkey-item">
+                                            <div>
+                                                <strong>{passkey.name || "Passkey"}</strong>
+                                                <p>{passkey.createdAt ? new Date(passkey.createdAt).toLocaleDateString("nl-NL") : "Aangemaakt"}</p>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                className="twofactor-secondary-button"
+                                                onClick={() => handleDeletePasskey(passkey.id)}
+                                                disabled={loading}
+                                            >
+                                                Verwijderen
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="twofactor-help">Er zijn nog geen passkeys opgeslagen.</p>
+                            )}
+                        </article>
+                    </section>
 
                     {isTwoFactorEnabled && (
                         <section className="twofactor-layout twofactor-layout--single" aria-label="Tweefactorauthenticatie uitschakelen">

@@ -1,185 +1,149 @@
 /* ========================================
-   🌐 REGIONALE SERVICEGEBIED SECTIE
-   ======================================== */
-
-.region-section {
-    margin-top: 4rem;
-    padding: 4rem 2rem 5rem;
+   Regionale servicegebied sectie
+======================================== */
+.service-regions {
+    margin-top: var(--space-6);
+    padding: var(--space-6) var(--space-5) var(--space-7);
     background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
-    border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     animation: fadeInDown 0.6s ease-in-out;
 }
 
-/* ========================================
-   TITEL
-   ======================================== */
-
-.region-title {
+.service-regions__title {
     text-align: center;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #111827;
+    font-size: var(--fs-6);
+    font-weight: var(--fw-bold);
+    color: var(--color-heading);
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-6);
 }
 
-.region-title::after {
+.service-regions__title::after {
     content: "";
-    width: 200px;
-    height: 4px;
-    background-color: #ff8000;
+    width: 20rem;
+    height: 0.4rem;
+    background-color: var(--color-accent);
     display: block;
-    margin: 1rem auto 0;
-    border-radius: 2px;
+    margin: var(--space-3) auto 0;
+    border-radius: var(--radius-sm);
 }
 
-/* ========================================
-   GRID LAYOUT
-   ======================================== */
-
-.region-grid {
-    max-width: 1400px;
+.service-regions__grid {
+    max-width: 140rem;
     margin: 0 auto;
-
     display: flex;
-    gap: 2.5rem;
-
+    gap: var(--space-6);
     justify-content: center;
     flex-wrap: wrap;
 }
 
-/* Link wrapper */
-
-.region-link {
+.service-regions__link {
     display: flex;
     justify-content: center;
-
     text-decoration: none;
     color: inherit;
 }
 
-/* ========================================
-   CARD
-   ======================================== */
-
-.region-card {
+.service-regions__card {
     width: 100%;
-    max-width: 420px;
-
-    background-color: #fff;
-    border-radius: 1.2rem;
+    max-width: 42rem;
+    background-color: var(--color-surface);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-mid) var(--ease-out), box-shadow var(--transition-mid) var(--ease-out);
 }
 
-.region-link:hover .region-card {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+.service-regions__link:hover .service-regions__card {
+    transform: translateY(-0.5rem);
+    box-shadow: var(--shadow-lg);
 }
 
-/* ========================================
-   AFBEELDING
-   ======================================== */
-
-.region-image {
+.service-regions__image {
     position: relative;
-    height: 180px;
+    height: 18rem;
     background: #f9fafb;
     overflow: hidden;
-    border-bottom: 3px solid #ff8000;
+    border-bottom: 0.3rem solid var(--color-accent);
 }
 
-.region-image img {
+.service-regions__image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center;
-    padding: 0.5rem 0;
+    padding: var(--space-1) 0;
 }
 
-/* Hover overlay */
-
-.image-overlay {
+.service-regions__image-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-            to bottom,
-            rgba(255, 128, 0, 0.25),
-            rgba(255, 128, 0, 0.05)
+        to bottom,
+        rgba(255, 128, 0, 0.25),
+        rgba(255, 128, 0, 0.05)
     );
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition-mid) var(--ease-out);
 }
 
-.region-link:hover .image-overlay {
+.service-regions__link:hover .service-regions__image-overlay {
     opacity: 1;
 }
 
-.region-link:hover .region-image img {
+.service-regions__link:hover .service-regions__image img {
     filter: brightness(1.1) contrast(1.05);
 }
 
-/* ========================================
-   CONTENT
-   ======================================== */
-
-.region-content {
-    padding: 1.6rem 1.8rem 2rem;
+.service-regions__content {
+    padding: var(--space-4) var(--space-4) var(--space-5);
 }
 
-.region-heading {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 0.6rem;
+.service-regions__heading {
+    font-size: var(--fs-4);
+    font-weight: var(--fw-bold);
+    color: var(--color-heading);
+    margin-bottom: var(--space-2);
 }
 
-.region-content p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #444;
+.service-regions__content p {
+    font-size: var(--fs-3);
+    line-height: var(--lh-normal);
+    color: var(--color-text);
 }
 
-.region-content strong {
-    color: #000;
-    font-weight: 600;
+.service-regions__content strong {
+    color: var(--color-heading);
+    font-weight: var(--fw-medium);
 }
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
 
 @media (max-width: 768px) {
-
-    .region-title {
-        font-size: 1.9rem;
-        margin-bottom: 2.5rem;
+    .service-regions__title {
+        font-size: var(--fs-6);
+        margin-bottom: var(--space-5);
     }
 
-    .region-image {
-        height: 160px;
+    .service-regions__image {
+        height: 16rem;
     }
 
-    .region-content {
-        padding: 1.4rem 1.5rem;
+    .service-regions__content {
+        padding: var(--space-4);
     }
 }
 
 @media (max-width: 480px) {
-
-    .region-section {
-        padding: 3rem 1.2rem 4rem;
+    .service-regions {
+        padding: var(--space-6) var(--space-3);
     }
 
-    .region-heading {
-        font-size: 1.2rem;
+    .service-regions__heading {
+        font-size: var(--fs-4);
     }
 
-    .region-content p {
-        font-size: 0.95rem;
+    .service-regions__content p {
+        font-size: var(--fs-2);
     }
 }

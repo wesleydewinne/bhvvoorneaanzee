@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import contactService from "@/features/contact/services/contactService.js";
-import contactBg from "@/assets/image/common/backgrounds/contact-bg.jpg";
+import contactBg from "@/assets/image/common/backgrounds/contact-bg.jpg?w=1400&format=webp&quality=72";
 import "../styles/ContactOns.css";
 
 const SUBMIT_COOLDOWN_MS = 30000;

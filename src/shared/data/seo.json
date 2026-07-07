@@ -1,8 +1,8 @@
 {
   "/": {
-    "title": "BHV Voorne aan Zee | BHV, EHBO & Ontruimingsoefeningen in Zuidwest-Nederland",
-    "description": "BHV Voorne aan Zee verzorgt praktijkgerichte BHV-, EHBO- en ontruimingstrainingen voor bedrijven en particulieren in Voorne aan Zee, Rijnmond, Haaglanden en Zeeland.",
-    "keywords": "BHV Voorne aan Zee, BHV training, EHBO cursus, ontruimingsoefening, reanimatie, Stop de Bloeding, veiligheidstraining, BHV herhaling, BHV basis",
+    "title": "BHV Voorne aan Zee | Incompany BHV, EHBO en ontruimingstrainingen",
+    "description": "BHV Voorne aan Zee verzorgt incompany BHV-trainingen, EHBO-cursussen, ploegleidertrainingen en ontruimingsoefeningen voor organisaties in Voorne aan Zee, Rotterdam-Rijnmond, Westland, Den Haag en omliggende plaatsen.",
+    "keywords": "BHV Voorne aan Zee, BHV training Voorne aan Zee, EHBO cursus, ontruimingsoefening, incompany BHV, BHV Rotterdam Rijnmond, BHV Spijkenisse, BHV Vlaardingen, BHV Schiedam, BHV Hoogvliet, BHV Pernis",
     "canonical": "https://bhvvoorneaanzee.nl/"
   },
 
@@ -43,7 +43,7 @@
 
   "/bhv-herhaling-e-learning": {
     "title": "BHV Herhaling met E-learning | BHV Voorne aan Zee",
-    "description": "Verleng en vernieuw je BHV-kennis met BHV Herhaling inclusief e-learning. Efficiënt leren met online theorie en praktijkgerichte training.",
+    "description": "Verleng en vernieuw je BHV-kennis met BHV Herhaling inclusief e-learning. Efficient leren met online theorie en praktijkgerichte training.",
     "keywords": "BHV herhaling e-learning, BHV online herhaling, BHV cursus, BHV verlengen, BHV training",
     "canonical": "https://bhvvoorneaanzee.nl/bhv-herhaling-e-learning"
   },
@@ -127,7 +127,7 @@
 
   "/ontruimingsoefening-fase0": {
     "title": "Ontruimingsoefening Fase 0 | Tabletop - BHV Voorne aan Zee",
-    "description": "Bespreek rollen, procedures en scenario’s met een tabletop ontruimingsoefening. Een veilige en effectieve eerste stap in oefenen en verbeteren.",
+    "description": "Bespreek rollen, procedures en scenario's met een tabletop ontruimingsoefening. Een veilige en effectieve eerste stap in oefenen en verbeteren.",
     "keywords": "fase 0 ontruimingsoefening, tabletop oefening, ontruimingsplan bespreken, BHV voorbereiding",
     "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase0"
   },
@@ -148,7 +148,7 @@
 
   "/ontruimingsoefening-fase3": {
     "title": "Ontruimingsoefening Fase 3 | Onaangekondigd - BHV Voorne aan Zee",
-    "description": "Test de paraatheid van medewerkers en BHV’ers met een onaangekondigde ontruimingsoefening. Realistisch, leerzaam en praktijkgericht.",
+    "description": "Test de paraatheid van medewerkers en BHV'ers met een onaangekondigde ontruimingsoefening. Realistisch, leerzaam en praktijkgericht.",
     "keywords": "fase 3 ontruimingsoefening, onaangekondigde evacuatie, BHV test, paraatheid ontruiming",
     "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase3"
   },
@@ -169,7 +169,7 @@
 
   "/ontruimingsoefening-scenarios": {
     "title": "Scenario's voor ontruimingsoefeningen | BHV Voorne aan Zee",
-    "description": "Bekijk mogelijke scenario’s voor ontruimingsoefeningen en ontdek hoe praktijkgerichte situaties bijdragen aan betere voorbereiding en veiligheid.",
+    "description": "Bekijk mogelijke scenario's voor ontruimingsoefeningen en ontdek hoe praktijkgerichte situaties bijdragen aan betere voorbereiding en veiligheid.",
     "keywords": "ontruimingsoefening scenario's, evacuatie scenario, BHV scenario, oefenen noodsituaties",
     "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-scenarios"
   },
@@ -218,7 +218,7 @@
 
   "/workshops-reanimatie-kind-baby": {
     "title": "Workshop Reanimatie Kind & Baby | BHV Voorne aan Zee",
-    "description": "Praktijkworkshop voor reanimatie bij kinderen en baby’s. Leer handelen bij verslikking, bewusteloosheid en circulatiestilstand.",
+    "description": "Praktijkworkshop voor reanimatie bij kinderen en baby's. Leer handelen bij verslikking, bewusteloosheid en circulatiestilstand.",
     "keywords": "reanimatie kind baby, kinderreanimatie workshop, baby reanimatie, EHBO kinderen, workshop",
     "canonical": "https://bhvvoorneaanzee.nl/workshops-reanimatie-kind-baby"
   },
@@ -246,7 +246,7 @@
 
   "/maatwerk": {
     "title": "Maatwerk trainingen | BHV Voorne aan Zee",
-    "description": "BHV Voorne aan Zee biedt maatwerk trainingen die aansluiten op jouw organisatie, risico’s, werkomgeving en leerdoelen. Praktisch, flexibel en doelgericht.",
+    "description": "BHV Voorne aan Zee biedt maatwerk trainingen die aansluiten op jouw organisatie, risico's, werkomgeving en leerdoelen. Praktisch, flexibel en doelgericht.",
     "keywords": "maatwerk training, BHV maatwerk, EHBO maatwerk, veiligheidstraining op maat, incompany training",
     "canonical": "https://bhvvoorneaanzee.nl/maatwerk"
   },
@@ -263,6 +263,13 @@
     "description": "Bekijk het overzicht van modulaire trainingen en leeropbouw van BHV Voorne aan Zee. Praktisch ingericht en toepasbaar in diverse organisaties.",
     "keywords": "modulair overzicht, BHV modules overzicht, veiligheidstraining structuur, modulaire leerroute",
     "canonical": "https://bhvvoorneaanzee.nl/modulair-overzicht"
+  },
+
+  "/regio": {
+    "title": "Werkgebied | BHV trainingen in Voorne aan Zee, Rijnmond en Zuidwest-Nederland",
+    "description": "Bekijk het werkgebied van BHV Voorne aan Zee voor BHV-trainingen, EHBO, ploegleider-trainingen en ontruimingsoefeningen in Voorne aan Zee, Rotterdam-Rijnmond, Spijkenisse, Vlaardingen, Schiedam, Pernis, Hoogvliet en omliggende regio's.",
+    "keywords": "BHV werkgebied, BHV Spijkenisse, BHV Vlaardingen, BHV Schiedam, BHV Pernis, BHV Hoogvliet, BHV Rotterdam Rijnmond, BHV Voorne aan Zee",
+    "canonical": "https://bhvvoorneaanzee.nl/regio"
   },
 
   "/rotterdam-rijnmond": {
@@ -287,9 +294,9 @@
   },
 
   "/blog": {
-    "title": "Blog | Tips en inzichten over BHV, EHBO en veiligheid",
-    "description": "Lees praktische artikelen, tips en inzichten over BHV, EHBO, ontruiming, reanimatie en veiligheid op de blog van BHV Voorne aan Zee.",
-    "keywords": "BHV blog, EHBO blog, veiligheidstips, ontruiming, reanimatie, eerste hulp artikelen",
+    "title": "Kennisbank | Artikelen over BHV, EHBO en veilig werken",
+    "description": "Lees praktische artikelen over BHV, EHBO, ontruiming, reanimatie en veilig werken binnen organisaties.",
+    "keywords": "BHV kennisbank, BHV artikelen, EHBO artikelen, veiligheidstips, ontruiming, reanimatie, eerste hulp artikelen",
     "canonical": "https://bhvvoorneaanzee.nl/blog"
   },
 
@@ -340,6 +347,13 @@
     "description": "Log in op het platform van BHV Voorne aan Zee.",
     "keywords": "inloggen, account, BHV Voorne aan Zee",
     "canonical": "https://bhvvoorneaanzee.nl/inloggen"
+  },
+
+  "/inloggen/2fa": {
+    "title": "Tweestapsverificatie | BHV Voorne aan Zee",
+    "description": "Rond het inloggen af met tweestapsverificatie voor het platform van BHV Voorne aan Zee.",
+    "keywords": "tweestapsverificatie, 2FA, inloggen, BHV Voorne aan Zee",
+    "canonical": "https://bhvvoorneaanzee.nl/inloggen/2fa"
   },
 
   "/quiz-access": {

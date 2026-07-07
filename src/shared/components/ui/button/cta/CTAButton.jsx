@@ -11,7 +11,7 @@ export default function CTASection() {
                     Of je nu start als bedrijfshulpverlener, je kennis wilt bijspijkeren of doorgroeien met een specialistische training:
                     wij leren je met vertrouwen en zekerheid te handelen bij noodsituaties.
                 </p>
-                <Link to="/aanbod" className="cta-button">
+                <Link to="/bhv" className="cta-button">
                     Bekijk ons aanbod
                 </Link>
             </div>
@@ -37,7 +37,7 @@ export default function CTASection() {
                     Voor elke bedrijfsspecifieke veiligheidsvraag hebben wij een passende incompany training of oplossing.
                     Plan een afspraak met een van onze trainers voor persoonlijk advies.
                 </p>
-                <Link to="/formulier?type=advies" className="cta-button">
+                <Link to="/contact" className="cta-button">
                     Adviesgesprek aanvragen
                 </Link>
             </div>

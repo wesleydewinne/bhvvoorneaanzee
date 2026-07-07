@@ -2,7 +2,7 @@ import HeaderSection from "@/shared/components/sections/headerSection/HeaderSect
 import "./BhvTrainingPage.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import NIBHV from "@/assets/icons/certificeringlogo/badgeNIBHV.png";
+import NIBHV from "@/assets/icons/certificeringlogo/badgeNIBHV.png?w=360&format=webp&quality=80";
 
 import {
     User,
@@ -107,8 +107,10 @@ export default function BhvHerhaling05Elearning() {
 
                         <div className="leerdoelen-certificering">
                             <a
-                                href="/certificering/nibhv"
+                                href="https://www.nibhv.nl/"
                                 className="certificering-link"
+                                target="_blank"
+                                rel="noreferrer"
                             >
                                 <img
                                     src={NIBHV}

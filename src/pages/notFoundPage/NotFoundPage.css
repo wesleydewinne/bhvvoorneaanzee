@@ -66,3 +66,73 @@
     pointer-events: none;
 }
 
+.smoke-effect {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.smoke-effect__puff {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background:
+            radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.88), rgba(180, 187, 194, 0.44) 45%, rgba(120, 130, 140, 0) 72%);
+    filter: blur(10px);
+    opacity: 0;
+    transform: translateX(-50%) scale(0.4);
+    animation: smokeRise 5.5s ease-in-out infinite;
+}
+
+.smoke-effect__puff--1 {
+    margin-left: -52px;
+    animation-delay: 0s;
+}
+
+.smoke-effect__puff--2 {
+    margin-left: 26px;
+    animation-delay: 0.8s;
+}
+
+.smoke-effect__puff--3 {
+    margin-left: -10px;
+    animation-delay: 1.6s;
+}
+
+.smoke-effect__puff--4 {
+    margin-left: 64px;
+    animation-delay: 2.4s;
+}
+
+.smoke-effect__puff--5 {
+    margin-left: -78px;
+    animation-delay: 3.2s;
+}
+
+@keyframes smokeRise {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.35);
+    }
+    18% {
+        opacity: 0.55;
+    }
+    60% {
+        opacity: 0.36;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -260px) scale(1.55);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .smoke-effect__puff {
+        animation: none;
+        opacity: 0.28;
+    }
+}
+

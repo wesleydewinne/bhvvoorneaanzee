@@ -4,15 +4,16 @@ function getInitials(firstName, lastName) {
     return `${first}${last}`.toUpperCase() || "?";
 }
 
-export default function ProfileHeader({ profile }) {
+export default function ProfileHeader({ profile, profilePhotoUrl = "" }) {
     const initials = getInitials(profile.firstName, profile.lastName);
+    const photoSrc = profilePhotoUrl || profile.profileImageUrl;
 
     return (
         <header className="profile-header">
             <div className="profile-header__avatar">
-                {profile.profileImageUrl ? (
+                {photoSrc ? (
                     <img
-                        src={profile.profileImageUrl}
+                        src={photoSrc}
                         alt={`${profile.fullName || "Gebruiker"} profielfoto`}
                         className="profile-header__avatar-image"
                     />

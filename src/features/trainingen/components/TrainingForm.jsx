@@ -1,18 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import locationService from "@/features/locations/services/locationService.js";
 import LocationSearchSelect from "./LocationSearchSelect.jsx";
 import {
     buildCreateTrainingPayload,
     buildUpdateTrainingPayload,
     CATEGORY_OPTIONS,
-    EVACUATION_PHASE_OPTIONS,
-    VARIANT_OPTIONS,
-    WORKSHOP_TYPE_OPTIONS,
+    getTrainingTypeOptionsByCategory,
 } from "../helpers/trainingHelpers.js";
 
+function resolveCategoryFromTrainingType(trainingType, fallbackCategory = "BHV") {
+    if (!trainingType) return fallbackCategory;
+
+    if (trainingType.startsWith("BHV_PLOEGLEIDER")) {
+        return "PLOEGLEIDER";
+    }
+
+    if (trainingType.startsWith("BHV_")) {
+        return "BHV";
+    }
+
+    if (trainingType.startsWith("EHBO_")) {
+        return "EHBO";
+    }
+
+    if (trainingType.startsWith("EVACUATION_")) {
+        return "ONTRUIMING";
+    }
+
+    if (trainingType.startsWith("WORKSHOP_")) {
+        return "WORKSHOP";
+    }
+
+    return fallbackCategory;
+}
+
+function getDefaultTrainingType(category) {
+    return getTrainingTypeOptionsByCategory(category)[0]?.value || "";
+}
+
+const defaultCategory = "BHV";
+const defaultTrainingType = getDefaultTrainingType(defaultCategory);
+
 const defaultFormData = {
-    category: "BHV",
-    variant: "BASIS",
+    companyId: "",
+    category: defaultCategory,
+    trainingType: defaultTrainingType,
+    variant: defaultTrainingType,
     evacuationPhase: "",
     workshopType: "",
     courseDate: "",
@@ -21,6 +54,11 @@ const defaultFormData = {
     locationId: "",
     trainerId: "",
     adminOverrideAllowed: false,
+
+    competencyFirstAidEmergency: false,
+    competencyFirstAidNonEmergency: false,
+    competencyFireFighting: false,
+    competencyEvacuation: false,
 };
 
 function TrainingForm({
@@ -41,17 +79,45 @@ function TrainingForm({
             return;
         }
 
+        const initialTrainingType = initialValues.trainingType || "";
+        const initialCategory = resolveCategoryFromTrainingType(
+            initialTrainingType,
+            initialValues.category || "BHV"
+        );
+
         setFormData({
-            category: initialValues.category || "BHV",
-            variant: initialValues.variant || "BASIS",
-            evacuationPhase: initialValues.evacuationPhase || "",
-            workshopType: initialValues.workshopType || "",
+            companyId: initialValues.companyId ? String(initialValues.companyId) : "",
+            category: initialCategory,
+            trainingType: initialTrainingType || getDefaultTrainingType(initialCategory),
+
+            variant:
+                initialCategory === "BHV" ||
+                initialCategory === "PLOEGLEIDER" ||
+                initialCategory === "EHBO"
+                    ? initialTrainingType || getDefaultTrainingType(initialCategory)
+                    : "",
+
+            evacuationPhase:
+                initialCategory === "ONTRUIMING"
+                    ? initialTrainingType || getDefaultTrainingType(initialCategory)
+                    : "",
+
+            workshopType:
+                initialCategory === "WORKSHOP"
+                    ? initialTrainingType || getDefaultTrainingType(initialCategory)
+                    : "",
+
             courseDate: initialValues.courseDate || "",
             startTime: initialValues.startTime ? initialValues.startTime.slice(0, 5) : "",
             endTime: initialValues.endTime ? initialValues.endTime.slice(0, 5) : "",
             locationId: initialValues.locationId ? String(initialValues.locationId) : "",
             trainerId: initialValues.trainerId ? String(initialValues.trainerId) : "",
             adminOverrideAllowed: Boolean(initialValues.adminOverrideAllowed),
+
+            competencyFirstAidEmergency: Boolean(initialValues.competencyFirstAidEmergency),
+            competencyFirstAidNonEmergency: Boolean(initialValues.competencyFirstAidNonEmergency),
+            competencyFireFighting: Boolean(initialValues.competencyFireFighting),
+            competencyEvacuation: Boolean(initialValues.competencyEvacuation),
         });
     }, [initialValues]);
 
@@ -83,6 +149,97 @@ function TrainingForm({
         loadLocations();
     }, []);
 
+    const selectedLocation = useMemo(() => {
+        if (!formData.locationId) {
+            return null;
+        }
+
+        return (
+            locations.find(
+                (location) => String(location.id) === String(formData.locationId)
+            ) || null
+        );
+    }, [locations, formData.locationId]);
+
+    const linkedCompanies = useMemo(() => {
+        if (!selectedLocation || !Array.isArray(selectedLocation.companies)) {
+            return [];
+        }
+
+        return selectedLocation.companies;
+    }, [selectedLocation]);
+
+    useEffect(() => {
+        if (!selectedLocation) {
+            setFormData((prev) => ({
+                ...prev,
+                companyId: "",
+            }));
+            return;
+        }
+
+        if (linkedCompanies.length === 1) {
+            setFormData((prev) => ({
+                ...prev,
+                companyId: String(linkedCompanies[0].id),
+            }));
+            return;
+        }
+
+        const selectedCompanyStillExists = linkedCompanies.some(
+            (company) => String(company.id) === String(formData.companyId)
+        );
+
+        if (!selectedCompanyStillExists) {
+            setFormData((prev) => ({
+                ...prev,
+                companyId: "",
+            }));
+        }
+    }, [selectedLocation, linkedCompanies, formData.companyId]);
+
+    const trainingTypeOptions = useMemo(() => {
+        return getTrainingTypeOptionsByCategory(formData.category);
+    }, [formData.category]);
+
+    const selectedTrainingTypeValue = useMemo(() => {
+        if (
+            formData.category === "BHV" ||
+            formData.category === "PLOEGLEIDER" ||
+            formData.category === "EHBO"
+        ) {
+            return formData.variant;
+        }
+
+        if (formData.category === "ONTRUIMING") {
+            return formData.evacuationPhase;
+        }
+
+        if (formData.category === "WORKSHOP") {
+            return formData.workshopType;
+        }
+
+        return formData.trainingType;
+    }, [
+        formData.category,
+        formData.variant,
+        formData.evacuationPhase,
+        formData.workshopType,
+        formData.trainingType,
+    ]);
+
+    const getTrainingTypeLabel = () => {
+        if (formData.category === "ONTRUIMING") {
+            return "Fase ontruiming";
+        }
+
+        if (formData.category === "WORKSHOP") {
+            return "Workshop type";
+        }
+
+        return "Trainingstype";
+    };
+
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
 
@@ -94,39 +251,62 @@ function TrainingForm({
 
     const handleCategoryChange = (event) => {
         const nextCategory = event.target.value;
+        const nextTrainingType = getDefaultTrainingType(nextCategory);
 
-        setFormData((prev) => {
-            const nextFormData = {
-                ...prev,
-                category: nextCategory,
-                variant: "",
-                evacuationPhase: "",
-                workshopType: "",
-            };
+        setFormData((prev) => ({
+            ...prev,
+            category: nextCategory,
+            trainingType: nextTrainingType,
+            variant:
+                nextCategory === "BHV" ||
+                nextCategory === "PLOEGLEIDER" ||
+                nextCategory === "EHBO"
+                    ? nextTrainingType
+                    : "",
+            evacuationPhase:
+                nextCategory === "ONTRUIMING" ? nextTrainingType : "",
+            workshopType:
+                nextCategory === "WORKSHOP" ? nextTrainingType : "",
+        }));
+    };
 
-            if (nextCategory === "BHV" || nextCategory === "EHBO") {
-                nextFormData.variant =
-                    prev.category === nextCategory && prev.variant ? prev.variant : "BASIS";
-            }
+    const handleTrainingTypeChange = (event) => {
+        const nextTrainingType = event.target.value;
 
-            if (nextCategory === "ONTRUIMING") {
-                nextFormData.evacuationPhase =
-                    prev.category === "ONTRUIMING" ? prev.evacuationPhase : "";
-            }
+        setFormData((prev) => ({
+            ...prev,
+            trainingType: nextTrainingType,
 
-            if (nextCategory === "WORKSHOP") {
-                nextFormData.workshopType =
-                    prev.category === "WORKSHOP" ? prev.workshopType : "";
-            }
+            variant:
+                prev.category === "BHV" ||
+                prev.category === "PLOEGLEIDER" ||
+                prev.category === "EHBO"
+                    ? nextTrainingType
+                    : "",
 
-            return nextFormData;
-        });
+            evacuationPhase:
+                prev.category === "ONTRUIMING" ? nextTrainingType : "",
+
+            workshopType:
+                prev.category === "WORKSHOP" ? nextTrainingType : "",
+        }));
     };
 
     const handleLocationChange = (locationId) => {
         setFormData((prev) => ({
             ...prev,
             locationId,
+            companyId: "",
+        }));
+    };
+
+    const handleSelectLocation = (location) => {
+        const companies = Array.isArray(location?.companies) ? location.companies : [];
+
+        setFormData((prev) => ({
+            ...prev,
+            locationId: location?.id ? String(location.id) : "",
+            companyId: companies.length === 1 ? String(companies[0].id) : "",
         }));
     };
 
@@ -138,12 +318,10 @@ function TrainingForm({
                 ? buildUpdateTrainingPayload(formData)
                 : buildCreateTrainingPayload(formData);
 
+        console.log("Training payload:", JSON.stringify(payload, null, 2));
+
         onSubmit?.(payload);
     };
-
-    const showVariant = formData.category === "BHV" || formData.category === "EHBO";
-    const showEvacuationPhase = formData.category === "ONTRUIMING";
-    const showWorkshopType = formData.category === "WORKSHOP";
 
     return (
         <form className="training-form" onSubmit={handleSubmit}>
@@ -167,63 +345,25 @@ function TrainingForm({
                     </select>
                 </div>
 
-                {showVariant && (
-                    <div className="training-form__field">
-                        <label htmlFor="variant">Variant</label>
-                        <select
-                            id="variant"
-                            name="variant"
-                            value={formData.variant}
-                            onChange={handleChange}
-                            disabled={mode === "edit"}
-                        >
-                            <option value="">Kies variant</option>
-                            {VARIANT_OPTIONS.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                )}
+                <div className="training-form__field">
+                    <label htmlFor="trainingType">{getTrainingTypeLabel()}</label>
+                    <select
+                        id="trainingType"
+                        name="trainingType"
+                        value={selectedTrainingTypeValue}
+                        onChange={handleTrainingTypeChange}
+                        disabled={mode === "edit"}
+                        required
+                    >
+                        <option value="">Kies trainingstype</option>
 
-                {showEvacuationPhase && (
-                    <div className="training-form__field">
-                        <label htmlFor="evacuationPhase">Fase ontruiming</label>
-                        <select
-                            id="evacuationPhase"
-                            name="evacuationPhase"
-                            value={formData.evacuationPhase}
-                            onChange={handleChange}
-                        >
-                            <option value="">Kies fase</option>
-                            {EVACUATION_PHASE_OPTIONS.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                )}
-
-                {showWorkshopType && (
-                    <div className="training-form__field">
-                        <label htmlFor="workshopType">Workshop type</label>
-                        <select
-                            id="workshopType"
-                            name="workshopType"
-                            value={formData.workshopType}
-                            onChange={handleChange}
-                        >
-                            <option value="">Kies workshop</option>
-                            {WORKSHOP_TYPE_OPTIONS.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                )}
+                        {trainingTypeOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
                 <div className="training-form__field">
                     <label htmlFor="courseDate">Datum</label>
@@ -263,10 +403,62 @@ function TrainingForm({
                     locations={locations}
                     value={formData.locationId}
                     onChange={handleLocationChange}
+                    onSelectLocation={handleSelectLocation}
                     required
                     disabled={loading || locationsLoading}
                     error={locationsError}
                 />
+
+                <div className="training-form__field">
+                    <label htmlFor="companyId">Bedrijf</label>
+
+                    <select
+                        id="companyId"
+                        name="companyId"
+                        value={formData.companyId}
+                        onChange={handleChange}
+                        required
+                        disabled={
+                            loading ||
+                            locationsLoading ||
+                            !selectedLocation ||
+                            linkedCompanies.length === 0
+                        }
+                    >
+                        <option value="">
+                            {!selectedLocation
+                                ? "Kies eerst een locatie"
+                                : linkedCompanies.length === 0
+                                    ? "Geen bedrijven gekoppeld"
+                                    : "Kies bedrijf"}
+                        </option>
+
+                        {linkedCompanies.map((company) => (
+                            <option key={company.id} value={String(company.id)}>
+                                {company.name}
+                            </option>
+                        ))}
+                    </select>
+
+                    {selectedLocation && linkedCompanies.length === 1 && (
+                        <small className="training-form__hint">
+                            Automatisch gekozen: {linkedCompanies[0].name}
+                        </small>
+                    )}
+
+                    {selectedLocation && linkedCompanies.length > 1 && (
+                        <small className="training-form__hint">
+                            Deze locatie heeft meerdere bedrijven. Kies het juiste bedrijf.
+                        </small>
+                    )}
+
+                    {selectedLocation && linkedCompanies.length === 0 && (
+                        <small className="training-form__field-error">
+                            Deze locatie heeft nog geen gekoppeld bedrijf. Koppel eerst een
+                            bedrijf aan deze locatie.
+                        </small>
+                    )}
+                </div>
 
                 <div className="training-form__field">
                     <label htmlFor="trainerId">Trainer ID</label>
@@ -282,6 +474,58 @@ function TrainingForm({
                     <small className="training-form__hint">
                         Trainer mag leeg blijven.
                     </small>
+                </div>
+
+                <div className="training-form__field training-form__field--checkbox">
+                    <label htmlFor="competencyFirstAidEmergency">
+                        <input
+                            id="competencyFirstAidEmergency"
+                            name="competencyFirstAidEmergency"
+                            type="checkbox"
+                            checked={formData.competencyFirstAidEmergency}
+                            onChange={handleChange}
+                        />
+                        Levensreddend handelen spoed
+                    </label>
+                </div>
+
+                <div className="training-form__field training-form__field--checkbox">
+                    <label htmlFor="competencyFirstAidNonEmergency">
+                        <input
+                            id="competencyFirstAidNonEmergency"
+                            name="competencyFirstAidNonEmergency"
+                            type="checkbox"
+                            checked={formData.competencyFirstAidNonEmergency}
+                            onChange={handleChange}
+                        />
+                        Eerste hulp niet-spoed
+                    </label>
+                </div>
+
+                <div className="training-form__field training-form__field--checkbox">
+                    <label htmlFor="competencyFireFighting">
+                        <input
+                            id="competencyFireFighting"
+                            name="competencyFireFighting"
+                            type="checkbox"
+                            checked={formData.competencyFireFighting}
+                            onChange={handleChange}
+                        />
+                        Brandbestrijding
+                    </label>
+                </div>
+
+                <div className="training-form__field training-form__field--checkbox">
+                    <label htmlFor="competencyEvacuation">
+                        <input
+                            id="competencyEvacuation"
+                            name="competencyEvacuation"
+                            type="checkbox"
+                            checked={formData.competencyEvacuation}
+                            onChange={handleChange}
+                        />
+                        Ontruiming
+                    </label>
                 </div>
 
                 {mode === "edit" && (
@@ -301,7 +545,16 @@ function TrainingForm({
             </div>
 
             <div className="training-form__actions">
-                <button type="submit" disabled={loading || locationsLoading}>
+                <button
+                    type="submit"
+                    disabled={
+                        loading ||
+                        locationsLoading ||
+                        !formData.locationId ||
+                        !formData.companyId ||
+                        !selectedTrainingTypeValue
+                    }
+                >
                     {loading
                         ? "Opslaan..."
                         : mode === "edit"

@@ -1,6 +1,14 @@
 function DashboardCard({ card }) {
     return (
-        <article className="dashboard-card">
+        <article className={`dashboard-card dashboard-card--${card.tone || "neutral"}`}>
+            <div className="dashboard-card__top">
+                {card.label && (
+                    <span className="dashboard-card__label">
+                        {card.label}
+                    </span>
+                )}
+            </div>
+
             <div className="dashboard-card__content">
                 <h2 className="dashboard-card__title">{card.title}</h2>
 
@@ -26,6 +34,7 @@ function DashboardCard({ card }) {
                     onClick={card.action}
                 >
                     {card.actionLabel}
+                    <span aria-hidden="true">-&gt;</span>
                 </button>
             </div>
         </article>

@@ -5,20 +5,22 @@ import instructieBlusdeken from "@/assets/image/homepageFotos/Wesley De Winne me
 
 const highlights = [
     {
-        title: "15 jaar ervaring",
-        text: "Al vijftien jaar verzorg ik diverse trainingen waarbij duidelijkheid, rust en toepasbaarheid centraal staan.",
+        number: "15+",
+        label: "jaar ervaring",
+        title: "Praktijkervaring in BHV, EHBO en ontruiming",
+        text: "De uitleg komt voort uit jarenlange ervaring met veiligheidstrainingen, oefeningen en begeleiding van deelnemers op verschillende werklocaties.",
     },
     {
-        title: "Praktijkgericht lesgeven",
-        text: "Mijn trainingen draaien om doen. Deelnemers oefenen actief, leren situaties herkennen en bouwen vertrouwen op in hun handelen.",
+        number: "10",
+        label: "deelnemers max.",
+        title: "Kleine groepen met persoonlijke begeleiding",
+        text: "Bij basis- en herhalingstrainingen is er bewust ruimte voor vragen, herhaling en persoonlijke correctie tijdens het oefenen.",
     },
     {
-        title: "Kleine groepen en maatwerk",
-        text: "Ik werk graag met kleine groepen tot maximaal 10 deelnemers, zodat er ruimte is voor persoonlijke aandacht en gerichte begeleiding.",
-    },
-    {
-        title: "Incompany en afgestemd op de praktijk",
-        text: "Trainingen kunnen op locatie worden verzorgd en worden afgestemd op de werksituatie, risico’s en leerbehoefte van de organisatie.",
+        number: "1",
+        label: "locatiegericht plan",
+        title: "Incompany training afgestemd op jullie organisatie",
+        text: "De inhoud wordt vertaald naar jullie gebouw, werkzaamheden en BHV-organisatie, zodat deelnemers oefenen met herkenbare keuzes.",
     },
 ];
 
@@ -31,56 +33,78 @@ const certifications = [
     "Beheerder brandmeldinstallaties",
 ];
 
+const proofPoints = [
+    "BHV-trainingen",
+    "BHV Ploegleider",
+    "EHBO-cursussen",
+    "Ontruimingsoefeningen",
+    "Incompany maatwerk",
+    "Voorne aan Zee & Rijnmond",
+];
+
 function AboutTrainerSection() {
     return (
-        <section className="about-trainer">
+        <section className="about-trainer" aria-labelledby="about-trainer-title">
             <div className="container">
-                <div className="about-trainer__top">
-                    <div className="about-trainer__media">
-                        <div className="about-trainer__image about-trainer__image--primary">
-                            <img
-                                src={WesleyDeWinne}
-                                alt="Wesley tijdens een praktijktraining"
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
+                <div className="about-trainer__shell">
+                    <div className="about-trainer__content">
+                        <span className="about-trainer__eyebrow">
+                            Trainer achter BHV Voorne aan Zee
+                        </span>
 
-                    <div className="about-trainer__header">
-                        <span className="about-trainer__eyebrow">Over Wesley / de trainer</span>
-
-                        <h2 className="about-trainer__title">
-                            Deskundige en toegankelijke trainingen, met de praktijk altijd centraal
+                        <h2 className="about-trainer__title" id="about-trainer-title">
+                            <span>Praktijkgerichte veiligheidstrainingen</span>
+                            <span>van Wesley</span>
                         </h2>
                     </div>
 
-                    <div className="about-trainer__text">
-                        <p className="about-trainer__intro">
-                            Mijn naam is Wesley en ik ben trainer en eigenaar van BHV Voorne aan Zee.
-                            Al 15 jaar verzorg ik diverse trainingen waarin niet alleen kennis, maar
-                            vooral het kunnen handelen centraal staat. Ik geloof dat deelnemers het
-                            meeste leren door te doen, te oefenen en actief mee te denken.
-                        </p>
+                    <div className="about-trainer__body">
+                        <div className="about-trainer__text-panel">
+                            <p className="about-trainer__lead">
+                                Wesley is trainer en eigenaar van BHV Voorne aan Zee. Met praktijkervaring bij de brandweer, kennis vanuit de ambulancezorg en een brede achtergrond in bedrijfshulpverlening verzorgt hij BHV-trainingen, BHV Ploegleider-trainingen en ontruimingsoefeningen voor bedrijven.
+                            </p>
 
-                        <p className="about-trainer__intro">
-                            Daarom geef ik het liefst interactieve trainingen waarin de cursist centraal
-                            staat. Bij basiscursisten is uitleg van vaardigheden en de theorie daarachter
-                            belangrijk om een goede basis te leggen. Bij herhalingscursisten werkt dat
-                            anders: daar ligt de nadruk veel meer op zelf aan de slag gaan, praktisch
-                            oefenen en waar nodig verdiepen op situaties uit de eigen werkomgeving.
-                        </p>
+                            <p className="about-trainer__text">
+                                De trainingen zijn praktisch, duidelijk en gericht op doen. Deelnemers leren niet alleen wat ze moeten doen, maar vooral hoe ze moeten handelen wanneer er echt iets gebeurt. Basisdeelnemers bouwen stap voor stap vertrouwen op. Herhalingsdeelnemers gaan sneller aan de slag met herkenbare scenario’s, keuzes maken onder druk en vaardigheden die passen bij hun eigen werkomgeving.
+                            </p>
 
-                        <p className="about-trainer__intro">
-                            Die combinatie van praktijkgericht werken, deskundigheid en persoonlijke
-                            aandacht zorgt voor trainingen die professioneel aanvoelen, toegankelijk
-                            blijven en direct toepasbaar zijn op de werkvloer.
-                        </p>
+                            <p className="about-trainer__text">
+                                Door deze praktijkervaring is goed duidelijk hoe belangrijk de eerste minuten zijn voordat professionele hulpdiensten aanwezig zijn. Juist in die fase maken rust, overzicht en de juiste eerste handelingen het verschil. Die ervaring wordt meegenomen in de trainingen, zodat deelnemers niet alleen kennis opdoen, maar ook meer vertrouwen krijgen om daadwerkelijk in actie te komen.
+                            </p>
+
+                            <div className="about-trainer__proof-list" aria-label="Trainingsaanbod en werkgebied">
+                                {proofPoints.map((item) => (
+                                    <span className="about-trainer__proof-pill" key={item}>
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="about-trainer__media" aria-label="Wesley de Winne tijdens praktijktraining">
+                            <div className="about-trainer__image about-trainer__image--primary">
+                                <img
+                                    src={WesleyDeWinne}
+                                    alt="Wesley de Winne geeft een praktijkgerichte BHV-training"
+                                    loading="lazy"
+                                />
+                            </div>
+
+                            <div className="about-trainer__floating-card">
+                                <strong>Duidelijk trainen</strong>
+                                <span>Rustig uitleggen, voordoen en samen oefenen.</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="about-trainer__highlights">
+                <div className="about-trainer__highlights" aria-label="Waarom kiezen voor deze trainer">
                     {highlights.map((item) => (
                         <article className="about-trainer__card" key={item.title}>
+                            <div className="about-trainer__card-stat">
+                                <strong>{item.number}</strong>
+                                <span>{item.label}</span>
+                            </div>
                             <h3 className="about-trainer__card-title">{item.title}</h3>
                             <p className="about-trainer__card-text">{item.text}</p>
                         </article>
@@ -88,10 +112,25 @@ function AboutTrainerSection() {
                 </div>
 
                 <div className="about-trainer__bottom">
+                    <div className="about-trainer__bottom-image">
+                        <img
+                            src={instructieBlusdeken}
+                            alt="BHV praktijkoefening met blusdeken tijdens veiligheidstraining"
+                            loading="lazy"
+                        />
+                    </div>
+
                     <aside className="about-trainer__certifications">
-                        <h3 className="about-trainer__certifications-title">
+                        <span className="about-trainer__certifications-kicker">
                             Certificeringen en expertise
+                        </span>
+                        <h3 className="about-trainer__certifications-title">
+                            Opleidingen met aantoonbare vakkennis
                         </h3>
+                        <p className="about-trainer__certifications-text">
+                            De trainingen sluiten aan op erkende richtlijnen en worden
+                            vertaald naar begrijpelijke stappen voor deelnemers op de werkvloer.
+                        </p>
 
                         <div className="about-trainer__tags">
                             {certifications.map((item) => (
@@ -101,14 +140,6 @@ function AboutTrainerSection() {
                             ))}
                         </div>
                     </aside>
-
-                    <div className="about-trainer__bottom-image">
-                        <img
-                            src={instructieBlusdeken}
-                            alt="Wesley tijdens een praktijkgerichte training"
-                            loading="lazy"
-                        />
-                    </div>
                 </div>
             </div>
         </section>

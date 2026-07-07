@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
 import Header from "@/shared/components/layout/header/Header";
 import Footer from "@/shared/components/layout/footer/Footer";
+import FloatingQuoteButton from "@/shared/components/ui/button/floatingQuoteButton/FloatingQuoteButton.jsx";
+import "./Layout.css";
 
 function Layout({ children }) {
     const location = useLocation();
@@ -13,7 +15,7 @@ function Layout({ children }) {
     const hideChrome =
         location.pathname === "/veiligheidscheck" ||
         location.pathname.startsWith("/veiligheidscheck/start") ||
-        location.pathname === "/veiligheidscheck-bedankt"
+        location.pathname === "/veiligheidscheck-bedankt";
 
 
     return (
@@ -26,6 +28,10 @@ function Layout({ children }) {
 
             {/* Footer alleen tonen buiten funnel */}
             {!hideChrome && <Footer />}
+
+            {!hideChrome && (
+                <FloatingQuoteButton to="/offerte" label="Offerte aanvragen" />
+            )}
         </div>
     );
 }
