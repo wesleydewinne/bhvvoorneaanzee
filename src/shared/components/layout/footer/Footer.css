@@ -162,8 +162,17 @@
         gap: 2.8rem;
     }
 
+    .footer-column {
+        text-align: center;
+    }
+
     .footer-column h4 {
-        text-align: left;
+        text-align: center;
+    }
+
+    .footer-column ul {
+        display: grid;
+        justify-items: center;
     }
 
     .footer-bottom {

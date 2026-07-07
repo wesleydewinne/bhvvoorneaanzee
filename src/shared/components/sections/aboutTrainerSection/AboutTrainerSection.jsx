@@ -67,7 +67,7 @@ function AboutTrainerSection() {
                             <p className="about-trainer__text">
                                 De trainingen zijn praktisch, duidelijk en gericht op doen. Deelnemers leren niet alleen wat ze moeten doen, maar vooral hoe ze moeten handelen wanneer er echt iets gebeurt. Basisdeelnemers bouwen stap voor stap vertrouwen op. Herhalingsdeelnemers gaan sneller aan de slag met herkenbare scenario’s, keuzes maken onder druk en vaardigheden die passen bij hun eigen werkomgeving.
                             </p>
-
+                            <br />
                             <p className="about-trainer__text">
                                 Door deze praktijkervaring is goed duidelijk hoe belangrijk de eerste minuten zijn voordat professionele hulpdiensten aanwezig zijn. Juist in die fase maken rust, overzicht en de juiste eerste handelingen het verschil. Die ervaring wordt meegenomen in de trainingen, zodat deelnemers niet alleen kennis opdoen, maar ook meer vertrouwen krijgen om daadwerkelijk in actie te komen.
                             </p>

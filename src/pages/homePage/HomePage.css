@@ -177,18 +177,27 @@
     }
 
     .homepage-hero__content {
+        align-items: center;
         gap: var(--space-3);
+        text-align: center;
     }
 
     .homepage-hero__title-row {
         grid-template-columns: 1fr;
         align-items: start;
+        justify-items: center;
         gap: var(--space-4);
+    }
+
+    .homepage-hero__title-row .google-review-badge {
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .homepage-hero__title {
         max-width: 100%;
         font-size: clamp(3.2rem, 2.6rem + 2vw, 5rem);
+        text-align: center;
     }
 
     .homepage-hero__subtitle {

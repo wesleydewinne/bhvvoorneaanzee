@@ -358,7 +358,8 @@
 
 @media (max-width: 860px) {
     .about-trainer {
-        padding: var(--space-7) 0;
+        padding: calc(var(--space-7) + 4rem) 0 var(--space-7);
+        clip-path: polygon(0 4rem, 100% 0, 100% 100%, 0 100%);
     }
 
     .about-trainer__highlights {
@@ -373,16 +374,22 @@
 
 @media (max-width: 576px) {
     .about-trainer {
-        padding: var(--space-6) 0;
+        padding: 8rem 0 var(--space-6);
+        clip-path: polygon(0 4.8rem, 100% 1.4rem, 100% 100%, 0 100%);
     }
 
     .about-trainer__shell {
         gap: 2.4rem;
     }
 
+    .about-trainer__eyebrow,
+    .about-trainer__certifications-kicker {
+        font-size: 1.15rem;
+    }
+
     .about-trainer__title {
-        font-size: clamp(3rem, 10vw, 3.8rem);
-        line-height: 1.05;
+        font-size: clamp(2.6rem, 8.4vw, 3.2rem);
+        line-height: 1.08;
     }
 
     .about-trainer__title span:first-child {
@@ -390,8 +397,8 @@
     }
 
     .about-trainer__lead {
-        font-size: 1.58rem;
-        line-height: 1.72;
+        font-size: 1.48rem;
+        line-height: 1.68;
     }
 
     .about-trainer__text,
