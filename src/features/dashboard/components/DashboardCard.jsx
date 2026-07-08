@@ -1,7 +1,13 @@
+import { DashboardChevron, DashboardIcon } from "./DashboardIcon.jsx";
+
 function DashboardCard({ card }) {
     return (
         <article className={`dashboard-card dashboard-card--${card.tone || "neutral"}`}>
             <div className="dashboard-card__top">
+                <span className="dashboard-card__icon">
+                    <DashboardIcon name={card.iconKey ?? card.key} />
+                </span>
+
                 {card.label && (
                     <span className="dashboard-card__label">
                         {card.label}
@@ -34,7 +40,7 @@ function DashboardCard({ card }) {
                     onClick={card.action}
                 >
                     {card.actionLabel}
-                    <span aria-hidden="true">-&gt;</span>
+                    <DashboardChevron className="dashboard-card__button-icon" />
                 </button>
             </div>
         </article>

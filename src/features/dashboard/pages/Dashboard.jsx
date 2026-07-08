@@ -4,7 +4,16 @@ import { useNavigate } from "react-router-dom";
 import AdminDashboardPanel from "../components/AdminDashboardPanel.jsx";
 import CursistDashboardPanel from "../components/CursistDashboardPanel.jsx";
 import DashboardCard from "../components/DashboardCard.jsx";
+import {
+    DashboardBell,
+    DashboardCalendarIcon,
+    DashboardChevron,
+    DashboardHelpIcon,
+    DashboardHomeIcon,
+    DashboardIcon,
+} from "../components/DashboardIcon.jsx";
 import RoleDashboardRenderer from "../components/RoleDashboardRenderer.jsx";
+import logo from "@/assets/image/common/logo/logo.png";
 import {
     getDashboardCards,
     getDashboardQuickActions,
@@ -257,42 +266,110 @@ function Dashboard() {
         roleOverviewLoading,
     });
     const roleLabels = getRoleLabels(roles);
+    const todayLabel = new Intl.DateTimeFormat("nl-NL", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    }).format(new Date());
+    const primaryRole = roleLabels[0] ?? "Gebruiker";
 
     return (
         <main className="dashboard">
+            <aside className="dashboard-sidebar" aria-label="Dashboard navigatie">
+                <div className="dashboard-sidebar__brand">
+                    <img src={logo} alt="BHV Voorne aan Zee" />
+                </div>
+
+                <nav className="dashboard-sidebar__nav">
+                    <button type="button" className="dashboard-sidebar__link is-active">
+                        <DashboardIcon name="dashboard" />
+                        <span>Dashboard</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        className="dashboard-sidebar__link"
+                        onClick={() => navigate("/")}
+                    >
+                        <DashboardHomeIcon />
+                        <span>Homepage</span>
+                    </button>
+
+                    {dashboardCards
+                        .filter((card) => card.key !== "quotes" && !card.key.includes("quotes"))
+                        .slice(0, 8)
+                        .map((card) => (
+                        <button
+                            key={card.key}
+                            type="button"
+                            className="dashboard-sidebar__link"
+                            onClick={card.action}
+                        >
+                            <DashboardIcon name={card.iconKey ?? card.key} />
+                            <span>{card.title}</span>
+                        </button>
+                    ))}
+                </nav>
+
+                <div className="dashboard-sidebar__help">
+                    <DashboardHelpIcon />
+                    <strong>Hulp nodig?</strong>
+                    <span>We staan voor je klaar.</span>
+                    <button type="button" onClick={() => navigate("/contact")}>
+                        Contact opnemen
+                    </button>
+                </div>
+            </aside>
+
             <div className="dashboard__container">
-                <section className="dashboard__header" aria-labelledby="dashboard-title">
-                    <div className="dashboard__header-content">
+                <header className="dashboard-topbar">
+                    <section className="dashboard__header" aria-labelledby="dashboard-title">
                         <p className="dashboard__eyebrow">
                             {getDashboardProfileLabel(dashboardProfile)}
                         </p>
-                        <h1 id="dashboard-title">Welkom terug, {displayName}!</h1>
-
+                        <h1 id="dashboard-title">Goedemorgen, {displayName}!</h1>
                         <p className="dashboard__intro">
-                            Kies hieronder waar je mee verder wilt. Dit dashboard geeft
-                            je een centraal startpunt voor beheer, opvolging en je
-                            persoonlijke account.
+                            Hier is wat er vandaag speelt bij BHV Voorne aan Zee.
                         </p>
-                    </div>
+                    </section>
 
-                    <div className="dashboard__roles" aria-label="Jouw rollen">
-                        {roleLabels.length > 0 ? (
-                            roleLabels.map((role) => (
-                                <span key={role} className="dashboard__role-badge">
-                                    {role}
-                                </span>
-                            ))
-                        ) : (
-                            <span className="dashboard__role-badge">Gebruiker</span>
-                        )}
+                    <div className="dashboard-topbar__actions">
+                        <div className="dashboard-date-pill">
+                            <DashboardCalendarIcon />
+                            <span>{todayLabel}</span>
+                        </div>
+
+                        <button
+                            type="button"
+                            className="dashboard-icon-button"
+                            aria-label="Meldingen bekijken"
+                        >
+                            <DashboardBell />
+                            <span>3</span>
+                        </button>
+
+                        <div className="dashboard-user">
+                            <span className="dashboard-user__avatar">
+                                {getInitials(displayName)}
+                            </span>
+                            <span>
+                                <strong>{displayName}</strong>
+                                <small>{primaryRole}</small>
+                            </span>
+                        </div>
                     </div>
-                </section>
+                </header>
 
                 <section className="dashboard__overview" aria-label="Dashboard overzicht">
                     {dashboardStats.map((item) => (
                         <article key={item.key} className="dashboard-stat">
-                            <strong>{item.value}</strong>
-                            <span>{item.label}</span>
+                            <span className="dashboard-stat__icon">
+                                <DashboardIcon name={item.iconKey ?? item.key} />
+                            </span>
+                            <span className="dashboard-stat__body">
+                                <strong>{item.value}</strong>
+                                <span>{item.label}</span>
+                            </span>
                         </article>
                     ))}
                 </section>
@@ -336,8 +413,12 @@ function Dashboard() {
                                 className="dashboard__quick-button"
                                 onClick={action.action}
                             >
+                                <span className="dashboard__quick-icon">
+                                    <DashboardIcon name={action.iconKey ?? action.key} />
+                                </span>
                                 <span>{action.label}</span>
                                 <small>{action.helper}</small>
+                                <DashboardChevron className="dashboard__quick-arrow" />
                             </button>
                         ))}
                     </div>
@@ -390,4 +471,14 @@ function canUseRoleOverview(profileType) {
         DASHBOARD_PROFILE_TYPES.TECHNICIAN,
         DASHBOARD_PROFILE_TYPES.TEAM_LEADER,
     ].includes(profileType);
+}
+
+function getInitials(name) {
+    return String(name)
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part.charAt(0).toUpperCase())
+        .join("") || "BH";
 }

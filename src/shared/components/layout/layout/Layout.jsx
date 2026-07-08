@@ -15,7 +15,8 @@ function Layout({ children }) {
     const hideChrome =
         location.pathname === "/veiligheidscheck" ||
         location.pathname.startsWith("/veiligheidscheck/start") ||
-        location.pathname === "/veiligheidscheck-bedankt";
+        location.pathname === "/veiligheidscheck-bedankt" ||
+        location.pathname === "/dashboard";
 
 
     return (
