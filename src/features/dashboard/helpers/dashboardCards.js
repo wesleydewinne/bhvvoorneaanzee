@@ -1,10 +1,11 @@
 import { DASHBOARD_PROFILE_TYPES } from "./dashboardProfiles.js";
 
-export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
+export function getDashboardCards({ dashboardProfile, user, navigate }) {
     if (dashboardProfile.type === DASHBOARD_PROFILE_TYPES.ADMIN) {
         return [
             {
                 key: "trainings",
+                iconKey: "calendar",
                 tone: "primary",
                 label: "Planning",
                 title: "Trainingen",
@@ -19,6 +20,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "companies",
+                iconKey: "briefcase-business",
                 tone: "blue",
                 label: "Relaties",
                 title: "Bedrijven",
@@ -33,6 +35,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "locations",
+                iconKey: "map-pin",
                 tone: "green",
                 label: "Locaties",
                 title: "Locaties",
@@ -47,6 +50,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "evaluations",
+                iconKey: "clipboard-check",
                 tone: "purple",
                 label: "Kwaliteit",
                 title: "Evaluaties",
@@ -58,6 +62,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "contact",
+                iconKey: "inbox",
                 tone: "orange",
                 label: "Inbox",
                 title: "Contact",
@@ -69,6 +74,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "quotes",
+                iconKey: "file-text",
                 tone: "yellow",
                 label: "Sales",
                 title: "Offertes",
@@ -80,6 +86,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "reviews",
+                iconKey: "star",
                 tone: "green",
                 label: "Reputatie",
                 title: "Reviews",
@@ -91,6 +98,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "users",
+                iconKey: "users",
                 tone: "blue",
                 label: "Accounts",
                 title: "Gebruikers",
@@ -102,6 +110,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "invoices",
+                iconKey: "receipt",
                 tone: "neutral",
                 label: "Finance",
                 title: "Facturen",
@@ -129,6 +138,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "my-trainings",
+                iconKey: "graduation-cap",
                 tone: "primary",
                 label: "Trainingen",
                 title: "Mijn trainingen",
@@ -140,6 +150,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "certificates",
+                iconKey: "award",
                 tone: "green",
                 label: "Bewijs",
                 title: "Certificaten",
@@ -151,6 +162,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "elearning",
+                iconKey: "book-open",
                 tone: "blue",
                 label: "Online",
                 title: "E-learning",
@@ -178,6 +190,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "trainer-planning",
+                iconKey: "calendar",
                 tone: "primary",
                 label: "Planning",
                 title: "Mijn trainingen",
@@ -189,6 +202,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "trainer-evaluations",
+                iconKey: "clipboard-check",
                 tone: "purple",
                 label: "Kwaliteit",
                 title: "Evaluaties",
@@ -206,6 +220,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "office-quotes",
+                iconKey: "file-text",
                 tone: "yellow",
                 label: "Sales",
                 title: "Offertes",
@@ -217,6 +232,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "office-contact",
+                iconKey: "inbox",
                 tone: "orange",
                 label: "Inbox",
                 title: "Contact",
@@ -228,6 +244,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "office-companies",
+                iconKey: "briefcase-business",
                 tone: "blue",
                 label: "Relaties",
                 title: "Bedrijven",
@@ -245,6 +262,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "training-manager-planning",
+                iconKey: "calendar",
                 tone: "primary",
                 label: "Planning",
                 title: "Trainingen beheren",
@@ -256,6 +274,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "training-manager-evaluations",
+                iconKey: "clipboard-check",
                 tone: "purple",
                 label: "Kwaliteit",
                 title: "Evaluaties",
@@ -267,6 +286,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "training-manager-locations",
+                iconKey: "map-pin",
                 tone: "green",
                 label: "Locaties",
                 title: "Trainingslocaties",
@@ -284,6 +304,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "safety-locations",
+                iconKey: "map-pin",
                 tone: "green",
                 label: "Veiligheid",
                 title: "Locaties en risico's",
@@ -295,6 +316,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "safety-trainingen",
+                iconKey: "graduation-cap",
                 tone: "primary",
                 label: "Trainingen",
                 title: "Veiligheidstrainingen",
@@ -306,6 +328,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "safety-reports",
+                iconKey: "shield-check",
                 tone: "orange",
                 label: "Rapportage",
                 title: "Rapportages",
@@ -323,6 +346,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "finance-quotes",
+                iconKey: "file-text",
                 tone: "yellow",
                 label: "Finance",
                 title: "Offertes",
@@ -334,6 +358,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "finance-companies",
+                iconKey: "briefcase-business",
                 tone: "blue",
                 label: "Relaties",
                 title: "Bedrijven",
@@ -345,6 +370,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "finance-invoices",
+                iconKey: "receipt",
                 tone: "neutral",
                 label: "Facturen",
                 title: "Factuurbeheer",
@@ -362,6 +388,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "building-locations",
+                iconKey: "map-pin",
                 tone: "green",
                 label: "Gebouw",
                 title: "Locaties",
@@ -373,6 +400,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "building-safety",
+                iconKey: "shield-check",
                 tone: "orange",
                 label: "Veiligheid",
                 title: "Veiligheidsopvolging",
@@ -390,6 +418,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "location-trainings",
+                iconKey: "calendar",
                 tone: "primary",
                 label: "Locatie",
                 title: "Trainingen op locatie",
@@ -401,6 +430,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "location-details",
+                iconKey: "map-pin",
                 tone: "green",
                 label: "Beheer",
                 title: "Locatiegegevens",
@@ -418,6 +448,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "technician-locations",
+                iconKey: "map-pin",
                 tone: "green",
                 label: "BBMI",
                 title: "Technische locaties",
@@ -429,6 +460,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "technician-reports",
+                iconKey: "wrench",
                 tone: "orange",
                 label: "Controle",
                 title: "Rapportages",
@@ -446,6 +478,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
         return [
             {
                 key: "team-planning",
+                iconKey: "users",
                 tone: "primary",
                 label: "Team",
                 title: "Teamplanning",
@@ -457,6 +490,7 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
             },
             {
                 key: "team-evaluations",
+                iconKey: "clipboard-check",
                 tone: "purple",
                 label: "Kwaliteit",
                 title: "Evaluaties",
@@ -475,11 +509,12 @@ export function getDashboardCards({ dashboardProfile, roles, user, navigate }) {
     ];
 }
 
-export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) {
+export function getDashboardQuickActions({ dashboardProfile, navigate }) {
     if (dashboardProfile.type === DASHBOARD_PROFILE_TYPES.ADMIN) {
         return [
             {
                 key: "new-training",
+                iconKey: "calendar",
                 label: "Nieuwe training",
                 helper: "Plan direct een training in.",
                 action: () => navigate("/admin/trainingen/new"),
@@ -503,12 +538,14 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
         return [
             {
                 key: "trainer-planning",
+                iconKey: "calendar",
                 label: "Trainingen openen",
                 helper: "Bekijk jouw planning en details.",
                 action: () => navigate("/admin/trainingen"),
             },
             {
                 key: "trainer-profile",
+                iconKey: "settings",
                 label: "Profiel bijwerken",
                 helper: "Controleer je gegevens en foto.",
                 action: () => navigate("/profile"),
@@ -532,6 +569,7 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
             },
             {
                 key: "companies",
+                iconKey: "briefcase-business",
                 label: "Bedrijven beheren",
                 helper: "Open relatiebeheer.",
                 action: () => navigate("/admin/companies"),
@@ -555,12 +593,14 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
             },
             {
                 key: "evaluaties",
+                iconKey: "clipboard-check",
                 label: "Evaluaties",
                 helper: "Bekijk feedback en resultaten.",
                 action: () => navigate("/admin/evaluations"),
             },
             {
                 key: "locaties",
+                iconKey: "map-pin",
                 label: "Locaties",
                 helper: "Controleer trainingslocaties.",
                 action: () => navigate("/admin/locations"),
@@ -572,6 +612,7 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
         return [
             {
                 key: "locaties",
+                iconKey: "map-pin",
                 label: "Locaties openen",
                 helper: "Bekijk veiligheidsinformatie.",
                 action: () => navigate("/admin/locations"),
@@ -595,12 +636,14 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
         return [
             {
                 key: "quotes",
+                iconKey: "file-text",
                 label: "Offertes openen",
                 helper: "Bekijk open aanvragen.",
                 action: () => navigate("/admin/offertes"),
             },
             {
                 key: "companies",
+                iconKey: "briefcase-business",
                 label: "Bedrijven",
                 helper: "Bekijk relatiegegevens.",
                 action: () => navigate("/admin/companies"),
@@ -622,6 +665,7 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
         return [
             {
                 key: "locations",
+                iconKey: "map-pin",
                 label: "Locaties openen",
                 helper: "Bekijk locatiegegevens.",
                 action: () => navigate("/admin/locations"),
@@ -639,12 +683,14 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
         return [
             {
                 key: "team-trainingen",
+                iconKey: "calendar",
                 label: "Trainingen openen",
                 helper: "Bekijk teamplanning.",
                 action: () => navigate("/admin/trainingen"),
             },
             {
                 key: "team-evaluaties",
+                iconKey: "clipboard-check",
                 label: "Evaluaties",
                 helper: "Bekijk feedback en resultaten.",
                 action: () => navigate("/admin/evaluations"),
@@ -670,7 +716,6 @@ export function getDashboardQuickActions({ dashboardProfile, roles, navigate }) 
 
 export function getDashboardStats({
     dashboardProfile,
-    roles,
     user,
     overview,
     overviewLoading,
@@ -683,6 +728,7 @@ export function getDashboardStats({
         return [
             {
                 key: "planning",
+                iconKey: "calendar",
                 value: overviewLoading
                     ? "Laden..."
                     : formatCount(overview?.upcomingTrainingCount),
@@ -690,6 +736,7 @@ export function getDashboardStats({
             },
             {
                 key: "follow-up",
+                iconKey: "file-text",
                 value: overviewLoading
                     ? "Laden..."
                     : formatCount(overview?.openQuoteCount),
@@ -697,6 +744,7 @@ export function getDashboardStats({
             },
             {
                 key: "quality",
+                iconKey: "mail",
                 value: overviewLoading
                     ? "Laden..."
                     : formatCount(overview?.openContactMessageCount),

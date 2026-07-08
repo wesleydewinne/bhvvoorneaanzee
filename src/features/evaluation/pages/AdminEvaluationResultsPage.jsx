@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BarChart3, MessageSquare, QrCode, RefreshCw } from "lucide-react";
 import evaluationService from "../services/evaluationService";
 import "../styles/adminEvaluationResults.css";
 
@@ -8,57 +9,94 @@ export default function AdminEvaluationResultsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    useEffect(() => {
-        async function loadSummaries() {
-            try {
-                setLoading(true);
-                setError("");
+    async function loadSummaries() {
+        try {
+            setLoading(true);
+            setError("");
 
-                const data = await evaluationService.getAllSummaries();
-                setSummaries(data ?? []);
-            } catch (err) {
-                console.error(err);
-                setError("Het laden van de evaluatieoverzichten is mislukt.");
-            } finally {
-                setLoading(false);
-            }
+            const data = await evaluationService.getAllSummaries();
+            setSummaries(data ?? []);
+        } catch (err) {
+            console.error(err);
+            setError("Het laden van de evaluatieoverzichten is mislukt.");
+        } finally {
+            setLoading(false);
         }
+    }
 
+    useEffect(() => {
         loadSummaries();
     }, []);
 
-    return (
-        <main className="admin-evaluation-results-page">
-            <div className="admin-evaluation-results-page__container">
-                <header className="admin-evaluation-results-page__header">
-                    <h1>Evaluatieoverzicht</h1>
-                    <p className="admin-evaluation-results-page__intro">
-                        Bekijk per training de samenvatting van de evaluaties.
-                    </p>
-                </header>
+    const responseCount = summaries.reduce((total, summary) => total + (summary.responseCount ?? 0), 0);
 
-                {loading && (
-                    <div className="admin-evaluation-results-page__message">
-                        <p>Overzichten laden...</p>
+    return (
+        <section className="admin-evaluation-results-page dashboard-admin-page">
+                <section className="dashboard-admin-hero" aria-labelledby="evaluations-title">
+                    <div>
+                        <p className="dashboard__eyebrow">Kwaliteit</p>
+                        <h1 id="evaluations-title">Evaluatieoverzicht</h1>
+                        <p>Bekijk per training de samenvatting, reacties en QR-code voor evaluaties.</p>
                     </div>
-                )}
+
+                    <div className="dashboard-admin-hero__actions">
+                        <button
+                            type="button"
+                            className="dashboard-admin-button dashboard-admin-button--secondary"
+                            onClick={loadSummaries}
+                            disabled={loading}
+                        >
+                            <RefreshCw aria-hidden="true" />
+                            Evaluaties ophalen
+                        </button>
+                        <Link to="/admin/evaluations/generate" className="dashboard-admin-button">
+                            <QrCode aria-hidden="true" />
+                            QR maken
+                        </Link>
+                    </div>
+                </section>
+
+                <section className="dashboard-admin-stats" aria-label="Evaluatie statistieken">
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon">
+                            <BarChart3 aria-hidden="true" />
+                        </span>
+                        <strong>{loading ? "..." : summaries.length}</strong>
+                        <span>Trainingen</span>
+                    </article>
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--green">
+                            <MessageSquare aria-hidden="true" />
+                        </span>
+                        <strong>{loading ? "..." : responseCount}</strong>
+                        <span>Reacties totaal</span>
+                    </article>
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--orange">
+                            <QrCode aria-hidden="true" />
+                        </span>
+                        <strong>QR</strong>
+                        <span>Genereren</span>
+                    </article>
+                </section>
+
+                {loading && <p className="dashboard__state">Overzichten laden...</p>}
 
                 {error && (
-                    <div className="admin-evaluation-results-page__message admin-evaluation-results-page__message--error">
-                        <p>{error}</p>
-                    </div>
+                    <p className="dashboard-admin-message dashboard-admin-message--error">{error}</p>
                 )}
 
                 {!loading && !error && (
                     <section
-                        className="admin-evaluation-results"
+                        className="dashboard-admin-panel admin-evaluation-results"
                         aria-labelledby="evaluation-summary-list-title"
                     >
-                        <div className="admin-evaluation-results__toolbar">
-                            <h2 id="evaluation-summary-list-title">Samenvattingen</h2>
-                            <p className="admin-evaluation-results__count">
-                                {summaries.length} training{summaries.length === 1 ? "" : "en"}
-                            </p>
+                        <div className="dashboard-admin-panel__header">
+                            <div>
+                                <h2 id="evaluation-summary-list-title">Samenvattingen</h2>
+                                <p>Open details of de QR-code per training.</p>
+                            </div>
+                            <span>{summaries.length} training{summaries.length === 1 ? "" : "en"}</span>
                         </div>
 
                         {summaries.length === 0 ? (
@@ -110,7 +148,6 @@ export default function AdminEvaluationResultsPage() {
                         )}
                     </section>
                 )}
-            </div>
-        </main>
+        </section>
     );
 }

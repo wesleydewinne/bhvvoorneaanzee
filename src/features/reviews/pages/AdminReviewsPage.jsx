@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { RefreshCw, Star, Wand2 } from "lucide-react";
 import reviewService from "../services/reviewService.js";
 import "../style/AdminReviewsPage.css";
 
@@ -51,65 +52,87 @@ function AdminReviewsPage() {
     };
 
     return (
-        <main className="admin-reviews-page">
-            <div className="admin-reviews-page__container">
-                <section className="admin-reviews-page__header">
-                    <h1 className="admin-reviews-page__title">Reviews beheren</h1>
-                    <p className="admin-reviews-page__intro">
-                        Vanaf deze pagina kun je Google reviews handmatig vernieuwen.
-                        Later kun je hier ook moderatie, zichtbaarheid en filtering beheren.
-                    </p>
-                </section>
-
-                <section className="admin-reviews-card">
-                    <div className="admin-reviews-card__content">
-                        <h2 className="admin-reviews-card__title">
-                            Google reviews verversen
-                        </h2>
-
-                        <p className="admin-reviews-card__description">
-                            Gebruik deze actie om de nieuwste Google reviews op te halen
-                            en op te slaan in de backend.
+        <section className="admin-reviews-page dashboard-admin-page">
+                <section className="dashboard-admin-hero" aria-labelledby="reviews-title">
+                    <div>
+                        <p className="dashboard__eyebrow">Reputatie</p>
+                        <h1 id="reviews-title">Reviews beheren</h1>
+                        <p>
+                            Vernieuw Google reviews handmatig en controleer wanneer de synchronisatie is uitgevoerd.
                         </p>
-
-                        <ul className="admin-reviews-card__meta">
-                            <li className="admin-reviews-card__meta-item">
-                                Handmatige synchronisatie van reviews
-                            </li>
-                            <li className="admin-reviews-card__meta-item">
-                                Handig wanneer de eerste vulling nog leeg is
-                            </li>
-                            <li className="admin-reviews-card__meta-item">
-                                Laatste verversing: {formatDateTime(lastRefreshedAt)}
-                            </li>
-                        </ul>
                     </div>
 
-                    <div className="admin-reviews-card__actions">
+                    <div className="dashboard-admin-hero__actions">
                         <button
                             type="button"
-                            className="admin-reviews-card__button"
+                            className="dashboard-admin-button"
                             onClick={handleRefreshReviews}
                             disabled={refreshing}
                         >
+                            <RefreshCw aria-hidden="true" />
+                            {refreshing ? "Bezig met verversen..." : "Reviews verversen"}
+                        </button>
+                    </div>
+                </section>
+
+                <section className="dashboard-admin-stats" aria-label="Review status">
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon">
+                            <Star aria-hidden="true" />
+                        </span>
+                        <strong>Google</strong>
+                        <span>Reviewbron</span>
+                    </article>
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--green">
+                            <RefreshCw aria-hidden="true" />
+                        </span>
+                        <strong>{refreshing ? "..." : "Sync"}</strong>
+                        <span>Handmatig verversen</span>
+                    </article>
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--orange">
+                            <Wand2 aria-hidden="true" />
+                        </span>
+                        <strong>{lastRefreshedAt ? "Actief" : "-"}</strong>
+                        <span>Laatste status</span>
+                    </article>
+                </section>
+
+                <section className="dashboard-admin-panel">
+                    <div className="dashboard-admin-panel__header">
+                        <div>
+                            <h2>Google reviews verversen</h2>
+                            <p>Haal de nieuwste reviews op en sla ze op in de backend.</p>
+                        </div>
+                        <span>Laatste verversing: {formatDateTime(lastRefreshedAt)}</span>
+                    </div>
+
+                    <div className="dashboard-admin-hero__actions">
+                        <button
+                            type="button"
+                            className="dashboard-admin-button"
+                            onClick={handleRefreshReviews}
+                            disabled={refreshing}
+                        >
+                            <RefreshCw aria-hidden="true" />
                             {refreshing ? "Bezig met verversen..." : "Google reviews verversen"}
                         </button>
                     </div>
                 </section>
 
                 {successMessage && (
-                    <p className="admin-reviews-message admin-reviews-message--success">
+                    <p className="dashboard-admin-message dashboard-admin-message--success">
                         {successMessage}
                     </p>
                 )}
 
                 {errorMessage && (
-                    <p className="admin-reviews-message admin-reviews-message--error">
+                    <p className="dashboard-admin-message dashboard-admin-message--error">
                         {errorMessage}
                     </p>
                 )}
-            </div>
-        </main>
+        </section>
     );
 }
 

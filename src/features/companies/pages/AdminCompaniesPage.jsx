@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BriefcaseBusiness, Plus, RefreshCw, Search } from "lucide-react";
 import companyService from "../services/companyService.js";
 import CompanySearchBar from "../components/CompanySearchBar.jsx";
 import CompaniesTable from "../components/CompaniesTable.jsx";
@@ -56,28 +57,73 @@ function AdminCompaniesPage() {
     };
 
     return (
-        <main className="companies-page">
-            <div className="companies-page__container">
-                <section className="companies-page__header">
-                    <div>
-                        <h1>Bedrijven beheren</h1>
-                        <p>Bekijk, zoek, voeg toe en beheer bedrijven.</p>
-                    </div>
+        <section className="companies-page dashboard-admin-page">
+            <section className="dashboard-admin-hero" aria-labelledby="companies-title">
+                <div>
+                    <p className="dashboard__eyebrow">Relatiebeheer</p>
+                    <h1 id="companies-title">Bedrijven beheren</h1>
+                    <p>Bekijk alle bedrijven, zoek relaties en voeg nieuwe bedrijven toe.</p>
+                </div>
 
+                <div className="dashboard-admin-hero__actions">
                     <button
                         type="button"
-                        className="button"
+                        className="dashboard-admin-button dashboard-admin-button--secondary"
+                        onClick={loadCompanies}
+                        disabled={loading}
+                    >
+                        <RefreshCw aria-hidden="true" />
+                        Alle bedrijven ophalen
+                    </button>
+                    <button
+                        type="button"
+                        className="dashboard-admin-button"
                         onClick={() => navigate("/admin/companies/new")}
                     >
-                        Nieuw bedrijf
+                        <Plus aria-hidden="true" />
+                        Bedrijf toevoegen
                     </button>
-                </section>
+                </div>
+            </section>
+
+            <section className="dashboard-admin-stats" aria-label="Bedrijf statistieken">
+                <article className="dashboard-admin-stat">
+                    <span className="dashboard-admin-stat__icon">
+                        <BriefcaseBusiness aria-hidden="true" />
+                    </span>
+                    <strong>{loading ? "..." : companies.length}</strong>
+                    <span>Alle bedrijven</span>
+                </article>
+                <article className="dashboard-admin-stat">
+                    <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--green">
+                        <Search aria-hidden="true" />
+                    </span>
+                    <strong>{loading ? "..." : filteredCompanies.length}</strong>
+                    <span>Zichtbaar na filter</span>
+                </article>
+                <article className="dashboard-admin-stat">
+                    <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--orange">
+                        <Plus aria-hidden="true" />
+                    </span>
+                    <strong>Nieuw</strong>
+                    <span>Snel toevoegen</span>
+                </article>
+            </section>
+
+            <section className="dashboard-admin-panel" aria-label="Bedrijven zoeken en beheren">
+                <div className="dashboard-admin-panel__header">
+                    <div>
+                        <h2>Alle bedrijven</h2>
+                        <p>Zoek, open, bewerk of verwijder een bedrijf.</p>
+                    </div>
+                    <span>{filteredCompanies.length} resultaten</span>
+                </div>
 
                 <section className="companies-toolbar">
                     <CompanySearchBar value={searchTerm} onChange={setSearchTerm} />
                 </section>
 
-                {loading ? <p>Bedrijven laden...</p> : null}
+                {loading ? <p className="dashboard__state">Bedrijven laden...</p> : null}
 
                 {error ? (
                     <p className="form-message form-message--error">{error}</p>
@@ -89,8 +135,8 @@ function AdminCompaniesPage() {
                         onDelete={handleDelete}
                     />
                 ) : null}
-            </div>
-        </main>
+            </section>
+        </section>
     );
 }
 

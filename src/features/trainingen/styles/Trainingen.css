@@ -16,8 +16,8 @@
     --training-shadow: var(--shadow-lg);
     --training-shadow-soft: var(--shadow-md);
 
-    width: min(var(--container-max), calc(100% - var(--space-4)));
-    margin: var(--space-5) auto var(--space-6);
+    width: 100%;
+    margin: 0;
 }
 
 

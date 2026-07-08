@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 
 function CompaniesTable({ companies, onDelete }) {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ function CompaniesTable({ companies, onDelete }) {
                                     aria-label={`Bekijk bedrijf ${company.name}`}
                                     title="Bekijken"
                                 >
-                                    👁
+                                    <Eye aria-hidden="true" />
                                 </button>
 
                                 <button
@@ -47,7 +48,7 @@ function CompaniesTable({ companies, onDelete }) {
                                     aria-label={`Bewerk bedrijf ${company.name}`}
                                     title="Bewerken"
                                 >
-                                    ✏️
+                                    <Pencil aria-hidden="true" />
                                 </button>
 
                                 {onDelete ? (
@@ -58,7 +59,7 @@ function CompaniesTable({ companies, onDelete }) {
                                         aria-label={`Verwijder bedrijf ${company.name}`}
                                         title="Verwijderen"
                                     >
-                                        🗑
+                                        <Trash2 aria-hidden="true" />
                                     </button>
                                 ) : null}
                             </div>

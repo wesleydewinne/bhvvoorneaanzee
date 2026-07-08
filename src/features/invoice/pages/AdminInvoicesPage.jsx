@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Download, FileSearch, FileText, Upload } from "lucide-react";
 import invoiceService from "../service/invoiceService.js";
 import "../styles/Invoices.css";
 
@@ -102,27 +103,57 @@ function AdminInvoicesPage() {
     };
 
     return (
-        <main className="invoices-page">
-            <div className="invoices-page__container">
-                <section className="invoices-page__header">
+        <section className="invoices-page dashboard-admin-page">
+                <section className="dashboard-admin-hero" aria-labelledby="invoices-title">
                     <div>
-                        <h1>Facturen</h1>
+                        <p className="dashboard__eyebrow">Finance</p>
+                        <h1 id="invoices-title">Facturen</h1>
                         <p>Upload een factuur, zoek een factuur op ID en download de PDF.</p>
                     </div>
                 </section>
 
                 {message ? (
-                    <p className="invoices-message invoices-message--success">{message}</p>
+                    <p className="dashboard-admin-message dashboard-admin-message--success">{message}</p>
                 ) : null}
 
                 {error ? (
-                    <p className="invoices-message invoices-message--error">{error}</p>
+                    <p className="dashboard-admin-message dashboard-admin-message--error">{error}</p>
                 ) : null}
 
-                <div className="invoices-page__grid">
-                    <section className="invoices-card">
-                        <h2>Factuur uploaden</h2>
-                        <form className="invoices-form" onSubmit={handleUpload}>
+                <section className="dashboard-admin-stats" aria-label="Factuur acties">
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon">
+                            <Upload aria-hidden="true" />
+                        </span>
+                        <strong>{uploading ? "..." : "Upload"}</strong>
+                        <span>Factuur toevoegen</span>
+                    </article>
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--green">
+                            <FileSearch aria-hidden="true" />
+                        </span>
+                        <strong>{loading ? "..." : "Zoek"}</strong>
+                        <span>Op factuur-ID</span>
+                    </article>
+                    <article className="dashboard-admin-stat">
+                        <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--orange">
+                            <Download aria-hidden="true" />
+                        </span>
+                        <strong>{invoice ? "PDF" : "-"}</strong>
+                        <span>Download beschikbaar</span>
+                    </article>
+                </section>
+
+                <div className="dashboard-admin-grid">
+                    <section className="dashboard-admin-panel">
+                        <div className="dashboard-admin-panel__header">
+                            <div>
+                                <h2>Factuur uploaden</h2>
+                                <p>Voeg een factuurbestand toe aan de administratie.</p>
+                            </div>
+                            <span>Upload</span>
+                        </div>
+                        <form className="dashboard-admin-form" onSubmit={handleUpload}>
                             <label htmlFor="invoice-file">Factuurbestand</label>
                             <input
                                 id="invoice-file"
@@ -130,15 +161,22 @@ function AdminInvoicesPage() {
                                 onChange={(event) => setSelectedFile(event.target.files?.[0] ?? null)}
                             />
 
-                            <button type="submit" className="button" disabled={uploading}>
+                            <button type="submit" className="dashboard-admin-button" disabled={uploading}>
+                                <Upload aria-hidden="true" />
                                 {uploading ? "Uploaden..." : "Upload factuur"}
                             </button>
                         </form>
                     </section>
 
-                    <section className="invoices-card">
-                        <h2>Factuur zoeken</h2>
-                        <form className="invoices-form" onSubmit={handleLookup}>
+                    <section className="dashboard-admin-panel">
+                        <div className="dashboard-admin-panel__header">
+                            <div>
+                                <h2>Factuur zoeken</h2>
+                                <p>Haal factuurstatus en details op via ID.</p>
+                            </div>
+                            <span>Zoeken</span>
+                        </div>
+                        <form className="dashboard-admin-form" onSubmit={handleLookup}>
                             <label htmlFor="invoice-id">Factuur-ID</label>
                             <input
                                 id="invoice-id"
@@ -148,15 +186,16 @@ function AdminInvoicesPage() {
                                 placeholder="Bijvoorbeeld 123"
                             />
 
-                            <button type="submit" className="button" disabled={loading}>
+                            <button type="submit" className="dashboard-admin-button" disabled={loading}>
+                                <FileSearch aria-hidden="true" />
                                 {loading ? "Zoeken..." : "Zoek factuur"}
                             </button>
                         </form>
                     </section>
                 </div>
 
-                <section className="invoices-detail-card">
-                    <div className="invoices-detail-card__header">
+                <section className="dashboard-admin-panel">
+                    <div className="dashboard-admin-panel__header">
                         <div>
                             <h2>Factuurdetails</h2>
                             <p>De backend heeft geen lijst-endpoint, daarom zoeken we op factuur-ID.</p>
@@ -164,16 +203,18 @@ function AdminInvoicesPage() {
 
                         <button
                             type="button"
-                            className="button button--secondary"
+                            className="dashboard-admin-button dashboard-admin-button--secondary"
                             onClick={handleDownload}
                             disabled={!invoice && !trimmedLookupId}
                         >
+                            <Download aria-hidden="true" />
                             Download PDF
                         </button>
                     </div>
 
                     {invoice ? (
                         <dl className="invoices-detail-grid">
+                            <InvoiceDetail label="Type" value={<FileText aria-hidden="true" />} />
                             <InvoiceDetail label="ID" value={getInvoiceId(invoice)} />
                             <InvoiceDetail label="Status" value={formatStatus(status, invoice)} />
                             <InvoiceDetail label="Nummer" value={invoice.invoiceNumber ?? invoice.number} />
@@ -185,8 +226,7 @@ function AdminInvoicesPage() {
                         <p className="invoices-empty">Nog geen factuur geladen.</p>
                     )}
                 </section>
-            </div>
-        </main>
+        </section>
     );
 }
 

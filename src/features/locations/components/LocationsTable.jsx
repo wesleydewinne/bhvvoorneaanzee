@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import { formatLocationCompanies } from "../helpers/locationHelpers.js";
 
 function LocationsTable({ locations, onDelete }) {
@@ -48,7 +49,7 @@ function LocationsTable({ locations, onDelete }) {
                                     aria-label={`Bekijk locatie ${location.locationName}`}
                                     title="Bekijken"
                                 >
-                                    👁
+                                    <Eye aria-hidden="true" />
                                 </button>
 
                                 <button
@@ -58,7 +59,7 @@ function LocationsTable({ locations, onDelete }) {
                                     aria-label={`Bewerk locatie ${location.locationName}`}
                                     title="Bewerken"
                                 >
-                                    ✏️
+                                    <Pencil aria-hidden="true" />
                                 </button>
 
                                 {onDelete ? (
@@ -69,7 +70,7 @@ function LocationsTable({ locations, onDelete }) {
                                         aria-label={`Verwijder locatie ${location.locationName}`}
                                         title="Verwijderen"
                                     >
-                                        🗑
+                                        <Trash2 aria-hidden="true" />
                                     </button>
                                 ) : null}
                             </div>
