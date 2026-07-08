@@ -25,24 +25,36 @@ function CreateTrainingPage() {
     };
 
     return (
-        <section className="trainingen-page">
-            <div className="trainingen-page__header">
+        <section className="trainingen-page dashboard-admin-page">
+            <section className="dashboard-admin-hero" aria-labelledby="create-training-title">
                 <div>
-                    <h1>Nieuwe training aanmaken</h1>
-                    <p>Vul de basisgegevens van de training in.</p>
+                    <p className="dashboard__eyebrow">Trainingen</p>
+                    <h1 id="create-training-title">Nieuwe training aanmaken</h1>
+                    <p>Plan een nieuwe training aan en vul de belangrijkste gegevens snel in.</p>
                 </div>
 
-                <Link to="/admin/trainingen" className="trainingen-page__button trainingen-page__button--secondary">
-                    Terug
-                </Link>
-            </div>
+                <div className="trainingen-page__header-actions">
+                    <Link to="/admin/trainingen" className="dashboard-admin-button dashboard-admin-button--secondary">
+                        Terug naar overzicht
+                    </Link>
+                </div>
+            </section>
 
-            <TrainingForm
-                mode="create"
-                onSubmit={handleCreate}
-                loading={saving}
-                error={error}
-            />
+            <section className="dashboard-admin-panel" aria-label="Nieuwe training formulier">
+                <div className="dashboard-admin-panel__header">
+                    <div>
+                        <h2>Traininggegevens</h2>
+                        <p>Vul de basisgegevens van de training in en kies locatie, bedrijf en trainer.</p>
+                    </div>
+                </div>
+
+                <TrainingForm
+                    mode="create"
+                    onSubmit={handleCreate}
+                    loading={saving}
+                    error={error}
+                />
+            </section>
         </section>
     );
 }
