@@ -1,7 +1,7 @@
 import React from "react";
 
 const BlogBlock = ({ block }) => {
-    const blockClass = `blog-block ${block.id || ""}`;
+    const blockClass = `blog-block ${block.type || ""} blog-block--${block.type || "default"} ${block.id || ""}`;
 
     switch (block.type) {
         case "paragraph":
@@ -36,13 +36,20 @@ const BlogBlock = ({ block }) => {
 
         case "video":
             return (
-                <iframe
-                    className={blockClass}
-                    src={block.src}
-                    title={block.id || "video"}
-                    frameBorder="0"
-                    allowFullScreen
-                ></iframe>
+                <figure className="blog-video-card">
+                    <iframe
+                        className={blockClass}
+                        src={block.src}
+                        title={block.title || block.id || "video"}
+                        frameBorder="0"
+                        allowFullScreen
+                    ></iframe>
+                    {block.credit && (
+                        <figcaption className="blog-video-card__credit">
+                            {block.credit}
+                        </figcaption>
+                    )}
+                </figure>
             );
 
         case "link":

@@ -49,7 +49,7 @@ const BlogSection = ({
                                 )}
                             </div>
                             <div className="section-blog-card-content">
-                                <span className="section-blog-card-label">Praktijktip</span>
+                                <span className="section-blog-card-label">{post.category || "Praktijktip"}</span>
                                 <h3>{post.title}</h3>
                                 <p>
                                     {post.content && Array.isArray(post.content)

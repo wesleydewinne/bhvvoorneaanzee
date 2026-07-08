@@ -51,12 +51,44 @@ function normalizeBinaryValue(value, key) {
     }
 }
 
+function unwrapPasskeyOptions(options) {
+    if (!options || typeof options !== "object") {
+        return options;
+    }
+
+    const candidates = [
+        options.publicKey,
+        options.options,
+        options.data,
+        options.credentialCreationOptions,
+        options.credentialRequestOptions,
+        options.publicKeyCredentialCreationOptions,
+        options.publicKeyCredentialRequestOptions,
+    ];
+
+    const directCandidate = candidates.find((candidate) => (
+        candidate &&
+        typeof candidate === "object" &&
+        (candidate.challenge || candidate.publicKey?.challenge)
+    ));
+
+    if (directCandidate) {
+        return unwrapPasskeyOptions(directCandidate);
+    }
+
+    return options;
+}
+
 export function normalizePasskeyOptions(options) {
     if (!options || typeof options !== "object") {
         return options;
     }
 
-    const publicKey = options.publicKey ?? options;
+    const publicKey = unwrapPasskeyOptions(options);
+
+    if (!publicKey?.challenge) {
+        throw new Error("Passkey-opties missen een challenge. Probeer opnieuw in te loggen of vernieuw de pagina.");
+    }
 
     const challenge = publicKey.challenge
         ? normalizeBinaryValue(publicKey.challenge, "challenge")

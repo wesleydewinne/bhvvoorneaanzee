@@ -2,6 +2,7 @@ import ProfileHeader from "./ProfileHeader.jsx";
 import ProfileDetailsCard from "./blocks/ProfileDetailsCard.jsx";
 import ProfilePhotoCard from "./blocks/ProfilePhotoCard.jsx";
 import ChangePasswordCard from "./blocks/ChangePasswordCard.jsx";
+import PasskeyCard from "./blocks/PasskeyCard.jsx";
 import CertificateBlock from "./blocks/CertificateBlock.jsx";
 import ElearningBlock from "./blocks/ElearningBlock.jsx";
 import AdminBlock from "./blocks/AdminBlock.jsx";
@@ -32,6 +33,7 @@ export default function ProfileLayout({
                         onPhotoUploaded={onPhotoUploaded}
                     />
                     <ChangePasswordCard />
+                    <PasskeyCard />
                     <CertificateBlock certificates={profile.certificates} />
                     <ElearningBlock elearnings={profile.elearnings} />
                     {canViewAdminBlock(profile) && <AdminBlock />}
