@@ -204,10 +204,19 @@ export function AuthProvider({ children }) {
 
         try {
             const response = await authService.startPasskeyLogin();
+            const loginId = getPasskeyTransactionId(response.data, "loginId");
+
+            if (!loginId) {
+                throw new Error("Passkey-login mist een loginId. Probeer het opnieuw.");
+            }
+
             const options = normalizePasskeyOptions(response.data);
 
             const credential = await navigator.credentials.get({ publicKey: options });
-            const payload = serializePasskeyCredential(credential);
+            const payload = {
+                loginId,
+                credential: serializePasskeyCredential(credential),
+            };
 
             await authService.finishPasskeyLogin(payload);
             clearTwoFactorState();
