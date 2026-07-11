@@ -11,12 +11,13 @@ function CreateLocationPage() {
     const [loading, setLoading] = useState(false);
     const [serverError, setServerError] = useState("");
 
-    const handleSubmit = async (payload) => {
+    const handleSubmit = async (payload, photoFile) => {
         try {
             setLoading(true);
             setServerError("");
 
             const created = await locationService.create(payload);
+            if (photoFile) await locationService.uploadPhoto(created.id, photoFile);
             navigate(`/admin/locations/${created.id}`);
         } catch (err) {
             console.error("Fout bij aanmaken locatie:", err);

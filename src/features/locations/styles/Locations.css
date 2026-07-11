@@ -332,6 +332,31 @@
     color: #b91c1c;
 }
 
+.location-company-list li { margin-bottom: .8rem; }
+.location-company-list li span { display: block; color: #667085; margin-top: .2rem; }
+.location-detail-image { width: 100%; max-height: 32rem; object-fit: cover; border-radius: .8rem; margin-bottom: 1.5rem; }
+.additional-info-list { display: grid; gap: .8rem; margin-top: .7rem; }
+.additional-info-list article { padding: 1rem; border: 1px solid #e4e7ec; border-radius: .8rem; background: #f8fafc; }
+.additional-info-list article.is-important { border-color: #f59e0b; background: #fffbeb; }
+.additional-info-list article > div { display: flex; gap: .6rem; color: #667085; font-size: .85rem; }
+.additional-info-list h3 { margin: .45rem 0; }
+.additional-info-list p { white-space: pre-wrap; }
+
+.nested-form-section { display: grid; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e4e7ec; }
+.nested-form-section__header, .nested-form-card__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.nested-form-section__header h2, .nested-form-card__header h3 { margin: 0; }
+.nested-form-section__header p { margin: .3rem 0 0; color: #667085; }
+.nested-form-card { padding: 1.2rem; border: 1px solid #dfe5ec; border-radius: .8rem; background: #f8fafc; }
+.nested-form-card .form-grid { margin-top: 1rem; }
+.check-field { display: flex; align-items: center; gap: .5rem; min-height: 3rem; }
+.check-field input { width: auto; }
+.role-checkbox-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem 1rem; }
+
+@media (max-width: 700px) {
+    .nested-form-section__header, .nested-form-card__header { flex-direction: column; }
+    .role-checkbox-grid { grid-template-columns: 1fr; }
+}
+
 .icon-action-button--danger:hover,
 .icon-action-button--danger:focus-visible {
     border-color: #fecaca;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function CompanyForm({
                          initialValues,
@@ -7,12 +7,8 @@ function CompanyForm({
                          loading = false,
                          serverError = "",
                      }) {
-    const [form, setForm] = useState(initialValues || { name: "" });
+    const [form, setForm] = useState(initialValues || { name: "", logoFile: null });
     const [errors, setErrors] = useState({});
-
-    useEffect(() => {
-        setForm(initialValues || { name: "" });
-    }, [initialValues]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -26,6 +22,10 @@ function CompanyForm({
             ...prev,
             [name]: "",
         }));
+    };
+
+    const handleFileChange = (event) => {
+        setForm((prev) => ({ ...prev, logoFile: event.target.files?.[0] ?? null }));
     };
 
     const validate = () => {
@@ -52,7 +52,7 @@ function CompanyForm({
 
         await onSubmit({
             name: form.name.trim(),
-        });
+        }, form.logoFile);
     };
 
     return (
@@ -79,6 +79,12 @@ function CompanyForm({
                     {errors.name ? (
                         <p className="form-error">{errors.name}</p>
                     ) : null}
+                </div>
+
+                <div className="form-field form-field--full">
+                    <label htmlFor="logoFile">Bedrijfslogo</label>
+                    <input id="logoFile" type="file" accept="image/*" onChange={handleFileChange} />
+                    <small className="form-help">De afbeelding wordt na het opslaan geüpload.</small>
                 </div>
             </div>
 

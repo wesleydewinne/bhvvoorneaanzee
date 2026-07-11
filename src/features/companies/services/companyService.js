@@ -26,6 +26,17 @@ const companyService = {
     async remove(id) {
         await apiClient.delete(`${BASE_URL}/${id}`);
     },
+
+    async uploadLogo(id, file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await apiClient.post(`${BASE_URL}/${id}/logo`, formData);
+        return response.data;
+    },
+
+    getLogoUrl(id) {
+        return `${apiClient.defaults.baseURL || ""}${BASE_URL}/${id}/logo`;
+    },
 };
 
 export default companyService;

@@ -36,12 +36,13 @@ function EditCompanyPage() {
         loadCompany();
     }, [id]);
 
-    const handleSubmit = async (payload) => {
+    const handleSubmit = async (payload, logoFile) => {
         try {
             setSaving(true);
             setServerError("");
 
             await companyService.update(id, payload);
+            if (logoFile) await companyService.uploadLogo(id, logoFile);
             navigate(`/admin/companies/${id}`);
         } catch (err) {
             console.error("Fout bij bewerken bedrijf:", err);

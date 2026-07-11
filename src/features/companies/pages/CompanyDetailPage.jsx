@@ -125,6 +125,13 @@ function CompanyDetailPage() {
                 </section>
 
                 <section className="company-detail-card">
+                    {company.logoImageUrl || company.logoImageKey ? (
+                        <img
+                            className="company-detail-image"
+                            src={company.logoImageUrl || companyService.getLogoUrl(company.id)}
+                            alt={`Logo van ${company.name}`}
+                        />
+                    ) : null}
                     <div className="company-detail-grid">
                         <div>
                             <strong>ID</strong>
@@ -135,6 +142,7 @@ function CompanyDetailPage() {
                             <strong>Bedrijfsnaam</strong>
                             <p>{company.name || "-"}</p>
                         </div>
+
                     </div>
                 </section>
             </div>

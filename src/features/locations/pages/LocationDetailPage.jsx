@@ -98,6 +98,11 @@ function LocationDetailPage() {
         );
     }
 
+    const companyRelations = Array.isArray(location.companyLocations)
+        ? location.companyLocations
+        : (Array.isArray(location.companies) ? location.companies : []);
+    const additionalInfo = Array.isArray(location.additionalInfo) ? location.additionalInfo : [];
+
     return (
         <main className="locations-page">
             <div className="locations-page__container">
@@ -138,6 +143,13 @@ function LocationDetailPage() {
                 </section>
 
                 <section className="location-detail-card">
+                    {location.locationImageUrl || location.locationImageKey ? (
+                        <img
+                            className="location-detail-image"
+                            src={location.locationImageUrl || locationService.getPhotoUrl(location.id)}
+                            alt={location.locationName}
+                        />
+                    ) : null}
                     <div className="location-detail-grid">
                         <div>
                             <strong>Locatienaam</strong>
@@ -169,16 +181,36 @@ function LocationDetailPage() {
                             <p>{location.email || "-"}</p>
                         </div>
 
+                        <div><strong>Aantal gebouwen</strong><p>{location.numberOfBuildings ?? "-"}</p></div>
+                        <div><strong>Verdiepingen op locatie</strong><p>{location.locationFloorCount ?? "-"}</p></div>
+                        <div><strong>Verdiepingen per gebouw</strong><p>{location.buildingFloorCount ?? "-"}</p></div>
+
+                        <div className="location-detail-grid__full">
+                            <strong>Parkeerinformatie</strong>
+                            <p>{location.parkingInfo || "-"}</p>
+                        </div>
+
                         <div className="location-detail-grid__full">
                             <strong>Gekoppelde bedrijven</strong>
 
-                            {Array.isArray(location.companies) && location.companies.length > 0 ? (
+                            {companyRelations.length > 0 ? (
                                 <ul className="location-company-list">
-                                    {location.companies.map((company) => (
-                                        <li key={company.id}>
-                                            #{company.id} - {company.name}
+                                    {companyRelations.map((relation) => {
+                                        const company = relation.company ?? relation;
+                                        return <li key={relation.id ?? relation.companyId ?? company.id}>
+                                            <strong>{relation.companyName ?? company.name ?? `Bedrijf ${relation.companyId ?? company.id}`}</strong>
+                                            <span>{[
+                                                relation.contactPersonName,
+                                                relation.buildingSection,
+                                                relation.floor && `Verdieping ${relation.floor}`,
+                                                relation.roomNumber && `Ruimte ${relation.roomNumber}`,
+                                            ].filter(Boolean).join(" · ")}</span>
+                                            <span>{[relation.locationEmail, relation.locationPhone, relation.contactPersonEmail, relation.contactPersonPhone].filter(Boolean).join(" · ")}</span>
+                                            <span>{[relation.activeFrom && `Vanaf ${relation.activeFrom}`, relation.activeUntil && `Tot ${relation.activeUntil}`].filter(Boolean).join(" · ")}</span>
+                                            <span>{relation.primaryLocation ? "Primaire locatie" : ""}{relation.active === false ? " · Inactief" : ""}</span>
+                                            {relation.notes ? <p>{relation.notes}</p> : null}
                                         </li>
-                                    ))}
+                                    })}
                                 </ul>
                             ) : (
                                 <p>-</p>
@@ -188,6 +220,22 @@ function LocationDetailPage() {
                         <div className="location-detail-grid__full">
                             <strong>Omschrijving</strong>
                             <p>{location.description || "-"}</p>
+                        </div>
+
+                        <div className="location-detail-grid__full">
+                            <strong>Aanvullende informatie</strong>
+                            {additionalInfo.length ? (
+                                <div className="additional-info-list">
+                                    {[...additionalInfo].sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0)).map((info) => (
+                                        <article key={info.id ?? `${info.type}-${info.title}`} className={info.important ? "is-important" : ""}>
+                                            <div><span>{info.type}</span>{info.important ? <b>Belangrijk</b> : null}</div>
+                                            <h3>{info.title}</h3>
+                                            <p>{info.content}</p>
+                                            {Array.isArray(info.visibleForRoles) && info.visibleForRoles.length ? <small>Zichtbaar voor: {info.visibleForRoles.join(", ")}</small> : null}
+                                        </article>
+                                    ))}
+                                </div>
+                            ) : <p>-</p>}
                         </div>
                     </div>
                 </section>

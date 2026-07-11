@@ -27,18 +27,38 @@ const locationService = {
         await apiClient.delete(`${BASE_URL}/${id}`);
     },
 
-    async addCompany(locationId, companyId) {
-        const response = await apiClient.patch(
-            `${BASE_URL}/${locationId}/companies/${companyId}`
+    async addCompanyLocation(locationId, payload) {
+        const response = await apiClient.post(
+            `${BASE_URL}/${locationId}/company-locations`,
+            payload
         );
         return response.data;
     },
 
-    async removeCompany(locationId, companyId) {
-        const response = await apiClient.delete(
-            `${BASE_URL}/${locationId}/companies/${companyId}`
+    async updateCompanyLocation(locationId, companyLocationId, payload) {
+        const response = await apiClient.put(
+            `${BASE_URL}/${locationId}/company-locations/${companyLocationId}`,
+            payload
         );
         return response.data;
+    },
+
+    async removeCompanyLocation(locationId, companyLocationId) {
+        const response = await apiClient.delete(
+            `${BASE_URL}/${locationId}/company-locations/${companyLocationId}`
+        );
+        return response.data;
+    },
+
+    async uploadPhoto(id, file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await apiClient.post(`${BASE_URL}/${id}/photo`, formData);
+        return response.data;
+    },
+
+    getPhotoUrl(id) {
+        return `${apiClient.defaults.baseURL || ""}${BASE_URL}/${id}/photo`;
     },
 };
 

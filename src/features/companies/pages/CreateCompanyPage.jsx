@@ -14,12 +14,13 @@ function CreateCompanyPage() {
     const [loading, setLoading] = useState(false);
     const [serverError, setServerError] = useState("");
 
-    const handleSubmit = async (payload) => {
+    const handleSubmit = async (payload, logoFile) => {
         try {
             setLoading(true);
             setServerError("");
 
             const created = await companyService.create(payload);
+            if (logoFile) await companyService.uploadLogo(created.id, logoFile);
             navigate(`/admin/companies/${created.id}`);
         } catch (err) {
             console.error("Fout bij aanmaken bedrijf:", err);

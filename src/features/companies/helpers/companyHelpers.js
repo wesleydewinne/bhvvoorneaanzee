@@ -1,12 +1,14 @@
 export function createEmptyCompanyForm() {
     return {
         name: "",
+        logoFile: null,
     };
 }
 
 export function mapCompanyToForm(company) {
     return {
         name: company?.name ?? "",
+        logoFile: null,
     };
 }
 

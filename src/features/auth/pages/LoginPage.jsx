@@ -19,6 +19,7 @@ export default function LoginPage() {
     const { login, loginWithPasskey, loading } = useAuth();
 
     const siteKey = import.meta.env.VITE_TURNSTILE_SITEKEY;
+    const requestLoginHref = `mailto:klantenservice@bhvvoorneaanzee.nl?subject=${encodeURIComponent("Inloggegevens aanvragen")}&body=${encodeURIComponent(`Hallo,\n\nIk wil graag inloggegevens aanvragen${email ? ` voor ${email}` : ""}.\n\nMet vriendelijke groet,`)}`;
 
     useEffect(() => {
         const renderTurnstile = () => {
@@ -28,6 +29,9 @@ export default function LoginPage() {
 
             widgetIdRef.current = window.turnstile.render(captchaRef.current, {
                 sitekey: siteKey,
+                appearance: "always",
+                size: "flexible",
+                theme: "light",
                 callback: (token) => {
                     setCaptchaToken(token);
                     setCaptchaReady(true);
@@ -134,75 +138,49 @@ export default function LoginPage() {
                     </p>
                 </div>
 
-                <form className="login__form" onSubmit={handleSubmit}>
-                    <div className="login__field">
-                        <label className="login__label" htmlFor="email">
-                            <Mail aria-hidden="true" />
-                            E-mailadres
-                        </label>
-                        <input
-                            id="email"
-                            className="login__input"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            autoComplete="email"
-                            required
-                        />
-                    </div>
+                {error && <div className="login__error" role="alert" aria-live="polite">{error}</div>}
 
-                    <div className="login__field">
-                        <label className="login__label" htmlFor="password">
-                            <LockKeyhole aria-hidden="true" />
-                            Wachtwoord
-                        </label>
-                        <input
-                            id="password"
-                            className="login__input"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            autoComplete="current-password"
-                            required
-                        />
-                    </div>
-
-                    <div className="login__captcha">
-                        <div ref={captchaRef} />
-                        {!captchaReady && (
-                            <p className="login__hint">
-                                Bevestig de beveiligingscheck om te kunnen inloggen.
-                            </p>
-                        )}
-                    </div>
-
-                    {error && (
-                        <div className="login__error" role="alert" aria-live="polite">
-                            {error}
+                <div className="login__methods">
+                    <form className="login__method-card login__form" onSubmit={handleSubmit}>
+                        <div className="login__method-header">
+                            <span className="login__method-icon"><LockKeyhole aria-hidden="true" /></span>
+                            <div><h2>Met wachtwoord</h2><p>Log in met je e-mailadres en wachtwoord.</p></div>
                         </div>
-                    )}
 
-                    <button
-                        className="login__button"
-                        type="submit"
-                        disabled={loading || !captchaReady}
-                    >
-                        <LogIn aria-hidden="true" />
-                        {loading ? "Bezig met inloggen..." : "Inloggen"}
-                    </button>
+                        <div className="login__field">
+                            <label className="login__label" htmlFor="email"><Mail aria-hidden="true" />E-mailadres</label>
+                            <input id="email" className="login__input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required />
+                        </div>
 
-                    <div className="login__divider"><span>of veilig zonder wachtwoord</span></div>
+                        <div className="login__field">
+                            <label className="login__label" htmlFor="password"><LockKeyhole aria-hidden="true" />Wachtwoord</label>
+                            <input id="password" className="login__input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" required />
+                        </div>
 
-                    <button
-                        className="login__button login__button--secondary"
-                        type="button"
-                        disabled={loading}
-                        onClick={handlePasskeyLogin}
-                    >
-                        <Fingerprint aria-hidden="true" />
-                        {loading ? "Bezig met passkey..." : "Inloggen met passkey"}
-                    </button>
-                </form>
+                        <button className="login__button" type="submit" disabled={loading || !captchaReady}>
+                            <LogIn aria-hidden="true" />{loading ? "Bezig met inloggen..." : "Inloggen"}
+                        </button>
+                    </form>
+
+                    <section className="login__method-card login__method-card--passkey">
+                        <div className="login__method-header">
+                            <span className="login__method-icon login__method-icon--passkey"><Fingerprint aria-hidden="true" /></span>
+                            <div><h2>Met passkey</h2><p>Gebruik Face ID, Touch ID, Windows Hello of je apparaatcode.</p></div>
+                        </div>
+                        <div className="login__passkey-visual"><Fingerprint aria-hidden="true" /></div>
+                        <button className="login__button login__button--secondary" type="button" disabled={loading} onClick={handlePasskeyLogin}>
+                            <Fingerprint aria-hidden="true" />{loading ? "Bezig met passkey..." : "Inloggen met passkey"}
+                        </button>
+                    </section>
+                </div>
+
+                <section className="login__captcha login__captcha--shared" aria-label="Beveiligingscontrole voor wachtwoordlogin">
+                    <p className="login__captcha-title"><ShieldCheck aria-hidden="true" /> Beveiligingscontrole voor inloggen met wachtwoord</p>
+                    <div className="login__turnstile" ref={captchaRef} />
+                    {!captchaReady && <p className="login__hint">Bevestig dat je geen robot bent om met een wachtwoord in te loggen.</p>}
+                </section>
+
+                <p className="login__request-access">Nog geen account? <a href={requestLoginHref}>Vraag inloggegevens aan</a></p>
             </div>
         </div>
     );

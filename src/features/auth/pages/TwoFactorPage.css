@@ -328,7 +328,7 @@
 .twofactor-passkey-item strong { color: #0f172a; font-size: 1.5rem; }
 
 .twofactor-page, .twofactor-shell, .twofactor-card, .twofactor-panel { width: 100%; max-width: 100%; box-sizing: border-box; }
-.twofactor-shell, .twofactor-page > .twofactor-card { max-width: 96rem; margin-right: auto; margin-left: auto; }
+.twofactor-shell, .twofactor-page > .twofactor-card { max-width: 72rem; margin-right: auto; margin-left: auto; }
 
 @media (max-width: 48rem) {
     .twofactor-page { min-height: calc(100dvh - 6rem); padding: 1.6rem 1rem; overflow-x: clip; }

@@ -33,12 +33,13 @@ function EditLocationPage() {
         loadLocation();
     }, [id]);
 
-    const handleSubmit = async (payload) => {
+    const handleSubmit = async (payload, photoFile) => {
         try {
             setSaving(true);
             setServerError("");
 
             await locationService.update(id, payload);
+            if (photoFile) await locationService.uploadPhoto(id, photoFile);
             navigate(`/admin/locations/${id}`);
         } catch (err) {
             console.error("Fout bij bewerken locatie:", err);
