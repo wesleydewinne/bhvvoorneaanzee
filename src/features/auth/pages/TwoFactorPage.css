@@ -326,3 +326,15 @@
 .twofactor-secondary-button:hover:not(:disabled) { border-color: #f97316; background: #fff7ed; }
 .twofactor-passkey-item { box-shadow: 0 .5rem 1.6rem rgba(15,23,42,.05); }
 .twofactor-passkey-item strong { color: #0f172a; font-size: 1.5rem; }
+
+.twofactor-page, .twofactor-shell, .twofactor-card, .twofactor-panel { width: 100%; max-width: 100%; box-sizing: border-box; }
+.twofactor-shell, .twofactor-page > .twofactor-card { max-width: 96rem; margin-right: auto; margin-left: auto; }
+
+@media (max-width: 48rem) {
+    .twofactor-page { min-height: calc(100dvh - 6rem); padding: 1.6rem 1rem; overflow-x: clip; }
+    .twofactor-card { padding: 2.2rem 1.5rem; border-radius: 1.8rem; }
+    .twofactor-layout { gap: 1.4rem; }
+    .twofactor-panel { padding: 1.6rem; }
+    .twofactor-passkey-item { align-items: flex-start; flex-direction: column; }
+    .twofactor-passkey-item .twofactor-secondary-button { width: 100%; }
+}

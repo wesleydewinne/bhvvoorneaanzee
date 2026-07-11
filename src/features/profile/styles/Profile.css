@@ -488,6 +488,29 @@
     }
 }
 
+.password-requirements {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #f8fafc;
+    list-style: none;
+}
+
+.password-requirements li { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 13px; }
+.password-requirements li svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.password-requirements li.is-valid { color: #15803d; font-weight: 600; }
+.password-match--valid { color: #15803d !important; }
+.password-match--invalid { color: #b91c1c !important; }
+
+@media (max-width: 480px) {
+    .password-requirements { grid-template-columns: 1fr; }
+}
+
 /* =========================================
    DASHBOARD STYLE OVERRIDES
 ========================================= */

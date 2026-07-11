@@ -153,3 +153,15 @@
 .login__divider { display: flex; align-items: center; gap: 1rem; color: #94a3b8; font-size: 1.2rem; text-align: center; }
 .login__divider::before, .login__divider::after { height: 1px; flex: 1; background: #e2e8f0; content: ""; }
 .login__captcha { border-style: solid; background: #f8fafc; }
+
+*, *::before, *::after { box-sizing: border-box; }
+.login, .login__card { width: 100%; max-width: 100%; }
+.login__card { max-width: 48rem; }
+
+@media (max-width: 48rem) {
+    .login { min-height: calc(100dvh - 6rem); padding: 1.6rem 1rem; place-items: start center; overflow-x: clip; }
+    .login__card { padding: 2.2rem 1.6rem; border-radius: 1.8rem; }
+    .login__security-icon { width: 4.8rem; height: 4.8rem; }
+    .login__form { gap: 1.5rem; }
+    .login__captcha { padding: 1rem; overflow-x: auto; }
+}

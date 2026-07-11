@@ -127,6 +127,7 @@ function processRefreshQueue(error) {
 function shouldSkipRefresh(request) {
     return (
         request?.url?.includes("/auth/login") ||
+        request?.url?.includes("/auth/passkeys/login/") ||
         request?.url?.includes("/auth/2fa/") ||
         request?.url?.includes("/auth/refresh") ||
         request?.url?.includes("/auth/logout")
