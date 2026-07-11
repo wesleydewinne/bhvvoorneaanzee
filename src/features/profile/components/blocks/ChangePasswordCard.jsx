@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { KeyRound, LockKeyhole, Save, X } from "lucide-react";
 import profileService from "../../services/profileService.js";
 
 export default function ChangePasswordCard() {
@@ -70,7 +71,10 @@ export default function ChangePasswordCard() {
         <section className="profile-card">
             <div className="profile-card__header profile-card__header--actions">
                 <div>
-                    <h2>Wachtwoord</h2>
+                    <h2>
+                        <LockKeyhole aria-hidden="true" />
+                        Wachtwoord
+                    </h2>
                 </div>
 
                 {!isOpen && (
@@ -79,6 +83,7 @@ export default function ChangePasswordCard() {
                         className="profile-button profile-button--secondary"
                         onClick={handleToggle}
                     >
+                        <KeyRound aria-hidden="true" />
                         Wijzigen
                     </button>
                 )}
@@ -135,6 +140,7 @@ export default function ChangePasswordCard() {
                             className="profile-button"
                             disabled={saving}
                         >
+                            <Save aria-hidden="true" />
                             {saving ? "Opslaan..." : "Opslaan"}
                         </button>
 
@@ -144,6 +150,7 @@ export default function ChangePasswordCard() {
                             onClick={handleCancel}
                             disabled={saving}
                         >
+                            <X aria-hidden="true" />
                             Annuleren
                         </button>
                     </div>

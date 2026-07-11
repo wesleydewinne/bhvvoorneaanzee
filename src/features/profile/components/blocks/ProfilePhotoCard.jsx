@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Camera, Upload } from "lucide-react";
 import profileService from "../../services/profileService.js";
 
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -94,7 +95,10 @@ export default function ProfilePhotoCard({
     return (
         <section className="profile-card">
             <div className="profile-card__header">
-                <h2>Profielfoto</h2>
+                <h2>
+                    <Camera aria-hidden="true" />
+                    Profielfoto
+                </h2>
             </div>
 
             {successMessage && (
@@ -135,6 +139,7 @@ export default function ProfilePhotoCard({
                     className="profile-button"
                     disabled={uploading || !selectedFile}
                 >
+                    <Upload aria-hidden="true" />
                     {uploading ? "Uploaden..." : "Foto uploaden"}
                 </button>
             </form>

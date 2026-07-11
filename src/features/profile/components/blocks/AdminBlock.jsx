@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Settings, Users } from "lucide-react";
 
 export default function AdminBlock() {
     const navigate = useNavigate();
@@ -6,7 +7,10 @@ export default function AdminBlock() {
     return (
         <section className="profile-card">
             <div className="profile-card__header">
-                <h2>Beheer</h2>
+                <h2>
+                    <Settings aria-hidden="true" />
+                    Beheer
+                </h2>
             </div>
 
             <p>Toegang tot gebruikersbeheer en andere administratieve onderdelen.</p>
@@ -17,6 +21,7 @@ export default function AdminBlock() {
                     className="profile-button"
                     onClick={() => navigate("/admin/users")}
                 >
+                    <Users aria-hidden="true" />
                     Ga naar gebruikersbeheer
                 </button>
             </div>

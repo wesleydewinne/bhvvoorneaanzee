@@ -1,8 +1,13 @@
+import { BookOpenCheck } from "lucide-react";
+
 export default function ElearningBlock({ elearnings = [] }) {
     return (
         <section className="profile-card">
             <div className="profile-card__header">
-                <h2>E-learning</h2>
+                <h2>
+                    <BookOpenCheck aria-hidden="true" />
+                    E-learning
+                </h2>
             </div>
 
             {elearnings.length === 0 ? (

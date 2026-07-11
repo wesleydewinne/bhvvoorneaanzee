@@ -1,4 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
+import {
+    Building2,
+    CalendarDays,
+    CheckCircle2,
+    Clock,
+    GraduationCap,
+    Plus,
+    Save,
+    ShieldCheck,
+    UserRound,
+} from "lucide-react";
 import locationService from "@/features/locations/services/locationService.js";
 import LocationSearchSelect from "./LocationSearchSelect.jsx";
 import {
@@ -55,10 +66,10 @@ const defaultFormData = {
     trainerId: "",
     adminOverrideAllowed: false,
 
-    competencyFirstAidEmergency: false,
-    competencyFirstAidNonEmergency: false,
-    competencyFireFighting: false,
-    competencyEvacuation: false,
+    competencyFirstAidEmergency: true,
+    competencyFirstAidNonEmergency: true,
+    competencyFireFighting: true,
+    competencyEvacuation: true,
 };
 
 function TrainingForm({
@@ -329,7 +340,10 @@ function TrainingForm({
 
             <div className="training-form__grid">
                 <div className="training-form__field">
-                    <label htmlFor="category">Categorie</label>
+                    <label htmlFor="category">
+                        <ShieldCheck aria-hidden="true" />
+                        Categorie
+                    </label>
                     <select
                         id="category"
                         name="category"
@@ -346,7 +360,10 @@ function TrainingForm({
                 </div>
 
                 <div className="training-form__field">
-                    <label htmlFor="trainingType">{getTrainingTypeLabel()}</label>
+                    <label htmlFor="trainingType">
+                        <GraduationCap aria-hidden="true" />
+                        {getTrainingTypeLabel()}
+                    </label>
                     <select
                         id="trainingType"
                         name="trainingType"
@@ -366,7 +383,10 @@ function TrainingForm({
                 </div>
 
                 <div className="training-form__field">
-                    <label htmlFor="courseDate">Datum</label>
+                    <label htmlFor="courseDate">
+                        <CalendarDays aria-hidden="true" />
+                        Datum
+                    </label>
                     <input
                         id="courseDate"
                         name="courseDate"
@@ -378,7 +398,10 @@ function TrainingForm({
                 </div>
 
                 <div className="training-form__field">
-                    <label htmlFor="startTime">Starttijd</label>
+                    <label htmlFor="startTime">
+                        <Clock aria-hidden="true" />
+                        Starttijd
+                    </label>
                     <input
                         id="startTime"
                         name="startTime"
@@ -389,7 +412,10 @@ function TrainingForm({
                 </div>
 
                 <div className="training-form__field">
-                    <label htmlFor="endTime">Eindtijd</label>
+                    <label htmlFor="endTime">
+                        <Clock aria-hidden="true" />
+                        Eindtijd
+                    </label>
                     <input
                         id="endTime"
                         name="endTime"
@@ -410,7 +436,10 @@ function TrainingForm({
                 />
 
                 <div className="training-form__field">
-                    <label htmlFor="companyId">Bedrijf</label>
+                    <label htmlFor="companyId">
+                        <Building2 aria-hidden="true" />
+                        Bedrijf
+                    </label>
 
                     <select
                         id="companyId"
@@ -461,7 +490,10 @@ function TrainingForm({
                 </div>
 
                 <div className="training-form__field">
-                    <label htmlFor="trainerId">Trainer ID</label>
+                    <label htmlFor="trainerId">
+                        <UserRound aria-hidden="true" />
+                        Trainer ID
+                    </label>
                     <input
                         id="trainerId"
                         name="trainerId"
@@ -485,6 +517,7 @@ function TrainingForm({
                             checked={formData.competencyFirstAidEmergency}
                             onChange={handleChange}
                         />
+                        <CheckCircle2 aria-hidden="true" />
                         Levensreddend handelen spoed
                     </label>
                 </div>
@@ -498,6 +531,7 @@ function TrainingForm({
                             checked={formData.competencyFirstAidNonEmergency}
                             onChange={handleChange}
                         />
+                        <CheckCircle2 aria-hidden="true" />
                         Eerste hulp niet-spoed
                     </label>
                 </div>
@@ -511,6 +545,7 @@ function TrainingForm({
                             checked={formData.competencyFireFighting}
                             onChange={handleChange}
                         />
+                        <CheckCircle2 aria-hidden="true" />
                         Brandbestrijding
                     </label>
                 </div>
@@ -524,6 +559,7 @@ function TrainingForm({
                             checked={formData.competencyEvacuation}
                             onChange={handleChange}
                         />
+                        <CheckCircle2 aria-hidden="true" />
                         Ontruiming
                     </label>
                 </div>
@@ -538,6 +574,7 @@ function TrainingForm({
                                 checked={formData.adminOverrideAllowed}
                                 onChange={handleChange}
                             />
+                            <CheckCircle2 aria-hidden="true" />
                             Admin override toegestaan
                         </label>
                     </div>
@@ -555,6 +592,7 @@ function TrainingForm({
                         !selectedTrainingTypeValue
                     }
                 >
+                    {mode === "edit" ? <Save aria-hidden="true" /> : <Plus aria-hidden="true" />}
                     {loading
                         ? "Opslaan..."
                         : mode === "edit"

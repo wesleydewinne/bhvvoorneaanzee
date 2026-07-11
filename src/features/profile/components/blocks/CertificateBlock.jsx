@@ -1,8 +1,13 @@
+import { Award } from "lucide-react";
+
 export default function CertificateBlock({ certificates = [] }) {
     return (
         <section className="profile-card">
             <div className="profile-card__header">
-                <h2>Mijn certificaten</h2>
+                <h2>
+                    <Award aria-hidden="true" />
+                    Mijn certificaten
+                </h2>
             </div>
 
             {certificates.length === 0 ? (

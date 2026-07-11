@@ -65,6 +65,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.75rem;
     min-height: 4.8rem;
     padding: var(--space-3) var(--space-4);
     border: 0.1rem solid var(--training-accent);
@@ -82,6 +83,15 @@
             transform var(--transition-fast) var(--ease-in-out),
             box-shadow var(--transition-fast) var(--ease-in-out);
     box-shadow: 0 0.6rem 1.6rem rgba(255, 165, 0, 0.22);
+}
+
+.trainingen-page__button svg,
+.training-form__actions button svg,
+.training-detail-status-bar__actions button svg,
+.training-participants-form__actions button svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    flex: 0 0 auto;
 }
 
 .trainingen-page__button:hover,
@@ -178,10 +188,21 @@
 
 .training-form__field label,
 .training-detail-status-bar__field label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     font-size: 1.22rem;
     font-weight: 800;
     color: #0f172a;
     line-height: 1.3;
+}
+
+.training-form__field label svg,
+.training-detail-status-bar__field label svg {
+    width: 1.7rem;
+    height: 1.7rem;
+    color: var(--dashboard-blue, #2563eb);
+    flex: 0 0 auto;
 }
 
 .training-form__field input,
@@ -276,6 +297,12 @@
     flex-shrink: 0;
 }
 
+.training-form__field--checkbox label > svg {
+    width: 1.7rem;
+    height: 1.7rem;
+    color: #16a34a;
+}
+
 .training-form__field--checkbox input[type="checkbox"]:focus {
     outline: none;
     box-shadow: none;
@@ -323,10 +350,20 @@
     align-items: center;
 }
 
+.location-search-select__search-icon {
+    position: absolute;
+    left: 1.2rem;
+    z-index: 1;
+    width: 1.9rem;
+    height: 1.9rem;
+    color: #64748b;
+    pointer-events: none;
+}
+
 .location-search-select__input-wrapper input {
     width: 100%;
     min-height: 4.8rem;
-    padding: var(--space-3) 3.8rem var(--space-3) var(--space-4);
+    padding: var(--space-3) 3.8rem var(--space-3) 4rem;
     border: 0.1rem solid #d0d5dd;
     border-radius: var(--training-radius-md);
     background: var(--training-surface);
@@ -372,6 +409,11 @@
 .location-search-select__clear:hover {
     background: #f2f4f7;
     color: #344054;
+}
+
+.location-search-select__clear svg {
+    width: 1.7rem;
+    height: 1.7rem;
 }
 
 .location-search-select__dropdown {
@@ -531,6 +573,11 @@
     font-size: var(--fs-3);
 }
 
+.trainingen-table__check svg {
+    width: 1.9rem;
+    height: 1.9rem;
+}
+
 .trainingen-table__check--done {
     color: #15803d;
     background-color: #dcfce7;
@@ -642,6 +689,10 @@
     box-shadow: var(--training-shadow);
 }
 
+.dashboard-admin-panel.training-detail-overview {
+    padding: var(--space-5);
+}
+
 .training-detail-overview__top {
     display: flex;
     justify-content: space-between;
@@ -684,6 +735,11 @@
     font-size: var(--fs-3);
 }
 
+.training-detail-check svg {
+    width: 1.9rem;
+    height: 1.9rem;
+}
+
 .training-detail-check--done {
     color: #15803d;
     background: #dcfce7;
@@ -702,10 +758,19 @@
 }
 
 .training-detail-section h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     margin: 0 0 var(--space-3);
     color: var(--training-heading);
     font-size: var(--fs-4);
     line-height: var(--lh-tight);
+}
+
+.training-detail-section h3 svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--dashboard-blue, #2563eb);
 }
 
 .training-detail-list {
@@ -722,9 +787,17 @@
 }
 
 .training-detail-list dt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
     color: var(--training-muted);
     font-weight: var(--fw-bold);
     font-size: var(--fs-3);
+}
+
+.training-detail-list dt svg {
+    width: 1.6rem;
+    height: 1.6rem;
 }
 
 .training-detail-list dd {
@@ -777,10 +850,31 @@
 }
 
 .training-participants-card__header h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
     margin: 0;
     color: var(--training-heading);
     font-size: var(--fluid-h2);
     line-height: var(--lh-tight);
+}
+
+.training-participants-card__header h2 svg {
+    width: 2.2rem;
+    height: 2.2rem;
+    color: var(--dashboard-blue, #2563eb);
+}
+
+.training-participants-card__header > span {
+    display: inline-grid;
+    place-items: center;
+    min-width: 3.2rem;
+    height: 3.2rem;
+    padding: 0 0.9rem;
+    border-radius: 0.8rem;
+    background: #eff6ff;
+    color: var(--dashboard-blue, #2563eb);
+    font-weight: 950;
 }
 
 .training-participants-card__header p {
@@ -835,6 +929,19 @@
     background: var(--training-surface);
     color: var(--training-muted);
     font-size: var(--fs-3);
+}
+
+.dashboard__state {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.dashboard__state svg,
+.dashboard-admin-panel__header > span svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    flex: 0 0 auto;
 }
 
 

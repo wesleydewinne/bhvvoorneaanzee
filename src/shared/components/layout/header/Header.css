@@ -284,11 +284,8 @@
 
     .main-nav {
         position: fixed;
-        top: 7.6rem;
-        left: 50%;
-        right: auto;
-        width: 100vw;
-        margin-left: -50vw;
+        inset: 7.6rem 0 0 0;
+        width: 100%;
         z-index: 1;
         min-height: calc(100vh - 7.6rem);
         min-height: calc(100dvh - 7.6rem);

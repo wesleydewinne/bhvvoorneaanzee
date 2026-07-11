@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Plus, Save, Trash2, UserPlus, Users } from "lucide-react";
 import trainingService from "../services/trainingService.js";
 import {
     ATTENDANCE_STATUS_OPTIONS,
@@ -193,9 +194,13 @@ function TrainingParticipantsSection({ courseId, disabled = false }) {
         <div className="training-participants-card">
             <div className="training-participants-card__header">
                 <div>
-                    <h2>Deelnemers</h2>
+                    <h2>
+                        <Users aria-hidden="true" />
+                        Deelnemers
+                    </h2>
                     <p>Beheer deelnemers, aanwezigheid en resultaten van deze training.</p>
                 </div>
+                <span>{participants.length}</span>
             </div>
 
             {error && <p className="trainingen-page__error">{error}</p>}
@@ -206,7 +211,10 @@ function TrainingParticipantsSection({ courseId, disabled = false }) {
                     onSubmit={handleAddParticipant}
                 >
                     <div className="training-form__field">
-                        <label htmlFor="newUserId">Gebruiker ID toevoegen</label>
+                        <label htmlFor="newUserId">
+                            <UserPlus aria-hidden="true" />
+                            Gebruiker ID toevoegen
+                        </label>
 
                         <input
                             id="newUserId"
@@ -225,6 +233,7 @@ function TrainingParticipantsSection({ courseId, disabled = false }) {
 
                     <div className="training-participants-form__actions">
                         <button type="submit" disabled={adding}>
+                            <Plus aria-hidden="true" />
                             {adding ? "Toevoegen..." : "Deelnemer toevoegen"}
                         </button>
                     </div>
@@ -372,6 +381,7 @@ function TrainingParticipantsSection({ courseId, disabled = false }) {
                                             disabled={disabled || isUpdating}
                                             className="trainingen-page__button trainingen-page__button--small"
                                         >
+                                            <Save aria-hidden="true" />
                                             {isUpdating
                                                 ? "Opslaan..."
                                                 : "Resultaat opslaan"}
@@ -386,6 +396,7 @@ function TrainingParticipantsSection({ courseId, disabled = false }) {
                                                 disabled={isUpdating}
                                                 className="trainingen-page__button trainingen-page__button--danger trainingen-page__button--small"
                                             >
+                                                <Trash2 aria-hidden="true" />
                                                 Verwijderen
                                             </button>
                                         )}

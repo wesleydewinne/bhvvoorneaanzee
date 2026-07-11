@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { MapPin, Search, X } from "lucide-react";
 
 function LocationSearchSelect({
                                   locations = [],
@@ -114,11 +115,13 @@ function LocationSearchSelect({
     return (
         <div className="training-form__field">
             <label htmlFor={inputId}>
+                <MapPin aria-hidden="true" />
                 {label} {required ? "*" : ""}
             </label>
 
             <div className="location-search-select" ref={wrapperRef}>
                 <div className="location-search-select__input-wrapper">
+                    <Search className="location-search-select__search-icon" aria-hidden="true" />
                     <input
                         id={inputId}
                         type="text"
@@ -138,7 +141,7 @@ function LocationSearchSelect({
                             aria-label="Wis locatie"
                             title="Wis locatie"
                         >
-                            ×
+                            <X aria-hidden="true" />
                         </button>
                     )}
                 </div>
@@ -167,10 +170,10 @@ function LocationSearchSelect({
 
                                     <span className="location-search-select__option-meta">
                                         ID: {location.id}
-                                        {location.companyId ? ` • Bedrijf ID: ${location.companyId}` : ""}
-                                        {location.city ? ` • ${location.city}` : ""}
-                                        {location.address ? ` • ${location.address}` : ""}
-                                        {location.postalCode ? ` • ${location.postalCode}` : ""}
+                                        {location.companyId ? ` - Bedrijf ID: ${location.companyId}` : ""}
+                                        {location.city ? ` - ${location.city}` : ""}
+                                        {location.address ? ` - ${location.address}` : ""}
+                                        {location.postalCode ? ` - ${location.postalCode}` : ""}
                                     </span>
                                 </button>
                             ))
@@ -187,7 +190,7 @@ function LocationSearchSelect({
                 <small className="training-form__hint">
                     Geselecteerd: #{selectedLocation.id} - {selectedLocation.locationName}
                     {selectedLocation.city ? ` (${selectedLocation.city})` : ""}
-                    {selectedLocation.companyId ? ` • Bedrijf ID: ${selectedLocation.companyId}` : ""}
+                    {selectedLocation.companyId ? ` - Bedrijf ID: ${selectedLocation.companyId}` : ""}
                 </small>
             )}
 

@@ -46,7 +46,8 @@
 .bleed-x {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
-    max-width: 100vw;
+    width: 100vw;
+    max-width: 100%;
 }
 
 .section {

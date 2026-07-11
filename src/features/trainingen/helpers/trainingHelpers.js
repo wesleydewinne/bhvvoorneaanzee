@@ -125,13 +125,14 @@ export const STATUS_OPTIONS = [
  */
 
 export const ATTENDANCE_STATUS_OPTIONS = [
-    { value: "REGISTERED", label: "Aangemeld" },
+    { value: "ENROLLED", label: "Aangemeld" },
     { value: "PRESENT", label: "Aanwezig" },
     { value: "ABSENT", label: "Afwezig" },
+    { value: "PARTIALLY_PRESENT", label: "Gedeeltelijk aanwezig" },
 ];
 
 export const RESULT_STATUS_OPTIONS = [
-    { value: "NOT_ASSESSED", label: "Nog niet beoordeeld" },
+    { value: "PENDING", label: "Nog niet beoordeeld" },
     { value: "PASSED", label: "Geslaagd" },
     { value: "FAILED", label: "Niet geslaagd" },
 ];

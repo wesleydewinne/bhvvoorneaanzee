@@ -1,10 +1,10 @@
 import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import PublicRoute from "@/features/auth/components/route/PublicRoute.jsx";
-import BhvPage from "@/pages/bhvPage/BhvPage.jsx";
 
 const HomePage = lazy(() => import("@/pages/homePage/HomePage.jsx"));
 
+const BhvPage = lazy(() => import("@/pages/bhvPage/BhvPage.jsx"));
 const BhvBasis2 = lazy(() => import("@/pages/bhvPage/bhvPages/BhvBasis2.jsx"));
 const BhvBasis1Elearning = lazy(() => import("@/pages/bhvPage/bhvPages/BhvBasis1Elearning.jsx"));
 const BhvHerhaling = lazy(() => import("@/pages/bhvPage/bhvPages/BhvHerhaling.jsx"));

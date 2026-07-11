@@ -103,6 +103,7 @@
     width: max-content;
     will-change: transform;
     padding: var(--space-4) 0;
+    animation: badge-marquee 34s linear infinite;
 }
 
 .badge-item {
@@ -112,12 +113,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.4;
-    transform: scale(0.78);
-    transition:
-            transform 0.08s linear,
-            opacity 0.08s linear;
-    will-change: transform, opacity;
+    opacity: 0.86;
+    transform: translateZ(0);
     overflow: visible;
 }
 
@@ -137,6 +134,25 @@
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
+    filter:
+            drop-shadow(0 6px 18px rgba(0, 0, 0, 0.34))
+            drop-shadow(0 0 20px rgba(255, 122, 0, 0.18));
+}
+
+@keyframes badge-marquee {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .badge-track {
+        animation: none;
+    }
 }
 
 /* tablet */

@@ -79,6 +79,21 @@ const userService = {
         return response.data;
     },
 
+    async lock(id) {
+        const response = await api.post(`/users/${id}/lock`);
+        return response.data;
+    },
+
+    async unlock(id) {
+        const response = await api.post(`/users/${id}/unlock`);
+        return response.data;
+    },
+
+    async archive(id) {
+        const response = await api.post(`/users/${id}/archive`);
+        return response.data;
+    },
+
     async deactivate(id) {
         await api.delete(`/users/${id}`);
     },

@@ -1,3 +1,4 @@
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 import TrainingActionsMenu from "./TrainingActionsMenu.jsx";
 import TrainingStatusBadge from "./TrainingStatusBadge.jsx";
 import {
@@ -119,8 +120,17 @@ function TrainingenTable({ trainingen, onRefresh }) {
                                                 ? "trainingen-table__check trainingen-table__check--done"
                                                 : "trainingen-table__check trainingen-table__check--pending"
                                         }
+                                        title={
+                                            complete
+                                                ? "Basisgegevens compleet"
+                                                : "Basisgegevens ontbreken"
+                                        }
                                     >
-                                        {complete ? "V" : "-"}
+                                        {complete ? (
+                                            <CheckCircle2 aria-hidden="true" />
+                                        ) : (
+                                            <AlertCircle aria-hidden="true" />
+                                        )}
                                     </span>
                                 </td>
 

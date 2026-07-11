@@ -15,9 +15,14 @@ html {
     scroll-behavior: smooth;
     overscroll-behavior-y: none;
     min-height: 100%;
+    overflow-x: hidden;
 }
 body, #root {
     min-height: 100%;
+}
+body {
+    min-width: 100%;
+    overflow-x: hidden;
 }
 
 /* ========================================

@@ -1,9 +1,13 @@
 import "./WhyChooseSection.css";
 
-import instructieBlusmiddelen from "@/assets/image/homepageFotos/Wesley De Winne instructie brandblusser.webp";
-import instructieReanimatieBuiten from "@/assets/image/homepageFotos/Wesley De Winne instructie Reanimatie buiten.webp";
-import instructieReanimatieBaby from "@/assets/image/homepageFotos/Wesley De Winne Reanimatie instructie Baby reanimatie.webp";
-import geografischePlek from "@/assets/image/homepageFotos/Geografisch plek.webp";
+import instructieBlusmiddelen from "@/assets/image/homepageFotos/Wesley De Winne instructie brandblusser.webp?w=720&format=webp&quality=70";
+import instructieBlusmiddelenSrcSet from "@/assets/image/homepageFotos/Wesley De Winne instructie brandblusser.webp?w=360;520;720&format=webp&quality=70&as=srcset";
+import instructieReanimatieBuiten from "@/assets/image/homepageFotos/Wesley De Winne instructie Reanimatie buiten.webp?w=520&format=webp&quality=70";
+import instructieReanimatieBuitenSrcSet from "@/assets/image/homepageFotos/Wesley De Winne instructie Reanimatie buiten.webp?w=320;520&format=webp&quality=70&as=srcset";
+import instructieReanimatieBaby from "@/assets/image/homepageFotos/Wesley De Winne Reanimatie instructie Baby reanimatie.webp?w=520&format=webp&quality=70";
+import instructieReanimatieBabySrcSet from "@/assets/image/homepageFotos/Wesley De Winne Reanimatie instructie Baby reanimatie.webp?w=320;520&format=webp&quality=70&as=srcset";
+import geografischePlek from "@/assets/image/homepageFotos/Geografisch plek.webp?w=520&format=webp&quality=70";
+import geografischePlekSrcSet from "@/assets/image/homepageFotos/Geografisch plek.webp?w=320;520&format=webp&quality=70&as=srcset";
 
 const proofPoints = [
     "BHV-trainingen",
@@ -26,6 +30,7 @@ const reasons = [
         text: "Medewerkers oefenen stap voor stap wat zij moeten doen bij brand, letsel, reanimatie, alarmeren en ontruimen. De theorie wordt direct gekoppeld aan handelen, zodat deelnemers begrijpen waarom een handeling nodig is en wanneer zij die toepassen.",
         points: ["Oefenen met herkenbare noodsituaties", "Vaardigheden toepassen in de eigen werkomgeving"],
         image: instructieReanimatieBuiten,
+        srcSet: instructieReanimatieBuitenSrcSet,
         alt: "Praktijkgerichte BHV-training met reanimatie oefensituatie",
     },
     {
@@ -35,6 +40,7 @@ const reasons = [
         text: "Deelnemers trainen in overzichtelijke groepen. Daardoor is er tijd om vragen te stellen, handelingen opnieuw te proberen en vertrouwen op te bouwen bij eerste hulp, brandbestrijding en communicatie.",
         points: ["Meer begeleiding bij BHV- en EHBO-vaardigheden", "Oefenen in een tempo dat past bij de deelnemers"],
         image: instructieBlusmiddelen,
+        srcSet: instructieBlusmiddelenSrcSet,
         alt: "Kleine groep deelnemers tijdens een BHV-training",
     },
     {
@@ -44,6 +50,7 @@ const reasons = [
         text: "Incompany trainingen worden voorbereid op basis van jullie gebouw, werkzaamheden, aanwezige risico's en teamgrootte. Daardoor sluiten scenario's beter aan op wat medewerkers tijdens een incident echt kunnen tegenkomen.",
         points: ["Scenario's passend bij gebouw, team en risico's", "BHV, EHBO en ontruiming afgestemd op de organisatie"],
         image: instructieReanimatieBaby,
+        srcSet: instructieReanimatieBabySrcSet,
         alt: "Incompany BHV en EHBO training op locatie",
     },
     {
@@ -53,6 +60,7 @@ const reasons = [
         text: "Planning, groepsgrootte en voorbereiding worden vooraf samen afgestemd. Zo past de training binnen de agenda van de organisatie en blijft er voldoende ruimte voor oefenen, evalueren en bijsturen.",
         points: ["Samen passende trainingsdata en tijden bepalen", "Afstemming op team, locatie, agenda en leerdoel"],
         image: geografischePlek,
+        srcSet: geografischePlekSrcSet,
         alt: "Gezamenlijke planning en afstemming voor BHV-training",
     },
 ];
@@ -105,8 +113,13 @@ function WhyChooseSection() {
                         <img
                             className="why-choose__spotlight-image"
                             src={instructieBlusmiddelen}
+                            srcSet={instructieBlusmiddelenSrcSet}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1100px) 92vw, 42vw"
                             alt="Praktische uitleg tijdens een veiligheidstraining"
                             loading="lazy"
+                            decoding="async"
+                            width={720}
+                            height={1080}
                         />
                         <div className="why-choose__spotlight-content">
                             <span className="why-choose__spotlight-label">Praktijk boven papier</span>
@@ -128,8 +141,13 @@ function WhyChooseSection() {
                                 <img
                                     className="why-choose__image"
                                     src={reason.image}
+                                    srcSet={reason.srcSet}
+                                    sizes="(max-width: 640px) 92vw, (max-width: 1100px) 44vw, 22vw"
                                     alt={reason.alt}
                                     loading="lazy"
+                                    decoding="async"
+                                    width={520}
+                                    height={325}
                                 />
                             </div>
 

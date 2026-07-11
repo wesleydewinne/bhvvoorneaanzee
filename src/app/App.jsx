@@ -8,7 +8,8 @@ import useAuth from "@/features/auth/hooks/useAuth.js";
 import api from "@/api/api.js";
 import { Analytics } from "@vercel/analytics/react";
 
-const isProduction = import.meta.env.PROD;
+const isProductionSite = import.meta.env.PROD &&
+    !["localhost", "127.0.0.1"].includes(window.location.hostname);
 
 function App() {
     const [showPopup, setShowPopup] = useState(false);
@@ -59,7 +60,7 @@ function App() {
     return (
         <>
             <Head />
-            {isProduction && <Analytics />}
+            {isProductionSite && <Analytics />}
 
             {authenticated && showPopup && (
                 <SessionWarningPopup

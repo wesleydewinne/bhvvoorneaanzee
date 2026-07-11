@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import TrainingCard from "@/shared/components/ui/card/trainingCard/TrainingCard.jsx";
 import "./TrainingCardSection.css";
 import { resolveCardImage } from "@/shared/utils/imageResolver.js";
@@ -6,7 +6,7 @@ import { resolveCardImage } from "@/shared/utils/imageResolver.js";
 const TrainingCardSection = ({ title, cards = [], initialFocusId }) => {
     const carouselRef = useRef(null);
 
-    const focusInitialCard = () => {
+    const focusInitialCard = useCallback(() => {
         if (!carouselRef.current || !initialFocusId) return;
 
         const carousel = carouselRef.current;
@@ -20,16 +20,38 @@ const TrainingCardSection = ({ title, cards = [], initialFocusId }) => {
             : focusCard.offsetLeft - ((carousel.clientWidth - focusCard.clientWidth) / 2);
 
         carousel.scrollLeft = Math.max(targetLeft, 0);
-    };
+    }, [initialFocusId]);
 
     useEffect(() => {
-        focusInitialCard();
-        window.addEventListener("resize", focusInitialCard);
+        const carousel = carouselRef.current;
+        if (!carousel) return undefined;
+
+        let firstFrame = 0;
+        let secondFrame = 0;
+
+        // Wait until React's DOM changes and the newly loaded stylesheet have
+        // both been painted before reading geometry. Reading it during commit
+        // forced the browser to synchronously lay out the entire section.
+        const scheduleFocus = () => {
+            window.cancelAnimationFrame(firstFrame);
+            window.cancelAnimationFrame(secondFrame);
+
+            firstFrame = window.requestAnimationFrame(() => {
+                secondFrame = window.requestAnimationFrame(focusInitialCard);
+            });
+        };
+
+        scheduleFocus();
+
+        const resizeObserver = new ResizeObserver(scheduleFocus);
+        resizeObserver.observe(carousel);
 
         return () => {
-            window.removeEventListener("resize", focusInitialCard);
+            resizeObserver.disconnect();
+            window.cancelAnimationFrame(firstFrame);
+            window.cancelAnimationFrame(secondFrame);
         };
-    }, [initialFocusId, cards.length]);
+    }, [focusInitialCard, cards.length]);
 
     const scrollCarousel = (direction) => {
         if (!carouselRef.current) return;

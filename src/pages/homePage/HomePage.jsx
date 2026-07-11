@@ -1,71 +1,80 @@
 import "./HomePage.css";
-import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
-import BlogSection from "@/features/blog/BlogSection.jsx";
+import { lazy, Suspense, useEffect, useState } from "react";
 import CTAButtons from "@/shared/components/ui/button/cta/CTAButton.jsx";
-import { posts } from "@/features/blog/posts.js";
-import trainingData from "@/shared/data/training.json";
-import homePageHeader from "@/assets/image/common/headerimage/overons-header.jpg?w=1400&format=webp&quality=72";
-import ClientExperiencesSection from "@/shared/components/ui/clientExperiencesCarousel/ClientExperiencesSection.jsx";
-import wesleyTrainingPhoto from "@/assets/image/blog/weekVanDeTeek/Deweekvandeteek.webp";
-import BadgeCarousel from "@/shared/components/sections/badges/BadgeCarousel.jsx";
-
 import TrustBar from "@/shared/components/sections/trustBar/TrustBar.jsx";
-import WhyChooseSection from "@/shared/components/sections/whyChooseSection/WhyChooseSection.jsx";
-import ActionSection from "@/shared/components/sections/actionSection/ActionSection.jsx";
-import AboutTrainerSection from "@/shared/components/sections/aboutTrainerSection/AboutTrainerSection.jsx";
-import RegionSection from "@/shared/components/sections/regionSection/RegionSection.jsx";
-import FaqSection from "@/shared/components/sections/faqSection/FaqSection.jsx";
-
 import GoogleReviewBadge from "@/features/reviews/components/GoogleReviewBadge.jsx";
 
+const HomePageDeferredSections = lazy(() => import("./HomePageDeferredSections.jsx"));
+
 function HomePage() {
-    const getHomepageCardButtonText = (categoryId) => {
-        switch (categoryId) {
-            case "bhv":
-                return "Bekijk alle BHV-trainingen";
+    const [showDeferredSections, setShowDeferredSections] = useState(false);
 
-            case "ploegleider":
-                return "Bekijk alle ploegleidertrainingen";
+    useEffect(() => {
+        let idleId = null;
+        let timeoutId = null;
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-            case "ontruiming":
-                return "Bekijk alle ontruimingsoefeningen";
+        const revealSections = () => {
+            setShowDeferredSections(true);
+        };
 
-            case "ehbo":
-                return "Bekijk alle EHBO-trainingen";
+        const scheduleReveal = () => {
+            if ("requestIdleCallback" in window) {
+                idleId = window.requestIdleCallback(revealSections, { timeout: 3500 });
+            } else {
+                timeoutId = window.setTimeout(revealSections, 1800);
+            }
+        };
 
-            case "workshops":
-                return "Bekijk alle workshops";
+        const revealOnIntent = () => revealSections();
 
-            default:
-                return "Bekijk aanbod";
+        // On smaller devices, mounting the entire long homepage while the user
+        // is still reading the hero competes with the main thread. Wait for
+        // actual intent there; desktop has enough headroom to use idle time.
+        if (!isMobile) {
+            if (document.readyState === "complete") {
+                scheduleReveal();
+            } else {
+                window.addEventListener("load", scheduleReveal, { once: true });
+            }
         }
-    };
 
-    const homeCardOrder = ["workshops", "ontruiming", "bhv", "ploegleider", "ehbo"];
+        window.addEventListener("scroll", revealOnIntent, { once: true, passive: true });
+        window.addEventListener("pointerdown", revealOnIntent, { once: true, passive: true });
+        window.addEventListener("touchstart", revealOnIntent, { once: true, passive: true });
+        window.addEventListener("keydown", revealOnIntent, { once: true });
 
-    const homeCards = homeCardOrder
-        .map((categoryId) => trainingData.categories.find((category) => category.id === categoryId))
-        .filter(Boolean)
-        .map((category) => ({
-        id: category.id,
-        title: category.cardTitle,
-        description: category.description,
-        image: category.image,
-        alt: category.alt,
-        buttonText: getHomepageCardButtonText(category.id),
-        buttonTo: `/${category.id}`,
-    }));
+        return () => {
+            window.removeEventListener("load", scheduleReveal);
+            window.removeEventListener("scroll", revealOnIntent);
+            window.removeEventListener("pointerdown", revealOnIntent);
+            window.removeEventListener("touchstart", revealOnIntent);
+            window.removeEventListener("keydown", revealOnIntent);
+
+            if (idleId !== null && "cancelIdleCallback" in window) {
+                window.cancelIdleCallback(idleId);
+            }
+
+            if (timeoutId !== null) {
+                window.clearTimeout(timeoutId);
+            }
+        };
+    }, []);
 
     return (
         <div className="homepage">
             <section className="homepage-hero">
                 <img
-                    src={homePageHeader}
+                    src="/images/hero/overons-header-1200.webp"
+                    srcSet="/images/hero/overons-header-480.webp 480w, /images/hero/overons-header-768.webp 768w, /images/hero/overons-header-1024.webp 1024w, /images/hero/overons-header-1400.webp 1400w"
+                    sizes="100vw"
                     alt=""
                     className="homepage-hero__image"
+                    loading="eager"
                     decoding="async"
                     fetchPriority="high"
-                    aria-hidden="true"
+                    width={1400}
+                    height={600}
                 />
                 <div className="container homepage-hero__inner">
                     <div className="homepage-hero__content">
@@ -94,41 +103,15 @@ function HomePage() {
 
             <TrustBar />
 
-            <WhyChooseSection />
-
-            <ActionSection />
-
-            <TrainingCardSection
-                title="Trainingsaanbod BHV Voorne aan Zee"
-                cards={homeCards}
-                initialFocusId="bhv"
-            />
-
-            <AboutTrainerSection
-                portraitSrc={wesleyTrainingPhoto}
-                actionSrc={wesleyTrainingPhoto}
-            />
-
-            <ClientExperiencesSection
-                photoSrc={wesleyTrainingPhoto}
-                photoAlt="Wesley geeft BHV training"
-            />
-
-            <BadgeCarousel />
-
-            <RegionSection />
-
-            <FaqSection />
-
-            <section className="homepage__blog">
-                <BlogSection
-                    posts={posts}
-                    title="Veiligheidsinzichten uit de praktijk"
-                    subtitle="Artikelen over BHV, EHBO, ontruiming en veilig werken binnen organisaties."
-                    limit={6}
-                />
-            </section>
-
+            <div className="homepage__deferred-shell">
+                {showDeferredSections ? (
+                    <Suspense fallback={<div className="homepage__deferred-placeholder" />}>
+                        <HomePageDeferredSections />
+                    </Suspense>
+                ) : (
+                    <div className="homepage__deferred-placeholder" />
+                )}
+            </div>
         </div>
     );
 }

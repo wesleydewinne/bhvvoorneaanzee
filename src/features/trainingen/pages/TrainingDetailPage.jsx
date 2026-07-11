@@ -1,5 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+    Archive,
+    ArrowLeft,
+    Building2,
+    CalendarDays,
+    CheckCircle2,
+    Clock,
+    MapPin,
+    Pencil,
+    RefreshCw,
+    Settings2,
+    ShieldCheck,
+    Users,
+} from "lucide-react";
 import TrainingStatusBadge from "../components/TrainingStatusBadge.jsx";
 import TrainingParticipantsSection from "../components/TrainingParticipantsSection.jsx";
 import trainingService from "../services/trainingService.js";
@@ -195,18 +209,22 @@ function TrainingDetailPage() {
 
     if (loading) {
         return (
-            <section className="trainingen-page">
-                <p>Training laden...</p>
+            <section className="trainingen-page dashboard-admin-page">
+                <p className="dashboard__state">
+                    <RefreshCw aria-hidden="true" />
+                    Training laden...
+                </p>
             </section>
         );
     }
 
     if (error && !training) {
         return (
-            <section className="trainingen-page">
-                <p className="trainingen-page__error">{error}</p>
+            <section className="trainingen-page dashboard-admin-page">
+                <p className="dashboard-admin-message dashboard-admin-message--error">{error}</p>
 
-                <Link to="/admin/trainingen" className="trainingen-page__button">
+                <Link to="/admin/trainingen" className="dashboard-admin-button">
+                    <ArrowLeft aria-hidden="true" />
                     Terug naar overzicht
                 </Link>
             </section>
@@ -216,41 +234,68 @@ function TrainingDetailPage() {
     const complete = isTrainingComplete(training);
 
     return (
-        <section className="trainingen-page">
-            <div className="trainingen-page__header">
+        <section className="trainingen-page dashboard-admin-page">
+            <section className="dashboard-admin-hero" aria-labelledby="training-detail-title">
                 <div>
-                    <h1>Training details</h1>
-                    <p>Overzicht van de training, locatie en status.</p>
+                    <p className="dashboard__eyebrow">Trainingen</p>
+                    <h1 id="training-detail-title">Training details</h1>
+                    <p>Overzicht van planning, locatie, deelnemers en status van deze training.</p>
                 </div>
 
-                <div className="trainingen-page__header-actions">
+                <div className="dashboard-admin-hero__actions">
                     <Link
                         to="/admin/trainingen"
-                        className="trainingen-page__button trainingen-page__button--secondary"
+                        className="dashboard-admin-button dashboard-admin-button--secondary"
                     >
-                        Terug
+                        <ArrowLeft aria-hidden="true" />
+                        Overzicht
                     </Link>
 
                     {!training?.deleted && (
                         <Link
                             to={`/admin/trainingen/${id}/edit`}
-                            className="trainingen-page__button"
+                            className="dashboard-admin-button"
                         >
+                            <Pencil aria-hidden="true" />
                             Bewerken
                         </Link>
                     )}
                 </div>
-            </div>
+            </section>
 
-            {error && <p className="trainingen-page__error">{error}</p>}
+            {error && <p className="dashboard-admin-message dashboard-admin-message--error">{error}</p>}
 
             {training?.deleted && (
-                <div className="trainingen-page__error">
+                <div className="dashboard-admin-message dashboard-admin-message--error">
                     Deze training is gearchiveerd en kan niet meer worden aangepast.
                 </div>
             )}
 
-            <div className="training-detail-overview">
+            <section className="dashboard-admin-stats" aria-label="Training samenvatting">
+                <article className="dashboard-admin-stat">
+                    <span className="dashboard-admin-stat__icon">
+                        <CalendarDays aria-hidden="true" />
+                    </span>
+                    <strong>{formatDate(training?.courseDate)}</strong>
+                    <span>Datum</span>
+                </article>
+                <article className="dashboard-admin-stat">
+                    <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--green">
+                        <Clock aria-hidden="true" />
+                    </span>
+                    <strong>{formatTime(training?.startTime)}</strong>
+                    <span>Starttijd</span>
+                </article>
+                <article className="dashboard-admin-stat">
+                    <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--orange">
+                        <Users aria-hidden="true" />
+                    </span>
+                    <strong>{training?.maxParticipants ?? "-"}</strong>
+                    <span>Maximum deelnemers</span>
+                </article>
+            </section>
+
+            <section className="training-detail-overview dashboard-admin-panel" aria-label="Training details">
                 <div className="training-detail-overview__top">
                     <div>
                         <span className="training-detail-overview__label">
@@ -274,14 +319,17 @@ function TrainingDetailPage() {
                                     : "Er ontbreken nog basisgegevens"
                             }
                         >
-                            {complete ? "V" : "-"}
+                            {complete ? <CheckCircle2 aria-hidden="true" /> : "-"}
                         </span>
                     </div>
                 </div>
 
                 <div className="training-detail-overview__main">
                     <div className="training-detail-section">
-                        <h3>Training</h3>
+                        <h3>
+                            <ShieldCheck aria-hidden="true" />
+                            Training
+                        </h3>
 
                         <dl className="training-detail-list">
                             <div>
@@ -310,11 +358,17 @@ function TrainingDetailPage() {
                     </div>
 
                     <div className="training-detail-section">
-                        <h3>Locatie en bedrijf</h3>
+                        <h3>
+                            <MapPin aria-hidden="true" />
+                            Locatie en bedrijf
+                        </h3>
 
                         <dl className="training-detail-list">
                             <div>
-                                <dt>Bedrijf</dt>
+                                <dt>
+                                    <Building2 aria-hidden="true" />
+                                    Bedrijf
+                                </dt>
                                 <dd>{getCompanyDisplayName(training)}</dd>
                             </div>
 
@@ -331,7 +385,10 @@ function TrainingDetailPage() {
                     </div>
 
                     <div className="training-detail-section">
-                        <h3>Instellingen</h3>
+                        <h3>
+                            <Settings2 aria-hidden="true" />
+                            Instellingen
+                        </h3>
 
                         <dl className="training-detail-list">
                             <div>
@@ -382,8 +439,9 @@ function TrainingDetailPage() {
                         <button
                             type="submit"
                             disabled={statusLoading || training?.deleted}
-                            className="trainingen-page__button"
+                            className="dashboard-admin-button"
                         >
+                            <CheckCircle2 aria-hidden="true" />
                             {statusLoading ? "Opslaan..." : "Status opslaan"}
                         </button>
 
@@ -391,14 +449,15 @@ function TrainingDetailPage() {
                             <button
                                 type="button"
                                 onClick={handleArchive}
-                                className="trainingen-page__button trainingen-page__button--danger"
+                                className="dashboard-admin-button trainingen-page__button--danger"
                             >
+                                <Archive aria-hidden="true" />
                                 Archiveren
                             </button>
                         )}
                     </div>
                 </form>
-            </div>
+            </section>
 
             <TrainingParticipantsSection
                 courseId={id}

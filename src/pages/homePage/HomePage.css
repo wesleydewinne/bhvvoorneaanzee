@@ -12,6 +12,12 @@
     background-color: var(--color-surface);
 }
 
+/* Reserveer ruimte voor hero-afbeelding om CLS te voorkomen */
+.homepage-hero {
+    aspect-ratio: 21/9;
+    min-height: clamp(20rem, 30vh, 40rem);
+}
+
 .homepage-hero__image {
     position: absolute;
     inset: 0;
@@ -104,6 +110,21 @@
 ======================================== */
 .homepage__reviews {
     padding: 4rem 0 0;
+}
+
+.homepage__deferred-shell {
+    min-height: 520rem;
+}
+
+.homepage__deferred-placeholder {
+    min-height: 520rem;
+}
+
+/* Keep below-the-fold content in the DOM, but do not make the browser style
+   and lay out the entire long homepage during the initial render. */
+.homepage__deferred-shell > section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 80rem;
 }
 
 .homepage__blog {
@@ -206,6 +227,11 @@
 
     .homepage__reviews {
         padding-top: 3rem;
+    }
+
+    .homepage__deferred-shell,
+    .homepage__deferred-placeholder {
+        min-height: 650rem;
     }
 
     .homepage__blog {

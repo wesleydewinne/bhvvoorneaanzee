@@ -1,9 +1,14 @@
 export function mapProfileResponseToViewModel(data) {
     const firstName = data?.firstName ?? "";
     const lastName = data?.lastName ?? "";
-    const globalRoles = Array.isArray(data?.globalRoles) ? data.globalRoles : [];
+    const globalRoles = Array.isArray(data?.globalRoles)
+        ? data.globalRoles
+        : Array.isArray(data?.roles)
+            ? data.roles
+            : [];
 
     return {
+        id: data?.id ?? null,
         firstName,
         lastName,
         fullName: `${firstName} ${lastName}`.trim(),
@@ -16,6 +21,11 @@ export function mapProfileResponseToViewModel(data) {
         nibhvNummer: data?.nibhvNummer ?? "",
         oranjeKruisNummer: data?.oranjeKruisNummer ?? "",
         globalRoles,
+        status: data?.status ?? "",
+        mustChangePassword: Boolean(data?.mustChangePassword),
+        twoFactorEnabled: Boolean(data?.twoFactorEnabled),
+        twoFactorRequired: Boolean(data?.twoFactorRequired),
+        lastLogin: data?.lastLogin ?? "",
 
         // Voorbereid op toekomstige backend-uitbreiding
         certificates: Array.isArray(data?.certificates) ? data.certificates : [],

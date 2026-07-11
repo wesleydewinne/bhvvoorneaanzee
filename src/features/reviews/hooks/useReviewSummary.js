@@ -8,6 +8,8 @@ function useReviewSummary() {
 
     useEffect(() => {
         let isMounted = true;
+        let idleId = null;
+        let timeoutId = null;
 
         const fetchSummary = async () => {
             try {
@@ -28,10 +30,32 @@ function useReviewSummary() {
             }
         };
 
-        fetchSummary();
+        const scheduleFetch = () => {
+            if ("requestIdleCallback" in window) {
+                idleId = window.requestIdleCallback(fetchSummary, { timeout: 2500 });
+                return;
+            }
+
+            timeoutId = window.setTimeout(fetchSummary, 1200);
+        };
+
+        if (document.readyState === "complete") {
+            scheduleFetch();
+        } else {
+            window.addEventListener("load", scheduleFetch, { once: true });
+        }
 
         return () => {
             isMounted = false;
+            window.removeEventListener("load", scheduleFetch);
+
+            if (idleId !== null && "cancelIdleCallback" in window) {
+                window.cancelIdleCallback(idleId);
+            }
+
+            if (timeoutId !== null) {
+                window.clearTimeout(timeoutId);
+            }
         };
     }, []);
 

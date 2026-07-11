@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { ArrowLeft, Pencil, RefreshCw } from "lucide-react";
 import TrainingForm from "../components/TrainingForm.jsx";
 import trainingService from "../services/trainingService.js";
 import "../styles/Trainingen.css";
@@ -48,30 +49,53 @@ function EditTrainingPage() {
     };
 
     return (
-        <section className="trainingen-page">
-            <div className="trainingen-page__header">
+        <section className="trainingen-page dashboard-admin-page">
+            <section className="dashboard-admin-hero" aria-labelledby="edit-training-title">
                 <div>
-                    <h1>Training bewerken</h1>
-                    <p>Pas de gegevens van deze training aan.</p>
+                    <p className="dashboard__eyebrow">Trainingen</p>
+                    <h1 id="edit-training-title">Training bewerken</h1>
+                    <p>Pas planning, locatie en gekoppelde gegevens van deze training aan.</p>
                 </div>
 
-                <Link to={`/admin/trainingen/${id}`} className="trainingen-page__button trainingen-page__button--secondary">
-                    Terug
-                </Link>
-            </div>
+                <div className="dashboard-admin-hero__actions">
+                    <Link to={`/admin/trainingen/${id}`} className="dashboard-admin-button dashboard-admin-button--secondary">
+                        <ArrowLeft aria-hidden="true" />
+                        Terug naar details
+                    </Link>
+                </div>
+            </section>
 
-            {loading && <p>Training laden...</p>}
-            {!loading && error && <p className="trainingen-page__error">{error}</p>}
+            {loading && (
+                <p className="dashboard__state">
+                    <RefreshCw aria-hidden="true" />
+                    Training laden...
+                </p>
+            )}
 
             {!loading && training && (
-                <TrainingForm
-                    mode="edit"
-                    initialValues={training}
-                    onSubmit={handleUpdate}
-                    loading={saving}
-                    error={error}
-                />
+                <section className="dashboard-admin-panel" aria-label="Training bewerken formulier">
+                    <div className="dashboard-admin-panel__header">
+                        <div>
+                            <h2>Traininggegevens</h2>
+                            <p>Werk de gegevens bij en sla de training direct op.</p>
+                        </div>
+                        <span>
+                            <Pencil aria-hidden="true" />
+                            Bewerken
+                        </span>
+                    </div>
+
+                    <TrainingForm
+                        mode="edit"
+                        initialValues={training}
+                        onSubmit={handleUpdate}
+                        loading={saving}
+                        error={error}
+                    />
+                </section>
             )}
+
+            {!loading && error && !training && <p className="dashboard-admin-message dashboard-admin-message--error">{error}</p>}
         </section>
     );
 }

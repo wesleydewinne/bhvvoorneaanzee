@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, Plus } from "lucide-react";
 import TrainingForm from "../components/TrainingForm.jsx";
 import trainingService from "../services/trainingService.js";
 import "../styles/Trainingen.css";
@@ -35,6 +36,7 @@ function CreateTrainingPage() {
 
                 <div className="trainingen-page__header-actions">
                     <Link to="/admin/trainingen" className="dashboard-admin-button dashboard-admin-button--secondary">
+                        <ArrowLeft aria-hidden="true" />
                         Terug naar overzicht
                     </Link>
                 </div>
@@ -46,6 +48,10 @@ function CreateTrainingPage() {
                         <h2>Traininggegevens</h2>
                         <p>Vul de basisgegevens van de training in en kies locatie, bedrijf en trainer.</p>
                     </div>
+                    <span>
+                        <Plus aria-hidden="true" />
+                        Nieuw
+                    </span>
                 </div>
 
                 <TrainingForm

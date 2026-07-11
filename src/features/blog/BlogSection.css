@@ -28,8 +28,9 @@
     font-size: clamp(3.8rem, 4.3vw, 6.4rem);
     font-weight: 950;
     line-height: 0.98;
-    white-space: nowrap;
     text-wrap: balance;
+    word-break: break-word;
+    white-space: normal;
 }
 
 .section-blog-subtitle {
@@ -38,7 +39,8 @@
     color: #d1d5db;
     font-size: clamp(1.75rem, 1.5rem + 0.35vw, 2rem);
     line-height: 1.7;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
 }
 
 .section-blog-cards-container {

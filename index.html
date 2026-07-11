@@ -4,7 +4,15 @@
   <meta charset="UTF-8" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link
+    rel="preload"
+    as="image"
+    href="/images/hero/overons-header-1200.webp"
+    imagesrcset="/images/hero/overons-header-480.webp 480w, /images/hero/overons-header-768.webp 768w, /images/hero/overons-header-1024.webp 1024w, /images/hero/overons-header-1400.webp 1400w"
+    imagesizes="100vw"
+    fetchpriority="high"
+  />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BHV Voorne aan Zee</title>
@@ -16,13 +24,32 @@
 <!-- React entry -->
 <script type="module" src="/src/main.jsx"></script>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KNSP4TFGL3"></script>
+<!-- Google Analytics (deferred to idle/load to reduce main-thread impact) -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-KNSP4TFGL3');
+  (function(){
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+
+    function loadGtag(){
+      if (window.gtag) return;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KNSP4TFGL3';
+      s.async = true;
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-KNSP4TFGL3');
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGtag, {timeout: 5000});
+    } else {
+      window.addEventListener('load', loadGtag);
+      setTimeout(loadGtag, 8000);
+    }
+  })();
 </script>
 
 </body>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import useAuth from "@/features/auth/hooks/useAuth.js";
-import logo from "@/assets/image/common/logo/logo.png";
+import logo from "@/assets/image/common/logo/logo.png?w=128&format=webp&quality=76";
 
 import "./Header.css";
 
@@ -71,6 +71,10 @@ export default function Header() {
                         src={logo}
                         alt="BHV Voorne aan Zee"
                         className="header-logo"
+                        width={128}
+                        height={128}
+                        decoding="async"
+                        loading="eager"
                     />
                 </Link>
 

@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./ClientExperiencesSection.css";
 
-import logoprocentrum from "@/assets/image/logosBedrijven/PROCentrum.png";
-import logorailwagonservice from "@/assets/image/logosBedrijven/logorailwagonservice.jpg";
+import logoprocentrum from "@/assets/image/logosBedrijven/PROCentrum.png?w=128&format=webp&quality=76";
+import logorailwagonservice from "@/assets/image/logosBedrijven/logorailwagonservice.jpg?w=128&format=webp&quality=76";
 
 const clientExperiences = [
     {
@@ -130,6 +130,10 @@ export default function ClientExperiencesSection({
                             src={photoSrc}
                             alt={photoAlt}
                             className="client-experiences-section__image"
+                            loading="lazy"
+                            decoding="async"
+                            width={720}
+                            height={900}
                             style={{ objectPosition: photoPosition }}
                         />
                     </div>
@@ -175,6 +179,10 @@ export default function ClientExperiencesSection({
                                         className="client-experiences-section__logo"
                                         src={item.logo}
                                         alt=""
+                                        width={128}
+                                        height={128}
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </div>
 

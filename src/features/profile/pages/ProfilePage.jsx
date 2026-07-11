@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { AlertCircle, RefreshCw, UserRound } from "lucide-react";
 import ProfileLayout from "../components/ProfileLayout.jsx";
 import profileService from "../services/profileService.js";
 import { mapProfileResponseToViewModel } from "../helpers/profileMapper.js";
@@ -95,7 +96,10 @@ export default function ProfilePage() {
         return (
             <section className="profile-page">
                 <div className="profile-state-card">
-                    <p>Laden...</p>
+                    <p>
+                        <RefreshCw aria-hidden="true" />
+                        Laden...
+                    </p>
                 </div>
             </section>
         );
@@ -105,7 +109,10 @@ export default function ProfilePage() {
         return (
             <section className="profile-page">
                 <div className="profile-state-card profile-state-card--error">
-                    <p>{error}</p>
+                    <p>
+                        <AlertCircle aria-hidden="true" />
+                        {error}
+                    </p>
                 </div>
             </section>
         );
@@ -115,7 +122,10 @@ export default function ProfilePage() {
         return (
             <section className="profile-page">
                 <div className="profile-state-card">
-                    <p>Geen profielgegevens gevonden.</p>
+                    <p>
+                        <UserRound aria-hidden="true" />
+                        Geen profielgegevens gevonden.
+                    </p>
                 </div>
             </section>
         );
