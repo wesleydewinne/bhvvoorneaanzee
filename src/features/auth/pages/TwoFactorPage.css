@@ -338,3 +338,13 @@
     .twofactor-passkey-item { align-items: flex-start; flex-direction: column; }
     .twofactor-passkey-item .twofactor-secondary-button { width: 100%; }
 }
+
+.twofactor-code-boxes { display: grid; grid-template-columns: repeat(6, minmax(0, 5.8rem)); justify-content: center; gap: 1rem; width: 100%; }
+.twofactor-code-box { width: 100%; aspect-ratio: 1; padding: 0; border: .1rem solid #cbd5e1; border-radius: 1.2rem; background: #fff; color: #0f172a; font-size: 2.6rem; font-weight: 800; text-align: center; caret-color: #f97316; outline: none; box-sizing: border-box; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.twofactor-code-box:focus { border-color: #f97316; box-shadow: 0 0 0 .4rem rgba(249,115,22,.13); transform: translateY(-.1rem); }
+.twofactor-code-box:disabled { cursor: not-allowed; opacity: .6; }
+
+@media (max-width: 48rem) {
+    .twofactor-code-boxes { gap: .55rem; }
+    .twofactor-code-box { border-radius: .9rem; font-size: 2.1rem; }
+}

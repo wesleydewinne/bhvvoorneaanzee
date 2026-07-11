@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 import { ShieldCheck } from "lucide-react";
+import TwoFactorCodeInput from "@/features/auth/components/TwoFactorCodeInput.jsx";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./TwoFactorPage.css";
@@ -186,18 +187,7 @@ export default function TwoFactorPage() {
                                         6-cijferige code
                                     </label>
 
-                                    <input
-                                        id="code"
-                                        className="twofactor-code-input"
-                                        type="text"
-                                        inputMode="numeric"
-                                        autoComplete="one-time-code"
-                                        maxLength={6}
-                                        placeholder="123456"
-                                        value={code}
-                                        onChange={handleCodeChange}
-                                        required
-                                    />
+                                    <TwoFactorCodeInput id="code" value={code} onChange={setCode} disabled={loading} />
                                 </section>
 
                                 <button
@@ -222,18 +212,7 @@ export default function TwoFactorPage() {
                                 Authenticatiecode
                             </label>
 
-                            <input
-                                id="code"
-                                className="twofactor-code-input"
-                                type="text"
-                                inputMode="numeric"
-                                autoComplete="one-time-code"
-                                maxLength={6}
-                                placeholder="123456"
-                                value={code}
-                                onChange={handleCodeChange}
-                                required
-                            />
+                            <TwoFactorCodeInput id="code" value={code} onChange={setCode} disabled={loading} />
                         </section>
 
                         <button

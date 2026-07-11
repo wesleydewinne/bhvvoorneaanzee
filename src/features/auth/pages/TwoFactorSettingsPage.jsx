@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ShieldCheck } from "lucide-react";
+import TwoFactorCodeInput from "@/features/auth/components/TwoFactorCodeInput.jsx";
 import { QRCodeCanvas } from "qrcode.react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import authService from "@/features/auth/services/authService.js";
@@ -200,20 +201,7 @@ export default function TwoFactorSettingsPage() {
                                         <label className="twofactor-label" htmlFor="setupCode">
                                             6-cijferige code
                                         </label>
-                                        <input
-                                            id="setupCode"
-                                            className="twofactor-code-input"
-                                            type="text"
-                                            inputMode="numeric"
-                                            autoComplete="one-time-code"
-                                            maxLength={6}
-                                            placeholder="123456"
-                                            value={setupCode}
-                                            onChange={(e) =>
-                                                setSetupCode(e.target.value.replace(/\D/g, "").slice(0, 6))
-                                            }
-                                            required
-                                        />
+                                        <TwoFactorCodeInput id="setupCode" value={setupCode} onChange={setSetupCode} disabled={loading} />
                                     </section>
 
                                     <button
@@ -290,20 +278,7 @@ export default function TwoFactorSettingsPage() {
                                         <label className="twofactor-label" htmlFor="disableCode">
                                             6-cijferige code
                                         </label>
-                                        <input
-                                            id="disableCode"
-                                            className="twofactor-code-input"
-                                            type="text"
-                                            inputMode="numeric"
-                                            autoComplete="one-time-code"
-                                            maxLength={6}
-                                            placeholder="123456"
-                                            value={disableCode}
-                                            onChange={(e) =>
-                                                setDisableCode(e.target.value.replace(/\D/g, "").slice(0, 6))
-                                            }
-                                            required
-                                        />
+                                        <TwoFactorCodeInput id="disableCode" value={disableCode} onChange={setDisableCode} disabled={loading} />
                                     </section>
 
                                     <button
