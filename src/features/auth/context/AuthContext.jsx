@@ -6,7 +6,12 @@ import {
     readPendingTwoFactorState,
 } from "@/features/auth/utils/twoFactorStorage.js";
 import { getAuthRoles } from "@/features/auth/helpers/passkeyPolicy.js";
-import { normalizePasskeyOptions, serializePasskeyCredential } from "@/features/auth/utils/passkeyUtils.js";
+import {
+    getDefaultPasskeyName,
+    getPasskeyTransactionId,
+    normalizePasskeyOptions,
+    serializePasskeyCredential,
+} from "@/features/auth/utils/passkeyUtils.js";
 
 export const AuthContext = createContext(null);
 
@@ -219,15 +224,26 @@ export function AuthProvider({ children }) {
         }
     }, [clearTwoFactorState, getErrorMessage, refreshUser]);
 
-    const registerPasskey = useCallback(async () => {
+    const registerPasskey = useCallback(async (credentialName) => {
         setLoading(true);
 
         try {
             const response = await authService.startPasskeyRegistration();
+            const registrationId = getPasskeyTransactionId(response.data, "registrationId");
+
+            if (!registrationId) {
+                throw new Error("Passkey-registratie mist een registrationId. Probeer het opnieuw.");
+            }
+
             const options = normalizePasskeyOptions(response.data);
 
             const credential = await navigator.credentials.create({ publicKey: options });
-            const payload = serializePasskeyCredential(credential);
+            const serializedCredential = serializePasskeyCredential(credential);
+            const payload = {
+                registrationId,
+                credential: serializedCredential,
+                credentialName: credentialName?.trim() || getDefaultPasskeyName(),
+            };
 
             await authService.finishPasskeyRegistration(payload);
             await refreshUser();

@@ -139,9 +139,27 @@ export function serializePasskeyCredential(credential) {
             signature: response.signature ? toBase64Url(response.signature) : undefined,
             userHandle: response.userHandle ? toBase64Url(response.userHandle) : undefined,
             attestationObject: response.attestationObject ? toBase64Url(response.attestationObject) : undefined,
-            transports: response.transports,
+            transports: response.getTransports?.() ?? response.transports,
         },
     };
+}
+
+export function getPasskeyTransactionId(data, key) {
+    if (!data || typeof data !== "object") {
+        return null;
+    }
+
+    return (
+        data[key] ??
+        data.data?.[key] ??
+        data.options?.[key] ??
+        null
+    );
+}
+
+export function getDefaultPasskeyName() {
+    const platform = navigator.userAgentData?.platform || navigator.platform || "apparaat";
+    return `Passkey op ${platform}`;
 }
 
 export function isPasskeySupported() {
