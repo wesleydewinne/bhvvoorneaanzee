@@ -252,6 +252,8 @@ export function toNullableNumber(value) {
 }
 
 export function buildCreateTrainingPayload(formData) {
+    const hasBhvCompetencies = formData.category === "BHV";
+
     return {
         trainingType: resolveTrainingType(formData),
         courseDate: formData.courseDate || null,
@@ -261,14 +263,16 @@ export function buildCreateTrainingPayload(formData) {
         companyId: toNullableNumber(formData.companyId),
         trainerId: toNullableNumber(formData.trainerId),
 
-        competencyFirstAidEmergency: Boolean(formData.competencyFirstAidEmergency),
-        competencyFirstAidNonEmergency: Boolean(formData.competencyFirstAidNonEmergency),
-        competencyFireFighting: Boolean(formData.competencyFireFighting),
-        competencyEvacuation: Boolean(formData.competencyEvacuation),
+        competencyFirstAidEmergency: hasBhvCompetencies && Boolean(formData.competencyFirstAidEmergency),
+        competencyFirstAidNonEmergency: hasBhvCompetencies && Boolean(formData.competencyFirstAidNonEmergency),
+        competencyFireFighting: hasBhvCompetencies && Boolean(formData.competencyFireFighting),
+        competencyEvacuation: hasBhvCompetencies && Boolean(formData.competencyEvacuation),
     };
 }
 
 export function buildUpdateTrainingPayload(formData) {
+    const hasBhvCompetencies = formData.category === "BHV";
+
     return {
         courseDate: formData.courseDate || null,
         startTime: formData.startTime || null,
@@ -277,10 +281,10 @@ export function buildUpdateTrainingPayload(formData) {
         companyId: toNullableNumber(formData.companyId),
         trainerId: toNullableNumber(formData.trainerId),
 
-        competencyFirstAidEmergency: Boolean(formData.competencyFirstAidEmergency),
-        competencyFirstAidNonEmergency: Boolean(formData.competencyFirstAidNonEmergency),
-        competencyFireFighting: Boolean(formData.competencyFireFighting),
-        competencyEvacuation: Boolean(formData.competencyEvacuation),
+        competencyFirstAidEmergency: hasBhvCompetencies && Boolean(formData.competencyFirstAidEmergency),
+        competencyFirstAidNonEmergency: hasBhvCompetencies && Boolean(formData.competencyFirstAidNonEmergency),
+        competencyFireFighting: hasBhvCompetencies && Boolean(formData.competencyFireFighting),
+        competencyEvacuation: hasBhvCompetencies && Boolean(formData.competencyEvacuation),
 
         adminOverrideAllowed: Boolean(formData.adminOverrideAllowed),
     };

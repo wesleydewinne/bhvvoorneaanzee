@@ -11,6 +11,11 @@ import {
     UserRound,
 } from "lucide-react";
 import locationService from "@/features/locations/services/locationService.js";
+import userService from "@/features/user-management/services/userService.js";
+import {
+    getFullName,
+    getRolesArray,
+} from "@/features/user-management/helpers/userFormatters.js";
 import LocationSearchSelect from "./LocationSearchSelect.jsx";
 import {
     buildCreateTrainingPayload,
@@ -83,6 +88,9 @@ function TrainingForm({
     const [locations, setLocations] = useState([]);
     const [locationsLoading, setLocationsLoading] = useState(true);
     const [locationsError, setLocationsError] = useState("");
+    const [trainers, setTrainers] = useState([]);
+    const [trainersLoading, setTrainersLoading] = useState(true);
+    const [trainersError, setTrainersError] = useState("");
 
     useEffect(() => {
         if (!initialValues) {
@@ -159,6 +167,38 @@ function TrainingForm({
 
         loadLocations();
     }, []);
+
+    useEffect(() => {
+        if (mode !== "edit") {
+            setTrainersLoading(false);
+            return;
+        }
+
+        const loadTrainers = async () => {
+            try {
+                setTrainersLoading(true);
+                setTrainersError("");
+
+                const data = await userService.getAll();
+                const users = Array.isArray(data) ? data : [];
+                setTrainers(
+                    users
+                        .filter((user) => getRolesArray(user).includes("ROLE_TRAINER"))
+                        .sort((left, right) =>
+                            getFullName(left).localeCompare(getFullName(right), "nl")
+                        )
+                );
+            } catch (err) {
+                console.error("Fout bij ophalen trainers:", err);
+                setTrainersError(err?.message || "Kon trainers niet ophalen.");
+                setTrainers([]);
+            } finally {
+                setTrainersLoading(false);
+            }
+        };
+
+        loadTrainers();
+    }, [mode]);
 
     const selectedLocation = useMemo(() => {
         if (!formData.locationId) {
@@ -339,7 +379,7 @@ function TrainingForm({
             {error && <p className="training-form__error">{error}</p>}
 
             <div className="training-form__grid">
-                <div className="training-form__field">
+                <div className="training-form__field training-form__field--half">
                     <label htmlFor="category">
                         <ShieldCheck aria-hidden="true" />
                         Categorie
@@ -359,7 +399,7 @@ function TrainingForm({
                     </select>
                 </div>
 
-                <div className="training-form__field">
+                <div className="training-form__field training-form__field--half">
                     <label htmlFor="trainingType">
                         <GraduationCap aria-hidden="true" />
                         {getTrainingTypeLabel()}
@@ -382,7 +422,7 @@ function TrainingForm({
                     </select>
                 </div>
 
-                <div className="training-form__field">
+                <div className="training-form__field training-form__field--third">
                     <label htmlFor="courseDate">
                         <CalendarDays aria-hidden="true" />
                         Datum
@@ -397,7 +437,7 @@ function TrainingForm({
                     />
                 </div>
 
-                <div className="training-form__field">
+                <div className="training-form__field training-form__field--third">
                     <label htmlFor="startTime">
                         <Clock aria-hidden="true" />
                         Starttijd
@@ -411,7 +451,7 @@ function TrainingForm({
                     />
                 </div>
 
-                <div className="training-form__field">
+                <div className="training-form__field training-form__field--third">
                     <label htmlFor="endTime">
                         <Clock aria-hidden="true" />
                         Eindtijd
@@ -426,6 +466,7 @@ function TrainingForm({
                 </div>
 
                 <LocationSearchSelect
+                    className="training-form__field--half"
                     locations={locations}
                     value={formData.locationId}
                     onChange={handleLocationChange}
@@ -435,7 +476,7 @@ function TrainingForm({
                     error={locationsError}
                 />
 
-                <div className="training-form__field">
+                <div className="training-form__field training-form__field--half">
                     <label htmlFor="companyId">
                         <Building2 aria-hidden="true" />
                         Bedrijf
@@ -489,25 +530,38 @@ function TrainingForm({
                     )}
                 </div>
 
-                <div className="training-form__field">
+                {mode === "edit" && (
+                <div className="training-form__field training-form__field--half">
                     <label htmlFor="trainerId">
                         <UserRound aria-hidden="true" />
-                        Trainer ID
+                        Trainer
                     </label>
-                    <input
+                    <select
                         id="trainerId"
                         name="trainerId"
-                        type="number"
-                        min="1"
                         value={formData.trainerId}
                         onChange={handleChange}
-                        placeholder="Optioneel"
-                    />
-                    <small className="training-form__hint">
-                        Trainer mag leeg blijven.
-                    </small>
+                        disabled={loading || trainersLoading}
+                    >
+                        <option value="">
+                            {trainersLoading ? "Trainers laden..." : "Geen trainer geselecteerd"}
+                        </option>
+                        {trainers.map((trainer) => (
+                            <option key={trainer.id} value={String(trainer.id)}>
+                                {getFullName(trainer)}
+                            </option>
+                        ))}
+                    </select>
+                    {trainersError ? (
+                        <small className="training-form__field-error">{trainersError}</small>
+                    ) : (
+                        <small className="training-form__hint">Trainer mag leeg blijven.</small>
+                    )}
                 </div>
+                )}
 
+                {formData.category === "BHV" && (
+                    <>
                 <div className="training-form__field training-form__field--checkbox">
                     <label htmlFor="competencyFirstAidEmergency">
                         <input
@@ -563,6 +617,8 @@ function TrainingForm({
                         Ontruiming
                     </label>
                 </div>
+                    </>
+                )}
 
                 {mode === "edit" && (
                     <div className="training-form__field training-form__field--checkbox">

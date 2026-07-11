@@ -11,6 +11,7 @@ function LocationSearchSelect({
                                   required = false,
                                   disabled = false,
                                   error = "",
+                                  className = "",
                               }) {
     const inputId = useId();
     const wrapperRef = useRef(null);
@@ -113,7 +114,7 @@ function LocationSearchSelect({
     };
 
     return (
-        <div className="training-form__field">
+        <div className={`training-form__field ${className}`.trim()}>
             <label htmlFor={inputId}>
                 <MapPin aria-hidden="true" />
                 {label} {required ? "*" : ""}
@@ -169,9 +170,7 @@ function LocationSearchSelect({
                                     </span>
 
                                     <span className="location-search-select__option-meta">
-                                        ID: {location.id}
-                                        {location.companyId ? ` - Bedrijf ID: ${location.companyId}` : ""}
-                                        {location.city ? ` - ${location.city}` : ""}
+                                        {location.city || ""}
                                         {location.address ? ` - ${location.address}` : ""}
                                         {location.postalCode ? ` - ${location.postalCode}` : ""}
                                     </span>
@@ -188,9 +187,8 @@ function LocationSearchSelect({
 
             {selectedLocation && (
                 <small className="training-form__hint">
-                    Geselecteerd: #{selectedLocation.id} - {selectedLocation.locationName}
+                    Geselecteerd: {selectedLocation.locationName}
                     {selectedLocation.city ? ` (${selectedLocation.city})` : ""}
-                    {selectedLocation.companyId ? ` - Bedrijf ID: ${selectedLocation.companyId}` : ""}
                 </small>
             )}
 

@@ -176,8 +176,16 @@
 
 .training-form__grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 1.1rem;
+}
+
+.training-form__field--half {
+    grid-column: span 3;
+}
+
+.training-form__field--third {
+    grid-column: span 2;
 }
 
 .training-form__field {
@@ -962,6 +970,11 @@
 @media (max-width: 900px) {
     .training-form__grid {
         grid-template-columns: 1fr;
+    }
+
+    .training-form__field--half,
+    .training-form__field--third {
+        grid-column: 1;
     }
 
     .training-form__actions {
