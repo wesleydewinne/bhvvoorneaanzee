@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
+import { ShieldCheck } from "lucide-react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./TwoFactorPage.css";
@@ -121,6 +122,8 @@ export default function TwoFactorPage() {
         <main className="twofactor-page">
             <article className="twofactor-card">
                 <header className="twofactor-header">
+                    <span className="twofactor-header-icon"><ShieldCheck aria-hidden="true" /></span>
+                    <span className="twofactor-eyebrow">Extra verificatie</span>
                     <h1 className="twofactor-title">
                         {requiresTwoFactorSetup ? "2FA instellen" : "Tweefactorauthenticatie"}
                     </h1>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ShieldCheck } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import authService from "@/features/auth/services/authService.js";
@@ -119,6 +120,8 @@ export default function TwoFactorSettingsPage() {
             <section className="twofactor-shell" aria-labelledby="twofactor-settings-title">
                 <article className="twofactor-card">
                     <header className="twofactor-header">
+                        <span className="twofactor-header-icon"><ShieldCheck aria-hidden="true" /></span>
+                        <span className="twofactor-eyebrow">Accountbeveiliging</span>
                         <h1 id="twofactor-settings-title" className="twofactor-title">
                             2FA beveiliging
                         </h1>

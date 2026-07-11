@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Fingerprint, KeyRound, ShieldCheck } from "lucide-react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import { requiresPasskeyForUser } from "@/features/auth/helpers/passkeyPolicy.js";
 import authService from "@/features/auth/services/authService.js";
@@ -65,6 +66,8 @@ export default function PasskeySetupPage() {
             <section className="twofactor-shell" aria-labelledby="passkey-setup-title">
                 <article className="twofactor-card">
                     <header className="twofactor-header">
+                        <span className="twofactor-header-icon"><Fingerprint aria-hidden="true" /></span>
+                        <span className="twofactor-eyebrow">Accountbeveiliging</span>
                         <h1 id="passkey-setup-title" className="twofactor-title">
                             Passkey instellen
                         </h1>
@@ -88,9 +91,10 @@ export default function PasskeySetupPage() {
                     ) : null}
 
                     <section className="twofactor-layout">
-                        <article className="twofactor-panel twofactor-panel--form">
+                        <article className="twofactor-panel twofactor-panel--form twofactor-panel--accent">
                             <header className="twofactor-panel-header">
                                 <h2 className="twofactor-section-title">
+                                    <ShieldCheck aria-hidden="true" />
                                     Sneller inloggen
                                 </h2>
                                 <p className="twofactor-help">
@@ -106,6 +110,7 @@ export default function PasskeySetupPage() {
                                     onClick={handleRegisterPasskey}
                                     disabled={loading || pageLoading || !supported}
                                 >
+                                    <KeyRound aria-hidden="true" />
                                     {loading ? "Passkey aanmaken..." : "Passkey aanmaken"}
                                 </button>
 

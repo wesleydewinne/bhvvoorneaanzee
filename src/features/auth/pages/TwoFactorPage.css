@@ -308,3 +308,21 @@
         letter-spacing: 0.35rem;
     }
 }
+
+/* Unified authenticator and passkey presentation */
+.twofactor-page { position: relative; isolation: isolate; background: radial-gradient(circle at 8% 12%, rgba(249,115,22,.14), transparent 25%), radial-gradient(circle at 92% 88%, rgba(20,184,166,.12), transparent 28%), linear-gradient(145deg, #0f172a, #172a3d 55%, #17323a); }
+.twofactor-card { border: .1rem solid rgba(255,255,255,.55); background: rgba(255,255,255,.98); box-shadow: 0 3rem 8rem rgba(2,6,23,.34); }
+.twofactor-header { text-align: center; }
+.twofactor-header-icon { display: inline-flex; align-items: center; justify-content: center; width: 5.6rem; height: 5.6rem; margin-bottom: 1.2rem; border-radius: 1.7rem; color: #fff; background: linear-gradient(145deg, #fb923c, #ea580c); box-shadow: 0 1.2rem 2.6rem rgba(234,88,12,.25); }
+.twofactor-header-icon svg { width: 2.8rem; height: 2.8rem; }
+.twofactor-eyebrow { display: block; margin-bottom: .7rem; color: #ea580c; font-size: 1.2rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.twofactor-subtitle { margin-right: auto; margin-left: auto; }
+.twofactor-panel { background: linear-gradient(145deg, #fff, #f8fafc); box-shadow: 0 1rem 2.8rem rgba(15,23,42,.06); }
+.twofactor-panel--accent { border-top: .4rem solid #f97316; }
+.twofactor-section-title svg { width: 2rem; height: 2rem; margin-right: .6rem; color: #f97316; vertical-align: -.35rem; }
+.twofactor-button { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; padding-right: 1.6rem; padding-left: 1.6rem; }
+.twofactor-button svg { width: 1.9rem; height: 1.9rem; }
+.twofactor-secondary-button { transition: border-color .2s ease, background-color .2s ease; }
+.twofactor-secondary-button:hover:not(:disabled) { border-color: #f97316; background: #fff7ed; }
+.twofactor-passkey-item { box-shadow: 0 .5rem 1.6rem rgba(15,23,42,.05); }
+.twofactor-passkey-item strong { color: #0f172a; font-size: 1.5rem; }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Fingerprint, LockKeyhole, LogIn, Mail, ShieldCheck } from "lucide-react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./LoginPage.css";
@@ -125,6 +126,8 @@ export default function LoginPage() {
         <div className="login">
             <div className="login__card">
                 <div className="login__header">
+                    <span className="login__security-icon"><ShieldCheck aria-hidden="true" /></span>
+                    <span className="login__eyebrow">Beveiligde toegang</span>
                     <h1 className="login__title">Inloggen</h1>
                     <p className="login__subtitle">
                         Gebruik je accountgegevens om door te gaan.
@@ -134,6 +137,7 @@ export default function LoginPage() {
                 <form className="login__form" onSubmit={handleSubmit}>
                     <div className="login__field">
                         <label className="login__label" htmlFor="email">
+                            <Mail aria-hidden="true" />
                             E-mailadres
                         </label>
                         <input
@@ -149,6 +153,7 @@ export default function LoginPage() {
 
                     <div className="login__field">
                         <label className="login__label" htmlFor="password">
+                            <LockKeyhole aria-hidden="true" />
                             Wachtwoord
                         </label>
                         <input
@@ -182,8 +187,11 @@ export default function LoginPage() {
                         type="submit"
                         disabled={loading || !captchaReady}
                     >
+                        <LogIn aria-hidden="true" />
                         {loading ? "Bezig met inloggen..." : "Inloggen"}
                     </button>
+
+                    <div className="login__divider"><span>of veilig zonder wachtwoord</span></div>
 
                     <button
                         className="login__button login__button--secondary"
@@ -191,6 +199,7 @@ export default function LoginPage() {
                         disabled={loading}
                         onClick={handlePasskeyLogin}
                     >
+                        <Fingerprint aria-hidden="true" />
                         {loading ? "Bezig met passkey..." : "Inloggen met passkey"}
                     </button>
                 </form>
