@@ -85,7 +85,9 @@ function LocationForm({ initialValues, onSubmit, submitLabel = "Opslaan", loadin
 
     return <form className="location-form" onSubmit={handleSubmit} noValidate>
         {serverError ? <div className="form-message form-message--error">{serverError}</div> : null}
-        <div className="form-grid">
+        <section className="location-form__panel">
+            <div className="location-form__section-heading"><h2>Locatiegegevens</h2><p>Adres, bereikbaarheid en gebouwinformatie.</p></div>
+            <div className="form-grid">
             {basicFields.map(([name, label, type]) => <div className="form-field" key={name}>
                 <label htmlFor={name}>{label}</label>
                 <input id={name} type={type} min={type === "number" ? "0" : undefined} value={form[name]} onChange={(e) => setField(name, e.target.value)} />
@@ -95,7 +97,8 @@ function LocationForm({ initialValues, onSubmit, submitLabel = "Opslaan", loadin
             <div className="form-field form-field--full"><label htmlFor="parkingInfo">Parkeerinformatie</label><textarea id="parkingInfo" rows="4" value={form.parkingInfo} onChange={(e) => setField("parkingInfo", e.target.value)} /></div>
             <div className="form-field form-field--full"><label htmlFor="locationImageUrl">Externe foto-URL</label><input id="locationImageUrl" type="url" value={form.locationImageUrl || ""} onChange={(e) => setField("locationImageUrl", e.target.value)} /></div>
             <div className="form-field form-field--full"><label htmlFor="locationImageFile">Locatiefoto uploaden</label><input id="locationImageFile" type="file" accept="image/*" onChange={(e) => setField("locationImageFile", e.target.files?.[0] ?? null)} /></div>
-        </div>
+            </div>
+        </section>
 
         <section className="nested-form-section">
             <div className="nested-form-section__header"><div><h2>Bedrijven op deze locatie</h2><p>Leg per bedrijf de vestigings- en contactgegevens vast.</p></div><button type="button" className="button button--secondary" onClick={() => setField("companyLocations", [...form.companyLocations, emptyCompanyLocation()])}>Bedrijf koppelen</button></div>
@@ -103,13 +106,18 @@ function LocationForm({ initialValues, onSubmit, submitLabel = "Opslaan", loadin
             {form.companyLocations.map((relation, index) => <article className="nested-form-card" key={relation._id ?? index}>
                 <div className="nested-form-card__header"><h3>Bedrijf {index + 1}</h3><button type="button" className="button button--danger" onClick={() => removeListItem("companyLocations", index)}>Verwijderen</button></div>
                 {errors[`company-${index}`] ? <p className="form-error">{errors[`company-${index}`]}</p> : null}
-                <div className="form-grid">
+                <div className="company-link-row">
                     <div className="form-field form-field--full"><label>Bedrijf</label><select value={relation.companyId} onChange={(e) => updateListItem("companyLocations", index, "companyId", e.target.value)}><option value="">Kies een bedrijf</option>{companies.map((company) => <option key={company.id} value={company.id}>{company.name}</option>)}</select></div>
-                    {[['locationEmail','Vestiging e-mail','email'],['locationPhone','Vestiging telefoon','text'],['contactPersonName','Contactpersoon','text'],['contactPersonEmail','Contactpersoon e-mail','email'],['contactPersonPhone','Contactpersoon telefoon','text'],['buildingSection','Gebouwdeel','text'],['floor','Verdieping','text'],['roomNumber','Ruimtenummer','text'],['activeFrom','Actief vanaf','date'],['activeUntil','Actief tot','date']].map(([name,label,type]) => <div className="form-field" key={name}><label>{label}</label><input type={type} value={relation[name] || ""} onChange={(e) => updateListItem("companyLocations", index, name, e.target.value)} /></div>)}
+                </div>
+                <details className="company-link-details">
+                    <summary>Vestigingsdetails en contactpersoon</summary>
+                    <div className="form-grid">
+                    {[['locationEmail','Vestiging e-mail','email'],['locationPhone','Vestiging telefoon','text'],['buildingSection','Gebouwdeel','text'],['floor','Verdieping','text'],['roomNumber','Ruimtenummer','text'],['activeFrom','Actief vanaf','date'],['activeUntil','Actief tot','date']].map(([name,label,type]) => <div className="form-field" key={name}><label>{label}</label><input type={type} value={relation[name] || ""} onChange={(e) => updateListItem("companyLocations", index, name, e.target.value)} /></div>)}
                     <div className="form-field form-field--full"><label>Notities</label><textarea rows="3" value={relation.notes || ""} onChange={(e) => updateListItem("companyLocations", index, "notes", e.target.value)} /></div>
                     <label className="check-field"><input type="checkbox" checked={relation.primaryLocation} onChange={(e) => updateListItem("companyLocations", index, "primaryLocation", e.target.checked)} /> Primaire locatie</label>
                     <label className="check-field"><input type="checkbox" checked={relation.active} onChange={(e) => updateListItem("companyLocations", index, "active", e.target.checked)} /> Actief</label>
-                </div>
+                    </div>
+                </details>
             </article>)}
         </section>
 
@@ -128,7 +136,7 @@ function LocationForm({ initialValues, onSubmit, submitLabel = "Opslaan", loadin
                 </div>
             </article>)}
         </section>
-        <div className="location-form__actions"><button type="submit" className="button" disabled={loading || companiesLoading}>{loading ? "Bezig..." : submitLabel}</button></div>
+        <div className="location-form__actions"><span>Controleer de gegevens voordat je opslaat.</span><button type="submit" className="button" disabled={loading || companiesLoading}>{loading ? "Bezig..." : submitLabel}</button></div>
     </form>;
 }
 

@@ -1,6 +1,9 @@
 export function createEmptyCompanyForm() {
     return {
         name: "",
+        primaryContactName: "",
+        primaryContactEmail: "",
+        primaryContactPhone: "",
         logoFile: null,
     };
 }
@@ -8,6 +11,9 @@ export function createEmptyCompanyForm() {
 export function mapCompanyToForm(company) {
     return {
         name: company?.name ?? "",
+        primaryContactName: company?.primaryContactName ?? "",
+        primaryContactEmail: company?.primaryContactEmail ?? "",
+        primaryContactPhone: company?.primaryContactPhone ?? "",
         logoFile: null,
     };
 }

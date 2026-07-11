@@ -7,7 +7,9 @@ function CompanyForm({
                          loading = false,
                          serverError = "",
                      }) {
-    const [form, setForm] = useState(initialValues || { name: "", logoFile: null });
+    const [form, setForm] = useState(initialValues || {
+        name: "", primaryContactName: "", primaryContactEmail: "", primaryContactPhone: "", logoFile: null,
+    });
     const [errors, setErrors] = useState({});
 
     const handleChange = (event) => {
@@ -39,6 +41,10 @@ function CompanyForm({
             nextErrors.name = "Bedrijfsnaam mag maximaal 150 tekens zijn.";
         }
 
+        if (form.primaryContactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.primaryContactEmail)) {
+            nextErrors.primaryContactEmail = "E-mailadres is ongeldig.";
+        }
+
         setErrors(nextErrors);
         return Object.keys(nextErrors).length === 0;
     };
@@ -52,6 +58,9 @@ function CompanyForm({
 
         await onSubmit({
             name: form.name.trim(),
+            primaryContactName: form.primaryContactName.trim() || null,
+            primaryContactEmail: form.primaryContactEmail.trim() || null,
+            primaryContactPhone: form.primaryContactPhone.trim() || null,
         }, form.logoFile);
     };
 
@@ -79,6 +88,22 @@ function CompanyForm({
                     {errors.name ? (
                         <p className="form-error">{errors.name}</p>
                     ) : null}
+                </div>
+
+                <div className="form-field">
+                    <label htmlFor="primaryContactName">Hoofdcontactpersoon</label>
+                    <input id="primaryContactName" name="primaryContactName" type="text" maxLength="150" value={form.primaryContactName} onChange={handleChange} />
+                </div>
+
+                <div className="form-field">
+                    <label htmlFor="primaryContactEmail">E-mail hoofdcontactpersoon</label>
+                    <input id="primaryContactEmail" name="primaryContactEmail" type="email" maxLength="160" value={form.primaryContactEmail} onChange={handleChange} />
+                    {errors.primaryContactEmail ? <p className="form-error">{errors.primaryContactEmail}</p> : null}
+                </div>
+
+                <div className="form-field">
+                    <label htmlFor="primaryContactPhone">Telefoon hoofdcontactpersoon</label>
+                    <input id="primaryContactPhone" name="primaryContactPhone" type="tel" maxLength="40" value={form.primaryContactPhone} onChange={handleChange} />
                 </div>
 
                 <div className="form-field form-field--full">

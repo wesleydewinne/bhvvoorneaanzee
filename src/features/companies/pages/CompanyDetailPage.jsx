@@ -143,6 +143,10 @@ function CompanyDetailPage() {
                             <p>{company.name || "-"}</p>
                         </div>
 
+                        <div><strong>Hoofdcontactpersoon</strong><p>{company.primaryContactName || "-"}</p></div>
+                        <div><strong>E-mail hoofdcontactpersoon</strong><p>{company.primaryContactEmail || "-"}</p></div>
+                        <div><strong>Telefoon hoofdcontactpersoon</strong><p>{company.primaryContactPhone || "-"}</p></div>
+
                     </div>
                 </section>
             </div>
