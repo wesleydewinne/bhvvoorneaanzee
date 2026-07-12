@@ -234,18 +234,23 @@
 
 @media (max-width: 576px) {
     .google-review-badge {
-        padding: 1.15rem 1.25rem;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 1.2rem;
+        width: min(100%, 29rem);
+        padding: 1rem 1.2rem;
         border-radius: 1.4rem;
     }
 
     .google-review-badge__header {
-        gap: 1rem;
+        gap: 0.7rem;
     }
 
     .google-review-badge__shop {
-        flex-basis: 4.4rem;
-        width: 4.4rem;
-        height: 4.1rem;
+        flex-basis: 3.6rem;
+        width: 3.6rem;
+        height: 3.4rem;
     }
 
     .google-review-badge__awning {
@@ -253,7 +258,29 @@
     }
 
     .google-review-badge__shop-body {
+        font-size: 1.7rem;
+    }
+
+    .google-review-badge__brand {
+        font-size: 2.7rem;
+    }
+
+    .google-review-badge__subbrand,
+    .google-review-badge__source {
+        display: none;
+    }
+
+    .google-review-badge__review-content {
+        width: auto;
+        margin-top: 0;
+    }
+
+    .google-review-badge__review-row strong {
         font-size: 2rem;
+    }
+
+    .google-review-badge__star {
+        font-size: 1.45rem;
     }
 
     .google-review-badge__review-row {

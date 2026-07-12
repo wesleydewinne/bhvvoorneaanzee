@@ -24,7 +24,8 @@ const BlogDetail = () => {
         "blog-container",
         `blog-container--${page.variant}`,
         `blog-container--hero-${page.hero}`,
-    ].join(" ");
+        page.theme ? `blog-container--theme-${page.theme}` : "",
+    ].filter(Boolean).join(" ");
 
     return (
         <article className={articleClassName}>
@@ -146,7 +147,11 @@ function useBlogSeo(post, page) {
         updateMeta('meta[property="og:url"]', "property", "og:url", url);
         updateMeta('meta[property="og:type"]', "property", "og:type", "article");
         updateMeta('meta[property="og:site_name"]', "property", "og:site_name", "BHV Voorne aan Zee");
+        updateMeta('meta[property="og:image"]', "property", "og:image", post.seo?.image || post.image);
         updateMeta('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
+        updateMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
+        updateMeta('meta[name="twitter:description"]', "name", "twitter:description", description);
+        updateMeta('meta[name="twitter:image"]', "name", "twitter:image", post.seo?.image || post.image);
         updateCanonical(url);
         injectBlogJsonLd(createBlogJsonLd(post, page, url, description));
     }, [post, page]);
@@ -340,7 +345,10 @@ function createBlogJsonLd(post, page, url, description) {
             "@type": "BlogPosting",
             "@id": `${url}#article`,
             headline: post.seo?.headline || post.title,
+            name: post.title,
             description,
+            url,
+            inLanguage: "nl-NL",
             datePublished: post.seo?.datePublished || post.date,
             dateModified: post.seo?.dateModified || post.date,
             mainEntityOfPage: url,
@@ -353,6 +361,10 @@ function createBlogJsonLd(post, page, url, description) {
                 "@type": "Organization",
                 name: "BHV Voorne aan Zee",
                 url: SITE_URL,
+                logo: {
+                    "@type": "ImageObject",
+                    url: `${SITE_URL}/assets/image/logo.png`,
+                },
             },
             about: post.seo?.about || post.category || "BHV en veiligheid",
             keywords: post.seo?.keywords,

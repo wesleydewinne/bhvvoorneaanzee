@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "@/shared/components/layout/header/Header";
 import Footer from "@/shared/components/layout/footer/Footer";
 import FloatingQuoteButton from "@/shared/components/ui/button/floatingQuoteButton/FloatingQuoteButton.jsx";
+import ChatWidget from "@/features/chat/components/ChatWidget.jsx";
 import "./Layout.css";
 
 const DashboardShell = lazy(() => import("@/features/dashboard/components/DashboardShell.jsx"));
@@ -26,6 +27,12 @@ function Layout({ children }) {
         location.pathname === "/veiligheidscheck-bedankt" ||
         usesDashboardShell;
 
+    const hideQuoteButton =
+        location.pathname === "/contact" ||
+        location.pathname.startsWith("/contact/") ||
+        location.pathname === "/offerte" ||
+        location.pathname.startsWith("/offerte/");
+
 
     return (
         <div className="outer-container">
@@ -44,9 +51,10 @@ function Layout({ children }) {
             {/* Footer alleen tonen buiten funnel */}
             {!hideChrome && <Footer />}
 
-            {!hideChrome && (
+            {!hideChrome && !hideQuoteButton && (
                 <FloatingQuoteButton to="/offerte" label="Offerte aanvragen" />
             )}
+            {!hideChrome && <ChatWidget stacked={!hideQuoteButton} />}
         </div>
     );
 }

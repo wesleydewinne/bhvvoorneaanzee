@@ -40,23 +40,41 @@
     }
 }
 
+@media (max-width: 768px) {
+    .trustbar-section {
+        margin-top: -3rem;
+    }
+}
+
 @media (max-width: 576px) {
     .trustbar-section {
-        margin-top: -2.5rem;
+        margin-top: -3rem;
     }
 
     .trustbar {
-        grid-template-columns: 1fr;
-        padding: 1rem;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+        padding: 0.8rem;
     }
 
     .trustbar-card {
-        text-align: left;
+        min-width: 0;
+        padding: 1.1rem;
+        border-right: 0;
         border-bottom: 1px solid #e5e7eb;
-        padding: 0.75rem 0;
+        text-align: left;
     }
 
     .trustbar-card:last-child {
         border-bottom: none;
+    }
+
+    .trustbar-card__title {
+        font-size: 1.4rem;
+    }
+
+    .trustbar-card__text {
+        font-size: 1.3rem;
+        line-height: 1.45;
     }
 }

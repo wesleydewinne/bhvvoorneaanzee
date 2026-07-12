@@ -80,18 +80,18 @@ function HomePage() {
                     <div className="homepage-hero__content">
                         <div className="homepage-hero__title-row">
                             <h1 className="homepage-hero__title">
-                                BHV, EHBO en ontruimingstrainingen voor bedrijven in Voorne aan Zee
+                                BHV-trainingen, ploegleider-BHV en ontruimingsoefeningen in Voorne aan Zee en omgeving
                             </h1>
 
                             <GoogleReviewBadge />
                         </div>
 
                         <p className="homepage-hero__subtitle">
-                            BHV Voorne aan Zee verzorgt incompany veiligheidstrainingen
-                            voor organisaties in Voorne aan Zee, Rotterdam-Rijnmond,
-                            Westland, Den Haag en omliggende plaatsen. Medewerkers leren
-                            brand, letsel, reanimatie en ontruiming herkenbaar en rustig
-                            aanpakken op hun eigen werkplek.
+                            BHV Voorne aan Zee verzorgt incompany BHV-trainingen en
+                            ploegleider-BHV en begeleidt ontruimingsoefeningen voor
+                            organisaties in de gemeente Voorne aan Zee, Rotterdam-Rijnmond,
+                            Westland, Den Haag en omliggende plaatsen. Praktisch, herkenbaar
+                            en afgestemd op de eigen werkplek.
                         </p>
 
                         <div className="homepage-hero__actions">
@@ -99,9 +99,8 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
+                <TrustBar />
             </section>
-
-            <TrustBar />
 
             <div className="homepage__deferred-shell">
                 {showDeferredSections ? (
