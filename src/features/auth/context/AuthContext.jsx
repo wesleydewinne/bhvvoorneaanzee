@@ -15,6 +15,20 @@ import {
 
 export const AuthContext = createContext(null);
 
+const AUTH_SESSION_MARKER = "bhv-auth-session";
+
+function hasKnownSession() {
+    return window.localStorage.getItem(AUTH_SESSION_MARKER) === "active";
+}
+
+function rememberSession() {
+    window.localStorage.setItem(AUTH_SESSION_MARKER, "active");
+}
+
+function forgetSession() {
+    window.localStorage.removeItem(AUTH_SESSION_MARKER);
+}
+
 export function AuthProvider({ children }) {
     const initialPendingState = readPendingTwoFactorState();
 
@@ -54,10 +68,12 @@ export function AuthProvider({ children }) {
         try {
             const response = await authService.getMe();
             setUser(response.data);
+            rememberSession();
             clearTwoFactorState();
             return response.data;
         } catch (err) {
             setUser(null);
+            forgetSession();
             throw err;
         }
     }, [clearTwoFactorState]);
@@ -66,6 +82,11 @@ export function AuthProvider({ children }) {
         let isMounted = true;
 
         const initializeAuth = async () => {
+            if (!hasKnownSession()) {
+                setAuthInitialized(true);
+                return;
+            }
+
             setLoading(true);
 
             try {
@@ -76,6 +97,7 @@ export function AuthProvider({ children }) {
                 }
 
                 setUser(response.data);
+                rememberSession();
                 clearTwoFactorState();
             } catch {
                 if (!isMounted) {
@@ -83,6 +105,7 @@ export function AuthProvider({ children }) {
                 }
 
                 setUser(null);
+                forgetSession();
             } finally {
                 if (isMounted) {
                     setAuthInitialized(true);
@@ -295,6 +318,7 @@ export function AuthProvider({ children }) {
             // bewust leeg
         } finally {
             setUser(null);
+            forgetSession();
             clearTwoFactorState();
             setLoading(false);
         }
@@ -303,6 +327,7 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const handleLogoutRequired = async () => {
             setUser(null);
+            forgetSession();
             clearTwoFactorState();
         };
 
