@@ -6,10 +6,11 @@ import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./LoginPage.css";
 
 export default function LoginPage() {
+    const captchaDisabled = import.meta.env.DEV && import.meta.env.VITE_DISABLE_CAPTCHA === "true";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [captchaToken, setCaptchaToken] = useState("");
-    const [captchaReady, setCaptchaReady] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState(captchaDisabled ? "local-development" : "");
+    const [captchaReady, setCaptchaReady] = useState(captchaDisabled);
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
@@ -22,6 +23,10 @@ export default function LoginPage() {
     const requestLoginHref = `mailto:klantenservice@bhvvoorneaanzee.nl?subject=${encodeURIComponent("Inloggegevens aanvragen")}&body=${encodeURIComponent(`Hallo,\n\nIk wil graag inloggegevens aanvragen${email ? ` voor ${email}` : ""}.\n\nMet vriendelijke groet,`)}`;
 
     useEffect(() => {
+        if (captchaDisabled) {
+            return;
+        }
+
         const renderTurnstile = () => {
             if (!window.turnstile || !captchaRef.current || widgetIdRef.current) {
                 return;
@@ -73,9 +78,15 @@ export default function LoginPage() {
         return () => {
             script.removeEventListener("load", renderTurnstile);
         };
-    }, [siteKey]);
+    }, [captchaDisabled, siteKey]);
 
     const resetCaptcha = () => {
+        if (captchaDisabled) {
+            setCaptchaToken("local-development");
+            setCaptchaReady(true);
+            return;
+        }
+
         if (window.turnstile && widgetIdRef.current) {
             window.turnstile.reset(widgetIdRef.current);
         }
@@ -174,11 +185,13 @@ export default function LoginPage() {
                     </section>
                 </div>
 
-                <section className="login__captcha login__captcha--shared" aria-label="Beveiligingscontrole voor wachtwoordlogin">
-                    <p className="login__captcha-title"><ShieldCheck aria-hidden="true" /> Beveiligingscontrole voor inloggen met wachtwoord</p>
-                    <div className="login__turnstile" ref={captchaRef} />
-                    {!captchaReady && <p className="login__hint">Bevestig dat je geen robot bent om met een wachtwoord in te loggen.</p>}
-                </section>
+                {!captchaDisabled && (
+                    <section className="login__captcha login__captcha--shared" aria-label="Beveiligingscontrole voor wachtwoordlogin">
+                        <p className="login__captcha-title"><ShieldCheck aria-hidden="true" /> Beveiligingscontrole voor inloggen met wachtwoord</p>
+                        <div className="login__turnstile" ref={captchaRef} />
+                        {!captchaReady && <p className="login__hint">Bevestig dat je geen robot bent om met een wachtwoord in te loggen.</p>}
+                    </section>
+                )}
 
                 <p className="login__request-access">Nog geen account? <a href={requestLoginHref}>Vraag inloggegevens aan</a></p>
             </div>

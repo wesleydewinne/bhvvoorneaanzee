@@ -35,6 +35,8 @@ const quoteService = {
 
     createQuote: (payload) => api.post("/quotes", payload),
 
+    createAdminQuote: (payload) => api.post("/quotes/admin", payload),
+
     getAllQuotes: () => api.get("/quotes"),
 
     getOpenQuotes: () =>
@@ -44,6 +46,8 @@ const quoteService = {
         getQuotesByClientFilter((quote) => quote?.status === "ARCHIVED"),
 
     getQuoteById: (id) => api.get(`/quotes/${id}`),
+
+    downloadQuotePdf: (id) => api.get(`/quotes/${id}/pdf`, { responseType: "blob" }),
 
     updateQuote: (id, payload) => api.put(`/quotes/${id}`, payload),
 

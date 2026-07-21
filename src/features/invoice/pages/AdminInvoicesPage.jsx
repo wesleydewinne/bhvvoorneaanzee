@@ -8,6 +8,12 @@ function AdminInvoicesPage() {
     const [invoice, setInvoice] = useState(null);
     const [status, setStatus] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
+    const [invoiceForm, setInvoiceForm] = useState({
+        invoiceNumber: "",
+        amountIncludingVat: "",
+        customerEmail: "",
+        locationId: "",
+    });
     const [uploading, setUploading] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -60,10 +66,18 @@ function AdminInvoicesPage() {
             clearFeedback();
             setUploading(true);
 
-            const formData = new FormData();
-            formData.append("file", selectedFile);
+            if (!invoiceForm.invoiceNumber || !invoiceForm.amountIncludingVat || !invoiceForm.customerEmail || !invoiceForm.locationId) {
+                setError("Vul factuurnummer, bedrag, e-mailadres en locatie-ID in.");
+                return;
+            }
 
-            const createdInvoice = await invoiceService.create(formData);
+            const createdInvoice = await invoiceService.create({
+                invoiceNumber: invoiceForm.invoiceNumber.trim(),
+                amountIncludingVat: Number(invoiceForm.amountIncludingVat),
+                customerEmail: invoiceForm.customerEmail.trim(),
+                locationId: Number(invoiceForm.locationId),
+                studentId: null,
+            }, selectedFile);
             setInvoice(createdInvoice);
             setStatus(createdInvoice?.status ? { status: createdInvoice.status } : null);
             setMessage("Factuur is geupload.");
@@ -154,10 +168,23 @@ function AdminInvoicesPage() {
                             <span>Upload</span>
                         </div>
                         <form className="dashboard-admin-form" onSubmit={handleUpload}>
+                            <label htmlFor="invoice-number">Factuurnummer</label>
+                            <input id="invoice-number" value={invoiceForm.invoiceNumber} onChange={(event) => setInvoiceForm((current) => ({ ...current, invoiceNumber: event.target.value }))} required />
+
+                            <label htmlFor="invoice-amount">Bedrag inclusief btw</label>
+                            <input id="invoice-amount" type="number" min="0" step="0.01" value={invoiceForm.amountIncludingVat} onChange={(event) => setInvoiceForm((current) => ({ ...current, amountIncludingVat: event.target.value }))} required />
+
+                            <label htmlFor="invoice-email">E-mailadres klant</label>
+                            <input id="invoice-email" type="email" value={invoiceForm.customerEmail} onChange={(event) => setInvoiceForm((current) => ({ ...current, customerEmail: event.target.value }))} required />
+
+                            <label htmlFor="invoice-location">Locatie-ID</label>
+                            <input id="invoice-location" type="number" min="1" value={invoiceForm.locationId} onChange={(event) => setInvoiceForm((current) => ({ ...current, locationId: event.target.value }))} required />
+
                             <label htmlFor="invoice-file">Factuurbestand</label>
                             <input
                                 id="invoice-file"
                                 type="file"
+                                accept="application/pdf"
                                 onChange={(event) => setSelectedFile(event.target.files?.[0] ?? null)}
                             />
 
@@ -198,7 +225,7 @@ function AdminInvoicesPage() {
                     <div className="dashboard-admin-panel__header">
                         <div>
                             <h2>Factuurdetails</h2>
-                            <p>De backend heeft geen lijst-endpoint, daarom zoeken we op factuur-ID.</p>
+                            <p>Zoek een specifieke factuur op ID en download het bijbehorende PDF-bestand.</p>
                         </div>
 
                         <button

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import QuoteDetailMetaCard from "../components/QuoteDetailMetaCard.jsx";
 import QuoteDetailCustomerCard from "../components/QuoteDetailCustomerCard.jsx";
@@ -7,6 +7,7 @@ import QuoteDetailNotesCard from "../components/QuoteDetailNotesCard.jsx";
 import QuoteDetailActions from "../components/QuoteDetailActions.jsx";
 import useQuoteDetail from "../hooks/useQuoteDetail.js";
 import { formatCurrency } from "../helpers/quoteFormatters.js";
+import quoteService from "../services/quoteService.js";
 import "../styles/AdminQuoteDetailPage.css";
 
 function toSafeNumber(value) {
@@ -69,6 +70,9 @@ function calculateTrainingSummary(trainings = [], formState = null, pricingTrain
 export default function AdminQuoteDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [discountOptions, setDiscountOptions] = useState([]);
+    const [downloading, setDownloading] = useState(false);
+    const [downloadError, setDownloadError] = useState("");
 
     const {
         quote,
@@ -99,7 +103,7 @@ export default function AdminQuoteDetailPage() {
         archiveQuote
     } = useQuoteDetail(id);
 
-    const trainings = quote?.trainings ?? [];
+    const trainings = useMemo(() => quote?.trainings ?? [], [quote?.trainings]);
 
     const calculatedSummary = useMemo(() => {
         return calculateTrainingSummary(trainings, formState, pricingTrainingIndex);
@@ -121,10 +125,30 @@ export default function AdminQuoteDetailPage() {
         }
     };
 
-    const handleDownloadQuote = () => {
-        window.alert(
-            "De downloadfunctie wordt later gekoppeld aan de backend. Het blok staat nu alvast op de juiste plek."
-        );
+    useEffect(() => {
+        quoteService.getDiscountCodes()
+            .then((response) => setDiscountOptions(Array.isArray(response?.data) ? response.data : []))
+            .catch(() => setDiscountOptions([]));
+    }, []);
+
+    const handleDownloadQuote = async () => {
+        setDownloading(true);
+        setDownloadError("");
+        try {
+            const response = await quoteService.downloadQuotePdf(id);
+            const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `offerte-${quote?.quoteNumber || id}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            setDownloadError(err?.message || "Offerte downloaden is mislukt.");
+        } finally {
+            setDownloading(false);
+        }
     };
 
     const handleSaveQuote = async () => {
@@ -209,6 +233,25 @@ export default function AdminQuoteDetailPage() {
                 <section className="quote-detail-card">
                     <h2>Prijs en berekening</h2>
 
+                    <div className="quote-detail-grid">
+                        <div className="quote-detail-col-span-2">
+                            <label htmlFor="quote-discount-code">Kortingscode</label>
+                            <input
+                                id="quote-discount-code"
+                                list="quote-discount-options"
+                                value={formState.discountCode}
+                                onChange={(event) => updateField("discountCode", event.target.value.toUpperCase())}
+                                placeholder="Kies of typ een kortingscode"
+                            />
+                            <datalist id="quote-discount-options">
+                                {discountOptions.map((option) => (
+                                    <option key={option.code} value={option.code}>{option.label}</option>
+                                ))}
+                            </datalist>
+                            <small>Sla de offerte op om de korting opnieuw te laten berekenen.</small>
+                        </div>
+                    </div>
+
                     <div className="quote-pricing-summary">
                         <div>
                             <span>Prijs vóór korting</span>
@@ -249,8 +292,7 @@ export default function AdminQuoteDetailPage() {
                     <h2>Offerte downloaden</h2>
 
                     <p className="quote-download-text">
-                        Download hier straks eenvoudig de actuele offerte of een losse versie
-                        voor controle en verzending.
+                        Download de actuele offerte als PDF voor controle of verzending.
                     </p>
 
                     <div className="quote-download-actions">
@@ -258,17 +300,11 @@ export default function AdminQuoteDetailPage() {
                             type="button"
                             className="quote-btn quote-btn-primary"
                             onClick={handleDownloadQuote}
+                            disabled={downloading}
                         >
-                            Offerte downloaden
+                            {downloading ? "PDF maken..." : "Offerte downloaden"}
                         </button>
-
-                        <div className="quote-download-note">
-                            <strong>Later uit te breiden</strong>
-                            <p>
-                                Bijvoorbeeld met aparte downloads voor prijsopbouw,
-                                trainingsoverzicht of definitieve offerte-pdf.
-                            </p>
-                        </div>
+                        {downloadError && <p className="quote-feedback quote-feedback-error">{downloadError}</p>}
                     </div>
                 </section>
             </div>

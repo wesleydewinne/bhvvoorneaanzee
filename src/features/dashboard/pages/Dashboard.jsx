@@ -161,13 +161,19 @@ function Dashboard() {
                 setRoleOverviewLoading(true);
                 setRoleOverviewError("");
 
-                const data = await dashboardService.getRoleOverview(dashboardProfile.type);
+                const data = await dashboardService.getRoleOverview(dashboardProfile.type, user);
 
                 if (!isMounted) {
                     return;
                 }
 
                 setRoleOverview(data);
+
+                if (data.failedSources?.length > 0) {
+                    setRoleOverviewError(
+                        `Niet alle rolgegevens konden worden geladen: ${data.failedSources.join(", ")}.`
+                    );
+                }
             } catch (err) {
                 if (!isMounted) {
                     return;
@@ -191,7 +197,7 @@ function Dashboard() {
         return () => {
             isMounted = false;
         };
-    }, [canLoadRoleOverview, dashboardProfile.type]);
+    }, [canLoadRoleOverview, dashboardProfile.type, user]);
 
     if (loading) {
         return (

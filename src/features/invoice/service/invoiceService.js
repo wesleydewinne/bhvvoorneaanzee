@@ -1,8 +1,11 @@
 import api from "@/api/api.js";
 
 const invoiceService = {
-    async create(formData) {
-        const response = await api.post("/invoices/multipart/form-data", formData, {
+    async create(data, pdf) {
+        const formData = new FormData();
+        formData.append("data", JSON.stringify(data));
+        formData.append("pdf", pdf);
+        const response = await api.post("/invoices", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },

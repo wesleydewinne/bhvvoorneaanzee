@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useQuotes from "../hooks/useQuotes.js";
 import QuoteTable from "../components/QuoteTable.jsx";
 import { quoteFilterTabs } from "../helpers/quoteFilters.js";
@@ -34,6 +35,7 @@ function quoteMatchesSearch(quote, searchTerm) {
 }
 
 export default function AdminQuotesPage() {
+    const navigate = useNavigate();
     const { quotes, loading, error, filter, setFilter, refresh } = useQuotes("open");
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -49,9 +51,10 @@ export default function AdminQuotesPage() {
                     <p>Overzicht van openstaande, gearchiveerde en alle offertes.</p>
                 </div>
 
-                <button type="button" className="quote-page-refresh-btn" onClick={refresh}>
-                    Vernieuwen
-                </button>
+                <div className="admin-quotes-header__actions">
+                    <button type="button" className="quote-page-refresh-btn" onClick={refresh}>Vernieuwen</button>
+                    <button type="button" className="quote-page-create-btn" onClick={() => navigate("/admin/offertes/new")}>Nieuwe offerte</button>
+                </div>
             </div>
 
             <div className="quote-toolbar">

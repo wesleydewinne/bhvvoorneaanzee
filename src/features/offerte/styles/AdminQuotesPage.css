@@ -26,7 +26,11 @@
     border-radius: var(--radius-md);
     cursor: pointer;
     font-weight: 600;
+    color: #0f172a;
 }
+
+.admin-quotes-header__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.quote-page-create-btn { border: 1px solid #1d4ed8; background: #1d4ed8; color: #fff; padding: 1rem 1.4rem; border-radius: var(--radius-md); cursor: pointer; font-weight: 700; }
 
 .quote-filter-tabs {
     display: flex;
@@ -42,6 +46,7 @@
     border-radius: 999px;
     cursor: pointer;
     font-weight: 600;
+    color: #0f172a;
 }
 
 .quote-filter-tab.active {

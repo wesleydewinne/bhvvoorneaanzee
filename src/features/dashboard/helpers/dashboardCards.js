@@ -144,7 +144,7 @@ export function getDashboardCards({ dashboardProfile, user, navigate }) {
                 title: "Mijn trainingen",
                 description:
                     "Bekijk straks je geplande trainingen, aanwezigheid en status op een vaste plek.",
-                meta: ["API koppeling volgt", "Voor cursisten"],
+                meta: ["Gekoppeld aan mijn trainingen", "Voor cursisten"],
                 actionLabel: "Bekijk profiel",
                 action: () => navigate("/profile"),
             },

@@ -38,6 +38,7 @@ const AdminReviewsPage = lazy(() => import("@/features/reviews/pages/AdminReview
 
 const AdminQuotesPage = lazy(() => import("@/features/offerte/pages/AdminQuotesPage.jsx"));
 const AdminQuoteDetailPage = lazy(() => import("@/features/offerte/pages/AdminQuoteDetailPage.jsx"));
+const AdminCreateQuotePage = lazy(() => import("@/features/offerte/pages/AdminCreateQuotePage.jsx"));
 const AdminInvoicesPage = lazy(() => import("@/features/invoice/pages/AdminInvoicesPage.jsx"));
 
 const protect = (element) => (
@@ -164,6 +165,10 @@ const privateRoutes = [
     {
         path: "/admin/offertes",
         element: protect(<AdminQuotesPage />),
+    },
+    {
+        path: "/admin/offertes/new",
+        element: protect(<AdminCreateQuotePage />),
     },
     {
         path: "/admin/offertes/:id",
