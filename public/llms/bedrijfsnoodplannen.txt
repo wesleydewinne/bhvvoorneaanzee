@@ -1,0 +1,98 @@
+# Bedrijfsnoodplannen en ontruimingsplannen
+
+> Een bedrijfsnoodplan beschrijft hoe een organisatie zich voorbereidt op incidenten en hoe taken, alarmering, communicatie en samenwerking tijdens een noodsituatie zijn geregeld. Een ontruimingsplan werkt het veilig verlaten van een gebouw of terrein verder uit.
+
+## Doel van een bedrijfsnoodplan
+
+Een bruikbaar noodplan helpt een organisatie om tijdens een incident snel antwoord te geven op vragen zoals:
+
+- welke noodsituaties kunnen zich voordoen;
+- wie een incident meldt en wie 112 belt;
+- wie leiding geeft aan de BHV-inzet;
+- welke BHV'ers en andere functionarissen beschikbaar zijn;
+- hoe medewerkers, bezoekers, cliënten en contractors worden gewaarschuwd;
+- wanneer en hoe wordt ontruimd;
+- waar verzamelplaatsen zijn;
+- hoe met hulpdiensten wordt samengewerkt;
+- hoe bijzondere risico's en niet-zelfredzame personen worden meegenomen;
+- hoe na afloop wordt geëvalueerd en hersteld.
+
+## Relatie met de RI&E
+
+De risico-inventarisatie en -evaluatie (RI&E) brengt arbeidsrisico's in kaart. De restrisico's, gebouwkenmerken, bezetting en bedrijfsprocessen bepalen welke noodscenario's, middelen en BHV-maatregelen nodig zijn.
+
+Een noodplan is daarom organisatie- en locatiegebonden. Een generiek sjabloon kan helpen bij de structuur, maar moet altijd worden aangepast aan de werkelijke situatie.
+
+## Mogelijke onderdelen
+
+Een bedrijfsnoodplan kan onder andere bevatten:
+
+- doel, reikwijdte en beheer van het plan;
+- beschrijving van gebouw, terrein en bedrijfsprocessen;
+- relevante risico's en noodscenario's;
+- BHV-organisatie en vervangingsregeling;
+- namen, rollen en bereikbaarheid van sleutelfunctionarissen;
+- alarmerings- en opschalingsprocedure;
+- interne en externe communicatielijnen;
+- instructies voor eerste hulp, brand en ontruiming;
+- opvang van hulpdiensten;
+- voorzieningen, blusmiddelen, EHBO-middelen en AED's;
+- vluchtroutes, nooduitgangen en verzamelplaatsen;
+- afspraken voor bezoekers en personen die hulp nodig hebben;
+- procedure voor aanwezigheidscontrole;
+- nazorg, incidentregistratie en evaluatie;
+- beheer van tekeningen, contactlijsten en revisiedata.
+
+Welke onderdelen noodzakelijk zijn, hangt af van de organisatie en toepasselijke regelgeving.
+
+## Ontruimingsplan
+
+Een ontruimingsplan beschrijft specifiek hoe aanwezigen bij een incident veilig worden gewaarschuwd en naar een veilige plaats worden begeleid. Belangrijke aandachtspunten zijn:
+
+- herkenbare alarmmiddelen en instructies;
+- beschikbare en bruikbare vluchtroutes;
+- taakverdeling tussen ploegleider, BHV'ers en ontruimers;
+- controle van ruimten;
+- begeleiding van bezoekers en niet-zelfredzame personen;
+- communicatie tijdens de ontruiming;
+- verzamelplaats en aanwezigheidscontrole;
+- overdracht aan brandweer, ambulance of politie.
+
+## Oefenen en verbeteren
+
+Een plan op papier is pas waardevol wanneer betrokkenen het kennen en de werkwijze uitvoerbaar blijkt. BHV Voorne aan Zee verzorgt ontruimingsoefeningen in oplopende fasen, van tabletopbespreking tot uitgebreidere praktijkscenario's.
+
+Tijdens een oefening kan worden gekeken naar:
+
+- snelheid en duidelijkheid van alarmering;
+- taakverdeling en leiderschap;
+- gebruik van vluchtroutes;
+- portofoon- en mondelinge communicatie;
+- gedrag en zelfredzaamheid van aanwezigen;
+- opvang van hulpdiensten;
+- knelpunten in gebouw, procedures of middelen.
+
+Leg na een oefening vast wat goed ging, welke verbeterpunten zijn gevonden, wie verantwoordelijk is en wanneer maatregelen worden gecontroleerd. Pas het plan aan wanneer processen, bezetting, gebouw of risico's veranderen.
+
+## Dienstverlening van BHV Voorne aan Zee
+
+De website biedt ontruimingsoefeningen, tabletopoefeningen, scenario-oefeningen, evaluatie en verslaglegging. Tijdens deze activiteiten kunnen de praktische toepasbaarheid van een bestaand ontruimingsplan en interne procedures worden besproken en getest.
+
+De website bevestigt niet dat BHV Voorne aan Zee zelfstandig een volledige formele RI&E of ieder type wettelijk noodplan opstelt of certificeert. Vraag voor documentadvies of planvorming vooraf welke ondersteuning binnen de opdracht valt. De werkgever of organisatie blijft verantwoordelijk voor passende plannen en maatregelen.
+
+## Gerelateerde informatie
+
+- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+- [Ploegleider BHV](https://bhvvoorneaanzee.nl/llms/ploegleider-bhv.txt)
+- [BHV](https://bhvvoorneaanzee.nl/llms/bhv.txt)
+- [Veiligheidsadvies](https://bhvvoorneaanzee.nl/llms/veiligheidsadvies.txt)
+- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+
+## Officiële bronnen
+
+- [Bedrijfshulpverlening volgens Arboportaal](https://www.arboportaal.nl/onderwerpen/arbozorg/bedrijfshulpverlening)
+- [RI&E volgens Arboportaal](https://www.arboportaal.nl/onderwerpen/arbowet--en--regelgeving/risico-inventarisatie---evaluatie)
+- [Arbeidsomstandighedenwet](https://wetten.overheid.nl/BWBR0010346/)
+
+Deze informatie is algemeen en geen juridisch, bouwkundig of veiligheidskundig advies voor een specifieke locatie.
+

@@ -17,11 +17,6 @@ coverage/
 tmp/
 temp/
 
-# Lokale LLMS-conceptbestanden niet publiceren
-public/llms.txt
-public/llms-full.txt
-public/llms/
-
 # Env-bestanden
 .env
 .env.*

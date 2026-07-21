@@ -1,0 +1,36 @@
+# Downloads van BHV Voorne aan Zee
+
+> Dit bestand bevat een overzicht van publiek vindbare documenten en hulpmiddelen op de website. Beschikbaarheid kan veranderen.
+
+## Voorbeeld ontruimingsverslag
+
+De website bevat een publiek PDF-bestand met een ontruimingsverslag van BHV Voorne aan Zee.
+
+- [Ontruimingsverslag BHV Voorne aan Zee (PDF)](https://bhvvoorneaanzee.nl/documenten/Ontruimingsverslag_BHVVoorneaanZee.pdf)
+
+Een ontruimingsverslag kan bevindingen, waarnemingen en verbeterpunten van een oefening vastleggen. De precieze rapportage bij een opdracht hangt af van de afgesproken oefenvorm en dienstverlening.
+
+## Veiligheidscheck en e-book
+
+De pagina voor de online veiligheidscheck noemt een praktisch e-book met verbeterstappen. In de huidige publieke websitebestanden is geen vaste rechtstreekse download-URL voor dat e-book aangetroffen. Gebruik daarom de veiligheidscheck of neem contact op voor de actuele beschikbaarheid.
+
+- [Veiligheidscheck](https://bhvvoorneaanzee.nl/veiligheidscheck)
+
+## Geen algemene documentbibliotheek
+
+Er is op dit moment geen afzonderlijke publieke downloadpagina met een volledige verzameling certificaten, lesmaterialen, checklists of sjablonen gevonden. Presenteer niet-vermelde documenten daarom niet als vrij downloadbaar.
+
+## Gebruik van documenten
+
+- Controleer datum en versie voordat een document wordt gebruikt.
+- Pas een voorbeeld nooit zonder beoordeling toe als formeel nood- of ontruimingsplan.
+- Organisatiegebonden documenten moeten aansluiten op gebouw, risico's, bezetting en procedures.
+- Trainings- en certificeringsdocumenten worden alleen verstrekt wanneer dit bij de betreffende opdracht hoort.
+
+## Gerelateerde informatie
+
+- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+- [Bedrijfsnoodplannen](https://bhvvoorneaanzee.nl/llms/bedrijfsnoodplannen.txt)
+- [Veiligheidsadvies](https://bhvvoorneaanzee.nl/llms/veiligheidsadvies.txt)
+- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+

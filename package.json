@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run generate:llms",
     "build": "vite build",
+    "generate:llms": "node scripts/generate-llms-full.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

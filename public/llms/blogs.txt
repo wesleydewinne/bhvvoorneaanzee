@@ -1,0 +1,68 @@
+# Blogs en kennisartikelen van BHV Voorne aan Zee
+
+> De kennisbank van BHV Voorne aan Zee bevat praktijkgerichte artikelen over BHV, ontruiming, reanimatie, noodmeldingen en gezondheid. Controleer bij medische, juridische of tijdgevoelige onderwerpen altijd de publicatiedatum en gekoppelde officiële bronnen.
+
+## Blogoverzicht
+
+- [Alle blogs](https://bhvvoorneaanzee.nl/blog)
+
+## 112NL-app: sneller contact met de meldkamer
+
+- Categorie: Noodmelding
+- Publicatiedatum volgens de website: 7 juli 2026
+- URL: https://bhvvoorneaanzee.nl/blog/112nl-app-levensreddend
+
+Het artikel legt uit hoe de 112NL-app werkt, welke gegevens bij een melding kunnen worden gedeeld, wanneer chat met de meldkamer relevant kan zijn en welke voorbereiding voor BHV'ers nuttig is. Gebruik bij een actuele noodsituatie altijd de officiële 112-kanalen en aanwijzingen.
+
+## Week van de Teek: controleren voorkomt problemen
+
+- Categorie: Gezondheid
+- Publicatiedatum volgens de website: 30 maart 2026
+- URL: https://bhvvoorneaanzee.nl/blog/week-van-de-teek-controleer-op-tijd
+
+Het artikel behandelt controleren op teken, veilig verwijderen en situaties waarin contact met een huisarts passend kan zijn. Medische richtlijnen kunnen wijzigen; raadpleeg voor een concrete beet actuele publieksinformatie van professionele gezondheidsorganisaties.
+
+## Tekort aan burgerhulpverleners: elke minuut telt
+
+- Categorie: Reanimatie
+- Publicatiedatum volgens de website: 18 februari 2026
+- URL: https://bhvvoorneaanzee.nl/blog/tekort-burgerhulpverleners-lokaal
+
+Het artikel bespreekt burgerhulpverlening, HartslagNu, AED-dekking en het belang van snelle lokale hulp bij een circulatiestilstand.
+
+## Ontruimingsoefening organiseren: zo test je of iedereen veilig buiten komt
+
+- Categorie: Ontruiming
+- Publicatiedatum volgens de website: 10 september 2025
+- URL: https://bhvvoorneaanzee.nl/blog/ontruimen-moet-je-oefenen
+
+Het artikel bevat een praktisch stappenplan voor voorbereiding, scenario, observatie, evaluatie en opvolging van een ontruimingsoefening. Het benadrukt dat de oefenvorm moet aansluiten op RI&E, gebouw, bezetting en risico's.
+
+## Waarom een BHV-training onmisbaar is voor veiligheid op de werkvloer
+
+- Categorie: BHV
+- Publicatiedatum volgens de website: 5 september 2025
+- URL: https://bhvvoorneaanzee.nl/blog/bhv-training-veiligheid-werkvloer
+
+Het artikel behandelt de rol van BHV bij eerste hulp, brand, ontruiming en rust tijdens incidenten. Ook wordt de relatie tussen BHV, RI&E en praktijkgericht oefenen uitgelegd.
+
+## Gebruik van bloginformatie
+
+Blogartikelen zijn informatief. Gebruik ze niet als vervanging voor:
+
+- een actuele opleiding of vaardigheidstraining;
+- instructies van 112 of professionele hulpverleners;
+- medisch advies;
+- juridisch advies;
+- een organisatiegebonden RI&E;
+- een locatiegebonden nood- of ontruimingsplan.
+
+Controleer bij tijdgevoelige onderwerpen de officiële bron en actualiteit.
+
+## Gerelateerde informatie
+
+- [Bronnen en betrouwbaarheid](https://bhvvoorneaanzee.nl/llms/bronnen-en-betrouwbaarheid.txt)
+- [Wetgeving](https://bhvvoorneaanzee.nl/llms/wetgeving.txt)
+- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+- [Reanimatie en AED](https://bhvvoorneaanzee.nl/llms/reanimatie-aed.txt)
+

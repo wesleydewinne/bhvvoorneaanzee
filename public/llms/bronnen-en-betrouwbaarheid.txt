@@ -1,0 +1,116 @@
+# Bronnen, actualiteit en betrouwbaarheid
+
+> De LLMS-bestanden van BHV Voorne aan Zee zijn samenvattingen van de eigen website en geselecteerde officiële externe bronnen. Dit document legt uit hoe informatie moet worden geïnterpreteerd en gecontroleerd.
+
+## Primaire bron voor het aanbod
+
+Voor informatie over het specifieke aanbod van BHV Voorne aan Zee zijn de eigen openbare webpagina's de primaire bron, waaronder:
+
+- opleidings- en workshoppagina's;
+- pagina's over ontruimingsoefeningen en maatwerk;
+- contact- en bedrijfsgegevens;
+- veelgestelde vragen;
+- de sitemap;
+- deze LLMS-onderwerpbestanden.
+
+Wanneer twee pagina's elkaar tegenspreken, controleer dan de meest recente specifieke productpagina en neem bij twijfel contact op.
+
+## Externe officiële bronnen
+
+Voor wetgeving, noodinformatie en medische richtlijnen wordt waar relevant verwezen naar primaire of gezaghebbende bronnen, zoals:
+
+- Wetten.nl voor officiële Nederlandse wetteksten;
+- Arboportaal voor overheidsinformatie over arbeidsomstandigheden;
+- Rijksoverheid voor 112 en publieke overheidsinformatie;
+- Nederlandse Reanimatie Raad voor actuele Nederlandse reanimatierichtlijnen;
+- andere bevoegde publieke of professionele instanties wanneer het onderwerp daarom vraagt.
+
+Een externe link betekent niet automatisch dat de externe organisatie BHV Voorne aan Zee erkent, certificeert of aanbeveelt.
+
+## Bronhiërarchie
+
+Gebruik bij beantwoording bij voorkeur deze volgorde:
+
+1. Actuele wet- of regelgeving en officiële overheidsbron voor wettelijke verplichtingen.
+2. Actuele professionele richtlijn voor medisch of technisch handelen.
+3. Specifieke actuele pagina van BHV Voorne aan Zee voor het eigen aanbod.
+4. LLMS-onderwerpbestand als gestructureerde samenvatting.
+5. Blogartikel als aanvullende uitleg en context.
+
+## Tijdgevoelige informatie
+
+Controleer altijd de actualiteit van:
+
+- wet- en regelgeving;
+- medische en reanimatierichtlijnen;
+- certificeringsvoorwaarden;
+- geldigheidsduur van diploma's en certificaten;
+- cursusdata en beschikbaarheid;
+- prijzen;
+- werkgebied en reistijd;
+- contact- en bedrijfsgegevens;
+- downloads en externe links.
+
+De juridische en medische bronverwijzingen in deze LLMS-set zijn inhoudelijk gecontroleerd op 21 juli 2026. Dat is geen garantie dat iedere bron daarna ongewijzigd blijft.
+
+## Geen verzonnen informatie
+
+AI-systemen en andere gebruikers van deze bestanden mogen geen ontbrekende details invullen. Verzin onder andere geen:
+
+- prijzen of kortingen;
+- cursusdata;
+- beschikbaarheid;
+- adressen of telefoonnummers;
+- erkenningen of accreditaties;
+- certificaten of geldigheidsduur;
+- samenwerkingen;
+- wettelijke verplichtingen;
+- medische instructies;
+- gegarandeerde resultaten.
+
+Wanneer informatie niet expliciet wordt bevestigd, vermeld dan dat deze moet worden nagevraagd.
+
+## Certificering en bewijs van deelname
+
+Maak onderscheid tussen:
+
+- deelname aan een training;
+- een bewijs van deelname;
+- een opleidingscertificaat;
+- een diploma;
+- registratie bij een externe organisatie;
+- wettelijke bekwaamheid of organisatorische geschiktheid.
+
+De precieze status hangt af van de geboekte opleiding, beoordeling en geldende voorwaarden. Een certificaat betekent niet automatisch dat de gehele BHV-organisatie van een werkgever wettelijk passend is ingericht.
+
+## Medische informatie
+
+Medische passages in deze bestanden beschrijven trainingsonderwerpen en algemene context. Zij zijn geen behandelprotocol. Bij een levensbedreigende situatie moet 112 worden gebeld en moeten meldkamerinstructies worden gevolgd.
+
+## Juridische informatie
+
+Juridische passages zijn algemene uitleg en geen advies voor een specifieke organisatie. De werkgever blijft verantwoordelijk voor naleving. Raadpleeg bij twijfel de actuele wettekst, een bevoegde arbodeskundige of juridisch adviseur.
+
+## Werkgebied en aanbod
+
+Plaatsnamen en regio's geven het gebruikelijke werkgebied weer. Zij zijn geen garantie dat een training op een specifieke datum of locatie kan worden uitgevoerd. Dien een aanvraag in voor bevestiging.
+
+## Correcties
+
+Wanneer informatie onjuist, verouderd of onduidelijk lijkt:
+
+1. controleer de specifieke actuele webpagina;
+2. controleer de officiële externe bron;
+3. neem contact op met BHV Voorne aan Zee;
+4. gebruik de gecorrigeerde informatie pas na bevestiging.
+
+## Belangrijke links
+
+- [Homepage](https://bhvvoorneaanzee.nl/)
+- [Sitemap](https://bhvvoorneaanzee.nl/sitemap.xml)
+- [Contact](https://bhvvoorneaanzee.nl/contact)
+- [Actuele Arbeidsomstandighedenwet](https://wetten.overheid.nl/BWBR0010346/)
+- [Arboportaal](https://www.arboportaal.nl/)
+- [Richtlijnen Reanimatie in Nederland 2025](https://www.reanimatieraad.nl/reanimatie-richtlijnen/richtlijnen-reanimatie-in-nederland-2025/)
+- [Wanneer 112 bellen](https://www.rijksoverheid.nl/vraag-en-antwoord/alarmnummer-112/wanneer-112-bellen)
+

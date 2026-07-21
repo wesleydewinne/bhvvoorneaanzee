@@ -1,0 +1,97 @@
+# EHBO-trainingen van BHV Voorne aan Zee
+
+> EHBO staat voor Eerste Hulp Bij Ongevallen. BHV Voorne aan Zee verzorgt praktijkgerichte EHBO-trainingen waarin deelnemers leren veilig en doelgericht te handelen bij letsel en acute ziektebeelden totdat professionele hulp beschikbaar is.
+
+## Wat is EHBO
+
+EHBO is de eerste hulp aan iemand met letsel of een plotselinge aandoening. Het doel is de situatie veilig te beoordelen, passende hulp in te schakelen, levensbedreigende problemen te herkennen en verdere schade zoveel mogelijk te beperken.
+
+In een levensbedreigende situatie moet direct 112 worden gebeld. Bij minder dringende medische problemen kan de huisarts of huisartsenpost passend zijn. Volg bij een noodmelding altijd de aanwijzingen van de meldkamer.
+
+## Onderwerpen in de training
+
+Afhankelijk van de gekozen opleidingsvorm en leerdoelen kan aandacht worden besteed aan:
+
+- veiligheid van de hulpverlener en het slachtoffer;
+- beoordelen van bewustzijn en ademhaling;
+- alarmeren en samenwerken met professionele hulpdiensten;
+- reanimatie en gebruik van een AED;
+- bewusteloosheid en stabiele zijligging;
+- verslikking en luchtwegbelemmering;
+- bloedingen en wondzorg;
+- verbanden aanleggen;
+- botbreuken, kneuzingen en verstuikingen;
+- brandwonden;
+- vergiftiging;
+- shock;
+- acute ziektebeelden;
+- geruststellen en bewaken van een slachtoffer;
+- oefenen met realistische scenario's.
+
+De exacte inhoud wordt afgestemd op de opleidingsvorm, doelgroep, certificering en risico's binnen de organisatie.
+
+## Leerdoelen
+
+Deelnemers leren onder andere:
+
+- onderscheid maken tussen levensbedreigende en niet-levensbedreigende situaties;
+- rustig, veilig en stapsgewijs handelen;
+- professionele hulp tijdig inschakelen;
+- eerstehulpvaardigheden daadwerkelijk uitvoeren;
+- een slachtoffer observeren en ondersteunen totdat hulp arriveert;
+- samenwerken en duidelijk communiceren tijdens een incident.
+
+## Praktijkgericht opleiden
+
+De website beschrijft EHBO-trainingen als sterk praktijkgericht. Vaardigheden worden actief geoefend en waar van toepassing beoordeeld. Realistische scenario's en letselsimulatie kunnen worden gebruikt om de stap van theorie naar handelen te trainen.
+
+## Opleidingsvormen
+
+De publieke routes van de website noemen:
+
+- EHBO-basisopleiding van drie dagen;
+- EHBO-basisopleiding van twee dagen met e-learning;
+- EHBO-herhaling van een hele dag;
+- EHBO-herhaling van een halve dag.
+
+De actuele beschikbaarheid, toelatingseisen, planning en inhoud moeten bij BHV Voorne aan Zee worden gecontroleerd. Niet iedere route hoeft op ieder moment als afzonderlijk product beschikbaar te zijn.
+
+## Certificering
+
+De website vermeldt dat een EHBO-basistraining kan worden afgesloten met een praktijkbeoordeling volgens de richtlijnen van Het Oranje Kruis en dat na succesvolle beoordeling een EHBO-certificaat van Het Oranje Kruis kan worden verstrekt. De website noemt een geldigheidsduur van twee jaar en adviseert jaarlijks onderhoud van vaardigheden.
+
+Certificering is afhankelijk van de daadwerkelijk geboekte opleidingsvorm, geldende examenvoorwaarden en een aantoonbaar voldoende beoordeling. Vraag vooraf welke certificering bij de gekozen training hoort.
+
+## Incompany en maatwerk
+
+EHBO-trainingen kunnen op locatie worden afgestemd op:
+
+- branche en werkomgeving;
+- aanwezige risico's;
+- doelgroep en beginniveau;
+- interne procedures;
+- beschikbare hulpmiddelen;
+- specifieke incidenten die binnen de organisatie kunnen voorkomen.
+
+## Relatie met BHV
+
+EHBO en BHV overlappen bij eerste hulp, maar zijn niet hetzelfde. Een BHV-opleiding omvat doorgaans ook brandbestrijding, alarmering en ontruiming. Een volledige EHBO-opleiding behandelt eerste hulp uitgebreider. Welke opleiding passend is, hangt af van de rol, risico's en verantwoordelijkheden binnen de organisatie.
+
+## Medische waarschuwing
+
+Deze tekst is algemene opleidingsinformatie en geen behandelprotocol. Eerstehulprichtlijnen veranderen. Gebruik tijdens een incident actuele officiële instructies, bel bij levensgevaar 112 en volg de aanwijzingen van de meldkamer of professionele zorgverlener.
+
+## Gerelateerde informatie
+
+- [EHBO op de website](https://bhvvoorneaanzee.nl/ehbo)
+- [Reanimatie en AED](https://bhvvoorneaanzee.nl/llms/reanimatie-aed.txt)
+- [Stop de Bloeding](https://bhvvoorneaanzee.nl/llms/stop-de-bloeding.txt)
+- [Workshops](https://bhvvoorneaanzee.nl/llms/workshops.txt)
+- [Opleidingen en trainingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
+- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+
+## Officiële externe informatie
+
+- [Dringende medische hulp volgens Rijksoverheid](https://www.rijksoverheid.nl/vraag-en-antwoord/eerstelijnszorg/wat-moet-ik-doen-als-iemand-dringend-medische-hulp-nodig-heeft)
+- [Wanneer 112 bellen](https://www.rijksoverheid.nl/vraag-en-antwoord/alarmnummer-112/wanneer-112-bellen)
+

@@ -1,0 +1,85 @@
+# Veiligheidsadvies en veiligheidscheck
+
+> BHV Voorne aan Zee helpt organisaties via praktijkgerichte trainingen, een online veiligheidscheck, maatwerk en oefeningen om aandachtspunten rond BHV, EHBO, ontruiming en incidentcommunicatie zichtbaar te maken.
+
+## Veiligheidscheck
+
+De website biedt een korte online veiligheidscheck. Deze is bedoeld om organisaties te laten nadenken over onderwerpen zoals:
+
+- actualiteit en inzetbaarheid van BHV'ers;
+- duidelijkheid over rollen en verantwoordelijkheden;
+- beschikbaarheid en onderhoud van EHBO-kennis;
+- bekendheid en praktische bruikbaarheid van het ontruimingsplan;
+- oefenen van alarmering en ontruiming;
+- herkenning van veelvoorkomende risico's;
+- mogelijke verbeterstappen.
+
+De veiligheidscheck is een eerste signalering en geen formele RI&E, certificering, inspectie of garantie dat een organisatie aan alle wet- en regelgeving voldoet.
+
+- [Start de veiligheidscheck](https://bhvvoorneaanzee.nl/veiligheidscheck)
+
+## Praktijkgerichte beoordeling
+
+Tijdens een maatwerktraining of ontruimingsoefening kunnen aandachtspunten zichtbaar worden die in een document niet direct opvallen, bijvoorbeeld:
+
+- een onduidelijke taakverdeling;
+- problemen met portofooncommunicatie;
+- onbekendheid met aanwezige middelen;
+- obstakels of onduidelijkheden rond vluchtroutes;
+- onvoldoende aandacht voor bezoekers of niet-zelfredzame personen;
+- procedures die onder tijdsdruk niet goed uitvoerbaar blijken;
+- behoefte aan aanvullende training of herhaling.
+
+Bevindingen uit oefeningen kunnen worden gebruikt om procedures, instructies en trainingsplannen te verbeteren.
+
+## Maatwerktraining
+
+BHV Voorne aan Zee beschrijft maatwerk als training die aansluit op:
+
+- branche en werkomgeving;
+- bedrijfsspecifieke risico's;
+- gebouw en aanwezige voorzieningen;
+- interne noodprocedures;
+- doelgroep en ervaringsniveau;
+- herkenbare incidenten en scenario's.
+
+Maatwerk kan bestaan uit een combinatie van eerste hulp, brandbestrijding, ontruiming, communicatie, leiderschap en andere modules.
+
+- [Maatwerktraining](https://bhvvoorneaanzee.nl/maatwerk)
+- [Modulaire training samenstellen](https://bhvvoorneaanzee.nl/modulaire-trainen)
+
+## Stappen voor een organisatie
+
+Een praktische verbetercyclus kan bestaan uit:
+
+1. Breng risico's en wettelijke verplichtingen in kaart via een actuele RI&E.
+2. Bepaal welke BHV-organisatie, deskundigheid, mensen en middelen nodig zijn.
+3. Leg taken, alarmering, communicatie en procedures duidelijk vast.
+4. Leid betrokken medewerkers passend op.
+5. Oefen met scenario's die aansluiten op locatie en risico's.
+6. Evalueer prestaties en knelpunten.
+7. Wijs eigenaren en termijnen toe aan verbetermaatregelen.
+8. Controleer of maatregelen zijn uitgevoerd en werken.
+9. Actualiseer RI&E, plannen en training wanneer de situatie verandert.
+
+## Grenzen van de dienstverlening
+
+De website toont trainingen, workshops, ontruimingsoefeningen, een veiligheidscheck en maatwerkmogelijkheden. Zij bevestigt niet voor iedere vraag gespecialiseerde diensten zoals formele RI&E-toetsing, bouwkundige brandveiligheidsinspectie, juridisch advies of certificering van een veiligheidsmanagementsysteem.
+
+Vraag bij contact duidelijk welke analyse, rapportage of beoordeling nodig is. Wanneer specialistische of wettelijk gecertificeerde expertise vereist is, moet een passende deskundige worden betrokken.
+
+## Gerelateerde informatie
+
+- [Bedrijfsnoodplannen](https://bhvvoorneaanzee.nl/llms/bedrijfsnoodplannen.txt)
+- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+- [BHV-ritme](https://bhvvoorneaanzee.nl/llms/bhv-ritme.txt)
+- [Opleidingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
+- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+
+## Officiële informatie
+
+- [RI&E volgens Arboportaal](https://www.arboportaal.nl/onderwerpen/arbowet--en--regelgeving/risico-inventarisatie---evaluatie)
+- [Mensen en middelen volgens de Arbowet](https://www.arboportaal.nl/vraag-en-antwoord/alle-vragen-en-antwoorden/welke-mensen-en-middelen-moet-een-werkgever-inzetten-volgens-de-arbowet)
+
+Deze pagina bevat algemene informatie en geen locatiegebonden juridisch of veiligheidskundig oordeel.
+
