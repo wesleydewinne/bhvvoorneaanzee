@@ -56,31 +56,31 @@
   },
 
   "/ploegleider": {
-    "title": "BHV Ploegleider Trainingen | Basis & Herhaling - BHV Voorne aan Zee",
-    "description": "Word of blijf effectief BHV Ploegleider met praktijkgerichte trainingen van BHV Voorne aan Zee. Leer aansturen tijdens calamiteiten en ontruimingen.",
+    "title": "Ploegleider BHV-training incompany | Voorne aan Zee",
+    "description": "Leer een BHV-ploeg veilig aansturen tijdens incidenten. Bekijk de basisopleiding, blended opleiding en herhaling voor ploegleider BHV op locatie.",
     "keywords": "BHV ploegleider, ploegleider training, BHV leidinggeven, ontruiming aansturen, BHV cursus ploegleider",
     "canonical": "https://bhvvoorneaanzee.nl/ploegleider"
   },
 
   "/ploegleider-basis-2-daagse": {
-    "title": "Ploegleider Basis 2-daagse | BHV Voorne aan Zee",
-    "description": "Leer als BHV Ploegleider effectief leidinggeven tijdens noodsituaties in deze praktijkgerichte 2-daagse training van BHV Voorne aan Zee.",
+    "title": "Ploegleider BHV Basis 2-daagse | Incompany",
+    "description": "Praktijkgerichte 2-daagse basisopleiding voor ploegleiders BHV. Leer informatie beoordelen, een inzetplan maken en een BHV-ploeg veilig aansturen.",
     "keywords": "ploegleider basis, BHV ploegleider 2-daagse, leidinggeven calamiteiten, BHV ploegleider cursus",
     "canonical": "https://bhvvoorneaanzee.nl/ploegleider-basis-2-daagse"
   },
 
   "/ploegleider-basis-1-dag-met-elearning": {
-    "title": "Ploegleider Basis 1 dag met e-learning | BHV Voorne aan Zee",
-    "description": "Combineer e-learning met een praktijkdag en ontwikkel je vaardigheden als BHV Ploegleider. Gericht op aansturing, communicatie en besluitvorming.",
+    "title": "Opleiding Ploegleider BHV met e-learning | NIBHV",
+    "description": "Volg de opleiding Ploegleider BHV met e-learning en één praktijkdag. Leer een BHV-ploeg veilig aansturen en behaal het NIBHV-diploma.",
     "keywords": "ploegleider e-learning, BHV ploegleider training, ploegleider basis, leidinggeven BHV, calamiteitenorganisatie",
     "canonical": "https://bhvvoorneaanzee.nl/ploegleider-basis-1-dag-met-elearning"
   },
 
-  "/ploegleider-herhaling-halve-dag": {
-    "title": "Ploegleider Herhaling halve dag | BHV Voorne aan Zee",
-    "description": "Haal actuele kennis en praktijk terug met de halve dag herhaling voor BHV Ploegleiders. Compact, praktisch en direct toepasbaar.",
-    "keywords": "ploegleider herhaling, BHV ploegleider opfrissen, ploegleider halve dag, BHV herhaling leidinggeven",
-    "canonical": "https://bhvvoorneaanzee.nl/ploegleider-herhaling-halve-dag"
+  "/ploegleider-herhaling-1-dag": {
+    "title": "Ploegleider BHV herhaling – 1 dag | NIBHV",
+    "description": "Praktijkgerichte herhalingsdag voor gediplomeerde ploegleiders BHV met tabletopscenario’s, realistische inzetten en een NIBHV-certificaat.",
+    "keywords": "ploegleider BHV herhaling 1 dag, NIBHV certificaat ploegleider, praktijkgerichte ploegleider herhaling, leidinggeven BHV inzet",
+    "canonical": "https://bhvvoorneaanzee.nl/ploegleider-herhaling-1-dag"
   },
 
   "/ehbo": {

@@ -878,1120 +878,387 @@ De opleidingen en trainingen worden voornamelijk verzorgd binnen ongeveer vijfti
 
 <!-- Bronbestand: /llms/bhv.txt -->
 
-# BHV-opleidingen van BHV Voorne aan Zee
+# Bedrijfshulpverlening (BHV) en BHV-opleidingen
 
-> BHV Voorne aan Zee verzorgt praktijkgerichte incompany BHV-basisopleidingen, BHV-herhalingstrainingen en aanvullende oefeningen voor bedrijven, instellingen, verenigingen en andere organisaties.
-
-De opleidingen zijn gericht op medewerkers die tijdens een incident eerste hulp verlenen, alarmeren, communiceren, een beginnende brand veilig beoordelen en ondersteunen bij een ontruiming.
+> BHV Voorne aan Zee verzorgt praktijkgerichte BHV-basisopleidingen, herhalingen en aanvullende oefeningen. Dit document maakt onderscheid tussen wetgeving, onafhankelijk advies en het eigen opleidingsaanbod.
 
 ## Wat is BHV?
 
-BHV staat voor bedrijfshulpverlening.
+Bedrijfshulpverlening is de interne hulporganisatie die bij een incident direct optreedt totdat professionele hulpdiensten de hulpverlening overnemen. Een BHV’er verleent eerste hulp, helpt brand en de gevolgen van ongevallen beperken en alarmeert en evacueert aanwezigen bij noodsituaties.
 
-Een bedrijfshulpverlener kan binnen een organisatie optreden bij incidenten en noodsituaties totdat professionele hulpdiensten de hulpverlening overnemen.
+De werkgever blijft verantwoordelijk voor een passende BHV-organisatie. De benodigde bezetting, deskundigheid, uitrusting en organisatie volgen uit de risico-inventarisatie en -evaluatie (RI&E), aanwezige personen, werkzaamheden, gebouwkenmerken en restrisico’s.
 
-De precieze taken van een BHV’er hangen onder andere af van:
+## Wettelijke basis
 
-- de risico’s binnen de organisatie;
-- de grootte en inrichting van het gebouw;
-- het aantal aanwezige personen;
-- de interne noodprocedures;
-- de samenstelling van de BHV-organisatie;
-- de aanwezige hulpmiddelen en veiligheidsvoorzieningen.
+Artikel 3 van de Arbeidsomstandighedenwet verplicht de werkgever doeltreffende maatregelen te treffen voor eerste hulp, brandbestrijding en evacuatie en doeltreffende verbindingen te onderhouden met externe hulpverleningsorganisaties.
 
-## BHV-basisopleiding
+Artikel 15 bepaalt dat de werkgever zich laat bijstaan door één of meer aangewezen bedrijfshulpverleners. Hun bijstand omvat in elk geval:
 
-De BHV-basisopleiding is bedoeld voor medewerkers die nog niet eerder als bedrijfshulpverlener zijn opgeleid.
+- eerste hulp bij ongevallen;
+- brand en de gevolgen van ongevallen beperken en bestrijden;
+- werknemers en andere aanwezigen in noodsituaties alarmeren en evacueren.
 
-De opleiding bestaat uit theorie en praktijk en richt zich op de belangrijkste taken van een BHV’er.
+BHV’ers moeten qua opleiding, uitrusting, aantal en organisatie in staat zijn deze taken naar behoren uit te voeren. De wet noemt geen algemeen minimumaantal BHV’ers en schrijft geen universeel lesprogramma voor. Arboportaal benadrukt dat opleiding en training moeten aansluiten op de RI&E en dat oefenen en nascholing belangrijk zijn.
 
-Onderwerpen kunnen onder andere zijn:
+## Hoeveel BHV’ers zijn nodig?
 
-- beoordelen van een incident;
-- veiligheid van de hulpverlener;
-- alarmeren van interne en externe hulp;
-- levensreddende eerste handelingen;
-- reanimatie en het gebruik van een AED;
-- handelen bij verslikking;
-- eerste hulp bij letsels en ziektebeelden;
-- herkennen van brand en rookontwikkeling;
-- veilig gebruiken van kleine blusmiddelen;
-- deurprocedure en veilige benadering van een ruimte;
-- ontruiming;
-- communicatie en samenwerking;
-- overdracht aan professionele hulpdiensten.
+Er bestaat geen algemene regel als “één BHV’er per vijftig medewerkers”. De werkgever beoordeelt onder andere:
 
-## Opleidingsvormen BHV
+- aard en ernst van de risico’s;
+- aantal, spreiding en zelfredzaamheid van aanwezigen;
+- openingstijden, ploegendiensten, ziekte en vakantie;
+- gebouwindeling, verdiepingen en vluchtmogelijkheden;
+- opkomsttijd van professionele hulpdiensten;
+- bezoekers, leerlingen, cliënten en contractors;
+- taken bij voorzienbare incidentscenario’s.
 
-BHV Voorne aan Zee verzorgt verschillende opleidingsvormen voor zowel nieuwe als ervaren BHV’ers.
+De BHV moet tijdens alle relevante bedrijfssituaties daadwerkelijk inzetbaar zijn. Alleen diploma’s tellen is onvoldoende; beschikbaarheid en taakdekking zijn doorslaggevend.
 
-### Tweedaagse BHV-basisopleiding
+## Wat leert een BHV’er?
 
-Bij de tweedaagse BHV-basisopleiding worden theorie en praktijk klassikaal behandeld.
+Een praktijkgerichte BHV-opleiding kan bestaan uit:
 
-Deze vorm biedt veel ruimte voor:
+- eigen veiligheid en eerste beoordeling van een incident;
+- alarmeren en samenwerken met interne en externe hulp;
+- eerste hulp, reanimatie en AED;
+- handelen bij verslikking, bloedingen, brandwonden en acute ziektebeelden;
+- een beginnende brand veilig beoordelen;
+- kleine blusmiddelen gebruiken binnen veilige grenzen;
+- rook herkennen en een veilige vluchtweg behouden;
+- een ontruiming begeleiden;
+- communiceren, terugmelden en overdragen aan hulpdiensten.
 
-- uitleg;
-- praktische oefeningen;
-- herhaling;
-- vragen;
-- samenwerking;
-- scenario’s;
-- persoonlijke begeleiding.
+BHV is een voorpostfunctie. BHV’ers overbruggen de tijd tot professionele hulp arriveert, maar nemen geen onverantwoorde risico’s en vervangen brandweer, ambulance of politie niet.
 
-- [BHV-basisopleiding in twee dagen](https://bhvvoorneaanzee.nl/bhv-basis-2-daagse)
+## Brand, rook en vluchtveiligheid
 
-### BHV-basisopleiding met e-learning
+NIPV-onderzoek laat zien dat snelle verspreiding van giftige rook een belangrijke oorzaak is van slachtoffers bij gebouwbrand. Rook kan zicht, ademhaling en vluchtmogelijkheden snel aantasten. Daarom horen eigen veiligheid, deurdiscipline, bereikbare vluchtroutes en tijdige ontruiming terug te komen in opleiding en oefeningen.
 
-Bij deze opleidingsvorm bereidt de deelnemer zich vooraf online voor.
+NIPV beschrijft brandveiligheid als een samenhang van bouwkundige, installatietechnische en organisatorische maatregelen. BHV is één organisatorische veiligheidslaag en kan tekortkomingen in gebouw of installaties niet onbeperkt compenseren. Bij minder zelfredzame aanwezigen vraagt de organisatie extra voorbereiding, mensen en middelen.
 
-De praktijk wordt vervolgens tijdens een incompany praktijkdag geoefend.
+## Basisopleiding, blended leren en herhaling
 
-Deze vorm is geschikt voor organisaties die theorie en praktijk gedeeltelijk willen scheiden.
+De basisopleiding is bedoeld voor medewerkers die BHV-taken nog moeten leren. De opleiding combineert kennis, praktijk en beoordeling.
 
-- [BHV-basisopleiding met e-learning](https://bhvvoorneaanzee.nl/bhv-basis-e-learning)
+Bij blended leren wordt theorie online voorbereid. E-learning vervangt het noodzakelijke oefenen en beoordelen van praktijkvaardigheden niet.
 
-De actuele voorwaarden en beschikbaarheid van e-learning moeten worden gecontroleerd op de officiële website of rechtstreeks bij BHV Voorne aan Zee.
+Herhaling onderhoudt bestaande competenties. De inhoud hoort aan te sluiten op de RI&E, wijzigingen in de organisatie, eerdere incidenten, oefenbevindingen en vaardigheden die weinig worden gebruikt.
 
-### BHV-herhaling hele dag
+Een certificaat alleen bewijst niet dat de volledige BHV-organisatie passend is ingericht. De werkgever moet ook bezetting, materiaal, procedures, communicatie en oefenen borgen.
 
-De volledige BHV-herhaling is bedoeld voor organisaties die uitgebreid aandacht willen besteden aan het onderhouden en verdiepen van BHV-vaardigheden.
+## Opleidingsroutes van BHV Voorne aan Zee
 
-Tijdens deze trainingsvorm is meer ruimte voor:
+- BHV Basis in twee praktijkgerichte trainingsdagen;
+- BHV Basis met e-learning en één praktijkdag;
+- BHV Herhaling in een praktijkgerichte trainingsdag;
+- BHV Herhaling met e-learning en een praktijkdeel;
+- BHV Ritme met twee of drie oefenmomenten verspreid over het jaar.
 
-- eerste hulp;
-- reanimatie en AED;
-- brand en kleine blusmiddelen;
-- communicatie en samenwerking;
-- ontruiming;
-- praktijkgerichte opdrachten;
-- bedrijfsspecifieke scenario’s;
-- herhaling van meerdere vaardigheden binnen één trainingsdag.
+De exacte inhoud, toetsing en certificering worden per leerroute vermeld.
 
-### BHV-herhaling halve dag
+## Incompany en bedrijfsspecifiek trainen
 
-De BHV-herhaling van een halve dag is een compactere trainingsvorm voor het onderhouden van geselecteerde BHV-vaardigheden.
+Training op de eigen locatie maakt aansluiting mogelijk op:
 
-De inhoud wordt afgestemd op:
+- het gebouw en de werkelijke vluchtwegen;
+- aanwezige nood- en communicatiemiddelen;
+- het ontruimingsplan en interne procedures;
+- branche- en bedrijfsspecifieke risico’s;
+- de samenstelling van het BHV-team;
+- eerdere incidenten, oefeningen en verbeterpunten.
 
-- de leerbehoefte van de organisatie;
-- de ervaring van de deelnemers;
-- de aanwezige risico’s;
-- eerder gevolgde trainingen;
-- de beschikbare trainingstijd;
-- de belangrijkste aandachtspunten binnen de BHV-organisatie.
+Maatwerk betekent niet dat wettelijke taken of veilige handelingsgrenzen vervallen. Het betekent dat algemene competenties herkenbaar worden toegepast op de eigen werkomgeving.
 
-Een halve dag biedt minder ruimte dan een volledige herhalingsdag. Daarom worden vooraf duidelijke keuzes gemaakt over de onderdelen en leerdoelen.
+## Veelgestelde vragen
 
-## BHV-herhalingstraining
+### Is BHV wettelijk verplicht?
 
-De BHV-herhalingstraining is bedoeld voor bestaande BHV’ers die hun kennis en praktische vaardigheden willen onderhouden.
+Ja. Iedere werkgever moet passende bedrijfshulpverlening organiseren en één of meer BHV’ers aanwijzen. De concrete invulling volgt uit de RI&E en bedrijfsomstandigheden.
 
-De training is niet alleen een herhaling van theorie. De nadruk ligt op actief oefenen, samenwerken en handelen in herkenbare praktijksituaties.
+### Staat een BHV-diploma letterlijk in de Arbowet?
 
-Mogelijke onderdelen zijn:
+De wet eist dat BHV’ers zodanig zijn opgeleid en georganiseerd dat zij hun taken naar behoren kunnen uitvoeren. De wet schrijft niet één specifiek diploma of één opleider voor. Onafhankelijke certificering kan aantoonbaarheid en kwaliteitsborging ondersteunen.
 
-- reanimatie en AED;
-- handelen bij verslikking;
-- eerste hulp;
-- ziektebeelden;
-- ernstige bloedingen;
-- brand en kleine blusmiddelen;
-- veilige benadering van een brandruimte;
-- alarmeren;
-- communicatie;
-- ontruiming;
-- praktijkgerichte scenario’s.
+### Moet een BHV’er ieder jaar herhalen?
 
-De precieze inhoud kan per training verschillen en wordt waar mogelijk afgestemd op de organisatie en de deelnemers.
+De Arbowet noemt geen algemene jaarlijkse diplomafrequentie. De werkgever moet wel zorgen dat BHV’ers bekwaam blijven. Opleiders en certificerende instellingen kunnen eigen herhalingsvoorwaarden hanteren.
 
-## Afstemming op de opdrachtgever
+### Is een BHV’er hetzelfde als een EHBO’er?
 
-BHV Voorne aan Zee stemt een training waar mogelijk af op de organisatie.
-
-Daarbij kan rekening worden gehouden met:
-
-- de branche;
-- de aanwezige risico’s;
-- eerdere incidenten;
-- de interne noodprocedures;
-- de eigen BHV-organisatie;
-- aanwezige portofoons;
-- de brandmeldinstallatie en brandmeldcentrale;
-- vluchtwegen;
-- verzamelplaatsen;
-- aanwezige blusmiddelen;
-- het niveau en de ervaring van de deelnemers.
-
-Hierdoor sluit de training beter aan op situaties die deelnemers daadwerkelijk kunnen tegenkomen.
-
-## Praktijkgerichte aanpak
-
-Tijdens een BHV-training staat actief handelen centraal.
-
-Deelnemers oefenen niet alleen losse handelingen, maar leren deze ook toepassen binnen een incident.
-
-Er wordt aandacht besteed aan:
-
-- waarnemen;
-- risico’s inschatten;
-- prioriteiten stellen;
-- hulp inschakelen;
-- taken verdelen;
-- samenwerken;
-- communiceren;
-- veilig handelen;
-- evalueren.
-
-Deelnemers moeten na afloop niet alleen weten wat zij moeten doen, maar ook vertrouwen hebben om daadwerkelijk in actie te komen.
-
-## Communicatie tijdens incidenten
-
-Communicatie is een belangrijk onderdeel van bedrijfshulpverlening.
-
-Binnen een BHV-training kan aandacht worden besteed aan:
-
-- kort en duidelijk melden;
-- doorgeven van locatie en situatie;
-- bevestigen van opdrachten;
-- communicatie met de ploegleider;
-- samenwerking tussen BHV’ers;
-- portofoondiscipline;
-- voorkomen van onnodige of onduidelijke communicatie;
-- overdracht aan externe hulpdiensten.
-
-Portofoonoefeningen kunnen onderdeel zijn van een BHV-training of afzonderlijk worden georganiseerd.
-
-## Eerste hulp binnen BHV
-
-Het onderdeel eerste hulp binnen een BHV-opleiding richt zich op het herkennen van een situatie en het verlenen van noodzakelijke eerste hulp.
-
-Mogelijke onderwerpen zijn:
-
-- bewusteloosheid;
-- stabiele zijligging;
-- reanimatie;
-- AED;
-- verslikking;
-- bloedingen;
-- brandwonden;
-- vallen en letsels;
-- acute ziektebeelden;
-- veilig verplaatsen bij direct gevaar.
-
-De inhoud van een BHV-opleiding is niet hetzelfde als een volledige EHBO-opleiding.
-
-- [Uitgebreide informatie over EHBO](https://bhvvoorneaanzee.nl/llms/ehbo.txt)
-- [Uitgebreide informatie over reanimatie en AED](https://bhvvoorneaanzee.nl/llms/reanimatie-aed.txt)
-- [Uitgebreide informatie over Stop de Bloeding](https://bhvvoorneaanzee.nl/llms/stop-de-bloeding.txt)
-
-## Brand en kleine blusmiddelen
-
-Deelnemers leren een beginnende brand beoordelen en alleen op te treden wanneer dit veilig en verantwoord kan.
-
-Mogelijke onderwerpen zijn:
-
-- herkennen van brand en rook;
-- alarmeren;
-- eigen veiligheid;
-- verschillende kleine blusmiddelen;
-- keuze van een geschikt blusmiddel;
-- veilige benadering;
-- deurprocedure;
-- vluchtweg vrijhouden;
-- stoppen wanneer bestrijding niet veilig is;
-- starten of ondersteunen van een ontruiming.
-
-## Ontruiming
-
-Een BHV’er kan tijdens een incident worden ingezet voor het begeleiden van een ontruiming.
-
-Binnen de opleiding kan aandacht worden besteed aan:
-
-- opvolgen van een alarm;
-- controleren van ruimten;
-- begeleiden van aanwezigen;
-- gebruiken van veilige vluchtwegen;
-- melden van bijzonderheden;
-- communiceren met de ploegleider;
-- verzamelen op de afgesproken verzamelplaats;
-- doorgeven van vermiste of achtergebleven personen.
-
-Een volledige ontruimingsoefening wordt afzonderlijk voorbereid en uitgevoerd.
-
-- [Uitgebreide informatie over ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
-
-## Groepsgrootte
-
-BHV Voorne aan Zee werkt bij BHV-opleidingen bij voorkeur met kleine groepen.
-
-Bij veel opleidingen wordt gewerkt met ongeveer twee tot tien deelnemers.
-
-Een kleine groep biedt meer ruimte voor:
-
-- persoonlijke begeleiding;
-- praktische oefentijd;
-- individuele feedback;
-- vragen;
-- herhaling;
-- samenwerking;
-- realistische scenario’s.
-
-De definitieve groepsgrootte kan afhankelijk zijn van de opleidingsvorm, certificering en praktische omstandigheden.
-
-## Incompany
-
-De BHV-opleidingen worden voornamelijk incompany verzorgd op de locatie van de opdrachtgever.
-
-Voordelen hiervan zijn:
-
-- oefenen in de eigen werkomgeving;
-- herkenning van risico’s;
-- gebruik van aanwezige hulpmiddelen;
-- aansluiting op interne procedures;
-- aandacht voor eigen vluchtwegen;
-- oefenen met collega’s;
-- bedrijfsspecifieke scenario’s.
-
-## Maatwerk
-
-Een BHV-training kan worden aangepast aan de leerbehoefte van de organisatie.
-
-Maatwerk kan onder andere bestaan uit:
-
-- extra aandacht voor specifieke risico’s;
-- praktijkgerichte scenario’s;
-- portofoongebruik;
-- communicatie;
-- brandmeldcentrale;
-- zorgsituaties;
-- industrie of logistiek;
-- werken met bezoekers, cliënten of kinderen;
-- koppeling met een ontruimingsoefening.
-
-## BHV-ritme
-
-BHV-ritme is de aanpak van BHV Voorne aan Zee waarbij BHV-vaardigheden niet alleen tijdens één jaarlijkse herhalingstraining worden geoefend, maar verspreid over het jaar terugkomen.
-
-Het doel is om kennis en praktische vaardigheden beter te onderhouden en de BHV-organisatie vaker te laten oefenen met herkenbare situaties.
-
-BHV-ritme kan bijvoorbeeld bestaan uit:
-
-- een training in basisvaardigheden;
-- korte praktijkoefeningen;
-- portofoonoefeningen;
-- table-top-oefeningen;
-- scenario-oefeningen;
-- een ontruimingsoefening;
-- evaluatie en borging van verbeterpunten.
-
-De precieze invulling wordt afgestemd op:
-
-- de organisatie;
-- de aanwezige risico’s;
-- de ervaring van de BHV’ers;
-- eerdere oefeningen;
-- de interne noodprocedures;
-- de leerbehoefte van de BHV-organisatie.
-
-BHV-ritme is bedoeld als doorlopende en praktijkgerichte aanpak, zodat BHV niet beperkt blijft tot één jaarlijks opleidingsmoment.
-
-- [Meer informatie over BHV-ritme](https://bhvvoorneaanzee.nl/bhv-ritme)
-
-## Certificering en geldigheid
-
-De voorwaarden voor certificering, geldigheid en herhaling kunnen afhankelijk zijn van:
-
-- de gekozen opleidingsvorm;
-- de certificerende organisatie;
-- het resultaat van de deelnemer;
-- de actuele richtlijnen;
-- afspraken met de opdrachtgever.
-
-Controleer actuele certificeringsvoorwaarden altijd op de officiële website of rechtstreeks bij BHV Voorne aan Zee.
-
-## Voor wie?
-
-De BHV-opleidingen zijn onder andere bedoeld voor medewerkers van:
-
-- bedrijven;
-- kantoren;
-- scholen;
-- kinderopvangorganisaties;
-- zorginstellingen;
-- winkels;
-- horeca;
-- verenigingen;
-- productiebedrijven;
-- logistieke organisaties;
-- organisaties in het havengebied;
-- andere organisaties met een BHV-organisatie.
+Nee. BHV omvat naast eerste hulp ook brand, alarmering en evacuatie. Een volledige EHBO-opleiding behandelt eerste hulp doorgaans uitgebreider.
 
 ## Werkgebied
 
-BHV Voorne aan Zee verzorgt de opleidingen voornamelijk binnen ongeveer vijftig kilometer rondom Rozenburg in Zuid-Holland.
+BHV Voorne aan Zee verzorgt incompany trainingen onder andere in Voorne aan Zee, Hellevoetsluis, Brielle, Rockanje, Oostvoorne, Rozenburg, Spijkenisse, Nissewaard, Hoogvliet, Rotterdam-Rijnmond, de Botlek, Vlaardingen, Maassluis, Schiedam, Barendrecht, Rhoon, de Hoeksche Waard, het Westland, Den Haag en delen van Zeeland.
 
-- [Volledig werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
+## Primaire bronnen
+
+- [Arbeidsomstandighedenwet, artikelen 3, 5, 8 en 15](https://wetten.overheid.nl/BWBR0010346/)
+- [Arboportaal: wat zegt de wet over bedrijfshulpverlening?](https://www.arboportaal.nl/onderwerpen/arbozorg/bedrijfshulpverlening/wat-zegt-de-wet-over-bedrijfshulpverlening)
+- [NIBHV: taken en competenties van een BHV’er](https://www.nibhv.nl/wat-moet-bhver-kunnen-taken-competenties/)
+- [NIBHV: voorpost- en gidsfunctie BHV](https://www.nibhv.nl/expertises/bedrijfshulpverlening/voorpostfunctie-bhv/)
+- [NIPV: Basis voor brandveiligheid](https://nipv.nl/documenten/basis-voor-brandveiligheid/)
+- [NIPV: rookverspreiding en vluchtveiligheid](https://nipv.nl/onderzoek/vluchtveiligheid-van-woongebouwen/)
 
 ## Gerelateerde informatie
 
-- [Overzicht opleidingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
-- [Organisatieprofiel](https://bhvvoorneaanzee.nl/llms/organisatie.txt)
 - [Ploegleider BHV](https://bhvvoorneaanzee.nl/llms/ploegleider-bhv.txt)
-- [Reanimatie en AED](https://bhvvoorneaanzee.nl/llms/reanimatie-aed.txt)
-- [Stop de Bloeding](https://bhvvoorneaanzee.nl/llms/stop-de-bloeding.txt)
-- [EHBO](https://bhvvoorneaanzee.nl/llms/ehbo.txt)
 - [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+- [BHV Ritme](https://bhvvoorneaanzee.nl/llms/bhv-ritme.txt)
 - [Werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
-- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
-
-## Officiële websitepagina’s
-
-- [BHV-opleidingen](https://bhvvoorneaanzee.nl/bhv)
-- [BHV-basisopleiding in twee dagen](https://bhvvoorneaanzee.nl/bhv-basis-2-daagse)
-- [BHV-basisopleiding met e-learning](https://bhvvoorneaanzee.nl/bhv-basis-e-learning)
-- [BHV-herhaling hele dag](URL-VAN-DE-PAGINA)
-- [BHV-herhaling halve dag](URL-VAN-DE-PAGINA)
-- [BHV-ritme](https://bhvvoorneaanzee.nl/bhv-ritme)
-- [Contact opnemen](https://bhvvoorneaanzee.nl/contact)
+- [Contact](https://bhvvoorneaanzee.nl/contact)
 
 ---
 
 <!-- Bronbestand: /llms/ploegleider-bhv.txt -->
 
-# Opleidingen Ploegleider BHV van BHV Voorne aan Zee
+# Opleiding Ploegleider BHV
 
-> BHV Voorne aan Zee verzorgt praktijkgerichte incompany basisopleidingen en herhalingstrainingen voor Ploegleider BHV.
+> BHV Voorne aan Zee verzorgt praktijkgerichte incompany basisopleidingen en herhalingstrainingen voor ploegleiders BHV. Dit document onderscheidt wettelijke verantwoordelijkheid, NIBHV-opleidingsinformatie en het eigen cursusaanbod.
 
-De opleidingen zijn bedoeld voor medewerkers die tijdens incidenten en ontruimingen een coördinerende en leidinggevende rol hebben binnen de BHV-organisatie.
+## Direct antwoord: wat doet een ploegleider BHV?
 
-## Wat is een Ploegleider BHV?
+Een ploegleider BHV geeft tijdens een incident of oefening direct leiding aan een ploeg bedrijfshulpverleners. De ploegleider controleert de melding, verzamelt en beoordeelt informatie, maakt een inzetplan, bepaalt prioriteiten en verdeelt taken. Tijdens de inzet bewaakt de ploegleider de voortgang, communicatie en veiligheid van het BHV-team en draagt relevante informatie over aan andere functionarissen of professionele hulpdiensten.
 
-Een Ploegleider BHV geeft tijdens een incident of noodsituatie operationeel leiding aan de aanwezige BHV’ers.
+Een ploegleider stuurt dus niet alleen mensen aan, maar zet onvolledige en veranderende informatie om in een veilige, gestructureerde BHV-inzet.
 
-De Ploegleider BHV zorgt onder andere voor:
+## Is een ploegleider BHV wettelijk verplicht?
 
-- het verzamelen en beoordelen van informatie;
-- het bepalen van prioriteiten;
-- het verdelen van taken;
-- het aansturen van BHV’ers;
-- het bewaken van de veiligheid;
-- het volgen van de interne noodprocedures;
-- het onderhouden van communicatie;
-- het opschalen van de hulpverlening;
-- het voorbereiden van de overdracht aan externe hulpdiensten.
+De Arbeidsomstandighedenwet noemt geen vaste grens waarbij een organisatie verplicht een functionaris met de titel ploegleider BHV moet aanwijzen. De werkgever moet de BHV-organisatie afstemmen op de RI&E, bedrijfsomvang, bezetting, aanwezige risico's en inrichting van de organisatie.
 
-De exacte taken en bevoegdheden kunnen per organisatie verschillen.
+Centrale aansturing kan passend of noodzakelijk zijn wanneer meerdere BHV'ers tegelijk worden ingezet, locaties of processen complex zijn, veel communicatielijnen samenkomen of een inzet anders onvoldoende veilig en overzichtelijk kan worden gecoördineerd. De werkgever moet kunnen onderbouwen dat de BHV-organisatie haar wettelijke taken naar behoren kan uitvoeren.
 
-## Basisopleiding Ploegleider BHV
+## Verschil met hoofd BHV
 
-De basisopleiding Ploegleider BHV is bedoeld voor BHV’ers die binnen hun organisatie een coördinerende rol gaan vervullen.
+Een ploegleider BHV stuurt tijdens een inzet rechtstreeks één BHV-ploeg aan. Een operationeel hoofd BHV bewaakt een grotere incidentinzet en kan meerdere ploegleiders of ploegen coördineren. Een coördinerend hoofd BHV richt zich vooral op beleid, voorbereiding, procedures, opleidingen en oefeningen. De exacte functieverdeling kan per organisatie verschillen en moet helder zijn vastgelegd.
 
-De deelnemer leert leidinggeven aan de BHV-organisatie tijdens verschillende incidenten en noodsituaties.
+## Wat leert een ploegleider BHV?
 
-Onderwerpen kunnen onder andere zijn:
+- Informatie uit een melding controleren en aanvullen.
+- Een betrouwbaar situatiebeeld vormen.
+- Risico's, prioriteiten en veiligheidsgrenzen beoordelen.
+- Een inzetplan maken en middelen doelgericht inzetten.
+- Taken verdelen en duidelijke opdrachten en feedback geven.
+- De BHV-ploeg instrueren en de voortgang bewaken.
+- Communiceren met BHV'ers, interne functionarissen en hulpdiensten.
+- Tijdig bijsturen wanneer informatie of omstandigheden veranderen.
+- De inzet afronden, overdragen, rapporteren en evalueren.
 
-- de rol en verantwoordelijkheid van de Ploegleider BHV;
-- leidinggeven onder tijdsdruk;
-- verzamelen en beoordelen van informatie;
-- bepalen van prioriteiten;
-- verdelen en opvolgen van taken;
-- aansturen van BHV’ers;
-- communicatie via portofoon;
-- meldingsdiscipline;
-- samenwerken met interne functionarissen;
-- alarmeren en opschalen;
-- communicatie met externe hulpdiensten;
-- bewaken van de veiligheid;
-- coördineren van een ontruiming;
-- evalueren van het optreden.
+Deze vaardigheden sluiten aan op de door NIBHV beschreven competentie om tijdens een incident leiding te geven aan een BHV-ploeg.
 
-## Herhalingstraining Ploegleider BHV
+## Basisopleiding Ploegleider BHV: twee dagen
 
-De herhalingstraining is bedoeld voor bestaande ploegleiders die hun kennis en vaardigheden willen onderhouden en verdiepen.
+De 2-daagse basisopleiding is bedoeld voor BHV'ers die tijdens een incident leiding gaan geven aan een BHV-ploeg. Voor deelname aan de NIBHV-basisopleiding is een geldig diploma Basis Bedrijfshulpverlener vereist. NIBHV adviseert voor de volledige basisopleiding minimaal zestien uur.
 
-De nadruk ligt op praktisch oefenen, besluitvorming, communicatie en leidinggeven.
+De opleiding combineert theorie, bedrijfsspecifieke werkopdrachten, tabletopoefeningen en meerdere praktijkinzetten. De deelnemer oefent een vaste werkwijze: informatie controleren, de situatie analyseren, een inzetplan maken, opdrachten geven, de voortgang bewaken en waar nodig bijsturen.
 
-Mogelijke onderdelen zijn:
+### Dag 1: fundament en regie
 
-- incidentmeldingen beoordelen;
-- werken met verschillende scenario’s;
-- taakverdeling;
-- leidinggeven op afstand;
-- communicatie via portofoon;
-- omgaan met onvolledige of tegenstrijdige informatie;
-- bewaken van overzicht;
-- prioriteiten aanpassen;
-- opschalen;
-- aansturen van een ontruiming;
-- overdracht aan externe hulpdiensten;
-- evaluatie en leerpunten.
+- Rol en verantwoordelijkheden van de ploegleider.
+- Melding controleren en aanvullende vragen stellen.
+- Situatiebeeld, risicoanalyse en inzetplan.
+- Prioriteiten, taakverdeling, opdrachten en feedback.
+- Tabletopscenario's.
 
-De inhoud wordt waar mogelijk afgestemd op de organisatie en de ervaring van de deelnemers.
+### Dag 2: praktijk en besluitvorming
 
-## Leidinggeven tijdens incidenten
+- Realistische incident- en ontruimingsscenario's.
+- Een BHV-ploeg veilig en doelgericht aansturen.
+- Voortgang bewaken en tijdig bijsturen.
+- Communicatie en overdracht.
+- Theorie- en praktijkbeoordeling volgens de gekozen certificeringsroute.
 
-Tijdens een incident moet de Ploegleider BHV overzicht houden en voorkomen dat alle BHV’ers zelfstandig zonder afstemming handelen.
+## Ploegleider BHV met e-learning en één praktijkdag
 
-Daarom wordt aandacht besteed aan:
+De blended basisopleiding combineert online theorie en werkopdrachten met één intensieve praktijkdag. De deelnemer rondt de digitale voorbereiding vooraf af. Daardoor kan de contactdag worden gebruikt voor tabletopoefeningen, feedback, meerdere praktijkinzetten en het daadwerkelijk leidinggeven.
 
-- duidelijke opdrachten geven;
-- taken aan de juiste personen koppelen;
-- opdrachten laten bevestigen;
-- controleren of taken zijn uitgevoerd;
-- hoofd- en bijzaken onderscheiden;
-- nieuwe informatie beoordelen;
-- risico’s blijven bewaken;
-- tijdig bijsturen;
-- voorkomen van onnodige blootstelling aan gevaar.
+NIBHV vermeldt voor de basis-e-learning een gemiddelde studiebelasting van ongeveer vier uur. De theorietoets wordt online afgerond; de praktische beoordeling vindt bij de opleider plaats. Beide basisroutes leiden, bij toepassing van de geldende NIBHV-voorwaarden en een voldoende resultaat, naar hetzelfde diploma Basis Ploegleider BHV.
 
-De Ploegleider BHV hoeft niet iedere taak zelf uit te voeren, maar moet zorgen dat de juiste acties worden uitgezet en opgevolgd.
+## Herhaling Ploegleider BHV
 
-## Communicatie en portofoongebruik
+De praktijkgerichte herhaling is bedoeld voor gediplomeerde ploegleiders. Zij frissen hun vaste werkwijze op en verdiepen communicatie, besluitvorming en veilig leidinggeven in veranderende situaties.
 
-Duidelijke communicatie is een belangrijk onderdeel van leidinggeven binnen de BHV-organisatie.
+NIBHV adviseert voor een herhalingscursus zonder e-learning minimaal tien uur. BHV Voorne aan Zee kan een eigen opleidingsopbouw aanbieden en belooft alleen een NIBHV-certificaat wanneer het volledige programma, de beoordeling en de administratieve voorwaarden van de gekozen certificeringsroute zijn gevolgd. De getoonde contactduur alleen is daarom niet automatisch de volledige studiebelasting.
 
-Tijdens de opleiding kan worden geoefend met:
+## Praktijkgericht leidinggeven
 
-- kort en duidelijk spreken;
-- luisteren voordat wordt uitgezonden;
-- het noemen van afzender en ontvanger;
-- doorgeven van locatie en situatie;
-- bevestigen van opdrachten;
-- onderscheid maken tussen feiten en aannames;
-- stellen van gerichte vragen;
-- meldingsdiscipline;
-- voorkomen van onnodig portofoonverkeer;
-- samenvatten van de actuele situatie;
-- communiceren met meerdere BHV-teams.
+Tijdens tabletopoefeningen worden keuzes, prioriteiten en besluitvorming zichtbaar. In praktijkinzetten blijkt vervolgens of opdrachten duidelijk worden gegeven, relevante informatie wordt teruggekoppeld en de veiligheid van de BHV-ploeg wordt bewaakt.
 
-Portofoonoefeningen kunnen afzonderlijk worden uitgevoerd of worden verwerkt in een scenario of ontruimingsoefening.
+De deelnemer oefent met veranderende situaties, ontvangt directe feedback en krijgt waar mogelijk de gelegenheid om na een evaluatie opnieuw leiding te geven. Niet alleen weten wat er moet gebeuren, maar ervaren hoe je leidinggeeft wanneer de situatie verandert.
 
-## Beeldvorming, oordeelsvorming en besluitvorming
+## Bedrijfsspecifiek en incompany
 
-Een Ploegleider BHV moet beslissingen nemen op basis van beschikbare informatie.
+Werkopdrachten en scenario's kunnen worden afgestemd op het gebouw, de bedrijfsrisico's, het ontruimingsplan, interne communicatielijnen en de inrichting van de BHV-organisatie. Trainen op de eigen locatie maakt procedures herkenbaar, maar scenario's moeten veilig blijven en mogen noodzakelijke technische of organisatorische maatregelen niet vervangen.
 
-Daarbij kan gewerkt worden volgens de volgende stappen:
+## Certificering
 
-1. Informatie verzamelen.
-2. Vaststellen wat bekend en nog onbekend is.
-3. Risico’s en mogelijke gevolgen beoordelen.
-4. Prioriteiten bepalen.
-5. Beslissen welke acties nodig zijn.
-6. Taken verdelen.
-7. Controleren of de situatie verandert.
-8. De aanpak aanpassen wanneer dat nodig is.
+NIBHV verzorgt zelf geen lessen. Het ontwikkelt voorwaarden, les- en toetskaders en controleert gecertificeerde opleiders. Een diploma of certificaat mag daarom alleen worden toegezegd wanneer de toepasselijke toelating, opleiding, toetsing en registratie daadwerkelijk worden gevolgd.
 
-De deelnemer leert dat een besluit soms moet worden genomen voordat alle informatie beschikbaar is.
+## Veelgestelde vragen
 
-## Taakverdeling
+### Heb je een geldig BHV-diploma nodig?
 
-De Ploegleider BHV verdeelt taken op basis van:
+Ja. Voor de NIBHV-basisopleiding Ploegleider BHV is een geldig diploma Basis Bedrijfshulpverlener vereist.
 
-- de aard van het incident;
-- de beschikbare BHV’ers;
-- de ervaring en competenties van de BHV’ers;
-- de omvang van het gebouw;
-- aanwezige risico’s;
-- interne procedures;
-- benodigde communicatie;
-- beschikbare hulpmiddelen.
+### Hoe lang duurt de 2-daagse basisopleiding?
 
-Mogelijke taken zijn:
+NIBHV adviseert minimaal zestien uur. BHV Voorne aan Zee verdeelt de klassikale basisroute over twee trainingsdagen.
 
-- eerste hulp verlenen;
-- een incidentlocatie verkennen;
-- een beginnende brand beoordelen;
-- een ontruiming starten;
-- ruimten controleren;
-- aanwezigen begeleiden;
-- een verzamelplaats organiseren;
-- externe hulpdiensten opvangen;
-- informatie verzamelen en doorgeven.
+### Wat is het verschil tussen klassikaal en e-learning?
 
-## Ploegleider BHV bij ontruiming
+Bij de klassikale route worden theorie en praktijk over twee dagen verdeeld. Bij blended leren wordt de theorie vooraf online afgerond en volgt één praktijkdag. De eindcompetentie is gelijk.
 
-Tijdens een ontruiming heeft de Ploegleider BHV een belangrijke coördinerende rol.
+### Hoe wordt een deelnemer beoordeeld?
 
-De Ploegleider BHV kan onder andere verantwoordelijk zijn voor:
+Bij de NIBHV-basisroute bestaat de afsluiting uit theorie en praktijk. De deelnemer moet aantonen dat hij of zij een BHV-ploeg veilig en doelgericht kan aansturen.
 
-- beoordelen of ontruiming noodzakelijk is;
-- activeren of laten activeren van de ontruimingsprocedure;
-- verdelen van ontruimingsgebieden;
-- aansturen van BHV’ers;
-- bewaken van veilige vluchtwegen;
-- verwerken van meldingen uit het gebouw;
-- verzamelen van informatie over vermiste personen;
-- afstemmen met de verzamelplaats;
-- informeren van interne verantwoordelijken;
-- overdragen van informatie aan de hulpdiensten.
+### Kan de opleiding op onze locatie plaatsvinden?
 
-De precieze taakverdeling is afhankelijk van het bedrijfsnood- of ontruimingsplan van de organisatie.
+Ja. Als incompany opleiding kunnen werkopdrachten, tabletopscenario's en praktijkinzetten op de eigen organisatie worden afgestemd.
 
-## Table-top-oefeningen
+### Ontvangt de deelnemer een NIBHV-diploma of certificaat?
 
-Een table-top-oefening is geschikt om besluitvorming, taakverdeling en communicatie te oefenen zonder een volledige fysieke ontruiming uit te voeren.
-
-Tijdens een table-top-oefening wordt een incident stap voor stap besproken.
-
-De deelnemers moeten daarbij reageren op nieuwe informatie, bijvoorbeeld:
-
-- een brandmelding;
-- rookontwikkeling;
-- een gewonde medewerker;
-- een geblokkeerde vluchtweg;
-- een vermiste persoon;
-- uitval van communicatie;
-- een storing in de brandmeldcentrale;
-- aankomst van externe hulpdiensten.
-
-Table-top-oefeningen zijn geschikt voor basisopleidingen, herhalingstrainingen en voorbereiding op een fysieke ontruimingsoefening.
-
-## Praktijkscenario’s
-
-Praktijkscenario’s kunnen worden gebruikt om de Ploegleider BHV onder druk te laten oefenen.
-
-Een scenario kan aandacht besteden aan:
-
-- onvolledige meldingen;
-- meerdere incidenten tegelijk;
-- tegenstrijdige informatie;
-- onverwachte risico’s;
-- beperkte beschikbaarheid van BHV’ers;
-- communicatiestoringen;
-- bezoekers of niet-zelfredzame personen;
-- vermiste personen;
-- samenwerking met externe hulpdiensten.
-
-Na afloop wordt besproken:
-
-- welke informatie beschikbaar was;
-- welke besluiten zijn genomen;
-- hoe taken zijn verdeeld;
-- hoe de communicatie verliep;
-- welke verbeterpunten er zijn.
-
-## Afstemming op de organisatie
-
-De opleiding wordt waar mogelijk afgestemd op de werkomgeving van de opdrachtgever.
-
-Daarbij kan rekening worden gehouden met:
-
-- de interne noodorganisatie;
-- het aantal BHV’ers;
-- de aanwezige ploegleiders;
-- het gebouw of terrein;
-- de aanwezige risico’s;
-- de brandmeldinstallatie;
-- de brandmeldcentrale;
-- portofoons en communicatiemiddelen;
-- vluchtwegen en verzamelplaatsen;
-- interne alarm- en ontruimingsprocedures;
-- eerdere incidenten en oefeningen.
-
-## Incompany
-
-De opleidingen en herhalingstrainingen worden voornamelijk incompany verzorgd.
-
-Dit maakt het mogelijk om te oefenen met:
-
-- de eigen BHV-organisatie;
-- de eigen procedures;
-- de aanwezige communicatiemiddelen;
-- herkenbare situaties;
-- bedrijfsspecifieke risico’s;
-- eigen ruimtes, vluchtwegen en verzamelplaatsen.
-
-## Groepsgrootte
-
-BHV Voorne aan Zee werkt bij opleidingen Ploegleider BHV bij voorkeur met kleine groepen.
-
-Bij veel opleidingen wordt gewerkt met ongeveer twee tot tien deelnemers.
-
-Een kleine groep biedt meer ruimte voor:
-
-- persoonlijke begeleiding;
-- actieve deelname;
-- individuele feedback;
-- table-top-oefeningen;
-- portofoonoefeningen;
-- praktijkgerichte scenario’s;
-- evaluatie van beslissingen.
-
-De definitieve groepsgrootte is afhankelijk van de opleidingsvorm en de praktische omstandigheden.
-
-## Voorwaarden voor deelname
-
-De opleiding Ploegleider BHV is bedoeld voor deelnemers die een leidinggevende rol binnen de BHV-organisatie hebben of gaan vervullen.
-
-Het is wenselijk dat deelnemers:
-
-- beschikken over kennis en vaardigheden op BHV-niveau;
-- bekend zijn met de eigen organisatie;
-- inzicht hebben in de interne noodprocedures;
-- kunnen communiceren en samenwerken;
-- bereid zijn om tijdens scenario’s beslissingen te nemen.
-
-De exacte deelnamevoorwaarden kunnen afhankelijk zijn van de gekozen opleiding en certificering.
-
-## Certificering en geldigheid
-
-De voorwaarden voor certificering, beoordeling en geldigheid kunnen afhankelijk zijn van:
-
-- de gekozen opleidingsvorm;
-- de certificerende organisatie;
-- het resultaat van de deelnemer;
-- de actuele richtlijnen;
-- afspraken met de opdrachtgever.
-
-Actuele voorwaarden moeten worden gecontroleerd op de officiële website of rechtstreeks bij BHV Voorne aan Zee.
-
-## Relatie met ontruimingsoefeningen
-
-Een opleiding of herhalingstraining Ploegleider BHV kan worden gecombineerd met:
-
-- een portofoonoefening;
-- een table-top-ontruimingsoefening;
-- een praktijkscenario;
-- een fysieke ontruimingsoefening;
-- een evaluatie van de BHV-organisatie.
-
-Hierdoor kunnen deelnemers hun leidinggevende rol toepassen binnen een realistische situatie.
-
-- [Uitgebreide informatie over ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+Na het voldoen aan alle eisen van de betreffende NIBHV-route ontvangt de deelnemer het bij die route behorende diploma of certificaat. De basisopleiding leidt tot het diploma Basis Ploegleider BHV; een herhaling heeft een eigen certificeringsroute.
 
 ## Werkgebied
 
-BHV Voorne aan Zee verzorgt opleidingen en herhalingstrainingen Ploegleider BHV voornamelijk binnen ongeveer vijftig kilometer rondom Rozenburg in Zuid-Holland.
+Wij verzorgen incompany opleidingen Ploegleider BHV in Voorne aan Zee, Brielle, Hellevoetsluis, Rockanje, Oostvoorne, Rozenburg, Spijkenisse, Nissewaard, Hoogvliet, Rotterdam, de Botlek, Vlaardingen, Maassluis, Schiedam, Barendrecht, Rhoon, de Hoeksche Waard, het Westland, Den Haag en delen van Zeeland.
 
-- [Volledig werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
+## Primaire bronnen
 
-## Gerelateerde informatie
+- Arbeidsomstandighedenwet, artikel 15: https://wetten.overheid.nl/BWBR0010346/
+- Arboportaal over BHV en de RI&E: https://www.arboportaal.nl/onderwerpen/arbozorg/bedrijfshulpverlening/wat-zegt-de-wet-over-bedrijfshulpverlening
+- NIBHV, basisopleiding Ploegleider BHV: https://www.nibhv.nl/expertises/bedrijfshulpverlening/ploegleider-bhv/
+- NIBHV, herhalingscursus Ploegleider BHV: https://www.nibhv.nl/expertises/bedrijfshulpverlening/herhalingscursus-ploegleider-bhv/
+- NIBHV, onafhankelijke certificering: https://www.nibhv.nl/onafhankelijke-certificering-bhv/
+- NIPV, Basis voor brandveiligheid: https://nipv.nl/documenten/basis-voor-brandveiligheid/
 
-- [Organisatieprofiel](https://bhvvoorneaanzee.nl/llms/organisatie.txt)
-- [Overzicht opleidingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
-- [BHV-opleidingen](https://bhvvoorneaanzee.nl/llms/bhv.txt)
-- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
-- [Werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
-- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+## Gerelateerde pagina's
 
-## Officiële website
-
-- [BHV Voorne aan Zee](https://bhvvoorneaanzee.nl/)
-- [Contact opnemen](https://bhvvoorneaanzee.nl/contact)
+- Ploegleider BHV: https://bhvvoorneaanzee.nl/ploegleider
+- BHV-trainingen: https://bhvvoorneaanzee.nl/bhv
+- Ontruimingsoefeningen: https://bhvvoorneaanzee.nl/ontruimingsoefening
+- Contact: https://bhvvoorneaanzee.nl/contact
 
 ---
 
 <!-- Bronbestand: /llms/bhv-ritme.txt -->
 
-# BHV-ritme van BHV Voorne aan Zee
+# BHV Ritme: doorlopend praktijkgericht oefenen
 
-> BHV-ritme is een doorlopende en praktijkgerichte aanpak waarbij BHV-vaardigheden niet alleen tijdens één jaarlijkse herhalingstraining worden geoefend, maar verspreid over het jaar terugkomen.
+> BHV Ritme is het eigen doorlopende trainingsprogramma van BHV Voorne aan Zee. Opgeleide BHV'ers oefenen twee of drie keer per jaar op hun eigen werkplek. BHV Ritme is geen wettelijke term, geen basiscursus en op zichzelf geen apart wettelijk certificaat.
 
-BHV Voorne aan Zee gebruikt BHV-ritme om bedrijfshulpverleners, ploegleiders en organisaties vaker en gerichter te laten oefenen met vaardigheden die tijdens een incident nodig kunnen zijn.
+## Direct antwoord: wat is BHV Ritme?
 
-De precieze invulling wordt afgestemd op de organisatie, de aanwezige risico’s, de ervaring van de BHV’ers en de interne noodprocedures.
+BHV Ritme verdeelt het onderhouden en verdiepen van BHV-vaardigheden over meerdere momenten in het jaar. De basis is een praktijkgerichte BHV-herhaling van ongeveer 3,5 uur. Daarna volgt, afhankelijk van de gekozen leerroute, een scenariotraining met een LOTUS-slachtoffer en/of een ontruimingsoefening op de eigen locatie.
 
-## Wat is BHV-ritme?
+De inhoud sluit aan op het gebouw, de aanwezige risico's, het ontruimingsplan, de bezetting en de inrichting van de BHV-organisatie. Ieder oefenmoment bouwt voort op eerdere observaties: verbeterpunten worden opnieuw besproken, procedures kunnen worden aangescherpt en deelnemers oefenen verder met de samenwerking binnen hun eigen organisatie.
 
-BHV-ritme is geen afzonderlijke standaardopleiding met altijd dezelfde inhoud.
+## Voor wie is BHV Ritme bedoeld?
 
-Het is een opleidings- en oefenaanpak waarbij meerdere korte en langere trainingsmomenten over het jaar worden verdeeld.
+BHV Ritme is bedoeld voor medewerkers die al als BHV'er zijn opgeleid en hun kennis en praktische vaardigheden vaker dan één keer per jaar willen onderhouden. Het vervangt geen BHV-basisopleiding voor nieuwe deelnemers.
 
-In plaats van alle onderwerpen tijdens één jaarlijkse training te behandelen, worden vaardigheden op verschillende momenten geoefend, herhaald en gecombineerd.
+Het programma past onder andere bij kantoren, scholen, zorginstellingen, productiebedrijven, logistieke organisaties, winkels, horeca en organisaties met meerdere vestigingen. De RI&E en de praktijk bepalen welke onderwerpen en scenario's relevant zijn.
 
-BHV-ritme kan onder andere bestaan uit:
+## Waarom verspreid oefenen?
 
-- een BHV-herhalingstraining;
-- korte praktijkoefeningen;
-- scenario-oefeningen;
-- portofoonoefeningen;
-- table-top-oefeningen;
-- oefeningen met de brandmeldcentrale;
-- oefeningen met kleine blusmiddelen;
-- reanimatie- en AED-oefeningen;
-- eerstehulpvaardigheden;
-- Stop de Bloeding-oefeningen;
-- een ontruimingsoefening;
-- evaluatie en opvolging van verbeterpunten.
+De Arbeidsomstandighedenwet verlangt dat de aangewezen BHV'ers zo zijn opgeleid, uitgerust, in aantal en georganiseerd dat zij hun taken naar behoren kunnen uitvoeren. De wet schrijft geen trainingsproduct met de naam BHV Ritme voor en bepaalt ook niet dat iedere organisatie exact twee of drie keer per jaar moet trainen.
 
-## Waarom BHV-ritme?
+Door oefenmomenten te spreiden, kan een organisatie vaardigheden, procedures en verbeterpunten gedurende het jaar opnieuw onder de aandacht brengen. Dat ondersteunt de praktische inzetbaarheid, maar de passende frequentie blijft afhankelijk van de RI&E, veranderingen in personeel of gebouw, eerdere bevindingen en de risico's van het werk.
 
-Praktische vaardigheden kunnen afnemen wanneer zij lange tijd niet worden gebruikt of geoefend.
+## BHV Ritme 2: twee trainingsmomenten
 
-Eén jaarlijks opleidingsmoment kan voldoende zijn voor formele herhaling, maar geeft niet altijd voldoende gelegenheid om:
+BHV Ritme 2 bestaat uit twee praktijkgerichte momenten per jaar. Zo onderhouden deelnemers hun basisvaardigheden en oefenen zij aanvullend met een praktijksituatie die past bij de eigen organisatie.
 
-- vaardigheden regelmatig te onderhouden;
-- nieuwe medewerkers te betrekken;
-- gewijzigde procedures te oefenen;
-- verbeterpunten uit eerdere oefeningen op te volgen;
-- communicatie binnen de BHV-organisatie te trainen;
-- bedrijfsspecifieke risico’s terug te laten komen;
-- te oefenen met onverwachte situaties;
-- de samenwerking tussen BHV’ers en ploegleider te verbeteren.
+1. BHV-herhaling van circa 3,5 uur, met praktijkgerichte opfrissing van eerste hulp, reanimatie en AED, beginnende brandbestrijding en ontruiming.
+2. Keuze uit een realistische scenariotraining met een LOTUS-slachtoffer of een ontruimingsoefening op de eigen werklocatie.
 
-Door vaker kort en gericht te oefenen, blijft BHV beter zichtbaar binnen de organisatie.
+Deze route is geschikt voor organisaties die twee keer per jaar willen oefenen en zelf willen kiezen welk aanvullend praktijkonderdeel het meest relevant is.
 
-## Doel van BHV-ritme
+## BHV Ritme 3: drie trainingsmomenten
 
-BHV-ritme heeft als doel om de BHV-organisatie gedurende het jaar actief en voorbereid te houden.
+BHV Ritme 3 bestaat uit drie verschillende praktijkmomenten verspreid over het jaar:
 
-De aanpak kan bijdragen aan:
+1. BHV-herhaling van circa 3,5 uur.
+2. Scenariotraining met een LOTUS-slachtoffer.
+3. Ontruimingsoefening op de eigen werklocatie.
 
-- beter behoud van praktische vaardigheden;
-- meer vertrouwen bij BHV’ers;
-- snellere herkenning van incidenten;
-- betere samenwerking;
-- duidelijkere communicatie;
-- betere taakverdeling;
-- meer routine in het gebruik van hulpmiddelen;
-- betere aansluiting op interne procedures;
-- opvolging van eerdere verbeterpunten;
-- voorbereiding op een grotere ontruimingsoefening.
+Deze route is bedoeld voor organisaties die de basisvaardigheden, het handelen bij een realistisch incident en de samenwerking tijdens een ontruiming structureel willen onderhouden.
 
-## Verschil met een gewone BHV-herhaling
+## Zo wordt het programma samengesteld
 
-Een gewone BHV-herhaling vindt meestal plaats tijdens één gepland trainingsmoment.
+### 1. Inventarisatie
 
-BHV-ritme verspreidt het oefenen over meerdere momenten gedurende het jaar.
+We bespreken de werkzaamheden, aanwezige risico's, BHV-bezetting, locaties, procedures en leerdoelen. De RI&E en eerdere evaluaties vormen belangrijke input.
 
-Een gewone herhaling kan onderdeel zijn van BHV-ritme, maar BHV-ritme kan daarnaast bestaan uit:
+### 2. Jaarplanning
 
-- korte praktijkmomenten;
-- thematische workshops;
-- onverwachte oefenmeldingen;
-- communicatie-oefeningen;
-- table-top-scenario’s;
-- oefeningen met de eigen middelen;
-- evaluatiemomenten;
-- een fysieke ontruimingsoefening.
+De relevante onderwerpen worden verdeeld over twee of drie oefenmomenten. Daarbij leggen we vast wat per moment wordt geoefend en hoe verbeterpunten worden gevolgd.
 
-BHV-ritme vervangt niet automatisch de noodzakelijke opleiding, beoordeling of certificering. De precieze opzet hangt af van de afspraken met de opdrachtgever en de geldende voorwaarden.
+### 3. Oefenen op locatie
 
-## Mogelijke opbouw gedurende het jaar
+Deelnemers oefenen met de eigen vluchtroutes, noodmiddelen, communicatielijnen en procedures. Een scenario wordt veilig opgebouwd en mag nooit verwarring veroorzaken met een werkelijk incident.
 
-Een BHV-ritme kan bijvoorbeeld uit meerdere oefenmomenten bestaan.
+### 4. Evalueren en bijsturen
 
-### Eerste moment: basisvaardigheden
+Na ieder moment worden observaties besproken. Verbeterpunten kunnen betrekking hebben op individuele vaardigheden, samenwerking, hulpmiddelen, procedures of organisatorische randvoorwaarden.
 
-Tijdens een eerste moment kunnen praktische basisvaardigheden worden herhaald, zoals:
+## Onderwerpen die kunnen terugkomen
 
-- alarmeren;
-- eerste beoordeling van een incident;
-- reanimatie en AED;
-- handelen bij verslikking;
-- eerste hulp;
-- ernstige bloedingen;
-- veilig optreden bij brand;
-- communicatie en samenwerking.
+- Eerste hulp, reanimatie en AED.
+- Alarmering, beginnende brandbestrijding en ontruiming.
+- Taakverdeling en samenwerking binnen het BHV-team.
+- Communicatie via portofoon of andere interne middelen.
+- Opvang van verminderd zelfredzame aanwezigen.
+- Tabletopscenario's en realistische incidentscenario's.
+- Bevindingen uit eerdere trainingen en oefeningen.
 
-### Tweede moment: communicatie en portofoon
+## Certificering en wettelijke verantwoordelijkheid
 
-Een volgend moment kan gericht zijn op communicatie.
+BHV Ritme is de naam van de leerlijn van BHV Voorne aan Zee. Wanneer een afzonderlijk onderdeel wordt afgesloten met een NIBHV-certificaat of -diploma, gelden daarvoor de voorwaarden, toetsing en geldigheid van dat specifieke onderdeel. Deelname aan de leerlijn ontslaat de werkgever niet van de verantwoordelijkheid om de BHV-organisatie op de RI&E en de feitelijke situatie af te stemmen.
 
-Onderwerpen kunnen zijn:
+NIBHV is een onafhankelijke certificerende organisatie en verzorgt zelf geen opleidingen. Opleiders voeren trainingen uit binnen de toepasselijke certificeringsvoorwaarden.
 
-- correct gebruik van de portofoon;
-- kort en duidelijk melden;
-- doorgeven van locatie en situatie;
-- bevestigen van opdrachten;
-- meldingsdiscipline;
-- communicatie tussen BHV’ers;
-- communicatie met de Ploegleider BHV;
-- overdracht van informatie.
+## Veelgestelde vragen
 
-### Derde moment: table-top-oefening
+### Is BHV Ritme een BHV-basiscursus?
 
-Tijdens een table-top-oefening wordt een incident stap voor stap besproken.
+Nee. BHV Ritme is een doorlopende leerlijn voor reeds opgeleide BHV'ers. Nieuwe BHV'ers moeten eerst een passende basisopleiding volgen.
 
-Deelnemers moeten reageren op nieuwe informatie en beslissingen nemen.
+### Wat is het verschil tussen BHV Ritme 2 en BHV Ritme 3?
 
-Mogelijke situaties zijn:
+Bij Ritme 2 bestaat het tweede moment uit een keuze tussen een LOTUS-scenariotraining en een ontruimingsoefening. Bij Ritme 3 worden de BHV-herhaling, scenariotraining en ontruimingsoefening alle drie uitgevoerd.
 
-- een brandmelding;
-- rookontwikkeling;
-- een gewonde medewerker;
-- een vermiste persoon;
-- een geblokkeerde vluchtweg;
-- een storing in de communicatie;
-- onvoldoende BHV-bezetting;
-- meerdere meldingen tegelijk.
+### Worden de oefeningen aangepast aan onze organisatie?
 
-### Vierde moment: praktijkscenario
+Ja. De inhoud kan worden afgestemd op het gebouw, de werkzaamheden, risico's, procedures, BHV-bezetting en eerdere bevindingen.
 
-Tijdens een praktijkscenario worden meerdere vaardigheden gecombineerd.
+### Wordt BHV Ritme op de eigen locatie gegeven?
 
-Deelnemers oefenen bijvoorbeeld met:
+Ja. Het is een incompany programma. Daardoor kunnen de eigen vluchtroutes, hulpmiddelen en interne afspraken bij de oefeningen worden betrokken.
 
-- het ontvangen van een melding;
-- het beoordelen van de situatie;
-- het alarmeren van hulp;
-- het verdelen van taken;
-- eerste hulp;
-- brandbestrijding;
-- communicatie;
-- ontruiming;
-- overdracht aan de ploegleider of hulpdiensten.
+### Is twee of drie keer trainen wettelijk verplicht?
 
-### Vijfde moment: ontruimingsoefening
-
-Een fysieke ontruimingsoefening kan worden gebruikt om de BHV-organisatie, procedures en communicatie in samenhang te testen.
-
-De omvang van de oefening is afhankelijk van:
-
-- het scenario;
-- het gebouw;
-- het aantal aanwezigen;
-- de ervaring van de BHV-organisatie;
-- de gewenste oefenfase;
-- eerdere oefeningen en verbeterpunten.
-
-- [Uitgebreide informatie over ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
-
-## Korte oefenmomenten
-
-Niet ieder onderdeel van BHV-ritme hoeft een volledige trainingsdag te duren.
-
-Korte oefenmomenten kunnen gericht zijn op één specifiek onderwerp, bijvoorbeeld:
-
-- een reanimatie-oefening;
-- een portofoonopdracht;
-- het aflezen van de brandmeldcentrale;
-- het controleren van een vluchtweg;
-- een verbandvaardigheid;
-- het gebruik van een tourniquet;
-- het kiezen van een blusmiddel;
-- het ontvangen en doorgeven van een melding;
-- de organisatie van een verzamelplaats;
-- een korte table-top-situatie.
-
-De duur en inhoud worden vooraf afgestemd.
-
-## Bedrijfsspecifieke scenario’s
-
-BHV-ritme kan worden aangepast aan de risico’s en werkzaamheden van de opdrachtgever.
-
-Scenario’s kunnen aansluiten op:
-
-- kantooromgevingen;
-- scholen;
-- kinderopvang;
-- zorgorganisaties;
-- horeca;
-- winkels;
-- productiebedrijven;
-- logistieke organisaties;
-- werkplaatsen;
-- organisaties in het havengebied;
-- locaties met bezoekers;
-- locaties met verminderd zelfredzame personen.
-
-Hierdoor oefenen deelnemers met situaties die herkenbaar zijn binnen hun eigen werkomgeving.
-
-## Communicatie en portofoongebruik
-
-Communicatie kan gedurende het hele BHV-ritme terugkomen.
-
-Er kan onder andere worden geoefend met:
-
-- luisteren voordat wordt gesproken;
-- het noemen van afzender en ontvanger;
-- kort en duidelijk formuleren;
-- doorgeven van feiten;
-- benoemen van de juiste locatie;
-- bevestigen van opdrachten;
-- melden wanneer een taak is afgerond;
-- voorkomen van onnodig portofoonverkeer;
-- samenwerken met de Ploegleider BHV;
-- communiceren tijdens een ontruiming.
-
-Door communicatie vaker te oefenen, kunnen afspraken beter worden toegepast tijdens een werkelijk incident.
-
-## Ploegleider BHV binnen BHV-ritme
-
-De Ploegleider BHV kan actief worden betrokken bij meerdere oefenmomenten.
-
-Daarbij kan aandacht worden besteed aan:
-
-- ontvangen en beoordelen van meldingen;
-- vormen van een actueel situatiebeeld;
-- stellen van prioriteiten;
-- verdelen van taken;
-- aansturen van BHV’ers;
-- bewaken van de veiligheid;
-- verwerken van nieuwe informatie;
-- aanpassen van de inzet;
-- coördineren van een ontruiming;
-- overdracht aan externe hulpdiensten;
-- evalueren van het optreden.
-
-- [Uitgebreide informatie over Ploegleider BHV](https://bhvvoorneaanzee.nl/llms/ploegleider-bhv.txt)
-
-## Brandmeldcentrale en alarmering
-
-Wanneer een organisatie beschikt over een brandmeldinstallatie en brandmeldcentrale, kan dit onderdeel worden opgenomen in BHV-ritme.
-
-Er kan worden geoefend met:
-
-- herkennen van een melding;
-- aflezen van het meldingsgebied;
-- volgen van de interne procedure;
-- alarmeren van de BHV-organisatie;
-- sturen van BHV’ers naar de juiste locatie;
-- communicatie met de ploegleider;
-- registreren van informatie;
-- voorbereiden van de overdracht aan de brandweer.
-
-De exacte bediening is afhankelijk van het aanwezige systeem en de interne afspraken.
-
-## Evaluatie
-
-Na een oefenmoment kan kort of uitgebreid worden geëvalueerd.
-
-De evaluatie kan aandacht besteden aan:
-
-- wat goed ging;
-- wat onduidelijk was;
-- hoe de communicatie verliep;
-- of taken duidelijk waren;
-- of procedures uitvoerbaar waren;
-- of materialen correct werden gebruikt;
-- welke verbeterpunten zijn vastgesteld;
-- welke onderwerpen opnieuw moeten worden geoefend.
-
-De omvang van de evaluatie hangt af van het type oefening.
-
-## Borging van verbeterpunten
-
-BHV-ritme is niet alleen gericht op oefenen, maar ook op het opvolgen van leerpunten.
-
-Verbeterpunten kunnen worden vastgelegd en later opnieuw worden getest.
-
-Voorbeelden zijn:
-
-- aanpassen van portofoonafspraken;
-- verduidelijken van taken;
-- verbeteren van de alarmeringsprocedure;
-- aanpassen van de verzamelplaats;
-- actualiseren van contactgegevens;
-- verbeteren van de BHV-bezetting;
-- aanvullende instructie voor medewerkers;
-- opnieuw oefenen van een specifieke handeling;
-- aanpassen van een scenario;
-- controleren of afgesproken maatregelen zijn uitgevoerd.
-
-## Planning
-
-De planning van BHV-ritme wordt afgestemd op de organisatie.
-
-Daarbij kan rekening worden gehouden met:
-
-- werktijden;
-- ploegendiensten;
-- beschikbaarheid van medewerkers;
-- drukke bedrijfsperioden;
-- vakanties;
-- certificeringsmomenten;
-- eerdere oefeningen;
-- veranderingen binnen de organisatie;
-- beschikbare instructeurs;
-- gewenste spreiding over het jaar.
-
-Er is geen vaste standaardplanning die voor iedere organisatie hetzelfde is.
-
-## Groepsgrootte
-
-Bij opleidingen, workshops en korte oefenmomenten werkt BHV Voorne aan Zee bij voorkeur met kleine groepen.
-
-Bij veel trainingsonderdelen wordt gewerkt met ongeveer twee tot tien deelnemers.
-
-Voor fysieke ontruimingsoefeningen geldt geen vaste groepsgrootte. Daarbij kunnen, afhankelijk van het scenario en het doel, meerdere afdelingen, verdiepingen, gebouwen of de volledige organisatie betrokken zijn.
-
-## Incompany
-
-BHV-ritme wordt voornamelijk incompany uitgevoerd.
-
-Dit maakt het mogelijk om te oefenen met:
-
-- de eigen werkomgeving;
-- de eigen BHV-organisatie;
-- interne noodprocedures;
-- aanwezige portofoons;
-- de brandmeldcentrale;
-- vluchtwegen;
-- verzamelplaatsen;
-- eigen hulpmiddelen;
-- bedrijfsspecifieke risico’s.
-
-## Maatwerk
-
-De inhoud van BHV-ritme wordt niet automatisch hetzelfde samengesteld voor iedere organisatie.
-
-Bij het bepalen van de inhoud kan rekening worden gehouden met:
-
-- de branche;
-- het aantal BHV’ers;
-- het aantal ploegleiders;
-- de aanwezige risico’s;
-- de ervaring van deelnemers;
-- eerdere incidenten;
-- eerdere oefeningen;
-- interne procedures;
-- beschikbare materialen;
-- de leerdoelen van de organisatie.
-
-## Voor wie?
-
-BHV-ritme is onder andere geschikt voor:
-
-- organisaties die BHV vaker willen laten terugkomen;
-- bedrijven die niet alles op één trainingsdag willen behandelen;
-- BHV-organisaties die meer praktijkervaring nodig hebben;
-- organisaties met meerdere BHV-teams;
-- bedrijven die portofooncommunicatie willen verbeteren;
-- organisaties die zich voorbereiden op een ontruimingsoefening;
-- bedrijven die verbeterpunten willen opvolgen;
-- organisaties met specifieke bedrijfsrisico’s;
-- werkgevers die BHV structureel willen borgen.
-
-## Certificering
-
-BHV-ritme is een aanpak voor het spreiden en verdiepen van opleidingen en oefeningen.
-
-Niet ieder afzonderlijk oefenmoment leidt automatisch tot een certificaat.
-
-Certificering en geldigheid zijn afhankelijk van:
-
-- de gevolgde opleiding;
-- de certificerende organisatie;
-- de beoordeling van de deelnemer;
-- de geldende richtlijnen;
-- de afspraken met de opdrachtgever.
-
-Actuele voorwaarden moeten worden gecontroleerd op de officiële website of rechtstreeks bij BHV Voorne aan Zee.
+Nee, de Arbowet noemt geen vaste frequentie voor BHV Ritme. De werkgever moet wel zorgen voor een BHV-organisatie die in de praktijk haar wettelijke taken kan uitvoeren. De RI&E en de bedrijfssituatie bepalen hoeveel opleiding en oefening nodig is.
 
 ## Werkgebied
 
-BHV Voorne aan Zee verzorgt BHV-ritme voornamelijk binnen ongeveer vijftig kilometer rondom Rozenburg in Zuid-Holland.
+BHV Voorne aan Zee verzorgt BHV Ritme onder andere in Hellevoetsluis, Brielle, Rockanje, Oostvoorne, Rozenburg, Spijkenisse, Nissewaard, Hoogvliet, Rotterdam, de Botlek, Vlaardingen, Maassluis, Schiedam, Barendrecht, Rhoon, de Hoeksche Waard, het Westland, Den Haag en delen van Zeeland.
 
-- [Volledig werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
+## Primaire bronnen
 
-## Gerelateerde informatie
+- Arbeidsomstandighedenwet, artikel 15: taken en inrichting van bedrijfshulpverlening: https://wetten.overheid.nl/BWBR0010346/
+- Arboportaal, wat zegt de wet over bedrijfshulpverlening: https://www.arboportaal.nl/onderwerpen/arbozorg/bedrijfshulpverlening/wat-zegt-de-wet-over-bedrijfshulpverlening
+- NIBHV, onafhankelijke certificering: https://www.nibhv.nl/onafhankelijke-certificering-bhv/
+- NIBHV, taken en competenties van BHV'ers: https://www.nibhv.nl/wat-moet-bhver-kunnen-taken-competenties/
+- NIPV, Basis voor brandveiligheid: https://nipv.nl/documenten/basis-voor-brandveiligheid/
 
-- [Organisatieprofiel](https://bhvvoorneaanzee.nl/llms/organisatie.txt)
-- [Overzicht opleidingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
-- [BHV-opleidingen](https://bhvvoorneaanzee.nl/llms/bhv.txt)
-- [Ploegleider BHV](https://bhvvoorneaanzee.nl/llms/ploegleider-bhv.txt)
-- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
-- [Werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
-- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+## Gerelateerde pagina's
 
-## Officiële websitepagina’s
-
-- [BHV-ritme](https://bhvvoorneaanzee.nl/bhv-ritme)
-- [BHV-opleidingen](https://bhvvoorneaanzee.nl/bhv)
-- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/ontruimingsoefening)
-- [Contact opnemen](https://bhvvoorneaanzee.nl/contact)
+- BHV-trainingen: https://bhvvoorneaanzee.nl/bhv
+- Ontruimingsoefeningen: https://bhvvoorneaanzee.nl/ontruimingsoefening
+- Ploegleider BHV: https://bhvvoorneaanzee.nl/ploegleider
+- Contact: https://bhvvoorneaanzee.nl/contact
 
 ---
 
@@ -2485,463 +1752,131 @@ De genoemde tijdsduur is gebaseerd op de actuele informatie op de afzonderlijke 
 
 <!-- Bronbestand: /llms/ontruimingsoefeningen.txt -->
 
-# Ontruimingsoefeningen van BHV Voorne aan Zee
+# Ontruimingsoefeningen op de eigen werklocatie
 
-> BHV Voorne aan Zee bereidt ontruimingsoefeningen voor, begeleidt de uitvoering en evalueert het functioneren van de BHV-organisatie, communicatie, procedures en aanwezige veiligheidsvoorzieningen.
+> BHV Voorne aan Zee bereidt ontruimingsoefeningen voor, begeleidt de uitvoering en vertaalt observaties naar concrete verbeterpunten voor de BHV-organisatie, procedures en werkomgeving.
 
-Ontruimingsoefeningen worden voornamelijk incompany uitgevoerd op de locatie van de opdrachtgever. De omvang, moeilijkheid en vorm van de oefening worden afgestemd op de organisatie, het gebouw, de aanwezige risico’s en de ervaring van de BHV-organisatie.
+## Direct antwoord: wat is een ontruimingsoefening?
 
-## Doel van een ontruimingsoefening
+Een ontruimingsoefening is een gecontroleerde praktijktest waarin een organisatie oefent hoe aanwezigen bij een noodsituatie worden gealarmeerd, begeleid en naar een veilige plaats worden gebracht. Tegelijk wordt zichtbaar of de BHV-organisatie, communicatie, vluchtroutes, verzamelplaats en aanwezigheidscontrole in de praktijk functioneren.
 
-Een ontruimingsoefening is bedoeld om te beoordelen of een organisatie tijdens een incident veilig, georganiseerd en volgens de afgesproken procedures kan handelen.
+Het doel is leren en verbeteren. Een oefening is geen garantie dat een echte ontruiming hetzelfde verloopt en vervangt geen technische brandveiligheidsmaatregelen, onderhoud of actuele noodprocedures.
 
-Tijdens een oefening kan onder andere worden beoordeeld:
+## Wat zegt de wet?
 
-- hoe een melding wordt ontvangen en opgevolgd;
-- hoe de BHV-organisatie wordt gealarmeerd;
-- hoe snel de BHV’ers in actie komen;
-- hoe taken worden verdeeld;
-- hoe de Ploegleider BHV overzicht houdt;
-- hoe portofoons en andere communicatiemiddelen worden gebruikt;
-- hoe ruimten en afdelingen worden gecontroleerd;
-- hoe aanwezigen naar een veilige plaats worden begeleid;
-- hoe wordt omgegaan met bezoekers en verminderd zelfredzame personen;
-- hoe de verzamelplaats wordt georganiseerd;
-- hoe vermiste of achtergebleven personen worden gemeld;
-- hoe informatie wordt overgedragen aan externe hulpdiensten;
-- of het ontruimingsplan en de interne noodprocedures praktisch uitvoerbaar zijn.
+Artikel 15 van de Arbeidsomstandighedenwet noemt het alarmeren en evacueren van werknemers en andere aanwezigen als een taak van de bedrijfshulpverlening. De aangewezen BHV'ers moeten qua opleiding, uitrusting, aantal en organisatie in staat zijn hun taken naar behoren uit te voeren.
 
-Het doel is niet alleen om vast te stellen wat fout gaat. Een oefening moet vooral inzicht geven in wat goed werkt, waar risico’s ontstaan en welke verbeteringen nodig zijn.
+De wet noemt geen universele verplichting om voor iedere organisatie exact eenmaal per jaar een ontruimingsoefening te houden. NIBHV en de Nederlandse Arbeidsinspectie adviseren ten minste jaarlijks te oefenen. De passende frequentie en vorm volgen daarnaast uit de RI&E, het gebruik van het gebouw, de bezetting, aanwezige risico's, zelfredzaamheid, wijzigingen en eerdere oefenbevindingen.
 
-## Maatwerk
+## Waarom oefenen op locatie?
 
-Geen gebouw, organisatie of BHV-organisatie is hetzelfde.
+NIPV beschrijft brandveiligheid als een samenhang tussen gebouw, installaties, organisatie en menselijk gedrag. Rook kan zicht, oriëntatie en ademhaling snel beperken. Ook kunnen aanwezigen verminderd zelfredzaam zijn. Daarom moet een oefening verder gaan dan alleen naar buiten lopen: alarmering, begeleiding, communicatie, controle en veilige besluitvorming moeten gezamenlijk worden getest.
 
-Daarom wordt een ontruimingsoefening afgestemd op onder andere:
+Onderzoeken van de Onderzoeksraad voor Veiligheid laten in verschillende contexten zien dat technische naleving alleen niet voldoende is wanneer de veiligheidsorganisatie, zelfredzaamheid, rookontwikkeling en feitelijk handelen onvoldoende zijn meegenomen. Die lessen worden vertaald naar de voorbereiding en observatie van een oefening, zonder een specifiek incident één-op-één op iedere organisatie toe te passen.
 
-- de grootte en indeling van het gebouw;
-- het aantal aanwezige personen;
-- het aantal beschikbare BHV’ers;
-- de aanwezigheid van een Ploegleider BHV;
-- de branche en bedrijfsactiviteiten;
-- de aanwezige risico’s;
-- het ontruimingsplan;
-- de interne alarmprocedure;
-- de brandmeldinstallatie;
-- de brandmeldcentrale;
-- de beschikbare portofoons;
-- vluchtwegen en nooduitgangen;
-- verzamelplaatsen;
-- aanwezige bezoekers, cliënten, leerlingen of bewoners;
-- verminderd zelfredzame personen;
-- eerdere oefeningen en verbeterpunten.
+## Gefaseerde aanpak van BHV Voorne aan Zee
 
-De oefenvorm wordt gekozen op basis van het doel en het niveau van de organisatie.
+De fasen hieronder zijn een eigen didactische werkwijze van BHV Voorne aan Zee. Het zijn geen wettelijke classificaties.
 
-## Gefaseerd oefenen
+### Fase 0: tabletop-ontruimingsoefening
 
-BHV Voorne aan Zee werkt met een gefaseerde opbouw van ontruimingsoefeningen.
+Het BHV-team doorloopt aan tafel een incident met plattegrond, ontruimingsplan en beslismomenten. Geschikt om rollen, routes, communicatie en knelpunten te bespreken zonder een fysieke ontruiming.
 
-Een organisatie hoeft niet direct te beginnen met een volledige en complexe ontruiming. Door stapsgewijs te oefenen kunnen eerst afzonderlijke onderdelen worden getest en verbeterd.
+### Fase 1: onderdelen afzonderlijk oefenen
 
-De fasen kunnen worden aangepast aan de organisatie en de bestaande ervaring.
+De organisatie oefent losse schakels, zoals alarmopvolging, portofoongebruik, taakverdeling, controle van een zone of aanwezigheidsregistratie.
 
-## Fase 0 – voorbereiding en table-top
+### Fase 2: aangekondigde fysieke oefening
 
-In fase 0 wordt de ontruiming voorbereid en besproken zonder dat een volledige fysieke ontruiming wordt uitgevoerd.
+Medewerkers weten vooraf dat wordt geoefend. Hierdoor kunnen de basisprocedure, vluchtroutes, verzamelplaats en samenwerking veilig en beheerst worden getest.
 
-Mogelijke onderdelen zijn:
+### Fase 3: realistisch scenario
 
-- bespreken van het ontruimingsplan;
-- controleren van rollen en verantwoordelijkheden;
-- bespreken van interne alarmprocedures;
-- beoordelen van vluchtwegen en verzamelplaatsen;
-- bespreken van de taken van BHV’ers en Ploegleider BHV;
-- doorlopen van mogelijke incidenten;
-- oefenen van besluitvorming;
-- uitvoeren van een table-top-ontruimingsoefening;
-- vaststellen van leerdoelen voor volgende fasen.
+Een herkenbaar incident voegt tijdsdruk, ontbrekende informatie of een verminderd zelfredzame persoon toe. De oefenleiding bewaakt de veiligheid en houdt het scenario beheersbaar.
 
-Deze fase is geschikt voor organisaties die nog niet eerder hebben geoefend, nieuwe procedures hebben ingevoerd of hun BHV-organisatie eerst theoretisch willen voorbereiden.
+### Fase 4: integrale oefening
 
-## Fase 1 – afzonderlijke onderdelen oefenen
+Meerdere bedrijfsonderdelen, BHV-rollen en communicatielijnen oefenen gezamenlijk. Deze vorm past pas wanneer de basis op orde is en de veiligheidsafspraken helder zijn.
 
-In fase 1 worden specifieke onderdelen van de ontruimingsorganisatie praktisch getest.
+## Aangekondigd of onaangekondigd?
 
-Mogelijke onderdelen zijn:
+Beide vormen kunnen leerzaam zijn. Een aangekondigde oefening is vaak beter voor een eerste test, nieuwe procedure of organisatie met weinig oefenervaring. Een onaangekondigde oefening kan het spontane handelen realistischer testen, maar vraagt strengere voorbereiding, heldere stopcriteria en afstemming om paniek, letsel of verwarring met een echt incident te voorkomen.
 
-- reageren op een brandmelding;
-- aflezen en opvolgen van een melding op de brandmeldcentrale;
-- alarmeren van de BHV-organisatie;
-- opkomst van BHV’ers;
-- taakverdeling;
-- portofooncommunicatie;
-- controle van een afdeling of gedeelte van het gebouw;
-- melden aan de Ploegleider BHV;
-- gebruik van de verzamelplaats.
-
-Er hoeft in deze fase nog geen volledige ontruiming van het gebouw plaats te vinden.
-
-## Fase 2 – aangekondigde fysieke ontruimingsoefening
-
-In fase 2 wordt een fysieke ontruimingsoefening uitgevoerd.
-
-De datum en het tijdstip kunnen vooraf bekend zijn bij de organisatie. Het exacte scenario hoeft niet volledig bekend te zijn bij de deelnemers.
-
-Tijdens de oefening kunnen onder andere worden beoordeeld:
-
-- alarmering;
-- opkomst van de BHV-organisatie;
-- taakverdeling;
-- communicatie;
-- controle van ruimten;
-- begeleiding van aanwezigen;
-- gebruik van vluchtwegen;
-- functioneren van de verzamelplaats;
-- registratie en terugkoppeling;
-- rol van de Ploegleider BHV.
-
-Een aangekondigde oefening biedt de mogelijkheid om deelnemers vertrouwd te maken met de procedure zonder direct onnodige druk of onrust te veroorzaken.
-
-## Fase 3 – uitgebreide scenario-oefening
-
-In fase 3 wordt de oefening uitgebreid met aanvullende situaties of verstoringen.
-
-Voorbeelden zijn:
-
-- een geblokkeerde vluchtweg;
-- een vermiste persoon;
-- een gewonde medewerker;
-- rookontwikkeling;
-- een niet-functionerende nooduitgang;
-- een communicatiestoring;
-- onvoldoende BHV-bezetting;
-- een bezoeker die niet bekend is met het gebouw;
-- een verminderd zelfredzame persoon;
-- meerdere meldingen tegelijk;
-- onverwachte informatie voor de Ploegleider BHV.
-
-Deze fase richt zich sterker op samenwerking, communicatie, besluitvorming en het aanpassen van de aanpak.
-
-## Fase 4 – integrale en realistische oefening
-
-Fase 4 is een uitgebreide oefenvorm waarbij meerdere onderdelen van de noodorganisatie gezamenlijk worden getest.
-
-Afhankelijk van de organisatie kan hierbij aandacht zijn voor:
-
-- de volledige BHV-organisatie;
-- meerdere afdelingen of gebouwen;
-- complexe scenario’s;
-- meerdere incidentlocaties;
-- communicatie tussen verschillende teams;
-- coördinatie door één of meer ploegleiders;
-- opvang van externe hulpdiensten;
-- samenwerking met interne verantwoordelijken;
-- registratie op meerdere verzamelplaatsen;
-- bedrijfscontinuïteit na de ontruiming;
-- overdracht en nazorg.
-
-Een oefening in fase 4 wordt zorgvuldig voorbereid en afgestemd, zodat veiligheid en continuïteit tijdens de oefening gewaarborgd blijven.
-
-## Geen vaste groepsgrootte bij fysieke oefeningen
-
-Voor fysieke ontruimingsoefeningen in fase 2 tot en met 4 geldt geen vaste groepsgrootte.
-
-De omvang van de oefening wordt bepaald door:
-
-- het scenario;
-- de organisatie;
-- het gebouw;
-- het aantal aanwezigen;
-- de samenstelling van de BHV-organisatie;
-- het doel van de oefening.
-
-Daardoor kan alleen de BHV-organisatie deelnemen, maar kunnen ook meerdere afdelingen, verdiepingen, gebouwen of de volledige organisatie bij de oefening betrokken zijn.
-
-De groepsgrootte van twee tot tien deelnemers die bij veel opleidingen en workshops wordt gebruikt, is daarom niet van toepassing op deze fysieke ontruimingsoefeningen.
-
-## Table-top-ontruimingsoefening
-
-Een table-top-ontruimingsoefening is een oefening waarbij een incident stap voor stap wordt besproken.
-
-De deelnemers blijven meestal in een vergader- of trainingsruimte en reageren mondeling of via beschikbare communicatiemiddelen op nieuwe informatie.
-
-Een table-top-oefening kan worden gebruikt voor:
-
-- voorbereiding op een fysieke ontruiming;
-- oefenen van besluitvorming;
-- verduidelijken van rollen en verantwoordelijkheden;
-- testen van het ontruimingsplan;
-- oefenen van taakverdeling;
-- trainen van de Ploegleider BHV;
-- oefenen van portofooncommunicatie;
-- bespreken van bijzondere situaties;
-- evalueren van bestaande procedures.
-
-Tijdens de oefening kan de situatie steeds worden uitgebreid met nieuwe meldingen en dilemma’s.
-
-## Portofooncommunicatie
-
-Communicatie is een belangrijk onderdeel van een ontruimingsoefening.
-
-Tijdens de oefening kan worden gelet op:
-
-- kort en duidelijk communiceren;
-- het noemen van afzender en ontvanger;
-- doorgeven van de juiste locatie;
-- benoemen van feiten en waarnemingen;
-- bevestigen van opdrachten;
-- melden wanneer een taak is uitgevoerd;
-- voorkomen van onnodige berichten;
-- luisteren voordat wordt uitgezonden;
-- bewaken van meldingsdiscipline;
-- communicatie tussen BHV’ers en Ploegleider BHV;
-- communicatie tussen het gebouw en de verzamelplaats;
-- overdracht van informatie aan externe hulpdiensten.
-
-Portofoonoefeningen kunnen afzonderlijk worden uitgevoerd of onderdeel zijn van een table-top- of fysieke ontruimingsoefening.
-
-## Brandmeldcentrale
-
-Wanneer een organisatie beschikt over een brandmeldinstallatie en brandmeldcentrale, kan deze worden betrokken bij de oefening.
-
-Er kan onder andere worden gekeken naar:
-
-- herkennen van een brandmelding;
-- aflezen van het juiste meldingsgebied;
-- volgen van interne procedures;
-- alarmeren van de BHV-organisatie;
-- sturen van BHV’ers naar de juiste locatie;
-- communicatie tussen de brandmeldcentrale en de Ploegleider BHV;
-- registratie van de melding;
-- opvolgen van storings- of nevenmeldingen;
-- overdracht aan de brandweer.
-
-De exacte bediening van een brandmeldcentrale is afhankelijk van het aanwezige systeem en de afspraken binnen de organisatie.
-
-## Rol van de Ploegleider BHV
-
-De Ploegleider BHV heeft tijdens een ontruiming een coördinerende rol.
-
-Tijdens de oefening kan onder andere worden beoordeeld hoe de ploegleider:
-
-- informatie verzamelt;
-- prioriteiten bepaalt;
-- taken verdeelt;
-- BHV’ers aanstuurt;
-- meldingen verwerkt;
-- het overzicht bewaakt;
-- de veiligheid van de BHV’ers bewaakt;
-- omgaat met veranderende omstandigheden;
-- contact onderhoudt met de verzamelplaats;
-- informatie over vermiste personen verzamelt;
-- opschaalt wanneer dat nodig is;
-- informatie overdraagt aan externe hulpdiensten.
-
-Uitgebreide informatie staat in:
-
-- [Ploegleider BHV](https://bhvvoorneaanzee.nl/llms/ploegleider-bhv.txt)
-
-## Waarnemers
-
-Tijdens een ontruimingsoefening kunnen één of meer waarnemers worden ingezet.
-
-Waarnemers kunnen letten op:
-
-- alarmering;
-- reactietijd;
-- taakverdeling;
-- communicatie;
-- veilig gedrag;
-- gebruik van vluchtwegen;
-- controle van ruimten;
-- begeleiding van aanwezigen;
-- sluiten van deuren;
-- handelen bij bijzonderheden;
-- functioneren van de verzamelplaats;
-- optreden van de Ploegleider BHV;
-- opvolging van interne procedures.
-
-Waarnemers grijpen alleen in wanneer de veiligheid in gevaar komt of wanneer dit vooraf als onderdeel van de oefening is afgesproken.
-
-## Veiligheid tijdens de oefening
-
-Een oefening mag geen onnodige risico’s veroorzaken.
-
-Vooraf kunnen daarom afspraken worden gemaakt over:
-
-- oefenleiding;
-- herkenbaarheid van waarnemers;
-- start- en stopmoment;
-- noodstopprocedure;
-- communicatie bij een echt incident;
-- gebruik van rook of andere oefenmiddelen;
-- omgang met bezoekers;
-- aanwezigheid van kwetsbare personen;
-- bereikbaarheid van nooduitgangen;
-- continuïteit van kritieke werkzaamheden;
-- aanwezigheid van externe partijen;
-- melding aan betrokken medewerkers of organisaties.
-
-Wanneer tijdens de oefening een echt incident plaatsvindt, moet duidelijk zijn hoe de oefening wordt beëindigd en de echte hulpverlening wordt gestart.
+De keuze volgt uit het leerdoel en de risico's. Realisme mag nooit belangrijker worden dan veiligheid.
 
 ## Voorbereiding
 
-De voorbereiding van een ontruimingsoefening kan onder andere bestaan uit:
+- Bepaal concrete leerdoelen en de afbakening van het scenario.
+- Controleer RI&E, ontruimingsplan, plattegronden, bezetting en bijzonderheden.
+- Benoem oefenleiding, waarnemers, veiligheidsverantwoordelijke en stopprocedure.
+- Leg vast hoe een werkelijk incident wordt herkend en altijd voorrang krijgt.
+- Houd rekening met bezoekers, contractors en verminderd zelfredzame aanwezigen.
+- Beoordeel of installaties, rookmiddelen of LOTUS-inzet veilig en toegestaan zijn.
+- Spreek af welke personen vooraf worden geïnformeerd.
 
-1. Bespreken van het doel van de oefening.
-2. Inventariseren van de organisatie en het gebouw.
-3. Beoordelen van het ontruimingsplan en interne procedures.
-4. Vaststellen van de gewenste oefenfase.
-5. Bepalen van het scenario.
-6. Afspreken wie vooraf wordt geïnformeerd.
-7. Aanwijzen van oefenleiding en waarnemers.
-8. Vaststellen van veiligheidsafspraken.
-9. Bepalen van observatiepunten.
-10. Voorbereiden van de evaluatie en verslaglegging.
+## Wat wordt beoordeeld?
 
-Niet iedere oefening bevat exact dezelfde stappen. De voorbereiding wordt afgestemd op de opdracht.
+- Ontvangst, beoordeling en opvolging van de melding.
+- Snelheid en duidelijkheid van alarmering.
+- Taakverdeling en leiding binnen de BHV-organisatie.
+- Gebruik van vluchtroutes en voorkomen van onveilige keuzes.
+- Communicatie tussen BHV'ers, receptie, ploegleider en andere functionarissen.
+- Begeleiding van bezoekers en verminderd zelfredzame personen.
+- Controle van ruimten voor zover dit veilig en afgesproken is.
+- Verzamelplaats, aanwezigheidscontrole en omgaan met vermisten.
+- Overdracht van relevante informatie aan professionele hulpdiensten.
 
-## Uitvoering
+Een snelle eindtijd is niet het enige criterium. Veiligheid, volledigheid, communicatie en verklaarbare besluitvorming zijn minstens zo belangrijk.
 
-Tijdens de uitvoering kan de oefenleiding:
+## Evaluatie en borging
 
-- het scenario starten;
-- aanvullende informatie geven;
-- waarnemers aansturen;
-- het verloop bewaken;
-- controleren of de veiligheid behouden blijft;
-- nieuwe scenario-elementen toevoegen;
-- de oefening tijdelijk onderbreken;
-- de oefening beëindigen wanneer het doel is bereikt;
-- ingrijpen bij een onveilige situatie.
+Na afloop volgt een nabespreking met deelnemers en waarnemers. Feiten, interpretaties en verbetermaatregelen worden van elkaar onderscheiden. Een bruikbaar verslag benoemt wat goed ging, waar het systeem kwetsbaar was, wie eigenaar is van een maatregel en wanneer de voortgang opnieuw wordt gecontroleerd.
 
-De deelnemers handelen zoveel mogelijk volgens de eigen procedures en taakverdeling.
+Verbeterpunten kunnen liggen in gedrag, opleiding, procedures, bezetting, hulpmiddelen, bouwkundige routes of installaties. Een organisatorische maatregel mag niet worden gebruikt om een noodzakelijk technisch of bouwkundig probleem te negeren.
 
-## Evaluatie
+## Veelgestelde vragen
 
-Na afloop wordt de oefening geëvalueerd.
+### Hoe vaak moet een organisatie een ontruimingsoefening houden?
 
-De evaluatie kan bestaan uit:
+De Arbowet noemt geen vaste frequentie voor iedere organisatie. NIBHV en de Arbeidsinspectie adviseren ten minste jaarlijks te oefenen. De RI&E, gebouwkenmerken, risico's, bezetting, veranderingen en eerdere bevindingen kunnen aanleiding geven om vaker of in delen te oefenen.
 
-- eerste terugkoppeling direct na de oefening;
-- ervaringen van BHV’ers;
-- terugkoppeling van de Ploegleider BHV;
-- bevindingen van waarnemers;
-- ervaringen van medewerkers en andere aanwezigen;
-- bespreking van communicatie;
-- bespreking van knelpunten;
-- vaststellen van verbeterpunten;
-- bepalen van verantwoordelijken;
-- afspraken over opvolging.
+### Krijgen we een verslag?
 
-De evaluatie richt zich zowel op sterke punten als verbeterpunten.
+Ja, wanneer dit onderdeel van de opdracht is. Het verslag beschrijft observaties, verbeterpunten, prioriteit en mogelijke opvolging.
 
-## Verslaglegging
+### Kan eerst een tabletop worden gehouden?
 
-Wanneer dit onderdeel is van de opdracht, kan BHV Voorne aan Zee een verslag van de ontruimingsoefening opstellen.
+Ja. Een tabletop is geschikt om rollen en procedures te testen voordat een fysieke oefening wordt georganiseerd.
 
-Een verslag kan onder andere bevatten:
+### Kan de oefening met een LOTUS-slachtoffer?
 
-- gegevens van de organisatie;
-- datum en locatie;
-- doel van de oefening;
-- omschrijving van het scenario;
-- betrokken deelnemers en afdelingen;
-- verloop van de oefening;
-- waarnemingen;
-- sterke punten;
-- aandachtspunten;
-- veiligheidsbevindingen;
-- communicatiebevindingen;
-- bevindingen over de verzamelplaats;
-- verbetermaatregelen;
-- prioriteiten;
-- advies voor een volgende oefenfase.
+Dat kan wanneer het leerdoel, de voorbereiding en de veiligheid dit toelaten. De inzet moet duidelijk worden afgesproken en begeleid.
 
-De inhoud en omvang van het verslag zijn afhankelijk van de afgesproken opdracht.
+### Is een oefening hetzelfde als een echte ontruiming?
 
-## Opvolging en borging
-
-Een ontruimingsoefening heeft meer waarde wanneer verbeterpunten daadwerkelijk worden opgevolgd.
-
-De organisatie kan na de oefening onder andere:
-
-- procedures aanpassen;
-- taken en verantwoordelijkheden verduidelijken;
-- medewerkers aanvullend instrueren;
-- portofoonafspraken verbeteren;
-- vluchtwegen of verzamelplaatsen aanpassen;
-- de BHV-bezetting opnieuw beoordelen;
-- het ontruimingsplan actualiseren;
-- aanvullende table-top-oefeningen organiseren;
-- een volgende oefenfase plannen;
-- verbeterpunten controleren tijdens een vervolgoefening.
-
-Een volgende oefening kan worden gebruikt om vast te stellen of afgesproken maatregelen zijn uitgevoerd en effectief zijn.
-
-## Combineren met andere trainingen
-
-Een ontruimingsoefening kan worden gecombineerd met:
-
-- een opleiding Ploegleider BHV;
-- een BHV-herhalingstraining;
-- een portofoonoefening;
-- een instructie brandmeldcentrale;
-- een workshop communicatie;
-- een table-top-oefening;
-- een bedrijfsspecifiek praktijkscenario;
-- het BHV-ritme.
-
-Hierdoor kunnen afzonderlijke vaardigheden in samenhang worden geoefend.
-
-## Incompany
-
-Ontruimingsoefeningen worden uitgevoerd op de locatie van de opdrachtgever.
-
-Dit is noodzakelijk om te kunnen oefenen met:
-
-- het daadwerkelijke gebouw;
-- de aanwezige BHV-organisatie;
-- de interne procedures;
-- de aanwezige brandmeldcentrale;
-- de eigen portofoons;
-- de echte vluchtwegen;
-- de afgesproken verzamelplaatsen;
-- de aanwezige medewerkers en bezoekers;
-- bedrijfsspecifieke risico’s.
+Nee. Een oefening vindt gecontroleerd plaats en heeft leerdoelen en stopcriteria. Een werkelijk incident heeft altijd voorrang.
 
 ## Werkgebied
 
-BHV Voorne aan Zee verzorgt ontruimingsoefeningen voornamelijk binnen ongeveer vijftig kilometer rondom Rozenburg in Zuid-Holland.
+Wij begeleiden ontruimingsoefeningen in Voorne aan Zee, Brielle, Hellevoetsluis, Rockanje, Oostvoorne, Rozenburg, Spijkenisse, Nissewaard, Hoogvliet, Rotterdam-Rijnmond, de Botlek, Vlaardingen, Maassluis, Schiedam, het Westland, Den Haag, de Hoeksche Waard en delen van Zeeland.
 
-- [Volledig werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
+## Primaire bronnen
 
-## Wetgeving en verantwoordelijkheden
+- Arbeidsomstandighedenwet, artikel 15: https://wetten.overheid.nl/BWBR0010346/
+- Arboportaal over wettelijke BHV-verplichtingen: https://www.arboportaal.nl/onderwerpen/arbozorg/bedrijfshulpverlening/wat-zegt-de-wet-over-bedrijfshulpverlening
+- NIBHV over ontruimen en het advies om te oefenen: https://www.nibhv.nl/expertises/ontruimen/
+- NIPV, Basis voor brandveiligheid: https://nipv.nl/documenten/basis-voor-brandveiligheid/
+- NIPV, onderzoek naar vluchtveiligheid en rookverspreiding: https://nipv.nl/onderzoek/vluchtveiligheid-van-woongebouwen/
+- Onderzoeksraad voor Veiligheid, branden op passagiersschepen: https://onderzoeksraad.nl/pers/onderzoeksraad-voor-veiligheid-onderzocht-branden-op-passagiersschepen/
+- Onderzoeksraad voor Veiligheid, brand metrostation Weesperplein: https://onderzoeksraad.nl/onderzoek/brand-in-sneltram-in-het-ondergrondse-metrostation-weesperplein-in/
 
-De werkgever is verantwoordelijk voor een passende organisatie van bedrijfshulpverlening en noodprocedures.
+## Gerelateerde pagina's
 
-De precieze wettelijke verplichtingen en normen zijn afhankelijk van de organisatie, risico’s, het gebouw en de actuele regelgeving.
-
-Uitgebreide informatie wordt afzonderlijk beschreven in:
-
-- [Wetgeving](https://bhvvoorneaanzee.nl/llms/wetgeving.txt)
-- [Bronnen en betrouwbaarheid](https://bhvvoorneaanzee.nl/llms/bronnen-en-betrouwbaarheid.txt)
-
-## Gerelateerde informatie
-
-- [Organisatieprofiel](https://bhvvoorneaanzee.nl/llms/organisatie.txt)
-- [Overzicht opleidingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
-- [BHV-opleidingen](https://bhvvoorneaanzee.nl/llms/bhv.txt)
-- [Ploegleider BHV](https://bhvvoorneaanzee.nl/llms/ploegleider-bhv.txt)
-- [Werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
-- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
-
-## Officiële websitepagina’s
-
-- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/ontruimingsoefening)
-- [BHV-ritme](https://bhvvoorneaanzee.nl/bhv-ritme)
-- [Contact opnemen](https://bhvvoorneaanzee.nl/contact)
+- Ontruimingsoefeningen: https://bhvvoorneaanzee.nl/ontruimingsoefening
+- Voorbeeldscenario's: https://bhvvoorneaanzee.nl/ontruimingsverslag/scenarios
+- BHV-trainingen: https://bhvvoorneaanzee.nl/bhv
+- Ploegleider BHV: https://bhvvoorneaanzee.nl/ploegleider
+- Contact: https://bhvvoorneaanzee.nl/contact
 
 ---
 

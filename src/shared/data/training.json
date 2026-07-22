@@ -76,9 +76,9 @@
         },
         {
           "type": "ploegleider-herhaling",
-          "title": "Herhaling BHV Ploegleider",
-          "description": "Actualiseren van kennis en vaardigheden",
-          "slug": "/ploegleider-herhaling-halve-dag",
+          "title": "Ploegleider BHV herhaling – 1 dag",
+          "description": "Praktijkgerichte herhaling en verdieping voor gediplomeerde ploegleiders",
+          "slug": "/ploegleider-herhaling-1-dag",
           "cardImage": "ploegleiderherhaling.webp",
           "cardAlt": "Herhalingstraining BHV ploegleider"
         }

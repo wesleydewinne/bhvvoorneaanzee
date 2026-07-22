@@ -17,7 +17,9 @@ const factIcons = [Users, Clock, Buildings, ShieldCheck];
 const SITE_URL = "https://bhvvoorneaanzee.nl";
 
 export default function BhvTrainingDetailPage({ training }) {
-  const [priceFrom, setPriceFrom] = useState(null);
+  const [priceFrom, setPriceFrom] = useState(
+    training.fallbackPrice ?? null,
+  );
   const [openFaq, setOpenFaq] = useState(0);
 
   useEffect(() => {
@@ -29,12 +31,12 @@ export default function BhvTrainingDetailPage({ training }) {
         if (active) setPriceFrom(data.basePrice);
       })
       .catch(() => {
-        if (active) setPriceFrom(null);
+        if (active) setPriceFrom(training.fallbackPrice ?? null);
       });
     return () => {
       active = false;
     };
-  }, [training.priceEndpoint]);
+  }, [training.fallbackPrice, training.priceEndpoint]);
 
   useEffect(() => {
     const id = "bhv-training-structured-data";

@@ -81,7 +81,8 @@ const publicRoutes = [
     { path: "/ploegleider", element: <PloegleiderPage /> },
     { path: "/ploegleider-basis-2-daagse", element: <Ploegleider2DaagsePage /> },
     { path: "/ploegleider-basis-1-dag-met-elearning", element: <PloegleiderBasis1DaagseElearning /> },
-    { path: "/ploegleider-herhaling-halve-dag", element: <PloegleiderHerhalingPage /> },
+    { path: "/ploegleider-herhaling-1-dag", element: <PloegleiderHerhalingPage /> },
+    { path: "/ploegleider-herhaling-halve-dag", element: <Navigate to="/ploegleider-herhaling-1-dag" replace /> },
 
     // Ontruimingsoefening
     { path: "/ontruimingsoefening", element: <OntruimingsPage /> },

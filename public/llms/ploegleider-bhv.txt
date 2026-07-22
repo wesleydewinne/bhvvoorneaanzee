@@ -1,320 +1,127 @@
-# Opleidingen Ploegleider BHV van BHV Voorne aan Zee
+# Opleiding Ploegleider BHV
 
-> BHV Voorne aan Zee verzorgt praktijkgerichte incompany basisopleidingen en herhalingstrainingen voor Ploegleider BHV.
+> BHV Voorne aan Zee verzorgt praktijkgerichte incompany basisopleidingen en herhalingstrainingen voor ploegleiders BHV. Dit document onderscheidt wettelijke verantwoordelijkheid, NIBHV-opleidingsinformatie en het eigen cursusaanbod.
 
-De opleidingen zijn bedoeld voor medewerkers die tijdens incidenten en ontruimingen een coördinerende en leidinggevende rol hebben binnen de BHV-organisatie.
+## Direct antwoord: wat doet een ploegleider BHV?
 
-## Wat is een Ploegleider BHV?
+Een ploegleider BHV geeft tijdens een incident of oefening direct leiding aan een ploeg bedrijfshulpverleners. De ploegleider controleert de melding, verzamelt en beoordeelt informatie, maakt een inzetplan, bepaalt prioriteiten en verdeelt taken. Tijdens de inzet bewaakt de ploegleider de voortgang, communicatie en veiligheid van het BHV-team en draagt relevante informatie over aan andere functionarissen of professionele hulpdiensten.
 
-Een Ploegleider BHV geeft tijdens een incident of noodsituatie operationeel leiding aan de aanwezige BHV’ers.
+Een ploegleider stuurt dus niet alleen mensen aan, maar zet onvolledige en veranderende informatie om in een veilige, gestructureerde BHV-inzet.
 
-De Ploegleider BHV zorgt onder andere voor:
+## Is een ploegleider BHV wettelijk verplicht?
 
-- het verzamelen en beoordelen van informatie;
-- het bepalen van prioriteiten;
-- het verdelen van taken;
-- het aansturen van BHV’ers;
-- het bewaken van de veiligheid;
-- het volgen van de interne noodprocedures;
-- het onderhouden van communicatie;
-- het opschalen van de hulpverlening;
-- het voorbereiden van de overdracht aan externe hulpdiensten.
+De Arbeidsomstandighedenwet noemt geen vaste grens waarbij een organisatie verplicht een functionaris met de titel ploegleider BHV moet aanwijzen. De werkgever moet de BHV-organisatie afstemmen op de RI&E, bedrijfsomvang, bezetting, aanwezige risico's en inrichting van de organisatie.
 
-De exacte taken en bevoegdheden kunnen per organisatie verschillen.
+Centrale aansturing kan passend of noodzakelijk zijn wanneer meerdere BHV'ers tegelijk worden ingezet, locaties of processen complex zijn, veel communicatielijnen samenkomen of een inzet anders onvoldoende veilig en overzichtelijk kan worden gecoördineerd. De werkgever moet kunnen onderbouwen dat de BHV-organisatie haar wettelijke taken naar behoren kan uitvoeren.
 
-## Basisopleiding Ploegleider BHV
+## Verschil met hoofd BHV
 
-De basisopleiding Ploegleider BHV is bedoeld voor BHV’ers die binnen hun organisatie een coördinerende rol gaan vervullen.
+Een ploegleider BHV stuurt tijdens een inzet rechtstreeks één BHV-ploeg aan. Een operationeel hoofd BHV bewaakt een grotere incidentinzet en kan meerdere ploegleiders of ploegen coördineren. Een coördinerend hoofd BHV richt zich vooral op beleid, voorbereiding, procedures, opleidingen en oefeningen. De exacte functieverdeling kan per organisatie verschillen en moet helder zijn vastgelegd.
 
-De deelnemer leert leidinggeven aan de BHV-organisatie tijdens verschillende incidenten en noodsituaties.
+## Wat leert een ploegleider BHV?
 
-Onderwerpen kunnen onder andere zijn:
+- Informatie uit een melding controleren en aanvullen.
+- Een betrouwbaar situatiebeeld vormen.
+- Risico's, prioriteiten en veiligheidsgrenzen beoordelen.
+- Een inzetplan maken en middelen doelgericht inzetten.
+- Taken verdelen en duidelijke opdrachten en feedback geven.
+- De BHV-ploeg instrueren en de voortgang bewaken.
+- Communiceren met BHV'ers, interne functionarissen en hulpdiensten.
+- Tijdig bijsturen wanneer informatie of omstandigheden veranderen.
+- De inzet afronden, overdragen, rapporteren en evalueren.
 
-- de rol en verantwoordelijkheid van de Ploegleider BHV;
-- leidinggeven onder tijdsdruk;
-- verzamelen en beoordelen van informatie;
-- bepalen van prioriteiten;
-- verdelen en opvolgen van taken;
-- aansturen van BHV’ers;
-- communicatie via portofoon;
-- meldingsdiscipline;
-- samenwerken met interne functionarissen;
-- alarmeren en opschalen;
-- communicatie met externe hulpdiensten;
-- bewaken van de veiligheid;
-- coördineren van een ontruiming;
-- evalueren van het optreden.
+Deze vaardigheden sluiten aan op de door NIBHV beschreven competentie om tijdens een incident leiding te geven aan een BHV-ploeg.
 
-## Herhalingstraining Ploegleider BHV
+## Basisopleiding Ploegleider BHV: twee dagen
 
-De herhalingstraining is bedoeld voor bestaande ploegleiders die hun kennis en vaardigheden willen onderhouden en verdiepen.
+De 2-daagse basisopleiding is bedoeld voor BHV'ers die tijdens een incident leiding gaan geven aan een BHV-ploeg. Voor deelname aan de NIBHV-basisopleiding is een geldig diploma Basis Bedrijfshulpverlener vereist. NIBHV adviseert voor de volledige basisopleiding minimaal zestien uur.
 
-De nadruk ligt op praktisch oefenen, besluitvorming, communicatie en leidinggeven.
+De opleiding combineert theorie, bedrijfsspecifieke werkopdrachten, tabletopoefeningen en meerdere praktijkinzetten. De deelnemer oefent een vaste werkwijze: informatie controleren, de situatie analyseren, een inzetplan maken, opdrachten geven, de voortgang bewaken en waar nodig bijsturen.
 
-Mogelijke onderdelen zijn:
+### Dag 1: fundament en regie
 
-- incidentmeldingen beoordelen;
-- werken met verschillende scenario’s;
-- taakverdeling;
-- leidinggeven op afstand;
-- communicatie via portofoon;
-- omgaan met onvolledige of tegenstrijdige informatie;
-- bewaken van overzicht;
-- prioriteiten aanpassen;
-- opschalen;
-- aansturen van een ontruiming;
-- overdracht aan externe hulpdiensten;
-- evaluatie en leerpunten.
+- Rol en verantwoordelijkheden van de ploegleider.
+- Melding controleren en aanvullende vragen stellen.
+- Situatiebeeld, risicoanalyse en inzetplan.
+- Prioriteiten, taakverdeling, opdrachten en feedback.
+- Tabletopscenario's.
 
-De inhoud wordt waar mogelijk afgestemd op de organisatie en de ervaring van de deelnemers.
+### Dag 2: praktijk en besluitvorming
 
-## Leidinggeven tijdens incidenten
+- Realistische incident- en ontruimingsscenario's.
+- Een BHV-ploeg veilig en doelgericht aansturen.
+- Voortgang bewaken en tijdig bijsturen.
+- Communicatie en overdracht.
+- Theorie- en praktijkbeoordeling volgens de gekozen certificeringsroute.
 
-Tijdens een incident moet de Ploegleider BHV overzicht houden en voorkomen dat alle BHV’ers zelfstandig zonder afstemming handelen.
+## Ploegleider BHV met e-learning en één praktijkdag
 
-Daarom wordt aandacht besteed aan:
+De blended basisopleiding combineert online theorie en werkopdrachten met één intensieve praktijkdag. De deelnemer rondt de digitale voorbereiding vooraf af. Daardoor kan de contactdag worden gebruikt voor tabletopoefeningen, feedback, meerdere praktijkinzetten en het daadwerkelijk leidinggeven.
 
-- duidelijke opdrachten geven;
-- taken aan de juiste personen koppelen;
-- opdrachten laten bevestigen;
-- controleren of taken zijn uitgevoerd;
-- hoofd- en bijzaken onderscheiden;
-- nieuwe informatie beoordelen;
-- risico’s blijven bewaken;
-- tijdig bijsturen;
-- voorkomen van onnodige blootstelling aan gevaar.
+NIBHV vermeldt voor de basis-e-learning een gemiddelde studiebelasting van ongeveer vier uur. De theorietoets wordt online afgerond; de praktische beoordeling vindt bij de opleider plaats. Beide basisroutes leiden, bij toepassing van de geldende NIBHV-voorwaarden en een voldoende resultaat, naar hetzelfde diploma Basis Ploegleider BHV.
 
-De Ploegleider BHV hoeft niet iedere taak zelf uit te voeren, maar moet zorgen dat de juiste acties worden uitgezet en opgevolgd.
+## Herhaling Ploegleider BHV
 
-## Communicatie en portofoongebruik
+De praktijkgerichte herhaling is bedoeld voor gediplomeerde ploegleiders. Zij frissen hun vaste werkwijze op en verdiepen communicatie, besluitvorming en veilig leidinggeven in veranderende situaties.
 
-Duidelijke communicatie is een belangrijk onderdeel van leidinggeven binnen de BHV-organisatie.
+NIBHV adviseert voor een herhalingscursus zonder e-learning minimaal tien uur. BHV Voorne aan Zee kan een eigen opleidingsopbouw aanbieden en belooft alleen een NIBHV-certificaat wanneer het volledige programma, de beoordeling en de administratieve voorwaarden van de gekozen certificeringsroute zijn gevolgd. De getoonde contactduur alleen is daarom niet automatisch de volledige studiebelasting.
 
-Tijdens de opleiding kan worden geoefend met:
+## Praktijkgericht leidinggeven
 
-- kort en duidelijk spreken;
-- luisteren voordat wordt uitgezonden;
-- het noemen van afzender en ontvanger;
-- doorgeven van locatie en situatie;
-- bevestigen van opdrachten;
-- onderscheid maken tussen feiten en aannames;
-- stellen van gerichte vragen;
-- meldingsdiscipline;
-- voorkomen van onnodig portofoonverkeer;
-- samenvatten van de actuele situatie;
-- communiceren met meerdere BHV-teams.
+Tijdens tabletopoefeningen worden keuzes, prioriteiten en besluitvorming zichtbaar. In praktijkinzetten blijkt vervolgens of opdrachten duidelijk worden gegeven, relevante informatie wordt teruggekoppeld en de veiligheid van de BHV-ploeg wordt bewaakt.
 
-Portofoonoefeningen kunnen afzonderlijk worden uitgevoerd of worden verwerkt in een scenario of ontruimingsoefening.
+De deelnemer oefent met veranderende situaties, ontvangt directe feedback en krijgt waar mogelijk de gelegenheid om na een evaluatie opnieuw leiding te geven. Niet alleen weten wat er moet gebeuren, maar ervaren hoe je leidinggeeft wanneer de situatie verandert.
 
-## Beeldvorming, oordeelsvorming en besluitvorming
+## Bedrijfsspecifiek en incompany
 
-Een Ploegleider BHV moet beslissingen nemen op basis van beschikbare informatie.
+Werkopdrachten en scenario's kunnen worden afgestemd op het gebouw, de bedrijfsrisico's, het ontruimingsplan, interne communicatielijnen en de inrichting van de BHV-organisatie. Trainen op de eigen locatie maakt procedures herkenbaar, maar scenario's moeten veilig blijven en mogen noodzakelijke technische of organisatorische maatregelen niet vervangen.
 
-Daarbij kan gewerkt worden volgens de volgende stappen:
+## Certificering
 
-1. Informatie verzamelen.
-2. Vaststellen wat bekend en nog onbekend is.
-3. Risico’s en mogelijke gevolgen beoordelen.
-4. Prioriteiten bepalen.
-5. Beslissen welke acties nodig zijn.
-6. Taken verdelen.
-7. Controleren of de situatie verandert.
-8. De aanpak aanpassen wanneer dat nodig is.
+NIBHV verzorgt zelf geen lessen. Het ontwikkelt voorwaarden, les- en toetskaders en controleert gecertificeerde opleiders. Een diploma of certificaat mag daarom alleen worden toegezegd wanneer de toepasselijke toelating, opleiding, toetsing en registratie daadwerkelijk worden gevolgd.
 
-De deelnemer leert dat een besluit soms moet worden genomen voordat alle informatie beschikbaar is.
+## Veelgestelde vragen
 
-## Taakverdeling
+### Heb je een geldig BHV-diploma nodig?
 
-De Ploegleider BHV verdeelt taken op basis van:
+Ja. Voor de NIBHV-basisopleiding Ploegleider BHV is een geldig diploma Basis Bedrijfshulpverlener vereist.
 
-- de aard van het incident;
-- de beschikbare BHV’ers;
-- de ervaring en competenties van de BHV’ers;
-- de omvang van het gebouw;
-- aanwezige risico’s;
-- interne procedures;
-- benodigde communicatie;
-- beschikbare hulpmiddelen.
+### Hoe lang duurt de 2-daagse basisopleiding?
 
-Mogelijke taken zijn:
+NIBHV adviseert minimaal zestien uur. BHV Voorne aan Zee verdeelt de klassikale basisroute over twee trainingsdagen.
 
-- eerste hulp verlenen;
-- een incidentlocatie verkennen;
-- een beginnende brand beoordelen;
-- een ontruiming starten;
-- ruimten controleren;
-- aanwezigen begeleiden;
-- een verzamelplaats organiseren;
-- externe hulpdiensten opvangen;
-- informatie verzamelen en doorgeven.
+### Wat is het verschil tussen klassikaal en e-learning?
 
-## Ploegleider BHV bij ontruiming
+Bij de klassikale route worden theorie en praktijk over twee dagen verdeeld. Bij blended leren wordt de theorie vooraf online afgerond en volgt één praktijkdag. De eindcompetentie is gelijk.
 
-Tijdens een ontruiming heeft de Ploegleider BHV een belangrijke coördinerende rol.
+### Hoe wordt een deelnemer beoordeeld?
 
-De Ploegleider BHV kan onder andere verantwoordelijk zijn voor:
+Bij de NIBHV-basisroute bestaat de afsluiting uit theorie en praktijk. De deelnemer moet aantonen dat hij of zij een BHV-ploeg veilig en doelgericht kan aansturen.
 
-- beoordelen of ontruiming noodzakelijk is;
-- activeren of laten activeren van de ontruimingsprocedure;
-- verdelen van ontruimingsgebieden;
-- aansturen van BHV’ers;
-- bewaken van veilige vluchtwegen;
-- verwerken van meldingen uit het gebouw;
-- verzamelen van informatie over vermiste personen;
-- afstemmen met de verzamelplaats;
-- informeren van interne verantwoordelijken;
-- overdragen van informatie aan de hulpdiensten.
+### Kan de opleiding op onze locatie plaatsvinden?
 
-De precieze taakverdeling is afhankelijk van het bedrijfsnood- of ontruimingsplan van de organisatie.
+Ja. Als incompany opleiding kunnen werkopdrachten, tabletopscenario's en praktijkinzetten op de eigen organisatie worden afgestemd.
 
-## Table-top-oefeningen
+### Ontvangt de deelnemer een NIBHV-diploma of certificaat?
 
-Een table-top-oefening is geschikt om besluitvorming, taakverdeling en communicatie te oefenen zonder een volledige fysieke ontruiming uit te voeren.
-
-Tijdens een table-top-oefening wordt een incident stap voor stap besproken.
-
-De deelnemers moeten daarbij reageren op nieuwe informatie, bijvoorbeeld:
-
-- een brandmelding;
-- rookontwikkeling;
-- een gewonde medewerker;
-- een geblokkeerde vluchtweg;
-- een vermiste persoon;
-- uitval van communicatie;
-- een storing in de brandmeldcentrale;
-- aankomst van externe hulpdiensten.
-
-Table-top-oefeningen zijn geschikt voor basisopleidingen, herhalingstrainingen en voorbereiding op een fysieke ontruimingsoefening.
-
-## Praktijkscenario’s
-
-Praktijkscenario’s kunnen worden gebruikt om de Ploegleider BHV onder druk te laten oefenen.
-
-Een scenario kan aandacht besteden aan:
-
-- onvolledige meldingen;
-- meerdere incidenten tegelijk;
-- tegenstrijdige informatie;
-- onverwachte risico’s;
-- beperkte beschikbaarheid van BHV’ers;
-- communicatiestoringen;
-- bezoekers of niet-zelfredzame personen;
-- vermiste personen;
-- samenwerking met externe hulpdiensten.
-
-Na afloop wordt besproken:
-
-- welke informatie beschikbaar was;
-- welke besluiten zijn genomen;
-- hoe taken zijn verdeeld;
-- hoe de communicatie verliep;
-- welke verbeterpunten er zijn.
-
-## Afstemming op de organisatie
-
-De opleiding wordt waar mogelijk afgestemd op de werkomgeving van de opdrachtgever.
-
-Daarbij kan rekening worden gehouden met:
-
-- de interne noodorganisatie;
-- het aantal BHV’ers;
-- de aanwezige ploegleiders;
-- het gebouw of terrein;
-- de aanwezige risico’s;
-- de brandmeldinstallatie;
-- de brandmeldcentrale;
-- portofoons en communicatiemiddelen;
-- vluchtwegen en verzamelplaatsen;
-- interne alarm- en ontruimingsprocedures;
-- eerdere incidenten en oefeningen.
-
-## Incompany
-
-De opleidingen en herhalingstrainingen worden voornamelijk incompany verzorgd.
-
-Dit maakt het mogelijk om te oefenen met:
-
-- de eigen BHV-organisatie;
-- de eigen procedures;
-- de aanwezige communicatiemiddelen;
-- herkenbare situaties;
-- bedrijfsspecifieke risico’s;
-- eigen ruimtes, vluchtwegen en verzamelplaatsen.
-
-## Groepsgrootte
-
-BHV Voorne aan Zee werkt bij opleidingen Ploegleider BHV bij voorkeur met kleine groepen.
-
-Bij veel opleidingen wordt gewerkt met ongeveer twee tot tien deelnemers.
-
-Een kleine groep biedt meer ruimte voor:
-
-- persoonlijke begeleiding;
-- actieve deelname;
-- individuele feedback;
-- table-top-oefeningen;
-- portofoonoefeningen;
-- praktijkgerichte scenario’s;
-- evaluatie van beslissingen.
-
-De definitieve groepsgrootte is afhankelijk van de opleidingsvorm en de praktische omstandigheden.
-
-## Voorwaarden voor deelname
-
-De opleiding Ploegleider BHV is bedoeld voor deelnemers die een leidinggevende rol binnen de BHV-organisatie hebben of gaan vervullen.
-
-Het is wenselijk dat deelnemers:
-
-- beschikken over kennis en vaardigheden op BHV-niveau;
-- bekend zijn met de eigen organisatie;
-- inzicht hebben in de interne noodprocedures;
-- kunnen communiceren en samenwerken;
-- bereid zijn om tijdens scenario’s beslissingen te nemen.
-
-De exacte deelnamevoorwaarden kunnen afhankelijk zijn van de gekozen opleiding en certificering.
-
-## Certificering en geldigheid
-
-De voorwaarden voor certificering, beoordeling en geldigheid kunnen afhankelijk zijn van:
-
-- de gekozen opleidingsvorm;
-- de certificerende organisatie;
-- het resultaat van de deelnemer;
-- de actuele richtlijnen;
-- afspraken met de opdrachtgever.
-
-Actuele voorwaarden moeten worden gecontroleerd op de officiële website of rechtstreeks bij BHV Voorne aan Zee.
-
-## Relatie met ontruimingsoefeningen
-
-Een opleiding of herhalingstraining Ploegleider BHV kan worden gecombineerd met:
-
-- een portofoonoefening;
-- een table-top-ontruimingsoefening;
-- een praktijkscenario;
-- een fysieke ontruimingsoefening;
-- een evaluatie van de BHV-organisatie.
-
-Hierdoor kunnen deelnemers hun leidinggevende rol toepassen binnen een realistische situatie.
-
-- [Uitgebreide informatie over ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
+Na het voldoen aan alle eisen van de betreffende NIBHV-route ontvangt de deelnemer het bij die route behorende diploma of certificaat. De basisopleiding leidt tot het diploma Basis Ploegleider BHV; een herhaling heeft een eigen certificeringsroute.
 
 ## Werkgebied
 
-BHV Voorne aan Zee verzorgt opleidingen en herhalingstrainingen Ploegleider BHV voornamelijk binnen ongeveer vijftig kilometer rondom Rozenburg in Zuid-Holland.
+Wij verzorgen incompany opleidingen Ploegleider BHV in Voorne aan Zee, Brielle, Hellevoetsluis, Rockanje, Oostvoorne, Rozenburg, Spijkenisse, Nissewaard, Hoogvliet, Rotterdam, de Botlek, Vlaardingen, Maassluis, Schiedam, Barendrecht, Rhoon, de Hoeksche Waard, het Westland, Den Haag en delen van Zeeland.
 
-- [Volledig werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
+## Primaire bronnen
 
-## Gerelateerde informatie
+- Arbeidsomstandighedenwet, artikel 15: https://wetten.overheid.nl/BWBR0010346/
+- Arboportaal over BHV en de RI&E: https://www.arboportaal.nl/onderwerpen/arbozorg/bedrijfshulpverlening/wat-zegt-de-wet-over-bedrijfshulpverlening
+- NIBHV, basisopleiding Ploegleider BHV: https://www.nibhv.nl/expertises/bedrijfshulpverlening/ploegleider-bhv/
+- NIBHV, herhalingscursus Ploegleider BHV: https://www.nibhv.nl/expertises/bedrijfshulpverlening/herhalingscursus-ploegleider-bhv/
+- NIBHV, onafhankelijke certificering: https://www.nibhv.nl/onafhankelijke-certificering-bhv/
+- NIPV, Basis voor brandveiligheid: https://nipv.nl/documenten/basis-voor-brandveiligheid/
 
-- [Organisatieprofiel](https://bhvvoorneaanzee.nl/llms/organisatie.txt)
-- [Overzicht opleidingen](https://bhvvoorneaanzee.nl/llms/opleidingen.txt)
-- [BHV-opleidingen](https://bhvvoorneaanzee.nl/llms/bhv.txt)
-- [Ontruimingsoefeningen](https://bhvvoorneaanzee.nl/llms/ontruimingsoefeningen.txt)
-- [Werkgebied](https://bhvvoorneaanzee.nl/llms/werkgebied.txt)
-- [Contact](https://bhvvoorneaanzee.nl/llms/contact.txt)
+## Gerelateerde pagina's
 
-## Officiële website
-
-- [BHV Voorne aan Zee](https://bhvvoorneaanzee.nl/)
-- [Contact opnemen](https://bhvvoorneaanzee.nl/contact)
+- Ploegleider BHV: https://bhvvoorneaanzee.nl/ploegleider
+- BHV-trainingen: https://bhvvoorneaanzee.nl/bhv
+- Ontruimingsoefeningen: https://bhvvoorneaanzee.nl/ontruimingsoefening
+- Contact: https://bhvvoorneaanzee.nl/contact
