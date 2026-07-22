@@ -451,28 +451,74 @@
 .evac-faq {
   padding: 100px 0;
 }
-.evac-faq details {
+.evac-faq__item {
   border-bottom: 1px solid #d7dee7;
-  padding: 20px 0;
 }
-.evac-faq summary {
-  list-style: none;
-  cursor: pointer;
-  font-weight: 800;
+.evac-faq__item button {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 15px;
+  padding: 20px 0;
+  border: 0;
+  color: var(--navy);
+  background: transparent;
+  font: inherit;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
 }
-.evac-faq summary::-webkit-details-marker {
-  display: none;
+.evac-faq__item button:focus-visible {
+  outline: 3px solid rgba(255, 104, 24, 0.3);
+  outline-offset: 4px;
 }
-.evac-faq summary span {
-  font-size: 1.4rem;
-  color: var(--orange);
+.evac-faq__item button span {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
-.evac-faq details p {
+.evac-faq__item button span::before,
+.evac-faq__item button span::after {
+  position: absolute;
+  top: 8px;
+  left: 2px;
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--orange);
+  content: "";
+  transition: transform 0.3s ease;
+}
+.evac-faq__item button span::after {
+  transform: rotate(90deg);
+}
+.evac-faq__item.is-open button span::before {
+  transform: rotate(45deg);
+}
+.evac-faq__item.is-open button span::after {
+  transform: rotate(135deg);
+}
+.evac-faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.38s ease,
+    opacity 0.28s ease;
+}
+.evac-faq__answer > div {
+  overflow: hidden;
+}
+.evac-faq__item.is-open .evac-faq__answer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.evac-faq__answer p {
+  margin: 0;
+  padding: 0 35px 20px 0;
   color: #5b6a7e;
-  margin-bottom: 0;
 }
 .evac-cta {
   padding: 50px 0 90px;
@@ -618,7 +664,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .evac-button,
-  .evac-phase:before {
+  .evac-phase:before,
+  .evac-faq__answer,
+  .evac-faq__item button span::before,
+  .evac-faq__item button span::after {
     transition: none;
   }
 }
@@ -685,7 +734,7 @@
 .evac-heading p,
 .evac-phase p,
 .evac-process p,
-.evac-faq details p {
+.evac-faq__answer p {
   font-size: 16px;
   color: #4a5b72;
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
@@ -15,6 +15,7 @@ import "./Fase.css";
 const SITE_URL = "https://bhvvoorneaanzee.nl";
 
 export default function FasePage({ phase }) {
+  const [openFaq, setOpenFaq] = useState(0);
   const data = phaseData[phase];
 
   useEffect(() => {
@@ -195,15 +196,32 @@ export default function FasePage({ phase }) {
             </p>
           </div>
           <div>
-            {data.faqs.map(([question, answer], index) => (
-              <details key={question} open={index === 0}>
-                <summary>
-                  {question}
-                  <span>+</span>
-                </summary>
-                <p>{answer}</p>
-              </details>
-            ))}
+            {data.faqs.map(([question, answer], index) => {
+              const isOpen = openFaq === index;
+              const answerId = `phase-${data.number}-faq-answer-${index}`;
+
+              return (
+                <article
+                  className={`phase-faq__item${isOpen ? " is-open" : ""}`}
+                  key={question}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={answerId}
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                  >
+                    {question}
+                    <span aria-hidden="true" />
+                  </button>
+                  <div className="phase-faq__answer" id={answerId}>
+                    <div>
+                      <p>{answer}</p>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

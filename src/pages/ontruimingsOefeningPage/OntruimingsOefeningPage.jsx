@@ -1,4 +1,4 @@
-import { createElement, useEffect } from "react";
+import { createElement, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -105,6 +105,7 @@ const faqs = [
 ];
 
 export default function OntruimingsOefeningPage() {
+  const [openFaq, setOpenFaq] = useState(0);
   useEffect(() => {
     document.querySelector("script[data-ontruiming-schema]")?.remove();
 
@@ -396,15 +397,32 @@ export default function OntruimingsOefeningPage() {
             <p>Staat jouw vraag er niet tussen? We denken graag mee.</p>
           </div>
           <div>
-            {faqs.map(([question, answer], index) => (
-              <details key={question} open={index === 0}>
-                <summary>
-                  {question}
-                  <span>+</span>
-                </summary>
-                <p>{answer}</p>
-              </details>
-            ))}
+            {faqs.map(([question, answer], index) => {
+              const isOpen = openFaq === index;
+              const answerId = `evac-faq-answer-${index}`;
+
+              return (
+                <article
+                  className={`evac-faq__item${isOpen ? " is-open" : ""}`}
+                  key={question}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={answerId}
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                  >
+                    {question}
+                    <span aria-hidden="true" />
+                  </button>
+                  <div className="evac-faq__answer" id={answerId}>
+                    <div>
+                      <p>{answer}</p>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

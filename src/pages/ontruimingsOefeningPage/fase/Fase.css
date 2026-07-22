@@ -338,28 +338,73 @@
 .phase-faq .phase-two-col {
   align-items: start;
 }
-.phase-faq details {
-  padding: 21px 0;
+.phase-faq__item {
   border-bottom: 1px solid #d4dedb;
 }
-.phase-faq summary {
+.phase-faq__item button {
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 18px;
+  padding: 21px 0;
+  border: 0;
   color: #172a3e;
+  background: transparent;
+  font: inherit;
   font-weight: 850;
-  list-style: none;
+  text-align: left;
   cursor: pointer;
 }
-.phase-faq summary::-webkit-details-marker {
-  display: none;
+.phase-faq__item button:focus-visible {
+  outline: 3px solid #ff68184d;
+  outline-offset: 4px;
 }
-.phase-faq summary span {
-  color: var(--phase-orange);
-  font-size: 22px;
+.phase-faq__item button span {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
-.phase-faq details p {
-  margin: 14px 35px 0 0;
+.phase-faq__item button span::before,
+.phase-faq__item button span::after {
+  position: absolute;
+  top: 8px;
+  left: 2px;
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--phase-orange);
+  content: "";
+  transition: transform 0.3s ease;
+}
+.phase-faq__item button span::after {
+  transform: rotate(90deg);
+}
+.phase-faq__item.is-open button span::before {
+  transform: rotate(45deg);
+}
+.phase-faq__item.is-open button span::after {
+  transform: rotate(135deg);
+}
+.phase-faq__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.38s ease,
+    opacity 0.28s ease;
+}
+.phase-faq__answer > div {
+  overflow: hidden;
+}
+.phase-faq__item.is-open .phase-faq__answer {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.phase-faq__answer p {
+  margin: 0;
+  padding: 0 35px 21px 0;
   color: #526274;
 }
 .phase-navigation {
@@ -500,7 +545,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .phase-button,
-  .phase-navigation__grid a {
+  .phase-navigation__grid a,
+  .phase-faq__answer,
+  .phase-faq__item button span::before,
+  .phase-faq__item button span::after {
     transition: none;
   }
 }
