@@ -36,8 +36,6 @@ const userService = {
             // companyName: form.companyName?.trim() || null,
         };
 
-        console.log("POST /users payload JSON:", JSON.stringify(payload, null, 2));
-
         const res = await api.post("/users", payload);
         return res.data;
     },

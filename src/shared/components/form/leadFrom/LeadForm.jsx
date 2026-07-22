@@ -18,7 +18,6 @@ function LeadForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Submitted!", formData);
         setShowModal(true); // show popup
     };
 

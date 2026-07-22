@@ -69,8 +69,6 @@ export default function CreateUserModal({ onClose, onCreated }) {
             setSaving(true);
             setError("");
 
-            console.log("SUBMIT FORM:", form);
-
             await userService.create(form);
 
             onCreated?.();

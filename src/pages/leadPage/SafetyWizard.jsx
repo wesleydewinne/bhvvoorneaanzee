@@ -62,9 +62,6 @@ export default function SafetyWizard({ onSubmit }) {
     function handleFinalSubmit(e) {
         e.preventDefault();
 
-        console.log("🚀 FORM SUBMIT GEDRUKT");
-        console.log("📦 ANSWERS OBJECT:", answers);
-
         onSubmit(answers);
     }
 

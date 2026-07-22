@@ -33,7 +33,6 @@ export default function ContactForm() {
         if (type === "offerte") toEmail = "offerte@bhvvoorneaanzee.nl";
         if (type === "advies") toEmail = "advies@bhvvoorneaanzee.nl";
 
-        console.log("Formulier verzonden:", formData, "naar:", toEmail);
         alert(`Bedankt! Je ${titles[type]} is verzonden naar ${toEmail}.`);
     };
 

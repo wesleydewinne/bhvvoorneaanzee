@@ -369,8 +369,6 @@ function TrainingForm({
                 ? buildUpdateTrainingPayload(formData)
                 : buildCreateTrainingPayload(formData);
 
-        console.log("Training payload:", JSON.stringify(payload, null, 2));
-
         onSubmit?.(payload);
     };
 

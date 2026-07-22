@@ -1,11 +1,6 @@
-import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 
 import "./Footer.css";
-
-const BackendStatus = lazy(() =>
-    import("@/shared/components/ui/status/BackendStatus.jsx")
-);
 
 const footerGroups = [
     {
@@ -65,12 +60,6 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <div className="footer-status">
-                    <Suspense fallback={null}>
-                        <BackendStatus />
-                    </Suspense>
-                </div>
-
                 <small className="footer-copy">
                     BHV Voorne aan Zee &copy; {new Date().getFullYear()} - Alle rechten voorbehouden -{" "}
                     <Link to="/bedrijfsgegevens">Bedrijfsgegevens</Link>

@@ -2,39 +2,12 @@ import "./HomePage.css";
 import { lazy, Suspense, useEffect, useState } from "react";
 import CTAButtons from "@/shared/components/ui/button/cta/CTAButton.jsx";
 import TrustBar from "@/shared/components/sections/trustBar/TrustBar.jsx";
+import GoogleReviewBadge from "@/features/reviews/components/GoogleReviewBadge.jsx";
 
 const HomePageDeferredSections = lazy(() => import("./HomePageDeferredSections.jsx"));
-const GoogleReviewBadge = lazy(() => import("@/features/reviews/components/GoogleReviewBadge.jsx"));
 
 function HomePage() {
     const [showDeferredSections, setShowDeferredSections] = useState(false);
-    const [showReviewBadge, setShowReviewBadge] = useState(false);
-
-    useEffect(() => {
-        let timeoutId = null;
-
-        const scheduleBadge = () => {
-            // Reviews are supporting content and do not belong to the critical
-            // rendering path of the hero. Load the component after LCP work.
-            timeoutId = window.setTimeout(() => {
-                setShowReviewBadge(true);
-            }, 1000);
-        };
-
-        if (document.readyState === "complete") {
-            scheduleBadge();
-        } else {
-            window.addEventListener("load", scheduleBadge, { once: true });
-        }
-
-        return () => {
-            window.removeEventListener("load", scheduleBadge);
-
-            if (timeoutId !== null) {
-                window.clearTimeout(timeoutId);
-            }
-        };
-    }, []);
 
     useEffect(() => {
         let idleId = null;
@@ -110,11 +83,7 @@ function HomePage() {
                                 BHV-trainingen, ploegleider-BHV en ontruimingsoefeningen in Voorne aan Zee en omgeving
                             </h1>
 
-                            {showReviewBadge && (
-                                <Suspense fallback={null}>
-                                    <GoogleReviewBadge />
-                                </Suspense>
-                            )}
+                            <GoogleReviewBadge />
                         </div>
 
                         <p className="homepage-hero__subtitle">

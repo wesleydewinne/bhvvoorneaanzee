@@ -57,7 +57,6 @@ export default function QuoteDetailMetaCard({
                         id="status"
                         value={formState.status}
                         onChange={(e) => {
-                            console.log("[QuoteDetailMetaCard] gekozen status", e.target.value);
                             onFieldChange("status", e.target.value)
                         }}
                     >

@@ -18,7 +18,6 @@ function QuizPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log("✅ QuizData geladen:", quizData);
         setQuiz(quizData);
     }, []);
 

@@ -17,10 +17,5 @@ export default function ProfilePage() {
         return <p>Geen profiel gevonden</p>;
     }
 
-    // Debug logging alleen in development
-    if (import.meta.env.DEV) {
-        console.log("Profile response:", user);
-    }
-
     return <ProfileLayout profile={user} />;
 }

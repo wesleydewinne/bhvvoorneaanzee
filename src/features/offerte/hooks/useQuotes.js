@@ -22,10 +22,6 @@ export default function useQuotes(initialFilter = "open") {
                 response = await quoteService.getOpenQuotes();
             }
 
-            console.log("[useQuotes] activeFilter:", activeFilter);
-            console.log("[useQuotes] raw response:", response);
-            console.log("[useQuotes] response.data:", response?.data);
-
             const data = response?.data;
 
             // 🔥 FIX: werkt met array én pageable response
@@ -40,8 +36,6 @@ export default function useQuotes(initialFilter = "open") {
             } else {
                 normalizedQuotes = [];
             }
-
-            console.log("[useQuotes] normalizedQuotes:", normalizedQuotes);
 
             setQuotes(normalizedQuotes);
 
