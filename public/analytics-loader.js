@@ -1,4 +1,4 @@
-(function loadAnalyticsWhenIdle() {
+(function loadAnalyticsAfterPageLoad() {
   if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return;
 
   function loadGtag() {
@@ -17,10 +17,13 @@
     window.gtag("config", "G-KNSP4TFGL3");
   }
 
-  if ("requestIdleCallback" in window) {
-    window.requestIdleCallback(loadGtag, { timeout: 5000 });
+  function scheduleAnalytics() {
+    window.setTimeout(loadGtag, 3000);
+  }
+
+  if (document.readyState === "complete") {
+    scheduleAnalytics();
   } else {
-    window.addEventListener("load", loadGtag, { once: true });
-    window.setTimeout(loadGtag, 8000);
+    window.addEventListener("load", scheduleAnalytics, { once: true });
   }
 })();
