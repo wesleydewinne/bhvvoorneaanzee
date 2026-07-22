@@ -1,5 +1,21 @@
 import api from "@/api/api";
 
+export async function getQuotePdfErrorMessage(error, fallbackMessage) {
+    const responseData = error?.response?.data;
+
+    if (responseData instanceof Blob) {
+        try {
+            const text = await responseData.text();
+            const data = JSON.parse(text);
+            return data?.message || data?.error || fallbackMessage;
+        } catch {
+            return fallbackMessage;
+        }
+    }
+
+    return error?.message || fallbackMessage;
+}
+
 const quoteService = {
     getTrainingTypes: () => api.get("/training-types/offer"),
 

@@ -7,7 +7,7 @@ import QuoteDetailNotesCard from "../components/QuoteDetailNotesCard.jsx";
 import QuoteDetailActions from "../components/QuoteDetailActions.jsx";
 import useQuoteDetail from "../hooks/useQuoteDetail.js";
 import { formatCurrency } from "../helpers/quoteFormatters.js";
-import quoteService from "../services/quoteService.js";
+import quoteService, { getQuotePdfErrorMessage } from "../services/quoteService.js";
 import "../styles/AdminQuoteDetailPage.css";
 
 function toSafeNumber(value) {
@@ -149,7 +149,10 @@ export default function AdminQuoteDetailPage() {
             link.remove();
             window.URL.revokeObjectURL(url);
         } catch (err) {
-            setDownloadError(err?.message || "Offerte downloaden is mislukt.");
+            setDownloadError(await getQuotePdfErrorMessage(
+                err,
+                "Offerte downloaden is mislukt."
+            ));
         } finally {
             setDownloading(false);
         }

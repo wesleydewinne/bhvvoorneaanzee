@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import QuoteStatusBadge from "./QuoteStatusBadge.jsx";
 import QuoteAddressBlock from "./QuoteAddressBlock.jsx";
 import { formatDateTime, formatMode } from "../helpers/quoteFormatters.js";
-import quoteService from "../services/quoteService.js";
+import quoteService, { getQuotePdfErrorMessage } from "../services/quoteService.js";
 
 export default function QuoteTableRow({ quote }) {
     const [openingPdf, setOpeningPdf] = useState(false);
@@ -33,9 +33,12 @@ export default function QuoteTableRow({ quote }) {
             link.click();
             link.remove();
             window.URL.revokeObjectURL(pdfUrl);
-        } catch {
+        } catch (error) {
             pdfWindow?.close();
-            window.alert("De offerte-PDF kon niet worden geopend.");
+            window.alert(await getQuotePdfErrorMessage(
+                error,
+                "De offerte-PDF kon niet worden geopend."
+            ));
         } finally {
             setOpeningPdf(false);
         }
