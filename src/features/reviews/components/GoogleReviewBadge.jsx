@@ -2,17 +2,17 @@ import useReviewSummary from "@/features/reviews/hooks/useReviewSummary.js";
 import "@/features/reviews/style/GoogleReviewBadge.css";
 
 function GoogleReviewBadge() {
-    const { summary } = useReviewSummary();
+    const { summary, loading, error } = useReviewSummary();
 
     const googleReviewsUrl =
         "https://www.google.com/maps/search/?api=1&query=BHV%20Voorne%20aan%20Zee%20Druivenhoek%2012%203181%20PK%20Rozenburg";
 
-    const hasSummary = Number.isFinite(Number(summary?.averageRating))
-        && Number(summary?.reviewCount) > 0;
-    const averageRating = hasSummary ? Number(summary.averageRating) : 0;
-    const formattedRating = hasSummary
-        ? averageRating.toFixed(1).replace(".", ",")
-        : null;
+    if (loading || error || !summary) {
+        return null;
+    }
+
+    const averageRating = Number(summary.averageRating || 0);
+    const formattedRating = averageRating.toFixed(1).replace(".", ",");
 
     const renderStars = (rating) => {
         return Array.from({ length: 5 }, (_, index) => {
@@ -38,9 +38,7 @@ function GoogleReviewBadge() {
             target="_blank"
             rel="noopener noreferrer"
             className="google-review-badge"
-            aria-label={hasSummary
-                ? `${formattedRating} van 5 op basis van ${summary.reviewCount} Google reviews`
-                : "Bekijk onze Google reviews"}
+            aria-label={`${formattedRating} van 5 op basis van ${summary.reviewCount} Google reviews`}
         >
             <span className="google-review-badge__header">
                 <span className="google-review-badge__brand" aria-hidden="true">
@@ -65,21 +63,12 @@ function GoogleReviewBadge() {
                     <strong>Reviews</strong>
                 </span>
 
-                <span
-                    className={`google-review-badge__summary${hasSummary ? " is-loaded" : ""}`}
-                    aria-live="polite"
-                >
-                    {hasSummary && (
-                        <>
-                            <span className="google-review-badge__stars">
-                                {renderStars(averageRating)}
-                            </span>
+                <span className="google-review-badge__stars">
+                    {renderStars(averageRating)}
+                </span>
 
-                            <span className="google-review-badge__score">
-                                {formattedRating} / 5 uit {summary.reviewCount} reviews
-                            </span>
-                        </>
-                    )}
+                <span className="google-review-badge__score">
+                    {formattedRating} / 5 uit {summary.reviewCount} reviews
                 </span>
 
                 <span className="google-review-badge__source">
