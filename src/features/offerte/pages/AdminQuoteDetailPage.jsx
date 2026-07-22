@@ -73,6 +73,9 @@ export default function AdminQuoteDetailPage() {
     const [discountOptions, setDiscountOptions] = useState([]);
     const [downloading, setDownloading] = useState(false);
     const [downloadError, setDownloadError] = useState("");
+    const [sending, setSending] = useState(false);
+    const [sendError, setSendError] = useState("");
+    const [sendSuccess, setSendSuccess] = useState("");
 
     const {
         quote,
@@ -100,7 +103,8 @@ export default function AdminQuoteDetailPage() {
         handleRemoveTraining,
         saveQuote,
         saveStatus,
-        archiveQuote
+        archiveQuote,
+        refresh
     } = useQuoteDetail(id);
 
     const trainings = useMemo(() => quote?.trainings ?? [], [quote?.trainings]);
@@ -148,6 +152,34 @@ export default function AdminQuoteDetailPage() {
             setDownloadError(err?.message || "Offerte downloaden is mislukt.");
         } finally {
             setDownloading(false);
+        }
+    };
+
+    const handleSendQuote = async () => {
+        const confirmed = window.confirm(
+            `Offerte ${quote?.quoteNumber || id} versturen naar ${quote?.email || "de klant"}?`
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        setSending(true);
+        setSendError("");
+        setSendSuccess("");
+
+        try {
+            await quoteService.sendQuote(id);
+            await refresh();
+            setSendSuccess("De offerte is met PDF-bijlage naar de klant verzonden.");
+        } catch (err) {
+            setSendError(
+                err?.response?.data?.message ||
+                err?.response?.data?.error ||
+                "De offerte kon niet worden verzonden."
+            );
+        } finally {
+            setSending(false);
         }
     };
 
@@ -292,7 +324,7 @@ export default function AdminQuoteDetailPage() {
                     <h2>Offerte downloaden</h2>
 
                     <p className="quote-download-text">
-                        Download de actuele offerte als PDF voor controle of verzending.
+                        Open de actuele offerte als PDF voor controle of printen. Na goedkeuring kun je de offerte vanuit dit scherm naar de klant versturen.
                     </p>
 
                     <div className="quote-download-actions">
@@ -304,7 +336,22 @@ export default function AdminQuoteDetailPage() {
                         >
                             {downloading ? "PDF maken..." : "Offerte downloaden"}
                         </button>
+                        {quote.status === "READY_TO_SEND" && (
+                            <button
+                                type="button"
+                                className="quote-btn quote-btn-primary"
+                                onClick={handleSendQuote}
+                                disabled={sending || downloading}
+                            >
+                                {sending ? "Versturen..." : "Goedkeuren en versturen"}
+                            </button>
+                        )}
+                        {quote.status !== "READY_TO_SEND" && quote.status !== "SENT" && (
+                            <small>Zet de status eerst op “Klaar om te versturen” na je controle.</small>
+                        )}
                         {downloadError && <p className="quote-feedback quote-feedback-error">{downloadError}</p>}
+                        {sendError && <p className="quote-feedback quote-feedback-error">{sendError}</p>}
+                        {sendSuccess && <p className="quote-feedback quote-feedback-success">{sendSuccess}</p>}
                     </div>
                 </section>
             </div>

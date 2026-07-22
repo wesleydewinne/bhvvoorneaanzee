@@ -14,7 +14,6 @@ export default function QuoteTable({ quotes }) {
             <table className="quote-table">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Offertenummer</th>
                     <th>Datum aanvraag</th>
                     <th>Bedrijf</th>

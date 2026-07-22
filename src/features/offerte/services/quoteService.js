@@ -1,35 +1,5 @@
 import api from "@/api/api";
 
-const CLOSED_QUOTE_STATUSES = ["ACCEPTED", "REJECTED", "EXPIRED", "ARCHIVED"];
-
-function normalizeQuotes(response) {
-    const data = response?.data;
-
-    if (Array.isArray(data)) {
-        return data;
-    }
-
-    if (Array.isArray(data?.content)) {
-        return data.content;
-    }
-
-    if (Array.isArray(data?.data)) {
-        return data.data;
-    }
-
-    return [];
-}
-
-async function getQuotesByClientFilter(predicate) {
-    const response = await api.get("/quotes");
-    const quotes = normalizeQuotes(response).filter(predicate);
-
-    return {
-        ...response,
-        data: quotes,
-    };
-}
-
 const quoteService = {
     getTrainingTypes: () => api.get("/training-types/offer"),
 
@@ -39,15 +9,15 @@ const quoteService = {
 
     getAllQuotes: () => api.get("/quotes"),
 
-    getOpenQuotes: () =>
-        getQuotesByClientFilter((quote) => !CLOSED_QUOTE_STATUSES.includes(quote?.status)),
+    getOpenQuotes: () => api.get("/quotes", { params: { archived: false } }),
 
-    getArchivedQuotes: () =>
-        getQuotesByClientFilter((quote) => quote?.status === "ARCHIVED"),
+    getArchivedQuotes: () => api.get("/quotes", { params: { archived: true } }),
 
     getQuoteById: (id) => api.get(`/quotes/${id}`),
 
     downloadQuotePdf: (id) => api.get(`/quotes/${id}/pdf`, { responseType: "blob" }),
+
+    sendQuote: (id) => api.post(`/quotes/${id}/send`),
 
     updateQuote: (id, payload) => api.put(`/quotes/${id}`, payload),
 

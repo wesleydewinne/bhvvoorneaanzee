@@ -17,6 +17,7 @@ const sidebarItems = [
     { key: "companies", label: "Bedrijven", to: "/admin/companies", icon: "companies" },
     { key: "locations", label: "Locaties", to: "/admin/locations", icon: "locations" },
     { key: "evaluations", label: "Evaluaties", to: "/admin/evaluations", icon: "evaluations" },
+    { key: "quotes", label: "Offertes", to: "/admin/offertes", icon: "quotes" },
     { key: "contact", label: "Contact", to: "/admin/contact-berichten", icon: "contact" },
     { key: "reviews", label: "Reviews", to: "/admin/reviews", icon: "reviews" },
     { key: "users", label: "Gebruikers", to: "/admin/users", icon: "users" },

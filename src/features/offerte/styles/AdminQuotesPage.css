@@ -110,9 +110,37 @@
     gap: 0.2rem;
 }
 
+.quote-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+}
+
 .quote-action-link {
-    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.7rem;
+    background: #fff;
+    color: #0f172a;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    font-size: 1.3rem;
+    font-weight: 700;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.quote-action-link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.quote-action-link:disabled {
+    cursor: wait;
+    opacity: 0.6;
 }
 
 .quote-status-badge {

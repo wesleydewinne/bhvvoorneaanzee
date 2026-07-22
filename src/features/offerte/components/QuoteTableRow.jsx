@@ -1,12 +1,48 @@
+import { useState } from "react";
+import { Eye, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
 import QuoteStatusBadge from "./QuoteStatusBadge.jsx";
 import QuoteAddressBlock from "./QuoteAddressBlock.jsx";
 import { formatDateTime, formatMode } from "../helpers/quoteFormatters.js";
+import quoteService from "../services/quoteService.js";
 
 export default function QuoteTableRow({ quote }) {
+    const [openingPdf, setOpeningPdf] = useState(false);
+
+    const handleOpenPdf = async () => {
+        const pdfWindow = window.open("", "_blank");
+        if (pdfWindow) pdfWindow.opener = null;
+        setOpeningPdf(true);
+
+        try {
+            const response = await quoteService.downloadQuotePdf(quote.id);
+            const pdfUrl = window.URL.createObjectURL(
+                new Blob([response.data], { type: "application/pdf" })
+            );
+
+            if (pdfWindow) {
+                pdfWindow.location.href = pdfUrl;
+                window.setTimeout(() => window.URL.revokeObjectURL(pdfUrl), 60_000);
+                return;
+            }
+
+            const link = document.createElement("a");
+            link.href = pdfUrl;
+            link.download = `offerte-${quote.quoteNumber || quote.id}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(pdfUrl);
+        } catch {
+            pdfWindow?.close();
+            window.alert("De offerte-PDF kon niet worden geopend.");
+        } finally {
+            setOpeningPdf(false);
+        }
+    };
+
     return (
         <tr>
-            <td>{quote.id}</td>
             <td>{quote.quoteNumber || "-"}</td>
             <td>{formatDateTime(quote.createdAt)}</td>
             <td>{quote.company || "-"}</td>
@@ -19,18 +55,30 @@ export default function QuoteTableRow({ quote }) {
                     city={quote.city}
                 />
             </td>
+            <td><QuoteStatusBadge status={quote.status} /></td>
             <td>
-                <QuoteStatusBadge status={quote.status} />
-            </td>
-            <td>
-                <Link
-                    className="quote-action-link"
-                    to={`/admin/offertes/${quote.id}`}
-                    aria-label={`Bekijk offerte ${quote.quoteNumber}`}
-                    title="Bekijk offerte"
-                >
-                    👁
-                </Link>
+                <div className="quote-action-buttons">
+                    <Link
+                        className="quote-action-link"
+                        to={`/admin/offertes/${quote.id}`}
+                        aria-label={`Bekijk offerte ${quote.quoteNumber || quote.id}`}
+                        title="Bekijken"
+                    >
+                        <Eye aria-hidden="true" size={18} />
+                        <span>Bekijken</span>
+                    </Link>
+                    <button
+                        type="button"
+                        className="quote-action-link"
+                        onClick={handleOpenPdf}
+                        disabled={openingPdf}
+                        aria-label={`Open en print offerte ${quote.quoteNumber || quote.id}`}
+                        title="PDF openen en printen"
+                    >
+                        <Printer aria-hidden="true" size={18} />
+                        <span>{openingPdf ? "Openen..." : "Printen"}</span>
+                    </button>
+                </div>
             </td>
         </tr>
     );

@@ -20,11 +20,6 @@ export default function QuoteDetailMetaCard({
 
             <div className="quote-detail-grid">
                 <div>
-                    <label>ID</label>
-                    <p>{quote.id}</p>
-                </div>
-
-                <div>
                     <label>Offertenummer</label>
                     <p>{quote.quoteNumber}</p>
                 </div>
@@ -60,7 +55,9 @@ export default function QuoteDetailMetaCard({
                             onFieldChange("status", e.target.value)
                         }}
                     >
-                        {quoteStatusOptions.map((option) => (
+                        {quoteStatusOptions
+                            .filter((option) => option.value !== "SENT" || quote.status === "SENT")
+                            .map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}
                             </option>

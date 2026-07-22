@@ -27,6 +27,9 @@ function quoteMatchesSearch(quote, searchTerm) {
         quote.houseNumber,
         quote.postalCode,
         quote.city,
+        quote.status,
+        quote.statusLabel,
+        quote.mode,
     ];
 
     return searchableFields.some((field) =>
@@ -82,7 +85,7 @@ export default function AdminQuotesPage() {
                 </div>
             </div>
 
-            {loading && <div className="quote-feedback">Offertes laden...</div>}
+            {loading && <div className="quote-feedback" role="status">Offertes laden...</div>}
             {error && <div className="quote-feedback quote-feedback-error">{error}</div>}
 
             {!loading && !error && <QuoteTable quotes={filteredQuotes} />}

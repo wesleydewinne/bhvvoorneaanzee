@@ -1,74 +1,62 @@
 import { useCallback, useEffect, useState } from "react";
 import quoteService from "../services/quoteService.js";
 
+function extractQuotes(response) {
+    const data = response?.data;
+
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data?.content)) return data.content;
+    if (Array.isArray(data?.data)) return data.data;
+
+    return [];
+}
+
+function extractErrorMessage(error) {
+    const responseData = error?.response?.data;
+
+    if (typeof responseData === "string" && responseData.trim()) {
+        return responseData;
+    }
+
+    return responseData?.message || error?.message || "Het laden van de offertes is mislukt.";
+}
+
 export default function useQuotes(initialFilter = "open") {
     const [filter, setFilter] = useState(initialFilter);
     const [quotes, setQuotes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const loadQuotes = useCallback(async (activeFilter = filter) => {
+    const loadQuotes = useCallback(async (activeFilter) => {
         setLoading(true);
         setError("");
 
         try {
-            let response;
+            const response = activeFilter === "archived"
+                ? await quoteService.getArchivedQuotes()
+                : activeFilter === "all"
+                    ? await quoteService.getAllQuotes()
+                    : await quoteService.getOpenQuotes();
 
-            if (activeFilter === "archived") {
-                response = await quoteService.getArchivedQuotes();
-            } else if (activeFilter === "all") {
-                response = await quoteService.getAllQuotes();
-            } else {
-                response = await quoteService.getOpenQuotes();
-            }
-
-            const data = response?.data;
-
-            // 🔥 FIX: werkt met array én pageable response
-            let normalizedQuotes = [];
-
-            if (Array.isArray(data)) {
-                normalizedQuotes = data;
-            } else if (Array.isArray(data?.content)) {
-                normalizedQuotes = data.content;
-            } else if (Array.isArray(data?.data)) {
-                normalizedQuotes = data.data;
-            } else {
-                normalizedQuotes = [];
-            }
-
-            setQuotes(normalizedQuotes);
-
-        } catch (err) {
-            console.error("❌ Offertes laden mislukt:", err);
-            console.error("[useQuotes] status:", err?.response?.status);
-            console.error("[useQuotes] data:", err?.response?.data);
-
-            setError(
-                err?.response?.data?.message ||
-                "Het laden van de offertes is mislukt."
-            );
+            setQuotes(extractQuotes(response));
+        } catch (requestError) {
+            setQuotes([]);
+            setError(extractErrorMessage(requestError));
         } finally {
             setLoading(false);
         }
-    }, [filter]);
+    }, []);
 
     useEffect(() => {
-        loadQuotes(filter);
+        void loadQuotes(filter);
     }, [filter, loadQuotes]);
-
-    const changeFilter = (nextFilter) => {
-        setFilter(nextFilter);
-    };
-
-    const refresh = () => loadQuotes(filter);
 
     return {
         quotes,
         loading,
         error,
         filter,
-        setFilter: changeFilter,
-        refresh,
+        setFilter,
+        refresh: () => loadQuotes(filter),
     };
 }

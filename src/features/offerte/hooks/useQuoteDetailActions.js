@@ -55,78 +55,41 @@ function extractApiErrorMessage(err, fallbackMessage) {
     return fallbackMessage;
 }
 
-function normalizeTrainingsForUpdate(trainings) {
+function normalizeTrainingsForUpdate(trainings, manualPricingIndex = null) {
     if (!Array.isArray(trainings)) {
         return [];
     }
 
-    return trainings.map((training) => ({
-        id: training?.id ?? null,
-        participantCount: toNullableInteger(training?.participantCount),
-        onSite: training?.onSite ?? false,
-        numberOfGroups: toNullableInteger(training?.numberOfGroups),
-        groupDistribution: training?.groupDistribution ?? null,
-        pricePerPerson: toNullableNumber(training?.pricePerPerson),
-        totalPrice: toNullableNumber(training?.totalPrice),
-        discountAmount: toNullableNumber(training?.discountAmount),
-        travelSurcharge: toNullableNumber(training?.travelSurcharge),
-        totalPriceAfterDiscount: toNullableNumber(training?.totalPriceAfterDiscount),
-        priceBeforeDiscount: toNullableNumber(training?.priceBeforeDiscount),
-        extraReturnKm: toNullableNumber(training?.extraReturnKm),
-        trainingType: training?.trainingType ?? null,
-        trainingName: training?.trainingName ?? null,
-        trainingDisplayName: training?.trainingDisplayName ?? null
-    }));
-}
+    return trainings.map((training, index) => {
+        const normalized = {
+            id: training?.id ?? null,
+            participantCount: toNullableInteger(training?.participantCount),
+            numberOfExercises: toNullableInteger(training?.numberOfExercises),
+            onSite: training?.onSite ?? false,
+            trainingType: training?.trainingType ?? null,
+            trainingName: training?.trainingName ?? null,
+            trainingDisplayName: training?.trainingDisplayName ?? null
+        };
 
-function calculateQuoteTotals(trainings = []) {
-    return (Array.isArray(trainings) ? trainings : []).reduce(
-        (acc, training) => {
-            const priceBeforeDiscount = roundCurrency(
-                toSafeNumber(training?.priceBeforeDiscount ?? training?.totalPrice ?? 0)
-            );
-            const discountAmount = roundCurrency(toSafeNumber(training?.discountAmount));
-            const travelSurcharge = roundCurrency(toSafeNumber(training?.travelSurcharge));
-            const totalExtraKm = roundCurrency(toSafeNumber(training?.extraReturnKm));
-
-            const totalPrice = roundCurrency(
-                Math.max(
-                    toSafeNumber(training?.totalPriceAfterDiscount ?? training?.totalPrice),
-                    0
-                )
-            );
-
-            acc.priceBeforeDiscount = roundCurrency(
-                acc.priceBeforeDiscount + priceBeforeDiscount
-            );
-            acc.discountAmount = roundCurrency(
-                acc.discountAmount + discountAmount
-            );
-            acc.travelSurcharge = roundCurrency(
-                acc.travelSurcharge + travelSurcharge
-            );
-            acc.totalPrice = roundCurrency(
-                acc.totalPrice + totalPrice
-            );
-            acc.totalExtraKm = roundCurrency(
-                acc.totalExtraKm + totalExtraKm
-            );
-
-            return acc;
-        },
-        {
-            priceBeforeDiscount: 0,
-            discountAmount: 0,
-            travelSurcharge: 0,
-            totalPrice: 0,
-            totalExtraKm: 0
+        if (index !== manualPricingIndex) {
+            return normalized;
         }
-    );
+
+        return {
+            ...normalized,
+            pricePerPerson: toNullableNumber(training?.pricePerPerson),
+            priceBeforeDiscount: toNullableNumber(training?.priceBeforeDiscount),
+            totalPrice: toNullableNumber(training?.totalPrice),
+            discountAmount: toNullableNumber(training?.discountAmount),
+            travelSurcharge: toNullableNumber(training?.travelSurcharge),
+            totalPriceAfterDiscount: toNullableNumber(training?.totalPriceAfterDiscount),
+            extraReturnKm: toNullableNumber(training?.extraReturnKm)
+        };
+    });
 }
 
-function buildUpdatePayload(formState, trainings = []) {
-    const normalizedTrainings = normalizeTrainingsForUpdate(trainings);
-    const totals = calculateQuoteTotals(normalizedTrainings);
+function buildUpdatePayload(formState, trainings = [], manualPricingIndex = null) {
+    const normalizedTrainings = normalizeTrainingsForUpdate(trainings, manualPricingIndex);
 
     return {
         status: formState.status || null,
@@ -135,20 +98,6 @@ function buildUpdatePayload(formState, trainings = []) {
         discountCode: formState.discountCode?.trim() || null,
 
         discountTrainingIndex: toNullableInteger(formState.discountTrainingIndex),
-        travelSurcharge: toNullableNumber(totals.travelSurcharge),
-        travelSurchargePerTraining: null,
-        priceBeforeDiscount: toNullableNumber(totals.priceBeforeDiscount),
-
-        discountAmount:
-            formState?.discountAmount !== "" &&
-            formState?.discountAmount !== null &&
-            formState?.discountAmount !== undefined
-                ? toNullableNumber(formState.discountAmount)
-                : toNullableNumber(totals.discountAmount),
-
-        totalPrice: toNullableNumber(totals.totalPrice),
-        totalExtraKm: toNullableNumber(totals.totalExtraKm),
-
         trainings: normalizedTrainings
     };
 }
@@ -222,7 +171,11 @@ export default function useQuoteDetailActions({
         setSuccessMessage("");
     };
 
-    const saveQuote = async (trainings = null, nextFormState = null) => {
+    const saveQuote = async (
+        trainings = null,
+        nextFormState = null,
+        manualPricingIndex = null
+    ) => {
         if (!id || !formState) {
             return false;
         }
@@ -239,7 +192,11 @@ export default function useQuoteDetailActions({
 
             const formStateForSave = nextFormState ?? formState;
 
-            const payload = buildUpdatePayload(formStateForSave, trainingsForSave);
+            const payload = buildUpdatePayload(
+                formStateForSave,
+                trainingsForSave,
+                manualPricingIndex
+            );
             const response = await quoteService.updateQuote(id, payload);
             const updated = response?.data;
 
@@ -402,7 +359,7 @@ export default function useQuoteDetailActions({
             discountTrainingIndex: String(index)
         };
 
-        const saved = await saveQuote(updatedTrainings, nextFormState);
+        const saved = await saveQuote(updatedTrainings, nextFormState, index);
 
         if (saved) {
             setSuccessMessage("Prijs van training bijgewerkt.");
