@@ -1,124 +1,434 @@
-import './OntruimingsOefeningPage.css';
+import { createElement, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Building2,
+  CheckCircle2,
+  ClipboardCheck,
+  Clock3,
+  Flame,
+  MapPin,
+  Radio,
+  Route,
+  ShieldCheck,
+  Siren,
+  Users,
+} from "lucide-react";
+import "./OntruimingsOefeningPage.css";
+import heroImage from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png?w=1600&format=webp&quality=82";
+import tabletopImage from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png?w=1000&format=webp&quality=78";
+import smokeImage from "@/assets/image/scenarios/Rookontwikkeling_technische_ruimte.png?w=900&format=webp&quality=78";
+import fireImage from "@/assets/image/scenarios/Containerbrand_tegen_pand.png?w=900&format=webp&quality=78";
 
-import Tile from "@/shared/components/ui/tile/Tile.jsx";
-import GeneralButton from "@/shared/components/ui/button/GeneralButton/GeneralButton.jsx";
-import { PersonSimpleRun } from "phosphor-react";
+const phases = [
+  [
+    "0",
+    "Tabletop-ontruimingsoefening",
+    "Ontruimingsplan en BHV-organisatie doorlichten",
+    "Tijdens deze begeleide tabletop-ontruimingsoefening bespreken we het ontruimingsplan, de taken van de BHV-organisatie en realistische noodscenario’s. Geschikt als nulmeting, na een verhuizing of verbouwing, bij gewijzigde risico’s of wanneer het ontruimingsplan is aangepast.",
+    ClipboardCheck,
+  ],
+  [
+    "1",
+    "Aangekondigde ontruimingsoefening",
+    "Veilig de ontruimingsprocedure oefenen",
+    "De datum en starttijd zijn vooraf bekend. Medewerkers en BHV’ers oefenen stap voor stap de alarmering, taakverdeling, vluchtroutes, controle van ruimten, verzamelplaats en overdracht. Ideaal om procedures aan te leren en samen ervaring op te doen.",
+    Users,
+  ],
+  [
+    "2",
+    "Ontruimingsoefening met onbekend tijdstip",
+    "Testen of de routine werkt",
+    "De oefendag of oefenweek is bekend, maar het exacte startmoment niet. Hierdoor ontstaat een realistischere praktijktest, terwijl medewerkers en BHV’ers gecontroleerd oefenen met alarmering, communicatie en het veilig ontruimen van het gebouw.",
+    Clock3,
+  ],
+  [
+    "3",
+    "Onaangekondigde ontruimingsoefening",
+    "Paraatheid testen onder tijdsdruk",
+    "Het moment en het scenario worden vooraf niet bekendgemaakt aan de deelnemers. We observeren hoe medewerkers en de BHV-organisatie zelfstandig alarmeren, communiceren, besluiten nemen en het gebouw ontruimen.",
+    Siren,
+  ],
+  [
+    "4",
+    "Ketenoefening ontruiming",
+    "Samenwerking tijdens een complex incident",
+    "Een uitgebreide ontruimingsoefening met meerdere interne disciplines en, wanneer passend, externe hulpdiensten of een LOTUS-slachtoffer. De focus ligt op samenwerking, opschaling, communicatie, commandovoering en overdracht tijdens een complex noodscenario.",
+    Radio,
+  ],
+];
 
-import tabletop from "@/assets/image/trainingen/ontruimingsoefening/Ontruimingsoefening tabletop.png?w=720&format=webp&quality=72";
-import ontruiming2 from "@/assets/image/trainingen/ontruimingsoefening/ontruiming.png?w=720&format=webp&quality=72";
-import CardFallback from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
+const steps = [
+  [
+    "01",
+    "Ontruimingsplan aanleveren",
+    "Vooraf ontvangen we graag het actuele ontruimingsplan, zodat we de organisatie, procedures en aandachtspunten kunnen beoordelen.",
+  ],
+  [
+    "02",
+    "Oefendoel en scenario bepalen",
+    "De klant geeft aan wat hij wil oefenen. Met behulp van onze scenariokaarten kan een passend en realistisch scenario worden gekozen.",
+  ],
+  [
+    "03",
+    "Voorbespreking op locatie",
+    "We zijn meestal een half uur voor de start aanwezig om de oefening, veiligheidsafspraken en laatste aandachtspunten gezamenlijk door te nemen.",
+  ],
+  [
+    "04",
+    "Evalueren en verbeteren",
+    "We vertalen bevindingen naar concrete en haalbare acties.",
+  ],
+];
 
-import React from "react";
+const faqs = [
+  [
+    "Hoe vaak moet je een ontruimingsoefening houden?",
+    "De wet noemt geen vaste frequentie voor iedere organisatie. De Nederlandse Arbeidsinspectie adviseert jaarlijks te oefenen. Stem de frequentie ook af op risico’s, bezetting, gebouw en eerdere bevindingen.",
+  ],
+  [
+    "Is aangekondigd of onaangekondigd oefenen beter?",
+    "Een aangekondigde oefening leert procedures veilig aan. Een onaangekondigde oefening geeft daarna een eerlijker beeld van de paraatheid.",
+  ],
+  [
+    "Wat wordt tijdens de oefening beoordeeld?",
+    "Onder meer alarmering, taakverdeling, communicatie, vluchtroutes, controle van ruimten, verzamelplaats, registratie en overdracht.",
+  ],
+  [
+    "Krijgen we een verslag?",
+    "Ja, de evaluatie kan worden vastgelegd in een praktisch verslag met observaties, sterke punten en verbeteracties.",
+  ],
+  [
+    "In welke regio voeren jullie ontruimingsoefeningen uit?",
+    "Wij verzorgen ontruimingsoefeningen op locatie in Voorne aan Zee, Brielle, Hellevoetsluis, Rockanje, Oostvoorne, Rozenburg, Spijkenisse, Nissewaard, Hoogvliet, Rotterdam, de Botlek, Vlaardingen, Maassluis, Schiedam, Barendrecht, Rhoon, de Hoeksche Waard, het Westland, Den Haag en delen van Zeeland. Staat jouw plaats er niet tussen? Neem dan contact op om de mogelijkheden te bespreken.",
+  ],
+];
 
-function OntruimingsOefeningPage() {
-    return (
-        <>
-        <section className="text-ontruimingsoefening-top">
-            <p>Een ontruimingsoefening bestaat uit verschillende stadia met oplopende moeilijkheidsgraad en complexiteit. Dit maakt het mogelijk om oefeningen te kiezen die passen bij de specifieke situatie en ervaring van een organisatie. In het begin leren medewerkers de theorie en basisprincipes van evacuatie, wat ideaal is voor nieuwe organisaties. Vervolgens wordt er een fysieke ontruiming gepland waarbij de datum en het tijdstip vooraf worden aangekondigd. Dit helpt om vertrouwd te raken met de procedures. Daarna wordt de dag van de oefening aangekondigd, maar blijft het exacte tijdstip onbekend. Dit vergroot het realisme en zorgt ervoor dat medewerkers alert blijven. Na verloop van tijd voert de organisatie een ontruimingsoefening uit zonder voorafgaande aankondiging of bespreking. De instructeur start de oefening onaangekondigd en de interne veiligheidsteam moet direct handelen. Een lotusslachtoffer kan ingezet worden om de oefening realistischer te maken en de vaardigheden te testen. In de meest uitdagende fase worden externe hulpdiensten zoals brandweer en ambulance betrokken. Zonder aankondiging starten zij de oefening samen met het interne team, wat de samenwerking en communicatie test. Deze uitgebreide oefeningen helpen om de paraatheid en veiligheid van de organisatie te verbeteren, zodat iedereen goed voorbereid is op een noodsituatie.</p>
-        </section>
-            <div className='inner-container-tile-reserve'>
-            <Tile
-                imageUrl={tabletop}
-                altText="Afbleeding van een tabletop ontruimingsoefeningen"
-        />
-        <Tile
-            title="Fase 0"
-            subtitle1="Tabletop oefening"
-            subtitle2="Doornemen ontruimingsplan met de BHV-organisatie"
-            description="Een tabletop oefening is een effectieve manier om een ontruimingsplan te testen en te verbeteren. Door de oefening op de locatie van de klant uit te voeren, kunnen we verschillende scenario's doornemen, zoals brand of gaslekken, en direct de praktische toepasbaarheid van het plan evalueren. Tijdens de oefening worden zowel het plan als de reacties van de medewerkers stap voor stap besproken. Dit biedt een gelegenheid om vragen te beantwoorden en onduidelijkheden op te lossen. Meerdere scenario's worden geoefend om ervoor te zorgen dat het personeel flexibel kan reageren op onverwachte situaties. Door de locatie te gebruiken, kunnen we tevens eventuele tekortkomingen in de fysieke omgeving identificeren, zoals ontoegankelijke nooduitgangen of onduidelijke noodverlichting. Na elke oefening evalueren we de resultaten en maken we verbeterpunten kenbaar. Het doel is om het personeel goed voorbereid te laten zijn, zodat ze weten wat te doen in geval van een noodsituatie, wat de veiligheid van iedereen ten goede komt."
-        />
-    </div>
-    <div className='inner-container-tile'>
-        <Tile
-            imageUrl={tabletop}
-            altText="Afbleeding van een tabletop ontruimingsoefeningen"
-        />
-        <Tile
-            title="Fase 1"
-            subtitle1="Fysieke Ontruiming"
-            subtitle2="Datum en tijdstip worden vooraf aangekondigd"
-            description="Voorafgaand aan de oefening vindt een uitgebreide voorbespreking plaats met de organisator, zoals het hoofd BHV. Tijdens deze bespreking worden de doelstellingen, scenario's en verantwoordelijkheden doorgenomen om iedereen goed voor te bereiden. De daadwerkelijke ontruiming wordt uitgevoerd onder begeleiding van een ervaren instructeur, die de oefening observeert en evalueert. Deze fase is vooral geschikt voor organisaties die nieuw zijn in hun gebouw of recent zijn verhuisd, omdat het helpt om vertrouwd te raken met de specifieke kenmerken van de locatie en de ontruimingsprocedures. Het doel is om de paraatheid van de organisatie te verbeteren en ervoor te zorgen dat iedereen weet wat te doen in een noodsituatie, wat bijdraagt aan een verhoogde veiligheid en een effectieve reactie tijdens een echte evacuatie."
-        />
-    </div>
-    <div className='inner-container-tile-reserve'>
-        <Tile
-            imageUrl={ontruiming2}
-            altText="Afbleeding van een tabletop ontruimingsoefeningen"
-        />
-        <Tile
-            title="fase 2"
-            subtitle1="Fysieke Ontruiming"
-            subtitle2="Dag of week worden vooraf aangekondigd"
-            description="Een fysieke ontruiming waarbij de dag of week vooraf wordt aangekondigd, maar niet het exacte tijdstip. Voorafgaand aan de oefening vindt een voorbespreking plaats met de organisator, zoals het hoofd BHV. De instructeur heeft een waarnemende rol in plaats van een leidende rol, waardoor medewerkers de ontruimingsprocedures zelf moeten toepassen. Dit verhoogt het realisme en test hoe snel en effectief het personeel reageert op een onverwachte noodsituatie, wat bijdraagt aan de algehele paraatheid en veiligheid van de organisatie."
-        />
-    </div>
-    <div className='inner-container-tile'>
-        <Tile
-            imageUrl={tabletop}
-            altText="Afbleeding van een tabletop ontruimingsoefeningen"
-        />
-        <Tile
-            title="fase 3"
-            subtitle1="Fysieke Ontruiming"
-            subtitle2="Dag of week wordt niet vooraf aangekondigd"
-            description="De ontruimingsoefening wordt de oefening zo realistisch mogelijk uitgevoerd zonder voorafgaande aankondiging van de dag of week. De instructeur komt onaangekondigd en onopvallend naar de organisatie en start de oefening. De uitvoering van de ontruiming ligt volledig in handen van de BHV-organisatie, waardoor hun paraatheid en reactievermogen op de proef worden gesteld. Daarnaast kan ervoor gekozen worden om een lotusslachtoffer in te zetten om de oefening nog realistischer te maken. Deze aanpak zorgt voor een grondige test van de ontruimingsprocedures en de effectieve samenwerking van het team in een onverwachte noodsituatie."
-        />
-    </div>
-    <div className='inner-container-tile-reserve'>
-        <Tile
-            imageUrl={CardFallback}
-            altText="Afbleeding van een tabletop ontruimingsoefeningen"
-        />
-        <Tile
-            title="fase 4"
-            subtitle1="Fysieke Ontruiming"
-            subtitle2="Externe hulpverleningsdiensten worden betrokken bij de oefening"
-            description="De ontruimingsoefening worden externe hulpdiensten betrokken. De oefening is vooraf niet aangekondigde bij het personeel. De instructeur blijft op de achtergrond en observeert, terwijl de BHV-organisatie de leiding heeft over de ontruiming. Externe hulpdiensten zoals brandweer en ambulance doen mee, wat de realiteit van de oefening vergroot en de communicatie en coördinatie tussen alle partijen test. Er kan ook een lotusslachtoffer worden ingezet om de oefening nog realistischer te maken. Dit helpt om mogelijke zwakke punten te identificeren en de paraatheid en veiligheid van de organisatie te verhogen."
-        />
-    </div>
+export default function OntruimingsOefeningPage() {
+  useEffect(() => {
+    document.querySelector("script[data-ontruiming-schema]")?.remove();
 
-    <section className='text-buttons-ontruimingsoefening-bottum'>
-        <div className="text-ontruimingsoefening-bottum">
-            <p>Als je net naar een nieuwe locatie bent verhuisd of nog nooit een ontruimingsoefening hebt gedaan, zijn een tabletop, Fase 0 en Fase 1 de perfecte startpunten om jouw organisatie voor te bereiden op noodsituaties. In de tabletop fase introduceren we de theorie en basisprincipes van evacuatie, zodat jouw personeel een grondig begrip krijgt van de procedures. Fase 1 omvat een fysieke ontruiming waarbij de datum en het tijdstip vooraf worden aangekondigd, met begeleiding van onze ervaren instructeurs om een soepel verloop te garanderen. Voor organisaties die al vaker hebben geoefend, bieden Fase 2, Fase 3 en Fase 4 een hogere mate van realisme en uitdaging. In Fase 2 wordt de dag aangekondigd, maar blijft het exacte tijdstip een verrassing, waardoor het team alert blijft. Fase 3 wordt volledig onaangekondigd uitgevoerd om de reactiesnelheid en paraatheid van jouw BHV-organisatie te testen. Voor de ultieme realistische simulatie wordt in Fase 4 de hulp van externe diensten zoals brandweer en ambulance ingeroepen. Dit test de samenwerking en communicatie tussen alle betrokkenen en maakt de oefening compleet. Door deze verschillende fases te doorlopen, kan jouw organisatie stapsgewijs de paraatheid en veiligheid verbeteren. Of je nu net bent verhuisd of al ervaring hebt met oefeningen, wij helpen je graag bij het plannen en uitvoeren van ontruimingsoefeningen om een veilige werkomgeving te creëren! Aarzel niet om contact op te nemen voor meer informatie en ondersteuning.</p>
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.dataset.ontruimingSchema = "true";
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          name: "Ontruimingsoefening op locatie",
+          provider: {
+            "@type": "Organization",
+            name: "BHV Voorne aan Zee",
+            url: "https://bhvvoorneaanzee.nl",
+          },
+          areaServed: [
+            "Voorne aan Zee",
+            "Rotterdam-Rijnmond",
+            "Westland",
+            "Den Haag",
+            "Zeeland",
+          ],
+          description:
+            "Realistische ontruimingsoefeningen van tabletop tot onaangekondigde ketenoefening, inclusief observatie en evaluatie.",
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: faqs.map(([name, text]) => ({
+            "@type": "Question",
+            name,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text,
+            },
+          })),
+        },
+      ],
+    });
+
+    document.head.appendChild(script);
+
+    return () => script.remove();
+  }, []);
+
+  return (
+    <main className="evac-page">
+      <section className="evac-hero" aria-labelledby="evac-title">
+        <img
+          className="evac-hero__image"
+          src={heroImage}
+          alt="BHV'ers voeren een realistische ontruimingsoefening uit"
+        />
+        <div className="evac-hero__shade" />
+
+        <div className="evac-shell evac-hero__content">
+          <p className="evac-eyebrow">
+            <Siren />
+            Ontruimingsoefening op jouw locatie
+          </p>
+          <h1 id="evac-title">
+            Weet jouw organisatie wat er gebeurt als het alarm <em>echt</em>{" "}
+            gaat?
+          </h1>
+          <p className="evac-hero__lead">
+            Geen oefening voor de vorm, maar een realistische test van mensen,
+            procedures en gebouw. Veilig opgebouwd, scherp geobserveerd en
+            direct vertaald naar verbetering.
+          </p>
+
+          <div className="evac-actions">
+            <Link className="evac-button primary" to="/offerte">
+              Plan jouw oefening <ArrowRight />
+            </Link>
+            <a className="evac-button ghost" href="#fases">
+              Bekijk de 5 fases
+            </a>
+          </div>
+
+          <ul className="evac-checks">
+            <li>
+              <CheckCircle2 /> Scenario op maat
+            </li>
+            <li>
+              <CheckCircle2 /> Op eigen locatie
+            </li>
+            <li>
+              <CheckCircle2 /> Heldere evaluatie
+            </li>
+          </ul>
         </div>
+      </section>
 
-        <div className="buttons-ontruimingsoefening">
-
-            <GeneralButton
-                text='Ontruimingsoefening fase 0'
-                to="/ontruimingsoefening-fase0"
-                icon= {<PersonSimpleRun size={20} />}
-                buttonstyle="button-dark"
-            />
-            <GeneralButton
-                text='Ontruimingsoefening fase 1'
-                to="/ontruimingsoefening-fase1"
-                icon= {<PersonSimpleRun size={20} />}
-                buttonstyle="button-dark"
-            />
-            <GeneralButton
-                text='ontruimingsoefening fase 2'
-                to="/ontruimingsoefening-fase2"
-                icon= {<PersonSimpleRun size={20} />}
-                buttonstyle="button-dark"
-            />
-            <GeneralButton
-                text='Ontruimingsoefening fase 3'
-                to="/ontruimingsoefening-fase3"
-                icon= {<PersonSimpleRun size={20} />}
-                buttonstyle="button-dark"
-            />
-            <GeneralButton
-                text="Ontruimingsoefening fase 4"
-                to="/ontruimingsoefening-fase4"
-                icon={<PersonSimpleRun size={20} />}
-                buttonClass="button-dark"
-            />
+      <section className="evac-proof">
+        <div className="evac-shell evac-proof__grid">
+          <div>
+            <MapPin />
+            <span>
+              <strong>Regionaal betrokken</strong>Voorne aan Zee &amp; Rijnmond
+            </span>
+          </div>
+          <div>
+            <Building2 />
+            <span>
+              <strong>Incompany</strong>Afgestemd op jouw gebouw
+            </span>
+          </div>
+          <div>
+            <ShieldCheck />
+            <span>
+              <strong>Praktijkgericht</strong>Van plan naar aantoonbare actie
+            </span>
+          </div>
         </div>
-    </section>
+      </section>
 
-        </>
-    );
+      <section className="evac-intro evac-slant">
+        <div className="evac-shell two-col">
+          <div>
+            <p className="evac-kicker">
+              Van papieren plan naar werkende praktijk
+            </p>
+            <h2>Een goede ontruiming begint vóór de sirene</h2>
+          </div>
+          <div>
+            <p>
+              Een ontruimingsplan zegt wat er moet gebeuren. Een oefening laat
+              zien of mensen het ook kunnen uitvoeren. Bereikt de melding
+              iedereen? Zijn rollen duidelijk? Worden ruimten gecontroleerd?
+            </p>
+            <p>
+              Wij bouwen iedere oefening op rond jouw risico’s, organisatie en
+              ervaringsniveau. Zo train je precies wat nodig is, met maximaal
+              leerrendement.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-phases" id="fases">
+        <div className="evac-shell">
+          <p className="evac-kicker">Stapsgewijs realistischer</p>
+          <div className="evac-heading">
+            <h2>Welke oefenfase past bij jouw organisatie?</h2>
+            <p>Start waar jouw team staat en bouw gecontroleerd verder.</p>
+          </div>
+
+          <div className="evac-phase-grid">
+            {phases.map(([number, title, label, text, Icon]) => (
+              <article className="evac-phase" key={number}>
+                <div className="evac-phase__top">
+                  <span>FASE {number}</span>
+                  {createElement(Icon)}
+                </div>
+                <small>{label}</small>
+                <h3>{title}</h3>
+                <p>{text}</p>
+                <Link to={`/ontruimingsoefening-fase${number}`}>
+                  Bekijk fase {number} <ArrowRight />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-scenarios evac-slant">
+        <div className="evac-shell two-col">
+          <div>
+            <p className="evac-kicker">
+              Geen toneelstukje. Wel een geloofwaardige prikkel.
+            </p>
+            <h2>Een scenario dat past bij jouw locatie</h2>
+            <p>
+              Rookontwikkeling vraagt iets anders dan brand bij een laadperron,
+              een geblokkeerde route of een vermist persoon. Het scenario
+              ondersteunt het leerdoel.
+            </p>
+            <ul className="evac-icon-list">
+              <li>
+                <Flame /> Realistische incidentontwikkeling
+              </li>
+              <li>
+                <Route /> Vluchtroutes en verzamelplaats getest
+              </li>
+              <li>
+                <Users /> Optioneel met LOTUS-slachtoffer
+              </li>
+              <li>
+                <Radio /> Communicatie onder druk
+              </li>
+            </ul>
+            <Link className="evac-link" to="/ontruimingsoefening-scenarios">
+              Bekijk scenario’s <ArrowRight />
+            </Link>
+          </div>
+
+          <div className="evac-images">
+            <figure>
+              <img
+                src={smokeImage}
+                alt="Scenario met rookontwikkeling in een technische ruimte"
+                loading="lazy"
+              />
+              <figcaption>Rookontwikkeling</figcaption>
+            </figure>
+            <figure>
+              <img
+                src={fireImage}
+                alt="Oefenscenario met brand nabij een bedrijfspand"
+                loading="lazy"
+              />
+              <figcaption>Brand nabij het pand</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-process">
+        <div className="evac-shell">
+          <p className="evac-kicker">Zo pakken we het aan</p>
+          <h2>Van intake tot concrete verbeteractie</h2>
+          <div className="evac-process__grid">
+            {steps.map(([number, title, text]) => (
+              <article key={number}>
+                <span>{number}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-tabletop">
+        <div className="evac-shell two-col">
+          <div className="evac-photo">
+            <img
+              src={tabletopImage}
+              alt="Tabletop ontruimingsoefening met plattegrond en scenario"
+              loading="lazy"
+            />
+            <span>Een sterke start</span>
+          </div>
+          <div>
+            <p className="evac-kicker">
+              Nog niet klaar voor een volledige ontruiming?
+            </p>
+            <h2>Begin aan tafel. Ontdek knelpunten vóórdat ze tellen.</h2>
+            <p>
+              Tijdens een tabletop doorloopt de BHV-organisatie een incident
+              stap voor stap. Rollen, routes, communicatie en beslismomenten
+              worden zichtbaar zonder de bedrijfsvoering stil te leggen.
+            </p>
+            <Link className="evac-button dark" to="/ontruimingsoefening-fase0">
+              Meer over tabletop <ArrowRight />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-region evac-slant">
+        <div className="evac-shell two-col">
+          <div>
+            <MapPin className="evac-big-icon" />
+            <p className="evac-kicker">Dichtbij, praktisch en persoonlijk</p>
+            <h2>De regionale specialist in realistisch oefenen</h2>
+          </div>
+          <div>
+            <p>
+              Vanuit Voorne aan Zee ondersteunen we organisaties in
+              Rotterdam-Rijnmond, Spijkenisse, Hoogvliet, Westland, Den Haag,
+              Zeeland en omgeving. Korte lijnen, kennis van de regio en een
+              oefening die past bij jouw werkvloer.
+            </p>
+            <Link className="evac-link dark-link" to="/regio">
+              Bekijk ons werkgebied <ArrowRight />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-faq">
+        <div className="evac-shell two-col">
+          <div>
+            <p className="evac-kicker">Direct antwoord</p>
+            <h2>Veelgestelde vragen</h2>
+            <p>Staat jouw vraag er niet tussen? We denken graag mee.</p>
+          </div>
+          <div>
+            {faqs.map(([question, answer], index) => (
+              <details key={question} open={index === 0}>
+                <summary>
+                  {question}
+                  <span>+</span>
+                </summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="evac-cta">
+        <div className="evac-shell evac-cta__box">
+          <div>
+            <p className="evac-kicker">Klaar om te weten waar je écht staat?</p>
+            <h2>Maak van veiligheid zichtbaar gedrag.</h2>
+            <p>
+              Vertel ons kort over je locatie. Dan adviseren we welke oefenfase
+              het meeste oplevert.
+            </p>
+          </div>
+          <div className="evac-actions">
+            <Link className="evac-button light" to="/offerte">
+              Vraag een voorstel aan <ArrowRight />
+            </Link>
+            <Link className="evac-button outline" to="/contact">
+              Eerst overleggen
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
-
-export default OntruimingsOefeningPage;

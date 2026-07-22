@@ -119,9 +119,9 @@
   },
 
   "/ontruimingsoefening": {
-    "title": "Ontruimingsoefeningen | Fase 0 t/m 4 - BHV Voorne aan Zee",
-    "description": "Praktijkgerichte ontruimingsoefeningen voor organisaties. Van tabletop tot realistische onaangekondigde oefeningen, begeleid door ervaren instructeurs.",
-    "keywords": "ontruimingsoefening, evacuatieoefening, BHV ontruiming, ontruimingsplan oefenen, veiligheidsoefening",
+    "title": "Ontruimingsoefening op locatie | BHV Voorne aan Zee",
+    "description": "Realistische ontruimingsoefening op jouw locatie in Voorne aan Zee en Rotterdam-Rijnmond. Van tabletop tot onaangekondigd, met evaluatie en verbeteracties.",
+    "keywords": "ontruimingsoefening, ontruimingsoefening op locatie, evacuatieoefening, BHV ontruiming, ontruimingsplan oefenen, tabletop oefening, Rotterdam Rijnmond",
     "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening"
   },
 
@@ -375,6 +375,41 @@
     "description": "Bedankt voor het invullen van de veiligheidscheck.",
     "keywords": "bedankt, veiligheidscheck, aanvraag ontvangen",
     "canonical": "https://bhvvoorneaanzee.nl/veiligheidscheck-bedankt"
+  },
+
+  "/ontruimingsoefening-fase0": {
+    "title": "Tabletop-ontruimingsoefening (Fase 0) | BHV Voorne aan Zee",
+    "description": "Test het ontruimingsplan met een tabletop-ontruimingsoefening op locatie. Breng BHV-rollen, vluchtroutes en knelpunten in kaart vóór de praktijk.",
+    "keywords": "tabletop ontruimingsoefening, fase 0 ontruiming, ontruimingsplan testen, BHV tabletop, ontruimingsoefening op locatie",
+    "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase0"
+  },
+
+  "/ontruimingsoefening-fase1": {
+    "title": "Aangekondigde ontruimingsoefening (Fase 1) | BHV Voorne aan Zee",
+    "description": "Leer medewerkers en BHV'ers veilig ontruimen met een aangekondigde ontruimingsoefening. Praktijkgericht, incompany en inclusief evaluatie.",
+    "keywords": "aangekondigde ontruimingsoefening, fase 1 ontruiming, ontruiming oefenen bedrijf, BHV oefening op locatie",
+    "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase1"
+  },
+
+  "/ontruimingsoefening-fase2": {
+    "title": "Ontruimingsoefening met onbekend tijdstip (Fase 2)",
+    "description": "Test de dagelijkse paraatheid met een ontruimingsoefening waarvan het startmoment onbekend is. Inclusief observatie, tijdlijn en verbeteracties.",
+    "keywords": "ontruimingsoefening onbekend tijdstip, fase 2 ontruiming, BHV paraatheid testen, realistische ontruimingsoefening",
+    "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase2"
+  },
+
+  "/ontruimingsoefening-fase3": {
+    "title": "Onaangekondigde ontruimingsoefening (Fase 3) | BHV Voorne aan Zee",
+    "description": "Toets ervaren BHV-teams met een veilig voorbereide onaangekondigde ontruimingsoefening. Meet communicatie, besluitvorming en uitvoering.",
+    "keywords": "onaangekondigde ontruimingsoefening, fase 3 ontruiming, BHV organisatie testen, ontruiming onder tijdsdruk",
+    "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase3"
+  },
+
+  "/ontruimingsoefening-fase4": {
+    "title": "Ketenoefening ontruiming (Fase 4) | BHV Voorne aan Zee",
+    "description": "Train BHV, ploegleiding en crisisorganisatie samen in een complexe ketenoefening. Gericht op opschaling, communicatie en overdracht.",
+    "keywords": "ketenoefening ontruiming, fase 4 ontruiming, BHV ketenoefening, crisisoefening bedrijf, complexe ontruimingsoefening",
+    "canonical": "https://bhvvoorneaanzee.nl/ontruimingsoefening-fase4"
   },
 
   "/contact/bedankt": {
