@@ -106,7 +106,7 @@ export default function OfferteAanvraagPage() {
         let waitForTurnstile = null;
 
         const renderTurnstile = () => {
-            if (!window.turnstile || !captchaRef.current || widgetIdRef.current) {
+            if (!window.turnstile || !captchaRef.current || widgetIdRef.current !== null) {
                 return false;
             }
 
@@ -120,8 +120,15 @@ export default function OfferteAanvraagPage() {
             return true;
         };
 
+        const removeTurnstile = () => {
+            if (window.turnstile && widgetIdRef.current !== null) {
+                window.turnstile.remove(widgetIdRef.current);
+                widgetIdRef.current = null;
+            }
+        };
+
         if (renderTurnstile()) {
-            return;
+            return removeTurnstile;
         }
 
         const scriptSrc = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
@@ -138,6 +145,7 @@ export default function OfferteAanvraagPage() {
                 if (waitForTurnstile) {
                     window.clearInterval(waitForTurnstile);
                 }
+                removeTurnstile();
             };
         }
 
@@ -155,6 +163,7 @@ export default function OfferteAanvraagPage() {
             if (waitForTurnstile) {
                 window.clearInterval(waitForTurnstile);
             }
+            removeTurnstile();
         };
     }, [siteKey]);
 

@@ -28,7 +28,7 @@ export default function LoginPage() {
         }
 
         const renderTurnstile = () => {
-            if (!window.turnstile || !captchaRef.current || widgetIdRef.current) {
+            if (!window.turnstile || !captchaRef.current || widgetIdRef.current !== null) {
                 return;
             }
 
@@ -52,9 +52,16 @@ export default function LoginPage() {
             });
         };
 
+        const removeTurnstile = () => {
+            if (window.turnstile && widgetIdRef.current !== null) {
+                window.turnstile.remove(widgetIdRef.current);
+                widgetIdRef.current = null;
+            }
+        };
+
         if (window.turnstile) {
             renderTurnstile();
-            return;
+            return removeTurnstile;
         }
 
         const existingScript = document.querySelector(
@@ -65,6 +72,7 @@ export default function LoginPage() {
             existingScript.addEventListener("load", renderTurnstile);
             return () => {
                 existingScript.removeEventListener("load", renderTurnstile);
+                removeTurnstile();
             };
         }
 
@@ -77,6 +85,7 @@ export default function LoginPage() {
 
         return () => {
             script.removeEventListener("load", renderTurnstile);
+            removeTurnstile();
         };
     }, [captchaDisabled, siteKey]);
 
@@ -87,7 +96,7 @@ export default function LoginPage() {
             return;
         }
 
-        if (window.turnstile && widgetIdRef.current) {
+        if (window.turnstile && widgetIdRef.current !== null) {
             window.turnstile.reset(widgetIdRef.current);
         }
 
