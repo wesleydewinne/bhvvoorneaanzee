@@ -13,7 +13,7 @@
         0 22px 44px rgba(0, 0, 0, 0.34),
         inset 0 1px 0 rgba(255, 255, 255, 0.18);
     isolation: isolate;
-    transform-style: preserve-3d;
+    transform-style: flat;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -122,6 +122,8 @@
 }
 
 .training-card-button {
+    position: relative;
+    z-index: 10;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -137,6 +139,7 @@
     font-weight: 800;
     text-align: center;
     text-decoration: none;
+    pointer-events: auto;
     backdrop-filter: blur(6px);
     transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
@@ -146,6 +149,14 @@
     background: var(--color-accent, #ffa000);
     color: #111827;
     transform: translateY(-2px);
+}
+
+.training-card-button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+    border-color: var(--color-accent, #ffa000);
+    background: var(--color-accent, #ffa000);
+    color: #111827;
 }
 
 @media (max-width: 576px) {

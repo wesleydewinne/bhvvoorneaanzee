@@ -74,32 +74,6 @@ const TrainingCardSection = ({ title, cards = [], initialFocusId }) => {
                     </h2>
                 )}
 
-                {cards.length > 1 && (
-                    <div className="training-card-carousel-controls" aria-label="Trainingsaanbod carousel bediening">
-                        <button
-                            className="training-card-carousel-button"
-                            type="button"
-                            aria-label="Vorige trainingen bekijken"
-                            onClick={() => scrollCarousel(-1)}
-                        >
-                            <span
-                                className="training-card-carousel-icon training-card-carousel-icon--prev"
-                                aria-hidden="true"
-                            />
-                        </button>
-                        <button
-                            className="training-card-carousel-button"
-                            type="button"
-                            aria-label="Volgende trainingen bekijken"
-                            onClick={() => scrollCarousel(1)}
-                        >
-                            <span
-                                className="training-card-carousel-icon training-card-carousel-icon--next"
-                                aria-hidden="true"
-                            />
-                        </button>
-                    </div>
-                )}
             </div>
 
             <div className="training-card-grid" ref={carouselRef}>
@@ -120,6 +94,36 @@ const TrainingCardSection = ({ title, cards = [], initialFocusId }) => {
                     </div>
                 ))}
             </div>
+
+            {cards.length > 1 && (
+                <div
+                    className="training-card-carousel-controls"
+                    aria-label="Trainingsaanbod carousel bediening"
+                >
+                    <button
+                        className="training-card-carousel-button"
+                        type="button"
+                        aria-label="Vorige trainingen bekijken"
+                        onClick={() => scrollCarousel(-1)}
+                    >
+                        <span
+                            className="training-card-carousel-icon training-card-carousel-icon--prev"
+                            aria-hidden="true"
+                        />
+                    </button>
+                    <button
+                        className="training-card-carousel-button"
+                        type="button"
+                        aria-label="Volgende trainingen bekijken"
+                        onClick={() => scrollCarousel(1)}
+                    >
+                        <span
+                            className="training-card-carousel-icon training-card-carousel-icon--next"
+                            aria-hidden="true"
+                        />
+                    </button>
+                </div>
+            )}
         </section>
     );
 };

@@ -38,6 +38,14 @@
           "slug": "/bhv-herhaling-e-learning",
           "cardImage": "bhvherhalingcursusmetelearning.webp",
           "cardAlt": "Herhaling BHV met e-learning"
+        },
+        {
+          "type": "bhv-ritme",
+          "title": "BHV Ritme",
+          "description": "Twee of drie praktijkmomenten verspreid over het jaar",
+          "slug": "/bhv-ritme",
+          "cardImage": "bhvtraining.webp",
+          "cardAlt": "BHV Ritme doorlopende praktijktraining op locatie"
         }
       ]
     },

@@ -1,4 +1,5 @@
 import "./TrainingCard.css";
+import { Link } from "react-router-dom";
 
 /**
  * TrainingCard
@@ -16,10 +17,6 @@ const TrainingCard = ({
                           // alt props (nieuw & legacy)
                           alt = "Afbeelding van training",
                           cardAlt,
-
-                          // legacy props (worden bewust genegeerd)
-                          pricing = {},
-                          showPrice = false,
 
                           // CTA
                           buttonTo = "#",
@@ -64,8 +61,8 @@ const TrainingCard = ({
                 </div>
 
                 {/* CTA BUTTON */}
-                <a
-                    href={buttonTo}
+                <Link
+                    to={buttonTo}
                     className={`training-card-button ${buttonStyle}`}
                 >
                     {buttonIcon && (
@@ -75,7 +72,7 @@ const TrainingCard = ({
                     )}
 
                     {buttonText}
-                </a>
+                </Link>
 
             </div>
         </article>
