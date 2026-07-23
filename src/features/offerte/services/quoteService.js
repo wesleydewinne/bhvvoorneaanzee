@@ -31,7 +31,10 @@ const quoteService = {
 
     getQuoteById: (id) => api.get(`/quotes/${id}`),
 
-    downloadQuotePdf: (id) => api.get(`/quotes/${id}/pdf`, { responseType: "blob" }),
+    downloadQuotePdf: (id) => api.get(`/quotes/${id}/pdf`, {
+        responseType: "blob",
+        headers: { Accept: "application/pdf" },
+    }),
 
     sendQuote: (id) => api.post(`/quotes/${id}/send`),
 
