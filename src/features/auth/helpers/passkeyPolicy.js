@@ -34,8 +34,8 @@ export function requiresPasskeyForUser(user) {
 }
 
 export function getPostLoginPath(user) {
-    if (user?.mustChangePassword) {
-        return "/account/wachtwoord-wijzigen";
+    if (requiresPasskeyForUser(user)) {
+        return "/account/passkey-aanmaken";
     }
-    return requiresPasskeyForUser(user) ? "/account/passkey-aanmaken" : "/dashboard";
+    return user?.mustChangePassword ? "/account/wachtwoord-wijzigen" : "/dashboard";
 }

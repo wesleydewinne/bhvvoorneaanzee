@@ -17,16 +17,15 @@ export default function ProtectedRoute({ children }) {
         return <Navigate to="/inloggen" replace />;
     }
 
-    if (user?.mustChangePassword && location.pathname !== PASSWORD_CHANGE_PATH) {
-        return <Navigate to={PASSWORD_CHANGE_PATH} replace />;
-    }
-
     if (
-        !user?.mustChangePassword &&
         requiresPasskeyForUser(user) &&
         location.pathname !== PASSKEY_SETUP_PATH
     ) {
         return <Navigate to={PASSKEY_SETUP_PATH} replace />;
+    }
+
+    if (user?.mustChangePassword && location.pathname !== PASSWORD_CHANGE_PATH) {
+        return <Navigate to={PASSWORD_CHANGE_PATH} replace />;
     }
 
     return children;
