@@ -49,10 +49,6 @@ const authService = {
         return api.post("/auth/passkeys/registration/verify", payload);
     },
 
-    refreshSession() {
-        return api.post("/auth/refresh");
-    },
-
     deletePasskey(id) {
         return api.delete(`/auth/passkeys/${id}`);
     },

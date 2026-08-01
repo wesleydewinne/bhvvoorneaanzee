@@ -34,8 +34,20 @@ export function requiresPasskeyForUser(user) {
 }
 
 export function getPostLoginPath(user) {
-    if (requiresPasskeyForUser(user)) {
-        return "/account/passkey-aanmaken";
+    return getRequiredSecurityPath(user) || "/dashboard";
+}
+
+export function getRequiredSecurityPath(user) {
+    switch (user?.securityOnboardingAction) {
+        case "PASSKEY_SETUP":
+            return "/account/passkey-aanmaken";
+        case "PASSWORD_CHANGE":
+            return "/account/wachtwoord-wijzigen";
+        case "READY":
+            return null;
+        default:
+            if (requiresPasskeyForUser(user)) return "/account/passkey-aanmaken";
+            if (user?.mustChangePassword) return "/account/wachtwoord-wijzigen";
+            return null;
     }
-    return user?.mustChangePassword ? "/account/wachtwoord-wijzigen" : "/dashboard";
 }

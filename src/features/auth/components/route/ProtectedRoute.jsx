@@ -1,9 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "@/features/auth/hooks/useAuth.js";
-import { requiresPasskeyForUser } from "@/features/auth/helpers/passkeyPolicy.js";
-
-const PASSWORD_CHANGE_PATH = "/account/wachtwoord-wijzigen";
-const PASSKEY_SETUP_PATH = "/account/passkey-aanmaken";
+import { getRequiredSecurityPath } from "@/features/auth/helpers/passkeyPolicy.js";
 
 export default function ProtectedRoute({ children }) {
     const location = useLocation();
@@ -17,15 +14,10 @@ export default function ProtectedRoute({ children }) {
         return <Navigate to="/inloggen" replace />;
     }
 
-    if (
-        requiresPasskeyForUser(user) &&
-        location.pathname !== PASSKEY_SETUP_PATH
-    ) {
-        return <Navigate to={PASSKEY_SETUP_PATH} replace />;
-    }
+    const requiredSecurityPath = getRequiredSecurityPath(user);
 
-    if (user?.mustChangePassword && location.pathname !== PASSWORD_CHANGE_PATH) {
-        return <Navigate to={PASSWORD_CHANGE_PATH} replace />;
+    if (requiredSecurityPath && location.pathname !== requiredSecurityPath) {
+        return <Navigate to={requiredSecurityPath} replace />;
     }
 
     return children;

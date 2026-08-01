@@ -279,7 +279,6 @@ export function AuthProvider({ children }) {
             };
 
             await authService.finishPasskeyRegistration(payload);
-            await authService.refreshSession();
             await refreshUser();
 
             return { success: true };
