@@ -1,4 +1,5 @@
 import useReviewSummary from "@/features/reviews/hooks/useReviewSummary.js";
+import { Star } from "lucide-react";
 import "@/features/reviews/style/GoogleReviewBadge.css";
 
 function GoogleReviewBadge() {
@@ -20,12 +21,12 @@ function GoogleReviewBadge() {
 
             return (
                 <span key={index} className="google-review-badge__star" aria-hidden="true">
-                    <span className="google-review-badge__star-base">{"\u2605"}</span>
+                    <Star className="google-review-badge__star-base" />
                     <span
                         className="google-review-badge__star-fill"
                         style={{ width: `${fillPercentage}%` }}
                     >
-                        {"\u2605"}
+                        <Star />
                     </span>
                 </span>
             );

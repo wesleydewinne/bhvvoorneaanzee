@@ -31,15 +31,15 @@ function CreateCompanyPage() {
     };
 
     return (
-        <main className="companies-page">
+        <main className="companies-page dashboard-admin-page">
             <div className="companies-page__container">
-                <section className="companies-page__header">
+                <section className="dashboard-admin-hero companies-page__header">
                     <div>
                         <h1>Nieuw bedrijf</h1>
                         <p>Voeg een nieuw bedrijf toe.</p>
                     </div>
 
-                    <Link to="/admin/companies" className="button button--secondary">
+                    <Link to="/admin/companies" className="dashboard-admin-button dashboard-admin-button--secondary">
                         Terug
                     </Link>
                 </section>

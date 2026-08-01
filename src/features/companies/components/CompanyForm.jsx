@@ -72,7 +72,7 @@ function CompanyForm({
                 </div>
             ) : null}
 
-            <div className="form-grid">
+            <div className="company-form__grid">
                 <div className="form-field form-field--full">
                     <label htmlFor="name">Bedrijfsnaam</label>
 
@@ -114,7 +114,7 @@ function CompanyForm({
             </div>
 
             <div className="company-form__actions">
-                <button type="submit" className="button" disabled={loading}>
+                <button type="submit" className="dashboard-admin-button" disabled={loading}>
                     {loading ? "Bezig..." : submitLabel}
                 </button>
             </div>

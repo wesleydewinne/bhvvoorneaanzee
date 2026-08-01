@@ -88,9 +88,9 @@ function CompanyDetailPage() {
     }
 
     return (
-        <main className="companies-page">
+        <main className="companies-page dashboard-admin-page">
             <div className="companies-page__container">
-                <section className="companies-page__header">
+                <section className="dashboard-admin-hero companies-page__header">
                     <div>
                         <h1>Bedrijf details</h1>
                         <p>Bekijk alle gegevens van dit bedrijf.</p>
@@ -99,7 +99,7 @@ function CompanyDetailPage() {
                     <div className="companies-page__header-actions">
                         <button
                             type="button"
-                            className="button button--secondary"
+                            className="dashboard-admin-button dashboard-admin-button--secondary"
                             onClick={() => navigate("/admin/companies")}
                         >
                             Terug
@@ -107,7 +107,7 @@ function CompanyDetailPage() {
 
                         <button
                             type="button"
-                            className="button"
+                            className="dashboard-admin-button"
                             onClick={() => navigate(`/admin/companies/${company.id}/edit`)}
                         >
                             Bewerken
@@ -115,7 +115,7 @@ function CompanyDetailPage() {
 
                         <button
                             type="button"
-                            className="button button--danger"
+                            className="dashboard-admin-button company-danger-button"
                             onClick={handleDelete}
                             disabled={deleting}
                         >

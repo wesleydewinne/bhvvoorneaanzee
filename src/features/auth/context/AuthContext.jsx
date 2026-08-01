@@ -16,6 +16,7 @@ import {
 export const AuthContext = createContext(null);
 
 const AUTH_SESSION_MARKER = "bhv-auth-session";
+const DEV_AUTH_BYPASS = import.meta.env.DEV && import.meta.env.VITE_DEV_AUTH_BYPASS === "true";
 
 function hasKnownSession() {
     return window.localStorage.getItem(AUTH_SESSION_MARKER) === "active";
@@ -82,7 +83,7 @@ export function AuthProvider({ children }) {
         let isMounted = true;
 
         const initializeAuth = async () => {
-            if (!hasKnownSession()) {
+            if (!hasKnownSession() && !DEV_AUTH_BYPASS) {
                 setAuthInitialized(true);
                 return;
             }
@@ -278,6 +279,7 @@ export function AuthProvider({ children }) {
             };
 
             await authService.finishPasskeyRegistration(payload);
+            await authService.refreshSession();
             await refreshUser();
 
             return { success: true };

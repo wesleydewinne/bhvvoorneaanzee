@@ -85,21 +85,23 @@ function LocationForm({ initialValues, onSubmit, submitLabel = "Opslaan", loadin
 
     return <form className="location-form" onSubmit={handleSubmit} noValidate>
         {serverError ? <div className="form-message form-message--error">{serverError}</div> : null}
+        <div className="location-form__workspace">
         <section className="location-form__panel">
             <div className="location-form__section-heading"><h2>Locatiegegevens</h2><p>Adres, bereikbaarheid en gebouwinformatie.</p></div>
             <div className="form-grid">
-            {basicFields.map(([name, label, type]) => <div className="form-field" key={name}>
+            {basicFields.map(([name, label, type]) => <div className={`form-field location-form__standard-field${name === "locationName" ? " form-field--full" : ""}`} key={name}>
                 <label htmlFor={name}>{label}</label>
                 <input id={name} type={type} min={type === "number" ? "0" : undefined} value={form[name]} onChange={(e) => setField(name, e.target.value)} />
                 {errors[name] ? <p className="form-error">{errors[name]}</p> : null}
             </div>)}
-            <div className="form-field form-field--full"><label htmlFor="description">Omschrijving</label><textarea id="description" rows="5" value={form.description} onChange={(e) => setField("description", e.target.value)} /></div>
-            <div className="form-field form-field--full"><label htmlFor="parkingInfo">Parkeerinformatie</label><textarea id="parkingInfo" rows="4" value={form.parkingInfo} onChange={(e) => setField("parkingInfo", e.target.value)} /></div>
-            <div className="form-field form-field--full"><label htmlFor="locationImageUrl">Externe foto-URL</label><input id="locationImageUrl" type="url" value={form.locationImageUrl || ""} onChange={(e) => setField("locationImageUrl", e.target.value)} /></div>
-            <div className="form-field form-field--full"><label htmlFor="locationImageFile">Locatiefoto uploaden</label><input id="locationImageFile" type="file" accept="image/*" onChange={(e) => setField("locationImageFile", e.target.files?.[0] ?? null)} /></div>
+            <div className="form-field location-form__wide-field"><label htmlFor="description">Omschrijving</label><textarea id="description" rows="4" value={form.description} onChange={(e) => setField("description", e.target.value)} /></div>
+            <div className="form-field location-form__wide-field"><label htmlFor="parkingInfo">Parkeerinformatie</label><textarea id="parkingInfo" rows="4" value={form.parkingInfo} onChange={(e) => setField("parkingInfo", e.target.value)} /></div>
+            <div className="form-field location-form__wide-field"><label htmlFor="locationImageUrl">Externe foto-URL</label><input id="locationImageUrl" type="url" value={form.locationImageUrl || ""} onChange={(e) => setField("locationImageUrl", e.target.value)} /></div>
+            <div className="form-field location-form__wide-field"><label htmlFor="locationImageFile">Locatiefoto uploaden</label><input id="locationImageFile" type="file" accept="image/*" onChange={(e) => setField("locationImageFile", e.target.files?.[0] ?? null)} /></div>
             </div>
         </section>
 
+        <aside className="location-form__sidebar">
         <section className="nested-form-section">
             <div className="nested-form-section__header"><div><h2>Bedrijven op deze locatie</h2><p>Leg per bedrijf de vestigings- en contactgegevens vast.</p></div><button type="button" className="button button--secondary" onClick={() => setField("companyLocations", [...form.companyLocations, emptyCompanyLocation()])}>Bedrijf koppelen</button></div>
             {companiesLoading ? <p>Bedrijven laden...</p> : null}{companiesError ? <p className="form-error">{companiesError}</p> : null}
@@ -136,6 +138,8 @@ function LocationForm({ initialValues, onSubmit, submitLabel = "Opslaan", loadin
                 </div>
             </article>)}
         </section>
+        </aside>
+        </div>
         <div className="location-form__actions"><span>Controleer de gegevens voordat je opslaat.</span><button type="submit" className="button" disabled={loading || companiesLoading}>{loading ? "Bezig..." : submitLabel}</button></div>
     </form>;
 }

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { BriefcaseBusiness, Eye, Mail, Pencil, Phone, Trash2, UserRound } from "lucide-react";
 
 function CompaniesTable({ companies, onDelete }) {
     const navigate = useNavigate();
@@ -13,24 +13,24 @@ function CompaniesTable({ companies, onDelete }) {
     }
 
     return (
-        <div className="companies-table-wrapper">
-            <table className="companies-table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Bedrijfsnaam</th>
-                    <th className="companies-table__actions-column">Acties</th>
-                </tr>
-                </thead>
+        <div className="companies-grid">
+            {companies.map((company) => (
+                <article key={company.id} className="company-overview-card">
+                    <div className="company-overview-card__header">
+                        <span className="company-overview-card__icon"><BriefcaseBusiness aria-hidden="true" /></span>
+                        <div>
+                            <h3>{company.name || "Naamloos bedrijf"}</h3>
+                            <small>Relatie #{company.id}</small>
+                        </div>
+                    </div>
 
-                <tbody>
-                {companies.map((company) => (
-                    <tr key={company.id}>
-                        <td>{company.id}</td>
-                        <td>{company.name || "-"}</td>
+                    <dl className="company-overview-card__details">
+                        <div><UserRound aria-hidden="true" /><dt>Contactpersoon</dt><dd>{company.primaryContactName || "Niet ingevuld"}</dd></div>
+                        <div><Mail aria-hidden="true" /><dt>E-mail</dt><dd>{company.primaryContactEmail || "Niet ingevuld"}</dd></div>
+                        <div><Phone aria-hidden="true" /><dt>Telefoon</dt><dd>{company.primaryContactPhone || "Niet ingevuld"}</dd></div>
+                    </dl>
 
-                        <td className="companies-table__actions-cell">
-                            <div className="companies-table__icon-actions">
+                    <div className="company-overview-card__actions">
                                 <button
                                     type="button"
                                     className="icon-action-button"
@@ -62,12 +62,9 @@ function CompaniesTable({ companies, onDelete }) {
                                         <Trash2 aria-hidden="true" />
                                     </button>
                                 ) : null}
-                            </div>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+                    </div>
+                </article>
+            ))}
         </div>
     );
 }

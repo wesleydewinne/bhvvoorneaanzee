@@ -63,9 +63,9 @@ function EditCompanyPage() {
     }
 
     return (
-        <main className="companies-page">
+        <main className="companies-page dashboard-admin-page">
             <div className="companies-page__container">
-                <section className="companies-page__header">
+                <section className="dashboard-admin-hero companies-page__header">
                     <div>
                         <h1>Bedrijf bewerken</h1>
                         <p>Werk de gegevens van dit bedrijf bij.</p>
@@ -73,7 +73,7 @@ function EditCompanyPage() {
 
                     <Link
                         to={`/admin/companies/${id}`}
-                        className="button button--secondary"
+                        className="dashboard-admin-button dashboard-admin-button--secondary"
                     >
                         Terug
                     </Link>

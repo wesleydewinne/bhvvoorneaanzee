@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Building2, Eye, Mail, MapPin, Pencil, Phone, Trash2 } from "lucide-react";
 import { formatLocationCompanies } from "../helpers/locationHelpers.js";
 
 function LocationsTable({ locations, onDelete }) {
@@ -14,34 +14,25 @@ function LocationsTable({ locations, onDelete }) {
     }
 
     return (
-        <div className="locations-table-wrapper">
-            <table className="locations-table">
-                <thead>
-                <tr>
-                    <th>Locatienaam</th>
-                    <th>Bedrijven</th>
-                    <th>Adres</th>
-                    <th>Postcode</th>
-                    <th>Plaats</th>
-                    <th>Telefoon</th>
-                    <th>E-mail</th>
-                    <th className="locations-table__actions-column">Acties</th>
-                </tr>
-                </thead>
+        <div className="locations-grid">
+            {locations.map((location) => (
+                <article key={location.id} className="location-overview-card">
+                    <div className="location-overview-card__header">
+                        <span className="location-overview-card__icon"><MapPin aria-hidden="true" /></span>
+                        <div>
+                            <h3>{location.locationName || "Naamloze locatie"}</h3>
+                            <small>Locatie #{location.id}</small>
+                        </div>
+                    </div>
 
-                <tbody>
-                {locations.map((location) => (
-                    <tr key={location.id}>
-                        <td>{location.locationName || "-"}</td>
-                        <td>{formatLocationCompanies(location)}</td>
-                        <td>{location.address || "-"}</td>
-                        <td>{location.postalCode || "-"}</td>
-                        <td>{location.city || "-"}</td>
-                        <td>{location.phone || "-"}</td>
-                        <td>{location.email || "-"}</td>
+                    <dl className="location-overview-card__details">
+                        <div><MapPin aria-hidden="true" /><dt>Adres</dt><dd>{[location.address, location.postalCode, location.city].filter(Boolean).join(", ") || "Niet ingevuld"}</dd></div>
+                        <div><Building2 aria-hidden="true" /><dt>Bedrijven</dt><dd>{formatLocationCompanies(location)}</dd></div>
+                        <div><Phone aria-hidden="true" /><dt>Telefoon</dt><dd>{location.phone || "Niet ingevuld"}</dd></div>
+                        <div><Mail aria-hidden="true" /><dt>E-mail</dt><dd>{location.email || "Niet ingevuld"}</dd></div>
+                    </dl>
 
-                        <td className="locations-table__actions-cell">
-                            <div className="locations-table__icon-actions">
+                    <div className="location-overview-card__actions">
                                 <button
                                     type="button"
                                     className="icon-action-button"
@@ -73,12 +64,9 @@ function LocationsTable({ locations, onDelete }) {
                                         <Trash2 aria-hidden="true" />
                                     </button>
                                 ) : null}
-                            </div>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+                    </div>
+                </article>
+            ))}
         </div>
     );
 }

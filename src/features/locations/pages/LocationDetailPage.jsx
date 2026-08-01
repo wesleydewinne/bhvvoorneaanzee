@@ -104,9 +104,9 @@ function LocationDetailPage() {
     const additionalInfo = Array.isArray(location.additionalInfo) ? location.additionalInfo : [];
 
     return (
-        <main className="locations-page">
+        <main className="locations-page dashboard-admin-page">
             <div className="locations-page__container">
-                <section className="locations-page__header">
+                <section className="dashboard-admin-hero locations-page__header">
                     <div>
                         <h1>Locatie details</h1>
                         <p>Bekijk alle gegevens van deze locatie.</p>
@@ -115,7 +115,7 @@ function LocationDetailPage() {
                     <div className="locations-page__header-actions">
                         <button
                             type="button"
-                            className="button button--secondary"
+                            className="dashboard-admin-button dashboard-admin-button--secondary"
                             onClick={() => navigate("/admin/locations")}
                         >
                             Terug
@@ -123,7 +123,7 @@ function LocationDetailPage() {
 
                         <button
                             type="button"
-                            className="button"
+                            className="dashboard-admin-button"
                             onClick={() => navigate(`/admin/locations/${location.id}/edit`)}
                         >
                             Bewerken
@@ -132,7 +132,7 @@ function LocationDetailPage() {
                         {location?.id ? (
                             <button
                                 type="button"
-                                className="button button--danger"
+                                className="dashboard-admin-button location-danger-button"
                                 onClick={handleDelete}
                                 disabled={deleting}
                             >

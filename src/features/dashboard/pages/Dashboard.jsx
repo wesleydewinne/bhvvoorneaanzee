@@ -262,7 +262,7 @@ function Dashboard() {
                 </p>
             </section>
 
-                <section className="dashboard__overview" aria-label="Dashboard overzicht">
+            <section className="dashboard__overview" aria-label="Dashboard overzicht">
                     {dashboardStats.map((item) => (
                         <article key={item.key} className="dashboard-stat">
                             <span className="dashboard-stat__icon">
@@ -274,7 +274,7 @@ function Dashboard() {
                             </span>
                         </article>
                     ))}
-                </section>
+            </section>
 
                 {canLoadAdminOverview && (
                     <AdminDashboardPanel
@@ -301,41 +301,45 @@ function Dashboard() {
                     />
                 )}
 
-                <section className="dashboard__quick-actions" aria-labelledby="quick-actions-title">
+            <section className="dashboard__quick-actions" aria-labelledby="quick-actions-title">
                     <div>
                         <p className="dashboard__eyebrow">Snel verder</p>
                         <h2 id="quick-actions-title">Meest gebruikte acties</h2>
                     </div>
 
                     <div className="dashboard__quick-list">
-                        {quickActions.map((action) => (
-                            <button
-                                key={action.key}
-                                type="button"
-                                className="dashboard__quick-button"
-                                onClick={action.action}
-                            >
-                                <span className="dashboard__quick-icon">
-                                    <DashboardIcon name={action.iconKey ?? action.key} />
-                                </span>
-                                <span>{action.label}</span>
-                                <small>{action.helper}</small>
-                                <DashboardChevron className="dashboard__quick-arrow" />
-                            </button>
-                        ))}
+                            {quickActions.map((action) => (
+                                <button
+                                    key={action.key}
+                                    type="button"
+                                    className="dashboard__quick-button"
+                                    onClick={action.action}
+                                >
+                                    <span className="dashboard__quick-icon">
+                                        <DashboardIcon name={action.iconKey ?? action.key} />
+                                    </span>
+                                    <span>{action.label}</span>
+                                    <small>{action.helper}</small>
+                                    <DashboardChevron className="dashboard__quick-arrow" />
+                                </button>
+                            ))}
                     </div>
-                </section>
+            </section>
 
-                <div className="dashboard__section-heading">
-                    <p className="dashboard__eyebrow">Onderdelen</p>
-                    <h2>Wat wil je openen?</h2>
-                </div>
+                {!canLoadAdminOverview && (
+                    <>
+                        <div className="dashboard__section-heading">
+                            <p className="dashboard__eyebrow">Onderdelen</p>
+                            <h2>Onderdelen</h2>
+                        </div>
 
-                <section className="dashboard__grid" aria-label="Dashboard onderdelen">
-                    {dashboardCards.map((card) => (
-                        <DashboardCard key={card.key} card={card} />
-                    ))}
-                </section>
+                        <section className="dashboard__grid" aria-label="Dashboard onderdelen">
+                            {dashboardCards.map((card) => (
+                                <DashboardCard key={card.key} card={card} />
+                            ))}
+                        </section>
+                    </>
+                )}
         </>
     );
 }

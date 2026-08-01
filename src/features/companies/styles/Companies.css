@@ -3,6 +3,8 @@
 }
 
 .companies-page__container {
+    display: grid;
+    gap: 1.4rem;
     max-width: none;
     margin: 0;
 }
@@ -50,53 +52,138 @@
     margin-top: 1.5rem;
 }
 
-.companies-table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    background: #ffffff;
+.companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(28rem, 100%), 1fr));
+    gap: 1rem;
+}
+
+.company-form-card {
+    max-width: none;
+}
+
+.company-form {
+    display: grid;
+    gap: 1.3rem;
+}
+
+.company-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.company-form .form-field {
+    min-width: 0;
+    padding: 1rem;
     border: 1px solid #e4eaf0;
     border-radius: 0.8rem;
-}
-
-.companies-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.companies-table th,
-.companies-table td {
-    padding: 1.1rem 1.2rem;
-    text-align: left;
-    border-bottom: 1px solid #edf1f5;
-    font-size: 1.22rem;
-}
-
-.companies-table th {
     background: #f8fafc;
-    font-weight: 950;
 }
 
-.companies-table tr:last-child td {
-    border-bottom: none;
+.company-form .form-field--full {
+    grid-column: 1 / -1;
 }
 
-.companies-table__actions-column {
-    width: 160px;
+.company-form label {
+    display: block;
+    margin-bottom: 0.45rem;
+    color: #344054;
+    font-weight: 850;
 }
 
-.companies-table__actions-cell {
-    white-space: nowrap;
+.company-form input {
+    width: 100%;
+    min-height: 4.4rem;
+    padding: 0 1rem;
+    border: 1px solid #cfd8e3;
+    border-radius: 0.7rem;
+    background: #ffffff;
 }
 
-.companies-table__icon-actions {
+.company-form__actions {
     display: flex;
-    gap: 0.45rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid #e4eaf0;
+}
+
+.company-overview-card {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 1.2rem;
+    min-width: 0;
+    padding: 1.35rem;
+    border: 1px solid #e4eaf0;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #ffffff, #fbfdff);
+    box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.06);
+}
+
+.company-overview-card__header {
+    display: grid;
+    grid-template-columns: 4.4rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+}
+
+.company-overview-card__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 0.9rem;
+    background: linear-gradient(135deg, #93c5fd, #2563eb);
+    color: #ffffff;
+}
+
+.company-overview-card__icon svg { width: 2.3rem; height: 2.3rem; }
+.company-overview-card h3 { margin: 0; font-size: 1.55rem; line-height: 1.2; }
+.company-overview-card small { color: #667085; }
+
+.company-overview-card__details,
+.location-overview-card__details {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0;
+}
+
+.company-overview-card__details > div,
+.location-overview-card__details > div {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.1rem 0.7rem;
+    min-width: 0;
+}
+
+.company-overview-card__details svg,
+.location-overview-card__details svg { grid-row: 1 / span 2; width: 1.7rem; height: 1.7rem; color: #64748b; }
+.company-overview-card__details dt,
+.location-overview-card__details dt { color: #667085; font-size: 1.05rem; font-weight: 800; }
+.company-overview-card__details dd,
+.location-overview-card__details dd { min-width: 0; margin: 0; overflow-wrap: anywhere; color: #1f2937; font-size: 1.2rem; }
+
+.company-overview-card__actions,
+.location-overview-card__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #edf1f5;
 }
 
 .company-detail-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
     gap: 1rem;
+}
+
+.company-detail-grid > div {
+    min-width: 0;
+    padding: 1.1rem;
+    border: 1px solid #e4eaf0;
+    border-radius: 0.8rem;
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
 }
 
 .company-detail-grid strong {
@@ -106,7 +193,11 @@
 
 .company-detail-grid p {
     margin: 0;
+    overflow-wrap: anywhere;
 }
+
+.company-danger-button { border-color: #fecaca; background: #fff; color: #b42318; box-shadow: none; }
+.company-danger-button:hover { border-color: #fda29b; background: #fef3f2; color: #b42318; }
 
 .companies-empty {
     padding: 1.5rem;
@@ -130,6 +221,14 @@
 
     .company-detail-grid {
         grid-template-columns: 1fr;
+    }
+
+    .company-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .company-form .form-field--full {
+        grid-column: 1;
     }
 }
 

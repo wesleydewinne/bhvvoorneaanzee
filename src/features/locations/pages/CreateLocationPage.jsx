@@ -28,15 +28,15 @@ function CreateLocationPage() {
     };
 
     return (
-        <main className="locations-page">
+        <main className="locations-page dashboard-admin-page">
             <div className="locations-page__container">
-                <section className="locations-page__header">
+                <section className="dashboard-admin-hero locations-page__header">
                     <div>
                         <h1>Nieuwe locatie</h1>
                         <p>Voeg een nieuwe trainingslocatie toe.</p>
                     </div>
 
-                    <Link to="/admin/locations" className="button button--secondary">
+                    <Link to="/admin/locations" className="dashboard-admin-button dashboard-admin-button--secondary">
                         Terug
                     </Link>
                 </section>

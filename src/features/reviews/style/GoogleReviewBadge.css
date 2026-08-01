@@ -182,12 +182,18 @@
 .google-review-badge__star {
     position: relative;
     display: inline-block;
-    font-size: clamp(1.7rem, 1.4rem + 0.45vw, 2.25rem);
-    line-height: 1;
+    width: clamp(1.7rem, 1.4rem + 0.45vw, 2.25rem);
+    height: clamp(1.7rem, 1.4rem + 0.45vw, 2.25rem);
+    --google-star-size: clamp(1.7rem, 1.4rem + 0.45vw, 2.25rem);
 }
 
 .google-review-badge__star-base {
+    display: block;
+    width: 100%;
+    height: 100%;
     color: #d1d5db;
+    fill: currentColor;
+    stroke: currentColor;
 }
 
 .google-review-badge__star-fill {
@@ -197,6 +203,15 @@
     overflow: hidden;
     white-space: nowrap;
     color: #fbbc05;
+}
+
+.google-review-badge__star-fill svg {
+    display: block;
+    width: var(--google-star-size);
+    height: 100%;
+    max-width: none;
+    fill: currentColor;
+    stroke: currentColor;
 }
 
 .google-review-badge__score {
@@ -280,7 +295,9 @@
     }
 
     .google-review-badge__star {
-        font-size: 1.45rem;
+        width: 1.45rem;
+        height: 1.45rem;
+        --google-star-size: 1.45rem;
     }
 
     .google-review-badge__review-row {

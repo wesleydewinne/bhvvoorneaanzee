@@ -10,11 +10,16 @@ const DashboardShell = lazy(() => import("@/features/dashboard/components/Dashbo
 
 function Layout({ children }) {
     const location = useLocation();
+    const isSecurityOnboarding =
+        location.pathname === "/account/passkey-aanmaken" ||
+        location.pathname === "/account/wachtwoord-wijzigen";
     const usesDashboardShell =
-        location.pathname === "/dashboard" ||
-        location.pathname.startsWith("/admin") ||
-        location.pathname === "/profile" ||
-        location.pathname.startsWith("/account");
+        !isSecurityOnboarding && (
+            location.pathname === "/dashboard" ||
+            location.pathname.startsWith("/admin") ||
+            location.pathname === "/profile" ||
+            location.pathname.startsWith("/account")
+        );
 
     /**
      * Funnel-routes waar we GEEN header/footer willen tonen
@@ -25,7 +30,8 @@ function Layout({ children }) {
         location.pathname === "/veiligheidscheck" ||
         location.pathname.startsWith("/veiligheidscheck/start") ||
         location.pathname === "/veiligheidscheck-bedankt" ||
-        usesDashboardShell;
+        usesDashboardShell ||
+        isSecurityOnboarding;
 
     const hideQuoteButton =
         location.pathname === "/contact" ||

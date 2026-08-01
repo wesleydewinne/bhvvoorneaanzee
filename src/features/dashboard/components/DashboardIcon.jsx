@@ -17,6 +17,7 @@ import {
     LayoutDashboard,
     LifeBuoy,
     Mail,
+    Menu,
     MapPin,
     MessageSquare,
     NotebookText,
@@ -29,6 +30,7 @@ import {
     UserPlus,
     Users,
     Wrench,
+    X,
 } from "lucide-react";
 
 const iconMap = {
@@ -52,6 +54,7 @@ const iconMap = {
     invoices: Receipt,
     locations: MapPin,
     mail: Mail,
+    menu: Menu,
     messages: Mail,
     "map-pin": MapPin,
     planning: CalendarDays,
@@ -72,6 +75,7 @@ const iconMap = {
     users: Users,
     warning: Siren,
     wrench: Wrench,
+    close: X,
     "graduation-cap": GraduationCap,
 };
 
