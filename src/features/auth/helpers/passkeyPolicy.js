@@ -27,9 +27,15 @@ export function getAuthRoles(user) {
 }
 
 export function requiresPasskeyForUser(user) {
+    if (typeof user?.requiresPasskeySetup === "boolean") {
+        return user.requiresPasskeySetup;
+    }
     return getAuthRoles(user).some((role) => PASSKEY_REQUIRED_ROLES.has(role));
 }
 
 export function getPostLoginPath(user) {
+    if (user?.mustChangePassword) {
+        return "/account/wachtwoord-wijzigen";
+    }
     return requiresPasskeyForUser(user) ? "/account/passkey-aanmaken" : "/dashboard";
 }

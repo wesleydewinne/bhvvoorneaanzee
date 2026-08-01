@@ -6,6 +6,7 @@ const Dashboard = lazy(() => import("@/features/dashboard/pages/Dashboard.jsx"))
 const ProfilePage = lazy(() => import("@/features/profile/pages/ProfilePage.jsx"));
 const TwoFactorSettingsPage = lazy(() => import("@/features/auth/pages/TwoFactorSettingsPage.jsx"));
 const PasskeySetupPage = lazy(() => import("@/features/auth/pages/PasskeySetupPage.jsx"));
+const RequiredPasswordChangePage = lazy(() => import("@/features/auth/pages/RequiredPasswordChangePage.jsx"));
 
 const UsersManagementPage = lazy(() => import("@/features/user-management/pages/UsersManagementPage.jsx"));
 const UserDetailPage = lazy(() => import("@/features/user-management/pages/UserDetailPage.jsx"));
@@ -61,6 +62,10 @@ const privateRoutes = [
     {
         path: "/account/beveiliging/2fa",
         element: protect(<TwoFactorSettingsPage />),
+    },
+    {
+        path: "/account/wachtwoord-wijzigen",
+        element: protect(<RequiredPasswordChangePage />),
     },
     {
         path: "/account/passkey-aanmaken",

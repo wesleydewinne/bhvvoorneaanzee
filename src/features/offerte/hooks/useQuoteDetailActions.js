@@ -1,6 +1,9 @@
 import { useState } from "react";
 import quoteService from "../services/quoteService.js";
-import { normalizeQuoteToFormState } from "./useQuoteDetailData.js";
+import {
+    normalizeQuoteDetail,
+    normalizeQuoteToFormState
+} from "./useQuoteDetailData.js";
 
 function toNullableNumber(value) {
     if (value === "" || value === null || value === undefined) {
@@ -109,8 +112,9 @@ async function syncQuoteState({
                                   setFormState
                               }) {
     if (updated && typeof updated === "object" && !Array.isArray(updated)) {
-        setQuote(updated);
-        setFormState(normalizeQuoteToFormState(updated));
+        const normalizedUpdated = normalizeQuoteDetail(updated);
+        setQuote(normalizedUpdated);
+        setFormState(normalizeQuoteToFormState(normalizedUpdated));
         return true;
     }
 
@@ -399,12 +403,53 @@ export default function useQuoteDetailActions({
                 return false;
             }
 
-            setSuccessMessage("Status succesvol bijgewerkt.");
+            setSuccessMessage(
+                formState.status === "SENDING"
+                    ? "De offerte staat klaar om te worden verzonden."
+                    : "Status succesvol bijgewerkt."
+            );
             return true;
         } catch (err) {
             setError(
                 extractApiErrorMessage(err, "Status wijzigen is niet gelukt.")
             );
+            return false;
+        } finally {
+            setPatchSaving(false);
+        }
+    };
+
+    const saveValidity = async () => {
+        if (!id || !formState?.validUntil) {
+            setError("Kies eerst een geldigheidsdatum.");
+            return false;
+        }
+
+        setPatchSaving(true);
+        clearMessages();
+
+        try {
+            const response = await quoteService.updateValidUntil(
+                id,
+                formState.validUntil
+            );
+            const synced = await syncQuoteState({
+                updated: response?.data,
+                loadQuote,
+                setQuote,
+                setFormState
+            });
+            if (!synced) {
+                setError("De datum is opgeslagen, maar vernieuwen is mislukt.");
+                return false;
+            }
+            setSuccessMessage("Geldigheidsdatum succesvol aangepast.");
+            return true;
+        } catch (err) {
+            setError(extractApiErrorMessage(
+                err,
+                "De geldigheidsdatum kon niet worden aangepast."
+            ));
             return false;
         } finally {
             setPatchSaving(false);
@@ -456,6 +501,7 @@ export default function useQuoteDetailActions({
         clearMessages,
         saveQuote,
         saveStatus,
+        saveValidity,
         archiveQuote,
         addTraining,
         removeTraining,

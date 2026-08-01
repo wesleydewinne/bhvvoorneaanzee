@@ -1,0 +1,129 @@
+.quote-acceptance-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 4rem 2rem;
+    background: #f4f6f9;
+}
+
+.quote-acceptance-card,
+.quote-confirm-dialog {
+    width: min(100%, 64rem);
+    padding: 4rem;
+    border-top: 0.6rem solid #0052aa;
+    background: #fff;
+    box-shadow: 0 1.8rem 5rem rgba(20, 26, 34, 0.14);
+}
+
+.quote-acceptance-card h1,
+.quote-confirm-dialog h2 {
+    margin: 0 0 1.6rem;
+    color: #15181d;
+}
+
+.quote-acceptance-eyebrow {
+    margin: 0 0 0.8rem;
+    color: #0052aa;
+    font-weight: 700;
+}
+
+.quote-acceptance-summary {
+    margin: 3rem 0;
+    border-block: 1px solid #dce1e8;
+}
+
+.quote-acceptance-summary div {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.2rem 0;
+}
+
+.quote-acceptance-summary dt {
+    color: #667085;
+}
+
+.quote-acceptance-summary dd {
+    margin: 0;
+    font-weight: 700;
+    text-align: right;
+}
+
+.quote-acceptance-checkbox {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    margin: 2.5rem 0;
+    line-height: 1.5;
+}
+
+.quote-acceptance-checkbox input {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.2rem;
+}
+
+.quote-acceptance-primary,
+.quote-acceptance-secondary {
+    padding: 1.2rem 1.8rem;
+    border: 0;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.quote-acceptance-primary {
+    background: #0052aa;
+    color: #fff;
+}
+
+.quote-acceptance-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.quote-acceptance-secondary {
+    background: #e9edf2;
+    color: #222;
+}
+
+.quote-acceptance-error {
+    margin-top: 2rem;
+    color: #a12622;
+}
+
+.quote-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: rgba(10, 13, 18, 0.68);
+    z-index: 1000;
+}
+
+.quote-confirm-dialog {
+    border-top-color: #d6ae72;
+}
+
+.quote-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    .quote-acceptance-card,
+    .quote-confirm-dialog {
+        padding: 2.4rem;
+    }
+
+    .quote-acceptance-summary div,
+    .quote-confirm-actions {
+        flex-direction: column;
+    }
+
+    .quote-acceptance-summary dd {
+        text-align: left;
+    }
+}

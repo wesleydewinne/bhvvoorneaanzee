@@ -61,6 +61,7 @@ const LoginPage = lazy(() => import("@/features/auth/pages/LoginPage.jsx"));
 const TwoFactorPage = lazy(() => import("@/features/auth/pages/TwoFactorPage.jsx"));
 const AccessPage = lazy(() => import("@/pages/quiz/AccessPage.jsx"));
 const OfferteAanvraag = lazy(() => import("@/features/offerte/pages/OfferteAanvraagPage.jsx"));
+const QuoteAcceptancePage = lazy(() => import("@/features/offerte/pages/QuoteAcceptancePage.jsx"));
 const OverOns = lazy(() => import("@/pages/overOns/OverOns.jsx"));
 const Bedrijfsgegevens = lazy(() => import("@/features/bedrijfsgegevens/Bedrijfsgegevens.jsx"));
 const ContactOns = lazy(() => import("@/features/contact/pages/ContactOns.jsx"));
@@ -157,6 +158,7 @@ const publicRoutes = [
     { path: "/landingpage", element: <LandingPage /> },
     { path: "/veelgestelde-vragen", element: <Faq /> },
     { path: "/offerte", element: <OfferteAanvraag /> },
+    { path: "/offerte/akkoord", element: <QuoteAcceptancePage /> },
 
     { path: "/over-ons", element: <OverOns /> },
     { path: "/bedrijfsgegevens", element: <Bedrijfsgegevens /> },

@@ -1,84 +1,299 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { joinContactName } from "../helpers/contactName.js";
 import quoteService from "../services/quoteService.js";
 import "../styles/AdminQuotesPage.css";
 import "../styles/AdminQuoteDetailPage.css";
 
-const initialCustomer = { firstName: "", lastName: "", company: "", email: "", phone: "", street: "", houseNumber: "", postalCode: "", city: "" };
-const createTraining = () => ({ trainingType: "", participantCount: 1, numberOfExercises: 1, onSite: true });
+const emptyCustomer = {
+    companyName: "",
+    contactFirstName: "",
+    contactLastName: "",
+    contactEmail: "",
+    contactPhone: "",
+    street: "",
+    houseNumber: "",
+    postalCode: "",
+    city: "",
+    customerReference: "",
+};
+
+const emptyTraining = () => ({
+    trainingCode: "",
+    participantCount: 1,
+    internalNote: "",
+});
+
+function dateAfterMonths(months) {
+    const date = new Date();
+    date.setMonth(date.getMonth() + months);
+    return date.toISOString().slice(0, 10);
+}
 
 export default function AdminCreateQuotePage() {
     const navigate = useNavigate();
-    const [customer, setCustomer] = useState(initialCustomer);
-    const [trainings, setTrainings] = useState([createTraining()]);
-    const [trainingOptions, setTrainingOptions] = useState([]);
-    const [discountOptions, setDiscountOptions] = useState([]);
-    const [discountCode, setDiscountCode] = useState("");
-    const [discountTrainingIndex, setDiscountTrainingIndex] = useState("");
-    const [remarks, setRemarks] = useState("");
+    const [customer, setCustomer] = useState(emptyCustomer);
+    const [trainings, setTrainings] = useState([emptyTraining()]);
+    const [catalog, setCatalog] = useState([]);
+    const [subject, setSubject] = useState("");
+    const [introduction, setIntroduction] = useState(
+    "Hartelijk dank voor uw aanvraag en uw interesse in de trainingen van BHV Voorne aan Zee. " +
+    "Op basis van de door u verstrekte informatie hebben wij deze offerte zorgvuldig samengesteld. " +
+    "Hieronder vindt u een overzicht van de voorgestelde training(en), de uitvoering en de bijbehorende kosten. " +
+    "Onze trainingen worden op locatie verzorgd en waar mogelijk afgestemd op de werkomgeving en praktijksituatie binnen uw organisatie."
+    );
+    const [closingText, setClosingText] = useState(
+        "Wij vertrouwen erop u hiermee een passend voorstel te hebben gedaan. " +
+        "Heeft u vragen over deze offerte of wilt u onderdelen aanpassen, dan bespreken wij dit uiteraard graag met u. " +
+        "Wij kijken ernaar uit om uw organisatie te mogen ondersteunen bij het vergroten van de veiligheid, kennis en handelingsvaardigheid van uw medewerkers."
+    );
+    const [validUntil, setValidUntil] = useState(dateAfterMonths(1));
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState("");
 
     useEffect(() => {
-        Promise.all([quoteService.getTrainingTypes(), quoteService.getDiscountCodes()])
-            .then(([types, discounts]) => {
-                setTrainingOptions(Array.isArray(types?.data) ? types.data : []);
-                setDiscountOptions(Array.isArray(discounts?.data) ? discounts.data : []);
-            })
-            .catch(() => setError("Trainingstypen of kortingscodes laden is mislukt."));
+        quoteService.getTrainingCatalog()
+            .then((response) =>
+                setCatalog(Array.isArray(response?.data) ? response.data : [])
+            )
+            .catch(() => setError("De trainingscatalogus kon niet worden geladen."));
     }, []);
 
-    const setCustomerField = (field, value) => setCustomer((current) => ({ ...current, [field]: value }));
-    const setTrainingField = (index, field, value) => setTrainings((current) => current.map((item, itemIndex) => itemIndex === index ? { ...item, [field]: value } : item));
+    const updateCustomer = (name, value) => {
+        setCustomer((current) => ({ ...current, [name]: value }));
+    };
+
+    const updateTraining = (index, name, value) => {
+        setTrainings((current) => current.map((training, itemIndex) =>
+            itemIndex === index ? { ...training, [name]: value } : training
+        ));
+    };
 
     const submit = async (event) => {
         event.preventDefault();
         setSaving(true);
         setError("");
+
         try {
+            const {
+                contactFirstName,
+                contactLastName,
+                ...customerFields
+            } = customer;
             const response = await quoteService.createAdminQuote({
-                mode: "OFFERTE",
-                customer: {
-                    firstName: customer.firstName.trim(), lastName: customer.lastName.trim(),
-                    company: customer.company.trim() || null, email: customer.email.trim(), phone: customer.phone.trim(),
-                    address: { street: customer.street.trim(), houseNumber: customer.houseNumber.trim(), postalCode: customer.postalCode.trim(), city: customer.city.trim() },
-                },
-                trainings: trainings.map((item) => ({ trainingType: item.trainingType, participantCount: Number(item.participantCount) || null, numberOfExercises: Number(item.numberOfExercises) || null, onSite: item.onSite, groupSize: null })),
-                discountCode: discountCode || null,
-                discountTrainingIndex: discountTrainingIndex === "" ? null : Number(discountTrainingIndex),
-                remarks: remarks.trim() || null,
+                ...customerFields,
+                contactPersonName: joinContactName(
+                    contactFirstName,
+                    contactLastName
+                ),
+                customerReference: customer.customerReference.trim() || null,
+                contactPhone: customer.contactPhone.trim() || null,
+                quoteSubject: subject.trim(),
+                introductionText: introduction.trim() || null,
+                closingText: closingText.trim() || null,
+                validUntil,
+                trainings: trainings.map((training) => ({
+                    trainingCode: training.trainingCode,
+                    participantCount: Number(training.participantCount),
+                    internalNote: training.internalNote.trim() || null,
+                })),
+                captcha: null,
+                website: null,
             });
-            const createdId = response?.data?.id;
-            navigate(createdId ? `/admin/offertes/${createdId}` : "/admin/offertes", { replace: true });
-        } catch (err) {
-            setError(err?.message || "Offerte aanmaken is mislukt.");
+
+            navigate(`/admin/offertes/${response.data.id}`, { replace: true });
+        } catch (requestError) {
+            setError(
+                requestError?.response?.data?.message ||
+                requestError?.response?.data?.error ||
+                "De offerte kon niet worden aangemaakt."
+            );
         } finally {
             setSaving(false);
         }
     };
 
-    const customerFields = [["firstName", "Voornaam"], ["lastName", "Achternaam"], ["company", "Bedrijf"], ["email", "E-mailadres"], ["phone", "Telefoon"], ["street", "Straat"], ["houseNumber", "Huisnummer"], ["postalCode", "Postcode"], ["city", "Plaats"]];
+    return (
+        <section className="quote-detail-page">
+            <div className="quote-detail-header">
+                <div>
+                    <h1>Nieuwe offerte</h1>
+                    <p>Maak een offerte op basis van de actuele trainingscatalogus.</p>
+                </div>
+                <button
+                    type="button"
+                    className="quote-back-btn"
+                    onClick={() => navigate("/admin/offertes")}
+                >
+                    Annuleren
+                </button>
+            </div>
 
-    return <section className="quote-detail-page">
-        <div className="quote-detail-header"><div><h1>Nieuwe offerte</h1><p>Maak intern een offerte aan; prijzen en korting worden door de backend berekend.</p></div><button className="quote-back-btn" type="button" onClick={() => navigate("/admin/offertes")}>Annuleren</button></div>
-        {error && <p className="quote-feedback quote-feedback-error">{error}</p>}
-        <form onSubmit={submit}>
-            <section className="quote-detail-card"><h2>Klantgegevens</h2><div className="quote-detail-grid">{customerFields.map(([field, label]) => <div key={field}><label htmlFor={`new-quote-${field}`}>{label}</label><input id={`new-quote-${field}`} type={field === "email" ? "email" : "text"} value={customer[field]} onChange={(event) => setCustomerField(field, event.target.value)} required={field !== "company"} /></div>)}</div></section>
-            <section className="quote-detail-card"><div className="quote-training-header"><div><h2>Trainingen</h2><p>Voeg een of meer trainingsregels toe.</p></div><button className="quote-page-create-btn" type="button" onClick={() => setTrainings((current) => [...current, createTraining()])}>Training toevoegen</button></div>
-                {trainings.map((training, index) => <div className="quote-detail-grid" key={index}>
-                    <div><label>Trainingstype</label><select value={training.trainingType} onChange={(event) => setTrainingField(index, "trainingType", event.target.value)} required><option value="">Kies type</option>{trainingOptions.map((option) => <option key={option.code} value={option.code}>{option.displayName}</option>)}</select></div>
-                    <div><label>Deelnemers</label><input type="number" min="1" value={training.participantCount} onChange={(event) => setTrainingField(index, "participantCount", event.target.value)} /></div>
-                    <div><label>Aantal oefeningen</label><input type="number" min="1" value={training.numberOfExercises} onChange={(event) => setTrainingField(index, "numberOfExercises", event.target.value)} /></div>
-                    <div><label><input type="checkbox" checked={training.onSite} onChange={(event) => setTrainingField(index, "onSite", event.target.checked)} /> Op locatie</label></div>
-                    {trainings.length > 1 && <button className="quote-btn quote-btn-danger" type="button" onClick={() => setTrainings((current) => current.filter((_, itemIndex) => itemIndex !== index))}>Training verwijderen</button>}
-                </div>)}
-            </section>
-            <section className="quote-detail-card"><h2>Korting en opmerkingen</h2><div className="quote-detail-grid">
-                <div><label>Kortingscode</label><select value={discountCode} onChange={(event) => setDiscountCode(event.target.value)}><option value="">Geen korting</option>{discountOptions.map((option) => <option key={option.code} value={option.code}>{option.label}</option>)}</select></div>
-                <div><label>Korting op training</label><select value={discountTrainingIndex} onChange={(event) => setDiscountTrainingIndex(event.target.value)}><option value="">Automatisch / alle</option>{trainings.map((_, index) => <option key={index} value={index}>Training {index + 1}</option>)}</select></div>
-                <div className="quote-detail-col-span-2"><label>Opmerkingen</label><textarea rows="4" value={remarks} onChange={(event) => setRemarks(event.target.value)} /></div>
-            </div></section>
-            <div className="quote-detail-actions"><button className="quote-btn quote-btn-primary" type="submit" disabled={saving}>{saving ? "Berekenen en opslaan..." : "Offerte aanmaken"}</button></div>
-        </form>
-    </section>;
+            {error && <p className="quote-feedback quote-feedback-error">{error}</p>}
+
+            <form onSubmit={submit}>
+                <section className="quote-detail-card">
+                    <h2>Klantgegevens</h2>
+                    <div className="quote-detail-grid">
+                        {[
+                            ["companyName", "Bedrijfsnaam"],
+                            ["contactFirstName", "Voornaam"],
+                            ["contactLastName", "Achternaam (incl. tussenvoegsel)"],
+                            ["contactEmail", "E-mailadres", "email"],
+                            ["contactPhone", "Telefoon"],
+                            ["street", "Straat"],
+                            ["houseNumber", "Huisnummer"],
+                            ["postalCode", "Postcode"],
+                            ["city", "Plaats"],
+                            ["customerReference", "Klantreferentie"],
+                        ].map(([name, label, type = "text"]) => (
+                            <div key={name}>
+                                <label htmlFor={`create-${name}`}>{label}</label>
+                                <input
+                                    id={`create-${name}`}
+                                    type={type}
+                                    value={customer[name]}
+                                    onChange={(event) =>
+                                        updateCustomer(name, event.target.value)
+                                    }
+                                    required={!["contactPhone", "customerReference"].includes(name)}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="quote-detail-card">
+                    <h2>Offertegegevens</h2>
+                    <div className="quote-detail-grid">
+                        <div className="quote-detail-col-span-2">
+                            <label htmlFor="create-subject">Onderwerp</label>
+                            <input
+                                id="create-subject"
+                                value={subject}
+                                onChange={(event) => setSubject(event.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="create-valid-until">Geldig tot</label>
+                            <input
+                                id="create-valid-until"
+                                type="date"
+                                value={validUntil}
+                                onChange={(event) => setValidUntil(event.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="quote-detail-col-span-2">
+                            <label htmlFor="create-introduction">Inleiding</label>
+                            <textarea
+                                id="create-introduction"
+                                rows="4"
+                                value={introduction}
+                                onChange={(event) => setIntroduction(event.target.value)}
+                            />
+                        </div>
+                        <div className="quote-detail-col-span-2">
+                            <label htmlFor="create-closing">Afsluitende tekst</label>
+                            <textarea
+                                id="create-closing"
+                                rows="3"
+                                value={closingText}
+                                onChange={(event) => setClosingText(event.target.value)}
+                            />
+                        </div>
+                    </div>
+                </section>
+
+                <section className="quote-detail-card">
+                    <div className="quote-training-header">
+                        <div>
+                            <h2>Trainingen</h2>
+                            <p>Iedere regel gebruikt de actuele backendconfiguratie.</p>
+                        </div>
+                        <button
+                            type="button"
+                            className="quote-page-create-btn"
+                            onClick={() =>
+                                setTrainings((current) => [...current, emptyTraining()])
+                            }
+                        >
+                            Training toevoegen
+                        </button>
+                    </div>
+
+                    {trainings.map((training, index) => (
+                        <div className="quote-detail-grid quote-admin-row" key={index}>
+                            <div className="quote-detail-col-span-2">
+                                <label>Training</label>
+                                <select
+                                    value={training.trainingCode}
+                                    onChange={(event) =>
+                                        updateTraining(index, "trainingCode", event.target.value)
+                                    }
+                                    required
+                                >
+                                    <option value="">Kies een training</option>
+                                    {catalog.map((item) => (
+                                        <option key={item.trainingConfigurationId} value={item.code}>
+                                            {item.name} — € {item.sellingPrice}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label>Deelnemers</label>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    value={training.participantCount}
+                                    onChange={(event) =>
+                                        updateTraining(
+                                            index,
+                                            "participantCount",
+                                            event.target.value
+                                        )
+                                    }
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label>Interne notitie</label>
+                                <input
+                                    value={training.internalNote}
+                                    onChange={(event) =>
+                                        updateTraining(index, "internalNote", event.target.value)
+                                    }
+                                />
+                            </div>
+                            {trainings.length > 1 && (
+                                <button
+                                    type="button"
+                                    className="quote-btn quote-btn-danger"
+                                    onClick={() =>
+                                        setTrainings((current) =>
+                                            current.filter((_, itemIndex) => itemIndex !== index)
+                                        )
+                                    }
+                                >
+                                    Training verwijderen
+                                </button>
+                            )}
+                        </div>
+                    ))}
+                </section>
+
+                <div className="quote-detail-actions">
+                    <button
+                        type="submit"
+                        className="quote-btn quote-btn-primary"
+                        disabled={saving}
+                    >
+                        {saving ? "Offerte opslaan..." : "Offerte aanmaken"}
+                    </button>
+                </div>
+            </form>
+        </section>
+    );
 }

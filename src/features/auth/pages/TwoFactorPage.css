@@ -348,3 +348,19 @@
     .twofactor-code-boxes { gap: .55rem; }
     .twofactor-code-box { border-radius: .9rem; font-size: 2.1rem; }
 }
+.twofactor-input {
+    width: 100%;
+    min-height: 5.2rem;
+    padding: 1.1rem 1.3rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 1rem;
+    background: #fff;
+    color: #0f172a;
+    font: inherit;
+}
+
+.twofactor-input:focus {
+    outline: none;
+    border-color: #f97316;
+    box-shadow: 0 0 0 .35rem rgba(249, 115, 22, .14);
+}

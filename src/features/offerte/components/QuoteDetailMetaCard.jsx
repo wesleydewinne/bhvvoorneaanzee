@@ -6,11 +6,44 @@ import {
 } from "../helpers/quoteFormatters.js";
 import { quoteStatusOptions } from "../helpers/quoteStatusLabels.js";
 
+function availableStatusOptions(currentStatus) {
+    if (currentStatus === "DRAFT") {
+        return quoteStatusOptions.filter((option) =>
+            option.value === "DRAFT" ||
+            option.value === "SENDING" ||
+            option.value === "CANCELLED"
+        );
+    }
+
+    if (currentStatus === "SENDING") {
+        return quoteStatusOptions.filter((option) =>
+            option.value === "SENDING" ||
+            option.value === "DRAFT" ||
+            option.value === "CANCELLED"
+        );
+    }
+
+    if (currentStatus === "SENT") {
+        return quoteStatusOptions.filter((option) =>
+            option.value === "SENT" ||
+            option.value === "DRAFT" ||
+            option.value === "ACCEPTED" ||
+            option.value === "REJECTED" ||
+            option.value === "CANCELLED"
+        );
+    }
+
+    return quoteStatusOptions.filter(
+        (option) => option.value === currentStatus
+    );
+}
+
 export default function QuoteDetailMetaCard({
                                                 quote,
                                                 formState,
                                                 onFieldChange,
                                                 onSaveStatus,
+                                                onSaveValidity,
                                                 patchSaving,
                                                 statusChanged
                                             }) {
@@ -30,8 +63,31 @@ export default function QuoteDetailMetaCard({
                 </div>
 
                 <div>
-                    <label>Geldig tot</label>
-                    <p>{formatDate(quote.validUntil)}</p>
+                    <label htmlFor="validUntil">Geldig tot</label>
+                    {quote.status === "DRAFT" ? (
+                        <>
+                            <input
+                                id="validUntil"
+                                type="date"
+                                value={formState.validUntil}
+                                onChange={(e) =>
+                                    onFieldChange("validUntil", e.target.value)
+                                }
+                            />
+                            <button
+                                type="button"
+                                onClick={onSaveValidity}
+                                disabled={
+                                    patchSaving ||
+                                    formState.validUntil === quote.validUntil
+                                }
+                            >
+                                Datum opslaan
+                            </button>
+                        </>
+                    ) : (
+                        <p>{formatDate(quote.validUntil)}</p>
+                    )}
                 </div>
 
                 <div>
@@ -55,8 +111,7 @@ export default function QuoteDetailMetaCard({
                             onFieldChange("status", e.target.value)
                         }}
                     >
-                        {quoteStatusOptions
-                            .filter((option) => option.value !== "SENT" || quote.status === "SENT")
+                        {availableStatusOptions(quote.status)
                             .map((option) => (
                             <option key={option.value} value={option.value}>
                                 {option.label}

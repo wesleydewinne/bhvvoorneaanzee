@@ -12,6 +12,7 @@ function normalizeText(value) {
 export function normalizeQuoteToFormState(detail) {
     return {
         status: detail?.status || "",
+        validUntil: detail?.validUntil || "",
         internalNotes: normalizeText(detail?.internalNotes),
         remarks: normalizeText(detail?.remarks),
         discountCode: normalizeText(detail?.discountCode),
@@ -69,6 +70,65 @@ function extractApiErrorMessage(err, fallbackMessage) {
     return fallbackMessage;
 }
 
+function normalizeTraining(training) {
+    const participants = Number(training?.participantCount || 0);
+    const baseSalesAmount = Number(training?.baseSalesAmount || 0);
+    const subtotal = Number(training?.subtotalExcludingVat || 0);
+
+    return {
+        ...training,
+        trainingDisplayName: training?.trainingName,
+        trainingType: training?.trainingName,
+        pricePerPerson:
+            participants > 0 ? baseSalesAmount / participants : baseSalesAmount,
+        priceBeforeDiscount: baseSalesAmount,
+        discountAmount: Math.max(baseSalesAmount - subtotal, 0),
+        travelSurcharge: 0,
+        totalPriceAfterDiscount: subtotal,
+        totalPrice: subtotal,
+        totalCostAmount: Number(training?.totalCostAmount || 0),
+        marginAmount: Number(training?.marginAmount || 0),
+        marginPercentage: Number(training?.marginPercentage || 0),
+    };
+}
+
+export function normalizeQuoteDetail(detail) {
+    if (!detail || Array.isArray(detail?.trainings)) {
+        return detail;
+    }
+
+    const customer = detail.customer || {};
+    const trainings = Array.isArray(detail.quoteTrainings)
+        ? detail.quoteTrainings.map(normalizeTraining)
+        : [];
+
+    return {
+        ...detail,
+        createdAt: detail.quoteDate,
+        customerName: customer.contactPerson || customer.name,
+        company: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+        street: customer.street,
+        houseNumber: customer.houseNumber,
+        postalCode: customer.postalCode,
+        city: customer.city,
+        remarks: detail.introduction || "",
+        trainings,
+        priceBeforeDiscount: trainings.reduce(
+            (sum, training) => sum + training.priceBeforeDiscount,
+            0
+        ),
+        discountAmount: trainings.reduce(
+            (sum, training) => sum + training.discountAmount,
+            0
+        ),
+        totalPrice: Number(detail.subtotalExcludingVat || 0),
+        travelSurcharge: 0,
+        totalExtraKm: 0,
+    };
+}
+
 export default function useQuoteDetailData(id) {
     const [quote, setQuote] = useState(null);
     const [trainingOptions, setTrainingOptions] = useState([]);
@@ -89,7 +149,7 @@ export default function useQuoteDetailData(id) {
 
             try {
                 const response = await quoteService.getQuoteById(id);
-                const detail = response?.data;
+                const detail = normalizeQuoteDetail(response?.data);
 
                 if (!detail) {
                     throw new Error("Geen offertedetails ontvangen van de server.");

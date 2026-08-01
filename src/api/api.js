@@ -8,6 +8,9 @@ const TIMEOUT_ERROR_MESSAGE = "De server reageert niet op tijd. Probeer het opni
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
     withCredentials: true,
+    withXSRFToken: true,
+    xsrfCookieName: "XSRF-TOKEN",
+    xsrfHeaderName: "X-XSRF-TOKEN",
     timeout: 15000,
     headers: {
         "Content-Type": "application/json",

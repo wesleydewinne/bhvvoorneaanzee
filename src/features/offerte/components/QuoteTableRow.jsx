@@ -3,7 +3,7 @@ import { Eye, Printer } from "lucide-react";
 import { Link } from "react-router-dom";
 import QuoteStatusBadge from "./QuoteStatusBadge.jsx";
 import QuoteAddressBlock from "./QuoteAddressBlock.jsx";
-import { formatDateTime, formatMode } from "../helpers/quoteFormatters.js";
+import { formatDate, formatMode } from "../helpers/quoteFormatters.js";
 import quoteService, { getQuotePdfErrorMessage } from "../services/quoteService.js";
 
 export default function QuoteTableRow({ quote }) {
@@ -47,7 +47,7 @@ export default function QuoteTableRow({ quote }) {
     return (
         <tr>
             <td>{quote.quoteNumber || "-"}</td>
-            <td>{formatDateTime(quote.createdAt)}</td>
+            <td>{formatDate(quote.createdAt)}</td>
             <td>{quote.company || "-"}</td>
             <td>{formatMode(quote.mode)}</td>
             <td>

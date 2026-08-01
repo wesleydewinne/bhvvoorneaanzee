@@ -17,17 +17,13 @@ export async function getQuotePdfErrorMessage(error, fallbackMessage) {
 }
 
 const quoteService = {
-    getTrainingTypes: () => api.get("/training-types/offer"),
+    getTrainingCatalog: () => api.get("/training-catalog"),
 
     createQuote: (payload) => api.post("/quotes", payload),
 
     createAdminQuote: (payload) => api.post("/quotes/admin", payload),
 
     getAllQuotes: () => api.get("/quotes"),
-
-    getOpenQuotes: () => api.get("/quotes", { params: { archived: false } }),
-
-    getArchivedQuotes: () => api.get("/quotes", { params: { archived: true } }),
 
     getQuoteById: (id) => api.get(`/quotes/${id}`),
 
@@ -40,11 +36,60 @@ const quoteService = {
 
     updateQuote: (id, payload) => api.put(`/quotes/${id}`, payload),
 
-    patchQuote: (id, payload) => api.patch(`/quotes/${id}`, payload),
+    addTraining: (quoteId, payload) =>
+        api.post(`/quotes/${quoteId}/trainings`, payload),
+
+    updateTraining: (quoteId, trainingId, payload) =>
+        api.put(`/quotes/${quoteId}/trainings/${trainingId}`, payload),
+
+    deleteTraining: (quoteId, trainingId) =>
+        api.delete(`/quotes/${quoteId}/trainings/${trainingId}`),
+
+    getTrainingDiscounts: (quoteId, trainingId) =>
+        api.get(`/quotes/${quoteId}/trainings/${trainingId}/discounts`),
+
+    addTrainingDiscount: (quoteId, trainingId, payload) =>
+        api.post(`/quotes/${quoteId}/trainings/${trainingId}/discounts`, payload),
+
+    updateTrainingDiscount: (quoteId, trainingId, discountId, payload) =>
+        api.put(
+            `/quotes/${quoteId}/trainings/${trainingId}/discounts/${discountId}`,
+            payload
+        ),
+
+    deleteTrainingDiscount: (quoteId, trainingId, discountId) =>
+        api.delete(
+            `/quotes/${quoteId}/trainings/${trainingId}/discounts/${discountId}`
+        ),
+
+    getTrainingCosts: (quoteId, trainingId) =>
+        api.get(`/quotes/${quoteId}/trainings/${trainingId}/costs`),
+
+    addTrainingCost: (quoteId, trainingId, payload) =>
+        api.post(`/quotes/${quoteId}/trainings/${trainingId}/costs`, payload),
+
+    updateTrainingCost: (quoteId, trainingId, costId, payload) =>
+        api.put(
+            `/quotes/${quoteId}/trainings/${trainingId}/costs/${costId}`,
+            payload
+        ),
+
+    deleteTrainingCost: (quoteId, trainingId, costId) =>
+        api.delete(
+            `/quotes/${quoteId}/trainings/${trainingId}/costs/${costId}`
+        ),
+
+    updateValidUntil: (id, validUntil) =>
+        api.patch(`/quotes/${id}/valid-until`, { validUntil }),
+
+    patchQuote: (id, payload) => api.patch(`/quotes/${id}/status`, {
+        quoteId: id,
+        targetStatus: payload?.status,
+        statusNote: payload?.statusNote || null,
+    }),
 
     archiveQuote: (id) => api.patch(`/quotes/${id}`, { status: "ARCHIVED" }),
 
-    getDiscountCodes: () => api.get("/discount-codes"),
 };
 
 export default quoteService;

@@ -1,13 +1,11 @@
 export const quoteStatusLabels = {
-    REQUESTED: "Nieuw",
-    IN_PROGRESS: "In behandeling",
-    WAITING_FOR_CUSTOMER: "Wacht op klant",
-    READY_TO_SEND: "Klaar om te versturen",
+    DRAFT: "Concept",
+    SENDING: "Wordt verzonden",
     SENT: "Verzonden",
     ACCEPTED: "Geaccepteerd",
     REJECTED: "Afgewezen",
     EXPIRED: "Verlopen",
-    ARCHIVED: "Gearchiveerd",
+    CANCELLED: "Geannuleerd",
 };
 
 export const quoteStatusOptions = Object.entries(quoteStatusLabels).map(([value, label]) => ({

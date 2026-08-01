@@ -63,3 +63,29 @@ export function normalizeNumberInput(value) {
     const number = Number(value);
     return Number.isNaN(number) ? "" : number;
 }
+
+export function parseMoneyInput(value) {
+    if (typeof value === "number") return value;
+    if (value === null || value === undefined || String(value).trim() === "") {
+        return 0;
+    }
+
+    const compact = String(value).trim().replace(/\s/g, "");
+    const normalized = compact.includes(",")
+        ? compact.replace(/\./g, "").replace(",", ".")
+        : compact;
+    const number = Number(normalized);
+    return Number.isFinite(number) ? number : 0;
+}
+
+export function formatMoneyInput(value) {
+    const number = typeof value === "string"
+        ? parseMoneyInput(value)
+        : Number(value || 0);
+
+    return new Intl.NumberFormat("nl-NL", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        useGrouping: false,
+    }).format(Number.isFinite(number) ? number : 0);
+}

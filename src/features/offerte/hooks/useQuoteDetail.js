@@ -119,6 +119,7 @@ export default function useQuoteDetail(id) {
 
         saveQuote: actions.saveQuote,
         saveStatus: actions.saveStatus,
+        saveValidity: actions.saveValidity,
         archiveQuote: actions.archiveQuote,
         refresh: loadQuote
     };

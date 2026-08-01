@@ -11,6 +11,20 @@ function extractQuotes(response) {
     return [];
 }
 
+function normalizeQuote(quote) {
+    const customer = quote?.customer || {};
+    return {
+        ...quote,
+        createdAt: quote?.quoteDate,
+        company: customer.name,
+        street: customer.street,
+        houseNumber: customer.houseNumber,
+        postalCode: customer.postalCode,
+        city: customer.city,
+        mode: "OFFERTE",
+    };
+}
+
 function extractErrorMessage(error) {
     const responseData = error?.response?.data;
 
@@ -32,13 +46,16 @@ export default function useQuotes(initialFilter = "open") {
         setError("");
 
         try {
-            const response = activeFilter === "archived"
-                ? await quoteService.getArchivedQuotes()
-                : activeFilter === "all"
-                    ? await quoteService.getAllQuotes()
-                    : await quoteService.getOpenQuotes();
-
-            setQuotes(extractQuotes(response));
+            const response = await quoteService.getAllQuotes();
+            const allQuotes = extractQuotes(response).map(normalizeQuote);
+            const closedStatuses = ["ACCEPTED", "REJECTED", "EXPIRED", "CANCELLED"];
+            setQuotes(
+                activeFilter === "all"
+                    ? allQuotes
+                    : activeFilter === "archived"
+                        ? allQuotes.filter((quote) => closedStatuses.includes(quote.status))
+                        : allQuotes.filter((quote) => !closedStatuses.includes(quote.status))
+            );
         } catch (requestError) {
             setQuotes([]);
             setError(extractErrorMessage(requestError));

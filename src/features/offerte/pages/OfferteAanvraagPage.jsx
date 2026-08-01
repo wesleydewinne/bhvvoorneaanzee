@@ -76,7 +76,7 @@ export default function OfferteAanvraagPage() {
 
     useEffect(() => {
         quoteService
-            .getTrainingTypes()
+            .getTrainingCatalog()
             .then((res) => setTrainingOpties(res.data))
             .catch(() => {
                 setErrors((prev) => ({
@@ -368,27 +368,32 @@ export default function OfferteAanvraagPage() {
         setLoading(true);
         clearErrors("formulier");
 
+        const validUntil = new Date();
+        validUntil.setDate(validUntil.getDate() + 30);
+
         const payload = {
-            mode: overlegModus ? "OVERLEG" : "OFFERTE",
-            customer: {
-                firstName: klant.voornaam,
-                lastName: klant.achternaam,
-                company: klant.bedrijf,
-                email: klant.email,
-                phone: klant.telefoon,
-                address: {
-                    street: klant.straat,
-                    houseNumber: klant.huisnummer,
-                    postalCode: klant.postcode,
-                    city: klant.plaats
-                }
-            },
+            companyName: klant.bedrijf,
+            contactPersonName: `${klant.voornaam} ${klant.achternaam}`.trim(),
+            contactEmail: klant.email,
+            contactPhone: klant.telefoon,
+            street: klant.straat,
+            houseNumber: klant.huisnummer,
+            postalCode: klant.postcode,
+            city: klant.plaats,
+            customerReference: null,
+            quoteSubject: overlegModus
+                ? "Verzoek om overleg via de website"
+                : "Offerteaanvraag via de website",
+            introductionText: overlegModus ? opmerkingen : null,
+            closingText: null,
+            validUntil: validUntil.toISOString().slice(0, 10),
             trainings: trainings.map((t) => ({
-                trainingType: t.trainingType,
+                trainingCode: t.trainingType,
                 participantCount: Number(t.aantal),
-                onSite: Boolean(t.eigenLocatie)
+                internalNote: t.eigenLocatie
+                    ? "Training op locatie van de opdrachtgever."
+                    : "Locatie in overleg."
             })),
-            remarks: overlegModus ? opmerkingen : null,
             captcha: captchaToken,
             website
         };
@@ -589,8 +594,11 @@ export default function OfferteAanvraagPage() {
                                         >
                                             <option value="">-- Kies training --</option>
                                             {trainingOpties.map((t) => (
-                                                <option key={t.code} value={t.code}>
-                                                    {t.displayName}
+                                                <option
+                                                    key={t.code}
+                                                    value={t.code}
+                                                >
+                                                    {t.name}
                                                 </option>
                                             ))}
                                         </select>

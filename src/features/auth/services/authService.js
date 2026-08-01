@@ -2,7 +2,7 @@ import api from "@/api/api.js";
 
 const authService = {
     getMe() {
-        return api.get("/users/me");
+        return api.get("/auth/me");
     },
 
     login(payload) {
