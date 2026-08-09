@@ -34,13 +34,22 @@ const quoteService = {
 
     sendQuote: (id) => api.post(`/quotes/${id}/send`),
 
-    updateQuote: (id, payload) => api.put(`/quotes/${id}`, payload),
+    updateQuote: (id, payload) => api.put(`/quotes/${id}`, {
+        ...payload,
+        quoteId: id,
+    }),
 
     addTraining: (quoteId, payload) =>
-        api.post(`/quotes/${quoteId}/trainings`, payload),
+        api.post(`/quotes/${quoteId}/trainings`, {
+            ...payload,
+            quoteId,
+        }),
 
     updateTraining: (quoteId, trainingId, payload) =>
-        api.put(`/quotes/${quoteId}/trainings/${trainingId}`, payload),
+        api.put(`/quotes/${quoteId}/trainings/${trainingId}`, {
+            ...payload,
+            quoteTrainingId: trainingId,
+        }),
 
     deleteTraining: (quoteId, trainingId) =>
         api.delete(`/quotes/${quoteId}/trainings/${trainingId}`),
@@ -87,8 +96,6 @@ const quoteService = {
         targetStatus: payload?.status,
         statusNote: payload?.statusNote || null,
     }),
-
-    archiveQuote: (id) => api.patch(`/quotes/${id}`, { status: "ARCHIVED" }),
 
 };
 

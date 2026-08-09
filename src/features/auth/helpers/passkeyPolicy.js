@@ -1,13 +1,3 @@
-const PASSKEY_REQUIRED_ROLES = new Set([
-    "ROLE_ADMIN",
-    "ROLE_FINANCE",
-    "ROLE_TRAINING_MANAGER",
-    "ROLE_TRAINER",
-    "ROLE_SAFETY_MANAGER",
-    "ROLE_BBMI_TECHNICIAN",
-    "ROLE_TEAM_LEADER",
-]);
-
 export function getAuthRoles(user) {
     const normalize = (item) => {
         if (!item) return null;
@@ -30,7 +20,9 @@ export function requiresPasskeyForUser(user) {
     if (typeof user?.requiresPasskeySetup === "boolean") {
         return user.requiresPasskeySetup;
     }
-    return getAuthRoles(user).some((role) => PASSKEY_REQUIRED_ROLES.has(role));
+    // Alleen de backend bepaalt of passkey-onboarding verplicht is. Een
+    // ontbrekend veld mag gebruikers niet opsluiten in de registratieroute.
+    return false;
 }
 
 export function getPostLoginPath(user) {
