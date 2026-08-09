@@ -41,7 +41,19 @@ function isOpenContactMessage(message) {
 }
 
 function isOpenQuote(quote) {
-    return !["ACCEPTED", "REJECTED", "EXPIRED", "ARCHIVED"].includes(quote?.status);
+    return !["ACCEPTED", "REJECTED", "EXPIRED", "CANCELLED"].includes(quote?.status);
+}
+
+function normalizeQuote(quote) {
+    const customer = quote?.customer || {};
+
+    return {
+        ...quote,
+        createdAt: quote?.quoteDate,
+        company: customer.name,
+        customerName: customer.contactPerson,
+        city: customer.city,
+    };
 }
 
 function isUpcomingTraining(training) {
@@ -96,7 +108,7 @@ async function getAdminOverview() {
         ? normalizeCollection(trainingsResult.value)
         : [];
     const quotes = quotesResult.status === "fulfilled"
-        ? normalizeCollection(quotesResult.value)
+        ? normalizeCollection(quotesResult.value).map(normalizeQuote)
         : [];
     const contactMessages = contactResult.status === "fulfilled"
         ? normalizeCollection(contactResult.value)
@@ -241,7 +253,7 @@ async function getFinanceOverview() {
         offertes: quoteService.getAllQuotes,
         facturen: async () => (await api.get("/invoices")).data,
     });
-    const quotes = sortByNewest(data.offertes.filter(isOpenQuote));
+    const quotes = sortByNewest(data.offertes.map(normalizeQuote).filter(isOpenQuote));
     return {
         sections: [
             section("quotes", "Open offertes", quotes.map((item) => toItem(item, "quote")), "Geen open offertes."),

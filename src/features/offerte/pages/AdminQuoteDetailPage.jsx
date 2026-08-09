@@ -18,6 +18,7 @@ function apiMessage(error, fallback) {
 
 function toForm(quote) {
     const customer = quote.customer || {};
+    const trainingLocation = quote.trainingLocation || {};
     const contactName = splitContactName(customer.contactPerson);
     return {
         companyName: customer.name || "",
@@ -37,6 +38,13 @@ function toForm(quote) {
         travelDistanceKm: formatMoneyInput(quote.travelDistanceKm || 0),
         travelFreeKm: formatMoneyInput(quote.travelFreeKm ?? 100),
         travelRatePerKm: formatMoneyInput(quote.travelRatePerKm || 0),
+        trainingLocationName: trainingLocation.name || "",
+        trainingLocationStreet: trainingLocation.street || "",
+        trainingLocationHouseNumber: trainingLocation.houseNumber || "",
+        trainingLocationPostalCode: trainingLocation.postalCode || "",
+        trainingLocationCity: trainingLocation.city || "",
+        trainingLocationRoom: trainingLocation.room || "",
+        trainingLocationAccessInstructions: trainingLocation.accessInstructions || "",
     };
 }
 
@@ -112,9 +120,13 @@ export default function AdminQuoteDetailPage() {
         (total, training) => total + Number(training.baseSalesAmount || 0),
         0
     );
+    const totalTrainingSales = trainings.reduce(
+        (total, training) => total + Number(training.subtotalExcludingVat || 0),
+        0
+    );
     const totalDiscount = Math.max(
         0,
-        totalBaseSales - Number(quote?.subtotalExcludingVat || 0)
+        totalBaseSales - totalTrainingSales
     );
     const travelDistance = parseMoneyInput(form?.travelDistanceKm ?? 0);
     const travelFreeKm = parseMoneyInput(form?.travelFreeKm ?? 100);
@@ -442,6 +454,57 @@ export default function AdminQuoteDetailPage() {
                 </section>
             </div>
 
+            <section className="quote-detail-card">
+                <h2>Trainingslocatie</h2>
+                <p>Deze gegevens verschijnen in de vernieuwde offerte-PDF.</p>
+                <div className="quote-detail-grid">
+                    {[
+                        ["trainingLocationName", "Locatienaam"],
+                        ["trainingLocationStreet", "Straat"],
+                        ["trainingLocationHouseNumber", "Huisnummer"],
+                        ["trainingLocationPostalCode", "Postcode"],
+                        ["trainingLocationCity", "Plaats"],
+                        ["trainingLocationRoom", "Ruimte of terrein"],
+                    ].map(([name, label]) => (
+                        <div key={name}>
+                            <label htmlFor={name}>{label}</label>
+                            <input
+                                id={name}
+                                value={form[name]}
+                                required={["trainingLocationStreet", "trainingLocationHouseNumber", "trainingLocationPostalCode", "trainingLocationCity"].includes(name)}
+                                disabled={!editable || busy}
+                                onChange={(event) => updateForm(name, event.target.value)}
+                            />
+                        </div>
+                    ))}
+                    <div className="quote-detail-col-span-2">
+                        <label htmlFor="trainingLocationAccessInstructions">
+                            Toegangs- en aanmeldinstructies
+                        </label>
+                        <textarea
+                            id="trainingLocationAccessInstructions"
+                            rows="3"
+                            value={form.trainingLocationAccessInstructions}
+                            disabled={!editable || busy}
+                            onChange={(event) => updateForm(
+                                "trainingLocationAccessInstructions",
+                                event.target.value
+                            )}
+                        />
+                    </div>
+                </div>
+                {editable && (
+                    <button
+                        type="button"
+                        className="quote-btn quote-btn-primary"
+                        disabled={busy}
+                        onClick={saveDetails}
+                    >
+                        Trainingslocatie opslaan
+                    </button>
+                )}
+            </section>
+
             <section className="quote-detail-card quote-financial-overview">
                 <h2>Financieel overzicht</h2>
                 <p className="quote-financial-intro">
@@ -460,7 +523,7 @@ export default function AdminQuoteDetailPage() {
                         <h3>Korting</h3>
                         <div><span>Verkoop vóór korting</span><strong>{formatCurrency(totalBaseSales)}</strong></div>
                         <div><span>Totale korting</span><strong>− {formatCurrency(totalDiscount)}</strong></div>
-                        <div className="is-total"><span>Verkoop na korting</span><strong>{formatCurrency(quote.subtotalExcludingVat)}</strong></div>
+                        <div className="is-total"><span>Trainingen na korting</span><strong>{formatCurrency(totalTrainingSales)}</strong></div>
                     </section>
 
                     <section className="quote-financial-group quote-financial-group-internal">

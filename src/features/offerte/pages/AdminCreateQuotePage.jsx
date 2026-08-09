@@ -24,6 +24,16 @@ const emptyTraining = () => ({
     internalNote: "",
 });
 
+const emptyTrainingLocation = {
+    trainingLocationName: "",
+    trainingLocationStreet: "",
+    trainingLocationHouseNumber: "",
+    trainingLocationPostalCode: "",
+    trainingLocationCity: "",
+    trainingLocationRoom: "",
+    trainingLocationAccessInstructions: "",
+};
+
 function dateAfterMonths(months) {
     const date = new Date();
     date.setMonth(date.getMonth() + months);
@@ -34,6 +44,7 @@ export default function AdminCreateQuotePage() {
     const navigate = useNavigate();
     const [customer, setCustomer] = useState(emptyCustomer);
     const [trainings, setTrainings] = useState([emptyTraining()]);
+    const [trainingLocation, setTrainingLocation] = useState(emptyTrainingLocation);
     const [catalog, setCatalog] = useState([]);
     const [subject, setSubject] = useState("");
     const [introduction, setIntroduction] = useState(
@@ -92,6 +103,11 @@ export default function AdminCreateQuotePage() {
                 introductionText: introduction.trim() || null,
                 closingText: closingText.trim() || null,
                 validUntil,
+                ...trainingLocation,
+                trainingLocationName: trainingLocation.trainingLocationName.trim() || null,
+                trainingLocationRoom: trainingLocation.trainingLocationRoom.trim() || null,
+                trainingLocationAccessInstructions:
+                    trainingLocation.trainingLocationAccessInstructions.trim() || null,
                 trainings: trainings.map((training) => ({
                     trainingCode: training.trainingCode,
                     participantCount: Number(training.participantCount),
@@ -160,6 +176,48 @@ export default function AdminCreateQuotePage() {
                                 />
                             </div>
                         ))}
+                    </div>
+                </section>
+
+                <section className="quote-detail-card">
+                    <h2>Trainingslocatie</h2>
+                    <p>Deze gegevens worden op de offerte en in de PDF gebruikt.</p>
+                    <div className="quote-detail-grid">
+                        {[
+                            ["trainingLocationName", "Locatienaam"],
+                            ["trainingLocationStreet", "Straat"],
+                            ["trainingLocationHouseNumber", "Huisnummer"],
+                            ["trainingLocationPostalCode", "Postcode"],
+                            ["trainingLocationCity", "Plaats"],
+                            ["trainingLocationRoom", "Ruimte of terrein"],
+                        ].map(([name, label]) => (
+                            <div key={name}>
+                                <label htmlFor={`create-${name}`}>{label}</label>
+                                <input
+                                    id={`create-${name}`}
+                                    value={trainingLocation[name]}
+                                    onChange={(event) => setTrainingLocation((current) => ({
+                                        ...current,
+                                        [name]: event.target.value,
+                                    }))}
+                                    required={["trainingLocationStreet", "trainingLocationHouseNumber", "trainingLocationPostalCode", "trainingLocationCity"].includes(name)}
+                                />
+                            </div>
+                        ))}
+                        <div className="quote-detail-col-span-2">
+                            <label htmlFor="create-trainingLocationAccessInstructions">
+                                Toegangs- en aanmeldinstructies
+                            </label>
+                            <textarea
+                                id="create-trainingLocationAccessInstructions"
+                                rows="3"
+                                value={trainingLocation.trainingLocationAccessInstructions}
+                                onChange={(event) => setTrainingLocation((current) => ({
+                                    ...current,
+                                    trainingLocationAccessInstructions: event.target.value,
+                                }))}
+                            />
+                        </div>
                     </div>
                 </section>
 

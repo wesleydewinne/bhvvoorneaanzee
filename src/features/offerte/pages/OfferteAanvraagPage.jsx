@@ -387,6 +387,13 @@ export default function OfferteAanvraagPage() {
             introductionText: overlegModus ? opmerkingen : null,
             closingText: null,
             validUntil: validUntil.toISOString().slice(0, 10),
+            trainingLocationName: klant.bedrijf,
+            trainingLocationStreet: klant.straat,
+            trainingLocationHouseNumber: klant.huisnummer,
+            trainingLocationPostalCode: klant.postcode,
+            trainingLocationCity: klant.plaats,
+            trainingLocationRoom: null,
+            trainingLocationAccessInstructions: null,
             trainings: trainings.map((t) => ({
                 trainingCode: t.trainingType,
                 participantCount: Number(t.aantal),

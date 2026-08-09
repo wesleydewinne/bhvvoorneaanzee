@@ -97,13 +97,9 @@ export default function QuoteTrainingEditor({
     const [draft, setDraft] = useState({
         participantCount: training.participantCount,
         description: training.description || "",
-        salesPrice: formatMoneyInput(
-            training.participantCount > 0
-                ? Number(training.baseSalesAmount || 0) / training.participantCount
-                : Number(training.baseSalesAmount || 0)
-        ),
+        salesPrice: formatMoneyInput(training.salesPrice || 0),
         vatPercentage: String(Number(training.vatPercentage || 0)),
-        internalNote: "",
+        internalNote: training.internalNote || "",
     });
     const [discounts, setDiscounts] = useState([]);
     const [costs, setCosts] = useState([]);
