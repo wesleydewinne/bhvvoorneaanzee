@@ -205,16 +205,7 @@ export async function isHybridPasskeySupported() {
         return false;
     }
 
-    if (typeof PublicKeyCredential.getClientCapabilities === "function") {
-        try {
-            const capabilities = await PublicKeyCredential.getClientCapabilities();
-            if (typeof capabilities?.hybridTransport === "boolean") {
-                return capabilities.hybridTransport;
-            }
-        } catch {
-            // Gebruik hieronder de conservatieve browserfallback.
-        }
-    }
-
+    // Chrome en Edge kunnen hun eigen cross-device interface aanbieden, ook
+    // wanneer Windows hybridTransport niet als OS-capability rapporteert.
     return true;
 }

@@ -143,7 +143,7 @@ export default function LoginPage() {
         }
 
         if (authenticatorPreference === "PHONE" && !(await isHybridPasskeySupported())) {
-            setError("Deze Firefox-/Windows-combinatie ondersteunt aanmelden via de QR-code van je telefoon niet. Open deze pagina in Microsoft Edge of Google Chrome en kies daar ‘Via mijn telefoon’. ");
+            setError("Firefox op Windows opent voor deze telefoonroute geen bruikbare QR-code. Open deze pagina in Microsoft Edge of Google Chrome en kies daar ‘Via mijn telefoon’.");
             return;
         }
 
