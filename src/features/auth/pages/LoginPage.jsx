@@ -3,12 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Fingerprint, LockKeyhole, LogIn, Mail, ShieldCheck, Smartphone } from "lucide-react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import { getPostAuthenticationPath } from "@/features/auth/helpers/passkeyPolicy.js";
-import { isHybridPasskeySupported } from "@/features/auth/utils/passkeyUtils.js";
 import "./LoginPage.css";
 
 export default function LoginPage() {
     const captchaDisabled = import.meta.env.DEV && import.meta.env.VITE_DISABLE_CAPTCHA === "true";
     const [email, setEmail] = useState("");
+    const [passkeyEmail, setPasskeyEmail] = useState("");
     const [password, setPassword] = useState("");
     const [captchaToken, setCaptchaToken] = useState(captchaDisabled ? "local-development" : "");
     const [captchaReady, setCaptchaReady] = useState(captchaDisabled);
@@ -137,18 +137,13 @@ export default function LoginPage() {
     const handlePasskeyLogin = async (authenticatorPreference = "DEVICE") => {
         setError("");
 
-        if (!email.trim()) {
+        if (!passkeyEmail.trim()) {
             setError("Vul eerst het e-mailadres in dat bij de passkey hoort.");
             return;
         }
 
-        if (authenticatorPreference === "PHONE" && !(await isHybridPasskeySupported())) {
-            setError("Firefox op Windows opent voor deze telefoonroute geen bruikbare QR-code. Open deze pagina in Microsoft Edge of Google Chrome en kies daar ‘Via mijn telefoon’.");
-            return;
-        }
-
         setActiveLoginMethod(authenticatorPreference);
-        const result = await loginWithPasskey(email, authenticatorPreference);
+        const result = await loginWithPasskey(passkeyEmail, authenticatorPreference);
         setActiveLoginMethod(null);
 
         if (!result.success) {
@@ -204,6 +199,18 @@ export default function LoginPage() {
                         <div className="login__method-header">
                             <span className="login__method-icon login__method-icon--passkey"><Fingerprint aria-hidden="true" /></span>
                             <div><h2>Met passkey</h2><p>Gebruik Face ID, Touch ID, Windows Hello of je apparaatcode.</p></div>
+                        </div>
+                        <div className="login__field">
+                            <label className="login__label" htmlFor="passkey-email"><Mail aria-hidden="true" />E-mailadres</label>
+                            <input
+                                id="passkey-email"
+                                className="login__input"
+                                type="email"
+                                value={passkeyEmail}
+                                onChange={(e) => setPasskeyEmail(e.target.value)}
+                                autoComplete="username webauthn"
+                                required
+                            />
                         </div>
                         <div className="login__passkey-visual"><Fingerprint aria-hidden="true" /></div>
                         <div className="login__passkey-actions">

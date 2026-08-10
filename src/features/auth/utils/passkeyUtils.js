@@ -134,10 +134,6 @@ export function applyPasskeyAuthenticatorPreference(options, preference = "DEVIC
         return {
             ...options,
             hints: ["hybrid"],
-            allowCredentials: options.allowCredentials?.map((credential) => ({
-                ...credential,
-                transports: ["hybrid"],
-            })),
         };
     }
 
@@ -191,21 +187,4 @@ export function getDefaultPasskeyName() {
 
 export function isPasskeySupported() {
     return typeof window !== "undefined" && Boolean(window.PublicKeyCredential);
-}
-
-export async function isHybridPasskeySupported() {
-    if (!isPasskeySupported()) {
-        return false;
-    }
-
-    // Firefox rapporteert op sommige Windows-versies hybridTransport als
-    // beschikbaar, maar opent vervolgens een lege Windows Security-dialoog
-    // zonder QR-code. Start die onbruikbare flow daarom niet.
-    if (/Firefox\//i.test(navigator.userAgent) && /Windows/i.test(navigator.userAgent)) {
-        return false;
-    }
-
-    // Chrome en Edge kunnen hun eigen cross-device interface aanbieden, ook
-    // wanneer Windows hybridTransport niet als OS-capability rapporteert.
-    return true;
 }
