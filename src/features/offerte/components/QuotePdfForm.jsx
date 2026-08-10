@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { LoaderCircle, Save } from "lucide-react";
 import quoteService from "../services/quoteService.js";
-import { buildQuotePayload, createInitialQuote, formatCurrency } from "../helpers/quoteHelpers.js";
+import { buildQuotePayload, createInitialQuote, formatCurrency, normalizeQuoteForForm } from "../helpers/quoteHelpers.js";
 import QuoteSection from "./QuoteSection.jsx";
 import TrainingItemsEditor from "./TrainingItemsEditor.jsx";
 
@@ -11,7 +11,7 @@ const updateNested = (setter, section, field, value) => setter((current) => ({
 }));
 
 export default function QuotePdfForm({ initialValue, onSave, submitLabel = "Offerte opslaan" }) {
-    const [form, setForm] = useState(() => initialValue || createInitialQuote());
+    const [form, setForm] = useState(() => normalizeQuoteForForm(initialValue || createInitialQuote()));
     const [trainingTypes, setTrainingTypes] = useState([]);
     const [loadingTypes, setLoadingTypes] = useState(true);
     const [submitting, setSubmitting] = useState(false);

@@ -9,18 +9,98 @@ const durationOptions = [
 ];
 
 export default function TrainingItemsEditor({ items, trainingTypes, onChange }) {
+    const getTraining = (code) => trainingTypes.find((item) => item.code === code);
+
+    const calculateGroups = (participantCount, training) => {
+        const participants = Math.max(0, Number(participantCount) || 0);
+        const maximum = Number(training?.maxParticipantsPerGroup);
+        return maximum > 0 && participants > 0 ? Math.ceil(participants / maximum) : 1;
+    };
+
+    const usesParticipantPrice = (training) => ["BHV", "EHBO"].includes(training?.category);
+
+    const withCalculatedPrice = (item, training = getTraining(item.trainingCode)) => {
+        const quantity = usesParticipantPrice(training)
+            ? Math.max(0, Number(item.participantCount) || 0)
+            : Math.max(1, Number(item.executionCount) || 1);
+        const unitPrice = Number(item.unitPriceExcludingVat) || 0;
+        return {
+            ...item,
+            quantity,
+            priceUnitLabel: usesParticipantPrice(training) ? "deelnemer" : "training",
+            totalExcludingVat: Math.round(quantity * unitPrice * 100) / 100,
+        };
+    };
+
+    const resizeTravelCosts = (values, executionCount) => Array.from(
+        { length: Math.max(1, Number(executionCount) || 1) },
+        (_, index) => values?.[index] ?? 0
+    );
+
     const update = (index, field, value) => {
-        onChange(items.map((item, itemIndex) => itemIndex === index ? { ...item, [field]: value } : item));
+        onChange(items.map((item, itemIndex) => {
+            if (itemIndex !== index) return item;
+
+            let updated = { ...item, [field]: value };
+            const training = getTraining(item.trainingCode);
+
+            if (field === "participantCount") {
+                const groupCount = calculateGroups(value, training);
+                updated = {
+                    ...updated,
+                    groupCount,
+                    executionCount: groupCount,
+                    travelCostsByExecution: resizeTravelCosts(item.travelCostsByExecution, groupCount),
+                };
+            }
+
+            if (field === "groupCount") {
+                const executions = Math.max(1, Number(value) || 1);
+                updated = {
+                    ...updated,
+                    executionCount: executions,
+                    travelCostsByExecution: resizeTravelCosts(item.travelCostsByExecution, executions),
+                };
+            }
+
+            if (field === "executionCount") {
+                updated.travelCostsByExecution = resizeTravelCosts(item.travelCostsByExecution, value);
+            }
+
+            if (["participantCount", "groupCount", "executionCount", "unitPriceExcludingVat"].includes(field)) {
+                updated = withCalculatedPrice(updated, training);
+            }
+
+            return updated;
+        }));
+    };
+
+    const updateTravelCost = (itemIndex, executionIndex, value) => {
+        onChange(items.map((item, index) => index !== itemIndex ? item : {
+            ...item,
+            travelCostsByExecution: resizeTravelCosts(
+                item.travelCostsByExecution,
+                item.executionCount
+            ).map((amount, currentIndex) => currentIndex === executionIndex ? value : amount),
+        }));
     };
 
     const selectTraining = (index, code) => {
         const training = trainingTypes.find((item) => item.code === code);
-        onChange(items.map((item, itemIndex) => itemIndex === index ? {
-            ...item,
-            trainingCode: code,
-            title: training?.displayName || "",
-            trainingDuration: inferUnambiguousDuration(training),
-        } : item));
+        onChange(items.map((item, itemIndex) => {
+            if (itemIndex !== index) return item;
+            const groupCount = calculateGroups(item.participantCount, training);
+            return withCalculatedPrice({
+                ...item,
+                trainingCode: code,
+                title: training?.displayName || "",
+                trainingDuration: inferUnambiguousDuration(training),
+                groupCount,
+                executionCount: groupCount,
+                unitPriceExcludingVat: training?.basePrice ?? 0,
+                travelCostsByExecution: resizeTravelCosts(item.travelCostsByExecution, groupCount),
+            }, training);
+        }));
     };
 
     return (
@@ -58,15 +138,22 @@ export default function TrainingItemsEditor({ items, trainingTypes, onChange }) 
                             ["quantity", "Hoeveelheid", 0, 0.01], ["unitPriceExcludingVat", "Eenheidsprijs excl. btw", 0, 0.01], ["totalExcludingVat", "Regeltotaal excl. btw", 0, 0.01],
                         ].map(([field, label, min, step]) => (
                             <label className="quote-field" key={field}>{label}
-                                <input type="number" required min={min} step={step} value={item[field]} onChange={(event) => update(index, field, event.target.value)} />
+                                <input type="number" required min={min} step={step} value={item[field]} readOnly={["quantity", "totalExcludingVat"].includes(field)} onChange={(event) => update(index, field, event.target.value)} />
                             </label>
                         ))}
                         <label className="quote-field quote-field--span-2">Prijseenheid
-                            <input required maxLength={100} value={item.priceUnitLabel} onChange={(event) => update(index, "priceUnitLabel", event.target.value)} placeholder="Bijvoorbeeld: deelnemer, groep of training" />
+                            <input required readOnly maxLength={100} value={item.priceUnitLabel} placeholder="Bijvoorbeeld: deelnemer, groep of training" />
                         </label>
-                        <label className="quote-field">Reiskosten excl. btw
-                            <input type="number" min="0" step="0.01" value={item.travelCostsExcludingVat} onChange={(event) => update(index, "travelCostsExcludingVat", event.target.value)} />
-                        </label>
+                        <div className="quote-field quote-field--span-3">
+                            <span>Reiskosten per uitvoering excl. btw</span>
+                            <div className="quote-form-grid quote-form-grid--three">
+                                {resizeTravelCosts(item.travelCostsByExecution, item.executionCount).map((amount, executionIndex) => (
+                                    <label className="quote-field" key={executionIndex}>Uitvoering {executionIndex + 1}
+                                        <input type="number" min="0" step="0.01" value={amount} onChange={(event) => updateTravelCost(index, executionIndex, event.target.value)} />
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </article>
             ))}

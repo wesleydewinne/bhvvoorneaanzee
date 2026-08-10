@@ -2,7 +2,10 @@ import api from "@/api/api.js";
 
 const quoteService = {
     async getTrainingTypes() {
-        const response = await api.get("/training-types/offer");
+        // De beheereditor heeft naast naam en duur ook de vastgelegde
+        // basisprijs en maximale groepsgrootte nodig. De publieke
+        // offerteaanvraag blijft /training-types/offer gebruiken.
+        const response = await api.get("/training-types");
         return Array.isArray(response.data) ? response.data : [];
     },
 

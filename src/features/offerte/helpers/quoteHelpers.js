@@ -18,7 +18,7 @@ export const createTrainingItem = () => ({
     priceUnitLabel: "training",
     unitPriceExcludingVat: 0,
     totalExcludingVat: 0,
-    travelCostsExcludingVat: 0,
+    travelCostsByExecution: [0],
 });
 
 export const createInitialQuote = () => {
@@ -71,9 +71,53 @@ export function inferUnambiguousDuration(training) {
 }
 
 const money = (value) => Math.round((Number(value) || 0) * 100) / 100;
+const text = (value) => typeof value === "string" ? value : "";
+
+export function normalizeQuoteForForm(value) {
+    const source = value || createInitialQuote();
+    const allocations = Array.isArray(source.travelCostAllocations)
+        ? source.travelCostAllocations
+        : [];
+
+    return {
+        ...source,
+        coverTitle: text(source.coverTitle),
+        coverSubtitle: text(source.coverSubtitle),
+        personalForeword: text(source.personalForeword),
+        requestSummary: text(source.requestSummary),
+        trainingGoal: text(source.trainingGoal),
+        planningNotes: text(source.planningNotes),
+        agreementUrl: text(source.agreementUrl),
+        vatPercentage: source.vatPercentage ?? source.priceSummary?.vatPercentage ?? 21,
+        recommendations: Array.isArray(source.recommendations)
+            ? source.recommendations.join("\n")
+            : source.recommendations || "",
+        discount: source.discount || source.discounts?.[0] || {
+            code: "",
+            description: "",
+            percentage: 0,
+            amountExcludingVat: 0,
+        },
+        trainingItems: (source.trainingItems || [createTrainingItem()]).map((item) => {
+            const executionCount = Math.max(1, Number(item.executionCount) || 1);
+            const matchingAllocations = allocations.filter(
+                (allocation) => allocation.trainingCode === item.trainingCode
+            );
+            return {
+                ...item,
+                travelCostsByExecution: Array.from({ length: executionCount }, (_, index) => {
+                    const allocation = matchingAllocations.find(
+                        (candidate) => Number(candidate.executionNumber) === index + 1
+                    );
+                    return money(allocation?.amountExcludingVat);
+                }),
+            };
+        }),
+    };
+}
 
 export function buildQuotePayload(form) {
-    const trainingItems = form.trainingItems.map(({ travelCostsExcludingVat: _travel, ...item }) => ({
+    const trainingItems = form.trainingItems.map(({ travelCostsByExecution: _travel, ...item }) => ({
         ...item,
         participantCount: Number(item.participantCount),
         groupCount: Number(item.groupCount),
@@ -87,7 +131,13 @@ export function buildQuotePayload(form) {
         trainingItems.reduce((sum, item) => sum + item.totalExcludingVat, 0)
     );
     const travelCostsExcludingVat = money(
-        form.trainingItems.reduce((sum, item) => sum + money(item.travelCostsExcludingVat), 0)
+        form.trainingItems.reduce(
+            (sum, item) => sum + (item.travelCostsByExecution || []).reduce(
+                (executionSum, amount) => executionSum + money(amount),
+                0
+            ),
+            0
+        )
     );
     const discountTotalExcludingVat = money(form.discount.amountExcludingVat);
     const totalExcludingVat = money(
@@ -105,26 +155,28 @@ export function buildQuotePayload(form) {
         }]
         : [];
 
-    const travelCostAllocations = form.trainingItems
-        .filter((item) => money(item.travelCostsExcludingVat) > 0)
-        .map((item) => ({
-            trainingCode: item.trainingCode,
-            executionNumber: 1,
-            amountExcludingVat: money(item.travelCostsExcludingVat),
-        }));
+    const travelCostAllocations = form.trainingItems.flatMap((item) =>
+        (item.travelCostsByExecution || [])
+            .map((amount, index) => ({
+                trainingCode: item.trainingCode,
+                executionNumber: index + 1,
+                amountExcludingVat: money(amount),
+            }))
+            .filter((allocation) => allocation.amountExcludingVat > 0)
+    );
 
     return {
         quoteId: form.quoteId,
-        quoteNumber: form.quoteNumber.trim(),
+        quoteNumber: text(form.quoteNumber).trim(),
         quoteDate: form.quoteDate,
         validUntil: form.validUntil,
-        coverTitle: form.coverTitle.trim() || null,
-        coverSubtitle: form.coverSubtitle.trim() || null,
-        personalForeword: form.personalForeword.trim() || null,
-        requestSummary: form.requestSummary.trim(),
-        trainingGoal: form.trainingGoal.trim(),
-        recommendations: form.recommendations.split("\n").map((line) => line.trim()).filter(Boolean),
-        planningNotes: form.planningNotes.trim() || null,
+        coverTitle: text(form.coverTitle).trim() || null,
+        coverSubtitle: text(form.coverSubtitle).trim() || null,
+        personalForeword: text(form.personalForeword).trim() || null,
+        requestSummary: text(form.requestSummary).trim(),
+        trainingGoal: text(form.trainingGoal).trim(),
+        recommendations: text(form.recommendations).split("\n").map((line) => line.trim()).filter(Boolean),
+        planningNotes: text(form.planningNotes).trim() || null,
         customer: form.customer,
         trainingLocation: form.trainingLocation,
         trainingItems,
@@ -139,7 +191,7 @@ export function buildQuotePayload(form) {
             vatAmount,
             totalIncludingVat: money(totalExcludingVat + vatAmount),
         },
-        agreementUrl: form.agreementUrl.trim() || null,
+        agreementUrl: text(form.agreementUrl).trim() || null,
     };
 }
 
