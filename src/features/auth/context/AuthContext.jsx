@@ -223,11 +223,11 @@ export function AuthProvider({ children }) {
         }
     }, [getErrorMessage, refreshUser]);
 
-    const loginWithPasskey = useCallback(async () => {
+    const loginWithPasskey = useCallback(async (email) => {
         setLoading(true);
 
         try {
-            const response = await authService.startPasskeyLogin();
+            const response = await authService.startPasskeyLogin(email);
             const loginId = getPasskeyTransactionId(response.data, "loginId");
 
             if (!loginId) {
@@ -242,11 +242,23 @@ export function AuthProvider({ children }) {
                 credential: serializePasskeyCredential(credential),
             };
 
-            await authService.finishPasskeyLogin(payload);
-            clearTwoFactorState();
-            await refreshUser();
+            const verifyResponse = await authService.finishPasskeyLogin(payload);
+            const data = verifyResponse.data;
 
-            return { success: true };
+            if (data?.requiresTwoFactor) {
+                setUser(null);
+                setPendingTwoFactorState(true, Boolean(data.requiresTwoFactorSetup));
+                return {
+                    success: true,
+                    requiresTwoFactor: true,
+                    requiresTwoFactorSetup: Boolean(data.requiresTwoFactorSetup),
+                };
+            }
+
+            clearTwoFactorState();
+            const refreshedUser = await refreshUser();
+
+            return { success: true, requiresTwoFactor: false, user: refreshedUser };
         } catch (err) {
             return {
                 success: false,
@@ -255,7 +267,7 @@ export function AuthProvider({ children }) {
         } finally {
             setLoading(false);
         }
-    }, [clearTwoFactorState, getErrorMessage, refreshUser]);
+    }, [clearTwoFactorState, getErrorMessage, refreshUser, setPendingTwoFactorState]);
 
     const registerPasskey = useCallback(async (credentialName) => {
         setLoading(true);

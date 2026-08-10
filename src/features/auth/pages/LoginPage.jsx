@@ -137,14 +137,19 @@ export default function LoginPage() {
     const handlePasskeyLogin = async () => {
         setError("");
 
-        const result = await loginWithPasskey();
+        const result = await loginWithPasskey(email);
 
         if (!result.success) {
             setError(result.error || "Passkey-login is niet gelukt.");
             return;
         }
 
-        navigate("/dashboard", { replace: true });
+        if (result.requiresTwoFactor) {
+            navigate("/inloggen/2fa", { replace: true, state: location.state });
+            return;
+        }
+
+        navigate(getPostAuthenticationPath(result.user, location.state), { replace: true });
     };
 
     return (
