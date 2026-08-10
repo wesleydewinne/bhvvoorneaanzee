@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 import { ShieldCheck } from "lucide-react";
 import TwoFactorCodeInput from "@/features/auth/components/TwoFactorCodeInput.jsx";
 import useAuth from "@/features/auth/hooks/useAuth.js";
-import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
+import { getPostAuthenticationPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./TwoFactorPage.css";
 
 function isCookieSessionError(message) {
@@ -47,6 +47,7 @@ export default function TwoFactorPage() {
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         if (!authInitialized) return;
@@ -95,7 +96,7 @@ export default function TwoFactorPage() {
             return;
         }
 
-        navigate(getPostLoginPath(result.user), { replace: true });
+        navigate(getPostAuthenticationPath(result.user, location.state), { replace: true });
     };
 
     const handleVerifySetup = async (e) => {

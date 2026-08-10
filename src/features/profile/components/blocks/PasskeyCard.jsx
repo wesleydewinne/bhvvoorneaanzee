@@ -28,6 +28,10 @@ export default function PasskeyCard() {
                 Maak een passkey aan om sneller en veiliger in te loggen met Windows Hello,
                 Face ID, Touch ID of je apparaat-pincode.
             </p>
+            <p>
+                Op een computer kun je bij passkey-login ook kiezen voor een ander apparaat.
+                De browser toont dan een QR-code die je met je telefoon scant.
+            </p>
         </section>
     );
 }

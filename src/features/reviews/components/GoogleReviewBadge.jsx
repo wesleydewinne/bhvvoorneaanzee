@@ -8,8 +8,19 @@ function GoogleReviewBadge() {
     const googleReviewsUrl =
         "https://www.google.com/maps/search/?api=1&query=BHV%20Voorne%20aan%20Zee%20Druivenhoek%2012%203181%20PK%20Rozenburg";
 
-    if (loading || error || !summary) {
-        return null;
+    if (loading) {
+        return <div className="google-review-badge google-review-badge--loading">Google reviews laden...</div>;
+    }
+
+    if (error || !summary || !summary.reviewCount) {
+        return (
+            <a href={googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="google-review-badge google-review-badge--fallback">
+                <span className="google-review-badge__review-content">
+                    <strong>Google Reviews</strong>
+                    <span>Bekijk onze beoordelingen op Google</span>
+                </span>
+            </a>
+        );
     }
 
     const averageRating = Number(summary.averageRating || 0);

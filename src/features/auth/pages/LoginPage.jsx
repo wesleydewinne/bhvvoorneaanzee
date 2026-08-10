@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Fingerprint, LockKeyhole, LogIn, Mail, ShieldCheck } from "lucide-react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
-import { getPostLoginPath } from "@/features/auth/helpers/passkeyPolicy.js";
+import { getPostAuthenticationPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./LoginPage.css";
 
 export default function LoginPage() {
@@ -14,6 +14,7 @@ export default function LoginPage() {
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
+    const location = useLocation();
     const captchaRef = useRef(null);
     const widgetIdRef = useRef(null);
 
@@ -126,11 +127,11 @@ export default function LoginPage() {
         }
 
         if (result.requiresTwoFactor) {
-            navigate("/inloggen/2fa", { replace: true });
+            navigate("/inloggen/2fa", { replace: true, state: location.state });
             return;
         }
 
-        navigate(getPostLoginPath(result.user), { replace: true });
+        navigate(getPostAuthenticationPath(result.user, location.state), { replace: true });
     };
 
     const handlePasskeyLogin = async () => {

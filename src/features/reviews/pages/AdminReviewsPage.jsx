@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { RefreshCw, Star, Wand2 } from "lucide-react";
 import reviewService from "../services/reviewService.js";
 import "../style/AdminReviewsPage.css";
@@ -8,6 +9,17 @@ function AdminReviewsPage() {
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [lastRefreshedAt, setLastRefreshedAt] = useState("");
+    const [summary, setSummary] = useState(null);
+
+    const loadSummary = async () => {
+        const data = await reviewService.getReviewSummary();
+        setSummary(data);
+        setLastRefreshedAt(data?.updatedAt || "");
+    };
+
+    useEffect(() => {
+        loadSummary().catch((error) => setErrorMessage(error?.message || "De Google-reviewstatus kon niet worden geladen."));
+    }, []);
 
     const handleRefreshReviews = async () => {
         try {
@@ -24,6 +36,7 @@ function AdminReviewsPage() {
             if (data?.refreshedAt) {
                 setLastRefreshedAt(data.refreshedAt);
             }
+            await loadSummary();
         } catch (error) {
             console.error("Fout bij verversen van reviews:", error);
 
@@ -80,15 +93,15 @@ function AdminReviewsPage() {
                         <span className="dashboard-admin-stat__icon">
                             <Star aria-hidden="true" />
                         </span>
-                        <strong>Google</strong>
-                        <span>Reviewbron</span>
+                        <strong>{summary?.averageRating ? Number(summary.averageRating).toFixed(1).replace(".", ",") : "-"}</strong>
+                        <span>Google-score</span>
                     </article>
                     <article className="dashboard-admin-stat">
                         <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--green">
                             <RefreshCw aria-hidden="true" />
                         </span>
-                        <strong>{refreshing ? "..." : "Sync"}</strong>
-                        <span>Handmatig verversen</span>
+                        <strong>{refreshing ? "..." : (summary?.reviewCount ?? 0)}</strong>
+                        <span>Google-beoordelingen</span>
                     </article>
                     <article className="dashboard-admin-stat">
                         <span className="dashboard-admin-stat__icon dashboard-admin-stat__icon--orange">
@@ -97,6 +110,18 @@ function AdminReviewsPage() {
                         <strong>{lastRefreshedAt ? "Actief" : "-"}</strong>
                         <span>Laatste status</span>
                     </article>
+                </section>
+
+                <section className="dashboard-admin-panel">
+                    <div className="dashboard-admin-panel__header">
+                        <div>
+                            <h2>Feedback na trainingen</h2>
+                            <p>Interne evaluaties horen bij trainingen en staan los van openbare Google Reviews.</p>
+                        </div>
+                        <Link className="dashboard-admin-button dashboard-admin-button--secondary" to="/admin/evaluations">
+                            Trainingsfeedback bekijken
+                        </Link>
+                    </div>
                 </section>
 
                 <section className="dashboard-admin-panel">

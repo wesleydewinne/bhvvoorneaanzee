@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children, allowedRoles = [] }) {
     }
 
     if (!authenticated) {
-        return <Navigate to="/inloggen" replace />;
+        return <Navigate to="/inloggen" replace state={{ from: location }} />;
     }
 
     const requiredSecurityPath = getRequiredSecurityPath(user);

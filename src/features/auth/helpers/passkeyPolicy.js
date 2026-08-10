@@ -29,6 +29,19 @@ export function getPostLoginPath(user) {
     return getRequiredSecurityPath(user) || "/dashboard";
 }
 
+export function getSafeReturnPath(locationState) {
+    const path = locationState?.from?.pathname;
+    if (typeof path !== "string" || !path.startsWith("/") || path.startsWith("//")) return null;
+
+    const search = typeof locationState?.from?.search === "string" ? locationState.from.search : "";
+    const hash = typeof locationState?.from?.hash === "string" ? locationState.from.hash : "";
+    return `${path}${search}${hash}`;
+}
+
+export function getPostAuthenticationPath(user, locationState) {
+    return getRequiredSecurityPath(user) || getSafeReturnPath(locationState) || "/dashboard";
+}
+
 export function getRequiredSecurityPath(user) {
     switch (user?.securityOnboardingAction) {
         case "PASSKEY_SETUP":
