@@ -16,7 +16,7 @@ export default function OfferteAanvraagPage() {
     const [submitted, setSubmitted] = useState(false);
 
     useEffect(() => {
-        quoteService.getTrainingTypes().then(setTrainingTypes).catch((reason) => setError(reason.message));
+        quoteService.getPublicTrainingTypes().then(setTrainingTypes).catch((reason) => setError(reason.message));
     }, []);
 
     const submit = async (event) => {

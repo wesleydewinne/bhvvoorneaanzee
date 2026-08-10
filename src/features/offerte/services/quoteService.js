@@ -1,10 +1,14 @@
 import api from "@/api/api.js";
 
 const quoteService = {
-    async getTrainingTypes() {
+    async getPublicTrainingTypes() {
+        const response = await api.get("/training-types/offer");
+        return Array.isArray(response.data) ? response.data : [];
+    },
+
+    async getQuoteEditorTrainingTypes() {
         // De beheereditor heeft naast naam en duur ook de vastgelegde
-        // basisprijs en maximale groepsgrootte nodig. De publieke
-        // offerteaanvraag blijft /training-types/offer gebruiken.
+        // basisprijs en maximale groepsgrootte nodig.
         const response = await api.get("/training-types");
         return Array.isArray(response.data) ? response.data : [];
     },
@@ -32,6 +36,23 @@ const quoteService = {
     async updateStatus(id, status) {
         const response = await api.patch(`/admin/quotes/${id}/status`, { status });
         return response.data;
+    },
+
+    async deleteQuote(id) {
+        await api.delete(`/admin/quotes/${id}`);
+    },
+
+    async generatePdf(payload, quoteNumber) {
+        const response = await api.post("/v1/quote-pdfs", payload, {
+            responseType: "blob",
+            timeout: 60000,
+            headers: { Accept: "application/pdf" },
+        });
+
+        return {
+            blob: response.data,
+            fileName: getFileName(response.headers["content-disposition"], quoteNumber),
+        };
     },
 
     async downloadPdf(id, quoteNumber) {

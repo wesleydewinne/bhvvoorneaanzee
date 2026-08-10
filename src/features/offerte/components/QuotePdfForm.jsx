@@ -18,7 +18,7 @@ export default function QuotePdfForm({ initialValue, onSave, submitLabel = "Offe
     const [error, setError] = useState("");
 
     useEffect(() => {
-        quoteService.getTrainingTypes()
+        quoteService.getQuoteEditorTrainingTypes()
             .then(setTrainingTypes)
             .catch((reason) => setError(reason.message || "De trainingstypen konden niet worden geladen."))
             .finally(() => setLoadingTypes(false));
