@@ -120,6 +120,33 @@ export function normalizePasskeyOptions(options) {
     };
 }
 
+/**
+ * Stuurt de browserinterface gericht naar een lokaal apparaat of naar
+ * cross-device authenticatie met een telefoon. De transportbeperking is
+ * nodig voor browsers die WebAuthn `hints` nog negeren.
+ */
+export function applyPasskeyAuthenticatorPreference(options, preference = "DEVICE") {
+    if (!options || typeof options !== "object") {
+        return options;
+    }
+
+    if (preference === "PHONE") {
+        return {
+            ...options,
+            hints: ["hybrid"],
+            allowCredentials: options.allowCredentials?.map((credential) => ({
+                ...credential,
+                transports: ["hybrid"],
+            })),
+        };
+    }
+
+    return {
+        ...options,
+        hints: ["client-device", "security-key"],
+    };
+}
+
 export function serializePasskeyCredential(credential) {
     if (!credential) {
         return null;

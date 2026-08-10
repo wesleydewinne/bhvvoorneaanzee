@@ -9,6 +9,7 @@ import { getAuthRoles } from "@/features/auth/helpers/passkeyPolicy.js";
 import {
     getDefaultPasskeyName,
     getPasskeyTransactionId,
+    applyPasskeyAuthenticatorPreference,
     normalizePasskeyOptions,
     serializePasskeyCredential,
 } from "@/features/auth/utils/passkeyUtils.js";
@@ -234,7 +235,10 @@ export function AuthProvider({ children }) {
                 throw new Error("Passkey-login mist een loginId. Probeer het opnieuw.");
             }
 
-            const options = normalizePasskeyOptions(response.data);
+            const options = applyPasskeyAuthenticatorPreference(
+                normalizePasskeyOptions(response.data),
+                authenticatorPreference
+            );
 
             const credential = await navigator.credentials.get({ publicKey: options });
             const payload = {
