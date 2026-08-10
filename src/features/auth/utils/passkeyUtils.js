@@ -198,6 +198,13 @@ export async function isHybridPasskeySupported() {
         return false;
     }
 
+    // Firefox rapporteert op sommige Windows-versies hybridTransport als
+    // beschikbaar, maar opent vervolgens een lege Windows Security-dialoog
+    // zonder QR-code. Start die onbruikbare flow daarom niet.
+    if (/Firefox\//i.test(navigator.userAgent) && /Windows/i.test(navigator.userAgent)) {
+        return false;
+    }
+
     if (typeof PublicKeyCredential.getClientCapabilities === "function") {
         try {
             const capabilities = await PublicKeyCredential.getClientCapabilities();
@@ -209,7 +216,5 @@ export async function isHybridPasskeySupported() {
         }
     }
 
-    // Firefox op Windows valt zonder aantoonbare hybrid-capability terug op
-    // de USB-security-keyinterface. Toon dan liever een bruikbare melding.
-    return !/Firefox\//i.test(navigator.userAgent);
+    return true;
 }
