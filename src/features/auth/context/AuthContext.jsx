@@ -223,11 +223,11 @@ export function AuthProvider({ children }) {
         }
     }, [getErrorMessage, refreshUser]);
 
-    const loginWithPasskey = useCallback(async (email) => {
+    const loginWithPasskey = useCallback(async (email, authenticatorPreference = "DEVICE") => {
         setLoading(true);
 
         try {
-            const response = await authService.startPasskeyLogin(email);
+            const response = await authService.startPasskeyLogin(email, authenticatorPreference);
             const loginId = getPasskeyTransactionId(response.data, "loginId");
 
             if (!loginId) {

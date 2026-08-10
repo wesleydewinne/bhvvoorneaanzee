@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Fingerprint, LockKeyhole, LogIn, Mail, ShieldCheck } from "lucide-react";
+import { Fingerprint, LockKeyhole, LogIn, Mail, ShieldCheck, Smartphone } from "lucide-react";
 import useAuth from "@/features/auth/hooks/useAuth.js";
 import { getPostAuthenticationPath } from "@/features/auth/helpers/passkeyPolicy.js";
 import "./LoginPage.css";
@@ -134,10 +134,15 @@ export default function LoginPage() {
         navigate(getPostAuthenticationPath(result.user, location.state), { replace: true });
     };
 
-    const handlePasskeyLogin = async () => {
+    const handlePasskeyLogin = async (authenticatorPreference = "DEVICE") => {
         setError("");
 
-        const result = await loginWithPasskey(email);
+        if (!email.trim()) {
+            setError("Vul eerst het e-mailadres in dat bij de passkey hoort.");
+            return;
+        }
+
+        const result = await loginWithPasskey(email, authenticatorPreference);
 
         if (!result.success) {
             setError(result.error || "Passkey-login is niet gelukt.");
@@ -194,9 +199,14 @@ export default function LoginPage() {
                             <div><h2>Met passkey</h2><p>Gebruik Face ID, Touch ID, Windows Hello of je apparaatcode.</p></div>
                         </div>
                         <div className="login__passkey-visual"><Fingerprint aria-hidden="true" /></div>
-                        <button className="login__button login__button--secondary" type="button" disabled={loading} onClick={handlePasskeyLogin}>
-                            <Fingerprint aria-hidden="true" />{loading ? "Bezig met passkey..." : "Inloggen met passkey"}
-                        </button>
+                        <div className="login__passkey-actions">
+                            <button className="login__button login__button--secondary" type="button" disabled={loading} onClick={() => handlePasskeyLogin("DEVICE")}>
+                                <Fingerprint aria-hidden="true" />{loading ? "Bezig..." : "Op dit apparaat"}
+                            </button>
+                            <button className="login__button login__button--secondary login__button--phone" type="button" disabled={loading} onClick={() => handlePasskeyLogin("PHONE")}>
+                                <Smartphone aria-hidden="true" />{loading ? "Bezig..." : "Via mijn telefoon"}
+                            </button>
+                        </div>
                     </section>
                 </div>
 

@@ -33,8 +33,11 @@ const authService = {
         return api.get("/auth/passkeys");
     },
 
-    startPasskeyLogin(email) {
-        return api.post("/auth/passkeys/login/options", email?.trim() ? { email: email.trim() } : {});
+    startPasskeyLogin(email, authenticatorPreference = "DEVICE") {
+        return api.post("/auth/passkeys/login/options", {
+            email: email?.trim() || null,
+            authenticatorPreference,
+        });
     },
 
     finishPasskeyLogin(payload) {
