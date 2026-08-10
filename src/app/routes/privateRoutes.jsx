@@ -42,8 +42,8 @@ const AdminQuoteDetailPage = lazy(() => import("@/features/offerte/pages/AdminQu
 const AdminCreateQuotePage = lazy(() => import("@/features/offerte/pages/AdminCreateQuotePage.jsx"));
 const AdminInvoicesPage = lazy(() => import("@/features/invoice/pages/AdminInvoicesPage.jsx"));
 
-const protect = (element) => (
-    <ProtectedRoute>
+const protect = (element, allowedRoles = []) => (
+    <ProtectedRoute allowedRoles={allowedRoles}>
         {element}
     </ProtectedRoute>
 );
@@ -169,15 +169,15 @@ const privateRoutes = [
     // Offertes
     {
         path: "/admin/offertes",
-        element: protect(<AdminQuotesPage />),
+        element: protect(<AdminQuotesPage />, ["ROLE_ADMIN", "ROLE_TRAINING_MANAGER"]),
     },
     {
         path: "/admin/offertes/new",
-        element: protect(<AdminCreateQuotePage />),
+        element: protect(<AdminCreateQuotePage />, ["ROLE_ADMIN", "ROLE_TRAINING_MANAGER"]),
     },
     {
         path: "/admin/offertes/:id",
-        element: protect(<AdminQuoteDetailPage />),
+        element: protect(<AdminQuoteDetailPage />, ["ROLE_ADMIN", "ROLE_TRAINING_MANAGER"]),
     },
 
     // Facturen
