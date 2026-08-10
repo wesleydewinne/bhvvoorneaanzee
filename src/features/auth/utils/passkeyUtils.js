@@ -192,3 +192,24 @@ export function getDefaultPasskeyName() {
 export function isPasskeySupported() {
     return typeof window !== "undefined" && Boolean(window.PublicKeyCredential);
 }
+
+export async function isHybridPasskeySupported() {
+    if (!isPasskeySupported()) {
+        return false;
+    }
+
+    if (typeof PublicKeyCredential.getClientCapabilities === "function") {
+        try {
+            const capabilities = await PublicKeyCredential.getClientCapabilities();
+            if (typeof capabilities?.hybridTransport === "boolean") {
+                return capabilities.hybridTransport;
+            }
+        } catch {
+            // Gebruik hieronder de conservatieve browserfallback.
+        }
+    }
+
+    // Firefox op Windows valt zonder aantoonbare hybrid-capability terug op
+    // de USB-security-keyinterface. Toon dan liever een bruikbare melding.
+    return !/Firefox\//i.test(navigator.userAgent);
+}
