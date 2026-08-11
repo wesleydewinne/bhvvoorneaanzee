@@ -183,14 +183,21 @@ api.interceptors.response.use(
 
             return api(originalRequest);
         } catch (refreshError) {
+            const refreshStatus = refreshError?.status || refreshError?.response?.status || null;
             const normalizedRefreshError = normalizeApiError(refreshError, {
-                autoLogout: true,
-                message: SESSION_EXPIRED_MESSAGE,
+                autoLogout: refreshStatus === 401,
+                message: refreshStatus === 401 ? SESSION_EXPIRED_MESSAGE : undefined,
             });
 
             isRefreshing = false;
             processRefreshQueue(normalizedRefreshError);
-            dispatchLogoutRequired();
+
+            // Wis de lokale sessie uitsluitend wanneer de backend bevestigt
+            // dat de refresh-sessie ongeldig of verlopen is. Een 403, 5xx of
+            // netwerkstoring betekent niet dat de gebruiker is uitgelogd.
+            if (refreshStatus === 401) {
+                dispatchLogoutRequired();
+            }
 
             return Promise.reject(normalizedRefreshError);
         }

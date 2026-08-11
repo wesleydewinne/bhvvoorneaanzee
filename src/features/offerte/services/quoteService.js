@@ -1,108 +1,420 @@
 import api from "@/api/api.js";
 
 const quoteService = {
-    async getPublicTrainingTypes() {
-        const response = await api.get("/training-types/offer");
-        return Array.isArray(response.data) ? response.data : [];
-    },
+  async getPublicTrainingTypes() {
+    const response = await api.get("/training-catalog");
+    return Array.isArray(response.data)
+      ? response.data.map((item) => ({
+          ...item,
+          displayName: item.name,
+          category: item.executionType,
+          durationInDays: item.numberOfDays,
+          basePrice: item.sellingPrice,
+          maxParticipantsPerGroup: item.maximumParticipantsPerGroup,
+        }))
+      : [];
+  },
 
-    async getQuoteEditorTrainingTypes() {
-        // De beheereditor heeft naast naam en duur ook de vastgelegde
-        // basisprijs en maximale groepsgrootte nodig.
-        const response = await api.get("/training-types");
-        return Array.isArray(response.data) ? response.data : [];
-    },
+  async getQuoteEditorTrainingTypes() {
+    return this.getPublicTrainingTypes();
+  },
 
-    async create(payload) {
-        const response = await api.post("/admin/quotes", payload);
-        return response.data;
-    },
+  async create(payload) {
+    const response = await api.post(
+      "/offertes/admin",
+      toLegacyCommand(payload),
+    );
+    const created = response.data;
+    if (payload.travelCalculation) {
+      await api.put(
+        `/offertes/${created.id}`,
+        toLegacyUpdateCommand(created.id, payload),
+      );
+    }
+    const refreshed = (await api.get(`/offertes/${created.id}`)).data;
+    await syncDiscounts(refreshed, payload.discounts || []);
+    return { id: created.id, legacy: refreshed };
+  },
 
-    async getAllQuotes() {
-        const response = await api.get("/admin/quotes");
-        return Array.isArray(response.data) ? response.data : [];
-    },
+  async getAllQuotes() {
+    const response = await api.get("/offertes");
+    return Array.isArray(response.data)
+      ? response.data.map(toQuoteSummary)
+      : [];
+  },
 
-    async getQuote(id) {
-        const response = await api.get(`/admin/quotes/${id}`);
-        return response.data;
-    },
+  async getQuote(id) {
+    const response = await api.get(`/offertes/${id}`);
+    const discounts = (
+      await Promise.all(
+        response.data.quoteTrainings.map((training) =>
+          api.get(`/offertes/${id}/trainings/${training.id}/discounts`),
+        ),
+      )
+    ).flatMap((item) => item.data);
+    return toQuoteDetail(response.data, discounts);
+  },
 
-    async update(id, payload) {
-        const response = await api.put(`/admin/quotes/${id}`, payload);
-        return response.data;
-    },
+  async update(id, payload) {
+    const current = (await api.get(`/offertes/${id}`)).data;
+    await api.put(`/offertes/${id}`, toLegacyUpdateCommand(id, payload));
+    await syncTrainings(id, current.quoteTrainings, payload.trainingItems);
+    const updated = (await api.get(`/offertes/${id}`)).data;
+    await syncDiscounts(updated, payload.discounts || [], true);
+    return this.getQuote(id);
+  },
 
-    async updateStatus(id, status) {
-        const response = await api.patch(`/admin/quotes/${id}/status`, { status });
-        return response.data;
-    },
+  async updateStatus(id, status) {
+    const response = await api.patch(`/offertes/${id}/status`, {
+      quoteId: id,
+      targetStatus: status,
+      statusNote: null,
+    });
+    return response.data;
+  },
 
-    async deleteQuote(id) {
-        await api.delete(`/admin/quotes/${id}`);
-    },
+  async deleteQuote(id) {
+    await api.delete(`/offertes/${id}`);
+  },
 
-    async generatePdf(payload, quoteNumber) {
-        const response = await api.post("/v1/quote-pdfs", payload, {
-            responseType: "blob",
-            timeout: 60000,
-            headers: { Accept: "application/pdf" },
-        });
+  async downloadPdf(id, quoteNumber) {
+    const response = await api.get(`/offertes/${id}/pdf`, {
+      responseType: "blob",
+      timeout: 60000,
+      headers: { Accept: "application/pdf" },
+    });
 
-        return {
-            blob: response.data,
-            fileName: getFileName(response.headers["content-disposition"], quoteNumber),
-        };
-    },
+    return {
+      blob: response.data,
+      fileName: getFileName(
+        response.headers["content-disposition"],
+        quoteNumber,
+      ),
+    };
+  },
 
-    async downloadPdf(id, quoteNumber) {
-        const response = await api.get(`/admin/quotes/${id}/pdf`, {
-            responseType: "blob",
-            timeout: 60000,
-            headers: { Accept: "application/pdf" },
-        });
-
-        return {
-            blob: response.data,
-            fileName: getFileName(response.headers["content-disposition"], quoteNumber),
-        };
-    },
-
-    async submitRequest(payload) {
-        const response = await api.post("/quotes", payload);
-        return response.data;
-    },
-
-    async getRequests() {
-        const response = await api.get("/admin/quote-requests");
-        return Array.isArray(response.data) ? response.data : [];
-    },
-
-    async getRequest(id) {
-        const response = await api.get(`/admin/quote-requests/${id}`);
-        return response.data;
-    },
-
-    async updateRequestStatus(id, status) {
-        const response = await api.patch(`/admin/quote-requests/${id}/status`, { status });
-        return response.data;
-    },
+  async submitRequest(payload) {
+    const addDays = (days) => {
+      const date = new Date();
+      date.setDate(date.getDate() + days);
+      return date.toISOString().slice(0, 10);
+    };
+    const selectedNames = payload.trainingSelections.map(
+      (selection) =>
+        payload.trainingTypes?.find(
+          (item) => item.code === selection.trainingCode,
+        )?.displayName || selection.trainingCode,
+    );
+    const response = await api.post("/offertes", {
+      companyName: payload.organizationName || payload.contactName,
+      contactPersonName: payload.contactName,
+      contactEmail: payload.email,
+      contactPhone: payload.phone || null,
+      street: payload.street,
+      houseNumber: payload.houseNumber,
+      postalCode: payload.postalCode,
+      city: payload.city,
+      customerReference: null,
+      quoteSubject: `Offerte ${selectedNames.join(", ")}`,
+      introductionText:
+        payload.message ||
+        "Dank voor uw aanvraag. Graag bieden wij u hierbij onze offerte aan.",
+      closingText: "De definitieve planning stemmen we in overleg met u af.",
+      validUntil: addDays(14),
+      trainingLocationName: payload.trainingLocationName,
+      trainingLocationStreet: payload.trainingStreet,
+      trainingLocationHouseNumber: payload.trainingHouseNumber,
+      trainingLocationPostalCode: payload.trainingPostalCode,
+      trainingLocationCity: payload.trainingCity,
+      trainingLocationRoom: payload.roomOrArea || null,
+      trainingLocationAccessInstructions: payload.accessInstructions || null,
+      trainings: payload.trainingSelections.map((item) => ({
+        ...item,
+        internalNote: null,
+      })),
+      captcha: payload.captcha,
+      website: payload.website || null,
+    });
+    return response.data;
+  },
 };
 
 function getFileName(contentDisposition, quoteNumber) {
-    const utfMatch = contentDisposition?.match(/filename\*=UTF-8''([^;]+)/i);
-    const regularMatch = contentDisposition?.match(/filename="?([^";]+)"?/i);
-    const encodedName = utfMatch?.[1] || regularMatch?.[1];
+  const utfMatch = contentDisposition?.match(/filename\*=UTF-8''([^;]+)/i);
+  const regularMatch = contentDisposition?.match(/filename="?([^";]+)"?/i);
+  const encodedName = utfMatch?.[1] || regularMatch?.[1];
 
-    if (encodedName) {
-        try {
-            return decodeURIComponent(encodedName);
-        } catch {
-            return encodedName;
-        }
+  if (encodedName) {
+    try {
+      return decodeURIComponent(encodedName);
+    } catch {
+      return encodedName;
     }
+  }
 
-    return `offerte-${quoteNumber || "concept"}.pdf`;
+  return `offerte-${quoteNumber || "concept"}.pdf`;
+}
+
+function splitAddress(value = "") {
+  const match = value.trim().match(/^(.*?)[,\s]+(\d+\s*[a-zA-Z0-9-]*)$/);
+  return match
+    ? { street: match[1].trim(), houseNumber: match[2].trim() }
+    : { street: value.trim(), houseNumber: "-" };
+}
+
+function toLegacyCommand(payload) {
+  const customerAddress = splitAddress(payload.customer.streetAndHouseNumber);
+  const locationAddress = splitAddress(
+    payload.trainingLocation.streetAndHouseNumber,
+  );
+  return {
+    companyName: payload.customer.organizationName,
+    contactPersonName: payload.customer.contactPersonName,
+    contactEmail: payload.customer.contactEmail,
+    contactPhone: payload.customer.contactPhone || null,
+    street: customerAddress.street,
+    houseNumber: customerAddress.houseNumber,
+    postalCode: payload.customer.postalCode,
+    city: payload.customer.city,
+    customerReference: null,
+    quoteSubject: payload.coverTitle || payload.trainingItems[0]?.title,
+    introductionText: payload.personalForeword,
+    closingText: payload.planningNotes,
+    validUntil: payload.validUntil,
+    trainingLocationName: payload.trainingLocation.locationName,
+    trainingLocationStreet: locationAddress.street,
+    trainingLocationHouseNumber: locationAddress.houseNumber,
+    trainingLocationPostalCode: payload.trainingLocation.postalCode,
+    trainingLocationCity: payload.trainingLocation.city,
+    trainingLocationRoom: payload.trainingLocation.roomOrArea || null,
+    trainingLocationAccessInstructions:
+      payload.trainingLocation.accessInstructions || null,
+    trainings: payload.trainingItems.map((item) => ({
+      trainingCode: item.trainingCode,
+      participantCount: Number(item.participantCount),
+      internalNote: null,
+    })),
+    captcha: null,
+    website: null,
+  };
+}
+
+function toLegacyUpdateCommand(quoteId, payload) {
+  const {
+    trainings: _trainings,
+    captcha: _captcha,
+    website: _website,
+    ...core
+  } = toLegacyCommand(payload);
+  return {
+    ...core,
+    quoteId,
+    travelDistanceKm: Number(payload.travelCalculation?.distanceKm || 0),
+    travelFreeKm: Number(payload.travelCalculation?.freeKm || 0),
+    travelRatePerKm: Number(payload.travelCalculation?.ratePerKm || 0),
+  };
+}
+
+const duration = (value) =>
+  value?.numberOfDays > 1
+    ? "MULTI_DAY"
+    : value?.duration?.toLowerCase().includes("dagdeel") ||
+        Number(value?.duration?.match(/[\d,.]+/)?.[0]?.replace(",", ".")) <= 5
+      ? "HALF_DAY"
+      : "FULL_DAY";
+
+function toQuoteDetail(value, discounts) {
+  const travelPerExecution = value.quoteTrainings.reduce(
+    (sum, item) => sum + Math.max(1, item.groupCount),
+    0,
+  );
+  const travelAmount = travelPerExecution
+    ? Number(value.travelCosts || 0) / travelPerExecution
+    : 0;
+  return {
+    id: value.id,
+    status: value.status,
+    createdBy: "offertebackend",
+    updatedBy: "offertebackend",
+    quote: {
+      quoteId: value.id,
+      quoteNumber: value.quoteNumber,
+      quoteDate: value.quoteDate,
+      validUntil: value.validUntil,
+      coverTitle: value.subject,
+      coverSubtitle: "Praktisch, persoonlijk en afgestemd op uw organisatie",
+      personalForeword: value.introduction || "",
+      requestSummary: value.introduction || "",
+      trainingGoal:
+        "De deelnemers trainen het veilig en praktisch handelen tijdens de gekozen training.",
+      recommendations: [],
+      planningNotes: value.closingText || "",
+      customer: {
+        organizationName: value.customer.name,
+        contactPersonName: value.customer.contactPerson,
+        greetingName: value.customer.contactPerson?.split(/\s+/)[0] || "",
+        streetAndHouseNumber:
+          `${value.customer.street} ${value.customer.houseNumber}`.trim(),
+        postalCode: value.customer.postalCode,
+        city: value.customer.city,
+        country: value.customer.country || "Nederland",
+        contactEmail: value.customer.email || "",
+        contactPhone: value.customer.phone || "",
+      },
+      trainingLocation: {
+        locationName: value.trainingLocation.name,
+        streetAndHouseNumber:
+          `${value.trainingLocation.street} ${value.trainingLocation.houseNumber}`.trim(),
+        postalCode: value.trainingLocation.postalCode,
+        city: value.trainingLocation.city,
+        country: "Nederland",
+        roomOrArea: value.trainingLocation.room || "",
+        accessInstructions: value.trainingLocation.accessInstructions || "",
+      },
+      trainingItems: value.quoteTrainings.map((item) => ({
+        legacyTrainingId: item.id,
+        legacyTrainingCode: item.trainingCode,
+        trainingCode: item.trainingCode,
+        title: item.trainingName,
+        description: item.description || "",
+        trainingDuration: duration(item),
+        participantCount: item.participantCount,
+        groupCount: item.groupCount,
+        executionCount: item.groupCount,
+        quantity:
+          item.sellingPriceUnit === "PER_PARTICIPANT"
+            ? item.participantCount
+            : item.groupCount,
+        priceUnitLabel:
+          item.sellingPriceUnit === "PER_PARTICIPANT" ? "deelnemer" : "groep",
+        unitPriceExcludingVat: item.salesPrice,
+        totalExcludingVat: item.baseSalesAmount,
+        legacyVatPercentage: Number(item.vatPercentage || 0),
+        travelCostsByExecution: Array(Math.max(1, item.groupCount)).fill(
+          travelAmount,
+        ),
+      })),
+      discounts: discounts.map((item) => ({
+        legacyDiscountId: item.id,
+        legacyTrainingId: item.quoteTrainingId,
+        code: "",
+        description: item.description || item.name,
+        percentage: item.type === "PERCENTAGE" ? item.value : 0,
+        amountExcludingVat:
+          item.type === "FIXED_AMOUNT" ? item.value : item.calculatedAmount,
+      })),
+      vatPercentage: value.subtotalExcludingVat
+        ? Math.round(
+            (Number(value.vatAmount) / Number(value.subtotalExcludingVat)) *
+              10000,
+          ) / 100
+        : 0,
+      priceSummary: {
+        trainingSubtotalExcludingVat: value.quoteTrainings.reduce(
+          (sum, item) => sum + Number(item.baseSalesAmount || 0),
+          0,
+        ),
+        travelCostsExcludingVat: Number(value.travelCosts || 0),
+        discountTotalExcludingVat: discounts.reduce(
+          (sum, item) => sum + Number(item.calculatedAmount || item.value || 0),
+          0,
+        ),
+        totalExcludingVat: Number(value.subtotalExcludingVat || 0),
+        vatAmount: Number(value.vatAmount || 0),
+        totalIncludingVat: Number(value.totalIncludingVat || 0),
+      },
+      travelCalculation: {
+        distanceKm: value.travelDistanceKm,
+        freeKm: value.travelFreeKm,
+        ratePerKm: value.travelRatePerKm,
+      },
+      agreementUrl: `https://www.bhvvoorneaanzee.nl/offerte/akkoord?quoteId=${value.id}`,
+    },
+  };
+}
+
+function toQuoteSummary(value) {
+  return {
+    id: value.id,
+    quoteNumber: value.quoteNumber,
+    status: value.status,
+    quoteDate: value.quoteDate,
+    validUntil: value.validUntil,
+    customerOrganization: value.customer?.name,
+    customerContactName: value.customer?.contactPerson,
+    customerEmail: value.customer?.email,
+    totalIncludingVat: value.totalIncludingVat,
+  };
+}
+
+async function syncTrainings(quoteId, currentItems, desiredItems) {
+  const desiredIds = new Set(
+    desiredItems
+      .filter((item) => item.legacyTrainingCode === item.trainingCode)
+      .map((item) => item.legacyTrainingId)
+      .filter(Boolean),
+  );
+  await Promise.all(
+    currentItems
+      .filter((item) => !desiredIds.has(item.id))
+      .map((item) => api.delete(`/offertes/${quoteId}/trainings/${item.id}`)),
+  );
+  const catalog = (await api.get("/training-catalog")).data;
+  for (const item of desiredItems) {
+    if (
+      item.legacyTrainingId &&
+      item.legacyTrainingCode === item.trainingCode
+    ) {
+      await api.put(`/offertes/${quoteId}/trainings/${item.legacyTrainingId}`, {
+        quoteTrainingId: item.legacyTrainingId,
+        participantCount: Number(item.participantCount),
+        description: item.description || item.title,
+        salesPrice: Number(item.unitPriceExcludingVat),
+        vatPercentage: Number(item.legacyVatPercentage ?? 0),
+        internalNote: null,
+      });
+    } else {
+      const configuration = catalog.find(
+        (entry) => entry.code === item.trainingCode,
+      );
+      await api.post(`/offertes/${quoteId}/trainings`, {
+        quoteId,
+        trainingConfigurationId: configuration.trainingConfigurationId,
+        participantCount: Number(item.participantCount),
+        internalNote: null,
+      });
+    }
+  }
+}
+
+async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
+  const training = quote.quoteTrainings?.[0];
+  if (!training) return;
+  if (clearExisting) {
+    for (const quoteTraining of quote.quoteTrainings) {
+      const existing = (
+        await api.get(
+          `/offertes/${quote.id}/trainings/${quoteTraining.id}/discounts`,
+        )
+      ).data;
+      await Promise.all(
+        existing.map((item) =>
+          api.delete(
+            `/offertes/${quote.id}/trainings/${quoteTraining.id}/discounts/${item.id}`,
+          ),
+        ),
+      );
+    }
+  }
+  for (const discount of desiredDiscounts) {
+    await api.post(`/offertes/${quote.id}/trainings/${training.id}/discounts`, {
+      name: discount.description,
+      description: discount.description,
+      type: "FIXED_AMOUNT",
+      value: Number(discount.amountExcludingVat),
+      visibleToCustomer: true,
+    });
+  }
 }
 
 export default quoteService;
