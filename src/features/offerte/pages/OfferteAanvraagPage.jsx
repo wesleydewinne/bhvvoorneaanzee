@@ -17,18 +17,12 @@ const emptyForm = {
   contactName: "",
   email: "",
   phone: "",
-  street: "",
-  houseNumber: "",
-  postalCode: "",
-  city: "",
   trainingSelections: [{ trainingCode: "", participantCount: 1 }],
-  trainingLocationName: "",
   trainingStreet: "",
   trainingHouseNumber: "",
   trainingPostalCode: "",
   trainingCity: "",
   roomOrArea: "",
-  accessInstructions: "",
   message: "",
   privacyAccepted: false,
   captcha: CAPTCHA_DISABLED ? "local-development" : "",
@@ -201,40 +195,6 @@ export default function OfferteAanvraagPage() {
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
           </label>
-          <label>
-            Straat *
-            <input
-              required
-              value={form.street}
-              onChange={(e) => setForm({ ...form, street: e.target.value })}
-            />
-          </label>
-          <label>
-            Huisnummer *
-            <input
-              required
-              value={form.houseNumber}
-              onChange={(e) =>
-                setForm({ ...form, houseNumber: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Postcode *
-            <input
-              required
-              value={form.postalCode}
-              onChange={(e) => setForm({ ...form, postalCode: e.target.value })}
-            />
-          </label>
-          <label>
-            Plaats *
-            <input
-              required
-              value={form.city}
-              onChange={(e) => setForm({ ...form, city: e.target.value })}
-            />
-          </label>
           <fieldset className="quote-request-training-list quote-request-form__wide">
             <legend>Gewenste trainingen</legend>
             <p>
@@ -313,18 +273,7 @@ export default function OfferteAanvraagPage() {
             </p>
           </div>
           <label>
-            Naam trainingslocatie *
-            <input
-              required
-              placeholder="Bijvoorbeeld: Testbedrijf, vestiging Rotterdam"
-              value={form.trainingLocationName}
-              onChange={(e) =>
-                setForm({ ...form, trainingLocationName: e.target.value })
-              }
-            />
-          </label>
-          <label>
-            Straat trainingslocatie *
+            Straat *
             <input
               required
               value={form.trainingStreet}
@@ -334,7 +283,7 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label>
-            Huisnummer trainingslocatie *
+            Huisnummer *
             <input
               required
               value={form.trainingHouseNumber}
@@ -344,7 +293,7 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label>
-            Postcode trainingslocatie *
+            Postcode *
             <input
               required
               value={form.trainingPostalCode}
@@ -354,7 +303,7 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label>
-            Plaats trainingslocatie *
+            Plaats *
             <input
               required
               value={form.trainingCity}
@@ -371,19 +320,10 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label className="quote-request-form__wide">
-            Toegangsinstructies
-            <textarea
-              rows="3"
-              value={form.accessInstructions}
-              onChange={(e) =>
-                setForm({ ...form, accessInstructions: e.target.value })
-              }
-            />
-          </label>
-          <label className="quote-request-form__wide">
-            Toelichting
+            Bericht bij uw aanvraag
             <textarea
               rows="5"
+              placeholder="Heeft u nog wensen, vragen of bijzonderheden? Laat hier gerust een bericht achter."
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
             />

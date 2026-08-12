@@ -5,7 +5,6 @@ import {
   FileText,
   GraduationCap,
   LoaderCircle,
-  MapPin,
   MessageSquareText,
   Plus,
   Save,
@@ -212,8 +211,22 @@ export default function QuotePdfForm({
                   )
                 }
               />
-            </label>
-          ))}
+              </label>
+            ))}
+          <label className="quote-field">
+            Ruimte of terrein
+            <input
+              value={form.trainingLocation.roomOrArea}
+              onChange={(e) =>
+                updateNested(
+                  setForm,
+                  "trainingLocation",
+                  "roomOrArea",
+                  e.target.value,
+                )
+              }
+            />
+          </label>
         </div>
         <label className="quote-check">
           <input
@@ -246,44 +259,6 @@ export default function QuotePdfForm({
             ))}
           </div>
         )}
-      </QuoteSection>
-
-      <QuoteSection
-        title="Praktische locatiegegevens"
-        description="Eventuele ruimte- en toegangsinformatie voor de trainingsdag."
-        icon={<MapPin />}
-      >
-        <div className="quote-form-grid quote-form-grid--three">
-          <label className="quote-field">
-            Ruimte of terrein
-            <input
-              value={form.trainingLocation.roomOrArea}
-              onChange={(e) =>
-                updateNested(
-                  setForm,
-                  "trainingLocation",
-                  "roomOrArea",
-                  e.target.value,
-                )
-              }
-            />
-          </label>
-          <label className="quote-field quote-field--span-3">
-            Toegangs- en aanmeldinstructies
-            <textarea
-              rows="3"
-              value={form.trainingLocation.accessInstructions}
-              onChange={(e) =>
-                updateNested(
-                  setForm,
-                  "trainingLocation",
-                  "accessInstructions",
-                  e.target.value,
-                )
-              }
-            />
-          </label>
-        </div>
       </QuoteSection>
 
       <QuoteSection
