@@ -189,16 +189,10 @@ api.interceptors.response.use(
         }
 
         if (originalRequest._retry) {
-            if (!isMutation(originalRequest.method) && !originalRequest.suppressAuthLogout) {
-                dispatchLogoutRequired();
-            }
-
             return Promise.reject(
                 normalizeApiError(error, {
                     autoLogout: false,
-                    message: isMutation(originalRequest.method)
-                        ? "De beveiligingscontrole is mislukt. Vernieuw de pagina en probeer opnieuw."
-                        : SESSION_EXPIRED_MESSAGE,
+                    message: "De aanvraag werd niet toegestaan, maar je sessie is nog actief.",
                 })
             );
         }
