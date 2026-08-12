@@ -38,7 +38,9 @@ export default function OfferteAanvraagPage() {
   const [trainingTypes, setTrainingTypes] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [validationAttempted, setValidationAttempted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef(null);
   const captchaRef = useRef(null);
   const widgetIdRef = useRef(null);
 
@@ -106,6 +108,43 @@ export default function OfferteAanvraagPage() {
     }
   };
 
+  const handleInvalid = (event) => {
+    const field = event.target;
+    const label =
+      field.dataset.label || field.closest("label")?.firstChild?.textContent?.trim();
+    let message = `${label || "Dit veld"} is verplicht.`;
+
+    if (field.validity.typeMismatch) {
+      message = "Vul een geldig e-mailadres in, bijvoorbeeld naam@bedrijf.nl.";
+    } else if (field.validity.patternMismatch) {
+      message =
+        field.type === "tel"
+          ? "Vul een geldig telefoonnummer in van 8 tot 15 cijfers."
+          : "Vul een geldige Nederlandse postcode in, bijvoorbeeld 3232 AA.";
+    } else if (field.validity.rangeUnderflow) {
+      message = "Het aantal cursisten moet minimaal 1 zijn.";
+    } else if (field.validity.tooShort) {
+      message = `${label || "Dit veld"} is te kort ingevuld.`;
+    }
+
+    field.setCustomValidity(message);
+    setValidationAttempted(true);
+    setError("Controleer de rood gemarkeerde velden en verbeter de invoer.");
+
+    window.requestAnimationFrame(() => {
+      const firstInvalid = formRef.current?.querySelector(":invalid");
+      firstInvalid?.closest("label, fieldset")?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      firstInvalid?.focus({ preventScroll: true });
+    });
+  };
+
+  const handleInput = (event) => {
+    event.target.setCustomValidity?.("");
+  };
+
   const updateTraining = (index, field, value) =>
     setForm((current) => ({
       ...current,
@@ -162,11 +201,20 @@ export default function OfferteAanvraagPage() {
             {error}
           </p>
         )}
-        <form className="quote-request-form" onSubmit={submit}>
+        <form
+          ref={formRef}
+          className={`quote-request-form${
+            validationAttempted ? " quote-request-form--validated" : ""
+          }`}
+          onSubmit={submit}
+          onInvalid={handleInvalid}
+          onInput={handleInput}
+        >
           <label>
             Naam van uw bedrijf, organisatie of vereniging *
             <input
               required
+              minLength="2"
               placeholder="Bijvoorbeeld een bedrijf, sportvereniging, stichting of school"
               value={form.organizationName}
               onChange={(e) =>
@@ -178,6 +226,7 @@ export default function OfferteAanvraagPage() {
             Naam contactpersoon *
             <input
               required
+              minLength="2"
               value={form.contactName}
               onChange={(e) =>
                 setForm({ ...form, contactName: e.target.value })
@@ -189,6 +238,7 @@ export default function OfferteAanvraagPage() {
             <input
               required
               type="email"
+              autoComplete="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
@@ -198,6 +248,9 @@ export default function OfferteAanvraagPage() {
             <input
               required
               type="tel"
+              autoComplete="tel"
+              inputMode="tel"
+              pattern="[+]?[0-9 ()-]{8,20}"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
@@ -214,6 +267,7 @@ export default function OfferteAanvraagPage() {
                   Training {index + 1} *
                   <select
                     required
+                    data-label={`Training ${index + 1}`}
                     value={selection.trainingCode}
                     onChange={(e) =>
                       updateTraining(index, "trainingCode", e.target.value)
@@ -240,6 +294,7 @@ export default function OfferteAanvraagPage() {
                   <input
                     required
                     min="1"
+                    max="500"
                     type="number"
                     value={selection.participantCount}
                     onChange={(e) =>
@@ -283,6 +338,8 @@ export default function OfferteAanvraagPage() {
             Straat *
             <input
               required
+              minLength="2"
+              autoComplete="street-address"
               value={form.trainingStreet}
               onChange={(e) =>
                 setForm({ ...form, trainingStreet: e.target.value })
@@ -293,6 +350,7 @@ export default function OfferteAanvraagPage() {
             Huisnummer *
             <input
               required
+              minLength="1"
               value={form.trainingHouseNumber}
               onChange={(e) =>
                 setForm({ ...form, trainingHouseNumber: e.target.value })
@@ -303,6 +361,8 @@ export default function OfferteAanvraagPage() {
             Postcode *
             <input
               required
+              autoComplete="postal-code"
+              pattern="[1-9][0-9]{3}\s?[A-Za-z]{2}"
               value={form.trainingPostalCode}
               onChange={(e) =>
                 setForm({ ...form, trainingPostalCode: e.target.value })
@@ -313,6 +373,8 @@ export default function OfferteAanvraagPage() {
             Plaats *
             <input
               required
+              minLength="2"
+              autoComplete="address-level2"
               value={form.trainingCity}
               onChange={(e) =>
                 setForm({ ...form, trainingCity: e.target.value })
@@ -348,6 +410,7 @@ export default function OfferteAanvraagPage() {
                 Straat vestigingsadres *
                 <input
                   required
+                  minLength="2"
                   value={form.companyStreet}
                   onChange={(e) =>
                     setForm({ ...form, companyStreet: e.target.value })
@@ -358,6 +421,7 @@ export default function OfferteAanvraagPage() {
                 Huisnummer vestigingsadres *
                 <input
                   required
+                  minLength="1"
                   value={form.companyHouseNumber}
                   onChange={(e) =>
                     setForm({ ...form, companyHouseNumber: e.target.value })
@@ -368,6 +432,7 @@ export default function OfferteAanvraagPage() {
                 Postcode vestigingsadres *
                 <input
                   required
+                  pattern="[1-9][0-9]{3}\s?[A-Za-z]{2}"
                   value={form.companyPostalCode}
                   onChange={(e) =>
                     setForm({ ...form, companyPostalCode: e.target.value })
@@ -378,6 +443,7 @@ export default function OfferteAanvraagPage() {
                 Plaats vestigingsadres *
                 <input
                   required
+                  minLength="2"
                   value={form.companyCity}
                   onChange={(e) =>
                     setForm({ ...form, companyCity: e.target.value })

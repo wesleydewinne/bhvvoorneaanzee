@@ -21,6 +21,43 @@ const api = axios.create({
 let isRefreshing = false;
 let refreshQueue = [];
 
+function getCookie(name) {
+    const prefix = `${encodeURIComponent(name)}=`;
+    const value = document.cookie
+        .split("; ")
+        .find((cookie) => cookie.startsWith(prefix))
+        ?.slice(prefix.length);
+
+    if (!value) {
+        return null;
+    }
+
+    try {
+        return decodeURIComponent(value);
+    } catch {
+        return value;
+    }
+}
+
+function isMutation(method) {
+    return ["post", "put", "patch", "delete"].includes(
+        method?.toLowerCase()
+    );
+}
+
+api.interceptors.request.use((config) => {
+    if (!isMutation(config.method)) {
+        return config;
+    }
+
+    const csrfToken = getCookie(api.defaults.xsrfCookieName);
+    if (csrfToken) {
+        config.headers.set(api.defaults.xsrfHeaderName, csrfToken);
+    }
+
+    return config;
+});
+
 function getBackendMessage(error) {
     const data = error?.response?.data;
 
@@ -152,12 +189,16 @@ api.interceptors.response.use(
         }
 
         if (originalRequest._retry) {
-            dispatchLogoutRequired();
+            if (!isMutation(originalRequest.method)) {
+                dispatchLogoutRequired();
+            }
 
             return Promise.reject(
                 normalizeApiError(error, {
-                    autoLogout: true,
-                    message: SESSION_EXPIRED_MESSAGE,
+                    autoLogout: false,
+                    message: isMutation(originalRequest.method)
+                        ? "De beveiligingscontrole is mislukt. Vernieuw de pagina en probeer opnieuw."
+                        : SESSION_EXPIRED_MESSAGE,
                 })
             );
         }

@@ -485,6 +485,31 @@ td small {
   color: var(--quote-heading);
   font-weight: var(--fw-bold);
 }
+.quote-request-form--validated label:has(input:invalid),
+.quote-request-form--validated label:has(select:invalid),
+.quote-request-form--validated label:has(textarea:invalid) {
+  padding: var(--space-2);
+  border: 1px solid color-mix(in srgb, var(--color-danger) 55%, white);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-danger) 7%, white);
+  color: var(--color-danger);
+}
+.quote-request-form--validated input:invalid,
+.quote-request-form--validated select:invalid,
+.quote-request-form--validated textarea:invalid {
+  border-color: var(--color-danger);
+  background: #fffafa;
+  box-shadow: 0 0 0 0.3rem rgba(220, 38, 38, 0.12);
+}
+.quote-request-form--validated
+  .quote-request-training-list:has(input:invalid, select:invalid) {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 0.3rem rgba(220, 38, 38, 0.08);
+}
+.quote-request-form--validated input:valid,
+.quote-request-form--validated select:valid {
+  border-color: color-mix(in srgb, var(--color-success) 45%, var(--quote-border));
+}
 .quote-request-form__wide {
   grid-column: 1/-1;
 }
