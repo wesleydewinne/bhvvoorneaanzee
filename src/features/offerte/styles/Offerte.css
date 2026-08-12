@@ -299,6 +299,15 @@ td small {
 .quote-form-grid--four {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.quote-discount-row {
+  grid-template-columns:
+    minmax(11rem, 0.9fr)
+    minmax(14rem, 1.35fr)
+    minmax(11rem, 0.9fr)
+    minmax(9rem, 0.7fr)
+    auto;
+  align-items: end;
+}
 .quote-section:not(.quote-section--wide) .quote-form-grid {
   grid-template-columns: 1fr;
 }
@@ -390,15 +399,30 @@ td small {
   border-radius: 0.6rem;
 }
 .quote-calculation-groups {
-  display: grid;
-  gap: 1.2rem;
+  display: contents;
+}
+.quote-section--calculation-wrapper,
+.quote-section--calculation-wrapper > .quote-section__body {
+  display: contents;
+}
+.quote-section--calculation-wrapper > .quote-section__header {
+  display: none;
 }
 .quote-calculation-card {
+  grid-column: 1 / -1;
   min-width: 0;
   padding: clamp(1rem, 1.4vw, 1.4rem);
   border: 1px solid var(--quote-border);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--quote-surface) 94%, #eff6ff);
+  background: var(--quote-surface);
+  box-shadow: var(--quote-shadow);
+  transition:
+    border-color var(--transition-fast) var(--ease-out),
+    box-shadow var(--transition-fast) var(--ease-out);
+}
+.quote-calculation-card:hover {
+  border-color: color-mix(in srgb, var(--quote-primary) 28%, var(--quote-border));
+  box-shadow: var(--quote-shadow-raised);
 }
 .quote-calculation-card__header {
   display: flex;
@@ -664,6 +688,7 @@ td small {
   }
   .quote-form-grid--three,
   .quote-form-grid--four,
+  .quote-discount-row,
   .quote-totals {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -688,6 +713,7 @@ td small {
   .quote-form-grid--two,
   .quote-form-grid--three,
   .quote-form-grid--four,
+  .quote-discount-row,
   .quote-request-form,
   .quote-totals,
   .quote-stats,

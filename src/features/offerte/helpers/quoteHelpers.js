@@ -100,8 +100,16 @@ export function normalizeQuoteForForm(value) {
       : source.recommendations || "",
     discounts: Array.isArray(source.discounts)
       ? source.discounts.map((discount) => ({
-          code: text(discount?.code),
+          code: text(discount?.code) || "OVERIG",
           description: text(discount?.description),
+          type:
+            discount?.type ||
+            (money(discount?.percentage) > 0 ? "PERCENTAGE" : "FIXED_AMOUNT"),
+          value:
+            discount?.value ??
+            (money(discount?.percentage) > 0
+              ? money(discount?.percentage)
+              : money(discount?.amountExcludingVat)),
           percentage: money(discount?.percentage),
           amountExcludingVat: money(discount?.amountExcludingVat),
         }))
@@ -146,10 +154,14 @@ export function buildQuotePayload(form) {
     .map((discount) => ({
       code: text(discount.code).trim() || null,
       description: text(discount.description).trim(),
-      percentage: money(discount.percentage),
-      amountExcludingVat: money(discount.amountExcludingVat),
+      type: discount.type === "PERCENTAGE" ? "PERCENTAGE" : "FIXED_AMOUNT",
+      value: money(discount.value),
+      percentage:
+        discount.type === "PERCENTAGE" ? money(discount.value) : 0,
+      amountExcludingVat:
+        discount.type === "FIXED_AMOUNT" ? money(discount.value) : 0,
     }))
-    .filter((discount) => discount.amountExcludingVat > 0);
+    .filter((discount) => discount.value > 0);
   return {
     ...form,
     vatPercentage,

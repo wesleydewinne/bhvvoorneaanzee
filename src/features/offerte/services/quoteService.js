@@ -313,6 +313,8 @@ function toQuoteDetail(value, discounts) {
         legacyTrainingId: item.quoteTrainingId,
         code: "",
         description: item.description || item.name,
+        type: item.type,
+        value: Number(item.value || 0),
         percentage: item.type === "PERCENTAGE" ? item.value : 0,
         amountExcludingVat:
           item.type === "FIXED_AMOUNT" ? item.value : item.calculatedAmount,
@@ -444,10 +446,10 @@ async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
   }
   for (const discount of desiredDiscounts) {
     await api.post(`/offertes/${quote.id}/trainings/${training.id}/discounts`, {
-      name: discount.description,
+      name: discount.code || discount.description,
       description: discount.description,
-      type: "FIXED_AMOUNT",
-      value: Number(discount.amountExcludingVat),
+      type: discount.type,
+      value: Number(discount.value),
       visibleToCustomer: true,
     });
   }

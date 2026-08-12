@@ -29,8 +29,10 @@ const updateNested = (setter, section, field, value) =>
   }));
 
 const emptyDiscount = () => ({
-  code: "",
+  code: "LOCATIE",
   description: "",
+  type: "FIXED_AMOUNT",
+  value: 0,
   percentage: 0,
   amountExcludingVat: 0,
 });
@@ -292,7 +294,7 @@ export default function QuotePdfForm({
       <QuoteSection
         title="Korting en reiskosten"
         icon={<Calculator />}
-        className="quote-section--wide"
+        className="quote-section--wide quote-section--calculation-wrapper"
         description="Voer alleen afspraken in; de backend berekent daarna alle totalen."
       >
         <div className="quote-calculation-groups">
@@ -346,29 +348,77 @@ export default function QuotePdfForm({
         <div className="quote-discount-list">
           {(form.discounts || []).map((discount, index) => (
             <div
-              className="quote-form-grid quote-form-grid--four"
+              className="quote-form-grid quote-discount-row"
               key={`${index}-${discount.code}`}
             >
+              <label className="quote-field">
+                Kortingscode
+                <select
+                  value={discount.code}
+                  onChange={(event) =>
+                    setForm((current) => ({
+                      ...current,
+                      discounts: current.discounts.map((item, itemIndex) =>
+                        itemIndex === index
+                          ? { ...item, code: event.target.value }
+                          : item,
+                      ),
+                    }))
+                  }
+                >
+                  <option value="LOCATIE">Locatiekorting</option>
+                  <option value="RELATIE">Relatiekorting</option>
+                  <option value="ACTIE">Actiekorting</option>
+                  <option value="MAATWERK">Maatwerkkorting</option>
+                  <option value="OVERIG">Overige korting</option>
+                </select>
+              </label>
+              <label className="quote-field">
+                Omschrijving
+                <input
+                  required
+                  value={discount.description}
+                  onChange={(event) =>
+                    setForm((current) => ({
+                      ...current,
+                      discounts: current.discounts.map((item, itemIndex) =>
+                        itemIndex === index
+                          ? { ...item, description: event.target.value }
+                          : item,
+                      ),
+                    }))
+                  }
+                />
+              </label>
+              <label className="quote-field">
+                Soort korting
+                <select
+                  value={discount.type}
+                  onChange={(event) =>
+                    setForm((current) => ({
+                      ...current,
+                      discounts: current.discounts.map((item, itemIndex) =>
+                        itemIndex === index
+                          ? { ...item, type: event.target.value, value: 0 }
+                          : item,
+                      ),
+                    }))
+                  }
+                >
+                  <option value="FIXED_AMOUNT">Vast bedrag</option>
+                  <option value="PERCENTAGE">Percentage</option>
+                </select>
+              </label>
               {[
-                ["code", "Kortingscode", "text"],
-                ["description", "Omschrijving", "text"],
-                ["amountExcludingVat", "Handmatig kortingsbedrag", "number"],
+                ["value", discount.type === "PERCENTAGE" ? "Korting (%)" : "Korting (€)", "number"],
               ].map(([field, label, type]) => (
                 <label className="quote-field" key={field}>
                   {label}
                   <input
                     type={type}
-                    required={
-                      field === "description" || field === "amountExcludingVat"
-                    }
-                    min={
-                      type === "number"
-                        ? field === "amountExcludingVat"
-                          ? 0.01
-                          : 0
-                        : undefined
-                    }
-                    max={field === "percentage" ? 100 : undefined}
+                    required
+                    min="0.01"
+                    max={discount.type === "PERCENTAGE" ? 100 : undefined}
                     step={type === "number" ? "0.01" : undefined}
                     value={discount[field]}
                     onChange={(event) =>
