@@ -5,8 +5,11 @@ import {
   FileText,
   GraduationCap,
   LoaderCircle,
+  MapPinned,
   Plus,
+  ReceiptText,
   Save,
+  Tags,
   Trash2,
 } from "lucide-react";
 import quoteService from "../services/quoteService.js";
@@ -292,6 +295,15 @@ export default function QuotePdfForm({
         className="quote-section--wide"
         description="Voer alleen afspraken in; de backend berekent daarna alle totalen."
       >
+        <div className="quote-calculation-groups">
+        <section className="quote-calculation-card">
+          <div className="quote-calculation-card__header">
+            <MapPinned aria-hidden="true" />
+            <div>
+              <h3>Reiskosten</h3>
+              <p>Bereken de vergoeding voor de totale reisafstand.</p>
+            </div>
+          </div>
         <div className="quote-form-grid quote-form-grid--three">
           {[
             ["distanceKm", "Totale reisafstand (km)"],
@@ -322,6 +334,15 @@ export default function QuotePdfForm({
           De offertebackend berekent de reiskosten uit afstand − vrije
           kilometers × kilometertarief.
         </p>
+        </section>
+        <section className="quote-calculation-card">
+          <div className="quote-calculation-card__header">
+            <Tags aria-hidden="true" />
+            <div>
+              <h3>Kortingen</h3>
+              <p>Voeg uitsluitend de afgesproken kortingen toe.</p>
+            </div>
+          </div>
         <div className="quote-discount-list">
           {(form.discounts || []).map((discount, index) => (
             <div
@@ -394,6 +415,15 @@ export default function QuotePdfForm({
             </button>
           )}
         </div>
+        </section>
+        <section className="quote-calculation-card quote-calculation-card--totals">
+          <div className="quote-calculation-card__header">
+            <ReceiptText aria-hidden="true" />
+            <div>
+              <h3>Prijsoverzicht</h3>
+              <p>Alle berekende bedragen overzichtelijk bij elkaar.</p>
+            </div>
+          </div>
         <div className="quote-totals" aria-label="Offertetotalen">
           <span>
             Trainingen{" "}
@@ -423,7 +453,7 @@ export default function QuotePdfForm({
             Btw ({Number(form.vatPercentage) || 0}%){" "}
             <strong>{formatCurrency(form.priceSummary?.vatAmount)}</strong>
           </span>
-          <span>
+          <span className="quote-total--final">
             Totaal incl. btw{" "}
             <strong>
               {formatCurrency(form.priceSummary?.totalIncludingVat)}
@@ -434,6 +464,8 @@ export default function QuotePdfForm({
           Bij wijzigingen worden deze bedragen na opslaan opnieuw uit de backend
           geladen.
         </p>
+        </section>
+        </div>
       </QuoteSection>
 
       <div className="quote-submit-bar">

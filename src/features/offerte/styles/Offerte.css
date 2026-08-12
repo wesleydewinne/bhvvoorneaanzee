@@ -389,11 +389,50 @@ td small {
   color: #b91c1c;
   border-radius: 0.6rem;
 }
+.quote-calculation-groups {
+  display: grid;
+  gap: 1.2rem;
+}
+.quote-calculation-card {
+  min-width: 0;
+  padding: clamp(1rem, 1.4vw, 1.4rem);
+  border: 1px solid var(--quote-border);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--quote-surface) 94%, #eff6ff);
+}
+.quote-calculation-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+.quote-calculation-card__header > svg {
+  flex: 0 0 auto;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 0.8rem;
+  background: #eaf2ff;
+  color: var(--quote-primary);
+  padding: 0.75rem;
+}
+.quote-calculation-card__header h3 {
+  margin: 0;
+  color: var(--quote-heading);
+  font-size: var(--fs-3);
+}
+.quote-calculation-card__header p,
+.quote-calculation-card > p {
+  margin: 0.25rem 0 0;
+  color: var(--quote-muted);
+}
+.quote-calculation-card--totals {
+  background: linear-gradient(145deg, #f8fbff, #fff);
+}
 .quote-totals {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.8rem;
-  margin-top: 1.2rem;
+  margin-top: 0;
 }
 .quote-totals span {
   display: grid;
@@ -401,6 +440,10 @@ td small {
   padding: 1rem;
   border-radius: 0.7rem;
   background: #f8fafc;
+}
+.quote-totals .quote-total--final {
+  background: #eaf2ff;
+  color: var(--quote-primary-dark, #073b82);
 }
 .quote-submit-bar {
   position: sticky;
