@@ -5,7 +5,6 @@ import {
   FileText,
   GraduationCap,
   LoaderCircle,
-  MessageSquareText,
   Plus,
   Save,
   Trash2,
@@ -276,30 +275,6 @@ export default function QuotePdfForm({
             onChange={(trainingItems) => setForm({ ...form, trainingItems })}
           />
         )}
-      </QuoteSection>
-
-      <QuoteSection
-        title="Offerteteksten"
-        description="De persoonlijke inleiding en planning worden bij de offerte opgeslagen."
-        icon={<MessageSquareText />}
-      >
-        <div className="quote-form-grid quote-form-grid--two">
-          {[
-            ["personalForeword", "Persoonlijk voorwoord", false],
-            ["planningNotes", "Planningsopmerkingen", false],
-          ].map(([field, label, required]) => (
-            <label className="quote-field" key={field}>
-              {label}
-              <textarea
-                rows="5"
-                required={required}
-                maxLength={5000}
-                value={form[field]}
-                onChange={(e) => setForm({ ...form, [field]: e.target.value })}
-              />
-            </label>
-          ))}
-        </div>
       </QuoteSection>
 
       <QuoteSection
