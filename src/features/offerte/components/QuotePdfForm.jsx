@@ -172,17 +172,26 @@ export default function QuotePdfForm({
       >
         <div className="quote-form-grid quote-form-grid--three">
           {[
-            ["organizationName", "Organisatie", true],
+            [
+              "organizationName",
+              "Naam van bedrijf, organisatie of vereniging",
+              true,
+            ],
             ["contactPersonName", "Contactpersoon", true],
             ["greetingName", "Aanspreeknaam", false],
             ["contactEmail", "E-mail", true, "email"],
-            ["contactPhone", "Telefoon", false, "tel"],
+            ["contactPhone", "Telefoon", true, "tel"],
           ].map(([field, label, required, type = "text"]) => (
             <label className="quote-field" key={field}>
               {label}
               <input
                 type={type}
                 required={required}
+                placeholder={
+                  field === "organizationName"
+                    ? "Bijvoorbeeld een bedrijf, sportvereniging, stichting of school"
+                    : undefined
+                }
                 value={form.customer[field]}
                 onChange={(e) =>
                   updateNested(setForm, "customer", field, e.target.value)
@@ -212,20 +221,6 @@ export default function QuotePdfForm({
               />
               </label>
             ))}
-          <label className="quote-field">
-            Ruimte of terrein
-            <input
-              value={form.trainingLocation.roomOrArea}
-              onChange={(e) =>
-                updateNested(
-                  setForm,
-                  "trainingLocation",
-                  "roomOrArea",
-                  e.target.value,
-                )
-              }
-            />
-          </label>
         </div>
         <label className="quote-check">
           <input

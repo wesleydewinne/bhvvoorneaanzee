@@ -124,7 +124,7 @@ const quoteService = {
       trainingLocationHouseNumber: payload.trainingHouseNumber,
       trainingLocationPostalCode: payload.trainingPostalCode,
       trainingLocationCity: payload.trainingCity,
-      trainingLocationRoom: payload.roomOrArea || null,
+      trainingLocationRoom: null,
       trainingLocationAccessInstructions: null,
       trainings: payload.trainingSelections.map((item) => ({
         ...item,
@@ -184,7 +184,7 @@ function toLegacyCommand(payload) {
     trainingLocationHouseNumber: locationAddress.houseNumber,
     trainingLocationPostalCode: payload.trainingLocation.postalCode,
     trainingLocationCity: payload.trainingLocation.city,
-    trainingLocationRoom: payload.trainingLocation.roomOrArea || null,
+    trainingLocationRoom: null,
     trainingLocationAccessInstructions:
       payload.trainingLocation.accessInstructions || null,
     trainings: payload.trainingItems.map((item) => ({
@@ -266,7 +266,6 @@ function toQuoteDetail(value, discounts) {
         postalCode: value.trainingLocation.postalCode,
         city: value.trainingLocation.city,
         country: "Nederland",
-        roomOrArea: value.trainingLocation.room || "",
         accessInstructions: value.trainingLocation.accessInstructions || "",
       },
       trainingItems: value.quoteTrainings.map((item) => ({

@@ -22,7 +22,6 @@ const emptyForm = {
   trainingHouseNumber: "",
   trainingPostalCode: "",
   trainingCity: "",
-  roomOrArea: "",
   message: "",
   privacyAccepted: false,
   captcha: CAPTCHA_DISABLED ? "local-development" : "",
@@ -160,8 +159,10 @@ export default function OfferteAanvraagPage() {
         )}
         <form className="quote-request-form" onSubmit={submit}>
           <label>
-            Organisatie
+            Naam van bedrijf, organisatie of vereniging *
             <input
+              required
+              placeholder="Bijvoorbeeld een bedrijf, sportvereniging, stichting of school"
               value={form.organizationName}
               onChange={(e) =>
                 setForm({ ...form, organizationName: e.target.value })
@@ -188,8 +189,9 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label>
-            Telefoonnummer
+            Telefoonnummer *
             <input
+              required
               type="tel"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -310,13 +312,6 @@ export default function OfferteAanvraagPage() {
               onChange={(e) =>
                 setForm({ ...form, trainingCity: e.target.value })
               }
-            />
-          </label>
-          <label>
-            Ruimte of terrein
-            <input
-              value={form.roomOrArea}
-              onChange={(e) => setForm({ ...form, roomOrArea: e.target.value })}
             />
           </label>
           <label className="quote-request-form__wide">

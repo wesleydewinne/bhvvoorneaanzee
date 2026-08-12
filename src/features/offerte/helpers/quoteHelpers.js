@@ -58,7 +58,6 @@ export const createInitialQuote = () => {
       postalCode: "",
       city: "",
       country: "Nederland",
-      roomOrArea: "",
       accessInstructions: "",
     },
     trainingItems: [createTrainingItem()],
