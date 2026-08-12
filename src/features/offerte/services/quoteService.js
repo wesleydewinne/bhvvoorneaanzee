@@ -432,31 +432,56 @@ async function syncVatPercentage(quote, vatPercentage) {
 async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
   const training = quote.quoteTrainings?.[0];
   if (!training) return;
-  if (clearExisting) {
-    for (const quoteTraining of quote.quoteTrainings) {
-      const existing = (
-        await api.get(
-          `/offertes/${quote.id}/trainings/${quoteTraining.id}/discounts`,
+
+  const existingDiscounts = clearExisting
+    ? (
+        await Promise.all(
+          quote.quoteTrainings.map(async (quoteTraining) => {
+            const response = await api.get(
+              `/offertes/${quote.id}/trainings/${quoteTraining.id}/discounts`,
+            );
+            return response.data.map((discount) => ({
+              ...discount,
+              quoteTrainingId: quoteTraining.id,
+            }));
+          }),
         )
-      ).data;
-      await Promise.all(
-        existing.map((item) =>
-          api.delete(
-            `/offertes/${quote.id}/trainings/${quoteTraining.id}/discounts/${item.id}`,
-          ),
-        ),
-      );
-    }
+      ).flat()
+    : [];
+
+  const sharedCount = Math.min(existingDiscounts.length, desiredDiscounts.length);
+
+  for (let index = 0; index < sharedCount; index += 1) {
+    const existing = existingDiscounts[index];
+    await api.put(
+      `/offertes/${quote.id}/trainings/${existing.quoteTrainingId}/discounts/${existing.id}`,
+      toDiscountRequest(desiredDiscounts[index]),
+    );
   }
-  for (const discount of desiredDiscounts) {
-    await api.post(`/offertes/${quote.id}/trainings/${training.id}/discounts`, {
-      name: discount.code || discount.description,
-      description: discount.description,
-      type: discount.type,
-      value: Number(discount.value),
-      visibleToCustomer: true,
-    });
+
+  for (let index = sharedCount; index < desiredDiscounts.length; index += 1) {
+    await api.post(
+      `/offertes/${quote.id}/trainings/${training.id}/discounts`,
+      toDiscountRequest(desiredDiscounts[index]),
+    );
   }
+
+  for (let index = sharedCount; index < existingDiscounts.length; index += 1) {
+    const existing = existingDiscounts[index];
+    await api.delete(
+      `/offertes/${quote.id}/trainings/${existing.quoteTrainingId}/discounts/${existing.id}`,
+    );
+  }
+}
+
+function toDiscountRequest(discount) {
+  return {
+    name: discount.code || discount.description,
+    description: discount.description,
+    type: discount.type,
+    value: Number(discount.value),
+    visibleToCustomer: true,
+  };
 }
 
 export default quoteService;
