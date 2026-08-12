@@ -1,5 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
-import { LoaderCircle, Plus, Save, Trash2 } from "lucide-react";
+import {
+  Building2,
+  Calculator,
+  FileText,
+  GraduationCap,
+  LoaderCircle,
+  MapPin,
+  MessageSquareText,
+  Plus,
+  Save,
+  Trash2,
+} from "lucide-react";
 import quoteService from "../services/quoteService.js";
 import {
   buildQuotePayload,
@@ -23,6 +34,33 @@ const emptyDiscount = () => ({
   amountExcludingVat: 0,
 });
 
+const customerAtTrainingAddress = (customer, trainingLocation) => ({
+  ...customer,
+  streetAndHouseNumber: trainingLocation.streetAndHouseNumber,
+  postalCode: trainingLocation.postalCode,
+  city: trainingLocation.city,
+  country: trainingLocation.country,
+});
+
+const hasSameLocation = ({ customer, trainingLocation }) => {
+  const values = [
+    [customer.streetAndHouseNumber, trainingLocation.streetAndHouseNumber],
+    [customer.postalCode, trainingLocation.postalCode],
+    [customer.city, trainingLocation.city],
+    [customer.country, trainingLocation.country],
+  ];
+  const normalize = (value) => String(value ?? ``).trim().toLowerCase();
+  const locationIsEmpty = values.every(([, location]) => !normalize(location));
+
+  return (
+    locationIsEmpty ||
+    values.every(
+      ([customerValue, locationValue]) =>
+        normalize(customerValue) === normalize(locationValue),
+    )
+  );
+};
+
 export default function QuotePdfForm({
   initialValue,
   onSave,
@@ -30,6 +68,12 @@ export default function QuotePdfForm({
 }) {
   const [form, setForm] = useState(() =>
     normalizeQuoteForForm(initialValue || createInitialQuote()),
+  );
+  const [hasDifferentCompanyAddress, setHasDifferentCompanyAddress] = useState(
+    () =>
+      !hasSameLocation(
+        normalizeQuoteForForm(initialValue || createInitialQuote()),
+      ),
   );
   const [trainingTypes, setTrainingTypes] = useState([]);
   const [loadingTypes, setLoadingTypes] = useState(true);
@@ -48,7 +92,20 @@ export default function QuotePdfForm({
       .finally(() => setLoadingTypes(false));
   }, []);
 
-  const payload = useMemo(() => buildQuotePayload(form), [form]);
+  const payload = useMemo(
+    () =>
+      buildQuotePayload({
+        ...form,
+        customer: hasDifferentCompanyAddress
+          ? form.customer
+          : customerAtTrainingAddress(form.customer, form.trainingLocation),
+        trainingLocation: {
+          ...form.trainingLocation,
+          locationName: form.customer.organizationName,
+        },
+      }),
+    [form, hasDifferentCompanyAddress],
+  );
 
   const submit = async (event) => {
     event.preventDefault();
@@ -56,7 +113,11 @@ export default function QuotePdfForm({
     setSubmitting(true);
     try {
       const saved = await onSave(payload);
-      if (saved?.quote) setForm(normalizeQuoteForForm(saved.quote));
+      if (saved?.quote) {
+        const savedForm = normalizeQuoteForForm(saved.quote);
+        setForm(savedForm);
+        setHasDifferentCompanyAddress(!hasSameLocation(savedForm));
+      }
     } catch (reason) {
       setError(reason.message || "De offerte-PDF kon niet worden gemaakt.");
     } finally {
@@ -75,6 +136,7 @@ export default function QuotePdfForm({
       <QuoteSection
         title="Offertegegevens"
         description="Referentie, geldigheid en teksten op de omslag."
+        icon={<FileText />}
       >
         <div className="quote-form-grid quote-form-grid--three">
           {[
@@ -106,17 +168,15 @@ export default function QuotePdfForm({
 
       <QuoteSection
         title="Opdrachtgever"
-        description="Gegevens die rechtstreeks in de offerte worden opgenomen."
+        description="Bedrijfsgegevens en het adres waar de training plaatsvindt."
+        icon={<Building2 />}
+        className="quote-section--wide"
       >
         <div className="quote-form-grid quote-form-grid--three">
           {[
             ["organizationName", "Organisatie", true],
             ["contactPersonName", "Contactpersoon", true],
             ["greetingName", "Aanspreeknaam", false],
-            ["streetAndHouseNumber", "Straat en huisnummer", true],
-            ["postalCode", "Postcode", true],
-            ["city", "Plaats", true],
-            ["country", "Land", true],
             ["contactEmail", "E-mail", true, "email"],
             ["contactPhone", "Telefoon", false, "tel"],
           ].map(([field, label, required, type = "text"]) => (
@@ -132,32 +192,16 @@ export default function QuotePdfForm({
               />
             </label>
           ))}
-        </div>
-      </QuoteSection>
-
-      <QuoteSection
-        title="Trainingslocatie"
-        description="Uitvoeringslocatie en praktische toegangsinformatie."
-      >
-        <div className="quote-form-grid quote-form-grid--three">
           {[
-            ["locationName", "Locatienaam"],
-            ["streetAndHouseNumber", "Straat en huisnummer"],
-            ["postalCode", "Postcode"],
-            ["city", "Plaats"],
-            ["country", "Land"],
-            ["roomOrArea", "Ruimte of terrein"],
-          ].map(([field, label]) => (
+            ["streetAndHouseNumber", "Trainingsadres", true],
+            ["postalCode", "Postcode", true],
+            ["city", "Plaats", true],
+            ["country", "Land", true],
+          ].map(([field, label, required]) => (
             <label className="quote-field" key={field}>
               {label}
               <input
-                required={[
-                  "locationName",
-                  "streetAndHouseNumber",
-                  "postalCode",
-                  "city",
-                  "country",
-                ].includes(field)}
+                required={required}
                 value={form.trainingLocation[field]}
                 onChange={(e) =>
                   updateNested(
@@ -170,6 +214,60 @@ export default function QuotePdfForm({
               />
             </label>
           ))}
+        </div>
+        <label className="quote-check">
+          <input
+            type="checkbox"
+            checked={hasDifferentCompanyAddress}
+            onChange={(event) =>
+              setHasDifferentCompanyAddress(event.target.checked)
+            }
+          />
+          <span>Het bedrijf is op een ander adres gevestigd.</span>
+        </label>
+        {hasDifferentCompanyAddress && (
+          <div className="quote-form-grid quote-form-grid--three">
+            {[
+              ["streetAndHouseNumber", "Vestigingsadres"],
+              ["postalCode", "Postcode"],
+              ["city", "Plaats"],
+              ["country", "Land"],
+            ].map(([field, label]) => (
+              <label className="quote-field" key={field}>
+                {label}
+                <input
+                  required
+                  value={form.customer[field]}
+                  onChange={(e) =>
+                    updateNested(setForm, "customer", field, e.target.value)
+                  }
+                />
+              </label>
+            ))}
+          </div>
+        )}
+      </QuoteSection>
+
+      <QuoteSection
+        title="Praktische locatiegegevens"
+        description="Eventuele ruimte- en toegangsinformatie voor de trainingsdag."
+        icon={<MapPin />}
+      >
+        <div className="quote-form-grid quote-form-grid--three">
+          <label className="quote-field">
+            Ruimte of terrein
+            <input
+              value={form.trainingLocation.roomOrArea}
+              onChange={(e) =>
+                updateNested(
+                  setForm,
+                  "trainingLocation",
+                  "roomOrArea",
+                  e.target.value,
+                )
+              }
+            />
+          </label>
           <label className="quote-field quote-field--span-3">
             Toegangs- en aanmeldinstructies
             <textarea
@@ -191,6 +289,8 @@ export default function QuotePdfForm({
       <QuoteSection
         title="Trainingen"
         description="De technische code bewaakt de koppeling met de juiste programmateksten."
+        icon={<GraduationCap />}
+        className="quote-section--wide"
       >
         {loadingTypes ? (
           <p>Trainingstypen laden…</p>
@@ -206,6 +306,7 @@ export default function QuotePdfForm({
       <QuoteSection
         title="Offerteteksten"
         description="De persoonlijke inleiding en planning worden bij de offerte opgeslagen."
+        icon={<MessageSquareText />}
       >
         <div className="quote-form-grid quote-form-grid--two">
           {[
@@ -228,6 +329,8 @@ export default function QuotePdfForm({
 
       <QuoteSection
         title="Korting en reiskosten"
+        icon={<Calculator />}
+        className="quote-section--wide"
         description="Voer alleen afspraken in; de backend berekent daarna alle totalen."
       >
         <div className="quote-form-grid quote-form-grid--three">

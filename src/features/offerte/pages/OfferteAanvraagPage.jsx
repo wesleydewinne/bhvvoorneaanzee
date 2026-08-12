@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { CheckCircle2, Plus, Send, Trash2 } from "lucide-react";
+import {
+  CheckCircle2,
+  ClipboardList,
+  Plus,
+  Send,
+  Trash2,
+} from "lucide-react";
 import quoteService from "../services/quoteService.js";
 import "../styles/Offerte.css";
 
@@ -144,6 +150,9 @@ export default function OfferteAanvraagPage() {
     <main className="quote-public-page">
       <section className="quote-public-card">
         <header>
+          <span className="quote-public-card__icon">
+            <ClipboardList />
+          </span>
           <p className="quote-eyebrow">Vrijblijvende aanvraag</p>
           <h1>Offerte voor een training aanvragen</h1>
           <p>

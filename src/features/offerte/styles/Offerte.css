@@ -6,6 +6,8 @@
 }
 .quote-admin-page {
   padding: 0;
+  max-width: 150rem;
+  margin-inline: auto;
 }
 .quote-page-header {
   display: grid;
@@ -169,11 +171,35 @@ td small {
 }
 .quote-form {
   display: grid;
-  gap: 1.2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 1.4vw, 1.6rem);
+  align-items: start;
 }
 .quote-section__header {
-  padding: 1.3rem;
+  display: grid;
+  grid-template-columns: 4.2rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1.15rem 1.3rem;
   border-bottom: 1px solid #edf1f5;
+  background: linear-gradient(135deg, #f8fbff 0%, #fff 70%);
+  border-radius: 1rem 1rem 0 0;
+}
+.quote-section__icon,
+.quote-public-card__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 0.8rem 1.8rem rgba(37, 99, 235, 0.2);
+}
+.quote-section__icon svg,
+.quote-public-card__icon svg {
+  width: 2.1rem;
+  height: 2.1rem;
 }
 .quote-section__header p {
   margin: 0.3rem 0 0;
@@ -182,9 +208,24 @@ td small {
 .quote-section__body {
   padding: 1.3rem;
 }
+.quote-section {
+  grid-column: span 1;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: 0 0.8rem 2.2rem rgba(15, 23, 42, 0.045);
+}
+.quote-section--wide,
+.quote-submit-bar,
+.quote-form > .quote-alert {
+  grid-column: span 2;
+}
+.quote-submit-bar,
+.quote-form > .quote-alert {
+  grid-column: 1 / -1;
+}
 .quote-form-grid {
   display: grid;
-  gap: 1rem;
+  gap: clamp(0.8rem, 1vw, 1.2rem);
 }
 .quote-form-grid--two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -194,6 +235,13 @@ td small {
 }
 .quote-form-grid--four {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.quote-section:not(.quote-section--wide) .quote-form-grid {
+  grid-template-columns: 1fr;
+}
+.quote-section:not(.quote-section--wide) .quote-field--span-2,
+.quote-section:not(.quote-section--wide) .quote-field--span-3 {
+  grid-column: span 1;
 }
 .quote-field {
   display: grid;
@@ -214,6 +262,20 @@ td small {
   background: #fff;
   padding: 0.8rem 1rem;
   font: inherit;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+.quote-field input:focus,
+.quote-field select:focus,
+.quote-field textarea:focus,
+.quote-request-form input:focus,
+.quote-request-form select:focus,
+.quote-request-form textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 0.3rem rgba(59, 130, 246, 0.12);
 }
 .quote-field textarea,
 .quote-request-form textarea {
@@ -233,7 +295,14 @@ td small {
   padding: 1.2rem;
   border: 1px solid #dce5ef;
   border-radius: 0.8rem;
-  background: #f8fafc;
+  background: linear-gradient(145deg, #f8fbff, #fff);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+.quote-training-card:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 0.8rem 1.8rem rgba(37, 99, 235, 0.07);
 }
 .quote-training-card__header {
   display: flex;
@@ -290,11 +359,30 @@ td small {
   min-height: 70vh;
   place-items: center;
   padding: 3rem 1.5rem;
-  background: #f6f8fb;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.12), transparent 32rem),
+    linear-gradient(180deg, #f8fbff, #f1f5f9);
 }
 .quote-public-card {
-  width: min(82rem, 100%);
-  padding: clamp(2rem, 4vw, 4rem);
+  width: min(96rem, 100%);
+  padding: clamp(1.8rem, 3vw, 3rem);
+}
+.quote-public-card > header {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  column-gap: 1.2rem;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5edf6;
+}
+.quote-public-card > header .quote-public-card__icon {
+  grid-row: 1 / span 3;
+  width: 5rem;
+  height: 5rem;
+}
+.quote-public-card > header h1,
+.quote-public-card > header p {
+  grid-column: 2;
 }
 .quote-request-form {
   display: grid;
@@ -312,8 +400,11 @@ td small {
   grid-column: 1/-1;
 }
 .quote-check {
+  display: grid;
   grid-template-columns: auto 1fr !important;
   align-items: start;
+  gap: 0.7rem;
+  margin-top: 1rem;
 }
 .quote-check input {
   width: 1.8rem;
@@ -401,6 +492,14 @@ td small {
   .quote-page-header {
     grid-template-columns: 1fr;
   }
+  .quote-form {
+    grid-template-columns: 1fr;
+  }
+  .quote-section--wide,
+  .quote-submit-bar,
+  .quote-form > .quote-alert {
+    grid-column: 1;
+  }
   .quote-form-grid--three,
   .quote-form-grid--four,
   .quote-totals {
@@ -413,6 +512,14 @@ td small {
     position: static;
     align-items: stretch;
     flex-direction: column;
+  }
+}
+@media (min-width: 901px) and (max-width: 1300px) {
+  .quote-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .quote-section--wide {
+    grid-column: span 2;
   }
 }
 @media (max-width: 600px) {
