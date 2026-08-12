@@ -1,13 +1,37 @@
 .quote-admin-page,
 .quote-public-page {
+  --quote-primary: var(--color-primary);
+  --quote-primary-strong: #003a88;
+  --quote-primary-soft: #eaf3ff;
+  --quote-accent: var(--color-accent);
+  --quote-surface: var(--color-surface);
+  --quote-canvas: #f2f6fb;
+  --quote-border: var(--color-border);
+  --quote-heading: var(--color-heading);
+  --quote-text: var(--color-text);
+  --quote-muted: var(--color-text-muted);
+  --quote-radius: var(--radius-lg);
+  --quote-shadow: var(--shadow-md);
+  --quote-shadow-raised: var(--shadow-lg);
+}
+
+.quote-admin-page,
+.quote-public-page {
   display: grid;
   gap: 1.4rem;
   width: 100%;
 }
 .quote-admin-page {
-  padding: 0;
-  max-width: 150rem;
+  position: relative;
+  isolation: isolate;
+  max-width: 148rem;
+  padding: clamp(var(--space-3), 2vw, var(--space-5));
   margin-inline: auto;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 95% 2%, rgba(0, 74, 173, 0.11), transparent 32rem),
+    linear-gradient(145deg, #f8fbff 0%, var(--quote-canvas) 100%);
+  color: var(--quote-text);
 }
 .quote-page-header {
   display: grid;
@@ -20,17 +44,17 @@
   margin: 0.3rem 0 0.5rem;
   font-size: clamp(2.4rem, 3vw, 3.4rem);
   line-height: 1.1;
-  color: #07111f;
+  color: var(--quote-heading);
 }
 .quote-page-header p,
 .quote-public-card > header > p {
   margin: 0;
-  color: #536277;
+  color: var(--quote-muted);
   font-size: 1.4rem;
 }
 .quote-eyebrow {
   margin: 0 !important;
-  color: #2563eb !important;
+  color: var(--quote-primary) !important;
   font-size: 1.15rem !important;
   font-weight: 900;
   text-transform: uppercase;
@@ -56,20 +80,43 @@
   cursor: pointer;
 }
 .quote-primary-button {
-  border: 1px solid #2563eb;
-  background: #2563eb;
+  border: 1px solid var(--quote-primary);
+  background: linear-gradient(
+    135deg,
+    var(--quote-primary),
+    var(--quote-primary-strong)
+  );
   color: #fff;
+  box-shadow: 0 0.6rem 1.4rem rgba(0, 74, 173, 0.2);
 }
 .quote-secondary-button {
-  border: 1px solid #d7e0eb;
-  background: #fff;
-  color: #07111f;
+  border: 1px solid var(--quote-border);
+  background: var(--quote-surface);
+  color: var(--quote-heading);
 }
 .quote-link-button {
   min-height: 3.5rem;
   border: 0;
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: var(--quote-primary-soft);
+  color: var(--quote-primary);
+}
+.quote-primary-button,
+.quote-secondary-button,
+.quote-link-button {
+  transition:
+    transform var(--transition-fast) var(--ease-out),
+    box-shadow var(--transition-fast) var(--ease-out),
+    border-color var(--transition-fast) var(--ease-out);
+}
+.quote-primary-button:hover,
+.quote-secondary-button:hover,
+.quote-link-button:hover {
+  transform: translateY(-1px);
+}
+.quote-secondary-button:hover {
+  border-color: var(--quote-primary);
+  color: var(--quote-primary);
+  box-shadow: var(--shadow-sm);
 }
 .quote-primary-button svg,
 .quote-secondary-button svg {
@@ -87,9 +134,10 @@
   gap: 0.2rem 1rem;
   align-items: center;
   padding: 1.2rem;
-  border: 1px solid #dce5ef;
-  border-radius: 1rem;
-  background: #fff;
+  border: 1px solid var(--quote-border);
+  border-radius: var(--quote-radius);
+  background: var(--quote-surface);
+  box-shadow: var(--quote-shadow);
 }
 .quote-stats svg {
   grid-area: icon;
@@ -97,8 +145,8 @@
   height: 4.6rem;
   padding: 1.1rem;
   border-radius: 0.8rem;
-  background: #eff6ff;
-  color: #2563eb;
+  background: var(--quote-primary-soft);
+  color: var(--quote-primary);
 }
 .quote-stats strong {
   grid-area: value;
@@ -106,15 +154,15 @@
 }
 .quote-stats span {
   grid-area: label;
-  color: #64748b;
+  color: var(--quote-muted);
 }
 .quote-panel,
 .quote-section,
 .quote-public-card {
-  border: 1px solid #dce5ef;
-  border-radius: 1rem;
-  background: #fff;
-  box-shadow: 0 1.2rem 3rem rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--quote-border);
+  border-radius: var(--quote-radius);
+  background: var(--quote-surface);
+  box-shadow: var(--quote-shadow);
 }
 .quote-panel {
   padding: 1.3rem;
@@ -181,9 +229,13 @@ td small {
   gap: 1rem;
   align-items: center;
   padding: 1.15rem 1.3rem;
-  border-bottom: 1px solid #edf1f5;
-  background: linear-gradient(135deg, #f8fbff 0%, #fff 70%);
-  border-radius: 1rem 1rem 0 0;
+  border-bottom: 1px solid var(--quote-border);
+  background: linear-gradient(
+    135deg,
+    var(--quote-primary-soft) 0%,
+    var(--quote-surface) 78%
+  );
+  border-radius: var(--quote-radius) var(--quote-radius) 0 0;
 }
 .quote-section__icon,
 .quote-public-card__icon {
@@ -192,9 +244,13 @@ td small {
   width: 4.2rem;
   height: 4.2rem;
   border-radius: 0.9rem;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: linear-gradient(
+    135deg,
+    var(--quote-primary),
+    var(--quote-primary-strong)
+  );
   color: #fff;
-  box-shadow: 0 0.8rem 1.8rem rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0.8rem 1.8rem rgba(0, 74, 173, 0.2);
 }
 .quote-section__icon svg,
 .quote-public-card__icon svg {
@@ -203,7 +259,7 @@ td small {
 }
 .quote-section__header p {
   margin: 0.3rem 0 0;
-  color: #64748b;
+  color: var(--quote-muted);
 }
 .quote-section__body {
   padding: 1.3rem;
@@ -212,7 +268,14 @@ td small {
   grid-column: span 1;
   min-width: 0;
   overflow: hidden;
-  box-shadow: 0 0.8rem 2.2rem rgba(15, 23, 42, 0.045);
+  box-shadow: var(--quote-shadow);
+  transition:
+    border-color var(--transition-fast) var(--ease-out),
+    box-shadow var(--transition-fast) var(--ease-out);
+}
+.quote-section:hover {
+  border-color: color-mix(in srgb, var(--quote-primary) 28%, var(--quote-border));
+  box-shadow: var(--quote-shadow-raised);
 }
 .quote-section--wide,
 .quote-submit-bar,
@@ -246,8 +309,9 @@ td small {
 .quote-field {
   display: grid;
   gap: 0.45rem;
-  font-size: 1.2rem;
-  font-weight: 800;
+  color: var(--quote-heading);
+  font-size: var(--fs-1);
+  font-weight: var(--fw-bold);
 }
 .quote-field input,
 .quote-field select,
@@ -257,9 +321,10 @@ td small {
 .quote-request-form textarea {
   width: 100%;
   min-height: 4.2rem;
-  border: 1px solid #cbd7e6;
-  border-radius: 0.7rem;
-  background: #fff;
+  border: 1px solid var(--quote-border);
+  border-radius: var(--radius-md);
+  background: var(--quote-surface);
+  color: var(--quote-text);
   padding: 0.8rem 1rem;
   font: inherit;
   transition:
@@ -274,8 +339,15 @@ td small {
 .quote-request-form select:focus,
 .quote-request-form textarea:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 0.3rem rgba(59, 130, 246, 0.12);
+  border-color: var(--quote-primary);
+  box-shadow: var(--focus-ring);
+}
+.quote-field input::placeholder,
+.quote-field textarea::placeholder,
+.quote-request-form input::placeholder,
+.quote-request-form textarea::placeholder {
+  color: color-mix(in srgb, var(--quote-muted) 78%, transparent);
+  font-weight: var(--fw-normal);
 }
 .quote-field textarea,
 .quote-request-form textarea {
@@ -359,13 +431,29 @@ td small {
   min-height: 70vh;
   place-items: center;
   padding: 3rem 1.5rem;
+  position: relative;
+  isolation: isolate;
   background:
-    radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.12), transparent 32rem),
-    linear-gradient(180deg, #f8fbff, #f1f5f9);
+    radial-gradient(circle at 8% 12%, rgba(0, 74, 173, 0.2), transparent 34rem),
+    radial-gradient(circle at 92% 88%, rgba(255, 165, 0, 0.15), transparent 30rem),
+    linear-gradient(145deg, #edf5ff 0%, var(--quote-canvas) 48%, #fff9ed 100%);
+}
+.quote-public-page::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  opacity: 0.32;
+  background-image:
+    linear-gradient(rgba(0, 74, 173, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 74, 173, 0.06) 1px, transparent 1px);
+  background-size: 3.2rem 3.2rem;
 }
 .quote-public-card {
   width: min(96rem, 100%);
   padding: clamp(1.8rem, 3vw, 3rem);
+  border-top: 0.4rem solid var(--quote-primary);
+  box-shadow: var(--shadow-xl);
 }
 .quote-public-card > header {
   display: grid;
@@ -394,7 +482,8 @@ td small {
   display: grid;
   gap: 0.5rem;
   font-size: 1.25rem;
-  font-weight: 800;
+  color: var(--quote-heading);
+  font-weight: var(--fw-bold);
 }
 .quote-request-form__wide {
   grid-column: 1/-1;
@@ -405,6 +494,11 @@ td small {
   align-items: start;
   gap: 0.7rem;
   margin-top: 1rem;
+  padding: var(--space-3);
+  border: 1px solid var(--quote-border);
+  border-radius: var(--radius-md);
+  background: var(--quote-primary-soft);
+  color: var(--quote-text);
 }
 .quote-check input {
   width: 1.8rem;
@@ -481,12 +575,12 @@ td small {
 .quote-request-location-heading {
   margin-top: 0.8rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #dce5ef;
+  border-top: 1px solid var(--quote-border);
 }
 .quote-request-location-heading h2 {
   margin: 0 0 0.35rem;
   font-size: 1.7rem;
-  color: #07111f;
+  color: var(--quote-heading);
 }
 @media (max-width: 900px) {
   .quote-page-header {

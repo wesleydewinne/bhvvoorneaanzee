@@ -110,10 +110,18 @@ const quoteService = {
       contactPersonName: payload.contactName,
       contactEmail: payload.email,
       contactPhone: payload.phone || null,
-      street: payload.trainingStreet,
-      houseNumber: payload.trainingHouseNumber,
-      postalCode: payload.trainingPostalCode,
-      city: payload.trainingCity,
+      street: payload.companyAtTrainingAddress
+        ? payload.trainingStreet
+        : payload.companyStreet,
+      houseNumber: payload.companyAtTrainingAddress
+        ? payload.trainingHouseNumber
+        : payload.companyHouseNumber,
+      postalCode: payload.companyAtTrainingAddress
+        ? payload.trainingPostalCode
+        : payload.companyPostalCode,
+      city: payload.companyAtTrainingAddress
+        ? payload.trainingCity
+        : payload.companyCity,
       customerReference: null,
       quoteSubject: `Offerte ${selectedNames.join(", ")}`,
       introductionText: null,

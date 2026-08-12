@@ -22,6 +22,11 @@ const emptyForm = {
   trainingHouseNumber: "",
   trainingPostalCode: "",
   trainingCity: "",
+  companyAtTrainingAddress: true,
+  companyStreet: "",
+  companyHouseNumber: "",
+  companyPostalCode: "",
+  companyCity: "",
   message: "",
   privacyAccepted: false,
   captcha: CAPTCHA_DISABLED ? "local-development" : "",
@@ -159,7 +164,7 @@ export default function OfferteAanvraagPage() {
         )}
         <form className="quote-request-form" onSubmit={submit}>
           <label>
-            Naam van bedrijf, organisatie of vereniging *
+            Naam van uw bedrijf, organisatie of vereniging *
             <input
               required
               placeholder="Bijvoorbeeld een bedrijf, sportvereniging, stichting of school"
@@ -314,6 +319,73 @@ export default function OfferteAanvraagPage() {
               }
             />
           </label>
+          <label className="quote-check quote-request-form__wide">
+            <input
+              type="checkbox"
+              checked={form.companyAtTrainingAddress}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  companyAtTrainingAddress: e.target.checked,
+                })
+              }
+            />
+            <span>
+              Het bedrijf, de organisatie of vereniging is op hetzelfde adres
+              gevestigd.
+            </span>
+          </label>
+          {!form.companyAtTrainingAddress && (
+            <>
+              <div className="quote-request-location-heading quote-request-form__wide">
+                <h2>Vestigingsadres organisatie</h2>
+                <p>
+                  Vul het adres in waar het bedrijf, de organisatie of
+                  vereniging officieel gevestigd is.
+                </p>
+              </div>
+              <label>
+                Straat vestigingsadres *
+                <input
+                  required
+                  value={form.companyStreet}
+                  onChange={(e) =>
+                    setForm({ ...form, companyStreet: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Huisnummer vestigingsadres *
+                <input
+                  required
+                  value={form.companyHouseNumber}
+                  onChange={(e) =>
+                    setForm({ ...form, companyHouseNumber: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Postcode vestigingsadres *
+                <input
+                  required
+                  value={form.companyPostalCode}
+                  onChange={(e) =>
+                    setForm({ ...form, companyPostalCode: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Plaats vestigingsadres *
+                <input
+                  required
+                  value={form.companyCity}
+                  onChange={(e) =>
+                    setForm({ ...form, companyCity: e.target.value })
+                  }
+                />
+              </label>
+            </>
+          )}
           <label className="quote-request-form__wide">
             Bericht bij uw aanvraag
             <textarea
