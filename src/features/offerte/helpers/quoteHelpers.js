@@ -137,6 +137,11 @@ export function normalizeQuoteForForm(value) {
 }
 
 export function buildQuotePayload(form) {
+  const vatPercentage = Number(form.vatPercentage);
+  if (![0, 9, 21].includes(vatPercentage)) {
+    throw new Error("Kies een geldig btw-percentage: 0%, 9% of 21%.");
+  }
+
   const discounts = (form.discounts || [])
     .map((discount) => ({
       code: text(discount.code).trim() || null,
@@ -147,6 +152,7 @@ export function buildQuotePayload(form) {
     .filter((discount) => discount.amountExcludingVat > 0);
   return {
     ...form,
+    vatPercentage,
     trainingItems: form.trainingItems.map((item) => ({
       ...item,
       participantCount: Number(item.participantCount),

@@ -31,7 +31,9 @@ const quoteService = {
         toLegacyUpdateCommand(created.id, payload),
       );
     }
-    const refreshed = (await api.get(`/offertes/${created.id}`)).data;
+    let refreshed = (await api.get(`/offertes/${created.id}`)).data;
+    await syncVatPercentage(refreshed, payload.vatPercentage);
+    refreshed = (await api.get(`/offertes/${created.id}`)).data;
     await syncDiscounts(refreshed, payload.discounts || []);
     return { id: created.id, legacy: refreshed };
   },
@@ -58,8 +60,15 @@ const quoteService = {
   async update(id, payload) {
     const current = (await api.get(`/offertes/${id}`)).data;
     await api.put(`/offertes/${id}`, toLegacyUpdateCommand(id, payload));
-    await syncTrainings(id, current.quoteTrainings, payload.trainingItems);
-    const updated = (await api.get(`/offertes/${id}`)).data;
+    await syncTrainings(
+      id,
+      current.quoteTrainings,
+      payload.trainingItems,
+      payload.vatPercentage,
+    );
+    let updated = (await api.get(`/offertes/${id}`)).data;
+    await syncVatPercentage(updated, payload.vatPercentage);
+    updated = (await api.get(`/offertes/${id}`)).data;
     await syncDiscounts(updated, payload.discounts || [], true);
     return this.getQuote(id);
   },
@@ -352,7 +361,12 @@ function toQuoteSummary(value) {
   };
 }
 
-async function syncTrainings(quoteId, currentItems, desiredItems) {
+async function syncTrainings(
+  quoteId,
+  currentItems,
+  desiredItems,
+  vatPercentage,
+) {
   const desiredIds = new Set(
     desiredItems
       .filter((item) => item.legacyTrainingCode === item.trainingCode)
@@ -375,7 +389,7 @@ async function syncTrainings(quoteId, currentItems, desiredItems) {
         participantCount: Number(item.participantCount),
         description: item.description || item.title,
         salesPrice: Number(item.unitPriceExcludingVat),
-        vatPercentage: Number(item.legacyVatPercentage ?? 0),
+        vatPercentage: Number(vatPercentage),
         internalNote: null,
       });
     } else {
@@ -390,6 +404,23 @@ async function syncTrainings(quoteId, currentItems, desiredItems) {
       });
     }
   }
+}
+
+async function syncVatPercentage(quote, vatPercentage) {
+  const percentage = Number(vatPercentage);
+
+  await Promise.all(
+    (quote.quoteTrainings || []).map((training) =>
+      api.put(`/offertes/${quote.id}/trainings/${training.id}`, {
+        quoteTrainingId: training.id,
+        participantCount: Number(training.participantCount),
+        description: training.description || training.trainingName,
+        salesPrice: Number(training.salesPrice),
+        vatPercentage: percentage,
+        internalNote: training.internalNote || null,
+      }),
+    ),
+  );
 }
 
 async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {

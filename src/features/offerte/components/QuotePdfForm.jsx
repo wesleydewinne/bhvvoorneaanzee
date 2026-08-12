@@ -153,6 +153,20 @@ export default function QuotePdfForm({
               />
             </label>
           ))}
+          <label className="quote-field">
+            Btw-percentage
+            <select
+              required
+              value={form.vatPercentage}
+              onChange={(event) =>
+                setForm({ ...form, vatPercentage: Number(event.target.value) })
+              }
+            >
+              <option value={0}>0% btw</option>
+              <option value={9}>9% btw</option>
+              <option value={21}>21% btw</option>
+            </select>
+          </label>
           <label className="quote-field quote-field--span-3">
             Covertitel
             <input
@@ -398,6 +412,16 @@ export default function QuotePdfForm({
             <strong>
               − {formatCurrency(form.priceSummary?.discountTotalExcludingVat)}
             </strong>
+          </span>
+          <span>
+            Totaal excl. btw{" "}
+            <strong>
+              {formatCurrency(form.priceSummary?.totalExcludingVat)}
+            </strong>
+          </span>
+          <span>
+            Btw ({Number(form.vatPercentage) || 0}%){" "}
+            <strong>{formatCurrency(form.priceSummary?.vatAmount)}</strong>
           </span>
           <span>
             Totaal incl. btw{" "}
