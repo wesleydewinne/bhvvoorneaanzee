@@ -269,9 +269,12 @@ export default function OfferteAanvraagPage() {
                     required
                     data-label={`Training ${index + 1}`}
                     value={selection.trainingCode}
-                    onChange={(e) =>
-                      updateTraining(index, "trainingCode", e.target.value)
-                    }
+                    onChange={(e) => {
+                      updateTraining(index, "trainingCode", e.target.value);
+                      if (e.target.value.startsWith("EVACUATION_DRILL_PHASE_")) {
+                        updateTraining(index, "participantCount", 1);
+                      }
+                    }}
                   >
                     <option value="">Kies een training</option>
                     {trainingTypes.map((training) => (
@@ -290,7 +293,9 @@ export default function OfferteAanvraagPage() {
                   </select>
                 </label>
                 <label>
-                  Aantal cursisten *
+                  {selection.trainingCode.startsWith("EVACUATION_DRILL_PHASE_")
+                    ? "Aantal oefeningen *"
+                    : "Aantal cursisten *"}
                   <input
                     required
                     min="1"

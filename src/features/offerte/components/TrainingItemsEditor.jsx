@@ -1,6 +1,9 @@
 import { Plus, Trash2 } from "lucide-react";
 import { createTrainingItem, formatCurrency } from "../helpers/quoteHelpers.js";
 
+const isEvacuationDrill = (trainingCode = "") =>
+  trainingCode.startsWith("EVACUATION_DRILL_PHASE_");
+
 /**
  * Bewerkt alleen de invoer die de offertebackend nodig heeft: training en
  * deelnemers. Groepen, prijseenheid, prijs en totalen komen na opslaan terug
@@ -24,6 +27,9 @@ export default function TrainingItemsEditor({
       trainingCode,
       title: training?.displayName || trainingCode,
       description: training?.description || "",
+      participantCount: isEvacuationDrill(trainingCode)
+        ? 1
+        : normalizeCount(items[index]?.participantCount),
     });
   };
 
@@ -66,7 +72,9 @@ export default function TrainingItemsEditor({
               </select>
             </label>
             <label className="quote-field">
-              Deelnemers
+              {isEvacuationDrill(item.trainingCode)
+                ? "Aantal oefeningen"
+                : "Aantal cursisten"}
               <input
                 required
                 type="number"
@@ -106,4 +114,9 @@ export default function TrainingItemsEditor({
       </button>
     </div>
   );
+}
+
+function normalizeCount(value) {
+  const count = Number(value);
+  return Number.isInteger(count) && count > 0 ? count : 1;
 }
