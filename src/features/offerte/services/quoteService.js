@@ -311,7 +311,11 @@ function toQuoteDetail(value, discounts) {
       discounts: discounts.map((item) => ({
         legacyDiscountId: item.id,
         legacyTrainingId: item.quoteTrainingId,
-        code: "",
+        code: ["LOCATIE", "WELKOM", "PARTNER", "EENMALIG"].includes(
+          item.name,
+        )
+          ? item.name
+          : "OVERIG",
         description: item.description || item.name,
         type: item.type,
         value: Number(item.value || 0),

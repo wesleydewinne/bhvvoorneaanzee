@@ -28,9 +28,20 @@ const updateNested = (setter, section, field, value) =>
     [section]: { ...current[section], [field]: value },
   }));
 
+const DISCOUNT_OPTIONS = [
+  { code: "LOCATIE", description: "Locatiekorting" },
+  { code: "WELKOM", description: "Welkomstkorting" },
+  { code: "PARTNER", description: "Partnerkorting" },
+  { code: "EENMALIG", description: "Eenmalig afgesproken korting" },
+  { code: "OVERIG", description: "" },
+];
+
+const getDiscountDescription = (code) =>
+  DISCOUNT_OPTIONS.find((option) => option.code === code)?.description || "";
+
 const emptyDiscount = () => ({
   code: "LOCATIE",
-  description: "",
+  description: getDiscountDescription("LOCATIE"),
   type: "FIXED_AMOUNT",
   value: 0,
   percentage: 0,
@@ -360,23 +371,35 @@ export default function QuotePdfForm({
                       ...current,
                       discounts: current.discounts.map((item, itemIndex) =>
                         itemIndex === index
-                          ? { ...item, code: event.target.value }
+                          ? {
+                              ...item,
+                              code: event.target.value,
+                              description: getDiscountDescription(
+                                event.target.value,
+                              ),
+                            }
                           : item,
                       ),
                     }))
                   }
                 >
-                  <option value="LOCATIE">Locatiekorting</option>
-                  <option value="RELATIE">Relatiekorting</option>
-                  <option value="ACTIE">Actiekorting</option>
-                  <option value="MAATWERK">Maatwerkkorting</option>
-                  <option value="OVERIG">Overige korting</option>
+                  {DISCOUNT_OPTIONS.map((option) => (
+                    <option value={option.code} key={option.code}>
+                      {option.description || "Overige korting"}
+                    </option>
+                  ))}
                 </select>
               </label>
               <label className="quote-field">
                 Omschrijving
                 <input
                   required
+                  readOnly={discount.code !== "OVERIG"}
+                  placeholder={
+                    discount.code === "OVERIG"
+                      ? "Beschrijf de afgesproken korting"
+                      : undefined
+                  }
                   value={discount.description}
                   onChange={(event) =>
                     setForm((current) => ({
