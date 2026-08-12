@@ -189,7 +189,7 @@ api.interceptors.response.use(
         }
 
         if (originalRequest._retry) {
-            if (!isMutation(originalRequest.method)) {
+            if (!isMutation(originalRequest.method) && !originalRequest.suppressAuthLogout) {
                 dispatchLogoutRequired();
             }
 

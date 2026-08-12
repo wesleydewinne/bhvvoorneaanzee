@@ -87,11 +87,27 @@ const quoteService = {
   },
 
   async downloadPdf(id, quoteNumber) {
-    const response = await api.get(`/offertes/${id}/pdf`, {
-      responseType: "blob",
-      timeout: 60000,
-      headers: { Accept: "application/pdf" },
-    });
+    let response;
+    try {
+      response = await api.get(`/offertes/${id}/pdf`, {
+        responseType: "blob",
+        timeout: 60000,
+        headers: { Accept: "application/pdf, application/json" },
+        suppressAuthLogout: true,
+      });
+    } catch (error) {
+      const errorBlob = error?.response?.data;
+      if (errorBlob instanceof Blob && errorBlob.type?.includes("json")) {
+        try {
+          const body = JSON.parse(await errorBlob.text());
+          throw new Error(body.message || body.detail || error.message);
+        } catch (parseError) {
+          if (parseError instanceof SyntaxError) throw error;
+          throw parseError;
+        }
+      }
+      throw error;
+    }
 
     return {
       blob: response.data,
