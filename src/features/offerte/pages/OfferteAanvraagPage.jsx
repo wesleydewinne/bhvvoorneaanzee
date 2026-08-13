@@ -9,6 +9,13 @@ import {
 import quoteService from "../services/quoteService.js";
 import "../styles/Offerte.css";
 
+const isExerciseBasedEvacuation = (trainingCode = "") =>
+  [
+    "EVACUATION_DRILL_PHASE_2",
+    "EVACUATION_DRILL_PHASE_3",
+    "EVACUATION_DRILL_PHASE_4",
+  ].includes(trainingCode);
+
 const CAPTCHA_DISABLED =
   import.meta.env.DEV && import.meta.env.VITE_DISABLE_CAPTCHA === "true";
 
@@ -271,7 +278,7 @@ export default function OfferteAanvraagPage() {
                     value={selection.trainingCode}
                     onChange={(e) => {
                       updateTraining(index, "trainingCode", e.target.value);
-                      if (e.target.value.startsWith("EVACUATION_DRILL_PHASE_")) {
+                      if (isExerciseBasedEvacuation(e.target.value)) {
                         updateTraining(index, "participantCount", 1);
                       }
                     }}
@@ -293,7 +300,7 @@ export default function OfferteAanvraagPage() {
                   </select>
                 </label>
                 <label>
-                  {selection.trainingCode.startsWith("EVACUATION_DRILL_PHASE_")
+                  {isExerciseBasedEvacuation(selection.trainingCode)
                     ? "Aantal oefeningen *"
                     : "Aantal cursisten *"}
                   <input

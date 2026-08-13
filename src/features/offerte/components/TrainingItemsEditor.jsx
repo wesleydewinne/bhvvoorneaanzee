@@ -2,7 +2,11 @@ import { Plus, Trash2 } from "lucide-react";
 import { createTrainingItem, formatCurrency } from "../helpers/quoteHelpers.js";
 
 const isEvacuationDrill = (trainingCode = "") =>
-  trainingCode.startsWith("EVACUATION_DRILL_PHASE_");
+  [
+    "EVACUATION_DRILL_PHASE_2",
+    "EVACUATION_DRILL_PHASE_3",
+    "EVACUATION_DRILL_PHASE_4",
+  ].includes(trainingCode);
 
 /**
  * Bewerkt alleen de invoer die de offertebackend nodig heeft: training en
