@@ -46,7 +46,10 @@ const quoteService = {
   },
 
   async getQuote(id) {
-    const response = await api.get(`/offertes/${id}`);
+    const [response, momentsResponse] = await Promise.all([
+      api.get(`/offertes/${id}`),
+      api.get(`/offertes/${id}/invoice-moments`),
+    ]);
     const discounts = (
       await Promise.all(
         response.data.quoteTrainings.map((training) =>
@@ -54,7 +57,7 @@ const quoteService = {
         ),
       )
     ).flatMap((item) => item.data);
-    return toQuoteDetail(response.data, discounts);
+    return toQuoteDetail(response.data, discounts, momentsResponse.data);
   },
 
   async update(id, payload) {
@@ -69,7 +72,21 @@ const quoteService = {
     let updated = (await api.get(`/offertes/${id}`)).data;
     await syncVatPercentage(updated, payload.vatPercentage);
     updated = (await api.get(`/offertes/${id}`)).data;
-    await syncDiscounts(updated, payload.discounts || [], true);
+    await syncDiscounts(
+      updated,
+      [
+        ...(payload.discounts || []),
+        ...(payload.invoiceMoments || []).flatMap((moment) =>
+          (moment.discounts || []).map((discount) => ({
+            ...discount,
+            quoteTrainingId: moment.quoteTrainingId,
+            executionNumber: moment.executionNumber,
+          })),
+        ),
+      ],
+      true,
+    );
+    await syncInvoiceMoments(id, payload.invoiceMoments || []);
     return this.getQuote(id);
   },
 
@@ -254,7 +271,7 @@ const duration = (value) =>
       ? "HALF_DAY"
       : "FULL_DAY";
 
-function toQuoteDetail(value, discounts) {
+function toQuoteDetail(value, discounts, invoiceMoments = []) {
   const travelPerExecution = value.quoteTrainings.reduce(
     (sum, item) => sum + Math.max(1, item.groupCount),
     0,
@@ -324,7 +341,7 @@ function toQuoteDetail(value, discounts) {
           travelAmount,
         ),
       })),
-      discounts: discounts.map((item) => ({
+      discounts: discounts.filter((item) => item.executionNumber == null).map((item) => ({
         legacyDiscountId: item.id,
         legacyTrainingId: item.quoteTrainingId,
         code: ["LOCATIE", "WELKOM", "PARTNER", "EENMALIG"].includes(
@@ -338,6 +355,18 @@ function toQuoteDetail(value, discounts) {
         percentage: item.type === "PERCENTAGE" ? item.value : 0,
         amountExcludingVat:
           item.type === "FIXED_AMOUNT" ? item.value : item.calculatedAmount,
+      })),
+      invoiceMoments: invoiceMoments.map((moment) => ({
+        ...moment,
+        discounts: (moment.discounts || []).map((item) => ({
+          id: item.id,
+          quoteTrainingId: item.quoteTrainingId,
+          executionNumber: item.executionNumber,
+          code: item.name || "OVERIG",
+          description: item.description || item.name || "",
+          type: item.type,
+          value: Number(item.value) || 0,
+        })),
       })),
       vatPercentage: value.subtotalExcludingVat
         ? Math.round(
@@ -446,8 +475,8 @@ async function syncVatPercentage(quote, vatPercentage) {
 }
 
 async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
-  const training = quote.quoteTrainings?.[0];
-  if (!training) return;
+  const defaultTraining = quote.quoteTrainings?.[0];
+  if (!defaultTraining) return;
 
   const existingDiscounts = clearExisting
     ? (
@@ -465,29 +494,44 @@ async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
       ).flat()
     : [];
 
-  const sharedCount = Math.min(existingDiscounts.length, desiredDiscounts.length);
-
-  for (let index = 0; index < sharedCount; index += 1) {
-    const existing = existingDiscounts[index];
-    await api.put(
-      `/offertes/${quote.id}/trainings/${existing.quoteTrainingId}/discounts/${existing.id}`,
-      toDiscountRequest(desiredDiscounts[index]),
-    );
+  if (clearExisting) {
+    for (const existing of existingDiscounts) {
+      await api.delete(
+        `/offertes/${quote.id}/trainings/${existing.quoteTrainingId}/discounts/${existing.id}`,
+      );
+    }
   }
 
-  for (let index = sharedCount; index < desiredDiscounts.length; index += 1) {
+  for (const desired of desiredDiscounts) {
+    const training = quote.quoteTrainings.find(
+      (item) => item.id === desired.quoteTrainingId,
+    ) || defaultTraining;
     await api.post(
       `/offertes/${quote.id}/trainings/${training.id}/discounts`,
-      toDiscountRequest(desiredDiscounts[index]),
+      toDiscountRequest(desired),
     );
   }
+}
 
-  for (let index = sharedCount; index < existingDiscounts.length; index += 1) {
-    const existing = existingDiscounts[index];
-    await api.delete(
-      `/offertes/${quote.id}/trainings/${existing.quoteTrainingId}/discounts/${existing.id}`,
-    );
+async function syncInvoiceMoments(quoteId, desiredMoments) {
+  if (!desiredMoments.length) return;
+  const current = (await api.get(`/offertes/${quoteId}/invoice-moments`)).data;
+  const desiredKeys = desiredMoments.map(
+    (moment) => `${moment.quoteTrainingId}:${moment.executionNumber}`,
+  );
+  const byKey = new Map(
+    current.map((moment) => [
+      `${moment.quoteTrainingId}:${moment.executionNumber}`,
+      moment,
+    ]),
+  );
+  const ordered = desiredKeys.map((key) => byKey.get(key)).filter(Boolean);
+  for (const moment of current) {
+    if (!ordered.some((item) => item.id === moment.id)) ordered.push(moment);
   }
+  await api.put(`/offertes/${quoteId}/invoice-moments/order`, {
+    momentIds: ordered.map((moment) => moment.id),
+  });
 }
 
 function toDiscountRequest(discount) {
@@ -497,6 +541,7 @@ function toDiscountRequest(discount) {
     type: discount.type,
     value: Number(discount.value),
     visibleToCustomer: true,
+    executionNumber: discount.executionNumber ?? null,
   };
 }
 

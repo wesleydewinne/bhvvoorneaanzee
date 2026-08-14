@@ -452,6 +452,46 @@ td small {
 .quote-calculation-card--totals {
   background: linear-gradient(145deg, #f8fbff, #fff);
 }
+
+.quote-invoice-moments {
+  display: grid;
+  gap: 1rem;
+}
+
+.quote-invoice-moment {
+  display: grid;
+  gap: 1rem;
+  padding: 1.2rem;
+  border: 1px solid var(--quote-border);
+  border-radius: 0.9rem;
+  background: var(--quote-surface-soft, #f8fafc);
+}
+
+.quote-invoice-moment__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quote-invoice-moment__header > div:first-child {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.quote-invoice-moment__header span {
+  color: var(--quote-text-muted);
+}
+
+.quote-invoice-moment__order {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.quote-invoice-moment__order button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
 .quote-totals {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

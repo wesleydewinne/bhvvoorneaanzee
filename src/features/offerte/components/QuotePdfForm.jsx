@@ -21,6 +21,7 @@ import {
 } from "../helpers/quoteHelpers.js";
 import QuoteSection from "./QuoteSection.jsx";
 import TrainingItemsEditor from "./TrainingItemsEditor.jsx";
+import InvoiceMomentsEditor from "./InvoiceMomentsEditor.jsx";
 
 const updateNested = (setter, section, field, value) =>
   setter((current) => ({
@@ -301,6 +302,20 @@ export default function QuotePdfForm({
           />
         )}
       </QuoteSection>
+
+      {(form.invoiceMoments || []).length > 0 && (
+        <QuoteSection
+          title="Factuurplanning"
+          description="Bepaal de volgorde van de uitvoeringsmomenten en voeg eventueel een korting per moment toe."
+          icon={<ReceiptText />}
+          className="quote-section--wide"
+        >
+          <InvoiceMomentsEditor
+            moments={form.invoiceMoments}
+            onChange={(invoiceMoments) => setForm({ ...form, invoiceMoments })}
+          />
+        </QuoteSection>
+      )}
 
       <QuoteSection
         title="Korting en reiskosten"
