@@ -305,8 +305,8 @@ export default function QuotePdfForm({
 
       {(form.invoiceMoments || []).length > 0 && (
         <QuoteSection
-          title="Factuurplanning"
-          description="Bepaal de volgorde van de uitvoeringsmomenten en voeg eventueel een korting per moment toe."
+          title="Kortingen per factuurmoment"
+          description="Koppel eventueel een korting aan een factuurmoment. De getoonde volgorde is geen definitieve datumplanning."
           icon={<ReceiptText />}
           className="quote-section--wide"
         >

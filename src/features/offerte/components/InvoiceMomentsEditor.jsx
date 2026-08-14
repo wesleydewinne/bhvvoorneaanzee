@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 
 const newDiscount = () => ({
   code: "OVERIG",
@@ -8,17 +8,6 @@ const newDiscount = () => ({
 });
 
 export default function InvoiceMomentsEditor({ moments, onChange }) {
-  const move = (index, direction) => {
-    const target = index + direction;
-    if (target < 0 || target >= moments.length) return;
-    const next = [...moments];
-    [next[index], next[target]] = [next[target], next[index]];
-    onChange(next.map((moment, itemIndex) => ({
-      ...moment,
-      sortOrder: itemIndex + 1,
-    })));
-  };
-
   const updateDiscount = (momentIndex, discountIndex, values) =>
     onChange(moments.map((moment, index) => index === momentIndex
       ? {
@@ -34,16 +23,8 @@ export default function InvoiceMomentsEditor({ moments, onChange }) {
         <article className="quote-invoice-moment" key={moment.id}>
           <div className="quote-invoice-moment__header">
             <div>
-              <strong>Factuurmoment {momentIndex + 1}</strong>
+              <strong>Factuurmoment</strong>
               <span>{moment.trainingName} · uitvoering {moment.executionNumber} van {moment.executionCount}</span>
-            </div>
-            <div className="quote-invoice-moment__order">
-              <button type="button" className="quote-icon-button"
-                aria-label="Factuurmoment omhoog" disabled={momentIndex === 0}
-                onClick={() => move(momentIndex, -1)}><ArrowUp size={17} /></button>
-              <button type="button" className="quote-icon-button"
-                aria-label="Factuurmoment omlaag" disabled={momentIndex === moments.length - 1}
-                onClick={() => move(momentIndex, 1)}><ArrowDown size={17} /></button>
             </div>
           </div>
 

@@ -86,7 +86,6 @@ const quoteService = {
       ],
       true,
     );
-    await syncInvoiceMoments(id, payload.invoiceMoments || []);
     return this.getQuote(id);
   },
 
@@ -511,27 +510,6 @@ async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
       toDiscountRequest(desired),
     );
   }
-}
-
-async function syncInvoiceMoments(quoteId, desiredMoments) {
-  if (!desiredMoments.length) return;
-  const current = (await api.get(`/offertes/${quoteId}/invoice-moments`)).data;
-  const desiredKeys = desiredMoments.map(
-    (moment) => `${moment.quoteTrainingId}:${moment.executionNumber}`,
-  );
-  const byKey = new Map(
-    current.map((moment) => [
-      `${moment.quoteTrainingId}:${moment.executionNumber}`,
-      moment,
-    ]),
-  );
-  const ordered = desiredKeys.map((key) => byKey.get(key)).filter(Boolean);
-  for (const moment of current) {
-    if (!ordered.some((item) => item.id === moment.id)) ordered.push(moment);
-  }
-  await api.put(`/offertes/${quoteId}/invoice-moments/order`, {
-    momentIds: ordered.map((moment) => moment.id),
-  });
 }
 
 function toDiscountRequest(discount) {
