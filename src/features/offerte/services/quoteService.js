@@ -355,7 +355,16 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
         amountExcludingVat:
           item.type === "FIXED_AMOUNT" ? item.value : item.calculatedAmount,
       })),
-      invoiceMoments: invoiceMoments.map((moment) => ({
+      invoiceMoments: [...invoiceMoments].sort((left, right) => {
+        const leftTraining = value.quoteTrainings.findIndex(
+          (training) => training.id === left.quoteTrainingId,
+        );
+        const rightTraining = value.quoteTrainings.findIndex(
+          (training) => training.id === right.quoteTrainingId,
+        );
+        return leftTraining - rightTraining
+          || Number(left.executionNumber) - Number(right.executionNumber);
+      }).map((moment) => ({
         ...moment,
         discounts: (moment.discounts || []).map((item) => ({
           id: item.id,
