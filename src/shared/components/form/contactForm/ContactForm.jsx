@@ -30,7 +30,7 @@ export default function ContactForm() {
         e.preventDefault();
 
         let toEmail = "info@bhvvoorneaanzee.nl";
-        if (type === "offerte") toEmail = "offerte@bhvvoorneaanzee.nl";
+        if (type === "offerte") toEmail = "offertes@bhvvoorneaanzee.nl";
         if (type === "advies") toEmail = "advies@bhvvoorneaanzee.nl";
 
         alert(`Bedankt! Je ${titles[type]} is verzonden naar ${toEmail}.`);

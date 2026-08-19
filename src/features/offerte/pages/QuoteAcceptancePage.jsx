@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CheckCircle2, LoaderCircle } from "lucide-react";
+import { Ban, CheckCircle2, Clock3, LoaderCircle, ShieldX } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import quoteService from "../services/quoteService.js";
 import "../styles/Offerte.css";
@@ -82,20 +82,38 @@ export default function QuoteAcceptancePage() {
         ) : accepted || quote?.status === "ACCEPTED" ? (
           <div className="quote-public-success">
             <CheckCircle2 aria-hidden="true" />
-            <h1>Bedankt voor uw akkoord</h1>
+            <h1>Offerte is geaccepteerd</h1>
             <p>
-              Offerte <strong>{quote?.quoteNumber}</strong> is succesvol
-              geaccepteerd. Wij nemen contact met u op voor de verdere planning.
+              Deze offerte is digitaal geaccepteerd. De akkoordlink kan daarom
+              niet opnieuw worden gebruikt.
             </p>
-          </div>
-        ) : error && !quote ? (
-          <>
-            <h1>Offerte niet beschikbaar</h1>
-            <p className="quote-alert quote-alert--error">{error}</p>
+            <p>
+              De geaccepteerde offerte en de algemene voorwaarden zijn na
+              acceptatie per e-mail verzonden.
+            </p>
+            <p>Geen e-mail ontvangen?</p>
             <Link className="quote-primary-button" to="/contact">
               Contact opnemen
             </Link>
-          </>
+          </div>
+        ) : quote?.status === "EXPIRED" ? (
+          <StatusMessage
+            icon={Clock3}
+            title="Offerte is verlopen"
+            message="De geldigheid van deze offerte is verstreken. Digitaal akkoord geven is niet meer mogelijk."
+          />
+        ) : ["CANCELLED", "REJECTED"].includes(quote?.status) ? (
+          <StatusMessage
+            icon={Ban}
+            title="Offerte is niet meer actief"
+            message="Deze offerte is ingetrokken of afgesloten en kan niet meer digitaal worden geaccepteerd."
+          />
+        ) : error && !quote ? (
+          <StatusMessage
+            icon={ShieldX}
+            title="Akkoordlink is ongeldig"
+            message="Deze akkoordlink is ongeldig, onvolledig of niet meer actief. Controleer of u de volledige link uit de e-mail heeft geopend."
+          />
         ) : (
           <>
             <h1>Offerte {quote.quoteNumber}</h1>
@@ -225,6 +243,19 @@ export default function QuoteAcceptancePage() {
         )}
       </section>
     </main>
+  );
+}
+
+function StatusMessage({ icon: Icon, title, message }) {
+  return (
+    <div className="quote-public-success quote-public-success--inactive">
+      <Icon aria-hidden="true" />
+      <h1>{title}</h1>
+      <p>{message}</p>
+      <Link className="quote-primary-button" to="/contact">
+        Contact opnemen
+      </Link>
+    </div>
   );
 }
 

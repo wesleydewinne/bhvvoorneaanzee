@@ -160,6 +160,7 @@ export default function QuotePdfForm({
         title="Offertegegevens"
         description="Referentie, geldigheid en teksten op de omslag."
         icon={<FileText />}
+        className="quote-section--meta"
       >
         <div className="quote-form-grid quote-form-grid--three">
           {[
@@ -207,7 +208,7 @@ export default function QuotePdfForm({
         title="Opdrachtgever"
         description="Bedrijfsgegevens en het adres waar de training plaatsvindt."
         icon={<Building2 />}
-        className="quote-section--wide"
+        className="quote-section--wide quote-section--customer"
       >
         <div className="quote-form-grid quote-form-grid--three">
           {[
@@ -298,7 +299,7 @@ export default function QuotePdfForm({
         title="Trainingen"
         description="De technische code bewaakt de koppeling met de juiste programmateksten."
         icon={<GraduationCap />}
-        className="quote-section--wide"
+        className="quote-section--wide quote-section--training"
       >
         {loadingTypes ? (
           <p>Trainingstypen laden…</p>
@@ -316,7 +317,7 @@ export default function QuotePdfForm({
           title="Kortingen per factuurmoment"
           description="Koppel eventueel een korting aan een factuurmoment. De getoonde volgorde is geen definitieve datumplanning."
           icon={<ReceiptText />}
-          className="quote-section--wide"
+          className="quote-section--wide quote-section--invoice-moments"
         >
           <InvoiceMomentsEditor
             moments={form.invoiceMoments}
@@ -332,7 +333,7 @@ export default function QuotePdfForm({
         description="Voer alleen afspraken in; de backend berekent daarna alle totalen."
       >
         <div className="quote-calculation-groups">
-        <section className="quote-calculation-card">
+        <section className="quote-calculation-card quote-calculation-card--travel">
           <div className="quote-calculation-card__header">
             <MapPinned aria-hidden="true" />
             <div>
@@ -372,7 +373,7 @@ export default function QuotePdfForm({
           uitvoeringsmomenten.
         </p>
         </section>
-        <section className="quote-calculation-card">
+        <section className="quote-calculation-card quote-calculation-card--discounts">
           <div className="quote-calculation-card__header">
             <Tags aria-hidden="true" />
             <div>

@@ -242,20 +242,37 @@ td small {
   border-radius: 0.75rem;
   background: #fff;
   color: var(--quote-text);
-  font-weight: 800;
+  font-weight: 650;
+  line-height: 1.2;
   cursor: pointer;
 }
 .quote-filter-tabs button span {
+  display: inline-grid;
+  place-items: center;
   min-width: 1.65rem;
-  padding: 0.15rem 0.4rem;
+  min-height: 1.65rem;
+  padding: 0.12rem 0.42rem;
   border-radius: 999px;
   background: #eef2f7;
+  color: #334155;
+  font-size: 0.95em;
+  font-weight: 700;
+  line-height: 1;
   text-align: center;
 }
 .quote-filter-tabs button.is-active {
   border-color: var(--quote-primary);
   background: var(--quote-primary);
   color: #fff;
+}
+.quote-filter-tabs button.is-active span {
+  background: #fff;
+  color: #0752b5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+.quote-filter-tabs button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 2px;
 }
 .quote-lifecycle {
   display: grid;
@@ -291,7 +308,7 @@ td small {
 }
 .quote-form {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(1rem, 1.4vw, 1.6rem);
   align-items: start;
 }
@@ -337,7 +354,7 @@ td small {
   padding: 1.3rem;
 }
 .quote-section {
-  grid-column: span 1;
+  grid-column: span 4;
   min-width: 0;
   overflow: hidden;
   box-shadow: var(--quote-shadow);
@@ -352,11 +369,33 @@ td small {
 .quote-section--wide,
 .quote-submit-bar,
 .quote-form > .quote-alert {
-  grid-column: span 2;
+  grid-column: span 8;
 }
 .quote-submit-bar,
 .quote-form > .quote-alert {
   grid-column: 1 / -1;
+}
+.quote-submit-bar {
+  order: 99;
+}
+.quote-form > .quote-alert {
+  order: -1;
+}
+.quote-section--customer {
+  grid-column: span 8;
+  order: 1;
+}
+.quote-section--meta {
+  grid-column: span 4;
+  order: 2;
+}
+.quote-section--training {
+  grid-column: 1 / -1;
+  order: 3;
+}
+.quote-section--invoice-moments {
+  grid-column: 1 / -1;
+  order: 6;
 }
 .quote-form-grid {
   display: grid;
@@ -491,6 +530,21 @@ td small {
   transition:
     border-color var(--transition-fast) var(--ease-out),
     box-shadow var(--transition-fast) var(--ease-out);
+}
+.quote-calculation-card--travel {
+  grid-column: span 5;
+  order: 4;
+}
+.quote-calculation-card--discounts {
+  grid-column: span 7;
+  order: 5;
+}
+.quote-calculation-card--totals {
+  grid-column: 1 / -1;
+  order: 7;
+}
+.quote-calculation-card--travel .quote-form-grid--three {
+  grid-template-columns: 1fr;
 }
 .quote-calculation-card:hover {
   border-color: color-mix(in srgb, var(--quote-primary) 28%, var(--quote-border));
@@ -728,6 +782,13 @@ td small {
   width: 6rem;
   height: 6rem;
   color: #16a34a;
+}
+.quote-public-success--inactive svg {
+  color: var(--quote-primary);
+}
+.quote-public-success .quote-primary-button {
+  display: inline-flex;
+  margin-top: 1rem;
 }
 .quote-acceptance-summary {
   display: grid;
@@ -1040,6 +1101,13 @@ body.quote-modal-open {
     grid-template-columns: 1fr;
   }
   .quote-section--wide,
+  .quote-section--customer,
+  .quote-section--meta,
+  .quote-section--training,
+  .quote-section--invoice-moments,
+  .quote-calculation-card--travel,
+  .quote-calculation-card--discounts,
+  .quote-calculation-card--totals,
   .quote-submit-bar,
   .quote-form > .quote-alert {
     grid-column: 1;
@@ -1061,10 +1129,16 @@ body.quote-modal-open {
 }
 @media (min-width: 901px) and (max-width: 1300px) {
   .quote-form {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(12, minmax(0, 1fr));
   }
-  .quote-section--wide {
-    grid-column: span 2;
+  .quote-section--customer,
+  .quote-section--meta,
+  .quote-section--training,
+  .quote-section--invoice-moments,
+  .quote-calculation-card--travel,
+  .quote-calculation-card--discounts,
+  .quote-calculation-card--totals {
+    grid-column: 1 / -1;
   }
 }
 @media (max-width: 600px) {
