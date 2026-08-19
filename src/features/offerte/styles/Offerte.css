@@ -783,8 +783,35 @@ td small {
   height: 6rem;
   color: #16a34a;
 }
-.quote-public-success--inactive svg {
-  color: var(--quote-primary);
+.quote-public-status {
+  padding: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+}
+.quote-public-status--accepted {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+.quote-public-status--expired {
+  border-color: #fed7aa;
+  background: #fff7ed;
+}
+.quote-public-status--expired svg {
+  color: #ea580c;
+}
+.quote-public-status--invalid {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+.quote-public-status--invalid svg {
+  color: #dc2626;
+}
+.quote-public-status--withdrawn {
+  border-color: #d1d5db;
+  background: #f8fafc;
+}
+.quote-public-status--withdrawn svg {
+  color: #991b1b;
 }
 .quote-public-success .quote-primary-button {
   display: inline-flex;

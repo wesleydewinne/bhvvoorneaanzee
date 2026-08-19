@@ -80,18 +80,13 @@ export default function QuoteAcceptancePage() {
             <p>De beveiligde offertelink wordt gecontroleerd.</p>
           </div>
         ) : accepted || quote?.status === "ACCEPTED" ? (
-          <div className="quote-public-success">
+          <div className="quote-public-success quote-public-status quote-public-status--accepted">
             <CheckCircle2 aria-hidden="true" />
-            <h1>Offerte is geaccepteerd</h1>
+            <h1>Offerte is al geaccepteerd</h1>
             <p>
               Deze offerte is digitaal geaccepteerd. De akkoordlink kan daarom
               niet opnieuw worden gebruikt.
             </p>
-            <p>
-              De geaccepteerde offerte en de algemene voorwaarden zijn na
-              acceptatie per e-mail verzonden.
-            </p>
-            <p>Geen e-mail ontvangen?</p>
             <Link className="quote-primary-button" to="/contact">
               Contact opnemen
             </Link>
@@ -99,20 +94,23 @@ export default function QuoteAcceptancePage() {
         ) : quote?.status === "EXPIRED" ? (
           <StatusMessage
             icon={Clock3}
+            variant="expired"
             title="Offerte is verlopen"
-            message="De geldigheid van deze offerte is verstreken. Digitaal akkoord geven is niet meer mogelijk."
+            message="De geldigheidsduur van deze offerte is verstreken. Neem contact met ons op als u een nieuwe offerte wilt ontvangen."
           />
         ) : ["CANCELLED", "REJECTED"].includes(quote?.status) ? (
           <StatusMessage
             icon={Ban}
+            variant="withdrawn"
             title="Offerte is niet meer actief"
-            message="Deze offerte is ingetrokken of afgesloten en kan niet meer digitaal worden geaccepteerd."
+            message="Deze offerte is ingetrokken en kan niet meer digitaal worden geaccepteerd."
           />
         ) : error && !quote ? (
           <StatusMessage
             icon={ShieldX}
-            title="Akkoordlink is ongeldig"
-            message="Deze akkoordlink is ongeldig, onvolledig of niet meer actief. Controleer of u de volledige link uit de e-mail heeft geopend."
+            variant="invalid"
+            title="Offerte niet beschikbaar"
+            message="Deze akkoordlink is ongeldig of niet meer actief."
           />
         ) : (
           <>
@@ -246,9 +244,9 @@ export default function QuoteAcceptancePage() {
   );
 }
 
-function StatusMessage({ icon: Icon, title, message }) {
+function StatusMessage({ icon: Icon, variant, title, message }) {
   return (
-    <div className="quote-public-success quote-public-success--inactive">
+    <div className={`quote-public-success quote-public-status quote-public-status--${variant}`}>
       <Icon aria-hidden="true" />
       <h1>{title}</h1>
       <p>{message}</p>
