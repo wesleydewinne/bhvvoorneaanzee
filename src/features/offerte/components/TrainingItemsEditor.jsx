@@ -27,13 +27,19 @@ export default function TrainingItemsEditor({
 
   const selectTraining = (index, trainingCode) => {
     const training = trainingTypes.find((item) => item.code === trainingCode);
+    const participantCount = isEvacuationDrill(trainingCode)
+      ? 1
+      : normalizeCount(items[index]?.participantCount);
     update(index, {
       trainingCode,
       title: training?.displayName || trainingCode,
       description: training?.description || "",
-      participantCount: isEvacuationDrill(trainingCode)
-        ? 1
-        : normalizeCount(items[index]?.participantCount),
+      participantCount,
+      groupCount: suggestedGroupCount(
+        participantCount,
+        training?.maxParticipantsPerGroup,
+      ),
+      groupCountOverridden: false,
     });
   };
 
@@ -76,6 +82,27 @@ export default function TrainingItemsEditor({
               </select>
             </label>
             <label className="quote-field">
+              Aantal groepen
+              <input
+                required
+                type="number"
+                min="1"
+                max={Math.max(1, Number(item.participantCount) || 1)}
+                step="1"
+                value={item.groupCount ?? ""}
+                placeholder="Automatisch"
+                onChange={(event) =>
+                  update(index, {
+                    groupCount: Number(event.target.value),
+                    groupCountOverridden: true,
+                  })
+                }
+              />
+              <small>
+                Pas dit aan als u de deelnemers over meer groepen wilt verdelen.
+              </small>
+            </label>
+            <label className="quote-field">
               {isEvacuationDrill(item.trainingCode)
                 ? "Aantal oefeningen"
                 : "Aantal cursisten"}
@@ -86,9 +113,13 @@ export default function TrainingItemsEditor({
                 step="1"
                 value={item.participantCount}
                 onChange={(event) =>
-                  update(index, {
-                    participantCount: Number(event.target.value),
-                  })
+                  updateParticipantCount(
+                    index,
+                    Number(event.target.value),
+                    trainingTypes,
+                    items,
+                    update,
+                  )
                 }
               />
             </label>
@@ -123,4 +154,32 @@ export default function TrainingItemsEditor({
 function normalizeCount(value) {
   const count = Number(value);
   return Number.isInteger(count) && count > 0 ? count : 1;
+}
+
+function suggestedGroupCount(participantCount, maximumPerGroup) {
+  const participants = normalizeCount(participantCount);
+  const maximum = normalizeCount(maximumPerGroup);
+  return Math.max(1, Math.ceil(participants / maximum));
+}
+
+function updateParticipantCount(
+  index,
+  participantCount,
+  trainingTypes,
+  items,
+  update,
+) {
+  const item = items[index];
+  const training = trainingTypes.find(
+    (candidate) => candidate.code === item.trainingCode,
+  );
+  update(index, {
+    participantCount,
+    groupCount: item.groupCountOverridden
+      ? item.groupCount
+      : suggestedGroupCount(
+          participantCount,
+          training?.maxParticipantsPerGroup,
+        ),
+  });
 }

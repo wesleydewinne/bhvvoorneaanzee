@@ -12,7 +12,8 @@ export const createTrainingItem = () => ({
   description: "",
   trainingDuration: "",
   participantCount: 1,
-  groupCount: 1,
+  groupCount: null,
+  groupCountOverridden: false,
   executionCount: 1,
   quantity: 1,
   priceUnitLabel: "training",
@@ -171,6 +172,9 @@ export function buildQuotePayload(form) {
     trainingItems: form.trainingItems.map((item) => ({
       ...item,
       participantCount: Number(item.participantCount),
+      groupCount: item.groupCountOverridden
+        ? Number(item.groupCount)
+        : null,
     })),
     recommendations: text(form.recommendations)
       .split("\n")

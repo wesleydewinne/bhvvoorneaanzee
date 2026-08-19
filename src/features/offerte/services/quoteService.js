@@ -326,6 +326,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
         trainingDuration: duration(item),
         participantCount: item.participantCount,
         groupCount: item.groupCount,
+        groupCountOverridden: Boolean(item.groupCountOverridden),
         executionCount: item.groupCount,
         quantity:
           item.sellingPriceUnit === "PER_PARTICIPANT"
@@ -451,6 +452,9 @@ async function syncTrainings(
         salesPrice: Number(item.unitPriceExcludingVat),
         vatPercentage: Number(vatPercentage),
         internalNote: null,
+        groupCount: item.groupCountOverridden
+          ? Number(item.groupCount)
+          : null,
       });
     } else {
       const configuration = catalog.find(
@@ -461,6 +465,9 @@ async function syncTrainings(
         trainingConfigurationId: configuration.trainingConfigurationId,
         participantCount: Number(item.participantCount),
         internalNote: null,
+        groupCount: item.groupCountOverridden
+          ? Number(item.groupCount)
+          : null,
       });
     }
   }
@@ -478,6 +485,9 @@ async function syncVatPercentage(quote, vatPercentage) {
         salesPrice: Number(training.salesPrice),
         vatPercentage: percentage,
         internalNote: training.internalNote || null,
+        groupCount: training.groupCountOverridden
+          ? Number(training.groupCount)
+          : null,
       }),
     ),
   );
