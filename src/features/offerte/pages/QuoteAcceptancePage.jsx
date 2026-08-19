@@ -113,6 +113,26 @@ export default function QuoteAcceptancePage() {
 
             {canAccept ? (
               <>
+                <section className="quote-acceptance-section quote-terms-card">
+                  <h2>Algemene voorwaarden</h2>
+                  <p>
+                    Op deze opdracht zijn de Algemene Voorwaarden van W &amp; S
+                    Adviesgroep B.V., handelend onder de naam BHV Voorne aan Zee,
+                    van toepassing.
+                  </p>
+                  <div className="quote-terms-actions">
+                    <Link className="quote-secondary-button" to="/algemene-voorwaarden">
+                      Algemene voorwaarden bekijken
+                    </Link>
+                    <Link
+                      className="quote-secondary-button"
+                      to="/algemene-voorwaarden#download"
+                    >
+                      PDF downloaden
+                    </Link>
+                  </div>
+                </section>
+
                 <section className="quote-acceptance-section">
                   <h2>Uw gegevens</h2>
                   <p>
@@ -155,9 +175,8 @@ export default function QuoteAcceptancePage() {
                     onChange={(event) => setTermsAccepted(event.target.checked)}
                   />
                   <span>
-                    Ik heb de offerte en de daarin opgenomen voorwaarden kunnen
-                    inzien en ga akkoord met de toepasselijkheid daarvan op deze
-                    opdracht.
+                    Ik heb de offerte en de algemene voorwaarden kunnen inzien
+                    en ga akkoord met de toepasselijkheid daarvan op deze opdracht.
                   </span>
                 </label>
                 <label className="quote-check">

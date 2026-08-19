@@ -790,6 +790,39 @@ td small {
   border-left: 0.35rem solid var(--quote-primary);
   background: var(--quote-primary-soft);
 }
+.quote-terms-card {
+  padding: 1.4rem;
+  border: 1px solid var(--quote-border);
+  border-radius: var(--radius-md);
+  background: #f8fbff;
+}
+.quote-terms-card h2 {
+  margin-top: 0;
+}
+.quote-terms-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.quote-terms-page > header {
+  margin-bottom: 1rem;
+}
+.quote-terms-download {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+}
+.quote-terms-download > svg {
+  width: 3rem;
+  height: 3rem;
+  color: var(--quote-primary);
+}
+.quote-terms-download h2,
+.quote-terms-download p {
+  margin-top: 0;
+}
 .quote-public-card > .quote-primary-button,
 .quote-public-card > :not(.quote-public-success) > .quote-primary-button {
   margin-top: 1.25rem;
@@ -811,6 +844,9 @@ td small {
   }
   .quote-acceptance-fields__wide {
     grid-column: auto;
+  }
+  .quote-terms-download {
+    grid-template-columns: 1fr;
   }
 }
 .quote-request-training-list {
