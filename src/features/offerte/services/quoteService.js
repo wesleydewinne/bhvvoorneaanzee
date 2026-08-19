@@ -103,6 +103,21 @@ const quoteService = {
     return response.data;
   },
 
+  async getAcceptanceContext(token) {
+    const response = await api.get("/public/quotes/acceptance", {
+      params: { token },
+    });
+    return response.data;
+  },
+
+  async acceptQuote(token) {
+    const response = await api.post("/public/quotes/acceptance", {
+      token,
+      termsAccepted: true,
+    });
+    return response.data;
+  },
+
   async deleteQuote(id) {
     await api.delete(`/offertes/${id}`);
   },
