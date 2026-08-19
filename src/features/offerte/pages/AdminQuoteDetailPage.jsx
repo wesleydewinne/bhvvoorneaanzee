@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Download, Mail, Save } from "lucide-react";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
+import SendQuoteModal from "../components/SendQuoteModal.jsx";
 import quoteService from "../services/quoteService.js";
 import { downloadBlob } from "../helpers/quoteHelpers.js";
 import { formatQuoteDateTime, quoteStatusLabel } from "../helpers/quoteStatus.js";
@@ -14,6 +15,7 @@ export default function AdminQuoteDetailPage() {
   const [error, setError] = useState("");
   const [downloading, setDownloading] = useState(false);
   const [sending, setSending] = useState(false);
+  const [showSendModal, setShowSendModal] = useState(false);
 
   useEffect(() => {
     quoteService
@@ -38,13 +40,13 @@ export default function AdminQuoteDetailPage() {
     }
   };
   const send = async () => {
-    if (!window.confirm("Wilt u deze offerte nu per e-mail naar de klant versturen?")) return;
     setSending(true);
     setError("");
     try {
       if (detail.status === "DRAFT") await quoteService.updateStatus(id, "SENDING");
       await quoteService.sendQuote(id);
       setDetail(await quoteService.getQuote(id));
+      setShowSendModal(false);
     } catch (reason) {
       setError(reason.message || "De offerte kon niet worden verzonden.");
       setDetail(await quoteService.getQuote(id));
@@ -86,7 +88,7 @@ export default function AdminQuoteDetailPage() {
             {downloading ? "Maken..." : "PDF downloaden"}
           </button>
           {["DRAFT", "SENDING"].includes(detail.status) && (
-            <button className="quote-primary-button" onClick={send} disabled={sending}>
+            <button className="quote-primary-button" onClick={() => setShowSendModal(true)} disabled={sending}>
               <Mail /> {sending ? "Versturen..." : "Offerte versturen"}
             </button>
           )}
@@ -109,6 +111,14 @@ export default function AdminQuoteDetailPage() {
         icon={<Save />}
         readOnly={detail.status !== "DRAFT"}
       />
+      {showSendModal && (
+        <SendQuoteModal
+          quote={detail.quote}
+          sending={sending}
+          onCancel={() => setShowSendModal(false)}
+          onConfirm={send}
+        />
+      )}
     </main>
   );
 }
