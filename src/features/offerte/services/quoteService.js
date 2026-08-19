@@ -110,10 +110,13 @@ const quoteService = {
     return response.data;
   },
 
-  async acceptQuote(token) {
+  async acceptQuote(token, acceptance) {
     const response = await api.post("/public/quotes/acceptance", {
       token,
       termsAccepted: true,
+      authorityConfirmed: true,
+      acceptedByName: acceptance.name,
+      acceptedByRole: acceptance.role || null,
     });
     return response.data;
   },

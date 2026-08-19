@@ -748,6 +748,48 @@ td small {
   color: var(--quote-muted);
   font-size: 1.15rem;
 }
+.quote-acceptance-section {
+  margin: 2rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--quote-border);
+}
+.quote-acceptance-section h2 {
+  margin: 0 0 0.5rem;
+}
+.quote-acceptance-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.quote-acceptance-fields label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--quote-heading);
+  font-weight: var(--fw-bold);
+}
+.quote-acceptance-fields input {
+  width: 100%;
+  min-height: 4.4rem;
+  border: 1px solid var(--quote-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  padding: 0.8rem 1rem;
+  color: var(--quote-text);
+}
+.quote-acceptance-fields input[readonly] {
+  background: #f3f6f9;
+  color: var(--quote-muted);
+}
+.quote-acceptance-fields__wide {
+  grid-column: 1 / -1;
+}
+.quote-acceptance-declaration {
+  margin: 1.5rem 0 0;
+  padding: 1rem 1.2rem;
+  border-left: 0.35rem solid var(--quote-primary);
+  background: var(--quote-primary-soft);
+}
 .quote-public-card > .quote-primary-button,
 .quote-public-card > :not(.quote-public-success) > .quote-primary-button {
   margin-top: 1.25rem;
@@ -763,6 +805,12 @@ td small {
 @media (max-width: 640px) {
   .quote-acceptance-summary {
     grid-template-columns: 1fr;
+  }
+  .quote-acceptance-fields {
+    grid-template-columns: 1fr;
+  }
+  .quote-acceptance-fields__wide {
+    grid-column: auto;
   }
 }
 .quote-request-training-list {

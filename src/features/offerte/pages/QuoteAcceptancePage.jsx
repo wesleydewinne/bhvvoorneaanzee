@@ -9,6 +9,9 @@ export default function QuoteAcceptancePage() {
   const token = searchParams.get("token")?.trim() || "";
   const [quote, setQuote] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [authorityConfirmed, setAuthorityConfirmed] = useState(false);
+  const [acceptedByName, setAcceptedByName] = useState("");
+  const [acceptedByRole, setAcceptedByRole] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [accepted, setAccepted] = useState(false);
@@ -26,7 +29,10 @@ export default function QuoteAcceptancePage() {
     quoteService
       .getAcceptanceContext(token)
       .then((result) => {
-        if (active) setQuote(result);
+        if (active) {
+          setQuote(result);
+          setAcceptedByName(result.contactPerson || "");
+        }
       })
       .catch((reason) => {
         if (active) setError(reason.message || "De offerte kon niet worden geladen.");
@@ -39,11 +45,19 @@ export default function QuoteAcceptancePage() {
   }, [token]);
 
   const confirmAcceptance = async () => {
-    if (!termsAccepted || submitting) return;
+    if (
+      !termsAccepted ||
+      !authorityConfirmed ||
+      !acceptedByName.trim() ||
+      submitting
+    ) return;
     setSubmitting(true);
     setError("");
     try {
-      const result = await quoteService.acceptQuote(token);
+      const result = await quoteService.acceptQuote(token, {
+        name: acceptedByName.trim(),
+        role: acceptedByRole.trim(),
+      });
       setQuote(result);
       setAccepted(true);
     } catch (reason) {
@@ -85,17 +99,55 @@ export default function QuoteAcceptancePage() {
         ) : (
           <>
             <h1>Offerte {quote.quoteNumber}</h1>
+            <p>
+              Controleer de onderstaande gegevens voordat u namens de
+              opdrachtgever de opdracht definitief bevestigt.
+            </p>
             <div className="quote-acceptance-summary">
+              <p><span>Offertenummer</span><strong>{quote.quoteNumber}</strong></p>
               <p><span>Organisatie</span><strong>{quote.companyName}</strong></p>
-              {quote.contactPerson && (
-                <p><span>Contactpersoon</span><strong>{quote.contactPerson}</strong></p>
-              )}
+              <p><span>Offertedatum</span><strong>{formatDate(quote.issueDate)}</strong></p>
               <p><span>Geldig tot en met</span><strong>{formatDate(quote.validUntil)}</strong></p>
-              <p><span>Totaal inclusief btw</span><strong>{formatCurrency(quote.totalIncludingVat)}</strong></p>
+              <p><span>Totaal exclusief btw</span><strong>{formatCurrency(quote.totalExcludingVat)}</strong></p>
             </div>
 
             {canAccept ? (
               <>
+                <section className="quote-acceptance-section">
+                  <h2>Uw gegevens</h2>
+                  <p>
+                    Vul uw naam in zoals wij deze bij het akkoord mogen
+                    registreren. Het e-mailadres is overgenomen uit de offerte.
+                  </p>
+                  <div className="quote-acceptance-fields">
+                    <label>
+                      Volledige naam <span aria-hidden="true">*</span>
+                      <input
+                        type="text"
+                        required
+                        maxLength={200}
+                        autoComplete="name"
+                        value={acceptedByName}
+                        onChange={(event) => setAcceptedByName(event.target.value)}
+                      />
+                    </label>
+                    <label>
+                      Functie binnen de organisatie
+                      <input
+                        type="text"
+                        maxLength={150}
+                        autoComplete="organization-title"
+                        value={acceptedByRole}
+                        onChange={(event) => setAcceptedByRole(event.target.value)}
+                      />
+                    </label>
+                    <label className="quote-acceptance-fields__wide">
+                      E-mailadres uit de offerte
+                      <input type="email" value={quote.customerEmail || ""} readOnly />
+                    </label>
+                  </div>
+                </section>
+
                 <label className="quote-check">
                   <input
                     type="checkbox"
@@ -103,18 +155,41 @@ export default function QuoteAcceptancePage() {
                     onChange={(event) => setTermsAccepted(event.target.checked)}
                   />
                   <span>
-                    Ik ga akkoord met deze offerte en de daarin opgenomen
-                    voorwaarden en opdrachtomschrijving.
+                    Ik heb de offerte en de daarin opgenomen voorwaarden kunnen
+                    inzien en ga akkoord met de toepasselijkheid daarvan op deze
+                    opdracht.
                   </span>
                 </label>
+                <label className="quote-check">
+                  <input
+                    type="checkbox"
+                    checked={authorityConfirmed}
+                    onChange={(event) => setAuthorityConfirmed(event.target.checked)}
+                  />
+                  <span>
+                    Ik bevestig dat ik bevoegd ben om namens {quote.companyName}
+                    {" "}deze opdracht te verstrekken.
+                  </span>
+                </label>
+                <p className="quote-acceptance-declaration">
+                  Door de opdracht te bevestigen verstrekt u namens de
+                  opdrachtgever de opdracht aan W &amp; S Adviesgroep B.V.,
+                  handelend onder de naam BHV Voorne aan Zee, overeenkomstig
+                  deze offerte en de daarbij behorende voorwaarden.
+                </p>
                 {error && <p className="quote-alert quote-alert--error">{error}</p>}
                 <button
                   className="quote-primary-button"
                   type="button"
-                  disabled={!termsAccepted || submitting}
+                  disabled={
+                    !termsAccepted ||
+                    !authorityConfirmed ||
+                    !acceptedByName.trim() ||
+                    submitting
+                  }
                   onClick={confirmAcceptance}
                 >
-                  {submitting ? "Akkoord verwerken..." : "Offerte definitief accepteren"}
+                  {submitting ? "Akkoord verwerken..." : "Opdracht definitief bevestigen"}
                 </button>
               </>
             ) : (
