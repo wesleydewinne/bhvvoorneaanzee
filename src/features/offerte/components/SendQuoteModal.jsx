@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import { FileText, Mail, Send, ShieldCheck, X } from "lucide-react";
 
 export default function SendQuoteModal({ quote, sending, onCancel, onConfirm }) {
+  const customer = quote.customer || {};
+  const organizationName = customer.organizationName || quote.customerName;
+  const contactPerson = customer.contactPersonName || quote.contactPerson;
+  const customerEmail = customer.contactEmail || quote.customerEmail;
   useEffect(() => {
     const closeOnEscape = (event) => {
       if (event.key === "Escape" && !sending) onCancel();
@@ -47,9 +51,9 @@ export default function SendQuoteModal({ quote, sending, onCancel, onConfirm }) 
           <p>Controleer de ontvanger voordat u de offerte definitief verstuurt.</p>
           <dl className="quote-send-modal__summary">
             <div><dt>Offerte</dt><dd><FileText /> {quote.quoteNumber}</dd></div>
-            <div><dt>Organisatie</dt><dd>{quote.customerName || "Niet ingevuld"}</dd></div>
-            <div><dt>Contactpersoon</dt><dd>{quote.contactPerson || "Niet ingevuld"}</dd></div>
-            <div><dt>E-mailadres</dt><dd>{quote.customerEmail || "Niet ingevuld"}</dd></div>
+            <div><dt>Organisatie</dt><dd>{organizationName || "Niet ingevuld"}</dd></div>
+            <div><dt>Contactpersoon</dt><dd>{contactPerson || "Niet ingevuld"}</dd></div>
+            <div><dt>E-mailadres</dt><dd>{customerEmail || "Niet ingevuld"}</dd></div>
           </dl>
           <div className="quote-send-modal__notice">
             <ShieldCheck />
@@ -65,7 +69,7 @@ export default function SendQuoteModal({ quote, sending, onCancel, onConfirm }) 
             type="button"
             className="quote-primary-button quote-send-modal__confirm"
             onClick={onConfirm}
-            disabled={sending || !quote.customerEmail}
+            disabled={sending || !customerEmail}
           >
             <Send /> {sending ? "Offerte wordt verzonden..." : "Ja, offerte versturen"}
           </button>
