@@ -80,6 +80,7 @@ const hasSameLocation = ({ customer, trainingLocation }) => {
 export default function QuotePdfForm({
   initialValue,
   onSave,
+  onValueChange,
   submitLabel = "Offerte opslaan",
   readOnly = false,
 }) {
@@ -123,6 +124,10 @@ export default function QuotePdfForm({
       }),
     [form, hasDifferentCompanyAddress],
   );
+
+  useEffect(() => {
+    onValueChange?.(payload);
+  }, [onValueChange, payload]);
 
   const submit = async (event) => {
     event.preventDefault();

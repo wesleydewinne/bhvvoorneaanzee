@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Download, Mail, Save } from "lucide-react";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
@@ -16,6 +16,8 @@ export default function AdminQuoteDetailPage() {
   const [downloading, setDownloading] = useState(false);
   const [sending, setSending] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
+  const [currentQuote, setCurrentQuote] = useState(null);
+  const handleQuoteChange = useCallback((quote) => setCurrentQuote(quote), []);
 
   useEffect(() => {
     quoteService
@@ -43,7 +45,10 @@ export default function AdminQuoteDetailPage() {
     setSending(true);
     setError("");
     try {
-      if (detail.status === "DRAFT") await quoteService.updateStatus(id, "SENDING");
+      if (detail.status === "DRAFT") {
+        if (currentQuote) await quoteService.update(id, currentQuote);
+        await quoteService.updateStatus(id, "SENDING");
+      }
       await quoteService.sendQuote(id);
       setDetail(await quoteService.getQuote(id));
       setShowSendModal(false);
@@ -107,13 +112,14 @@ export default function AdminQuoteDetailPage() {
       <QuotePdfForm
         initialValue={detail.quote}
         onSave={save}
+        onValueChange={handleQuoteChange}
         submitLabel="Wijzigingen opslaan"
         icon={<Save />}
         readOnly={detail.status !== "DRAFT"}
       />
       {showSendModal && (
         <SendQuoteModal
-          quote={detail.quote}
+          quote={currentQuote || detail.quote}
           sending={sending}
           onCancel={() => setShowSendModal(false)}
           onConfirm={send}
