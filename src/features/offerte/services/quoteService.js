@@ -343,6 +343,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
       discounts: discounts.filter((item) => item.executionNumber == null).map((item) => ({
         legacyDiscountId: item.id,
         legacyTrainingId: item.quoteTrainingId,
+        quoteTrainingId: item.quoteTrainingId,
         code: ["LOCATIE", "WELKOM", "PARTNER", "EENMALIG"].includes(
           item.name,
         )
@@ -513,6 +514,8 @@ async function syncDiscounts(quote, desiredDiscounts, clearExisting = false) {
   for (const desired of desiredDiscounts) {
     const training = quote.quoteTrainings.find(
       (item) => item.id === desired.quoteTrainingId,
+    ) || quote.quoteTrainings.find(
+      (item) => item.trainingCode === desired.quoteTrainingId,
     ) || defaultTraining;
     await api.post(
       `/offertes/${quote.id}/trainings/${training.id}/discounts`,

@@ -100,6 +100,8 @@ export function normalizeQuoteForForm(value) {
       : source.recommendations || "",
     discounts: Array.isArray(source.discounts)
       ? source.discounts.map((discount) => ({
+          quoteTrainingId:
+            discount?.quoteTrainingId || discount?.legacyTrainingId || "",
           code: text(discount?.code) || "OVERIG",
           description: text(discount?.description),
           type:
@@ -152,6 +154,7 @@ export function buildQuotePayload(form) {
 
   const discounts = (form.discounts || [])
     .map((discount) => ({
+      quoteTrainingId: text(discount.quoteTrainingId).trim() || null,
       code: text(discount.code).trim() || null,
       description: text(discount.description).trim(),
       type: discount.type === "PERCENTAGE" ? "PERCENTAGE" : "FIXED_AMOUNT",

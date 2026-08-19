@@ -40,7 +40,8 @@ const DISCOUNT_OPTIONS = [
 const getDiscountDescription = (code) =>
   DISCOUNT_OPTIONS.find((option) => option.code === code)?.description || "";
 
-const emptyDiscount = () => ({
+const emptyDiscount = (quoteTrainingId = "") => ({
+  quoteTrainingId,
   code: "LOCATIE",
   description: getDiscountDescription("LOCATIE"),
   type: "FIXED_AMOUNT",
@@ -329,13 +330,13 @@ export default function QuotePdfForm({
             <MapPinned aria-hidden="true" />
             <div>
               <h3>Reiskosten</h3>
-              <p>Bereken de vergoeding voor de totale reisafstand.</p>
+              <p>Bereken de vergoeding per training of uitvoeringsmoment.</p>
             </div>
           </div>
         <div className="quote-form-grid quote-form-grid--three">
           {[
-            ["distanceKm", "Totale reisafstand (km)"],
-            ["freeKm", "Vrije kilometers"],
+            ["distanceKm", "Reisafstand per training (km)"],
+            ["freeKm", "Vrije kilometers per training"],
             ["ratePerKm", "Tarief per kilometer"],
           ].map(([field, label]) => (
             <label className="quote-field" key={field}>
@@ -359,8 +360,9 @@ export default function QuotePdfForm({
           ))}
         </div>
         <p>
-          De offertebackend berekent de reiskosten uit afstand − vrije
-          kilometers × kilometertarief.
+          De offertebackend berekent de reiskosten uit (afstand - vrije
+          kilometers) × kilometertarief × aantal trainingen of
+          uitvoeringsmomenten.
         </p>
         </section>
         <section className="quote-calculation-card">
@@ -377,6 +379,33 @@ export default function QuotePdfForm({
               className="quote-form-grid quote-discount-row"
               key={`${index}-${discount.code}`}
             >
+              <label className="quote-field">
+                Geldt voor training
+                <select
+                  required
+                  value={discount.quoteTrainingId || ""}
+                  onChange={(event) =>
+                    setForm((current) => ({
+                      ...current,
+                      discounts: current.discounts.map((item, itemIndex) =>
+                        itemIndex === index
+                          ? { ...item, quoteTrainingId: event.target.value }
+                          : item,
+                      ),
+                    }))
+                  }
+                >
+                  <option value="" disabled>Kies een training</option>
+                  {form.trainingItems.map((training, trainingIndex) => (
+                    <option
+                      key={training.legacyTrainingId || trainingIndex}
+                      value={training.legacyTrainingId || training.trainingCode || ""}
+                    >
+                      {training.title || `Training ${trainingIndex + 1}`}
+                    </option>
+                  ))}
+                </select>
+              </label>
               <label className="quote-field">
                 Kortingscode
                 <select
@@ -495,7 +524,13 @@ export default function QuotePdfForm({
               onClick={() =>
                 setForm((current) => ({
                   ...current,
-                  discounts: [...current.discounts, emptyDiscount()],
+                  discounts: [
+                    ...current.discounts,
+                    emptyDiscount(
+                      current.trainingItems[0]?.legacyTrainingId
+                        || current.trainingItems[0]?.trainingCode,
+                    ),
+                  ],
                 }))
               }
             >
