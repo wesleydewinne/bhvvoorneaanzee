@@ -81,6 +81,7 @@ export default function QuotePdfForm({
   initialValue,
   onSave,
   submitLabel = "Offerte opslaan",
+  readOnly = false,
 }) {
   const [form, setForm] = useState(() =>
     normalizeQuoteForForm(initialValue || createInitialQuote()),
@@ -142,7 +143,8 @@ export default function QuotePdfForm({
   };
 
   return (
-    <form className="quote-form" onSubmit={submit}>
+    <form className={`quote-form${readOnly ? " is-read-only" : ""}`} onSubmit={submit}>
+      <fieldset className="quote-form-fields" disabled={readOnly}>
       {error && (
         <div className="quote-alert quote-alert--error" role="alert">
           {error}
@@ -591,19 +593,20 @@ export default function QuotePdfForm({
         </div>
       </QuoteSection>
 
+      </fieldset>
       <div className="quote-submit-bar">
         <p>
           De offerte wordt veilig opgeslagen. Daarna kan de PDF vanuit het
           overzicht worden gedownload.
         </p>
-        <button type="submit" disabled={submitting || loadingTypes}>
+        {!readOnly && <button type="submit" disabled={submitting || loadingTypes}>
           {submitting ? (
             <LoaderCircle className="quote-spin" size={20} />
           ) : (
             <Save size={20} />
           )}
           {submitting ? "Opslaan..." : submitLabel}
-        </button>
+        </button>}
       </div>
     </form>
   );

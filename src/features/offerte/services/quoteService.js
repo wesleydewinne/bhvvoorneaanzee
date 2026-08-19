@@ -98,6 +98,11 @@ const quoteService = {
     return response.data;
   },
 
+  async sendQuote(id) {
+    const response = await api.post(`/offertes/${id}/send`);
+    return response.data;
+  },
+
   async deleteQuote(id) {
     await api.delete(`/offertes/${id}`);
   },
@@ -281,6 +286,12 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
   return {
     id: value.id,
     status: value.status,
+    createdAt: value.createdAt,
+    updatedAt: value.updatedAt,
+    sentAt: value.sentAt,
+    acceptedAt: value.acceptedAt,
+    rejectedAt: value.rejectedAt,
+    cancelledAt: value.cancelledAt,
     createdBy: "offertebackend",
     updatedBy: "offertebackend",
     quote: {
@@ -419,6 +430,12 @@ function toQuoteSummary(value) {
     customerContactName: value.customer?.contactPerson,
     customerEmail: value.customer?.email,
     totalIncludingVat: value.totalIncludingVat,
+    createdAt: value.createdAt,
+    updatedAt: value.updatedAt,
+    sentAt: value.sentAt,
+    acceptedAt: value.acceptedAt,
+    rejectedAt: value.rejectedAt,
+    cancelledAt: value.cancelledAt,
   };
 }
 

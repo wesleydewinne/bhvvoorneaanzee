@@ -212,6 +212,78 @@ td small {
   color: #1d4ed8;
   font-weight: 800;
 }
+.quote-status--accepted {
+  background: #dcfce7;
+  color: #166534;
+}
+.quote-status--closed {
+  background: #f1f5f9;
+  color: #475569;
+}
+.quote-status--sent {
+  background: #fff7ed;
+  color: #c2410c;
+}
+.quote-stats--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.quote-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+.quote-filter-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--quote-border);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--quote-text);
+  font-weight: 800;
+  cursor: pointer;
+}
+.quote-filter-tabs button span {
+  min-width: 1.65rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  background: #eef2f7;
+  text-align: center;
+}
+.quote-filter-tabs button.is-active {
+  border-color: var(--quote-primary);
+  background: var(--quote-primary);
+  color: #fff;
+}
+.quote-lifecycle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.quote-lifecycle div {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--quote-border);
+  border-radius: 0.8rem;
+  background: #fff;
+}
+.quote-lifecycle span,
+.quote-lifecycle strong {
+  display: block;
+}
+.quote-lifecycle span {
+  margin-bottom: 0.3rem;
+  color: var(--quote-muted);
+  font-size: 0.85rem;
+}
+.quote-form-fields {
+  display: contents;
+}
+.quote-form.is-read-only .quote-submit-bar {
+  opacity: 0.8;
+}
 .quote-empty {
   padding: 2rem;
   text-align: center;
