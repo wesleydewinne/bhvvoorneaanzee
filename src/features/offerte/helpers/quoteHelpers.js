@@ -24,11 +24,10 @@ export const createTrainingItem = () => ({
 
 export const createInitialQuote = () => {
   const quoteDate = today();
-  const uniqueSuffix = Date.now().toString().slice(-6);
   const quoteId = crypto.randomUUID();
   return {
     quoteId,
-    quoteNumber: `OF-${quoteDate.replaceAll("-", "")}-${uniqueSuffix}`,
+    quoteNumber: "",
     quoteDate,
     validUntil: addDays(quoteDate, 30),
     coverTitle: "Voorstel voor veiligheidstrainingen",

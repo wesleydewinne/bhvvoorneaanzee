@@ -171,10 +171,14 @@ export default function QuotePdfForm({
             <label className="quote-field" key={field}>
               {label}
               <input
-                required
+                required={field !== "quoteNumber"}
                 type={type}
                 readOnly={field !== "validUntil"}
-                value={form[field]}
+                value={
+                  field === "quoteNumber" && !form[field]
+                    ? "Wordt bij opslaan toegekend"
+                    : form[field]
+                }
                 onChange={(e) => setForm({ ...form, [field]: e.target.value })}
               />
             </label>
