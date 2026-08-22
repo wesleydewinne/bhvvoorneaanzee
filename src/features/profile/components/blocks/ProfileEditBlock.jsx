@@ -29,13 +29,12 @@ export default function ProfileEditBlock({ profile, onProfileUpdated }) {
             setErrorMessage("");
 
             const payload = {
-                firstName: normalizeOptionalString(formData.firstName),
-                lastName: normalizeOptionalString(formData.lastName),
-                phoneNumber: normalizeOptionalString(formData.phoneNumber),
-                profileImageUrl: normalizeOptionalString(formData.profileImageUrl),
+                firstName: normalizeClearableString(formData.firstName),
+                lastName: normalizeClearableString(formData.lastName),
+                phoneNumber: normalizeClearableString(formData.phoneNumber),
                 dateOfBirth: normalizeOptionalString(formData.dateOfBirth),
-                companyName: normalizeOptionalString(formData.companyName),
-                functionTitle: normalizeOptionalString(formData.functionTitle),
+                clearDateOfBirth: !formData.dateOfBirth,
+                functionTitle: normalizeClearableString(formData.functionTitle),
             };
 
             const updatedProfile = await profileService.updateProfile(payload);
@@ -136,15 +135,9 @@ export default function ProfileEditBlock({ profile, onProfileUpdated }) {
                     </div>
 
                     <div className="profile-form__field">
-                        <label htmlFor="companyName">Bedrijfsnaam</label>
-                        <input
-                            id="companyName"
-                            name="companyName"
-                            type="text"
-                            value={formData.companyName}
-                            onChange={handleChange}
-                            maxLength={100}
-                        />
+                        <label htmlFor="companyName">Organisatie</label>
+                        <input id="companyName" type="text" value={profile.companyName || "Particulier"} disabled />
+                        <small>Een organisatiekoppeling wordt door de administratie beheerd.</small>
                     </div>
 
                     <div className="profile-form__field">
@@ -159,17 +152,6 @@ export default function ProfileEditBlock({ profile, onProfileUpdated }) {
                         />
                     </div>
 
-                    <div className="profile-form__field profile-form__field--full">
-                        <label htmlFor="profileImageUrl">Profielfoto URL</label>
-                        <input
-                            id="profileImageUrl"
-                            name="profileImageUrl"
-                            type="text"
-                            value={formData.profileImageUrl}
-                            onChange={handleChange}
-                            maxLength={255}
-                        />
-                    </div>
                 </div>
 
                 <div className="profile-form__actions">
@@ -187,9 +169,7 @@ function createInitialFormState(profile) {
         firstName: profile?.firstName ?? "",
         lastName: profile?.lastName ?? "",
         phoneNumber: profile?.phoneNumber ?? "",
-        profileImageUrl: profile?.profileImageUrl ?? "",
         dateOfBirth: profile?.dateOfBirth ?? "",
-        companyName: profile?.companyName ?? "",
         functionTitle: profile?.functionTitle ?? "",
     };
 }
@@ -199,4 +179,8 @@ function normalizeOptionalString(value) {
 
     const trimmed = value.trim();
     return trimmed === "" ? null : trimmed;
+}
+
+function normalizeClearableString(value) {
+    return typeof value === "string" ? value.trim() : "";
 }

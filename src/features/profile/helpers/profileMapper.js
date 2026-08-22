@@ -20,6 +20,9 @@ export function mapProfileResponseToViewModel(data) {
         functionTitle: data?.functionTitle ?? "",
         nibhvNummer: data?.nibhvNummer ?? "",
         oranjeKruisNummer: data?.oranjeKruisNummer ?? "",
+        mayViewOwnRegistrationNumbers: globalRoles.some((role) =>
+            ["ROLE_ADMIN", "ROLE_TRAINING_MANAGER", "ROLE_TRAINER"].includes(role),
+        ),
         globalRoles,
         status: data?.status ?? "",
         mustChangePassword: Boolean(data?.mustChangePassword),

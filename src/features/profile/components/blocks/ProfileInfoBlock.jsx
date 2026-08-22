@@ -11,10 +11,14 @@ export default function ProfileInfoBlock({ profile }) {
                 <InfoRow label="E-mail" value={profile.email} />
                 <InfoRow label="Telefoonnummer" value={profile.phoneNumber} />
                 <InfoRow label="Geboortedatum" value={profile.dateOfBirth} />
-                <InfoRow label="Bedrijfsnaam" value={profile.companyName} />
+                <InfoRow label="Organisatie" value={profile.companyName || "Particulier"} />
                 <InfoRow label="Functie" value={profile.functionTitle} />
-                <InfoRow label="NIBHV nummer" value={profile.nibhvNummer} />
-                <InfoRow label="Oranje Kruis nummer" value={profile.oranjeKruisNummer} />
+                {profile.mayViewOwnRegistrationNumbers && (
+                    <>
+                        <InfoRow label="NIBHV-registratienummer" value={profile.nibhvNummer} />
+                        <InfoRow label="Oranje Kruis-registratienummer" value={profile.oranjeKruisNummer} />
+                    </>
+                )}
                 <InfoRow
                     label="Rollen"
                     value={

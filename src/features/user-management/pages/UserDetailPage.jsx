@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import userService from "../services/userService.js";
 import {
     formatRoleLabel,
@@ -11,6 +12,7 @@ import "../styles/UserManagement.css";
 export default function UserDetailPage() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { roles: currentUserRoles = [] } = useAuthContext();
 
     const [user, setUser] = useState(null);
     const [roles, setRoles] = useState([]);
@@ -19,14 +21,17 @@ export default function UserDetailPage() {
     const [editing, setEditing] = useState(false);
     const [error, setError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
+    const [privacyPreview, setPrivacyPreview] = useState(null);
+    const [privacyConfirmation, setPrivacyConfirmation] = useState("");
+    const [privacyLoading, setPrivacyLoading] = useState(false);
 
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
         phoneNumber: "",
-        profileImageUrl: "",
         dateOfBirth: "",
+        companyId: null,
         companyName: "",
         functionTitle: "",
         nibhvNummer: "",
@@ -161,6 +166,54 @@ export default function UserDetailPage() {
         }
     };
 
+    const handlePrivacyExport = async () => {
+        try {
+            setPrivacyLoading(true);
+            setError("");
+            await userService.downloadPrivacyExport(id);
+            setSuccessMessage("Het AVG-inzagedossier is gedownload.");
+        } catch (err) {
+            console.error("Fout bij exporteren persoonsgegevens:", err);
+            setError("Het AVG-inzagedossier kon niet worden gemaakt.");
+        } finally {
+            setPrivacyLoading(false);
+        }
+    };
+
+    const openPrivacyDeletion = async () => {
+        try {
+            setPrivacyLoading(true);
+            setError("");
+            setPrivacyConfirmation("");
+            setPrivacyPreview(await userService.getPrivacyDeletionPreview(id));
+        } catch (err) {
+            console.error("Fout bij laden verwijderpreview:", err);
+            setError("De verwijderpreview kon niet worden geladen.");
+        } finally {
+            setPrivacyLoading(false);
+        }
+    };
+
+    const handlePrivacyAnonymize = async () => {
+        try {
+            setPrivacyLoading(true);
+            setError("");
+            await userService.anonymizePrivacyData(id, privacyConfirmation);
+            setPrivacyPreview(null);
+            setPrivacyConfirmation("");
+            const updated = await userService.getById(id);
+            setUser(updated);
+            setFormData(mapUserToForm(updated));
+            setSuccessMessage("Het verwijderingsverzoek is verwerkt en de gebruiker is geanonimiseerd.");
+        } catch (err) {
+            console.error("Fout bij anonimiseren persoonsgegevens:", err);
+            const message = err?.response?.data?.message || err?.response?.data?.error;
+            setError(message || "Het verwijderingsverzoek kon niet worden verwerkt.");
+        } finally {
+            setPrivacyLoading(false);
+        }
+    };
+
     if (loading) {
         return (
             <section className="um-page">
@@ -188,6 +241,8 @@ export default function UserDetailPage() {
     const isAdminUser =
         Array.isArray(user?.globalRoles) &&
         user.globalRoles.includes("ROLE_ADMIN");
+    const canManagePrivacy = currentUserRoles.includes("ROLE_ADMIN");
+    const isAnonymized = user.email === `deleted+${user.id}@privacy.invalid`;
 
     const statusLabel = formatStatusLabel(getStatusLabel(user));
 
@@ -209,6 +264,27 @@ export default function UserDetailPage() {
                     </div>
 
                     <div className="um-actions">
+                        {canManagePrivacy && !isAnonymized && (
+                            <button
+                                type="button"
+                                className="um-button um-button--secondary"
+                                onClick={handlePrivacyExport}
+                                disabled={privacyLoading}
+                            >
+                                Persoonsgegevens exporteren
+                            </button>
+                        )}
+
+                        {canManagePrivacy && !isAdminUser && !isAnonymized && (
+                            <button
+                                type="button"
+                                className="um-button um-button--danger"
+                                onClick={openPrivacyDeletion}
+                                disabled={privacyLoading}
+                            >
+                                Verwijderingsverzoek verwerken
+                            </button>
+                        )}
                         {!editing && (
                             <button
                                 type="button"
@@ -249,6 +325,86 @@ export default function UserDetailPage() {
 
                 {error && <div className="um-alert um-alert--error">{error}</div>}
 
+                {privacyPreview && (
+                    <div className="um-modal-backdrop" role="presentation">
+                        <div className="um-modal um-privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-delete-title">
+                            <div className="um-modal__header">
+                                <div>
+                                    <span className="um-eyebrow">AVG-verwijderingsverzoek</span>
+                                    <h2 id="privacy-delete-title">Controleer vóór anonimiseren</h2>
+                                </div>
+                                <button
+                                    type="button"
+                                    className="um-modal__close"
+                                    onClick={() => setPrivacyPreview(null)}
+                                    aria-label="Venster sluiten"
+                                    disabled={privacyLoading}
+                                >
+                                    ×
+                                </button>
+                            </div>
+
+                            <p>
+                                <strong>{privacyPreview.displayName}</strong> ({privacyPreview.email}) kan hierna niet meer inloggen.
+                                Deze actie kan niet worden teruggedraaid.
+                            </p>
+
+                            <div className="um-privacy-counts">
+                                <PrivacyCount label="Trainingen" value={privacyPreview.courseParticipationCount} />
+                                <PrivacyCount label="Ontvangen certificaten" value={privacyPreview.receivedCertificateCount} />
+                                <PrivacyCount label="Uitgegeven certificaten" value={privacyPreview.issuedCertificateCount} />
+                                <PrivacyCount label="Trainingen als instructeur" value={privacyPreview.trainerCourseCount} />
+                                <PrivacyCount label="Facturen" value={privacyPreview.invoiceCount} />
+                                <PrivacyCount label="Auditregistraties" value={privacyPreview.auditRecordCount} />
+                            </div>
+
+                            <div className="um-privacy-columns">
+                                <div>
+                                    <h3>Wordt verwijderd</h3>
+                                    <ul>{privacyPreview.removedData.map((item) => <li key={item}>{item}</li>)}</ul>
+                                </div>
+                                <div>
+                                    <h3>Blijft geanonimiseerd bewaard</h3>
+                                    <ul>{privacyPreview.retainedData.map((item) => <li key={item}>{item}</li>)}</ul>
+                                </div>
+                            </div>
+
+                            <div className="um-form__field">
+                                <label htmlFor="privacy-confirm-email">
+                                    Typ ter bevestiging het huidige e-mailadres
+                                </label>
+                                <input
+                                    id="privacy-confirm-email"
+                                    type="email"
+                                    value={privacyConfirmation}
+                                    onChange={(event) => setPrivacyConfirmation(event.target.value)}
+                                    placeholder={privacyPreview.email}
+                                    autoComplete="off"
+                                />
+                            </div>
+
+                            <div className="um-form__actions um-privacy-modal__actions">
+                                <button
+                                    type="button"
+                                    className="um-button um-button--secondary"
+                                    onClick={() => setPrivacyPreview(null)}
+                                    disabled={privacyLoading}
+                                >
+                                    Annuleren
+                                </button>
+                                <button
+                                    type="button"
+                                    className="um-button um-button--danger"
+                                    onClick={handlePrivacyAnonymize}
+                                    disabled={privacyLoading || privacyConfirmation.trim().toLowerCase() !== privacyPreview.email.toLowerCase()}
+                                >
+                                    {privacyLoading ? "Verwerken..." : "Definitief anonimiseren"}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {!editing ? (
                     <div className="um-panel">
                         <div className="um-detail-grid">
@@ -259,9 +415,8 @@ export default function UserDetailPage() {
                             <DetailRow label="Geboortedatum" value={user.dateOfBirth} />
                             <DetailRow label="Bedrijfsnaam" value={user.companyName} />
                             <DetailRow label="Functie" value={user.functionTitle} />
-                            <DetailRow label="Profielfoto URL" value={user.profileImageUrl} />
-                            <DetailRow label="NIBHV nummer" value={user.nibhvNummer} />
-                            <DetailRow label="Oranje Kruis nummer" value={user.oranjeKruisNummer} />
+                            <DetailRow label="NIBHV-registratienummer" value={user.nibhvNummer} />
+                            <DetailRow label="Oranje Kruis-registratienummer" value={user.oranjeKruisNummer} />
                             <DetailRow label="Status" value={statusLabel} />
                             <DetailRow
                                 label="Ingeschakeld"
@@ -361,17 +516,7 @@ export default function UserDetailPage() {
                             </div>
 
                             <div className="um-form__field">
-                                <label htmlFor="profileImageUrl">Profielfoto URL</label>
-                                <input
-                                    id="profileImageUrl"
-                                    name="profileImageUrl"
-                                    value={formData.profileImageUrl}
-                                    onChange={handleChange}
-                                />
-                            </div>
-
-                            <div className="um-form__field">
-                                <label htmlFor="nibhvNummer">NIBHV nummer</label>
+                                <label htmlFor="nibhvNummer">NIBHV-registratienummer</label>
                                 <input
                                     id="nibhvNummer"
                                     name="nibhvNummer"
@@ -381,7 +526,7 @@ export default function UserDetailPage() {
                             </div>
 
                             <div className="um-form__field">
-                                <label htmlFor="oranjeKruisNummer">Oranje Kruis nummer</label>
+                                <label htmlFor="oranjeKruisNummer">Oranje Kruis-registratienummer</label>
                                 <input
                                     id="oranjeKruisNummer"
                                     name="oranjeKruisNummer"
@@ -486,8 +631,8 @@ function mapUserToForm(user) {
         lastName: user?.lastName ?? "",
         email: user?.email ?? "",
         phoneNumber: user?.phoneNumber ?? "",
-        profileImageUrl: user?.profileImageUrl ?? "",
         dateOfBirth: user?.dateOfBirth ?? "",
+        companyId: user?.companyId ?? null,
         companyName: user?.companyName ?? "",
         functionTitle: user?.functionTitle ?? "",
         nibhvNummer: user?.nibhvNummer ?? "",
@@ -501,4 +646,13 @@ function mapUserToForm(user) {
         locationRoles: Array.isArray(user?.locationRoles) ? user.locationRoles : [],
         status: user?.status ?? "",
     };
+}
+
+function PrivacyCount({ label, value }) {
+    return (
+        <div className="um-privacy-count">
+            <strong>{value}</strong>
+            <span>{label}</span>
+        </div>
+    );
 }

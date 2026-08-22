@@ -49,13 +49,16 @@ const userService = {
             firstName: normalizeOptionalString(formData.firstName),
             lastName: normalizeOptionalString(formData.lastName),
             email: normalizeOptionalString(formData.email),
-            phoneNumber: normalizeOptionalString(formData.phoneNumber),
-            profileImageUrl: normalizeOptionalString(formData.profileImageUrl),
+            phoneNumber: normalizeClearableString(formData.phoneNumber),
             dateOfBirth: normalizeOptionalString(formData.dateOfBirth),
-            companyName: normalizeOptionalString(formData.companyName),
-            functionTitle: normalizeOptionalString(formData.functionTitle),
-            nibhvNummer: normalizeOptionalString(formData.nibhvNummer),
-            oranjeKruisNummer: normalizeOptionalString(formData.oranjeKruisNummer),
+            clearDateOfBirth: !formData.dateOfBirth,
+            companyId: formData.companyId ? Number(formData.companyId) : null,
+            companyName: formData.companyId
+                ? null
+                : normalizeClearableString(formData.companyName),
+            functionTitle: normalizeClearableString(formData.functionTitle),
+            nibhvNummer: normalizeClearableString(formData.nibhvNummer),
+            oranjeKruisNummer: normalizeClearableString(formData.oranjeKruisNummer),
             enabled: typeof formData.enabled === "boolean" ? formData.enabled : null,
             accountNonLocked:
                 typeof formData.accountNonLocked === "boolean"
@@ -97,6 +100,35 @@ const userService = {
     async deactivate(id) {
         await api.delete(`/users/${id}`);
     },
+
+    async downloadPrivacyExport(id) {
+        const response = await api.get(`/users/${id}/privacy-export`, {
+            responseType: "blob",
+        });
+        const disposition = response.headers?.["content-disposition"] || "";
+        const filenameMatch = disposition.match(/filename="?([^";]+)"?/i);
+        const filename = filenameMatch?.[1] || `persoonsgegevens-gebruiker-${id}.json`;
+        const url = window.URL.createObjectURL(response.data);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.URL.revokeObjectURL(url);
+    },
+
+    async getPrivacyDeletionPreview(id) {
+        const response = await api.get(`/users/${id}/privacy-deletion-preview`);
+        return response.data;
+    },
+
+    async anonymizePrivacyData(id, confirmEmail) {
+        const response = await api.post(`/users/${id}/privacy-anonymize`, {
+            confirmEmail,
+        });
+        return response.data;
+    },
 };
 
 function normalizeOptionalString(value) {
@@ -106,6 +138,10 @@ function normalizeOptionalString(value) {
 
     const trimmed = value.trim();
     return trimmed === "" ? null : trimmed;
+}
+
+function normalizeClearableString(value) {
+    return typeof value === "string" ? value.trim() : "";
 }
 
 export default userService;

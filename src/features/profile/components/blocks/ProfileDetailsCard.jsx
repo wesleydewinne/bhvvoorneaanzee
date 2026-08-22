@@ -57,12 +57,12 @@ export default function ProfileDetailsCard({ profile, onProfileUpdated }) {
             setErrorMessage("");
 
             const payload = {
-                firstName: normalizeOptionalString(formData.firstName),
-                lastName: normalizeOptionalString(formData.lastName),
-                phoneNumber: normalizeOptionalString(formData.phoneNumber),
+                firstName: normalizeClearableString(formData.firstName),
+                lastName: normalizeClearableString(formData.lastName),
+                phoneNumber: normalizeClearableString(formData.phoneNumber),
                 dateOfBirth: normalizeOptionalString(formData.dateOfBirth),
-                companyName: normalizeOptionalString(formData.companyName),
-                functionTitle: normalizeOptionalString(formData.functionTitle),
+                clearDateOfBirth: !formData.dateOfBirth,
+                functionTitle: normalizeClearableString(formData.functionTitle),
             };
 
             const updatedProfile = await profileService.updateProfile(payload);
@@ -122,10 +122,14 @@ export default function ProfileDetailsCard({ profile, onProfileUpdated }) {
                     <InfoRow icon={Mail} label="E-mail" value={profile.email} />
                     <InfoRow icon={Phone} label="Telefoonnummer" value={profile.phoneNumber} />
                     <InfoRow icon={CalendarDays} label="Geboortedatum" value={profile.dateOfBirth} />
-                    <InfoRow icon={Building2} label="Bedrijfsnaam" value={profile.companyName} />
+                    <InfoRow icon={Building2} label="Organisatie" value={profile.companyName || "Particulier"} />
                     <InfoRow icon={BriefcaseBusiness} label="Functie" value={profile.functionTitle} />
-                    <InfoRow icon={IdCard} label="NIBHV nummer" value={profile.nibhvNummer} />
-                    <InfoRow icon={IdCard} label="Oranje Kruis nummer" value={profile.oranjeKruisNummer} />
+                    {profile.mayViewOwnRegistrationNumbers && (
+                        <>
+                            <InfoRow icon={IdCard} label="NIBHV-registratienummer" value={profile.nibhvNummer} />
+                            <InfoRow icon={IdCard} label="Oranje Kruis-registratienummer" value={profile.oranjeKruisNummer} />
+                        </>
+                    )}
                     <InfoRow
                         icon={BadgeCheck}
                         label="Rollen"
@@ -198,15 +202,14 @@ export default function ProfileDetailsCard({ profile, onProfileUpdated }) {
                         </div>
 
                         <div className="profile-form__field">
-                            <label htmlFor="companyName">Bedrijfsnaam</label>
+                            <label htmlFor="companyName">Organisatie</label>
                             <input
                                 id="companyName"
-                                name="companyName"
                                 type="text"
-                                value={formData.companyName}
-                                onChange={handleChange}
-                                maxLength={100}
+                                value={profile.companyName || "Particulier"}
+                                disabled
                             />
+                            <small>Een organisatiekoppeling wordt door de administratie beheerd.</small>
                         </div>
 
                         <div className="profile-form__field">
@@ -266,7 +269,6 @@ function createInitialFormState(profile) {
         lastName: profile?.lastName ?? "",
         phoneNumber: profile?.phoneNumber ?? "",
         dateOfBirth: profile?.dateOfBirth ?? "",
-        companyName: profile?.companyName ?? "",
         functionTitle: profile?.functionTitle ?? "",
     };
 }
@@ -278,6 +280,10 @@ function normalizeOptionalString(value) {
 
     const trimmed = value.trim();
     return trimmed === "" ? null : trimmed;
+}
+
+function normalizeClearableString(value) {
+    return typeof value === "string" ? value.trim() : "";
 }
 
 function formatRoleLabel(role) {

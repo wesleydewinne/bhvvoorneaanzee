@@ -293,8 +293,87 @@
     cursor: pointer;
 }
 
+.um-privacy-modal {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.um-eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    color: #b91c1c;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.um-privacy-counts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.um-privacy-count {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+.um-privacy-count strong {
+    font-size: 1.35rem;
+}
+
+.um-privacy-count span {
+    color: #64748b;
+    font-size: 0.78rem;
+}
+
+.um-privacy-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.um-privacy-columns > div {
+    padding: 16px;
+    border-radius: 16px;
+    background: #f8fafc;
+}
+
+.um-privacy-columns h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.um-privacy-columns ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #475569;
+}
+
+.um-privacy-modal__actions {
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
 @media (max-width: 900px) {
     .um-form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .um-privacy-counts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .um-privacy-columns {
         grid-template-columns: 1fr;
     }
 }
