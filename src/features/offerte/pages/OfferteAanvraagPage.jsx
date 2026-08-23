@@ -41,6 +41,15 @@ const emptyForm = {
   website: "",
 };
 
+function FloatingField({ label, children, className = "" }) {
+  return (
+    <label className={`quote-floating-field ${className}`.trim()}>
+      {children}
+      <span>{label}</span>
+    </label>
+  );
+}
+
 export default function OfferteAanvraagPage() {
   const [form, setForm] = useState(emptyForm);
   const [trainingTypes, setTrainingTypes] = useState([]);
@@ -126,9 +135,11 @@ export default function OfferteAanvraagPage() {
       message = "Vul een geldig e-mailadres in, bijvoorbeeld naam@bedrijf.nl.";
     } else if (field.validity.patternMismatch) {
       message =
-        field.type === "tel"
-          ? "Vul een geldig telefoonnummer in van 8 tot 15 cijfers."
-          : "Vul een geldige Nederlandse postcode in, bijvoorbeeld 3232 AA.";
+        field.type === "email"
+          ? "Vul een geldig e-mailadres in, bijvoorbeeld naam@bedrijf.nl."
+          : field.type === "tel"
+            ? "Vul een geldig telefoonnummer in van 8 tot 15 cijfers."
+            : "Vul een geldige Nederlandse postcode in, bijvoorbeeld 3232 AA.";
     } else if (field.validity.rangeUnderflow) {
       message = "Het aantal cursisten moet minimaal 1 zijn.";
     } else if (field.validity.tooShort) {
@@ -218,66 +229,74 @@ export default function OfferteAanvraagPage() {
           onInvalid={handleInvalid}
           onInput={handleInput}
         >
-          <label>
-            Naam van uw bedrijf, organisatie of vereniging *
+          <FloatingField label="Naam van uw bedrijf, organisatie of vereniging *">
             <input
               required
               minLength="2"
-              placeholder="Bijvoorbeeld een bedrijf, sportvereniging, stichting of school"
+              placeholder=" "
+              autoComplete="organization"
               value={form.organizationName}
               onChange={(e) =>
                 setForm({ ...form, organizationName: e.target.value })
               }
             />
-          </label>
-          <label>
-            Voornaam contactpersoon *
+          </FloatingField>
+          <FloatingField label="Voornaam contactpersoon *">
             <input
               required
               minLength="2"
               autoComplete="given-name"
-              placeholder="Bijvoorbeeld Wesley"
+              placeholder=" "
               value={form.contactFirstName}
               onChange={(e) =>
                 setForm({ ...form, contactFirstName: e.target.value })
               }
             />
-          </label>
-          <label>
-            Achternaam contactpersoon *
+          </FloatingField>
+          <FloatingField label="Achternaam contactpersoon *">
             <input
               required
               minLength="2"
               autoComplete="family-name"
-              placeholder="Bijvoorbeeld De Winne"
+              placeholder=" "
               value={form.contactLastName}
               onChange={(e) =>
                 setForm({ ...form, contactLastName: e.target.value })
               }
             />
-          </label>
-          <label>
-            E-mailadres *
+          </FloatingField>
+          <div className="quote-field-with-feedback">
+          <FloatingField label="E-mailadres *">
             <input
               required
               type="email"
+              pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
+              placeholder=" "
               autoComplete="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
-          </label>
-          <label>
-            Telefoonnummer *
+          </FloatingField>
+            {form.email && (
+              <small className="quote-field-feedback" aria-live="polite">
+                {/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email)
+                  ? "E-mailadres is geldig"
+                  : "Gebruik bijvoorbeeld naam@bedrijf.nl"}
+              </small>
+            )}
+          </div>
+          <FloatingField label="Telefoonnummer *">
             <input
               required
               type="tel"
               autoComplete="tel"
               inputMode="tel"
               pattern="[+]?[0-9 ()-]{8,20}"
+              placeholder=" "
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
             />
-          </label>
+          </FloatingField>
           <fieldset className="quote-request-training-list quote-request-form__wide">
             <legend>Gewenste trainingen</legend>
             <p>
@@ -362,53 +381,53 @@ export default function OfferteAanvraagPage() {
               eventuele reiskilometers en reiskosten te bepalen.
             </p>
           </div>
-          <label>
-            Straat *
+          <FloatingField label="Straat *">
             <input
               required
               minLength="2"
               autoComplete="street-address"
+              placeholder=" "
               value={form.trainingStreet}
               onChange={(e) =>
                 setForm({ ...form, trainingStreet: e.target.value })
               }
             />
-          </label>
-          <label>
-            Huisnummer *
+          </FloatingField>
+          <FloatingField label="Huisnummer *">
             <input
               required
               minLength="1"
+              placeholder=" "
               value={form.trainingHouseNumber}
               onChange={(e) =>
                 setForm({ ...form, trainingHouseNumber: e.target.value })
               }
             />
-          </label>
-          <label>
-            Postcode *
+          </FloatingField>
+          <FloatingField label="Postcode *">
             <input
               required
               autoComplete="postal-code"
               pattern="[1-9][0-9]{3}\s?[A-Za-z]{2}"
+              placeholder=" "
               value={form.trainingPostalCode}
               onChange={(e) =>
                 setForm({ ...form, trainingPostalCode: e.target.value })
               }
             />
-          </label>
-          <label>
-            Plaats *
+          </FloatingField>
+          <FloatingField label="Plaats *">
             <input
               required
               minLength="2"
               autoComplete="address-level2"
+              placeholder=" "
               value={form.trainingCity}
               onChange={(e) =>
                 setForm({ ...form, trainingCity: e.target.value })
               }
             />
-          </label>
+          </FloatingField>
           <label className="quote-check quote-request-form__wide">
             <input
               type="checkbox"
@@ -434,50 +453,50 @@ export default function OfferteAanvraagPage() {
                   vereniging officieel gevestigd is.
                 </p>
               </div>
-              <label>
-                Straat vestigingsadres *
+              <FloatingField label="Straat vestigingsadres *">
                 <input
                   required
                   minLength="2"
+                  placeholder=" "
                   value={form.companyStreet}
                   onChange={(e) =>
                     setForm({ ...form, companyStreet: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Huisnummer vestigingsadres *
+              </FloatingField>
+              <FloatingField label="Huisnummer vestigingsadres *">
                 <input
                   required
                   minLength="1"
+                  placeholder=" "
                   value={form.companyHouseNumber}
                   onChange={(e) =>
                     setForm({ ...form, companyHouseNumber: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Postcode vestigingsadres *
+              </FloatingField>
+              <FloatingField label="Postcode vestigingsadres *">
                 <input
                   required
                   pattern="[1-9][0-9]{3}\s?[A-Za-z]{2}"
+                  placeholder=" "
                   value={form.companyPostalCode}
                   onChange={(e) =>
                     setForm({ ...form, companyPostalCode: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Plaats vestigingsadres *
+              </FloatingField>
+              <FloatingField label="Plaats vestigingsadres *">
                 <input
                   required
                   minLength="2"
+                  placeholder=" "
                   value={form.companyCity}
                   onChange={(e) =>
                     setForm({ ...form, companyCity: e.target.value })
                   }
                 />
-              </label>
+              </FloatingField>
             </>
           )}
           <label className="quote-request-form__wide">

@@ -718,6 +718,81 @@ td small {
   color: var(--quote-heading);
   font-weight: var(--fw-bold);
 }
+.quote-request-form .quote-floating-field {
+  position: relative;
+  display: block;
+  min-height: 5.6rem;
+  padding-top: 0.8rem;
+}
+.quote-request-form .quote-floating-field input {
+  height: 4.8rem;
+  min-height: 4.8rem;
+  padding: 1.65rem 0.25rem 0.35rem;
+  border: 0;
+  border-bottom: 2px solid var(--quote-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 1.45rem;
+}
+.quote-request-form .quote-floating-field > span {
+  position: absolute;
+  top: 2.25rem;
+  left: 0.25rem;
+  max-width: calc(100% - 0.5rem);
+  overflow: hidden;
+  color: var(--quote-muted);
+  font-size: 1.3rem;
+  font-weight: var(--fw-normal);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    color 160ms ease,
+    transform 160ms ease,
+    top 160ms ease;
+}
+.quote-request-form .quote-floating-field input:focus {
+  border-bottom-color: var(--quote-primary);
+  box-shadow: 0 2px 0 color-mix(in srgb, var(--quote-primary) 25%, transparent);
+}
+.quote-request-form .quote-floating-field input:focus + span,
+.quote-request-form .quote-floating-field input:not(:placeholder-shown) + span {
+  top: 0.35rem;
+  color: var(--quote-primary);
+  font-weight: var(--fw-bold);
+  transform: scale(0.84);
+}
+.quote-request-form .quote-floating-field input:not(:placeholder-shown):invalid {
+  border-bottom-color: var(--color-danger);
+  background: linear-gradient(to top, rgba(220, 38, 38, 0.055), transparent 55%);
+  box-shadow: none;
+}
+.quote-request-form .quote-floating-field input:not(:placeholder-shown):invalid + span {
+  color: var(--color-danger);
+}
+.quote-request-form .quote-floating-field input:not(:placeholder-shown):valid {
+  border-bottom-color: var(--color-success);
+  background: linear-gradient(to top, rgba(22, 163, 74, 0.045), transparent 55%);
+}
+.quote-request-form .quote-floating-field input:not(:placeholder-shown):valid + span {
+  color: var(--color-success);
+}
+.quote-field-with-feedback {
+  min-width: 0;
+}
+.quote-field-feedback {
+  display: block;
+  min-height: 1.5rem;
+  margin-top: -0.2rem;
+  color: var(--color-danger);
+  font-size: 1.1rem;
+}
+.quote-field-with-feedback:has(input:valid) .quote-field-feedback {
+  color: var(--color-success);
+}
 .quote-request-form--validated label:has(input:invalid),
 .quote-request-form--validated label:has(select:invalid),
 .quote-request-form--validated label:has(textarea:invalid) {
@@ -733,6 +808,16 @@ td small {
   border-color: var(--color-danger);
   background: #fffafa;
   box-shadow: 0 0 0 0.3rem rgba(220, 38, 38, 0.12);
+}
+.quote-request-form--validated .quote-floating-field:has(input:invalid) {
+  padding: 0.8rem 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.quote-request-form--validated .quote-floating-field input:invalid {
+  border-width: 0 0 2px;
+  box-shadow: none;
 }
 .quote-request-form--validated
   .quote-request-training-list:has(input:invalid, select:invalid) {
