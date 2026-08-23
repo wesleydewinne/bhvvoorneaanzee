@@ -765,19 +765,29 @@ td small {
   font-weight: var(--fw-bold);
   transform: scale(0.84);
 }
-.quote-request-form .quote-floating-field input:not(:placeholder-shown):invalid {
+.quote-request-form
+  .quote-floating-field--verifiable
+  input:not(:placeholder-shown):invalid {
   border-bottom-color: var(--color-danger);
   background: linear-gradient(to top, rgba(220, 38, 38, 0.055), transparent 55%);
   box-shadow: none;
 }
-.quote-request-form .quote-floating-field input:not(:placeholder-shown):invalid + span {
+.quote-request-form
+  .quote-floating-field--verifiable
+  input:not(:placeholder-shown):invalid
+  + span {
   color: var(--color-danger);
 }
-.quote-request-form .quote-floating-field input:not(:placeholder-shown):valid {
+.quote-request-form
+  .quote-floating-field--verifiable
+  input:not(:placeholder-shown):valid {
   border-bottom-color: var(--color-success);
   background: linear-gradient(to top, rgba(22, 163, 74, 0.045), transparent 55%);
 }
-.quote-request-form .quote-floating-field input:not(:placeholder-shown):valid + span {
+.quote-request-form
+  .quote-floating-field--verifiable
+  input:not(:placeholder-shown):valid
+  + span {
   color: var(--color-success);
 }
 .quote-field-with-feedback {

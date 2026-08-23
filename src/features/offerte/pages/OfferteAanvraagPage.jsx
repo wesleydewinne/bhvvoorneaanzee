@@ -266,7 +266,7 @@ export default function OfferteAanvraagPage() {
             />
           </FloatingField>
           <div className="quote-field-with-feedback">
-          <FloatingField label="E-mailadres *">
+          <FloatingField label="E-mailadres *" className="quote-floating-field--verifiable">
             <input
               required
               type="email"
@@ -285,7 +285,7 @@ export default function OfferteAanvraagPage() {
               </small>
             )}
           </div>
-          <FloatingField label="Telefoonnummer *">
+          <FloatingField label="Telefoonnummer *" className="quote-floating-field--verifiable">
             <input
               required
               type="tel"
@@ -404,7 +404,7 @@ export default function OfferteAanvraagPage() {
               }
             />
           </FloatingField>
-          <FloatingField label="Postcode *">
+          <FloatingField label="Postcode *" className="quote-floating-field--verifiable">
             <input
               required
               autoComplete="postal-code"
@@ -475,7 +475,10 @@ export default function OfferteAanvraagPage() {
                   }
                 />
               </FloatingField>
-              <FloatingField label="Postcode vestigingsadres *">
+              <FloatingField
+                label="Postcode vestigingsadres *"
+                className="quote-floating-field--verifiable"
+              >
                 <input
                   required
                   pattern="[1-9][0-9]{3}\s?[A-Za-z]{2}"
