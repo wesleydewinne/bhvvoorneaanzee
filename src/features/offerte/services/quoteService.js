@@ -328,7 +328,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
       customer: {
         organizationName: value.customer.name,
         contactPersonName: value.customer.contactPerson,
-        greetingName: value.customer.contactPerson?.split(/\s+/)[0] || "",
+        greetingName: "",
         streetAndHouseNumber:
           `${value.customer.street} ${value.customer.houseNumber}`.trim(),
         postalCode: value.customer.postalCode,

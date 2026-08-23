@@ -230,10 +230,12 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label>
-            Naam contactpersoon *
+            Voor- en achternaam contactpersoon *
             <input
               required
               minLength="2"
+              autoComplete="name"
+              placeholder="Bijvoorbeeld Wesley De Winne"
               value={form.contactName}
               onChange={(e) =>
                 setForm({ ...form, contactName: e.target.value })

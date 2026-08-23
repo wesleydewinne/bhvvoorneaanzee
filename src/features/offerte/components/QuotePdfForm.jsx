@@ -221,8 +221,7 @@ export default function QuotePdfForm({
               "Naam van bedrijf, organisatie of vereniging",
               true,
             ],
-            ["contactPersonName", "Contactpersoon", true],
-            ["greetingName", "Aanspreeknaam", false],
+            ["contactPersonName", "Volledige naam contactpersoon", true],
             ["contactEmail", "E-mail", true, "email"],
             ["contactPhone", "Telefoon", true, "tel"],
           ].map(([field, label, required, type = "text"]) => (
@@ -234,6 +233,8 @@ export default function QuotePdfForm({
                 placeholder={
                   field === "organizationName"
                     ? "Bijvoorbeeld een bedrijf, sportvereniging, stichting of school"
+                    : field === "contactPersonName"
+                      ? "Bijvoorbeeld Wesley De Winne"
                     : undefined
                 }
                 value={form.customer[field]}
