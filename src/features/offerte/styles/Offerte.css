@@ -310,7 +310,7 @@ td small {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: clamp(1rem, 1.4vw, 1.6rem);
-  align-items: start;
+  align-items: stretch;
 }
 .quote-section__header {
   display: grid;
@@ -356,6 +356,7 @@ td small {
 .quote-section {
   grid-column: span 4;
   min-width: 0;
+  height: 100%;
   overflow: hidden;
   box-shadow: var(--quote-shadow);
   transition:
@@ -388,6 +389,10 @@ td small {
 .quote-section--meta {
   grid-column: span 4;
   order: 2;
+}
+.quote-section--customer-message {
+  grid-column: 1 / -1;
+  order: 0;
 }
 .quote-section--training {
   grid-column: 1 / -1;
@@ -534,6 +539,7 @@ td small {
 .quote-calculation-card {
   grid-column: 1 / -1;
   min-width: 0;
+  height: 100%;
   padding: clamp(1rem, 1.4vw, 1.4rem);
   border: 1px solid var(--quote-border);
   border-radius: var(--radius-lg);
