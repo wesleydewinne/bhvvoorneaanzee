@@ -40,6 +40,7 @@ export const createInitialQuote = () => {
     recommendations:
       "Informeer de deelnemers vooraf over de trainingsdag.\nZorg dat de afgesproken trainingsruimte beschikbaar is.",
     planningNotes: "De definitieve planning stemmen we in overleg met u af.",
+    customerMessage: "",
     agreementUrl: `https://bhvvoorneaanzee.nl/offerte/akkoord?quoteId=${quoteId}`,
     customer: {
       organizationName: "",
@@ -92,6 +93,7 @@ export function normalizeQuoteForForm(value) {
     requestSummary: text(source.requestSummary),
     trainingGoal: text(source.trainingGoal),
     planningNotes: text(source.planningNotes),
+    customerMessage: text(source.customerMessage),
     agreementUrl: text(source.agreementUrl),
     vatPercentage:
       source.vatPercentage ?? source.priceSummary?.vatPercentage ?? 21,

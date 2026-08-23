@@ -314,6 +314,9 @@ const duration = (value) =>
 
 function toQuoteDetail(value, discounts, invoiceMoments = []) {
   const contactName = splitContactName(value.customer.contactPerson);
+  const customerMessage =
+    value.quoteTrainings.find((item) => item.internalNote?.trim())
+      ?.internalNote || "";
   const travelPerExecution = value.quoteTrainings.reduce(
     (sum, item) => sum + Math.max(1, item.groupCount),
     0,
@@ -345,6 +348,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
         "De deelnemers trainen het veilig en praktisch handelen tijdens de gekozen training.",
       recommendations: [],
       planningNotes: value.closingText || "",
+      customerMessage,
       customer: {
         organizationName: value.customer.name,
         contactPersonName: contactName.lastName,

@@ -6,6 +6,7 @@ import {
   GraduationCap,
   LoaderCircle,
   MapPinned,
+  MessageSquareText,
   Plus,
   ReceiptText,
   Save,
@@ -302,6 +303,19 @@ export default function QuotePdfForm({
           </div>
         )}
       </QuoteSection>
+
+      {form.customerMessage && (
+        <QuoteSection
+          title="Bericht van de aanvrager"
+          description="Dit bericht is door de klant meegestuurd bij de offerteaanvraag."
+          icon={<MessageSquareText />}
+          className="quote-section--wide quote-section--customer-message"
+        >
+          <div className="quote-customer-message">
+            <p>{form.customerMessage}</p>
+          </div>
+        </QuoteSection>
+      )}
 
       <QuoteSection
         title="Trainingen"

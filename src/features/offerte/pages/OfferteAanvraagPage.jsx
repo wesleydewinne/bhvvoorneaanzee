@@ -131,7 +131,9 @@ export default function OfferteAanvraagPage() {
       field.dataset.label || field.closest("label")?.firstChild?.textContent?.trim();
     let message = `${label || "Dit veld"} is verplicht.`;
 
-    if (field.validity.typeMismatch) {
+    if (field.validity.customError && field.type === "tel") {
+      message = "Vul een Nederlands telefoonnummer in dat begint met 0 of +31.";
+    } else if (field.validity.typeMismatch) {
       message = "Vul een geldig e-mailadres in, bijvoorbeeld naam@bedrijf.nl.";
     } else if (field.validity.patternMismatch) {
       message =
@@ -161,7 +163,21 @@ export default function OfferteAanvraagPage() {
   };
 
   const handleInput = (event) => {
-    event.target.setCustomValidity?.("");
+    const field = event.target;
+    field.setCustomValidity?.("");
+
+    if (field.type === "tel" && field.value) {
+      const allowedCharacters = /^\+?[0-9 ()-]+$/.test(field.value);
+      const normalizedNumber = field.value.replace(/[\s()-]/g, "");
+      const isDutchNumber =
+        /^0[1-9][0-9]{8}$/.test(normalizedNumber) ||
+        /^\+31[1-9][0-9]{8}$/.test(normalizedNumber);
+      if (!allowedCharacters || !isDutchNumber) {
+        field.setCustomValidity(
+          "Vul een Nederlands telefoonnummer in dat begint met 0 of +31.",
+        );
+      }
+    }
   };
 
   const updateTraining = (index, field, value) =>
@@ -229,7 +245,10 @@ export default function OfferteAanvraagPage() {
           onInvalid={handleInvalid}
           onInput={handleInput}
         >
-          <FloatingField label="Naam van uw bedrijf, organisatie of vereniging *">
+          <FloatingField
+            label="Naam van uw bedrijf, organisatie of vereniging *"
+            className="quote-request-form__wide"
+          >
             <input
               required
               minLength="2"
@@ -520,28 +539,32 @@ export default function OfferteAanvraagPage() {
               onChange={(e) => setForm({ ...form, website: e.target.value })}
             />
           </label>
-          <label className="quote-check quote-request-form__wide">
-            <input
-              required
-              type="checkbox"
-              checked={form.privacyAccepted}
-              onChange={(e) =>
-                setForm({ ...form, privacyAccepted: e.target.checked })
-              }
-            />{" "}
-            Ik geef toestemming om deze gegevens te verwerken voor mijn
-            offerteaanvraag.
-          </label>
-          {!CAPTCHA_DISABLED && (
-            <div className="quote-request-form__wide" ref={captchaRef} />
-          )}
-          <button
-            className="quote-primary-button quote-request-form__wide"
-            disabled={submitting || !form.captcha}
-          >
-            <Send />
-            {submitting ? "Verzenden..." : "Aanvraag versturen"}
-          </button>
+          <div className="quote-request-submit-area quote-request-form__wide">
+            <label className="quote-request-consent">
+              <input
+                required
+                type="checkbox"
+                checked={form.privacyAccepted}
+                onChange={(e) =>
+                  setForm({ ...form, privacyAccepted: e.target.checked })
+                }
+              />
+              <span>
+                Ik geef toestemming om deze gegevens te verwerken voor mijn
+                offerteaanvraag.
+              </span>
+            </label>
+            {!CAPTCHA_DISABLED && (
+              <div className="quote-request-captcha" ref={captchaRef} />
+            )}
+            <button
+              className="quote-primary-button quote-request-submit-button"
+              disabled={submitting || !form.captcha}
+            >
+              <Send />
+              {submitting ? "Verzenden..." : "Aanvraag versturen"}
+            </button>
+          </div>
         </form>
       </section>
     </main>
