@@ -4,7 +4,9 @@ import { FileText, Mail, Send, ShieldCheck, X } from "lucide-react";
 export default function SendQuoteModal({ quote, sending, onCancel, onConfirm }) {
   const customer = quote.customer || {};
   const organizationName = customer.organizationName || quote.customerName;
-  const contactPerson = customer.contactPersonName || quote.contactPerson;
+  const contactPerson = [customer.greetingName, customer.contactPersonName]
+    .filter(Boolean)
+    .join(" ") || quote.contactPerson;
   const customerEmail = customer.contactEmail || quote.customerEmail;
   useEffect(() => {
     const closeOnEscape = (event) => {

@@ -169,9 +169,13 @@ const quoteService = {
           (item) => item.code === selection.trainingCode,
         )?.displayName || selection.trainingCode,
     );
+    const contactPersonName = joinContactName(
+      payload.contactFirstName,
+      payload.contactLastName,
+    );
     const response = await api.post("/offertes", {
-      companyName: payload.organizationName || payload.contactName,
-      contactPersonName: payload.contactName,
+      companyName: payload.organizationName || contactPersonName,
+      contactPersonName,
       contactEmail: payload.email,
       contactPhone: payload.phone || null,
       street: payload.companyAtTrainingAddress
@@ -191,7 +195,7 @@ const quoteService = {
       introductionText: null,
       closingText: null,
       validUntil: addDays(14),
-      trainingLocationName: payload.organizationName || payload.contactName,
+      trainingLocationName: payload.organizationName || contactPersonName,
       trainingLocationStreet: payload.trainingStreet,
       trainingLocationHouseNumber: payload.trainingHouseNumber,
       trainingLocationPostalCode: payload.trainingPostalCode,
@@ -232,6 +236,18 @@ function splitAddress(value = "") {
     : { street: value.trim(), houseNumber: "-" };
 }
 
+function joinContactName(firstName = "", lastName = "") {
+  return `${firstName.trim()} ${lastName.trim()}`.trim();
+}
+
+function splitContactName(value = "") {
+  const parts = value.trim().split(/\s+/).filter(Boolean);
+  return {
+    firstName: parts.shift() || "",
+    lastName: parts.join(" "),
+  };
+}
+
 function toLegacyCommand(payload) {
   const customerAddress = splitAddress(payload.customer.streetAndHouseNumber);
   const locationAddress = splitAddress(
@@ -239,7 +255,10 @@ function toLegacyCommand(payload) {
   );
   return {
     companyName: payload.customer.organizationName,
-    contactPersonName: payload.customer.contactPersonName,
+    contactPersonName: joinContactName(
+      payload.customer.greetingName,
+      payload.customer.contactPersonName,
+    ),
     contactEmail: payload.customer.contactEmail,
     contactPhone: payload.customer.contactPhone || null,
     street: customerAddress.street,
@@ -294,6 +313,7 @@ const duration = (value) =>
       : "FULL_DAY";
 
 function toQuoteDetail(value, discounts, invoiceMoments = []) {
+  const contactName = splitContactName(value.customer.contactPerson);
   const travelPerExecution = value.quoteTrainings.reduce(
     (sum, item) => sum + Math.max(1, item.groupCount),
     0,
@@ -327,8 +347,8 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
       planningNotes: value.closingText || "",
       customer: {
         organizationName: value.customer.name,
-        contactPersonName: value.customer.contactPerson,
-        greetingName: "",
+        contactPersonName: contactName.lastName,
+        greetingName: contactName.firstName,
         streetAndHouseNumber:
           `${value.customer.street} ${value.customer.houseNumber}`.trim(),
         postalCode: value.customer.postalCode,

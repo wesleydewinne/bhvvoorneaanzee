@@ -21,7 +21,8 @@ const CAPTCHA_DISABLED =
 
 const emptyForm = {
   organizationName: "",
-  contactName: "",
+  contactFirstName: "",
+  contactLastName: "",
   email: "",
   phone: "",
   trainingSelections: [{ trainingCode: "", participantCount: 1 }],
@@ -230,15 +231,28 @@ export default function OfferteAanvraagPage() {
             />
           </label>
           <label>
-            Voor- en achternaam contactpersoon *
+            Voornaam contactpersoon *
             <input
               required
               minLength="2"
-              autoComplete="name"
-              placeholder="Bijvoorbeeld Wesley De Winne"
-              value={form.contactName}
+              autoComplete="given-name"
+              placeholder="Bijvoorbeeld Wesley"
+              value={form.contactFirstName}
               onChange={(e) =>
-                setForm({ ...form, contactName: e.target.value })
+                setForm({ ...form, contactFirstName: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Achternaam contactpersoon *
+            <input
+              required
+              minLength="2"
+              autoComplete="family-name"
+              placeholder="Bijvoorbeeld De Winne"
+              value={form.contactLastName}
+              onChange={(e) =>
+                setForm({ ...form, contactLastName: e.target.value })
               }
             />
           </label>
