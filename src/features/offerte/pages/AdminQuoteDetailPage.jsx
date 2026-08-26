@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Download, Mail, Save } from "lucide-react";
+import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
 import QuoteAcceptanceEvidence from "../components/QuoteAcceptanceEvidence.jsx";
 import SendQuoteModal from "../components/SendQuoteModal.jsx";
@@ -11,6 +12,8 @@ import "../styles/Offerte.css";
 
 export default function AdminQuoteDetailPage() {
   const { id } = useParams();
+  const { roles = [] } = useAuthContext();
+  const isAdmin = roles.includes("ROLE_ADMIN");
   const navigate = useNavigate();
   const [detail, setDetail] = useState(null);
   const [error, setError] = useState("");
@@ -21,11 +24,21 @@ export default function AdminQuoteDetailPage() {
   const handleQuoteChange = useCallback((quote) => setCurrentQuote(quote), []);
 
   useEffect(() => {
-    quoteService
-      .getQuote(id)
-      .then(setDetail)
-      .catch((reason) => setError(reason.message));
-  }, [id]);
+    const loadQuote = async () => {
+      try {
+        const quote = await quoteService.getQuote(id);
+        if (isAdmin && quote.acceptedAt) {
+          const evidence = await quoteService.getAcceptanceEvidence(id);
+          setDetail({ ...quote, ...evidence });
+          return;
+        }
+        setDetail(quote);
+      } catch (reason) {
+        setError(reason.message);
+      }
+    };
+    loadQuote();
+  }, [id, isAdmin]);
   const save = async (payload) =>
     setDetail(await quoteService.update(id, payload));
   const download = async () => {
@@ -113,7 +126,7 @@ export default function AdminQuoteDetailPage() {
         {detail.rejectedAt && <div><span>Afgewezen</span><strong>{formatQuoteDateTime(detail.rejectedAt)}</strong></div>}
         {detail.cancelledAt && <div><span>Geannuleerd</span><strong>{formatQuoteDateTime(detail.cancelledAt)}</strong></div>}
       </section>
-      <QuoteAcceptanceEvidence quote={detail} />
+      {isAdmin && <QuoteAcceptanceEvidence quote={detail} />}
       <QuotePdfForm
         initialValue={detail.quote}
         onSave={save}

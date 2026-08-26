@@ -60,6 +60,11 @@ const quoteService = {
     return toQuoteDetail(response.data, discounts, momentsResponse.data);
   },
 
+  async getAcceptanceEvidence(id) {
+    const response = await api.get(`/offertes/${id}/acceptance-evidence`);
+    return response.data;
+  },
+
   async update(id, payload) {
     const current = (await api.get(`/offertes/${id}`)).data;
     await api.put(`/offertes/${id}`, toLegacyUpdateCommand(id, payload));
@@ -342,15 +347,6 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
     updatedAt: value.updatedAt,
     sentAt: value.sentAt,
     acceptedAt: value.acceptedAt,
-    acceptedByName: value.acceptedByName,
-    acceptedByRole: value.acceptedByRole,
-    acceptedByEmail: value.acceptedByEmail,
-    acceptedFromIp: value.acceptedFromIp,
-    acceptedUserAgent: value.acceptedUserAgent,
-    termsAccepted: value.termsAccepted,
-    authorityConfirmed: value.authorityConfirmed,
-    acceptanceStatementVersion: value.acceptanceStatementVersion,
-    offeredPdfSha256: value.offeredPdfSha256,
     acceptanceConfirmationSentAt: value.acceptanceConfirmationSentAt,
     planningMailScheduledFor: value.planningMailScheduledFor,
     planningMailSentAt: value.planningMailSentAt,

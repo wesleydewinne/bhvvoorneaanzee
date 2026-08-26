@@ -318,6 +318,11 @@ td small {
   margin: 0;
 }
 
+.quote-acceptance-evidence__header h2 {
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  line-height: 1.15;
+}
+
 .quote-acceptance-evidence__print {
   margin-left: auto;
 }
@@ -390,6 +395,10 @@ td small {
   color: var(--color-text-muted, #607086);
 }
 
+.quote-acceptance-evidence__grid span {
+  font-size: 0.9rem;
+}
+
 .quote-acceptance-evidence__grid strong {
   display: flex;
   align-items: center;
@@ -426,14 +435,71 @@ td small {
 }
 
 .quote-acceptance-evidence__technical {
+  display: block;
   margin: 0 1rem 1rem;
-  padding: 0.9rem;
   border: 1px dashed #cbd5e1;
   border-radius: 0.7rem;
   background: #f8fafc;
 }
 
-.quote-acceptance-evidence__technical h3,
+.quote-acceptance-evidence__technical > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  color: #0b1f3a;
+  list-style: none;
+}
+
+.quote-acceptance-evidence__technical > summary::-webkit-details-marker {
+  display: none;
+}
+
+.quote-acceptance-evidence__technical > summary::after {
+  margin-left: auto;
+  color: #607086;
+  content: "+";
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.quote-acceptance-evidence__technical[open] > summary::after {
+  content: "−";
+}
+
+.quote-acceptance-evidence__technical > summary span:last-child,
+.quote-acceptance-evidence__technical > summary small {
+  display: grid;
+}
+
+.quote-acceptance-evidence__technical > summary small {
+  margin-top: 0.1rem;
+  color: #607086;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.quote-acceptance-evidence__technical-icon {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.55rem;
+  background: #e8f1ff;
+  color: #0758bd;
+}
+
+.quote-acceptance-evidence__technical-icon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.quote-acceptance-evidence__technical-content {
+  padding: 0 1rem 0.9rem;
+  border-top: 1px solid #e2e8f0;
+}
+
 .quote-acceptance-evidence__technical p,
 .quote-acceptance-evidence__technical dl {
   margin: 0;

@@ -132,18 +132,28 @@ export default function QuoteAcceptanceEvidence({ quote }) {
         </div>
       </div>
 
-      <section className="quote-acceptance-evidence__technical">
-        <h3>Technische bewijsgegevens</h3>
-        <dl>
-          <div><dt>IP-adres</dt><dd>{quote.acceptedFromIp || "Niet vastgelegd"}</dd></div>
-          <div><dt>Browserregistratie</dt><dd>{quote.acceptedUserAgent || "Niet vastgelegd"}</dd></div>
-          <div><dt>SHA-256 verstuurde PDF</dt><dd><code>{quote.offeredPdfSha256 || "Niet vastgelegd"}</code></dd></div>
-        </dl>
-        <p>
-          Dit overzicht is een technische registratie uit het offertesysteem.
-          De geaccepteerde offerte behoort samen met dit bewijs te worden bewaard.
-        </p>
-      </section>
+      <details className="quote-acceptance-evidence__technical">
+        <summary>
+          <span className="quote-acceptance-evidence__technical-icon" aria-hidden="true">
+            <Fingerprint />
+          </span>
+          <span>
+            <strong>Technische bewijsgegevens</strong>
+            <small>IP-adres, browserregistratie en controlehash bekijken</small>
+          </span>
+        </summary>
+        <div className="quote-acceptance-evidence__technical-content">
+          <dl>
+            <div><dt>IP-adres</dt><dd>{quote.acceptedFromIp || "Niet vastgelegd"}</dd></div>
+            <div><dt>Browserregistratie</dt><dd>{quote.acceptedUserAgent || "Niet vastgelegd"}</dd></div>
+            <div><dt>SHA-256 verstuurde PDF</dt><dd><code>{quote.offeredPdfSha256 || "Niet vastgelegd"}</code></dd></div>
+          </dl>
+          <p>
+            Dit overzicht is een technische registratie uit het offertesysteem.
+            De geaccepteerde offerte behoort samen met dit bewijs te worden bewaard.
+          </p>
+        </div>
+      </details>
     </section>
       {createPortal(printableEvidence, document.body)}
     </>
