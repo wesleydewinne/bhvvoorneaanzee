@@ -24,7 +24,11 @@ export default function AdminCreateQuotePage() {
           Terug
         </Link>
       </header>
-      <QuotePdfForm initialValue={initial} onSave={save} />
+      <QuotePdfForm
+        initialValue={initial}
+        onSave={save}
+        disableCustomerAutofill
+      />
     </main>
   );
 }
