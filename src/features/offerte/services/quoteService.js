@@ -248,6 +248,10 @@ function splitContactName(value = "") {
   };
 }
 
+function customerFacingText(value = "") {
+  return String(value).replace(/\b0[,.]5\s*(?:dag|day)\b/giu, "halve dag");
+}
+
 function toLegacyCommand(payload) {
   const customerAddress = splitAddress(payload.customer.streetAndHouseNumber);
   const locationAddress = splitAddress(
@@ -331,6 +335,9 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
     updatedAt: value.updatedAt,
     sentAt: value.sentAt,
     acceptedAt: value.acceptedAt,
+    acceptanceConfirmationSentAt: value.acceptanceConfirmationSentAt,
+    planningMailScheduledFor: value.planningMailScheduledFor,
+    planningMailSentAt: value.planningMailSentAt,
     rejectedAt: value.rejectedAt,
     cancelledAt: value.cancelledAt,
     createdBy: "offertebackend",
@@ -340,7 +347,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
       quoteNumber: value.quoteNumber,
       quoteDate: value.quoteDate,
       validUntil: value.validUntil,
-      coverTitle: value.subject,
+      coverTitle: customerFacingText(value.subject),
       coverSubtitle: "Praktisch, persoonlijk en afgestemd op uw organisatie",
       personalForeword: value.introduction || "",
       requestSummary: value.introduction || "",
@@ -374,8 +381,8 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
         legacyTrainingId: item.id,
         legacyTrainingCode: item.trainingCode,
         trainingCode: item.trainingCode,
-        title: item.trainingName,
-        description: item.description || "",
+        title: customerFacingText(item.trainingName),
+        description: customerFacingText(item.description || ""),
         trainingDuration: duration(item),
         participantCount: item.participantCount,
         groupCount: item.groupCount,

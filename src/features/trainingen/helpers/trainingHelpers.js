@@ -21,7 +21,7 @@ export const BHV_TRAINING_TYPE_OPTIONS = [
     },
     {
         value: "BHV_REFRESHER_ELEARNING_HALF_DAY",
-        label: "BHV Herhaling e-learning + 0,5 dag praktijk",
+        label: "BHV Herhaling e-learning + halve dag praktijk",
     },
 ];
 
@@ -36,7 +36,7 @@ export const PLOEGLEIDER_TRAINING_TYPE_OPTIONS = [
     },
     {
         value: "BHV_PLOEGLEIDER_ELEARNING_HALF_DAY",
-        label: "BHV Ploegleider 0,5 dag praktijk",
+        label: "BHV Ploegleider halve dag praktijk",
     },
 ];
 

@@ -30,6 +30,30 @@ const updateNested = (setter, section, field, value) =>
     [section]: { ...current[section], [field]: value },
   }));
 
+const splitAddressForEditor = (value = "") => {
+  const normalized = String(value).trim();
+  const match = normalized.match(/^(.*?)[,\s]+(\d+\s*[a-zA-Z0-9-]*)$/);
+  return match
+    ? { street: match[1].trim(), houseNumber: match[2].trim() }
+    : { street: normalized, houseNumber: "" };
+};
+
+const updateAddress = (setter, section, field, value) =>
+  setter((current) => {
+    const address = splitAddressForEditor(
+      current[section].streetAndHouseNumber,
+    );
+    const updatedAddress = { ...address, [field]: value };
+    return {
+      ...current,
+      [section]: {
+        ...current[section],
+        streetAndHouseNumber:
+          `${updatedAddress.street} ${updatedAddress.houseNumber}`.trim(),
+      },
+    };
+  });
+
 const DISCOUNT_OPTIONS = [
   { code: "LOCATIE", description: "Locatiekorting" },
   { code: "WELKOM", description: "Welkomstkorting" },
@@ -249,7 +273,30 @@ export default function QuotePdfForm({
             </label>
           ))}
           {[
-            ["streetAndHouseNumber", "Trainingsadres", true],
+            ["street", "Straat", true],
+            ["houseNumber", "Huisnummer en toevoeging", true],
+          ].map(([field, label, required]) => (
+            <label className="quote-field" key={field}>
+              {label}
+              <input
+                required={required}
+                value={
+                  splitAddressForEditor(
+                    form.trainingLocation.streetAndHouseNumber,
+                  )[field]
+                }
+                onChange={(e) =>
+                  updateAddress(
+                    setForm,
+                    "trainingLocation",
+                    field,
+                    e.target.value,
+                  )
+                }
+              />
+            </label>
+          ))}
+          {[
             ["postalCode", "Postcode", true],
             ["city", "Plaats", true],
             ["country", "Land", true],
@@ -268,8 +315,8 @@ export default function QuotePdfForm({
                   )
                 }
               />
-              </label>
-            ))}
+            </label>
+          ))}
         </div>
         <label className="quote-check">
           <input
@@ -284,7 +331,25 @@ export default function QuotePdfForm({
         {hasDifferentCompanyAddress && (
           <div className="quote-form-grid quote-form-grid--three">
             {[
-              ["streetAndHouseNumber", "Vestigingsadres"],
+              ["street", "Straat vestigingsadres"],
+              ["houseNumber", "Huisnummer en toevoeging"],
+            ].map(([field, label]) => (
+              <label className="quote-field" key={field}>
+                {label}
+                <input
+                  required
+                  value={
+                    splitAddressForEditor(form.customer.streetAndHouseNumber)[
+                      field
+                    ]
+                  }
+                  onChange={(e) =>
+                    updateAddress(setForm, "customer", field, e.target.value)
+                  }
+                />
+              </label>
+            ))}
+            {[
               ["postalCode", "Postcode"],
               ["city", "Plaats"],
               ["country", "Land"],

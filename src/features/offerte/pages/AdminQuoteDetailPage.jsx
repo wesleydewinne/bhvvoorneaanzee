@@ -106,6 +106,9 @@ export default function AdminQuoteDetailPage() {
         <div><span>Laatst gewijzigd</span><strong>{formatQuoteDateTime(detail.updatedAt) || "Onbekend"}</strong></div>
         {detail.sentAt && <div><span>Verzonden</span><strong>{formatQuoteDateTime(detail.sentAt)}</strong></div>}
         {detail.acceptedAt && <div><span>Geaccepteerd</span><strong>{formatQuoteDateTime(detail.acceptedAt)}</strong></div>}
+        {detail.acceptanceConfirmationSentAt && <div><span>Acceptatiebevestiging verzonden</span><strong>{formatQuoteDateTime(detail.acceptanceConfirmationSentAt)}</strong></div>}
+        {detail.planningMailScheduledFor && !detail.planningMailSentAt && <div><span>Planningsmail gepland</span><strong>{formatQuoteDateTime(detail.planningMailScheduledFor)}</strong></div>}
+        {detail.planningMailSentAt && <div><span>Planningsmail verzonden</span><strong>{formatQuoteDateTime(detail.planningMailSentAt)}</strong></div>}
         {detail.rejectedAt && <div><span>Afgewezen</span><strong>{formatQuoteDateTime(detail.rejectedAt)}</strong></div>}
         {detail.cancelledAt && <div><span>Geannuleerd</span><strong>{formatQuoteDateTime(detail.cancelledAt)}</strong></div>}
       </section>
