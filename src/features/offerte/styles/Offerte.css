@@ -345,9 +345,35 @@ td small {
 
 .quote-acceptance-evidence__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
   padding: 1rem;
+}
+
+.quote-acceptance-print-document {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .quote-acceptance-evidence__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .quote-acceptance-evidence__grid,
+  .quote-acceptance-evidence__technical dl > div {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-acceptance-evidence__print {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .quote-acceptance-evidence__header {
+    flex-wrap: wrap;
+  }
 }
 
 .quote-acceptance-evidence__grid > div {
@@ -442,31 +468,82 @@ td small {
 }
 
 @media print {
-  body * {
-    visibility: hidden !important;
-  }
-
-  .quote-acceptance-evidence,
-  .quote-acceptance-evidence * {
-    visibility: visible !important;
-  }
-
-  .quote-acceptance-evidence {
-    position: absolute;
-    inset: 0 auto auto 0;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    box-shadow: none;
-  }
-
-  .quote-acceptance-evidence__print,
-  .quote-acceptance-evidence details {
+  body > :not(.quote-acceptance-print-document) {
     display: none !important;
   }
 
-  .quote-acceptance-evidence__grid {
+  .quote-acceptance-print-document {
+    display: block;
+    color: #0b1f3a;
+    font: 11pt/1.45 Arial, sans-serif;
+  }
+
+  .quote-acceptance-print-document header {
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #f4511e;
+  }
+
+  .quote-acceptance-print-document header p,
+  .quote-acceptance-print-document header h1 {
+    margin: 0;
+  }
+
+  .quote-acceptance-print-document header h1 {
+    margin: 0.35rem 0;
+    font-size: 24pt;
+  }
+
+  .quote-acceptance-print-document dl {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 1.25rem 0;
+    border: 1px solid #cbd5e1;
+  }
+
+  .quote-acceptance-print-document dl > div {
+    min-width: 0;
+    padding: 0.65rem;
+    border-right: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+  }
+
+  .quote-acceptance-print-document dt {
+    color: #52647a;
+    font-size: 8.5pt;
+  }
+
+  .quote-acceptance-print-document dd {
+    margin: 0.15rem 0 0;
+    overflow-wrap: anywhere;
+    font-weight: 700;
+  }
+
+  .quote-acceptance-print-document__hash {
+    grid-column: 1 / -1;
+  }
+
+  .quote-acceptance-print-document section {
+    padding: 1rem;
+    border: 1px solid #f4511e;
+    background: #fff2ec;
+  }
+
+  .quote-acceptance-print-document section h2,
+  .quote-acceptance-print-document section p {
+    margin: 0;
+  }
+
+  .quote-acceptance-print-document section p {
+    margin-top: 0.45rem;
+  }
+
+  .quote-acceptance-print-document footer {
+    margin-top: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #cbd5e1;
+    color: #52647a;
+    font-size: 8.5pt;
   }
 }
 .quote-form-fields {
