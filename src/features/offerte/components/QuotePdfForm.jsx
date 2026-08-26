@@ -177,7 +177,7 @@ export default function QuotePdfForm({
     <form
       className={`quote-form${readOnly ? " is-read-only" : ""}`}
       onSubmit={submit}
-      autoComplete={disableCustomerAutofill ? "off" : undefined}
+      autoComplete={disableCustomerAutofill ? "new-password" : undefined}
     >
       <fieldset className="quote-form-fields" disabled={readOnly}>
       {error && (
@@ -260,7 +260,7 @@ export default function QuotePdfForm({
               {label}
               <input
                 type={type}
-                autoComplete={disableCustomerAutofill ? "off" : undefined}
+                autoComplete={disableCustomerAutofill ? "new-password" : undefined}
                 required={required}
                 placeholder={
                   field === "organizationName"
@@ -285,7 +285,7 @@ export default function QuotePdfForm({
             <label className="quote-field" key={field}>
               {label}
               <input
-                autoComplete={disableCustomerAutofill ? "off" : undefined}
+                autoComplete={disableCustomerAutofill ? "new-password" : undefined}
                 required={required}
                 value={
                   splitAddressForEditor(
@@ -311,7 +311,7 @@ export default function QuotePdfForm({
             <label className="quote-field" key={field}>
               {label}
               <input
-                autoComplete={disableCustomerAutofill ? "off" : undefined}
+                autoComplete={disableCustomerAutofill ? "new-password" : undefined}
                 required={required}
                 value={form.trainingLocation[field]}
                 onChange={(e) =>
@@ -345,7 +345,7 @@ export default function QuotePdfForm({
               <label className="quote-field" key={field}>
                 {label}
                 <input
-                  autoComplete={disableCustomerAutofill ? "off" : undefined}
+                  autoComplete={disableCustomerAutofill ? "new-password" : undefined}
                   required
                   value={
                     splitAddressForEditor(form.customer.streetAndHouseNumber)[
@@ -366,7 +366,7 @@ export default function QuotePdfForm({
               <label className="quote-field" key={field}>
                 {label}
                 <input
-                  autoComplete={disableCustomerAutofill ? "off" : undefined}
+                  autoComplete={disableCustomerAutofill ? "new-password" : undefined}
                   required
                   value={form.customer[field]}
                   onChange={(e) =>

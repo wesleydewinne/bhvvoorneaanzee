@@ -7,6 +7,7 @@ import "../styles/Offerte.css";
 export default function QuoteAcceptancePage() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token")?.trim() || "";
+  const quoteId = searchParams.get("quoteId")?.trim() || "";
   const [quote, setQuote] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [authorityConfirmed, setAuthorityConfirmed] = useState(false);
@@ -20,16 +21,22 @@ export default function QuoteAcceptancePage() {
   useEffect(() => {
     let active = true;
 
-    if (!token) {
+    if (!token && !quoteId) {
       setError("De akkoordlink is ongeldig of onvolledig.");
       setLoading(false);
       return () => { active = false; };
     }
 
-    quoteService
-      .getAcceptanceContext(token)
+    const request = token
+      ? quoteService.getAcceptanceContext(token)
+      : quoteService.getAcceptanceStatus(quoteId);
+
+    request
       .then((result) => {
         if (active) {
+          if (!token && result.status !== "ACCEPTED") {
+            throw new Error("Deze akkoordlink is niet actief.");
+          }
           setQuote(result);
           setAcceptedByName(result.contactPerson || "");
         }
@@ -42,7 +49,7 @@ export default function QuoteAcceptancePage() {
       });
 
     return () => { active = false; };
-  }, [token]);
+  }, [quoteId, token]);
 
   const confirmAcceptance = async () => {
     if (
