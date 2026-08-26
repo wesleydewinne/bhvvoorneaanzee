@@ -63,7 +63,7 @@ export const createInitialQuote = () => {
     },
     trainingItems: [createTrainingItem()],
     discounts: [],
-    travelCalculation: { distanceKm: 0, freeKm: 0, ratePerKm: 0 },
+    travelCalculation: { distanceKm: 0, freeKm: 100, ratePerKm: 0.4 },
     priceSummary: {
       trainingSubtotalExcludingVat: 0,
       travelCostsExcludingVat: 0,
@@ -122,8 +122,8 @@ export function normalizeQuoteForForm(value) {
         : [],
     travelCalculation: source.travelCalculation || {
       distanceKm: 0,
-      freeKm: 0,
-      ratePerKm: 0,
+      freeKm: 100,
+      ratePerKm: 0.4,
     },
     trainingItems: (source.trainingItems || [createTrainingItem()]).map(
       (item) => {
