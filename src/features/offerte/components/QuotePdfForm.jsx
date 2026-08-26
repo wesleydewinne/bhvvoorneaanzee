@@ -437,18 +437,42 @@ export default function QuotePdfForm({
             <label className="quote-field" key={field}>
               {label}
               <input
-                type="number"
+                type={field === "ratePerKm" ? "text" : "number"}
+                inputMode={field === "ratePerKm" ? "decimal" : undefined}
                 min="0"
                 step="0.01"
-                value={form.travelCalculation?.[field] ?? 0}
+                value={
+                  field === "ratePerKm" &&
+                  typeof form.travelCalculation?.[field] === "number"
+                    ? form.travelCalculation[field].toFixed(2)
+                    : form.travelCalculation?.[field] ?? 0
+                }
                 onChange={(event) =>
                   setForm((current) => ({
                     ...current,
                     travelCalculation: {
                       ...current.travelCalculation,
-                      [field]: event.target.value,
+                      [field]:
+                        field === "ratePerKm"
+                          ? event.target.value.replace(",", ".")
+                          : event.target.value,
                     },
                   }))
+                }
+                onBlur={
+                  field === "ratePerKm"
+                    ? (event) => {
+                        const value = Number(event.target.value);
+                        if (!Number.isFinite(value) || value < 0) return;
+                        setForm((current) => ({
+                          ...current,
+                          travelCalculation: {
+                            ...current.travelCalculation,
+                            ratePerKm: value.toFixed(2),
+                          },
+                        }));
+                      }
+                    : undefined
                 }
               />
             </label>
