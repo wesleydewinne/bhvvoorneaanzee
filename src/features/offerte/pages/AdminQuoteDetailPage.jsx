@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Download, Mail, Save } from "lucide-react";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
+import QuoteAcceptanceEvidence from "../components/QuoteAcceptanceEvidence.jsx";
 import SendQuoteModal from "../components/SendQuoteModal.jsx";
 import quoteService from "../services/quoteService.js";
 import { downloadBlob } from "../helpers/quoteHelpers.js";
@@ -112,6 +113,7 @@ export default function AdminQuoteDetailPage() {
         {detail.rejectedAt && <div><span>Afgewezen</span><strong>{formatQuoteDateTime(detail.rejectedAt)}</strong></div>}
         {detail.cancelledAt && <div><span>Geannuleerd</span><strong>{formatQuoteDateTime(detail.cancelledAt)}</strong></div>}
       </section>
+      <QuoteAcceptanceEvidence quote={detail} />
       <QuotePdfForm
         initialValue={detail.quote}
         onSave={save}

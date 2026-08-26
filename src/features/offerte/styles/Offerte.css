@@ -295,6 +295,180 @@ td small {
   color: var(--quote-muted);
   font-size: 0.85rem;
 }
+
+.quote-acceptance-evidence {
+  margin: 1rem 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border, #d8e1ec);
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 0 0.45rem 1.2rem rgb(15 45 80 / 8%);
+}
+
+.quote-acceptance-evidence__header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--color-border, #d8e1ec);
+}
+
+.quote-acceptance-evidence__header h2,
+.quote-acceptance-evidence__header p {
+  margin: 0;
+}
+
+.quote-acceptance-evidence__print {
+  margin-left: auto;
+}
+
+.quote-acceptance-evidence__header p {
+  margin-top: 0.2rem;
+  color: var(--color-text-muted, #607086);
+}
+
+.quote-acceptance-evidence__icon {
+  display: grid;
+  width: 2.7rem;
+  height: 2.7rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.65rem;
+  background: #eaf2ff;
+  color: #0758bd;
+}
+
+.quote-acceptance-evidence__icon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.quote-acceptance-evidence__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.quote-acceptance-evidence__grid > div {
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.7rem;
+  background: #f8fafc;
+}
+
+.quote-acceptance-evidence__grid span,
+.quote-acceptance-evidence__grid small {
+  display: block;
+  color: var(--color-text-muted, #607086);
+}
+
+.quote-acceptance-evidence__grid strong {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+  overflow-wrap: anywhere;
+}
+
+.quote-acceptance-evidence__grid strong.is-confirmed {
+  color: #08783e;
+}
+
+.quote-acceptance-evidence__grid strong svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.quote-acceptance-evidence details {
+  margin-top: 0.45rem;
+}
+
+.quote-acceptance-evidence summary {
+  cursor: pointer;
+  color: #0758bd;
+  font-size: 0.82rem;
+}
+
+.quote-acceptance-evidence code {
+  display: block;
+  margin-top: 0.45rem;
+  overflow-wrap: anywhere;
+  font-size: 0.72rem;
+}
+
+.quote-acceptance-evidence__technical {
+  margin: 0 1rem 1rem;
+  padding: 0.9rem;
+  border: 1px dashed #cbd5e1;
+  border-radius: 0.7rem;
+  background: #f8fafc;
+}
+
+.quote-acceptance-evidence__technical h3,
+.quote-acceptance-evidence__technical p,
+.quote-acceptance-evidence__technical dl {
+  margin: 0;
+}
+
+.quote-acceptance-evidence__technical dl {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+.quote-acceptance-evidence__technical dl > div {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.3fr) 1fr;
+  gap: 0.75rem;
+}
+
+.quote-acceptance-evidence__technical dt {
+  font-weight: 700;
+}
+
+.quote-acceptance-evidence__technical dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.quote-acceptance-evidence__technical p {
+  margin-top: 0.75rem;
+  color: var(--color-text-muted, #607086);
+  font-size: 0.82rem;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .quote-acceptance-evidence,
+  .quote-acceptance-evidence * {
+    visibility: visible !important;
+  }
+
+  .quote-acceptance-evidence {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .quote-acceptance-evidence__print,
+  .quote-acceptance-evidence details {
+    display: none !important;
+  }
+
+  .quote-acceptance-evidence__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 .quote-form-fields {
   display: contents;
 }
