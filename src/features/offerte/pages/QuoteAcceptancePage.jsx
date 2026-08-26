@@ -64,6 +64,8 @@ export default function QuoteAcceptancePage() {
       const result = await quoteService.acceptQuote(token, {
         name: acceptedByName.trim(),
         role: acceptedByRole.trim(),
+        termsAccepted,
+        authorityConfirmed,
       });
       setQuote(result);
       setAccepted(true);

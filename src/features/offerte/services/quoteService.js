@@ -120,8 +120,8 @@ const quoteService = {
   async acceptQuote(token, acceptance) {
     const response = await api.post("/public/quotes/acceptance", {
       token,
-      termsAccepted: true,
-      authorityConfirmed: true,
+      termsAccepted: acceptance.termsAccepted,
+      authorityConfirmed: acceptance.authorityConfirmed,
       acceptedByName: acceptance.name,
       acceptedByRole: acceptance.role || null,
     });
