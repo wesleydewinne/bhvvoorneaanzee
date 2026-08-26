@@ -6,7 +6,7 @@ const quoteService = {
     return Array.isArray(response.data)
       ? response.data.map((item) => ({
           ...item,
-          displayName: item.name,
+          displayName: customerFacingText(item.name),
           category: item.executionType,
           durationInDays: item.numberOfDays,
           basePrice: item.sellingPrice,
