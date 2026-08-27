@@ -35,6 +35,58 @@
   z-index: 1;
 }
 
+.workshops > .site-hero .site-hero-text {
+  position: relative;
+  width: min(68rem, calc(100% - 4rem));
+  max-width: none;
+  padding: 3.8rem 4.5rem 3.5rem;
+  border-radius: 0;
+  border-left: 0.6rem solid var(--workshops-orange);
+  text-align: left;
+  background: linear-gradient(120deg, rgba(5, 17, 29, 0.94), rgba(5, 28, 34, 0.78));
+  box-shadow: 1.6rem 1.6rem 0 rgba(255, 104, 24, 0.18), 0 2.5rem 6rem rgba(0, 0, 0, 0.32);
+  clip-path: polygon(0 0, calc(100% - 3rem) 0, 100% 3rem, 100% 100%, 0 100%);
+}
+
+.workshops > .site-hero .site-hero-text::before {
+  display: block;
+  margin-bottom: 1.2rem;
+  color: var(--workshops-orange);
+  content: "PRAKTIJKGERICHTE WORKSHOPS";
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.workshops > .site-hero .site-hero-title {
+  max-width: 58rem;
+  margin: 0;
+  font-size: clamp(3.4rem, 4vw, 5.8rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.workshops > .site-hero .site-hero-subtitle {
+  position: relative;
+  margin: 2rem 0 0;
+  padding-left: 4.5rem;
+  color: #e4eeee;
+  font-size: clamp(1.5rem, 1.5vw, 1.9rem);
+  line-height: 1.55;
+}
+
+.workshops > .site-hero .site-hero-subtitle::before {
+  position: absolute;
+  top: 0.75em;
+  left: 0;
+  width: 3rem;
+  height: 0.3rem;
+  background: var(--workshops-orange);
+  content: "";
+}
+
 .workshops__container {
   width: 100%;
   padding: 0;
@@ -80,6 +132,14 @@
   z-index: 1;
 }
 
+.workshops__intro-copy {
+  transform: translateX(-4rem);
+}
+
+.workshops__intro-title-line {
+  white-space: nowrap;
+}
+
 .workshops__intro h2,
 .workshops__difference h2,
 .workshops__offer-heading h2 {
@@ -89,6 +149,11 @@
   line-height: 1.04;
   letter-spacing: -0.045em;
   text-wrap: balance;
+}
+
+.workshops__intro h2 {
+  color: #ffffff;
+  text-shadow: 0 0.8rem 2.5rem rgba(0, 0, 0, 0.22);
 }
 
 .workshops__intro-copy > p:not(.workshops__eyebrow) {
@@ -123,7 +188,7 @@
   gap: 2.8rem;
   position: relative;
   z-index: 2;
-  margin: -7rem auto 12rem;
+  margin: -7rem auto 8rem;
 }
 
 .workshops__card {
@@ -262,7 +327,7 @@
 .workshops__difference {
   position: relative;
   width: 100%;
-  padding: 12rem 5rem 13rem;
+  padding: 9rem 5rem 10rem;
   color: #ffffff;
 }
 
@@ -297,14 +362,14 @@
 
 .workshops__offer {
   width: 100%;
-  padding-top: 6rem;
+  padding-top: 3rem;
   scroll-margin-top: 10rem;
 }
 
 .workshops__offer-heading {
   width: min(110rem, calc(100% - 10rem));
   margin: 0 auto;
-  padding: 2rem 0 5rem;
+  padding: 1rem 0 3.5rem;
   text-align: center;
 }
 
@@ -323,11 +388,163 @@
 
 .workshops__offer > .training-card-section {
   width: 100%;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
+.workshops__why,
+.workshops__choice,
+.workshops__cta {
+  width: min(124rem, calc(100% - 10rem));
+  margin: 0 auto;
+}
+
+.workshops__why {
+  padding: 2rem 0 8rem;
+}
+
+.workshops__section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(30rem, 0.85fr);
+  align-items: end;
+  gap: clamp(4rem, 8vw, 12rem);
+  margin-bottom: 5rem;
+}
+
+.workshops__section-heading h2,
+.workshops__choice h2,
+.workshops__cta h2 {
+  max-width: 76rem;
+  margin: 0;
+  font-size: clamp(3.2rem, 4vw, 5.4rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.workshops__section-heading > p,
+.workshops__choice-copy > p:last-child,
+.workshops__cta > div:first-child > p:last-child {
+  margin: 0;
+  color: #596a7c;
+  font-size: 1.7rem;
+  line-height: 1.75;
+}
+
+.workshops__reasons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.8rem;
+}
+
+.workshops__reason {
+  position: relative;
+  min-height: 30rem;
+  padding: 3.2rem 2.8rem;
+  border-top: 0.4rem solid var(--workshops-orange);
+  background: #fff;
+  box-shadow: 0 2rem 5rem rgba(15, 35, 51, 0.08);
+  clip-path: polygon(0 0, calc(100% - 2.2rem) 0, 100% 2.2rem, 100% 100%, 0 100%);
+}
+
+.workshops__reason-number {
+  position: absolute;
+  top: 2rem;
+  right: 2.2rem;
+  color: #c3ceca;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.workshops__reason-icon {
+  width: 5.2rem;
+  height: 5.2rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: 2.4rem;
+  color: #fff;
+  background: var(--workshops-orange);
+  transform: skewX(-7deg);
+}
+
+.workshops__reason-icon svg { transform: skewX(7deg); }
+.workshops__reason h3 { margin: 0 0 1.4rem; font-size: 2rem; line-height: 1.15; }
+.workshops__reason p { margin: 0; color: #5a6a7a; font-size: 1.5rem; line-height: 1.7; }
+
+.workshops__steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workshops__steps li {
+  position: relative;
+  display: grid;
+  gap: 1.2rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.workshops__steps li::before {
+  position: absolute;
+  top: -0.7rem;
+  left: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 0.35rem solid var(--workshops-orange);
+  border-radius: 50%;
+  background: #102530;
+  content: "";
+}
+
+.workshops__steps span { color: var(--workshops-orange); font-size: 1.2rem; font-weight: 900; letter-spacing: 0.1em; }
+.workshops__steps strong { color: #fff; font-size: 1.8rem; }
+
+.workshops__choice {
+  display: grid;
+  grid-template-columns: minmax(30rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(5rem, 8vw, 12rem);
+  padding: 8rem 0;
+}
+
+.workshops__choice-copy > p:last-child { margin-top: 2.2rem; }
+.workshops__choice-grid { display: grid; gap: 1.5rem; }
+.workshops__choice-card { position: relative; padding: 2.8rem 3rem 2.8rem 11rem; border: 1px solid #d9e3e0; background: #fff; }
+.workshops__choice-card > span { position: absolute; inset: 0 auto 0 0; width: 8rem; display: grid; place-items: center; color: #607183; background: #edf3f1; font-size: 1.2rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); }
+.workshops__choice-card h3 { margin: 0 0 0.8rem; font-size: 2rem; }
+.workshops__choice-card p { margin: 0; color: #5b6b7b; font-size: 1.5rem; line-height: 1.65; }
+.workshops__choice-card--active { border-color: var(--workshops-orange); box-shadow: 1rem 1rem 0 rgba(255, 104, 24, 0.12); }
+.workshops__choice-card--active > span { color: #fff; background: var(--workshops-orange); }
+
+.workshops__cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  padding: 6rem;
+  color: #fff;
+  background: linear-gradient(120deg, #0a1a2c, #075847);
+  clip-path: polygon(0 0, calc(100% - 4rem) 0, 100% 4rem, 100% 100%, 4rem 100%, 0 calc(100% - 4rem));
+}
+
+.workshops__cta h2 { color: #fff; }
+.workshops__cta > div:first-child > p:last-child { max-width: 76rem; margin-top: 2rem; color: #d3e0e1; }
+.workshops__cta-actions { display: grid; gap: 1.2rem; min-width: 27rem; }
+.workshops__button { min-height: 5.6rem; display: inline-flex; align-items: center; justify-content: center; gap: 1rem; padding: 1.4rem 2rem; font-size: 1.5rem; font-weight: 900; text-decoration: none; transition: transform .2s ease; }
+.workshops__button:hover { transform: translateY(-0.3rem); }
+.workshops__button--primary { color: #fff; background: var(--workshops-orange); }
+.workshops__button--secondary { border: 1px solid rgba(255,255,255,.4); color: #fff; }
+
 @media (max-width: 1000px) {
+  .workshops__intro-copy {
+    transform: none;
+  }
+
   .workshops__intro {
     width: 100%;
     margin: -3rem 0 0;
@@ -355,9 +572,39 @@
   .workshops__card:nth-child(2) {
     transform: none;
   }
+
+  .workshops__why,
+  .workshops__choice,
+  .workshops__cta { width: min(100% - 4rem, 88rem); }
+  .workshops__section-heading,
+  .workshops__choice,
+  .workshops__cta { grid-template-columns: 1fr; }
+  .workshops__reasons { grid-template-columns: repeat(2, 1fr); }
+  .workshops__steps { grid-template-columns: 1fr; gap: 0; }
+  .workshops__steps li { padding: 1.8rem 0 1.8rem 3rem; border-top: 0; border-left: 1px solid rgba(255,255,255,.28); }
+  .workshops__steps li::before { top: 2.2rem; left: -0.7rem; }
+  .workshops__cta-actions { min-width: 0; }
 }
 
 @media (max-width: 620px) {
+  .workshops__intro-title-line {
+    white-space: normal;
+  }
+
+  .workshops > .site-hero .site-hero-text {
+    width: calc(100% - 2.8rem);
+    padding: 3rem 2.4rem;
+    box-shadow: 0.8rem 0.8rem 0 rgba(255, 104, 24, 0.18), 0 2rem 4rem rgba(0, 0, 0, 0.28);
+  }
+
+  .workshops > .site-hero .site-hero-subtitle {
+    padding-left: 0;
+  }
+
+  .workshops > .site-hero .site-hero-subtitle::before {
+    display: none;
+  }
+
   .workshops__grid,
   .workshops__offer-heading {
     width: calc(100% - 2.8rem);
@@ -387,4 +634,15 @@
   .workshops__offer {
     padding-top: 3rem;
   }
+
+  .workshops__why,
+  .workshops__choice,
+  .workshops__cta { width: calc(100% - 2.8rem); }
+  .workshops__why { padding-bottom: 8rem; }
+  .workshops__reasons { grid-template-columns: 1fr; }
+  .workshops__reason { min-height: 0; }
+  .workshops__choice { padding: 8rem 0; }
+  .workshops__choice-card { padding: 7rem 2.2rem 2.5rem; }
+  .workshops__choice-card > span { inset: 0 0 auto; width: auto; height: 4.8rem; writing-mode: initial; transform: none; }
+  .workshops__cta { gap: 3.5rem; padding: 5rem 2.2rem; clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 2rem 100%, 0 calc(100% - 2rem)); }
 }
