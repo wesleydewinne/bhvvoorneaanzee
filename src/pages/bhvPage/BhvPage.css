@@ -247,9 +247,13 @@
 
 @media (min-width: 1500px) {
   .bhv-intro__grid {
-    width: min(1380px, calc(100% - 10rem));
-    grid-template-columns: minmax(0, 1.35fr) minmax(400px, 0.85fr);
+    width: min(1450px, calc(100% - 10rem));
+    grid-template-columns: minmax(780px, 1fr) minmax(440px, 0.72fr);
     gap: 70px;
+  }
+
+  .bhv-practice__grid {
+    width: min(1380px, calc(100% - 10rem));
   }
 }
 
@@ -546,9 +550,13 @@
   }
 
   .bhv-law .bhv-heading {
-    max-width: 118rem;
+    max-width: 130rem;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .bhv-law .bhv-heading > div:first-child {
+    flex: 0 0 76rem;
   }
 }
 
