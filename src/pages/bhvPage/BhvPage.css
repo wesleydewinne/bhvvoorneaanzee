@@ -395,7 +395,8 @@
 
 .bhv-factor-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, 26rem);
+  justify-content: center;
   gap: 16px;
 }
 
@@ -463,24 +464,22 @@
     max-width: none;
   }
 
-  .bhv-factors .bhv-heading > div {
-    max-width: 82rem;
-  }
-
-  .bhv-factors .bhv-heading > p {
-    max-width: 42rem;
+  .bhv-factors .bhv-heading {
+    max-width: 118rem;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
 /* Op ultrawide passen de acht factoren logisch op één regel. */
 @media (min-width: 2200px) {
   .bhv-factor-grid {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(8, 26rem);
   }
 
   .bhv-factor {
-    min-height: 29rem;
-    padding: 2.4rem;
+    min-height: 26rem;
+    padding: 2.7rem;
   }
 }
 
@@ -527,12 +526,10 @@
     max-width: none;
   }
 
-  .bhv-law .bhv-heading > div {
-    max-width: 82rem;
-  }
-
-  .bhv-law .bhv-heading > p {
-    max-width: 48rem;
+  .bhv-law .bhv-heading {
+    max-width: 118rem;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
@@ -553,8 +550,21 @@
 
 .bhv-law__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 42rem);
+  justify-content: center;
   gap: 20px;
+}
+
+@media (min-width: 1001px) and (max-width: 1399px) {
+  .bhv-law__grid {
+    grid-template-columns: repeat(2, 42rem);
+  }
+
+  .bhv-law__grid article:last-child {
+    grid-column: 1 / -1;
+    width: 42rem;
+    justify-self: center;
+  }
 }
 
 .bhv-law__grid article {
@@ -796,7 +806,8 @@
   }
 
   .bhv-factor-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 26rem);
+    justify-content: center;
   }
 
   .bhv-practice__photo {
