@@ -12,7 +12,15 @@
 }
 
 .workshops > .site-hero .site-hero-image {
-  object-position: center 62%;
+  object-position: center 48%;
+}
+
+.workshops > .site-hero {
+  min-height: clamp(42rem, 48vw, 66rem);
+}
+
+.workshops > .site-hero .site-hero-image {
+  border-radius: 0;
 }
 
 .workshops > .site-hero::after {
@@ -43,27 +51,26 @@
 
 .workshops__intro {
   position: relative;
-  width: min(138rem, calc(100% - 10rem));
+  width: 110%;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(32rem, 0.8fr);
   align-items: center;
-  gap: clamp(5rem, 8vw, 12rem);
-  margin: 0 auto;
-  padding: 10rem 7rem 11rem;
-  background: #ffffff;
-  box-shadow: 0 3rem 8rem rgba(10, 35, 48, 0.08);
-  clip-path: polygon(0 5rem, 100% 0, 100% calc(100% - 5rem), 0 100%);
+  gap: clamp(4rem, 7vw, 12rem);
+  margin: -5rem 0 0 -5%;
+  padding: 16rem calc(max(5rem, (100vw - 124rem) / 2) + 5vw) 15rem;
+  border-radius: 50% / 3rem;
+  color: #fff;
+  background: linear-gradient(115deg, #09182a 0%, #102d37 65%, #075847 100%);
+  clip-path: none;
 }
 
 .workshops__intro::before {
   position: absolute;
   top: 0;
   right: 0;
-  width: 35%;
+  width: 52%;
   height: 100%;
-  background:
-    radial-gradient(circle at 85% 20%, rgba(255, 104, 24, 0.18), transparent 38%),
-    linear-gradient(145deg, transparent 28%, rgba(7, 130, 96, 0.08));
+  background: repeating-linear-gradient(135deg, transparent 0 4rem, rgba(255, 255, 255, 0.025) 4rem 4.15rem);
   content: "";
 }
 
@@ -87,7 +94,7 @@
 .workshops__intro-copy > p:not(.workshops__eyebrow) {
   max-width: 78rem;
   margin: 2rem 0 0;
-  color: #536375;
+  color: #d0dde0;
   font-size: 1.7rem;
   line-height: 1.75;
 }
@@ -95,38 +102,61 @@
 .workshops__intro-quote {
   margin: 0;
   padding: 3.2rem 3.4rem;
-  border-left: 0.5rem solid var(--workshops-orange);
-  color: #365264;
-  background: linear-gradient(135deg, #e4f1ed, #f7faf9);
-  box-shadow: 0 2.4rem 5rem rgba(15, 52, 61, 0.14);
+  border-left: 0;
+  color: #fff3ea;
+  background: linear-gradient(135deg, #ff7625, #e84e0a);
+  box-shadow: 1.5rem 1.5rem 0 rgba(255, 255, 255, 0.09), 0 3rem 6rem rgba(0, 0, 0, 0.28);
   font-size: clamp(1.8rem, 2vw, 2.5rem);
   line-height: 1.55;
-  transform: translateY(2rem);
+  transform: rotate(-2deg);
+  clip-path: polygon(0 0, 94% 0, 100% 22%, 100% 100%, 6% 100%, 0 78%);
 }
 
 .workshops__intro-quote strong {
-  color: var(--workshops-ink);
+  color: #ffffff;
 }
 
 .workshops__grid {
-  width: min(138rem, calc(100% - 10rem));
+  width: min(112rem, calc(100% - 10rem));
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.4rem;
-  margin: -1rem auto 9rem;
+  gap: 2.8rem;
+  position: relative;
+  z-index: 2;
+  margin: -7rem auto 12rem;
 }
 
 .workshops__card {
   position: relative;
-  min-height: 30rem;
-  padding: 4rem;
-  border: 1px solid #dae5e1;
+  min-height: 25rem;
+  padding: 3.2rem;
+  border: 0;
   color: var(--workshops-ink);
   background: linear-gradient(150deg, #ffffff 0%, #ffffff 72%, #eef5f2 100%);
-  box-shadow: 0 2.2rem 5rem rgba(15, 35, 51, 0.08);
+  box-shadow: 0 2.2rem 5rem rgba(15, 35, 51, 0.16);
+  clip-path: polygon(0 0, calc(100% - 2.4rem) 0, 100% 2.4rem, 100% 100%, 0 100%);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
+.workshops__card:nth-child(2) {
+  color: #fff;
+  background: linear-gradient(145deg, #ff7625, #e64c08);
+  transform: translateY(3.5rem);
+}
+
+.workshops__card:nth-child(2)::before { background: #092033; }
+.workshops__card:nth-child(2)::after { background: rgba(255, 255, 255, 0.1); }
+
+.workshops__card:nth-child(2) .workshops__icon {
+  color: var(--workshops-orange);
+  background: #fff;
+  box-shadow: 0 1.2rem 2.5rem rgba(88, 25, 0, 0.22);
+}
+
+.workshops__card:nth-child(2) .workshops__card-number,
+.workshops__card:nth-child(2) li { color: #fff3eb; }
+.workshops__card:nth-child(2) li::before { border-color: #fff; }
 
 .workshops__card::before {
   position: absolute;
@@ -141,10 +171,10 @@
 
 .workshops__card::after {
   position: absolute;
-  right: -5rem;
-  bottom: -7rem;
-  width: 15rem;
-  height: 15rem;
+  right: -6rem;
+  bottom: -8rem;
+  width: 13rem;
+  height: 13rem;
   background: rgba(7, 130, 96, 0.07);
   content: "";
   transform: rotate(35deg);
@@ -157,6 +187,10 @@
 
 .workshops__card:hover::before {
   width: 100%;
+}
+
+.workshops__card:nth-child(2):hover {
+  transform: translateY(2.7rem);
 }
 
 .workshops__card-number {
@@ -175,8 +209,8 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin: 0 0 2.6rem;
-  font-size: 2.4rem;
+  margin: 0 0 2.2rem;
+  font-size: 2.2rem;
 }
 
 .workshops__icon {
@@ -295,32 +329,45 @@
 
 @media (max-width: 1000px) {
   .workshops__intro {
-    width: min(100% - 4rem, 88rem);
+    width: 100%;
+    margin: -3rem 0 0;
     grid-template-columns: 1fr;
     gap: 3rem;
-    padding: 8rem 4rem;
+    padding: 10rem max(3rem, calc((100vw - 88rem) / 2)) 12rem;
   }
 
   .workshops__intro-quote {
-    transform: none;
+    max-width: 52rem;
+    transform: rotate(-1deg);
   }
 
   .workshops__grid {
     width: min(100% - 4rem, 88rem);
     grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: -6rem;
+  }
+
+  .workshops__card {
+    min-height: 0;
+  }
+
+  .workshops__card:nth-child(2) {
+    transform: none;
   }
 }
 
 @media (max-width: 620px) {
-  .workshops__intro,
   .workshops__grid,
   .workshops__offer-heading {
     width: calc(100% - 2.8rem);
   }
 
   .workshops__intro {
-    padding: 6.5rem 2.2rem;
-    clip-path: polygon(0 2.5rem, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+    width: 100%;
+    padding: 8rem 2.2rem 10rem;
+    border-radius: 50% / 2rem;
+    clip-path: none;
   }
 
   .workshops__intro h2 br,
