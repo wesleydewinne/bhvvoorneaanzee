@@ -1,218 +1,327 @@
-/* =========================================
-   BASIS
-========================================= */
-
 .workshops {
-    background-color: var(--color-bg-light, #f9fafb);
+  --workshops-ink: #0b1b31;
+  --workshops-orange: var(--color-accent, #ff6818);
+  --workshops-green: #078260;
+  color: var(--workshops-ink);
+  background: #f5f8f7;
+  overflow: hidden;
+}
+
+.workshops * {
+  box-sizing: border-box;
 }
 
 .workshops__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-}
-
-/* =========================================
-   INTRO BLOK
-========================================= */
-
-.workshops__intro {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    padding: 3.5rem 4rem;
-    border-radius: 1.4rem;
-    border: 1px solid #eef2f7;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-    margin-bottom: 5rem;
+  width: 100%;
+  padding: 0;
 }
 
 .workshops__eyebrow {
-    margin: 0 0 1rem;
-    color: var(--color-accent, #ff6818);
-    font-size: 1.3rem;
-    font-weight: 800;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+  margin: 0 0 1.1rem;
+  color: var(--workshops-orange);
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.workshops__intro {
+  position: relative;
+  width: min(138rem, calc(100% - 10rem));
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(32rem, 0.8fr);
+  align-items: center;
+  gap: clamp(5rem, 8vw, 12rem);
+  margin: 0 auto;
+  padding: 10rem 7rem 11rem;
+  background: #ffffff;
+  box-shadow: 0 3rem 8rem rgba(10, 35, 48, 0.08);
+  clip-path: polygon(0 5rem, 100% 0, 100% calc(100% - 5rem), 0 100%);
+}
+
+.workshops__intro::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255, 104, 24, 0.18), transparent 38%),
+    linear-gradient(145deg, transparent 28%, rgba(7, 130, 96, 0.08));
+  content: "";
+}
+
+.workshops__intro-copy,
+.workshops__intro-quote {
+  position: relative;
+  z-index: 1;
 }
 
 .workshops__intro h2,
-.workshops__offer > h2 {
-    margin: 0 0 1.8rem;
-    font-size: clamp(2.8rem, 4vw, 4.4rem);
-    line-height: 1.12;
+.workshops__difference h2,
+.workshops__offer-heading h2 {
+  margin: 0;
+  font-size: clamp(3.2rem, 4vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
-.workshops__intro p:not(.workshops__eyebrow) {
-    max-width: 82rem;
-    color: #536375;
-    font-size: 1.7rem;
-    line-height: 1.8;
+.workshops__intro-copy > p:not(.workshops__eyebrow) {
+  max-width: 78rem;
+  margin: 2rem 0 0;
+  color: #536375;
+  font-size: 1.7rem;
+  line-height: 1.75;
 }
 
-/* =========================================
-   GRID BLOKKEN (3 KAARTEN)
-========================================= */
+.workshops__intro-quote {
+  margin: 0;
+  padding: 3.2rem 3.4rem;
+  border-left: 0.5rem solid var(--workshops-orange);
+  color: #365264;
+  background: linear-gradient(135deg, #e4f1ed, #f7faf9);
+  box-shadow: 0 2.4rem 5rem rgba(15, 52, 61, 0.14);
+  font-size: clamp(1.8rem, 2vw, 2.5rem);
+  line-height: 1.55;
+  transform: translateY(2rem);
+}
+
+.workshops__intro-quote strong {
+  color: var(--workshops-ink);
+}
 
 .workshops__grid {
-    display: grid;
-    gap: 2.5rem;
-    margin-bottom: 6rem;
-}
-
-@media (min-width: 900px) {
-    .workshops__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Titel layout */
-.workshops__card-title {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-/* Icon badge */
-.workshops__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 4rem;
-    height: 4rem;
-
-    background: linear-gradient(135deg, #ff8000, #ff5c00);
-    color: #ffffff;
-
-    border-radius: 1rem;
+  width: min(138rem, calc(100% - 10rem));
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.4rem;
+  margin: -1rem auto 9rem;
 }
 
 .workshops__card {
-    background: #ffffff;
-    padding: 3rem;
-    border-radius: 1.4rem;
-    border: 1px solid #eef2f7;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  min-height: 30rem;
+  padding: 4rem;
+  border: 1px solid #dae5e1;
+  color: var(--workshops-ink);
+  background: linear-gradient(150deg, #ffffff 0%, #ffffff 72%, #eef5f2 100%);
+  box-shadow: 0 2.2rem 5rem rgba(15, 35, 51, 0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.workshops__card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10rem;
+  height: 0.5rem;
+  background: var(--workshops-orange);
+  content: "";
+  transition: width 0.25s ease;
+}
+
+.workshops__card::after {
+  position: absolute;
+  right: -5rem;
+  bottom: -7rem;
+  width: 15rem;
+  height: 15rem;
+  background: rgba(7, 130, 96, 0.07);
+  content: "";
+  transform: rotate(35deg);
 }
 
 .workshops__card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 3rem 6rem rgba(15, 35, 51, 0.14);
+  transform: translateY(-0.8rem);
 }
 
-/* Lijst styling */
+.workshops__card:hover::before {
+  width: 100%;
+}
+
+.workshops__card-number {
+  position: absolute;
+  top: 2.2rem;
+  right: 2.5rem;
+  color: #c2cec9;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.workshops__card-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 0 2.6rem;
+  font-size: 2.4rem;
+}
+
+.workshops__icon {
+  width: 5.2rem;
+  height: 5.2rem;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff8a35, #ff5d0a);
+  box-shadow: 0 1.2rem 2.5rem rgba(255, 104, 24, 0.25);
+  transform: skewX(-7deg);
+}
+
+.workshops__icon svg {
+  transform: skewX(7deg);
+}
 
 .workshops__card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .workshops__card li {
-    position: relative;
-    padding-left: 2.8rem;
-    margin-bottom: 1.2rem;
-    font-size: 1.6rem;
-    line-height: 1.7;
+  position: relative;
+  padding-left: 2.7rem;
+  color: #526275;
+  font-size: 1.6rem;
+  line-height: 1.55;
 }
 
 .workshops__card li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    top: 0.2rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #16a34a;
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 0.2rem solid var(--workshops-green);
+  border-radius: 50%;
+  content: "";
 }
 
-/* =========================================
-   WAAROM WORKSHOP BLOK
-========================================= */
-
 .workshops__difference {
-    background: #fff7ed;
-    padding: 4rem;
-    border-radius: 1.2rem;
-    border-left: 6px solid var(--color-accent, #ff8000);
-    margin-bottom: 6rem;
-    text-align: center;
+  position: relative;
+  width: 100%;
+  padding: 12rem 5rem 13rem;
+  color: #ffffff;
+}
+
+.workshops__difference::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(34, 197, 151, 0.18), transparent 27%),
+    linear-gradient(125deg, #0c192a 0%, #102b35 62%, #0b5145 100%);
+  clip-path: polygon(0 6rem, 100% 0, 100% calc(100% - 6rem), 0 100%);
+  content: "";
+}
+
+.workshops__difference-inner {
+  position: relative;
+  width: min(110rem, 100%);
+  margin: 0 auto;
 }
 
 .workshops__difference h2 {
-    font-size: 2.3rem;
-    margin-bottom: 2rem;
+  max-width: 90rem;
+  color: #ffffff;
 }
 
-.workshops__difference p {
-    max-width: 75rem;            /* 👈 voorkomt te brede tekst */
-    margin: 0 auto 1.8rem auto;  /* 👈 echt midden zetten */
+.workshops__difference-inner > p:last-child {
+  max-width: 82rem;
+  margin: 2.5rem 0 0;
+  color: #d4e1e4;
+  font-size: 1.8rem;
+  line-height: 1.75;
 }
 
 .workshops__offer {
-    scroll-margin-top: 10rem;
-    padding: 1rem 0 4rem;
+  width: 100%;
+  padding-top: 6rem;
+  scroll-margin-top: 10rem;
+}
+
+.workshops__offer-heading {
+  width: min(110rem, calc(100% - 10rem));
+  margin: 0 auto;
+  padding: 2rem 0 5rem;
+  text-align: center;
+}
+
+.workshops__offer-heading h2 {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.workshops__offer-heading > p:last-child {
+  max-width: 72rem;
+  margin: 2rem auto 0;
+  color: #5a6979;
+  font-size: 1.7rem;
+  line-height: 1.7;
 }
 
 .workshops__offer > .training-card-section {
-    padding-top: 2rem;
+  width: 100%;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
 }
 
-/* =========================================
-   BREDE SCHERMEN
-   Houdt tekst en kaarten bij elkaar op 4K/ultrawide.
-========================================= */
+@media (max-width: 1000px) {
+  .workshops__intro {
+    width: min(100% - 4rem, 88rem);
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 8rem 4rem;
+  }
 
-@media (min-width: 1440px) {
-    .workshops__container {
-        max-width: 1280px;
-        padding-top: 6.5rem;
-        padding-bottom: 7rem;
-    }
+  .workshops__intro-quote {
+    transform: none;
+  }
 
-    .workshops__intro {
-        padding: 4.5rem 5rem;
-    }
-
-    .workshops__intro h2,
-    .workshops__intro p {
-        max-width: 78rem;
-    }
-
-    .workshops__grid {
-        gap: 3rem;
-    }
-
-    .workshops__difference {
-        max-width: 104rem;
-        margin-right: auto;
-        margin-left: auto;
-        padding-right: 6rem;
-        padding-left: 6rem;
-    }
-
-    .workshops__offer > h2,
-    .workshops__offer > .workshops__eyebrow {
-        max-width: 82rem;
-        margin-right: auto;
-        margin-left: auto;
-        text-align: center;
-    }
-}
-
-@media (min-width: 1920px) {
-    .workshops {
-        background:
-            linear-gradient(90deg, #eef3f1 0, #f9fafb 16%, #f9fafb 84%, #eef3f1 100%);
-    }
+  .workshops__grid {
+    width: min(100% - 4rem, 88rem);
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 620px) {
-    .workshops__container { padding: 3rem 1.4rem; }
-    .workshops__intro, .workshops__card, .workshops__difference { padding: 2.6rem 2.2rem; }
-    .workshops__grid { gap: 1.6rem; margin-bottom: 4rem; }
-    .workshops__difference { text-align: left; }
-}
+  .workshops__intro,
+  .workshops__grid,
+  .workshops__offer-heading {
+    width: calc(100% - 2.8rem);
+  }
 
+  .workshops__intro {
+    padding: 6.5rem 2.2rem;
+    clip-path: polygon(0 2.5rem, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+  }
+
+  .workshops__intro h2 br,
+  .workshops__difference h2 br {
+    display: none;
+  }
+
+  .workshops__intro-quote,
+  .workshops__card {
+    padding: 2.6rem 2.2rem;
+  }
+
+  .workshops__difference {
+    padding: 9rem 2.2rem 10rem;
+  }
+
+  .workshops__offer {
+    padding-top: 3rem;
+  }
+}
