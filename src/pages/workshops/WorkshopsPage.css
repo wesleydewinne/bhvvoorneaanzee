@@ -11,6 +11,22 @@
   box-sizing: border-box;
 }
 
+.workshops > .site-hero .site-hero-image {
+  object-position: center 62%;
+}
+
+.workshops > .site-hero::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(4, 15, 25, 0.72), rgba(4, 15, 25, 0.26), rgba(4, 15, 25, 0.58));
+  content: "";
+  pointer-events: none;
+}
+
+.workshops > .site-hero .site-hero-overlay {
+  z-index: 1;
+}
+
 .workshops__container {
   width: 100%;
   padding: 0;

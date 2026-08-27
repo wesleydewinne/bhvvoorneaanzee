@@ -8,6 +8,7 @@ import data from "../../shared/data/training.json";
 import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
+import workshopHeaderImage from "@/assets/image/homepageFotos/Wesley De Winne instructie brandblusser.webp";
 import "./WorkshopsPage.css";
 
 const benefits = [
@@ -45,6 +46,7 @@ export default function Workshops() {
       <HeaderSection
         mainTitle="Workshops Veiligheid & BHV"
         subTitle="Kort, praktijkgericht en afgestemd op jouw organisatie"
+        image={workshopHeaderImage}
       />
 
       <div className="workshops__container">
