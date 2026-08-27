@@ -160,6 +160,55 @@
     padding-top: 2rem;
 }
 
+/* =========================================
+   BREDE SCHERMEN
+   Houdt tekst en kaarten bij elkaar op 4K/ultrawide.
+========================================= */
+
+@media (min-width: 1440px) {
+    .workshops__container {
+        max-width: 1280px;
+        padding-top: 6.5rem;
+        padding-bottom: 7rem;
+    }
+
+    .workshops__intro {
+        padding: 4.5rem 5rem;
+    }
+
+    .workshops__intro h2,
+    .workshops__intro p {
+        max-width: 78rem;
+    }
+
+    .workshops__grid {
+        gap: 3rem;
+    }
+
+    .workshops__difference {
+        max-width: 104rem;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 6rem;
+        padding-left: 6rem;
+    }
+
+    .workshops__offer > h2,
+    .workshops__offer > .workshops__eyebrow {
+        max-width: 82rem;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1920px) {
+    .workshops {
+        background:
+            linear-gradient(90deg, #eef3f1 0, #f9fafb 16%, #f9fafb 84%, #eef3f1 100%);
+    }
+}
+
 @media (max-width: 620px) {
     .workshops__container { padding: 3rem 1.4rem; }
     .workshops__intro, .workshops__card, .workshops__difference { padding: 2.6rem 2.2rem; }

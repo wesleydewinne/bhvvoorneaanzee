@@ -353,6 +353,76 @@
 .workshop-detail__answer { grid-template-columns: 1fr auto; }
 .workshop-detail__marker { display: grid; width: 13rem; height: 13rem; place-items: center; border: 1px solid #c8ddd6; color: var(--course-green); background: #edf7f3; }
 .workshop-detail__marker svg { width: 7.2rem; height: 7.2rem; }
+
+/* =========================================
+   BREDE SCHERMEN
+   Een vaste contentzone voorkomt lange regels en losse blokken.
+========================================= */
+
+@media (min-width: 1440px) {
+    .workshop-detail .course-shell {
+        width: min(1280px, calc(100% - 12rem));
+    }
+
+    .workshop-detail .course-hero {
+        min-height: 74rem;
+    }
+
+    .workshop-detail .course-hero__content {
+        padding-top: 11rem;
+        padding-bottom: 16rem;
+    }
+
+    .workshop-detail .course-hero h1 {
+        max-width: 94rem;
+        font-size: 8.4rem;
+    }
+
+    .workshop-detail .course-hero__lead {
+        max-width: 72rem;
+        font-size: 2rem;
+    }
+
+    .workshop-detail .course-answer__panel,
+    .workshop-detail .course-context__audience {
+        max-width: 110rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .workshop-detail .course-learn__grid,
+    .workshop-detail .course-faq__grid,
+    .workshop-detail .course-region__panel {
+        max-width: 116rem;
+    }
+
+    .workshop-detail .course-module-grid {
+        gap: 2.8rem;
+    }
+
+    .workshop-detail .course-module-grid article {
+        padding-right: 4.4rem;
+        padding-left: 4.4rem;
+    }
+
+    .workshop-detail .course-result__panel,
+    .workshop-detail .course-cta__panel {
+        max-width: 116rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .workshop-detail .course-hero__shade {
+        background:
+            linear-gradient(90deg, #0c1422fa 0%, #142033ed 42%, #14203370 72%, #14203338 100%),
+            linear-gradient(0deg, #0a111dd9, transparent 62%);
+    }
+
+    .workshop-detail .course-hero__image {
+        object-position: center 38%;
+    }
+}
+
 @media (max-width: 620px) {
     .workshop-detail__answer { grid-template-columns: 1fr; }
     .workshop-detail__marker { display: none; }

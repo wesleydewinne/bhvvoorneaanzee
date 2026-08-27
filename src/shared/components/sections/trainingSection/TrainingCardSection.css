@@ -231,6 +231,30 @@
 }
 
 /* ===============================
+   Desktop breedte
+   Gebruik de beschikbare ruimte met vaste zijmarges.
+================================ */
+
+@media (min-width: 992px) {
+    .training-card-grid {
+        width: calc(100% - 10rem);
+        max-width: none;
+        padding-right: 0;
+        padding-left: 0;
+        scroll-padding-inline: 0;
+    }
+
+    .training-card-scene {
+        flex: 1 0 28rem;
+        width: auto;
+    }
+
+    .training-card-scene .training-card {
+        max-width: none;
+    }
+}
+
+/* ===============================
    Responsive
 ================================ */
 
