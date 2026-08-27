@@ -91,6 +91,12 @@ const articleThreeTasks = [
   "De arbeid zo organiseren dat veiligheid en gezondheid worden beschermd.",
 ];
 
+const articleTwelveTasks = [
+  "Werkgever en werknemers werken samen aan het arbeidsomstandighedenbeleid.",
+  "De ondernemingsraad of personeelsvertegenwoordiging wordt bij het beleid betrokken.",
+  "Werkgever en medezeggenschap wisselen actief informatie uit over de uitvoering.",
+];
+
 const articleFifteenTasks = [
   "Eerste hulp verlenen bij ongevallen.",
   "Brand beperken en bestrijden en de gevolgen van ongevallen beperken.",
@@ -381,8 +387,8 @@ export default function BhvPage() {
               <h2>De verplichting is helder. De invulling vraagt maatwerk.</h2>
             </div>
             <p>
-              Artikel 3 beschrijft de algemene zorgplicht. Artikel 15 benoemt de
-              taken van de bedrijfshulpverlening.
+              Artikel 3 beschrijft de algemene zorgplicht, artikel 12 de
+              samenwerking en artikel 15 de taken van de bedrijfshulpverlening.
             </p>
           </div>
 
@@ -404,6 +410,25 @@ export default function BhvPage() {
                 rel="noreferrer"
               >
                 Lees artikel 3 op overheid.nl <ArrowRight />
+              </a>
+            </article>
+            <article>
+              <small>Artikel 12 Arbowet</small>
+              <h3>Samenwerken aan veilig en gezond werk</h3>
+              <ul>
+                {articleTwelveTasks.map((task) => (
+                  <li key={task}>
+                    <CheckCircle weight="fill" />
+                    {task}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://wetten.overheid.nl/jci1.3:c:BWBR0010346&hoofdstuk=3&artikel=12"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Lees artikel 12 op overheid.nl <ArrowRight />
               </a>
             </article>
             <article>

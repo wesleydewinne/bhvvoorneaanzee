@@ -456,6 +456,34 @@
   white-space: nowrap;
 }
 
+/* Brede schermen: benut het vlak met 5rem ruimte aan beide zijden. */
+@media (min-width: 1001px) {
+  .bhv-factors > .bhv-shell {
+    width: calc(100% - 10rem);
+    max-width: none;
+  }
+
+  .bhv-factors .bhv-heading > div {
+    max-width: 82rem;
+  }
+
+  .bhv-factors .bhv-heading > p {
+    max-width: 42rem;
+  }
+}
+
+/* Op ultrawide passen de acht factoren logisch op één regel. */
+@media (min-width: 2200px) {
+  .bhv-factor-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .bhv-factor {
+    min-height: 29rem;
+    padding: 2.4rem;
+  }
+}
+
 .bhv-law {
     position: relative;
     margin-top: -90px;
@@ -493,6 +521,21 @@
     z-index: 1;
 }
 
+@media (min-width: 1001px) {
+  .bhv-law > .bhv-shell {
+    width: calc(100% - 10rem);
+    max-width: none;
+  }
+
+  .bhv-law .bhv-heading > div {
+    max-width: 82rem;
+  }
+
+  .bhv-law .bhv-heading > p {
+    max-width: 48rem;
+  }
+}
+
 .bhv-heading--light h2 {
   color: #ffffff;
 }
@@ -510,7 +553,7 @@
 
 .bhv-law__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -745,6 +788,10 @@
   .bhv-practice__grid,
   .bhv-faq__grid,
   .bhv-region__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .bhv-law__grid {
     grid-template-columns: 1fr;
   }
 
