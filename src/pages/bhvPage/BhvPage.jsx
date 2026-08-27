@@ -270,7 +270,8 @@ export default function BhvPage() {
               Bedrijfshulpverlening die blijft hangen
             </p>
             <h2>
-              Geen les voor het certificaat. Training voor het moment dat telt.
+              <span>Geen les voor het certificaat.</span>
+              <span>Training voor het moment dat telt.</span>
             </h2>
             <p className="bhv-copy">
               Een BHV’er moet onder druk kunnen herkennen, beslissen en
@@ -384,7 +385,11 @@ export default function BhvPage() {
           <div className="bhv-heading bhv-heading--light">
             <div>
               <p className="bhv-kicker">BHV en de Arbowet</p>
-              <h2>De verplichting is helder. De invulling vraagt maatwerk.</h2>
+              <h2>
+                De verplichting is helder.
+                <br />
+                De invulling vraagt maatwerk.
+              </h2>
             </div>
             <p>
               Artikel 3 beschrijft de algemene zorgplicht, artikel 12 de

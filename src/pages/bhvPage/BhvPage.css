@@ -241,6 +241,18 @@
   align-items: center;
 }
 
+.bhv-intro__grid h2 span {
+  display: block;
+}
+
+@media (min-width: 1500px) {
+  .bhv-intro__grid {
+    width: min(1380px, calc(100% - 10rem));
+    grid-template-columns: minmax(0, 1.35fr) minmax(400px, 0.85fr);
+    gap: 70px;
+  }
+}
+
 .bhv-task-grid {
   display: grid;
   gap: 14px;
@@ -395,7 +407,7 @@
 
 .bhv-factor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 26rem);
+  grid-template-columns: repeat(4, 26rem);
   justify-content: center;
   gap: 16px;
 }
@@ -471,8 +483,8 @@
   }
 }
 
-/* Op ultrawide passen de acht factoren logisch op één regel. */
-@media (min-width: 2200px) {
+/* Alleen wanneer alle acht kaarten echt passen, komen ze op één regel. */
+@media (min-width: 2300px) {
   .bhv-factor-grid {
     grid-template-columns: repeat(8, 26rem);
   }
@@ -480,6 +492,13 @@
   .bhv-factor {
     min-height: 26rem;
     padding: 2.7rem;
+  }
+}
+
+/* Zodra vier vaste kaarten niet meer passen, schakelt het raster naar twee. */
+@media (min-width: 621px) and (max-width: 1199px) {
+  .bhv-factor-grid {
+    grid-template-columns: repeat(2, 26rem);
   }
 }
 
@@ -568,6 +587,8 @@
 }
 
 .bhv-law__grid article {
+  display: flex;
+  flex-direction: column;
   padding: 40px;
   border-top: 5px solid var(--bhv-orange);
   color: var(--bhv-ink);
@@ -616,6 +637,10 @@
   color: var(--bhv-orange);
   font-weight: 850;
   text-decoration: none;
+}
+
+.bhv-law__grid article > a {
+  margin-top: auto;
 }
 
 .bhv-law__grid a svg,
