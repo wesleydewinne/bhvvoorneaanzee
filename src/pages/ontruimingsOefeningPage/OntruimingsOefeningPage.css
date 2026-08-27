@@ -262,6 +262,28 @@
 .evac-phase:nth-child(4) {
   grid-column: 2 / span 2;
 }
+
+/* Ultrawide: alle vijf fasen op één rustige, gelijkmatige rij. */
+@media (min-width: 1800px) {
+  .evac-phases > .evac-shell {
+    width: min(1900px, calc(100% - 10rem));
+  }
+
+  .evac-phases .evac-heading {
+    width: min(1180px, 100%);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .evac-phase-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .evac-phase,
+  .evac-phase:nth-child(4) {
+    grid-column: auto;
+  }
+}
 .evac-phase:before {
   content: "";
   position: absolute;
