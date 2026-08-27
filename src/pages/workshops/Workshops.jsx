@@ -1,146 +1,49 @@
-// src/pages/WorkshopsPage.jsx
-import React from "react";
-import "./WorkshopsPage.css";
-
-import {
-    FireExtinguisher,
-    UsersThree,
-    ChatCircleDots,
-    ClipboardText,
-    CheckCircle,
-} from "@phosphor-icons/react";
-
+import { createElement } from "react";
+import { ClipboardText, FireExtinguisher, UsersThree } from "@phosphor-icons/react";
 import data from "../../shared/data/training.json";
-
 import TrainingCardSection from "@/shared/components/sections/trainingSection/TrainingCardSection.jsx";
 import HeaderSection from "@/shared/components/sections/headerSection/HeaderSection.jsx";
 import ServiceRegionsSection from "@/shared/components/sections/ServiceAreaSection/ServiceRegionsSection.jsx";
+import "./WorkshopsPage.css";
 
-import fallback from "@/assets/image/common/fallback/Card-Fallback.png?w=720&format=webp&quality=72";
+const benefits = [
+  { icon: UsersThree, title: "Samenwerken", items: ["Duidelijke rolverdeling", "Communiceren onder druk", "Samen een scenario oplossen"] },
+  { icon: FireExtinguisher, title: "Zelf doen", items: ["Oefenen met materialen", "Realistische situaties", "Directe feedback"] },
+  { icon: ClipboardText, title: "Gericht resultaat", items: ["Eén helder veiligheidsthema", "Afgestemd op de werkplek", "Direct toepasbare afspraken"] },
+];
 
-function Workshops() {
-    const workshopCategory = data.categories.find(
-        (category) => category.id === "workshops"
-    );
+export default function Workshops() {
+  const category = data.categories.find(({ id }) => id === "workshops");
+  const cards = (category?.trainings ?? []).map((training) => ({
+    id: training.type,
+    title: training.title,
+    description: training.description,
+    image: training.cardImage || category?.image,
+    alt: training.cardAlt || training.title,
+    buttonTo: training.slug,
+    buttonText: "Bekijk workshop",
+  }));
 
-    const workshopTrainings = workshopCategory?.trainings || [];
+  return (
+    <main className="workshops">
+      <HeaderSection mainTitle="Workshops Veiligheid & BHV" subTitle="Kort, praktijkgericht en afgestemd op jouw organisatie" />
+      <div className="workshops__container">
+        <section className="workshops__intro">
+          <p className="workshops__eyebrow">Gericht leren</p>
+          <h2>Eén veiligheidsonderwerp. Volle aandacht.</h2>
+          <p>Onze workshops zijn compacte praktijksessies rond één concreet onderwerp. Ideaal als opfrismoment, verdieping van de BHV-training of actief onderdeel van een teamdag.</p>
+          <p>Deelnemers luisteren niet alleen: ze beoordelen situaties, werken met materialen en oefenen handelingen die aansluiten op hun eigen werkplek.</p>
+        </section>
 
-    const workshopCards = workshopTrainings.map((training) => {
-        const resolvedImage = training.cardImage?.trim()
-            ? training.cardImage
-            : workshopCategory?.image || fallback;
+        <section className="workshops__grid" aria-label="Kenmerken van onze workshops">
+          {benefits.map(({ icon, title, items }) => <article className="workshops__card" key={title}><h3 className="workshops__card-title"><span className="workshops__icon">{createElement(icon, { size: 24, weight: "bold" })}</span>{title}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>)}
+        </section>
 
-        return {
-            title: training.title,
-            description: training.description,
-            cardImage: resolvedImage,
-            cardAlt: training.cardAlt || training.title,
-            buttonTo: `/workshops/${training.type}`,
-            buttonText: "Meer informatie",
-            buttonStyle: "primary",
-            buttonIcon: "🎯",
-        };
-    });
+        <section className="workshops__difference"><p className="workshops__eyebrow">Flexibel inzetbaar</p><h2>Geen standaardverhaal, maar oefenen wat ertoe doet</h2><p>We stemmen inhoud, scenario’s en materialen af op de deelnemers en risico’s van de organisatie. Zo benut je de beschikbare tijd gericht en gaat het team naar huis met duidelijke, bruikbare afspraken.</p></section>
 
-    return (
-        <div className="workshops">
-
-            <HeaderSection
-                mainTitle="Workshops Veiligheid & BHV"
-                subTitle="Praktische en doelgerichte veiligheidssessies"
-            />
-
-                {/* Intro */}
-                <section className="workshops__intro">
-                    <h2>Wat zijn onze workshops?</h2>
-                    <p>
-                        Onze workshops zijn korte, praktijkgerichte sessies
-                        gericht op één specifiek veiligheidsonderwerp.
-                        Ideaal als opfrismoment, verdieping of
-                        als veiligheidssessie tijdens een teamdag.
-                    </p>
-                    <p>
-                        Waar een volledige BHV-training een brede basis legt,
-                        focust een workshop zich op gerichte vaardigheden.
-                        Kort, krachtig en direct toepasbaar.
-                    </p>
-                </section>
-
-                {/* Wat leer je */}
-                <section className="workshops__grid">
-
-                    <article className="workshops__card">
-                        <h3 className="workshops__card-title">
-        <span className="workshops__icon">
-            <UsersThree size={22} weight="bold"/>
-        </span>
-                            Samenwerking
-                        </h3>
-                        <ul>
-                            <li>Effectief samenwerken tijdens incidenten</li>
-                            <li>Rolverdeling binnen het BHV-team</li>
-                            <li>Communicatie onder druk</li>
-                        </ul>
-                    </article>
-
-                    <article className="workshops__card">
-                        <h3 className="workshops__card-title">
-        <span className="workshops__icon">
-            <FireExtinguisher size={22} weight="bold"/>
-        </span>
-                            Praktijkgericht
-                        </h3>
-                        <ul>
-                            <li>Realistische scenario’s</li>
-                            <li>Oefenen met materialen</li>
-                            <li>Direct toepasbare vaardigheden</li>
-                        </ul>
-                    </article>
-
-                    <article className="workshops__card">
-                        <h3 className="workshops__card-title">
-        <span className="workshops__icon">
-            <ClipboardText size={22} weight="bold"/>
-        </span>
-                            Veiligheidscultuur
-                        </h3>
-                        <ul>
-                            <li>Bewustwording op de werkvloer</li>
-                            <li>Verantwoord handelen</li>
-                            <li>Leren van praktijksituaties</li>
-                        </ul>
-                    </article>
-
-
-                </section>
-
-                {/* Waarom workshop */}
-                <section className="workshops__difference">
-                    <h2>Waarom kiezen voor een workshop?</h2>
-                    <p>
-                        Een workshop is ideaal wanneer je een specifiek thema wilt
-                        uitdiepen zonder een volledige trainingsdag te organiseren.
-                        Gericht trainen betekent efficiënter leren.
-                    </p>
-                    <p>
-                        Perfect als aanvulling op BHV, als verdieping of als
-                        periodieke veiligheidssessie binnen jouw organisatie.
-                    </p>
-                </section>
-
-                {/* Workshop Cards */}
-                    <TrainingCardSection
-                        cards={workshopCards}
-                    />
-
-
-
-
-           {/*<ServiceRegionsSection />*/}
-            <ServiceRegionsSection />
-
-        </div>
-    );
+        <section className="workshops__offer" id="aanbod"><p className="workshops__eyebrow">Workshopaanbod</p><h2>Kies het onderwerp dat bij jullie situatie past</h2><TrainingCardSection cards={cards} /></section>
+      </div>
+      <ServiceRegionsSection />
+    </main>
+  );
 }
-
-export default Workshops;

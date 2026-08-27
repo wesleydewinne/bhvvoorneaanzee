@@ -347,3 +347,13 @@
     background: #111827;
     color: white;
 }
+
+/* Workshop detail pages use the shared modern course layout. */
+.workshop-detail .course-hero__image { object-position: center 42%; }
+.workshop-detail__answer { grid-template-columns: 1fr auto; }
+.workshop-detail__marker { display: grid; width: 13rem; height: 13rem; place-items: center; border: 1px solid #c8ddd6; color: var(--course-green); background: #edf7f3; }
+.workshop-detail__marker svg { width: 7.2rem; height: 7.2rem; }
+@media (max-width: 620px) {
+    .workshop-detail__answer { grid-template-columns: 1fr; }
+    .workshop-detail__marker { display: none; }
+}

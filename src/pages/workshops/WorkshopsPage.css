@@ -25,6 +25,29 @@
     margin-bottom: 5rem;
 }
 
+.workshops__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--color-accent, #ff6818);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.workshops__intro h2,
+.workshops__offer > h2 {
+    margin: 0 0 1.8rem;
+    font-size: clamp(2.8rem, 4vw, 4.4rem);
+    line-height: 1.12;
+}
+
+.workshops__intro p:not(.workshops__eyebrow) {
+    max-width: 82rem;
+    color: #536375;
+    font-size: 1.7rem;
+    line-height: 1.8;
+}
+
 /* =========================================
    GRID BLOKKEN (3 KAARTEN)
 ========================================= */
@@ -126,5 +149,21 @@
 .workshops__difference p {
     max-width: 75rem;            /* 👈 voorkomt te brede tekst */
     margin: 0 auto 1.8rem auto;  /* 👈 echt midden zetten */
+}
+
+.workshops__offer {
+    scroll-margin-top: 10rem;
+    padding: 1rem 0 4rem;
+}
+
+.workshops__offer > .training-card-section {
+    padding-top: 2rem;
+}
+
+@media (max-width: 620px) {
+    .workshops__container { padding: 3rem 1.4rem; }
+    .workshops__intro, .workshops__card, .workshops__difference { padding: 2.6rem 2.2rem; }
+    .workshops__grid { gap: 1.6rem; margin-bottom: 4rem; }
+    .workshops__difference { text-align: left; }
 }
 
