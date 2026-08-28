@@ -13,31 +13,12 @@ function formatDate(value) {
 export default function GeneralTermsPage() {
   const [terms, setTerms] = useState(null);
   const [error, setError] = useState("");
-  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     generalTermsService.getTerms()
       .then(setTerms)
       .catch(() => setError("De algemene voorwaarden konden niet worden geladen."));
   }, []);
-
-  const download = async () => {
-    setDownloading(true);
-    setError("");
-    try {
-      const blob = await generalTermsService.downloadPdf();
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "algemene-voorwaarden-bhv-voorne-aan-zee.pdf";
-      link.click();
-      URL.revokeObjectURL(url);
-    } catch {
-      setError("De PDF met algemene voorwaarden kon niet worden gedownload.");
-    } finally {
-      setDownloading(false);
-    }
-  };
 
   const effectiveDate = formatDate(terms?.effectiveDate);
 
@@ -98,14 +79,16 @@ export default function GeneralTermsPage() {
                   : "De PDF wordt beschikbaar zodra de definitieve versie is gepubliceerd."}
               </p>
             </div>
-            <button
+            <a
               className="quote-secondary-button"
-              type="button"
-              disabled={!terms.downloadAvailable || downloading}
-              onClick={download}
+              href={terms.downloadAvailable ? generalTermsService.getPdfDownloadUrl() : undefined}
+              aria-disabled={!terms.downloadAvailable}
+              onClick={(event) => {
+                if (!terms.downloadAvailable) event.preventDefault();
+              }}
             >
-              {downloading ? "Downloaden..." : terms.downloadAvailable ? "PDF downloaden" : "PDF binnenkort beschikbaar"}
-            </button>
+              {terms.downloadAvailable ? "PDF downloaden" : "PDF binnenkort beschikbaar"}
+            </a>
           </section>
         )}
 

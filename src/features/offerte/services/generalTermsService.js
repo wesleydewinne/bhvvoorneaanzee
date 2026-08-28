@@ -6,11 +6,9 @@ const generalTermsService = {
     return response.data;
   },
 
-  async downloadPdf() {
-    const response = await api.get("/public/general-terms/pdf", {
-      responseType: "blob",
-    });
-    return response.data;
+  getPdfDownloadUrl() {
+    const baseUrl = api.defaults.baseURL?.replace(/\/$/, "") || "";
+    return `${baseUrl}/public/general-terms/pdf`;
   },
 };
 
