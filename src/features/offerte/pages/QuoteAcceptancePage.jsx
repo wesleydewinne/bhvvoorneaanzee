@@ -16,8 +16,20 @@ export default function QuoteAcceptancePage() {
   const [acceptedByRole, setAcceptedByRole] = useState("");
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [downloadingTerms, setDownloadingTerms] = useState(false);
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
+
+  const downloadGeneralTerms = async () => {
+    setDownloadingTerms(true);
+    try {
+      await generalTermsService.downloadPdf();
+    } catch (downloadError) {
+      setError(downloadError.message || "De algemene voorwaarden konden niet worden gedownload.");
+    } finally {
+      setDownloadingTerms(false);
+    }
+  };
 
   useEffect(() => {
     let active = true;
@@ -147,15 +159,22 @@ export default function QuoteAcceptancePage() {
                     van toepassing.
                   </p>
                   <div className="quote-terms-actions">
-                    <Link className="quote-secondary-button" to="/algemene-voorwaarden">
+                    <Link
+                      className="quote-secondary-button"
+                      to="/algemene-voorwaarden"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Algemene voorwaarden bekijken
                     </Link>
-                    <a
+                    <button
+                      type="button"
                       className="quote-secondary-button"
-                      href={generalTermsService.getPdfDownloadUrl()}
+                      onClick={downloadGeneralTerms}
+                      disabled={downloadingTerms}
                     >
-                      PDF downloaden
-                    </a>
+                      {downloadingTerms ? "PDF downloaden..." : "PDF downloaden"}
+                    </button>
                   </div>
                 </section>
 
