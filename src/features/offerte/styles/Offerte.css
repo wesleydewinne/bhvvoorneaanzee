@@ -1465,7 +1465,7 @@ td small {
 
 .quote-terms-list {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.15rem;
   margin: 1.2rem 0 1.5rem;
   padding: 0;
   list-style: none;
@@ -1484,7 +1484,7 @@ td small {
   padding-left: 2.2rem;
   color: var(--quote-text);
   font-size: 1.45rem;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .quote-terms-list li::before {
