@@ -10,6 +10,39 @@ function formatDate(value) {
     .format(new Date(`${value}T12:00:00`));
 }
 
+function renderSectionContent(section) {
+  const content = [];
+  let bulletItems = [];
+
+  const flushBulletList = () => {
+    if (bulletItems.length === 0) return;
+    const listNumber = content.length;
+    content.push(
+      <ul key={`list-${listNumber}`} className="quote-terms-list">
+        {bulletItems.map((item, index) => <li key={`${listNumber}-${index}`}>{item}</li>)}
+      </ul>,
+    );
+    bulletItems = [];
+  };
+
+  section.paragraphs.forEach((paragraph, index) => {
+    const trimmed = paragraph.trim();
+    if (/^[•·]\s*/u.test(trimmed)) {
+      bulletItems.push(trimmed.replace(/^[•·]\s*/u, ""));
+      return;
+    }
+
+    flushBulletList();
+    content.push(<p key={`paragraph-${index}`}>{paragraph}</p>);
+  });
+
+  if (section.items.length > 0) {
+    bulletItems.push(...section.items);
+  }
+  flushBulletList();
+  return content;
+}
+
 export default function GeneralTermsPage() {
   const [terms, setTerms] = useState(null);
   const [error, setError] = useState("");
@@ -49,10 +82,9 @@ export default function GeneralTermsPage() {
               {terms.sections.map((section) => (
                 <section key={`${section.number}-${section.title}`} className="quote-terms-article">
                   <h2>{section.number ? `Artikel ${section.number} – ${section.title}` : section.title}</h2>
-                  {section.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-                  {section.items.length > 0 && (
-                    <ul>{section.items.map((item, index) => <li key={index}>{item}</li>)}</ul>
-                  )}
+                  <div className="quote-terms-article__content">
+                    {renderSectionContent(section)}
+                  </div>
                 </section>
               ))}
             </div>
