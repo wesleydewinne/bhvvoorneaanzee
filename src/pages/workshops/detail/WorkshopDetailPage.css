@@ -1,0 +1,2948 @@
+/* =========================================================
+   WORKSHOP DETAIL PAGE
+   ---------------------------------------------------------
+   Shared styling voor alle individuele workshop-pagina's.
+
+   Global dependencies:
+   - global.css
+   - variables.css
+   - page-layout.css
+   - utilities.css
+
+   Let op:
+   html gebruikt 62.5%
+   1rem = 10px
+========================================================= */
+
+
+/* =========================================================
+   1. PAGE SCOPE / LOCAL TOKENS
+========================================================= */
+
+.workshop-detail-page {
+    /*
+     * We koppelen de workshopkleuren zoveel mogelijk
+     * aan de bestaande globale design tokens.
+     */
+
+    --wd-accent: var(--color-accent);
+    --wd-accent-hover: var(--color-accent-hover);
+
+    --wd-dark: var(--color-heading);
+    --wd-dark-soft: #1b2430;
+    --wd-dark-lighter: #252f3c;
+
+    --wd-bg: var(--color-bg);
+    --wd-surface: var(--color-surface);
+
+    --wd-text: var(--color-text);
+    --wd-muted: var(--color-text-muted);
+    --wd-border: var(--color-border);
+
+    --wd-success: var(--color-success);
+
+    --wd-radius-sm: var(--radius-md);
+    --wd-radius-md: var(--radius-lg);
+    --wd-radius-lg: var(--radius-xl);
+
+    --wd-shadow-sm: var(--shadow-sm);
+    --wd-shadow-md: var(--shadow-md);
+    --wd-shadow-lg: var(--shadow-lg);
+
+    width: 100%;
+    min-width: 0;
+
+    overflow: clip;
+
+    color: var(--wd-text);
+    background: var(--wd-surface);
+}
+
+
+/* =========================================================
+   2. SHARED CONTAINER
+========================================================= */
+
+.workshop-detail-page .wd-shell {
+    width: min(
+        var(--container-max),
+        calc(100% - 4rem)
+    );
+
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   3. HERO
+========================================================= */
+
+.workshop-detail-page .wd-hero {
+    position: relative;
+
+    min-height: clamp(64rem, 48vw, 76rem);
+
+    display: flex;
+    align-items: flex-end;
+
+    isolation: isolate;
+    overflow: hidden;
+
+    color: #ffffff;
+    background: var(--wd-dark);
+}
+
+
+/*
+ * Global.css geeft afbeeldingen een border-radius.
+ * Voor de hero willen we juist edge-to-edge.
+ */
+.workshop-detail-page .wd-hero__image {
+    position: absolute;
+    z-index: -3;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+
+    object-fit: cover;
+    object-position: center 42%;
+
+    border-radius: 0;
+}
+
+
+/*
+ * Twee gradients:
+ * 1. donker vanaf links zodat de tekst leesbaar blijft;
+ * 2. donker vanaf onder voor voldoende contrast.
+ */
+.workshop-detail-page .wd-hero__overlay {
+    position: absolute;
+    z-index: -2;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(9, 20, 34, 0.9) 0%,
+            rgba(9, 20, 34, 0.76) 38%,
+            rgba(9, 20, 34, 0.36) 66%,
+            rgba(9, 20, 34, 0.08) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(17, 24, 39, 0.86) 0%,
+            rgba(17, 24, 39, 0.15) 60%,
+            transparent 100%
+        );
+}
+
+
+/*
+ * Subtiele oranje gloed.
+ */
+.workshop-detail-page .wd-hero::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    right: -18rem;
+    bottom: -30rem;
+
+    width: 58rem;
+    height: 58rem;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 165, 0, 0.2) 0%,
+            rgba(255, 165, 0, 0) 68%
+        );
+
+    pointer-events: none;
+}
+
+
+.workshop-detail-page .wd-hero__content {
+    position: relative;
+
+    width: min(144rem, calc(100% - 10rem));
+
+    padding-top:
+        calc(
+            var(--header-height) +
+            7rem
+        );
+
+    padding-bottom: 11rem;
+}
+
+/* Elke workshop behoudt dezelfde basis, maar krijgt een eigen visuele signatuur. */
+.workshop-detail-page--fire { --wd-theme-rgb: 241, 83, 20; --wd-theme-deep: #49150d; }
+.workshop-detail-page--alarm { --wd-theme-rgb: 255, 166, 0; --wd-theme-deep: #3a2607; }
+.workshop-detail-page--signal { --wd-theme-rgb: 42, 174, 166; --wd-theme-deep: #073b3b; }
+.workshop-detail-page--pulse { --wd-theme-rgb: 226, 62, 87; --wd-theme-deep: #451321; }
+.workshop-detail-page--medical { --wd-theme-rgb: 205, 39, 54; --wd-theme-deep: #441018; }
+.workshop-detail-page--water { --wd-theme-rgb: 30, 151, 211; --wd-theme-deep: #073851; }
+.workshop-detail-page--care { --wd-theme-rgb: 79, 178, 128; --wd-theme-deep: #103b2b; }
+.workshop-detail-page--safety { --wd-theme-rgb: 255, 166, 0; --wd-theme-deep: #233323; }
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-hero::after {
+    right: -12rem;
+    bottom: -22rem;
+    width: 72rem;
+    height: 72rem;
+    border-radius: 42% 58% 66% 34% / 55% 36% 64% 45%;
+    background: radial-gradient(circle, rgba(var(--wd-theme-rgb), .3), transparent 66%);
+    transform: rotate(-16deg);
+}
+
+.workshop-detail-page .wd-hero__content::before {
+    position: absolute;
+    z-index: -1;
+    top: calc(var(--header-height) + 3.5rem);
+    bottom: 6.5rem;
+    left: -3rem;
+    width: min(82rem, 63vw);
+    border-top: 0.45rem solid var(--wd-accent);
+    background: linear-gradient(120deg, rgba(7, 18, 31, 0.88), rgba(9, 28, 38, 0.64));
+    box-shadow: 2rem 2rem 0 rgba(255, 165, 0, 0.1);
+    clip-path: polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 0 100%);
+    backdrop-filter: blur(0.3rem);
+    content: "";
+}
+
+
+/* =========================================================
+   4. BREADCRUMB / BACK LINK
+========================================================= */
+
+.workshop-detail-page .wd-breadcrumb {
+    width: fit-content;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 0.8rem;
+
+    margin-bottom: 3rem;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: var(--fs-3);
+    font-weight: var(--fw-medium);
+
+    text-decoration: none;
+
+    transition:
+        color var(--transition-fast) var(--ease-out),
+        transform var(--transition-fast) var(--ease-out);
+}
+
+
+.workshop-detail-page .wd-breadcrumb svg {
+    width: 1.8rem;
+    height: 1.8rem;
+
+    flex: 0 0 auto;
+}
+
+
+.workshop-detail-page .wd-breadcrumb:hover {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    transform: translateX(-0.4rem);
+}
+
+
+/* =========================================================
+   5. EYEBROW / KICKER
+========================================================= */
+
+.workshop-detail-page .wd-eyebrow,
+.workshop-detail-page .wd-kicker {
+    margin: 0 0 1.4rem;
+
+    color: var(--wd-accent);
+
+    font-size: var(--fs-2);
+    font-weight: var(--fw-bold);
+
+    line-height: 1.2;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+
+.workshop-detail-page .wd-eyebrow {
+    display: flex;
+    align-items: center;
+
+    gap: 0.9rem;
+}
+
+
+.workshop-detail-page .wd-eyebrow svg {
+    width: 2rem;
+    height: 2rem;
+
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   6. HERO TYPOGRAPHY
+========================================================= */
+
+.workshop-detail-page .wd-hero h1 {
+    max-width: 74rem;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(
+            4rem,
+            2.8rem + 2.2vw,
+            6.2rem
+        );
+
+    font-weight: var(--fw-black);
+
+    line-height: 1.02;
+
+    letter-spacing: -0.04em;
+}
+
+
+.workshop-detail-page .wd-hero__lead {
+    max-width: 68rem;
+
+    margin: 2.6rem 0 0;
+
+    color: rgba(255, 255, 255, 0.86);
+
+    font-size:
+        clamp(
+            1.8rem,
+            1.6rem + 0.4vw,
+            2.2rem
+        );
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   7. BUTTONS
+========================================================= */
+
+.workshop-detail-page .wd-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 1.2rem;
+
+    margin-top: 3.4rem;
+}
+
+
+.workshop-detail-page .wd-button {
+    min-height: 5.4rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.9rem;
+
+    padding: 1.4rem 2.2rem;
+
+    border:
+        0.1rem solid
+        transparent;
+
+    border-radius: var(--radius-lg);
+
+    font-size: var(--fs-3);
+    font-weight: var(--fw-bold);
+
+    line-height: 1.2;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        color var(--transition-fast) var(--ease-out),
+        background var(--transition-fast) var(--ease-out),
+        border-color var(--transition-fast) var(--ease-out),
+        transform var(--transition-fast) var(--ease-out),
+        box-shadow var(--transition-fast) var(--ease-out);
+}
+
+
+.workshop-detail-page .wd-button svg {
+    width: 1.9rem;
+    height: 1.9rem;
+
+    flex: 0 0 auto;
+}
+
+
+.workshop-detail-page .wd-button:hover {
+    text-decoration: none;
+
+    transform: translateY(-0.2rem);
+}
+
+
+.workshop-detail-page .wd-button--primary {
+    color: #ffffff;
+    background: var(--wd-accent);
+
+    box-shadow:
+        0 0.8rem 2rem
+        rgba(255, 165, 0, 0.2);
+}
+
+
+.workshop-detail-page .wd-button--primary:hover {
+    color: #ffffff;
+    background: var(--wd-accent-hover);
+
+    box-shadow:
+        0 1rem 2.5rem
+        rgba(255, 102, 0, 0.24);
+}
+
+
+.workshop-detail-page .wd-button--secondary {
+    color: #ffffff;
+
+    border-color:
+        rgba(255, 255, 255, 0.42);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(1rem);
+}
+
+
+.workshop-detail-page .wd-button--secondary:hover {
+    color: #ffffff;
+
+    border-color:
+        rgba(255, 255, 255, 0.65);
+
+    background:
+        rgba(255, 255, 255, 0.14);
+}
+
+
+/* =========================================================
+   8. FACT BAR
+========================================================= */
+
+.workshop-detail-page .wd-facts {
+    position: relative;
+    z-index: 5;
+
+    margin-top: -4.2rem;
+}
+
+
+.workshop-detail-page .wd-facts__grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(22rem, 1fr)
+        );
+
+    gap: 0.1rem;
+
+    overflow: hidden;
+
+    border: 0.1rem solid var(--wd-border);
+    border-radius: 2rem;
+
+    background: var(--wd-border);
+
+    box-shadow: var(--wd-shadow-lg);
+}
+
+
+.workshop-detail-page .wd-fact {
+    min-height: 10.5rem;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1.6rem;
+
+    padding: 2.2rem 2.5rem;
+
+    background: var(--wd-surface);
+}
+
+
+.workshop-detail-page .wd-fact__icon {
+    width: 3rem;
+    height: 3rem;
+
+    flex: 0 0 auto;
+
+    color: var(--wd-accent);
+}
+
+
+.workshop-detail-page .wd-fact__content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+}
+
+
+.workshop-detail-page .wd-fact__label {
+    color: var(--wd-muted);
+
+    font-size: var(--fs-1);
+    font-weight: var(--fw-bold);
+
+    line-height: 1.2;
+
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+
+.workshop-detail-page .wd-fact__value {
+    color: var(--wd-dark);
+
+    font-size: var(--fs-3);
+    font-weight: var(--fw-bold);
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   9. UNIQUE PAGE CONTENT
+========================================================= */
+
+.workshop-detail-page .wd-content {
+    position: relative;
+}
+
+
+/*
+ * Anker #inhoud komt vaak op de eerste section.
+ * Hiermee verdwijnt de titel niet onder de header.
+ */
+.workshop-detail-page #inhoud {
+    scroll-margin-top:
+        calc(
+            var(--header-height) +
+            2rem
+        );
+}
+
+
+/* =========================================================
+   10. GENERIC SECTIONS
+========================================================= */
+
+.workshop-detail-page .wd-section {
+    padding-block: 10rem;
+}
+
+
+.workshop-detail-page .wd-section--compact {
+    padding-block: 7rem;
+}
+
+
+.workshop-detail-page .wd-section--soft {
+    background: var(--wd-bg);
+}
+
+
+.workshop-detail-page .wd-section--dark {
+    position: relative;
+    color: #ffffff;
+    margin-block: -3rem;
+    padding-block: 13rem;
+    background:
+        radial-gradient(circle at 86% 28%, rgba(7, 130, 96, 0.2), transparent 28%),
+        linear-gradient(120deg, #0b1728 0%, #102b35 66%, #084c41 100%);
+    clip-path: polygon(0 3rem, 100% 0, 100% calc(100% - 3rem), 0 100%);
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.workshop-detail-page .wd-section--dark::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 0 46%;
+    background: repeating-linear-gradient(135deg, transparent 0 4rem, rgba(255, 255, 255, 0.035) 4rem 4.15rem);
+    content: "";
+    pointer-events: none;
+}
+
+.workshop-detail-page .wd-section--dark::after {
+    position: absolute;
+    z-index: -1;
+    top: 3rem;
+    right: clamp(3rem, 8vw, 14rem);
+    width: clamp(12rem, 18vw, 28rem);
+    height: 0.5rem;
+    background: linear-gradient(90deg, var(--wd-accent), transparent);
+    content: "";
+    transform: skewX(-35deg);
+    transform-origin: right;
+    pointer-events: none;
+}
+
+/* Onderwerpspecifieke vormen: decoratief, rustig en altijd achter de inhoud. */
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-section--dark {
+    background:
+        radial-gradient(circle at 86% 28%, rgba(var(--wd-theme-rgb), .25), transparent 30%),
+        linear-gradient(120deg, #0b1728 0%, #102b35 62%, var(--wd-theme-deep) 120%);
+}
+
+.workshop-detail-page--fire .wd-section--dark::before {
+    inset: auto -4rem -8rem 38%;
+    height: 30rem;
+    opacity: .62;
+    background:
+        radial-gradient(ellipse at 12% 100%, rgba(241,83,20,.34) 0 16%, transparent 17%),
+        radial-gradient(ellipse at 35% 115%, rgba(255,166,0,.22) 0 23%, transparent 24%),
+        radial-gradient(ellipse at 61% 100%, rgba(241,83,20,.3) 0 18%, transparent 19%),
+        radial-gradient(ellipse at 88% 112%, rgba(255,166,0,.2) 0 25%, transparent 26%);
+    transform: skewX(-12deg);
+}
+
+.workshop-detail-page--alarm .wd-section--dark::before {
+    inset: 0 0 0 45%;
+    background: repeating-linear-gradient(135deg, transparent 0 4.5rem, rgba(255,166,0,.07) 4.5rem 4.8rem, transparent 4.8rem 8.5rem);
+}
+
+.workshop-detail-page--signal .wd-section--dark::before {
+    inset: -18rem -8rem -18rem 48%;
+    border-radius: 50%;
+    background: repeating-radial-gradient(circle at 72% 50%, transparent 0 5rem, rgba(42,174,166,.1) 5.1rem 5.35rem);
+}
+
+.workshop-detail-page--pulse .wd-section--dark::before,
+.workshop-detail-page--medical .wd-section--dark::before {
+    inset: 24% -4rem auto 42%;
+    height: 16rem;
+    opacity: .45;
+    background: linear-gradient(165deg, transparent 47%, rgba(var(--wd-theme-rgb),.42) 48% 50%, transparent 51%) 0 0 / 15rem 100%;
+    clip-path: polygon(0 48%, 28% 48%, 34% 12%, 43% 88%, 51% 35%, 58% 48%, 100% 48%, 100% 53%, 57% 53%, 52% 43%, 42% 100%, 34% 27%, 30% 53%, 0 53%);
+}
+
+.workshop-detail-page--water .wd-section--dark::before {
+    inset: auto -8rem -8rem 34%;
+    height: 28rem;
+    background: repeating-radial-gradient(ellipse at 50% 115%, transparent 0 5.6rem, rgba(30,151,211,.12) 5.8rem 6.1rem, transparent 6.3rem 10rem);
+}
+
+.workshop-detail-page--care .wd-section--dark::before {
+    inset: 12% 3% 8% 48%;
+    background:
+        radial-gradient(circle at 22% 28%, rgba(79,178,128,.13) 0 1.1rem, transparent 1.2rem),
+        radial-gradient(circle at 68% 62%, rgba(79,178,128,.1) 0 1.5rem, transparent 1.6rem),
+        linear-gradient(135deg, transparent 48%, rgba(255,255,255,.045) 49% 50%, transparent 51%);
+    background-size: 12rem 12rem, 17rem 17rem, 6rem 6rem;
+}
+
+.workshop-detail-page--fire .wd-section--dark { clip-path: polygon(0 4rem, 18% 1.5rem, 42% 4rem, 66% 0, 100% 3rem, 100% calc(100% - 3rem), 72% 100%, 43% calc(100% - 2rem), 18% 100%, 0 calc(100% - 4rem)); }
+.workshop-detail-page--water .wd-section--dark { clip-path: ellipse(82% 58% at 50% 50%); margin-block: -5rem; }
+.workshop-detail-page--signal .wd-section--dark { clip-path: polygon(0 2rem, 93% 2rem, 100% 50%, 93% calc(100% - 2rem), 0 calc(100% - 2rem)); }
+.workshop-detail-page--pulse .wd-section--dark,
+.workshop-detail-page--medical .wd-section--dark { clip-path: polygon(0 3rem, 44% 0, 48% 3rem, 100% 3rem, 100% calc(100% - 3rem), 56% calc(100% - 3rem), 52% 100%, 0 calc(100% - 3rem)); }
+
+
+/*
+ * Secties kunnen eventueel volledig zwart/donker aanvoelen
+ * zonder de standaard headingkleur mee te krijgen.
+ */
+.workshop-detail-page .wd-section--dark h2,
+.workshop-detail-page .wd-section--dark h3,
+.workshop-detail-page .wd-section--dark h4 {
+    color: #ffffff;
+}
+
+
+.workshop-detail-page .wd-section--dark p {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.76
+        );
+}
+
+
+/* =========================================================
+   11. SECTION HEADINGS
+========================================================= */
+
+.workshop-detail-page .wd-heading {
+    max-width: 80rem;
+
+    margin-bottom: 4.8rem;
+}
+
+
+.workshop-detail-page .wd-heading--center {
+    margin-inline: auto;
+
+    text-align: center;
+}
+
+
+.workshop-detail-page .wd-heading h2,
+.workshop-detail-page .wd-copy h2,
+.workshop-detail-page .wd-split h2,
+.workshop-detail-page .wd-callout h2 {
+    margin: 0;
+
+    color: var(--wd-dark);
+
+    font-size:
+        clamp(
+            3rem,
+            2.3rem + 1.6vw,
+            5rem
+        );
+
+    line-height: 1.08;
+
+    letter-spacing: -0.035em;
+}
+
+
+.workshop-detail-page .wd-heading > p:last-child {
+    margin:
+        2rem
+        0
+        0;
+
+    color: var(--wd-muted);
+
+    font-size: var(--fs-4);
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   12. TEXT / COPY
+========================================================= */
+
+.workshop-detail-page .wd-copy {
+    max-width: 82rem;
+}
+
+
+.workshop-detail-page .wd-copy p {
+    color: var(--wd-muted);
+
+    font-size: var(--fluid-body);
+
+    line-height: 1.8;
+}
+
+
+.workshop-detail-page .wd-copy p:last-child {
+    margin-bottom: 0;
+}
+
+
+.workshop-detail-page .wd-copy p + p {
+    margin-top: 1.8rem;
+}
+
+
+.workshop-detail-page .wd-lead {
+    color: var(--wd-text) !important;
+
+    font-size:
+        clamp(
+            1.8rem,
+            1.6rem + 0.25vw,
+            2.1rem
+        ) !important;
+
+    font-weight: var(--fw-normal);
+
+    line-height: 1.75 !important;
+}
+
+/* Donkere secties staan eerder in dit bestand dan de generieke
+ * typografieregels. Deze gerichte overrides voorkomen dat de
+ * standaard donkere tekstkleur daar opnieuw overheen valt. */
+.workshop-detail-page .wd-section--dark .wd-split h2,
+.workshop-detail-page .wd-section--dark .wd-copy h2 {
+    color: #ffffff;
+}
+
+.workshop-detail-page .wd-section--dark .wd-copy p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.workshop-detail-page .wd-section--dark .wd-copy .wd-lead {
+    color: #ffffff !important;
+}
+
+.workshop-detail-page .wd-section--dark .wd-kicker {
+    color: var(--wd-accent);
+}
+
+
+/* =========================================================
+   13. TWO COLUMN SPLIT
+========================================================= */
+
+.workshop-detail-page .wd-split {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(0, 1.1fr);
+
+    align-items: start;
+
+    gap:
+        clamp(
+            4rem,
+            7vw,
+            9rem
+        );
+}
+
+
+.workshop-detail-page .wd-split--center {
+    align-items: center;
+}
+
+
+/* =========================================================
+   14. CARD GRIDS
+========================================================= */
+
+.workshop-detail-page .wd-card-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(28rem, 1fr)
+        );
+
+    gap: 2.2rem;
+}
+
+
+.workshop-detail-page .wd-card-grid--2 {
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+}
+
+
+.workshop-detail-page .wd-card-grid--4 {
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+}
+
+
+/* =========================================================
+   15. CARDS
+========================================================= */
+
+.workshop-detail-page .wd-card {
+    height: 100%;
+
+    padding: 3rem;
+
+    border: 0.1rem solid var(--wd-border);
+    border-radius: 1.8rem;
+
+    background: var(--wd-surface);
+
+    box-shadow:
+        0 0.6rem 2.4rem
+        rgba(17, 24, 39, 0.04);
+
+    transition:
+        transform var(--transition-mid) var(--ease-out),
+        box-shadow var(--transition-mid) var(--ease-out),
+        border-color var(--transition-mid) var(--ease-out);
+}
+
+
+.workshop-detail-page .wd-card:hover {
+    transform: translateY(-0.3rem);
+
+    border-color:
+        rgba(255, 165, 0, 0.34);
+
+    box-shadow:
+        0 1.3rem 3.2rem
+        rgba(17, 24, 39, 0.08);
+}
+
+
+.workshop-detail-page .wd-card--dark {
+    border-color:
+        rgba(255, 255, 255, 0.1);
+
+    background: var(--wd-dark-lighter);
+
+    box-shadow: none;
+}
+
+
+.workshop-detail-page .wd-card--dark:hover {
+    border-color:
+        rgba(255, 165, 0, 0.45);
+
+    box-shadow:
+        0 1.4rem 3rem
+        rgba(0, 0, 0, 0.18);
+}
+
+
+.workshop-detail-page .wd-card__number {
+    width: 4.4rem;
+    height: 4.4rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 2.2rem;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+    background: var(--wd-accent);
+
+    font-size: var(--fs-2);
+    font-weight: var(--fw-bold);
+}
+
+
+.workshop-detail-page .wd-card__label {
+    display: block;
+
+    margin-bottom: 0.9rem;
+
+    color: var(--wd-accent);
+
+    font-size: var(--fs-1);
+    font-weight: var(--fw-bold);
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+
+.workshop-detail-page .wd-card h3 {
+    margin:
+        0
+        0
+        1.3rem;
+
+    color: var(--wd-dark);
+
+    font-size:
+        clamp(
+            2rem,
+            1.8rem + 0.3vw,
+            2.4rem
+        );
+
+    line-height: 1.3;
+}
+
+
+.workshop-detail-page .wd-card--dark h3 {
+    color: #ffffff;
+}
+
+
+.workshop-detail-page .wd-card p {
+    margin: 0;
+
+    color: var(--wd-muted);
+
+    font-size: var(--fs-3);
+
+    line-height: 1.7;
+}
+
+
+.workshop-detail-page .wd-card--dark p {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.7
+        );
+}
+
+
+.workshop-detail-page .wd-card p + p {
+    margin-top: 1.2rem;
+}
+
+
+/* =========================================================
+   16. CHECKLIST
+========================================================= */
+
+.workshop-detail-page .wd-checklist {
+    display: grid;
+
+    gap: 1.5rem;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.workshop-detail-page .wd-checklist li {
+    position: relative;
+
+    padding-left: 3.6rem;
+
+    color: var(--wd-text);
+
+    font-size: var(--fs-3);
+
+    line-height: 1.7;
+}
+
+
+.workshop-detail-page .wd-checklist li::before {
+    content: "✓";
+
+    position: absolute;
+
+    top: 0.2rem;
+    left: 0;
+
+    width: 2.3rem;
+    height: 2.3rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+    background: var(--wd-success);
+
+    font-size: 1.3rem;
+    font-weight: var(--fw-bold);
+}
+
+
+.workshop-detail-page
+.wd-section--dark
+.wd-checklist li {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.86
+        );
+}
+
+
+/* =========================================================
+   17. PROCESS
+========================================================= */
+
+.workshop-detail-page .wd-process {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 1fr)
+        );
+
+    gap: 0.1rem;
+
+    overflow: hidden;
+
+    border:
+        0.1rem solid
+        var(--wd-border);
+
+    border-radius: 2rem;
+
+    background: var(--wd-border);
+}
+
+
+.workshop-detail-page .wd-process__item {
+    min-height: 26rem;
+
+    padding: 3.2rem;
+
+    background: var(--wd-surface);
+}
+
+
+.workshop-detail-page .wd-process__item > span {
+    display: block;
+
+    margin-bottom: 3.5rem;
+
+    color: var(--wd-accent);
+
+    font-size: var(--fs-2);
+    font-weight: var(--fw-bold);
+
+    letter-spacing: 0.1em;
+}
+
+
+.workshop-detail-page .wd-process__item h3 {
+    margin:
+        0
+        0
+        1.2rem;
+
+    color: var(--wd-dark);
+
+    font-size: var(--fs-5);
+
+    line-height: 1.3;
+}
+
+
+.workshop-detail-page .wd-process__item p {
+    margin: 0;
+
+    color: var(--wd-muted);
+
+    font-size: var(--fs-3);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   18. CALLOUT
+========================================================= */
+
+.workshop-detail-page .wd-callout {
+    padding:
+        clamp(
+            3.5rem,
+            6vw,
+            6.5rem
+        );
+
+    border-radius: 2.4rem;
+
+    background: var(--wd-bg);
+}
+
+
+.workshop-detail-page .wd-callout p {
+    color: var(--wd-muted);
+
+    line-height: 1.8;
+}
+
+
+.workshop-detail-page .wd-callout p:last-child {
+    margin-bottom: 0;
+}
+
+
+.workshop-detail-page .wd-callout--orange {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #fff7ed;
+}
+
+
+.workshop-detail-page .wd-callout--orange::before {
+    content: "";
+
+    position: absolute;
+
+    inset:
+        0
+        auto
+        0
+        0;
+
+    width: 0.6rem;
+
+    background: var(--wd-accent);
+}
+
+
+.workshop-detail-page .wd-callout--dark {
+    color: #ffffff;
+
+    background: var(--wd-dark);
+}
+
+
+.workshop-detail-page .wd-callout--dark h2 {
+    color: #ffffff;
+}
+
+
+.workshop-detail-page .wd-callout--dark p {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.75
+        );
+}
+
+
+/* =========================================================
+   19. WARNING / IMPORTANT MESSAGE
+========================================================= */
+
+.workshop-detail-page .wd-warning {
+    padding: 2.8rem 3rem;
+
+    border-left:
+        0.5rem solid
+        var(--wd-accent);
+
+    border-radius:
+        0
+        1.6rem
+        1.6rem
+        0;
+
+    background: #fff7ed;
+}
+
+
+.workshop-detail-page .wd-warning strong {
+    display: block;
+
+    margin-bottom: 0.8rem;
+
+    color: var(--wd-dark);
+
+    font-size: var(--fs-4);
+}
+
+
+.workshop-detail-page .wd-warning p {
+    margin: 0;
+
+    color: var(--wd-muted);
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   20. OPTIONAL IMAGE / MEDIA HELPER
+========================================================= */
+
+.workshop-detail-page .wd-media {
+    overflow: hidden;
+
+    border-radius: 2rem;
+
+    background: var(--wd-bg);
+
+    box-shadow: var(--wd-shadow-md);
+}
+
+
+.workshop-detail-page .wd-media img {
+    width: 100%;
+    height: 100%;
+
+    min-height: 38rem;
+
+    object-fit: cover;
+
+    border-radius: 0;
+}
+
+
+/* =========================================================
+   21. FAQ
+========================================================= */
+
+.workshop-detail-page .wd-faq {
+    padding-block: 10rem;
+
+    background: var(--wd-bg);
+}
+
+
+.workshop-detail-page .wd-faq__layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 0.72fr)
+        minmax(0, 1.28fr);
+
+    align-items: start;
+
+    gap:
+        clamp(
+            5rem,
+            8vw,
+            10rem
+        );
+}
+
+
+.workshop-detail-page .wd-faq__intro {
+    position: sticky;
+
+    top:
+        calc(
+            var(--header-height) +
+            3rem
+        );
+}
+
+
+.workshop-detail-page .wd-faq__intro h2 {
+    margin: 0;
+
+    color: var(--wd-dark);
+
+    font-size:
+        clamp(
+            3rem,
+            2.4rem + 1.4vw,
+            4.6rem
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -0.035em;
+}
+
+
+.workshop-detail-page .wd-faq__intro > p:last-child {
+    margin:
+        2rem
+        0
+        0;
+
+    color: var(--wd-muted);
+
+    font-size: var(--fs-3);
+
+    line-height: 1.75;
+}
+
+
+.workshop-detail-page .wd-faq__items {
+    border-top:
+        0.1rem solid
+        #d1d5db;
+}
+
+
+.workshop-detail-page .wd-faq__item {
+    border-bottom:
+        0.1rem solid
+        #d1d5db;
+}
+
+
+/*
+ * h3 uit global.css heeft eigen font-size / margins.
+ * Die willen we hier niet.
+ */
+.workshop-detail-page .wd-faq__heading {
+    margin: 0;
+
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+
+/*
+ * Global button styling wordt hier volledig overschreven.
+ */
+.workshop-detail-page .wd-faq__question {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 2.4rem;
+
+    padding:
+        2.6rem
+        0;
+
+    border: 0;
+    border-radius: 0;
+
+    color: var(--wd-dark);
+    background: transparent;
+
+    font-size:
+        clamp(
+            1.7rem,
+            1.6rem + 0.2vw,
+            1.9rem
+        );
+
+    font-weight: var(--fw-bold);
+
+    line-height: 1.45;
+
+    text-align: left;
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transition:
+        color var(--transition-fast)
+        var(--ease-out);
+}
+
+
+.workshop-detail-page .wd-faq__question:hover {
+    color: var(--wd-accent);
+
+    background: transparent;
+}
+
+
+.workshop-detail-page .wd-faq__question:focus-visible {
+    outline:
+        0.2rem solid
+        var(--wd-accent);
+
+    outline-offset: 0.5rem;
+
+    border-radius: 0.4rem;
+}
+
+
+.workshop-detail-page .wd-faq__plus {
+    position: relative;
+
+    width: 2.4rem;
+    height: 2.4rem;
+
+    flex: 0 0 auto;
+}
+
+
+.workshop-detail-page .wd-faq__plus::before,
+.workshop-detail-page .wd-faq__plus::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 1.5rem;
+    height: 0.2rem;
+
+    border-radius: 99rem;
+
+    background: var(--wd-accent);
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    transition:
+        transform
+        var(--transition-mid)
+        var(--ease-out);
+}
+
+
+.workshop-detail-page .wd-faq__plus::after {
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        rotate(90deg);
+}
+
+
+.workshop-detail-page
+.wd-faq__item.is-open
+.wd-faq__plus::after {
+    transform:
+        translate(
+            -50%,
+            -50%
+        )
+        rotate(0deg);
+}
+
+
+/*
+ * Grid-row transition geeft een nette accordion zonder
+ * een vaste max-height te hoeven kiezen.
+ */
+.workshop-detail-page .wd-faq__answer {
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    transition:
+        grid-template-rows
+        var(--transition-mid)
+        var(--ease-out);
+}
+
+
+.workshop-detail-page
+.wd-faq__item.is-open
+.wd-faq__answer {
+    grid-template-rows: 1fr;
+}
+
+
+.workshop-detail-page
+.wd-faq__answer > div {
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+.workshop-detail-page .wd-faq__answer p {
+    max-width: 72rem;
+
+    margin: 0;
+
+    padding:
+        0
+        5rem
+        2.6rem
+        0;
+
+    color: var(--wd-muted);
+
+    font-size: var(--fs-3);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   22. FINAL CTA
+========================================================= */
+
+.workshop-detail-page .wd-final-cta {
+    padding-block: 9rem;
+
+    background: var(--wd-surface);
+}
+
+
+.workshop-detail-page .wd-final-cta__panel {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.3fr)
+        auto;
+
+    align-items: center;
+
+    gap: 5rem;
+
+    overflow: hidden;
+
+    padding:
+        clamp(
+            4rem,
+            6vw,
+            7rem
+        );
+
+    border-radius: 2.6rem;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 95% 15%,
+            rgba(255, 165, 0, 0.29),
+            transparent 34%
+        ),
+        linear-gradient(
+            135deg,
+            var(--wd-dark) 0%,
+            #1f2937 100%
+        );
+
+    box-shadow: var(--wd-shadow-lg);
+}
+
+
+.workshop-detail-page
+.wd-final-cta__panel::after {
+    content: "";
+
+    position: absolute;
+
+    right: -8rem;
+    bottom: -16rem;
+
+    width: 32rem;
+    height: 32rem;
+
+    border:
+        0.1rem solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+.workshop-detail-page .wd-final-cta__content {
+    position: relative;
+    z-index: 1;
+
+    max-width: 76rem;
+}
+
+
+.workshop-detail-page .wd-final-cta h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(
+            3rem,
+            2.4rem + 1.5vw,
+            5rem
+        );
+
+    line-height: 1.08;
+
+    letter-spacing: -0.035em;
+}
+
+
+.workshop-detail-page .wd-final-cta p {
+    margin:
+        2rem
+        0
+        0;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.76
+        );
+
+    font-size: var(--fs-4);
+
+    line-height: 1.75;
+}
+
+
+.workshop-detail-page .wd-final-cta__actions {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 0;
+}
+
+
+.workshop-detail-page .wd-button--light {
+    color: var(--wd-dark);
+    background: #ffffff;
+}
+
+
+.workshop-detail-page .wd-button--light:hover {
+    color: var(--wd-dark);
+
+    background: #f3f4f6;
+}
+
+
+.workshop-detail-page .wd-button--outline {
+    color: #ffffff;
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.4
+        );
+
+    background: transparent;
+}
+
+
+.workshop-detail-page .wd-button--outline:hover {
+    color: #ffffff;
+
+    border-color:
+        rgba(
+            255,
+            255,
+            255,
+            0.66
+        );
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+}
+
+
+/* =========================================================
+   23. TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .workshop-detail-page .wd-hero {
+        min-height: 61rem;
+    }
+
+
+    .workshop-detail-page .wd-card-grid--4 {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+
+    .workshop-detail-page .wd-process {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+    }
+
+
+    .workshop-detail-page
+    .wd-final-cta__panel {
+        grid-template-columns: 1fr;
+    }
+
+
+    .workshop-detail-page
+    .wd-final-cta__actions {
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================================
+   24. MOBILE / SMALL TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .workshop-detail-page .wd-shell {
+        width:
+            min(
+                var(--container-max),
+                calc(100% - 3rem)
+            );
+    }
+
+
+    .workshop-detail-page .wd-hero {
+        min-height: 60rem;
+    }
+
+
+    .workshop-detail-page .wd-hero__overlay {
+        background:
+            linear-gradient(
+                0deg,
+                rgba(17, 24, 39, 0.97) 0%,
+                rgba(17, 24, 39, 0.9) 42%,
+                rgba(17, 24, 39, 0.56) 76%,
+                rgba(17, 24, 39, 0.32) 100%
+            );
+    }
+
+
+    .workshop-detail-page
+    .wd-hero__content {
+        padding-top:
+            calc(
+                var(--header-height) +
+                5rem
+            );
+
+        padding-bottom: 8rem;
+    }
+
+    .workshop-detail-page .wd-hero__content::before {
+        top: calc(var(--header-height) + 2rem);
+        right: -1.5rem;
+        bottom: 5rem;
+        left: -1.5rem;
+        width: auto;
+        box-shadow: 0.8rem 0.8rem 0 rgba(255, 165, 0, 0.1);
+    }
+
+
+    .workshop-detail-page .wd-breadcrumb {
+        margin-bottom: 3rem;
+    }
+
+
+    .workshop-detail-page .wd-hero h1 {
+        font-size:
+            clamp(
+                3.7rem,
+                9vw,
+                5.4rem
+            );
+    }
+
+
+    .workshop-detail-page .wd-section {
+        padding-block: 7.5rem;
+    }
+
+    .workshop-detail-page .wd-section--dark {
+        margin-block: -1.5rem;
+        padding-block: 9rem;
+        clip-path: polygon(0 1.5rem, 100% 0, 100% calc(100% - 1.5rem), 0 100%);
+    }
+
+    .workshop-detail-page .wd-section--dark::after {
+        top: 1.5rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-section--compact {
+        padding-block: 6rem;
+    }
+
+
+    .workshop-detail-page .wd-split {
+        grid-template-columns: 1fr;
+
+        gap: 4rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-card-grid--2,
+    .workshop-detail-page
+    .wd-card-grid--4 {
+        grid-template-columns: 1fr;
+    }
+
+
+    .workshop-detail-page .wd-faq {
+        padding-block: 7.5rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-faq__layout {
+        grid-template-columns: 1fr;
+
+        gap: 4.5rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-faq__intro {
+        position: static;
+    }
+
+
+    .workshop-detail-page
+    .wd-final-cta {
+        padding-block: 7rem;
+    }
+}
+
+
+/* =========================================================
+   25. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .workshop-detail-page .wd-hero {
+        min-height: 58rem;
+    }
+
+
+    .workshop-detail-page .wd-facts {
+        margin-top: -3rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-facts__grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .workshop-detail-page .wd-fact {
+        min-height: 8.8rem;
+
+        padding:
+            1.8rem
+            2rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-actions {
+        width: 100%;
+
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .workshop-detail-page
+    .wd-button {
+        width: 100%;
+    }
+
+
+    .workshop-detail-page
+    .wd-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .workshop-detail-page
+    .wd-process {
+        grid-template-columns: 1fr;
+    }
+
+
+    .workshop-detail-page
+    .wd-process__item {
+        min-height: 0;
+    }
+
+
+    .workshop-detail-page
+    .wd-faq__answer p {
+        padding-right: 2rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-final-cta__panel {
+        padding:
+            3.5rem
+            2.4rem;
+
+        border-radius: 2rem;
+    }
+
+
+    .workshop-detail-page
+    .wd-final-cta__actions {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   26. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .workshop-detail-page .wd-button,
+    .workshop-detail-page .wd-breadcrumb,
+    .workshop-detail-page .wd-card,
+    .workshop-detail-page .wd-faq__answer,
+    .workshop-detail-page .wd-faq__plus::before,
+    .workshop-detail-page .wd-faq__plus::after {
+        transition: none;
+    }
+
+
+    .workshop-detail-page
+    .wd-button:hover,
+    .workshop-detail-page
+    .wd-breadcrumb:hover,
+    .workshop-detail-page
+    .wd-card:hover {
+        transform: none;
+    }
+}
+
+/* Deze compacte rasters blijven op één basislijn; alleen tussen rijen
+ * is extra ademruimte nodig. Dit overschrijft het algemene stagger-effect. */
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--extinguishers,
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--fire-classes {
+    column-gap: 1rem;
+    row-gap: 3rem;
+}
+
+.wd-fire-class-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .65rem;
+}
+
+.wd-fire-class-heading .wd-card__label {
+    margin: 0;
+}
+
+.wd-fire-class-pictogram {
+    flex: 0 0 2.9rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+}
+
+.wd-extinguisher-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 6.4rem;
+    align-items: flex-start;
+    gap: 1.2rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.wd-extinguisher-mark {
+    width: 6.4rem;
+    display: grid;
+    justify-items: center;
+    gap: .45rem;
+    padding-right: 1rem;
+}
+
+.wd-extinguisher-mark img {
+    flex: 0 0 3.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 .35rem .55rem rgb(11 23 43 / .08));
+}
+
+.wd-extinguisher-mark span {
+    width: 100%;
+    color: #b61f1f;
+    font-size: .9rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: .055em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.wd-extinguisher-heading h3 {
+    margin: 0;
+}
+
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--extinguishers .wd-card,
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--fire-classes .wd-card,
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--extinguishers .wd-card:nth-child(even),
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--fire-classes .wd-card:nth-child(even) {
+    transform: none;
+}
+
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--extinguishers .wd-card:hover,
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--fire-classes .wd-card:hover,
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--extinguishers .wd-card:nth-child(even):hover,
+.workshop-detail-page.workshop-detail-page--fire .wd-card-grid--fire-classes .wd-card:nth-child(even):hover {
+    transform: translateY(-.6rem);
+}
+
+/* Kleine blusmiddelen: bewust vaste aantallen per rij. */
+.workshop-detail-page .wd-card-grid--extinguishers {
+    width: calc(100vw - 10rem);
+    max-width: 220rem;
+    margin-inline: 50%;
+    grid-template-columns: repeat(6, 31rem);
+    justify-content: center;
+    gap: 1rem;
+    transform: translateX(-50%);
+}
+
+.workshop-detail-page .wd-card-grid--fire-classes {
+    width: calc(100vw - 10rem);
+    max-width: 190rem;
+    margin-inline: 50%;
+    grid-template-columns: repeat(5, 28rem);
+    justify-content: center;
+    gap: 1rem;
+    transform: translateX(-50%);
+}
+
+.workshop-detail-page .wd-card-grid--extinguishers .wd-card,
+.workshop-detail-page .wd-card-grid--fire-classes .wd-card,
+.workshop-detail-page .wd-card-grid--extinguishers .wd-card:nth-child(even),
+.workshop-detail-page .wd-card-grid--fire-classes .wd-card:nth-child(even) {
+    min-width: 0;
+    padding: clamp(2rem, 1.5vw, 2.8rem);
+    transform: none;
+}
+
+.workshop-detail-page .wd-card-grid--extinguishers .wd-card {
+    padding-right: 1rem;
+}
+
+.workshop-detail-page .wd-card-grid--extinguishers .wd-card > p {
+    padding-right: clamp(1rem, 1vw, 1.8rem);
+}
+
+.workshop-detail-page .wd-card-grid--extinguishers .wd-card:hover,
+.workshop-detail-page .wd-card-grid--fire-classes .wd-card:hover,
+.workshop-detail-page .wd-card-grid--extinguishers .wd-card:nth-child(even):hover,
+.workshop-detail-page .wd-card-grid--fire-classes .wd-card:nth-child(even):hover {
+    transform: translateY(-.8rem);
+}
+
+@media (max-width: 1950px) {
+    .workshop-detail-page .wd-card-grid--extinguishers {
+        width: calc(100vw - 6rem);
+        grid-template-columns: repeat(3, 31rem);
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1550px) {
+    .workshop-detail-page .wd-card-grid--fire-classes {
+        width: calc(100vw - 6rem);
+        grid-template-columns: repeat(6, 14rem);
+        justify-content: center;
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card {
+        grid-column: span 2;
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card:nth-last-child(2) {
+        grid-column: 2 / span 2;
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card:last-child {
+        grid-column: 4 / span 2;
+    }
+}
+
+@media (max-width: 800px) {
+    .workshop-detail-page .wd-card-grid--extinguishers,
+    .workshop-detail-page .wd-card-grid--fire-classes {
+        width: calc(100vw - 3rem);
+        grid-template-columns: repeat(2, minmax(0, 28rem));
+        justify-content: center;
+    }
+
+    .workshop-detail-page .wd-card-grid--extinguishers {
+        grid-template-columns: repeat(2, minmax(0, 31rem));
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card {
+        grid-column: auto;
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card:nth-last-child(2) {
+        grid-column: auto;
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card:last-child {
+        width: 28rem;
+        max-width: 100%;
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .workshop-detail-page .wd-card-grid--extinguishers,
+    .workshop-detail-page .wd-card-grid--fire-classes {
+        width: calc(100vw - 3rem);
+        grid-template-columns: minmax(0, 28rem);
+        justify-content: center;
+    }
+
+    .workshop-detail-page .wd-card-grid--extinguishers {
+        grid-template-columns: minmax(0, 31rem);
+    }
+
+    .workshop-detail-page .wd-card-grid--fire-classes .wd-card:last-child {
+        width: auto;
+        grid-column: auto;
+    }
+}
+
+/* =========================================================
+   27. THEMATISCHE MICRO-MOMENTEN
+   Kleine verrassingen die pas tijdens het scrollen zichtbaar worden.
+========================================================= */
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-eyebrow {
+    width: fit-content;
+    padding: .8rem 1.4rem .8rem 1rem;
+    border-left: .4rem solid rgb(var(--wd-theme-rgb));
+    background: linear-gradient(90deg, rgba(var(--wd-theme-rgb), .2), transparent);
+    clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 50%, calc(100% - 1rem) 100%, 0 100%);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-hero__content::before {
+    border-color: rgba(var(--wd-theme-rgb), .9);
+    box-shadow: 1.5rem 1.5rem 0 rgba(var(--wd-theme-rgb), .08);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-facts__grid {
+    position: relative;
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-facts__grid::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22%;
+    height: .45rem;
+    background: linear-gradient(90deg, rgb(var(--wd-theme-rgb)), transparent);
+    content: "";
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-fact__icon {
+    position: relative;
+    color: rgb(var(--wd-theme-rgb));
+    transform: rotate(-4deg);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-fact__icon::before {
+    position: absolute;
+    z-index: -1;
+    inset: -.8rem;
+    border: .1rem solid rgba(var(--wd-theme-rgb), .28);
+    background: rgba(var(--wd-theme-rgb), .07);
+    content: "";
+    transform: rotate(8deg);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-heading h2,
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-copy h2 {
+    position: relative;
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-heading h2::after,
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-copy h2::after {
+    display: block;
+    width: 7rem;
+    height: .55rem;
+    margin-top: 2rem;
+    background: rgb(var(--wd-theme-rgb));
+    content: "";
+    clip-path: polygon(0 0, 100% 0, 84% 100%, 12% 72%);
+}
+
+/* Waterongevallen: laat het titelaccent als een doorlopende watergolf bewegen. */
+.workshop-detail-page--water .wd-heading h2,
+.workshop-detail-page--water .wd-copy h2 {
+    width: fit-content;
+    max-width: 100%;
+}
+
+.workshop-detail-page--water .wd-heading--center h2 {
+    margin-inline: auto;
+}
+
+.workshop-detail-page.workshop-detail-page--water .wd-heading h2::after,
+.workshop-detail-page.workshop-detail-page--water .wd-copy h2::after {
+    width: 100%;
+    height: 1.2rem;
+    margin-top: 1.5rem;
+    background: rgb(var(--wd-theme-rgb));
+    clip-path: none;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16'%3E%3Cpath d='M0 6C8 10 16 10 24 6S40 2 48 6S56 10 64 6V16H0Z' fill='black'/%3E%3C/svg%3E") repeat-x left bottom / 4rem 1rem;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 16'%3E%3Cpath d='M0 6C8 10 16 10 24 6S40 2 48 6S56 10 64 6V16H0Z' fill='black'/%3E%3C/svg%3E") repeat-x left bottom / 4rem 1rem;
+    animation: wd-water-title-wave 2.4s linear infinite;
+}
+
+.workshop-detail-page--water .wd-heading--water-rescue h2::after {
+    position: relative;
+    z-index: 2;
+}
+
+.wd-water-rescue-person {
+    position: absolute;
+    z-index: 1;
+    bottom: -.1rem;
+    left: 75%;
+    width: 5rem;
+    height: 4.6rem;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.wd-water-rescue-person svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.wd-water-rescue-person__body {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: wd-water-person-bob 1.45s ease-in-out infinite alternate;
+}
+
+.wd-water-rescue-person__arm {
+    fill: none;
+    stroke: var(--wd-dark);
+    stroke-linecap: round;
+    stroke-width: 9;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+}
+
+.wd-water-rescue-person__arm--left {
+    animation: wd-water-arm-left .85s ease-in-out infinite alternate;
+}
+
+.wd-water-rescue-person__arm--right {
+    animation: wd-water-arm-right .7s ease-in-out infinite alternate-reverse;
+}
+
+.wd-water-rescue-person__torso {
+    fill: var(--wd-dark);
+}
+
+.wd-water-rescue-person__head {
+    fill: #f2a24a;
+    stroke: var(--wd-dark);
+    stroke-width: 4;
+}
+
+@keyframes wd-water-person-bob {
+    to { transform: translateY(.18rem) rotate(2deg); }
+}
+
+@keyframes wd-water-arm-left {
+    from { transform: rotate(-13deg); }
+    to { transform: rotate(17deg); }
+}
+
+@keyframes wd-water-arm-right {
+    from { transform: rotate(15deg); }
+    to { transform: rotate(-18deg); }
+}
+
+@keyframes wd-water-title-wave {
+    to {
+        -webkit-mask-position: 4rem bottom;
+        mask-position: 4rem bottom;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workshop-detail-page.workshop-detail-page--water .wd-heading h2::after,
+    .workshop-detail-page.workshop-detail-page--water .wd-copy h2::after {
+        animation: none;
+    }
+
+    .wd-water-rescue-person__body,
+    .wd-water-rescue-person__arm {
+        animation: none;
+    }
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-card {
+    border-top: .35rem solid rgb(var(--wd-theme-rgb));
+    box-shadow: .9rem .9rem 0 rgba(var(--wd-theme-rgb), .07), var(--wd-shadow-sm);
+    clip-path: polygon(0 0, calc(100% - 2.2rem) 0, 100% 2.2rem, 100% 100%, 0 100%);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-card:nth-child(even) {
+    transform: translateY(1.8rem);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-card:nth-child(even):hover {
+    transform: translateY(.8rem);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-card__number {
+    color: rgba(var(--wd-theme-rgb), .72);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-process__item {
+    position: relative;
+    overflow: hidden;
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-process__item::after {
+    position: absolute;
+    right: -3.5rem;
+    bottom: -4.5rem;
+    width: 10rem;
+    height: 10rem;
+    border: 1.8rem solid rgba(var(--wd-theme-rgb), .09);
+    content: "";
+    transform: rotate(32deg);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-process__item > span {
+    background: rgb(var(--wd-theme-rgb));
+    box-shadow: .7rem .7rem 0 rgba(var(--wd-theme-rgb), .14);
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-callout {
+    border-left-color: rgb(var(--wd-theme-rgb));
+}
+
+.workshop-detail-page[class*="workshop-detail-page--"] .wd-final-cta__panel {
+    background:
+        linear-gradient(135deg, transparent 0 68%, rgba(var(--wd-theme-rgb), .16) 68% 78%, transparent 78%),
+        linear-gradient(115deg, #0b1728, var(--wd-theme-deep));
+    clip-path: polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem));
+}
+
+/* Brand: scherper en warmer. */
+.workshop-detail-page--fire .wd-card:nth-child(3n + 2),
+.workshop-detail-page--alarm .wd-card:nth-child(3n + 2) {
+    background: linear-gradient(145deg, #fff 0 78%, rgba(var(--wd-theme-rgb), .13) 78%);
+}
+
+.workshop-detail-page--fire .wd-process__item::after {
+    border-radius: 52% 48% 65% 35%;
+    transform: rotate(42deg) skewY(-12deg);
+}
+
+.wd-fire-factor__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.6rem;
+    margin-bottom: 2rem;
+}
+
+.wd-card--fire-factor .wd-card__number {
+    display: grid;
+    width: 4.6rem;
+    height: 4.6rem;
+    border-radius: 50%;
+    color: #ff641f;
+    background: #ffa500;
+    place-items: center;
+}
+
+.wd-fire-factor__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    color: #ff5a1f;
+    stroke-width: 1.8;
+    transform-origin: center;
+}
+
+.wd-fire-factor__icon-wrap {
+    position: relative;
+    display: grid;
+    width: 4.5rem;
+    height: 4.5rem;
+    place-items: center;
+}
+
+.wd-fire-factor__icon-wrap--wood svg { width: 4.5rem; height: 4.5rem; overflow: visible; }
+.wd-fire-factor__log { fill: #d99045; stroke: #8c4e24; stroke-linejoin: round; stroke-width: 2; }
+.wd-fire-factor__wood-smoke { fill: none; stroke: #78818a; stroke-dasharray: 5 4; stroke-linecap: round; stroke-width: 2.6; animation: wd-fire-factor-smoke 2s linear infinite; }
+.wd-fire-factor__wood-smoke--two { animation-delay: -1s; }
+
+.wd-fire-factor__icon-wrap--oxygen .wd-fire-factor__icon {
+    animation: wd-fire-factor-wind 1.15s ease-in-out infinite alternate;
+}
+
+.wd-fire-factor__thermometer {
+    width: 3rem;
+    height: 4.5rem;
+    overflow: visible;
+}
+
+.wd-fire-factor__thermometer-tube,
+.wd-fire-factor__thermometer-outline {
+    fill: #fff;
+    stroke: #ff5a20;
+    stroke-width: 2;
+}
+
+.wd-fire-factor__thermometer-liquid {
+    fill: url(#fire-factor-temperature-gradient);
+    transform: scaleY(.16);
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: wd-fire-factor-temperature 2.8s cubic-bezier(.45, 0, .3, 1) infinite;
+}
+
+.wd-fire-factor__thermometer-bulb {
+    fill: #1598e5;
+    animation: wd-fire-factor-temperature-bulb 2.8s ease-in-out infinite;
+}
+
+.wd-fire-factor__thermometer-shine {
+    fill: none;
+    stroke: rgb(255 255 255 / .8);
+    stroke-linecap: round;
+    stroke-width: 1.2;
+}
+
+.wd-fire-factor__icon-wrap--flame .wd-fire-factor__icon {
+    animation: wd-fire-factor-flame 1.25s ease-in-out infinite alternate;
+}
+
+@keyframes wd-fire-factor-smoke { to { stroke-dashoffset: -18; transform: translateY(-.35rem); opacity: .25; } }
+@keyframes wd-fire-factor-wind { to { transform: translateX(.5rem) skewX(-7deg); opacity: .55; } }
+@keyframes wd-fire-factor-temperature {
+    0%, 12% { transform: scaleY(.16); }
+    62%, 82% { transform: scaleY(1); }
+    100% { transform: scaleY(.16); }
+}
+
+@keyframes wd-fire-factor-temperature-bulb {
+    0%, 16% { fill: #1598e5; }
+    42% { fill: #ffad0a; }
+    62%, 82% { fill: #ef321d; }
+    100% { fill: #1598e5; }
+}
+@keyframes wd-fire-factor-flame { to { transform: translateY(-.25rem) scale(.82, 1.28) rotate(3deg); color: #e73116; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .wd-fire-factor__icon-wrap *,
+    .wd-fire-factor__icon-wrap { animation: none !important; }
+}
+
+/* Op de witte brandsecties trekt een zachte rooksluier omhoog.
+ * De warme ondertoon verwijst naar vuur zonder de tekst te vervuilen. */
+.workshop-detail-page--fire .wd-section:not(.wd-section--dark) {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+}
+
+.workshop-detail-page--fire .wd-section:not(.wd-section--dark)::before {
+    position: absolute;
+    z-index: 0;
+    inset: -5rem;
+    background:
+        radial-gradient(ellipse 14rem 20rem at 18% 76%, rgba(91, 99, 107, .22) 0 25%, rgba(91, 99, 107, .1) 44%, transparent 72%),
+        radial-gradient(ellipse 19rem 27rem at 67% 38%, rgba(116, 111, 106, .19) 0 22%, rgba(116, 111, 106, .085) 47%, transparent 73%),
+        radial-gradient(ellipse 11rem 18rem at 82% 82%, rgba(84, 94, 103, .2) 0 24%, rgba(84, 94, 103, .08) 48%, transparent 72%),
+        radial-gradient(ellipse 23rem 31rem at 36% 45%, rgba(128, 119, 111, .16) 0 20%, rgba(128, 119, 111, .07) 48%, transparent 74%);
+    background-attachment: fixed;
+    background-position: 0 38rem, 13rem 61rem, -8rem 84rem, 21rem 108rem;
+    background-repeat: repeat;
+    background-size: 62rem 78rem, 76rem 94rem, 54rem 70rem, 88rem 112rem;
+    content: "";
+    filter: blur(1.8rem);
+    opacity: 1;
+    pointer-events: none;
+    animation: wd-smoke-rise 26s linear infinite;
+}
+
+.workshop-detail-page--fire .wd-section:not(.wd-section--dark) > .wd-shell {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes wd-smoke-rise {
+    to {
+        background-position: 0 -40rem, 13rem -33rem, -8rem -56rem, 21rem -4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workshop-detail-page--fire .wd-section:not(.wd-section--dark)::before {
+        animation: none;
+    }
+}
+
+/* Eén rooklaag voor de volledige pagina, zodat de rook niet per sectie herstart. */
+.workshop-detail-page--fire {
+    position: relative;
+    isolation: isolate;
+}
+
+.workshop-detail-page--fire::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 18rem 28rem at 16% 82%, rgba(76, 84, 92, .24) 0 23%, rgba(92, 98, 104, .11) 44%, transparent 72%),
+        radial-gradient(ellipse 25rem 38rem at 70% 44%, rgba(112, 105, 98, .21) 0 22%, rgba(112, 105, 98, .09) 46%, transparent 74%),
+        radial-gradient(ellipse 15rem 25rem at 88% 84%, rgba(72, 82, 91, .22) 0 24%, rgba(72, 82, 91, .085) 47%, transparent 72%),
+        radial-gradient(ellipse 29rem 43rem at 39% 48%, rgba(124, 114, 105, .17) 0 20%, rgba(124, 114, 105, .07) 47%, transparent 74%);
+    background-position: 0 42rem, 14rem 68rem, -9rem 91rem, 23rem 118rem;
+    background-repeat: repeat;
+    background-size: 68rem 86rem, 82rem 102rem, 59rem 76rem, 96rem 122rem;
+    content: "";
+    filter: blur(2rem);
+    pointer-events: none;
+    animation: wd-page-smoke-rise 30s linear infinite;
+}
+
+.workshop-detail-page--fire > * {
+    position: relative;
+    z-index: 1;
+}
+
+.workshop-detail-page--fire .wd-section:not(.wd-section--dark)::before {
+    content: none;
+}
+
+.workshop-detail-page--fire .wd-section--soft {
+    background: rgba(245, 248, 247, .82);
+}
+
+@keyframes wd-page-smoke-rise {
+    to {
+        background-position: 0 -44rem, 14rem -34rem, -9rem -61rem, 23rem -4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workshop-detail-page--fire::before {
+        animation: none;
+    }
+}
+
+/* Rookproef uitgeschakeld: herstel de oorspronkelijke rustige brandpagina. */
+.workshop-detail-page--fire::before,
+.workshop-detail-page--fire .wd-section:not(.wd-section--dark)::before {
+    display: none;
+    content: none;
+    animation: none;
+}
+
+.workshop-detail-page--fire .wd-section--soft {
+    background: var(--wd-bg);
+}
+
+.wd-alarm-visual {
+    display: grid;
+    width: 100%;
+    height: 10rem;
+    margin: -1rem 0 1.8rem;
+    place-items: center;
+    border-bottom: .1rem solid rgba(var(--wd-theme-rgb), .16);
+    background: linear-gradient(145deg, rgba(var(--wd-theme-rgb), .09), transparent 70%);
+    overflow: hidden;
+}
+
+.wd-alarm-visual svg { display: block; width: 14rem; height: 9rem; overflow: visible; }
+
+.wd-alarm-visual__detector,
+.wd-alarm-visual__building,
+.wd-alarm-visual__panel {
+    fill: #f7f9fb;
+    stroke: var(--wd-dark);
+    stroke-linejoin: round;
+    stroke-width: 4;
+}
+
+.wd-alarm-visual__smoke,
+.wd-alarm-visual__panel-lines,
+.wd-alarm-visual__signal {
+    fill: none;
+    stroke: rgb(var(--wd-theme-rgb));
+    stroke-linecap: round;
+    stroke-width: 5;
+}
+
+.wd-alarm-visual__smoke {
+    stroke-dasharray: 12 8;
+    animation: wd-alarm-smoke 2.1s linear infinite;
+}
+
+.wd-alarm-visual__smoke--two { animation-delay: -.7s; }
+.wd-alarm-visual__smoke--three { animation-delay: -1.4s; }
+
+.wd-alarm-visual__led,
+.wd-alarm-visual__zone {
+    fill: #ff351f;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: wd-alarm-pulse 1.15s ease-in-out infinite;
+}
+
+.wd-alarm-visual__building-lines { fill: none; stroke: var(--wd-dark); stroke-width: 3; }
+.wd-alarm-visual__zone { fill: rgba(var(--wd-theme-rgb), .35); stroke: rgb(var(--wd-theme-rgb)); stroke-width: 3; }
+.wd-alarm-visual__screen { fill: rgba(var(--wd-theme-rgb), .18); stroke: rgb(var(--wd-theme-rgb)); stroke-width: 2; animation: wd-alarm-screen 1.6s ease-in-out infinite alternate; }
+.wd-alarm-visual__button { fill: #fff; stroke: var(--wd-dark); stroke-width: 3; }
+
+.wd-alarm-visual__alert-ring {
+    fill: none;
+    stroke: rgb(var(--wd-theme-rgb));
+    stroke-width: 8;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: wd-alarm-ring 1.4s ease-out infinite;
+}
+
+.wd-alarm-visual__flame { fill: #ff5a1f; transform-box: fill-box; transform-origin: center bottom; animation: wd-alarm-flame .8s ease-in-out infinite alternate; }
+.wd-alarm-visual__signal { transform-box: fill-box; transform-origin: center; animation: wd-alarm-signal 1.4s ease-out infinite; }
+
+@keyframes wd-alarm-smoke { to { stroke-dashoffset: -40; transform: translateY(-.6rem); } }
+@keyframes wd-alarm-pulse { 50% { opacity: .35; transform: scale(1.45); } }
+@keyframes wd-alarm-screen { to { fill: rgba(var(--wd-theme-rgb), .42); } }
+@keyframes wd-alarm-ring { 70%, 100% { opacity: .15; transform: scale(1.16); } }
+@keyframes wd-alarm-flame { to { transform: scale(.9, 1.1) rotate(2deg); } }
+@keyframes wd-alarm-signal { 70%, 100% { opacity: .1; transform: scaleX(1.2); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .wd-alarm-visual * { animation: none !important; }
+}
+
+/* Communicatie: signalen keren terug in kaarten en stappen. */
+.workshop-detail-page--signal .wd-card::after {
+    position: absolute;
+    right: -5rem;
+    bottom: -5rem;
+    width: 12rem;
+    height: 12rem;
+    border: .15rem solid rgba(var(--wd-theme-rgb), .2);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1.7rem rgba(var(--wd-theme-rgb), .05), 0 0 0 3.4rem rgba(var(--wd-theme-rgb), .035);
+    content: "";
+}
+
+/* Reanimatie en bloeding: de accentlijn gedraagt zich als een monitorlijn. */
+.workshop-detail-page--pulse .wd-heading h2::after,
+.workshop-detail-page--medical .wd-heading h2::after {
+    width: 12rem;
+    clip-path: polygon(0 45%, 26% 45%, 33% 0, 42% 100%, 50% 28%, 59% 45%, 100% 45%, 100% 62%, 57% 62%, 51% 48%, 42% 100%, 33% 35%, 29% 62%, 0 62%);
+}
+
+/* Water: geen scherpe kaartpunten, maar een vloeiende onderrand. */
+.workshop-detail-page--pulse .wd-cardiogram {
+    width: min(100%, 38rem);
+    height: 7rem;
+    margin-top: 2rem;
+    overflow: hidden;
+}
+
+.workshop-detail-page--pulse .wd-cardiogram svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.workshop-detail-page--pulse .wd-cardiogram path {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+}
+
+.workshop-detail-page--pulse .wd-cardiogram__base {
+    stroke: rgba(var(--wd-theme-rgb), .14);
+    stroke-width: 2;
+}
+
+.workshop-detail-page--pulse .wd-cardiogram__pulse {
+    stroke: #f52f55;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 .4rem rgba(245, 47, 85, .35));
+    animation: wd-cardiogram-draw 2.5s linear infinite;
+}
+
+.workshop-detail-page--pulse .wd-cardiogram--child .wd-cardiogram__pulse {
+    animation-duration: 2s;
+}
+
+.workshop-detail-page--pulse .wd-section--dark .wd-cardiogram__base {
+    stroke: rgba(255, 255, 255, .13);
+}
+
+.workshop-detail-page--pulse .wd-cardiogram__fibrillation {
+    fill: none;
+    stroke: #ff526f;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 .55rem rgba(255, 82, 111, .55));
+    animation: wd-fibrillation-draw 1.75s linear infinite;
+}
+
+@keyframes wd-cardiogram-draw {
+    0% { stroke-dashoffset: 1; opacity: .25; }
+    8%, 88% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: .35; }
+}
+
+@keyframes wd-fibrillation-draw {
+    0% { stroke-dashoffset: 1; opacity: .3; }
+    7%, 90% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: .4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .workshop-detail-page--pulse .wd-cardiogram__pulse {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+
+    .workshop-detail-page--pulse .wd-cardiogram__fibrillation {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+}
+
+.workshop-detail-page--water .wd-card {
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 82% 97%, 63% 92%, 43% 98%, 22% 93%, 0 98%);
+    padding-bottom: 4.5rem;
+}
+
+.workshop-detail-page--water .wd-facts__grid::before {
+    width: 36%;
+    border-radius: 50%;
+}
+
+/* Kinder-EHBO: vriendelijkere afgeronde labels en zachte kleurvlakken. */
+.workshop-detail-page--care .wd-eyebrow,
+.workshop-detail-page--care .wd-card {
+    clip-path: none;
+    border-radius: 1.8rem .4rem 1.8rem .4rem;
+}
+
+.workshop-detail-page--care .wd-card:nth-child(odd) {
+    background: linear-gradient(145deg, #fff, rgba(var(--wd-theme-rgb), .08));
+}
+
+@media (max-width: 768px) {
+    .workshop-detail-page[class*="workshop-detail-page--"] .wd-card:nth-child(even),
+    .workshop-detail-page[class*="workshop-detail-page--"] .wd-card:nth-child(even):hover {
+        transform: none;
+    }
+
+    .workshop-detail-page[class*="workshop-detail-page--"] .wd-final-cta__panel {
+        clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% 100%, 2rem 100%, 0 calc(100% - 2rem));
+    }
+}
+
+@media (max-width: 768px) {
+    .workshop-detail-page--fire .wd-section--dark,
+    .workshop-detail-page--signal .wd-section--dark,
+    .workshop-detail-page--pulse .wd-section--dark,
+    .workshop-detail-page--medical .wd-section--dark,
+    .workshop-detail-page--water .wd-section--dark {
+        margin-block: -1.5rem;
+        clip-path: polygon(0 1.5rem, 100% 0, 100% calc(100% - 1.5rem), 0 100%);
+    }
+
+    .workshop-detail-page--fire .wd-section--dark::before,
+    .workshop-detail-page--water .wd-section--dark::before {
+        opacity: .38;
+    }
+}
+/* Communicatiestappen: uitsluitend 4, 2 of 1 kaart per rij. */
+.workshop-detail-page .wd-card-grid--communication-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+    .workshop-detail-page .wd-card-grid--communication-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .workshop-detail-page .wd-card-grid--communication-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Bij twee kolommen staat de derde gespreksdiscipline-kaart gecentreerd. */
+@media (min-width: 601px) and (max-width: 920px) {
+    .workshop-detail-page .wd-card-grid--discipline .wd-card:last-child {
+        width: calc((100% - 2.2rem) / 2);
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+}

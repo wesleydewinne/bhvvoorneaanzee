@@ -26,15 +26,15 @@ const Fase4 = lazy(() => import("@/pages/ontruimingsOefeningPage/fase/Fase4.jsx"
 
 const Ehbo = lazy(() => import("@/pages/ehbo/EhboPage.jsx"));
 
-const Workshops = lazy(() => import("@/pages/workshops/Workshops.jsx"));
-const KleineBlusmiddelen = lazy(() => import("@/pages/workshops/soortenWorkshops/KleineBlusmiddelen.jsx"));
-const Portofoongebruik = lazy(() => import("@/pages/workshops/soortenWorkshops/Portofoongebruik.jsx"));
-const ReanimatieMetGebruikAedVolwassene = lazy(() => import("@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDVolwassene.jsx"));
-const ReanimatieMetGebruikAedKind = lazy(() => import("@/pages/workshops/soortenWorkshops/ReanimatieMetGebruikAEDKind.jsx"));
-const StopDeBloedingRedEenLeven = lazy(() => import("@/pages/workshops/soortenWorkshops/StopDeBloedingRedEenLeven.jsx"));
-const BedienaarBrandmeldcentrale = lazy(() => import("@/pages/workshops/soortenWorkshops/BedienaarBrandmeldcentrale.jsx"));
-const Waterongevallen = lazy(() => import("@/pages/workshops/soortenWorkshops/Waterongevallen.jsx"));
-const KinderEhboHuiskamertraining = lazy(() => import("@/pages/workshops/soortenWorkshops/KinderEhboHuiskamertraining.jsx"));
+const Workshops = lazy(() => import("@/pages/workshops/WorkshopsPage.jsx"));
+const KleineBlusmiddelen = lazy(() => import("@/pages/workshops/detail/pages/KleineBlusmiddelen.jsx"));
+const BedienaarBrandmeldcentrale = lazy(() => import("@/pages/workshops/detail/pages/BedienaarBrandmeldcentrale.jsx"));
+const CommunicatieTijdensIncidenten = lazy(() => import("@/pages/workshops/detail/pages/CommunicatieTijdensIncidenten.jsx"));
+const ReanimatieVolwassene = lazy(() => import("@/pages/workshops/detail/pages/ReanimatieVolwassene.jsx"));
+const ReanimatieKindBaby = lazy(() => import("@/pages/workshops/detail/pages/ReanimatieKindBaby.jsx"));
+const StopDeBloedingRedEenLeven = lazy(() => import("@/pages/workshops/detail/pages/StopDeBloedingRedEenLeven.jsx"));
+const Waterongevallen = lazy(() => import("@/pages/workshops/detail/pages/Waterongevallen.jsx"));
+const KinderEhboHuiskamertraining = lazy(() => import("@/pages/workshops/detail/pages/KinderEhboHuiskamertraining.jsx"));
 
 const Maatwerk = lazy(() => import("@/pages/MaatwerkPage/MaatwerkPagina.jsx"));
 const ModulaireTraining = lazy(() => import("@/pages/modulair/ModulaireTraining.jsx"));
@@ -109,9 +109,9 @@ const publicRoutes = [
     { path: "/workshops", element: <Workshops /> },
     { path: "/workshops-kleine-blusmiddelen", element: <KleineBlusmiddelen /> },
     { path: "/workshops-bedienaar-brandmeldcentrale", element: <BedienaarBrandmeldcentrale /> },
-    { path: "/workshops-portofoongebruik", element: <Portofoongebruik /> },
-    { path: "/workshops-reanimatie-volwassene", element: <ReanimatieMetGebruikAedVolwassene /> },
-    { path: "/workshops-reanimatie-kind-baby", element: <ReanimatieMetGebruikAedKind /> },
+    { path: "/workshops-portofoongebruik", element: <CommunicatieTijdensIncidenten /> },
+    { path: "/workshops-reanimatie-volwassene", element: <ReanimatieVolwassene /> },
+    { path: "/workshops-reanimatie-kind-baby", element: <ReanimatieKindBaby /> },
     { path: "/workshops-stop-de-bloeding", element: <StopDeBloedingRedEenLeven /> },
     { path: "/workshops-waterongevallen", element: <Waterongevallen /> },
     { path: "/workshops-kinder-ehbo-huiskamertraining", element: <KinderEhboHuiskamertraining /> },
