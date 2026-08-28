@@ -1471,6 +1471,14 @@ td small {
   list-style: none;
 }
 
+.quote-terms-article__content p:has(+ .quote-terms-list) {
+  margin-bottom: 0.35rem;
+}
+
+.quote-terms-article__content p + .quote-terms-list {
+  margin-top: 0;
+}
+
 .quote-terms-list li {
   position: relative;
   padding-left: 2.2rem;
