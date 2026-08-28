@@ -1388,6 +1388,46 @@ td small {
 .quote-terms-page > header {
   margin-bottom: 1rem;
 }
+
+.quote-terms-introduction {
+  margin-top: 1.5rem;
+  padding: 1.4rem;
+  border-left: 0.35rem solid var(--quote-primary);
+  border-radius: var(--radius-md);
+  background: var(--quote-primary-soft);
+}
+
+.quote-terms-introduction h2,
+.quote-terms-introduction p {
+  margin-top: 0;
+}
+
+.quote-terms-version {
+  color: var(--quote-muted);
+  font-weight: var(--fw-bold);
+}
+
+.quote-terms-articles {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quote-terms-article {
+  padding: 1.35rem;
+  border: 1px solid var(--quote-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.quote-terms-article h2 {
+  margin: 0 0 0.8rem;
+}
+
+.quote-terms-article p:last-child,
+.quote-terms-article ul:last-child {
+  margin-bottom: 0;
+}
 .quote-terms-download {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;

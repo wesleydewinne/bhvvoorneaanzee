@@ -1,50 +1,115 @@
+import { useEffect, useState } from "react";
 import { Download, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import generalTermsService from "../services/generalTermsService.js";
 import "../styles/Offerte.css";
 
+function formatDate(value) {
+  if (!value) return null;
+  return new Intl.DateTimeFormat("nl-NL", { dateStyle: "long" })
+    .format(new Date(`${value}T12:00:00`));
+}
+
 export default function GeneralTermsPage() {
+  const [terms, setTerms] = useState(null);
+  const [error, setError] = useState("");
+  const [downloading, setDownloading] = useState(false);
+
+  useEffect(() => {
+    generalTermsService.getTerms()
+      .then(setTerms)
+      .catch(() => setError("De algemene voorwaarden konden niet worden geladen."));
+  }, []);
+
+  const download = async () => {
+    setDownloading(true);
+    setError("");
+    try {
+      const blob = await generalTermsService.downloadPdf();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "algemene-voorwaarden-bhv-voorne-aan-zee.pdf";
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      setError("De PDF met algemene voorwaarden kon niet worden gedownload.");
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  const effectiveDate = formatDate(terms?.effectiveDate);
+
   return (
     <main className="quote-public-page">
       <article className="quote-public-card quote-terms-page">
         <header>
-          <div className="quote-public-card__icon" aria-hidden="true">
-            <FileText />
-          </div>
-          <p className="quote-eyebrow">W &amp; S Adviesgroep B.V.</p>
-          <h1>Algemene voorwaarden</h1>
-          <p>Handelend onder de naam BHV Voorne aan Zee</p>
+          <div className="quote-public-card__icon" aria-hidden="true"><FileText /></div>
+          <p className="quote-eyebrow">{terms?.organizationName || "W & S Adviesgroep B.V."}</p>
+          <h1>{terms?.title || "Algemene voorwaarden"}</h1>
+          <p>{terms?.tradeName ? `Handelend onder de naam ${terms.tradeName}` : "Handelend onder de naam BHV Voorne aan Zee"}</p>
         </header>
 
-        <section className="quote-acceptance-section">
-          <h2>Document in voorbereiding</h2>
-          <p>
-            De definitieve algemene voorwaarden worden momenteel voorbereid.
-            Zodra de tekst is vastgesteld, wordt op deze vaste pagina altijd de
-            actuele versie gepubliceerd.
-          </p>
-          <p>
-            Heeft u ondertussen vragen over de voorwaarden die bij een offerte
-            horen? Neem dan vóór het geven van akkoord contact met ons op.
-          </p>
-        </section>
+        {error && <p className="quote-alert quote-alert--error">{error}</p>}
+        {!terms && !error && <p>Algemene voorwaarden laden...</p>}
 
-        <section id="download" className="quote-acceptance-section quote-terms-download">
-          <Download aria-hidden="true" />
-          <div>
-            <h2>PDF downloaden</h2>
+        {terms?.published ? (
+          <>
+            <section className="quote-terms-introduction">
+              <h2>{terms.subtitle}</h2>
+              <p className="quote-terms-version">
+                Versie {terms.version}{effectiveDate && ` · Geldig vanaf ${effectiveDate}`}
+              </p>
+              {terms.introduction.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            </section>
+
+            <div className="quote-terms-articles">
+              {terms.sections.map((section) => (
+                <section key={`${section.number}-${section.title}`} className="quote-terms-article">
+                  <h2>{section.number ? `Artikel ${section.number} – ${section.title}` : section.title}</h2>
+                  {section.paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+                  {section.items.length > 0 && (
+                    <ul>{section.items.map((item, index) => <li key={index}>{item}</li>)}</ul>
+                  )}
+                </section>
+              ))}
+            </div>
+          </>
+        ) : terms && (
+          <section className="quote-acceptance-section">
+            <h2>Document in voorbereiding</h2>
             <p>
-              De downloadbare PDF wordt beschikbaar zodra de definitieve versie
-              van de algemene voorwaarden is gepubliceerd.
+              De definitieve algemene voorwaarden worden momenteel voorbereid.
+              Zodra de tekst is vastgesteld, wordt op deze pagina altijd de actuele versie gepubliceerd.
             </p>
-          </div>
-          <button className="quote-secondary-button" type="button" disabled>
-            PDF binnenkort beschikbaar
-          </button>
-        </section>
+            <p>Heeft u vragen? Neem dan vóór het geven van akkoord contact met ons op.</p>
+          </section>
+        )}
 
-        <Link className="quote-primary-button" to="/contact">
-          Contact opnemen
-        </Link>
+        {terms && (
+          <section id="download" className="quote-acceptance-section quote-terms-download">
+            <Download aria-hidden="true" />
+            <div>
+              <h2>PDF downloaden</h2>
+              <p>
+                {terms.downloadAvailable
+                  ? `Download de algemene voorwaarden${terms.version ? `, versie ${terms.version}` : ""}.`
+                  : "De PDF wordt beschikbaar zodra de definitieve versie is gepubliceerd."}
+              </p>
+            </div>
+            <button
+              className="quote-secondary-button"
+              type="button"
+              disabled={!terms.downloadAvailable || downloading}
+              onClick={download}
+            >
+              {downloading ? "Downloaden..." : terms.downloadAvailable ? "PDF downloaden" : "PDF binnenkort beschikbaar"}
+            </button>
+          </section>
+        )}
+
+        <Link className="quote-primary-button" to="/contact">Contact opnemen</Link>
       </article>
     </main>
   );
