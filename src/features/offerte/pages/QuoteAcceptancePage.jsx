@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Ban, CheckCircle2, Clock3, LoaderCircle, ShieldX } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
+import generalTermsService from "../services/generalTermsService.js";
 import quoteService from "../services/quoteService.js";
 import "../styles/Offerte.css";
 
@@ -149,12 +150,12 @@ export default function QuoteAcceptancePage() {
                     <Link className="quote-secondary-button" to="/algemene-voorwaarden">
                       Algemene voorwaarden bekijken
                     </Link>
-                    <Link
+                    <a
                       className="quote-secondary-button"
-                      to="/algemene-voorwaarden#download"
+                      href={generalTermsService.getPdfDownloadUrl()}
                     >
                       PDF downloaden
-                    </Link>
+                    </a>
                   </div>
                 </section>
 
