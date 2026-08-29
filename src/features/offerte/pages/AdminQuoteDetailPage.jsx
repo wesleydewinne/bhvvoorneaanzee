@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Download, Mail, Save } from "lucide-react";
+import { CheckCheck, Download, Mail, Save } from "lucide-react";
 import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
 import QuoteAcceptanceEvidence from "../components/QuoteAcceptanceEvidence.jsx";
@@ -19,6 +19,7 @@ export default function AdminQuoteDetailPage() {
   const [error, setError] = useState("");
   const [downloading, setDownloading] = useState(false);
   const [sending, setSending] = useState(false);
+  const [completing, setCompleting] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(null);
   const handleQuoteChange = useCallback((quote) => setCurrentQuote(quote), []);
@@ -73,6 +74,19 @@ export default function AdminQuoteDetailPage() {
       setSending(false);
     }
   };
+  const complete = async () => {
+    if (!window.confirm("Wilt u deze geaccepteerde offerte als afgehandeld markeren?")) return;
+    setCompleting(true);
+    setError("");
+    try {
+      await quoteService.updateStatus(id, "COMPLETED");
+      setDetail(await quoteService.getQuote(id));
+    } catch (reason) {
+      setError(reason.message || "De offerte kon niet als afgehandeld worden gemarkeerd.");
+    } finally {
+      setCompleting(false);
+    }
+  };
   if (error && !detail)
     return (
       <main className="quote-admin-page">
@@ -111,6 +125,11 @@ export default function AdminQuoteDetailPage() {
               <Mail /> {sending ? "Versturen..." : "Offerte versturen"}
             </button>
           )}
+          {isAdmin && detail.status === "ACCEPTED" && (
+            <button className="quote-primary-button" onClick={complete} disabled={completing}>
+              <CheckCheck /> {completing ? "Afhandelen..." : "Markeer als afgehandeld"}
+            </button>
+          )}
         </div>
       </header>
       {error && <p className="quote-alert quote-alert--error">{error}</p>}
@@ -120,6 +139,7 @@ export default function AdminQuoteDetailPage() {
         <div><span>Laatst gewijzigd</span><strong>{formatQuoteDateTime(detail.updatedAt) || "Onbekend"}</strong></div>
         {detail.sentAt && <div><span>Verzonden</span><strong>{formatQuoteDateTime(detail.sentAt)}</strong></div>}
         {detail.acceptedAt && <div><span>Geaccepteerd</span><strong>{formatQuoteDateTime(detail.acceptedAt)}</strong></div>}
+        {detail.completedAt && <div><span>Afgehandeld</span><strong>{formatQuoteDateTime(detail.completedAt)}</strong></div>}
         {detail.acceptanceConfirmationSentAt && <div><span>Acceptatiebevestiging verzonden</span><strong>{formatQuoteDateTime(detail.acceptanceConfirmationSentAt)}</strong></div>}
         {detail.planningMailScheduledFor && !detail.planningMailSentAt && <div><span>Planningsmail gepland</span><strong>{formatQuoteDateTime(detail.planningMailScheduledFor)}</strong></div>}
         {detail.planningMailSentAt && <div><span>Planningsmail verzonden</span><strong>{formatQuoteDateTime(detail.planningMailSentAt)}</strong></div>}

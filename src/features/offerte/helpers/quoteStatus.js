@@ -3,6 +3,7 @@ export const QUOTE_STATUS = {
   SENDING: { label: "Wordt verzonden", group: "sent" },
   SENT: { label: "Verzonden", group: "sent" },
   ACCEPTED: { label: "Geaccepteerd", group: "accepted" },
+  COMPLETED: { label: "Afgehandeld", group: "closed" },
   REJECTED: { label: "Afgewezen", group: "closed" },
   EXPIRED: { label: "Verlopen", group: "closed" },
   CANCELLED: { label: "Geannuleerd", group: "closed" },

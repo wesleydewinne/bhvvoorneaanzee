@@ -347,6 +347,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
     updatedAt: value.updatedAt,
     sentAt: value.sentAt,
     acceptedAt: value.acceptedAt,
+    completedAt: value.completedAt,
     acceptanceConfirmationSentAt: value.acceptanceConfirmationSentAt,
     planningMailScheduledFor: value.planningMailScheduledFor,
     planningMailSentAt: value.planningMailSentAt,
@@ -495,6 +496,7 @@ function toQuoteSummary(value) {
     updatedAt: value.updatedAt,
     sentAt: value.sentAt,
     acceptedAt: value.acceptedAt,
+    completedAt: value.completedAt,
     rejectedAt: value.rejectedAt,
     cancelledAt: value.cancelledAt,
   };
