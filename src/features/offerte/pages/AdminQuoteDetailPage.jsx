@@ -4,6 +4,7 @@ import { CheckCheck, Download, Mail, Save } from "lucide-react";
 import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
 import QuoteAcceptanceEvidence from "../components/QuoteAcceptanceEvidence.jsx";
+import CompleteQuoteModal from "../components/CompleteQuoteModal.jsx";
 import SendQuoteModal from "../components/SendQuoteModal.jsx";
 import quoteService from "../services/quoteService.js";
 import { downloadBlob } from "../helpers/quoteHelpers.js";
@@ -21,6 +22,7 @@ export default function AdminQuoteDetailPage() {
   const [sending, setSending] = useState(false);
   const [completing, setCompleting] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(null);
   const handleQuoteChange = useCallback((quote) => setCurrentQuote(quote), []);
 
@@ -75,12 +77,12 @@ export default function AdminQuoteDetailPage() {
     }
   };
   const complete = async () => {
-    if (!window.confirm("Wilt u deze geaccepteerde offerte als afgehandeld markeren?")) return;
     setCompleting(true);
     setError("");
     try {
       await quoteService.updateStatus(id, "COMPLETED");
       setDetail(await quoteService.getQuote(id));
+      setShowCompleteModal(false);
     } catch (reason) {
       setError(reason.message || "De offerte kon niet als afgehandeld worden gemarkeerd.");
     } finally {
@@ -126,7 +128,7 @@ export default function AdminQuoteDetailPage() {
             </button>
           )}
           {isAdmin && detail.status === "ACCEPTED" && (
-            <button className="quote-primary-button" onClick={complete} disabled={completing}>
+            <button className="quote-primary-button" onClick={() => setShowCompleteModal(true)} disabled={completing}>
               <CheckCheck /> {completing ? "Afhandelen..." : "Markeer als afgehandeld"}
             </button>
           )}
@@ -161,6 +163,14 @@ export default function AdminQuoteDetailPage() {
           sending={sending}
           onCancel={() => setShowSendModal(false)}
           onConfirm={send}
+        />
+      )}
+      {showCompleteModal && (
+        <CompleteQuoteModal
+          detail={detail}
+          completing={completing}
+          onCancel={() => setShowCompleteModal(false)}
+          onConfirm={complete}
         />
       )}
     </main>

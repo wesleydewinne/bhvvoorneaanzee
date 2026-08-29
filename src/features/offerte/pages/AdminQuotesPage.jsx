@@ -27,10 +27,13 @@ export default function AdminQuotesPage() {
   useEffect(() => { load(); }, []);
 
   const counts = useMemo(() => quotes.reduce((result, quote) => {
-    result.all += 1; result[quoteStatusGroup(quote.status)] += 1; return result;
+    if (quote.status !== "COMPLETED") result.all += 1;
+    result[quoteStatusGroup(quote.status)] += 1;
+    return result;
   }, { all: 0, concept: 0, sent: 0, accepted: 0, closed: 0 }), [quotes]);
   const visibleQuotes = filter === "all"
-    ? quotes : quotes.filter((quote) => quoteStatusGroup(quote.status) === filter);
+    ? quotes.filter((quote) => quote.status !== "COMPLETED")
+    : quotes.filter((quote) => quoteStatusGroup(quote.status) === filter);
 
   return (
     <main className="quote-admin-page">

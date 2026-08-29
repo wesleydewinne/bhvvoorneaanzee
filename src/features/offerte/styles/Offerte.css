@@ -1642,6 +1642,19 @@ body.quote-modal-open {
 }
 .quote-send-modal__notice svg { width: 2rem; }
 .quote-send-modal__notice p { margin: 0; line-height: 1.5; }
+.quote-complete-modal .quote-send-modal__header {
+  background: linear-gradient(135deg, #fff7ed, #fff 72%);
+}
+.quote-complete-modal .quote-send-modal__icon,
+.quote-complete-modal__confirm {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 0.8rem 1.8rem rgba(217, 119, 6, 0.24);
+}
+.quote-complete-modal__notice {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: #1e3a8a;
+}
 .quote-send-modal__actions {
   display: flex;
   justify-content: flex-end;
