@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CheckCircle2, FilePlus2, RefreshCw, Send } from "lucide-react";
+import { CheckCircle2, FilePlus2, RefreshCw, Search, Send, X } from "lucide-react";
 import quoteService from "../services/quoteService.js";
 import { formatCurrency } from "../helpers/quoteHelpers.js";
 import { quoteStatusGroup, quoteStatusLabel } from "../helpers/quoteStatus.js";
@@ -16,6 +16,7 @@ export default function AdminQuotesPage() {
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const load = async () => {
@@ -27,13 +28,25 @@ export default function AdminQuotesPage() {
   useEffect(() => { load(); }, []);
 
   const counts = useMemo(() => quotes.reduce((result, quote) => {
-    if (quote.status !== "COMPLETED") result.all += 1;
-    result[quoteStatusGroup(quote.status)] += 1;
+    const statusGroup = quoteStatusGroup(quote.status);
+    if (statusGroup !== "closed") result.all += 1;
+    result[statusGroup] += 1;
     return result;
   }, { all: 0, concept: 0, sent: 0, accepted: 0, closed: 0 }), [quotes]);
-  const visibleQuotes = filter === "all"
-    ? quotes.filter((quote) => quote.status !== "COMPLETED")
+  const quotesInSelectedFilter = filter === "all"
+    ? quotes.filter((quote) => quoteStatusGroup(quote.status) !== "closed")
     : quotes.filter((quote) => quoteStatusGroup(quote.status) === filter);
+  const normalizedSearchTerm = searchTerm.trim().toLocaleLowerCase("nl-NL");
+  const visibleQuotes = normalizedSearchTerm
+    ? quotesInSelectedFilter.filter((quote) => [
+        quote.quoteNumber,
+        quote.customerOrganization,
+        quote.customerContactName,
+        quote.customerEmail,
+        quoteStatusLabel(quote.status),
+      ].some((value) => String(value || "").toLocaleLowerCase("nl-NL")
+        .includes(normalizedSearchTerm)))
+    : quotesInSelectedFilter;
 
   return (
     <main className="quote-admin-page">
@@ -57,7 +70,20 @@ export default function AdminQuotesPage() {
           {label}<span>{counts[value]}</span></button>)}
       </nav>
       <section className="quote-panel">
-        <header><h2>{FILTERS.find(([value]) => value === filter)?.[1]}</h2><span>{visibleQuotes.length}</span></header>
+        <header className="quote-list-header">
+          <div><h2>{FILTERS.find(([value]) => value === filter)?.[1]}</h2>
+            <span>{visibleQuotes.length}</span></div>
+          <label className="quote-search">
+            <Search aria-hidden="true" />
+            <span className="sr-only">Offertes zoeken</span>
+            <input type="search" value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              placeholder="Zoek op nummer, klant, contactpersoon of e-mail"
+              aria-label="Offertes zoeken" />
+            {searchTerm && <button type="button" onClick={() => setSearchTerm("")}
+              aria-label="Zoekopdracht wissen"><X /></button>}
+          </label>
+        </header>
         {loading ? <p>Laden...</p> : <div className="quote-table-wrap">
           <table><thead><tr><th>Nummer</th><th>Klant</th><th>Datum</th><th>Totaal</th><th>Status</th></tr></thead>
             <tbody>{visibleQuotes.map((quote) => <tr key={quote.id}
@@ -67,7 +93,11 @@ export default function AdminQuotesPage() {
               <td>{formatCurrency(quote.totalIncludingVat)}</td><td><span
                 className={`quote-status quote-status--${quoteStatusGroup(quote.status)}`}>
                 {quoteStatusLabel(quote.status)}</span></td></tr>)}</tbody></table>
-          {!visibleQuotes.length && <p className="quote-empty">In dit onderdeel staan nog geen offertes.</p>}
+          {!visibleQuotes.length && <p className="quote-empty">
+            {normalizedSearchTerm
+              ? "Geen offertes gevonden voor deze zoekopdracht binnen dit onderdeel."
+              : "In dit onderdeel staan nog geen offertes."}
+          </p>}
         </div>}
       </section>
     </main>
