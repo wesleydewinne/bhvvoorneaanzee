@@ -7,15 +7,15 @@ import { quoteStatusGroup, quoteStatusLabel } from "../helpers/quoteStatus.js";
 import "../styles/Offerte.css";
 
 const FILTERS = [
-  ["all", "Alle offertes"], ["concept", "Concepten"],
+  ["active", "Openstaand"], ["concept", "Concepten"],
   ["sent", "Verzonden"], ["accepted", "Geaccepteerd"],
-  ["closed", "Afgehandeld"],
+  ["closed", "Afgehandeld"], ["all", "Alle offertes"],
 ];
 
 export default function AdminQuotesPage() {
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("active");
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -29,11 +29,14 @@ export default function AdminQuotesPage() {
 
   const counts = useMemo(() => quotes.reduce((result, quote) => {
     const statusGroup = quoteStatusGroup(quote.status);
-    if (statusGroup !== "closed") result.all += 1;
+    result.all += 1;
+    if (statusGroup !== "closed") result.active += 1;
     result[statusGroup] += 1;
     return result;
-  }, { all: 0, concept: 0, sent: 0, accepted: 0, closed: 0 }), [quotes]);
+  }, { all: 0, active: 0, concept: 0, sent: 0, accepted: 0, closed: 0 }), [quotes]);
   const quotesInSelectedFilter = filter === "all"
+    ? quotes
+    : filter === "active"
     ? quotes.filter((quote) => quoteStatusGroup(quote.status) !== "closed")
     : quotes.filter((quote) => quoteStatusGroup(quote.status) === filter);
   const normalizedSearchTerm = searchTerm.trim().toLocaleLowerCase("nl-NL");

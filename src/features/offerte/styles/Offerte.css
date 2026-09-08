@@ -365,6 +365,18 @@ td small {
   color: var(--quote-muted);
   font-size: 0.85rem;
 }
+.quote-rejection-note {
+  padding: 1rem 1.2rem;
+  border: 1px solid #fed7aa;
+  border-left: 0.4rem solid #ea580c;
+  border-radius: 0.8rem;
+  background: #fff7ed;
+  color: #7c2d12;
+}
+.quote-rejection-note p {
+  margin: 0.35rem 0 0;
+  white-space: pre-wrap;
+}
 
 .quote-acceptance-evidence {
   margin: 1rem 0;
@@ -1440,6 +1452,24 @@ td small {
   border-left: 0.35rem solid var(--quote-primary);
   background: var(--quote-primary-soft);
 }
+.quote-acceptance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+.quote-acceptance-actions .quote-primary-button,
+.quote-acceptance-actions .quote-secondary-button {
+  margin-top: 0;
+}
+.quote-reject-button {
+  color: #475569;
+}
+.quote-reject-button:hover {
+  border-color: #94a3b8;
+  color: #334155;
+}
 .quote-terms-card {
   padding: 1.4rem;
   border: 1px solid var(--quote-border);
@@ -1724,6 +1754,43 @@ body.quote-modal-open {
   border-color: #bfdbfe;
   background: #eff6ff;
   color: #1e3a8a;
+}
+.quote-reject-modal .quote-send-modal__header {
+  background: linear-gradient(135deg, #fff7ed, #fff 72%);
+}
+.quote-reject-modal .quote-send-modal__icon,
+.quote-reject-modal__confirm {
+  border-color: #c2410c;
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  box-shadow: 0 0.8rem 1.8rem rgba(194, 65, 12, 0.22);
+}
+.quote-reject-modal__reason {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--quote-heading);
+  font-weight: 800;
+}
+.quote-reject-modal__reason > span,
+.quote-reject-modal__reason small {
+  color: var(--quote-muted);
+  font-weight: 400;
+}
+.quote-reject-modal__reason textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--quote-border);
+  border-radius: 0.8rem;
+  padding: 0.9rem 1rem;
+  color: var(--quote-text);
+  font: inherit;
+  line-height: 1.5;
+}
+.quote-reject-modal__reason textarea:focus {
+  border-color: var(--quote-primary);
+  outline: 3px solid rgba(37, 99, 235, 0.14);
+}
+.quote-reject-modal__reason small {
+  justify-self: end;
 }
 .quote-send-modal__actions {
   display: flex;

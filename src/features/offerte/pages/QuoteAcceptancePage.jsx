@@ -3,6 +3,7 @@ import { Ban, CheckCircle2, Clock3, LoaderCircle, ShieldX } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import generalTermsService from "../services/generalTermsService.js";
 import quoteService from "../services/quoteService.js";
+import RejectQuoteModal from "../components/RejectQuoteModal.jsx";
 import "../styles/Offerte.css";
 
 export default function QuoteAcceptancePage() {
@@ -18,6 +19,8 @@ export default function QuoteAcceptancePage() {
   const [submitting, setSubmitting] = useState(false);
   const [downloadingTerms, setDownloadingTerms] = useState(false);
   const [accepted, setAccepted] = useState(false);
+  const [rejected, setRejected] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
   const [error, setError] = useState("");
 
   const downloadGeneralTerms = async () => {
@@ -89,6 +92,22 @@ export default function QuoteAcceptancePage() {
     }
   };
 
+  const confirmRejection = async (reason) => {
+    if (submitting) return;
+    setSubmitting(true);
+    setError("");
+    try {
+      const result = await quoteService.rejectQuote(token, reason);
+      setQuote(result);
+      setRejected(true);
+      setShowRejectModal(false);
+    } catch (reasonError) {
+      setError(reasonError.message || "De afwijzing kon niet worden verwerkt.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const canAccept = quote?.canAccept && !accepted;
 
   return (
@@ -113,6 +132,13 @@ export default function QuoteAcceptancePage() {
               Contact opnemen
             </Link>
           </div>
+        ) : rejected || quote?.status === "REJECTED" ? (
+          <StatusMessage
+            icon={Ban}
+            variant="withdrawn"
+            title="Offerte is afgewezen"
+            message="Deze offerte is als afgewezen geregistreerd en kan niet meer digitaal worden geaccepteerd."
+          />
         ) : quote?.status === "EXPIRED" ? (
           <StatusMessage
             icon={Clock3}
@@ -120,7 +146,7 @@ export default function QuoteAcceptancePage() {
             title="Offerte is verlopen"
             message="De geldigheidsduur van deze offerte is verstreken. Neem contact met ons op als u een nieuwe offerte wilt ontvangen."
           />
-        ) : ["CANCELLED", "REJECTED"].includes(quote?.status) ? (
+        ) : quote?.status === "CANCELLED" ? (
           <StatusMessage
             icon={Ban}
             variant="withdrawn"
@@ -242,19 +268,17 @@ export default function QuoteAcceptancePage() {
                   deze offerte en de daarbij behorende voorwaarden.
                 </p>
                 {error && <p className="quote-alert quote-alert--error">{error}</p>}
-                <button
-                  className="quote-primary-button"
-                  type="button"
-                  disabled={
-                    !termsAccepted ||
-                    !authorityConfirmed ||
-                    !acceptedByName.trim() ||
-                    submitting
-                  }
-                  onClick={confirmAcceptance}
-                >
-                  {submitting ? "Akkoord verwerken..." : "Opdracht definitief bevestigen"}
-                </button>
+                <div className="quote-acceptance-actions">
+                  <button className="quote-primary-button" type="button"
+                    disabled={!termsAccepted || !authorityConfirmed || !acceptedByName.trim() || submitting}
+                    onClick={confirmAcceptance}>
+                    {submitting ? "Akkoord verwerken..." : "Offerte accepteren"}
+                  </button>
+                  <button className="quote-secondary-button quote-reject-button" type="button"
+                    disabled={submitting} onClick={() => setShowRejectModal(true)}>
+                    Offerte afwijzen
+                  </button>
+                </div>
               </>
             ) : (
               <>
@@ -269,6 +293,10 @@ export default function QuoteAcceptancePage() {
           </>
         )}
       </section>
+      {showRejectModal && (
+        <RejectQuoteModal quoteNumber={quote?.quoteNumber} submitting={submitting}
+          onCancel={() => setShowRejectModal(false)} onConfirm={confirmRejection} />
+      )}
     </main>
   );
 }

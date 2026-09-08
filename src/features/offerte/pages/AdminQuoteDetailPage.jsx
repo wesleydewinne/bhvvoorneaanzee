@@ -148,6 +148,12 @@ export default function AdminQuoteDetailPage() {
         {detail.rejectedAt && <div><span>Afgewezen</span><strong>{formatQuoteDateTime(detail.rejectedAt)}</strong></div>}
         {detail.cancelledAt && <div><span>Geannuleerd</span><strong>{formatQuoteDateTime(detail.cancelledAt)}</strong></div>}
       </section>
+      {detail.rejectionReason && (
+        <section className="quote-rejection-note" aria-label="Reden van afwijzing">
+          <strong>Reden van afwijzing</strong>
+          <p>{detail.rejectionReason}</p>
+        </section>
+      )}
       {isAdmin && <QuoteAcceptanceEvidence quote={detail} />}
       <QuotePdfForm
         initialValue={detail.quote}

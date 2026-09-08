@@ -133,6 +133,14 @@ const quoteService = {
     return response.data;
   },
 
+  async rejectQuote(token, reason) {
+    const response = await api.post("/public/quotes/rejection", {
+      token,
+      reason: reason || null,
+    });
+    return response.data;
+  },
+
   async deleteQuote(id) {
     await api.delete(`/offertes/${id}`);
   },
@@ -352,6 +360,7 @@ function toQuoteDetail(value, discounts, invoiceMoments = []) {
     planningMailScheduledFor: value.planningMailScheduledFor,
     planningMailSentAt: value.planningMailSentAt,
     rejectedAt: value.rejectedAt,
+    rejectionReason: value.rejectionReason,
     cancelledAt: value.cancelledAt,
     createdBy: "offertebackend",
     updatedBy: "offertebackend",
