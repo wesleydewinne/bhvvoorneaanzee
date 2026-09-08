@@ -506,6 +506,7 @@ function toQuoteSummary(value) {
     sentAt: value.sentAt,
     acceptedAt: value.acceptedAt,
     completedAt: value.completedAt,
+    expiryReminderSentAt: value.expiryReminderSentAt,
     rejectedAt: value.rejectedAt,
     cancelledAt: value.cancelledAt,
   };

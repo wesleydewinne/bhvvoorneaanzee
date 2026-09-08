@@ -50,6 +50,7 @@ export default function AdminQuotesPage() {
       ].some((value) => String(value || "").toLocaleLowerCase("nl-NL")
         .includes(normalizedSearchTerm)))
     : quotesInSelectedFilter;
+  const isSentOverview = filter === "sent";
 
   return (
     <main className="quote-admin-page">
@@ -88,14 +89,28 @@ export default function AdminQuotesPage() {
           </label>
         </header>
         {loading ? <p>Laden...</p> : <div className="quote-table-wrap">
-          <table><thead><tr><th>Nummer</th><th>Klant</th><th>Datum</th><th>Totaal</th><th>Status</th></tr></thead>
+          <table><thead>{isSentOverview
+            ? <tr><th>Offertenummer</th><th>Klant</th><th>Verzonden op</th><th>Geldig tot</th><th>Resterend</th><th>Herinnering</th></tr>
+            : <tr><th>Nummer</th><th>Klant</th><th>Datum</th><th>Totaal</th><th>Status</th></tr>}
+          </thead>
             <tbody>{visibleQuotes.map((quote) => <tr key={quote.id}
               onClick={() => navigate(`/admin/offertes/${quote.id}`)} tabIndex="0">
               <td><strong>{quote.quoteNumber}</strong></td>
-              <td>{quote.customerOrganization || quote.customerContactName}</td><td>{quote.quoteDate}</td>
-              <td>{formatCurrency(quote.totalIncludingVat)}</td><td><span
-                className={`quote-status quote-status--${quoteStatusGroup(quote.status)}`}>
-                {quoteStatusLabel(quote.status)}</span></td></tr>)}</tbody></table>
+              <td>{quote.customerOrganization || quote.customerContactName}</td>
+              {isSentOverview ? <>
+                <td>{formatDateTime(quote.sentAt)}</td>
+                <td>{formatDate(quote.validUntil)}</td>
+                <td><RemainingDays validUntil={quote.validUntil} /></td>
+                <td>{quote.expiryReminderSentAt
+                  ? <><span className="quote-reminder-status quote-reminder-status--sent">Verstuurd</span>
+                    <small>{formatDateTime(quote.expiryReminderSentAt)}</small></>
+                  : <span className="quote-reminder-status">Nog niet verstuurd</span>}</td>
+              </> : <>
+                <td>{formatDate(quote.quoteDate)}</td>
+                <td>{formatCurrency(quote.totalIncludingVat)}</td><td><span
+                  className={`quote-status quote-status--${quoteStatusGroup(quote.status)}`}>
+                  {quoteStatusLabel(quote.status)}</span></td>
+              </>}</tr>)}</tbody></table>
           {!visibleQuotes.length && <p className="quote-empty">
             {normalizedSearchTerm
               ? "Geen offertes gevonden voor deze zoekopdracht binnen dit onderdeel."
@@ -105,4 +120,30 @@ export default function AdminQuotesPage() {
       </section>
     </main>
   );
+}
+
+function formatDate(value) {
+  if (!value) return "—";
+  const date = new Date(`${value}T12:00:00`);
+  return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("nl-NL").format(date);
+}
+
+function formatDateTime(value) {
+  if (!value) return "—";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? "—" : new Intl.DateTimeFormat("nl-NL", {
+    dateStyle: "short", timeStyle: "short",
+  }).format(date);
+}
+
+function RemainingDays({ validUntil }) {
+  if (!validUntil) return "—";
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const endDate = new Date(`${validUntil}T00:00:00`);
+  const days = Math.ceil((endDate - today) / 86400000);
+  if (Number.isNaN(days)) return "—";
+  return <span className={days <= 7 ? "quote-days quote-days--urgent" : "quote-days"}>
+    {days === 0 ? "Vandaag" : `${days} ${days === 1 ? "dag" : "dagen"}`}
+  </span>;
 }

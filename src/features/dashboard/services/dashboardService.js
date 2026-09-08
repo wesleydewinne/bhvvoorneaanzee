@@ -41,7 +41,7 @@ function isOpenContactMessage(message) {
 }
 
 function isOpenQuote(quote) {
-    return !["ACCEPTED", "REJECTED", "EXPIRED", "CANCELLED"].includes(quote?.status);
+    return ["DRAFT", "SENDING", "SENT"].includes(quote?.status);
 }
 
 function normalizeQuote(quote) {

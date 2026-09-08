@@ -294,6 +294,30 @@ td small {
   background: #fff7ed;
   color: #c2410c;
 }
+.quote-days,
+.quote-reminder-status {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.quote-days--urgent {
+  background: #fff7ed;
+  color: #c2410c;
+}
+.quote-reminder-status {
+  background: #f1f5f9;
+  color: #475569;
+}
+.quote-reminder-status--sent {
+  background: #dcfce7;
+  color: #166534;
+}
 .quote-stats--three {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
