@@ -7,15 +7,15 @@ import { quoteStatusGroup, quoteStatusLabel } from "../helpers/quoteStatus.js";
 import "../styles/Offerte.css";
 
 const FILTERS = [
-  ["active", "Openstaand"], ["concept", "Concepten"],
-  ["sent", "Verzonden"], ["accepted", "Geaccepteerd"],
+  ["sent", "Verzonden"], ["concept", "Concepten"],
+  ["active", "Openstaand"], ["accepted", "Geaccepteerd"],
   ["closed", "Afgehandeld"], ["all", "Alle offertes"],
 ];
 
 export default function AdminQuotesPage() {
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState([]);
-  const [filter, setFilter] = useState("active");
+  const [filter, setFilter] = useState("sent");
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
