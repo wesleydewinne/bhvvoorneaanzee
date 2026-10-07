@@ -420,3 +420,25 @@
         grid-template-columns: 1fr;
     }
 }
+
+@media (max-width: 600px) {
+    .um-page .dashboard-admin-hero,
+    .um-page .dashboard-admin-hero > div {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .um-page .dashboard-admin-hero__actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .um-page .dashboard-admin-hero__actions .dashboard-admin-button {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        flex: none;
+        white-space: normal;
+    }
+}
