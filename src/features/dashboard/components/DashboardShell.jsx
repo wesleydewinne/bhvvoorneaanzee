@@ -81,6 +81,26 @@ function DashboardShell({ children }) {
         };
     }, [isAdmin]);
 
+    useEffect(() => {
+        if (!mobileMenuOpen) {
+            return undefined;
+        }
+
+        const closeOnEscape = (event) => {
+            if (event.key === "Escape") {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("keydown", closeOnEscape);
+        document.body.classList.add("dashboard-mobile-menu-open");
+
+        return () => {
+            document.removeEventListener("keydown", closeOnEscape);
+            document.body.classList.remove("dashboard-mobile-menu-open");
+        };
+    }, [mobileMenuOpen]);
+
     const openNotificationTarget = (target) => {
         setNotificationsOpen(false);
         navigate(target);
@@ -92,6 +112,11 @@ function DashboardShell({ children }) {
     };
 
     const toggleSidebar = () => {
+        if (window.matchMedia("(max-width: 720px)").matches) {
+            setMobileMenuOpen(false);
+            return;
+        }
+
         setSidebarCollapsed((collapsed) => {
             localStorage.setItem("dashboard-sidebar-collapsed", String(!collapsed));
             return !collapsed;

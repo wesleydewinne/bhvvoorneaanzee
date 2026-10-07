@@ -1573,3 +1573,64 @@
     justify-items: center;
     padding: 0.8rem;
 }
+
+/* Mobiel gebruikt altijd een volledige lade, ongeacht de desktopstatus. */
+@media (max-width: 720px) {
+    body.dashboard-mobile-menu-open {
+        overflow: hidden;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed {
+        padding-left: 0;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar {
+        width: min(32rem, 88vw);
+        padding: 1.4rem;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__brand {
+        justify-content: space-between;
+        padding: 0 0.8rem;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__brand img,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__help,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__link span,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__group-button span,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__group-chevron,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__group-items {
+        display: initial;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__brand img {
+        display: block;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__help,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__group-items {
+        display: grid;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__toggle {
+        margin-left: auto;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__link {
+        grid-template-columns: 3.8rem minmax(0, 1fr);
+        justify-items: stretch;
+        padding: 0.8rem 1rem;
+    }
+
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__group-button,
+    .dashboard.dashboard--sidebar-collapsed .dashboard-sidebar__sub-link {
+        grid-template-columns: 3.2rem minmax(0, 1fr) auto;
+        justify-items: stretch;
+    }
+
+    .dashboard-sidebar__group-button span,
+    .dashboard-sidebar__sub-link span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+}
