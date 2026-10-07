@@ -420,7 +420,7 @@ function TrainingForm({
                     </select>
                 </div>
 
-                <div className="training-form__field training-form__field--third">
+                <div className="training-form__field training-form__field--third training-form__field--schedule">
                     <label htmlFor="courseDate">
                         <CalendarDays aria-hidden="true" />
                         Datum
@@ -429,13 +429,14 @@ function TrainingForm({
                         id="courseDate"
                         name="courseDate"
                         type="date"
+                        className="training-form__schedule-input"
                         value={formData.courseDate}
                         onChange={handleChange}
                         required
                     />
                 </div>
 
-                <div className="training-form__field training-form__field--third">
+                <div className="training-form__field training-form__field--third training-form__field--schedule">
                     <label htmlFor="startTime">
                         <Clock aria-hidden="true" />
                         Starttijd
@@ -444,12 +445,13 @@ function TrainingForm({
                         id="startTime"
                         name="startTime"
                         type="time"
+                        className="training-form__schedule-input"
                         value={formData.startTime}
                         onChange={handleChange}
                     />
                 </div>
 
-                <div className="training-form__field training-form__field--third">
+                <div className="training-form__field training-form__field--third training-form__field--schedule">
                     <label htmlFor="endTime">
                         <Clock aria-hidden="true" />
                         Eindtijd
@@ -458,6 +460,7 @@ function TrainingForm({
                         id="endTime"
                         name="endTime"
                         type="time"
+                        className="training-form__schedule-input"
                         value={formData.endTime}
                         onChange={handleChange}
                     />

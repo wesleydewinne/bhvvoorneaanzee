@@ -1069,6 +1069,32 @@
         max-width: 100%;
     }
 
+    .training-form__field--schedule {
+        min-inline-size: 0;
+        max-inline-size: 100%;
+        overflow: hidden;
+    }
+
+    .training-form__field .training-form__schedule-input {
+        box-sizing: border-box;
+        inline-size: 100%;
+        min-inline-size: 0;
+        max-inline-size: 100%;
+        font-size: 1.6rem;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .training-form__schedule-input::-webkit-date-and-time-value {
+        min-width: 0;
+        text-align: left;
+    }
+
+    .training-form__schedule-input::-webkit-calendar-picker-indicator {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+
     .training-detail-overview__top,
     .training-detail-status-bar {
         flex-direction: column;
