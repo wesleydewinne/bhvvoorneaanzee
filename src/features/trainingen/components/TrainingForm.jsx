@@ -21,6 +21,7 @@ import {
     buildCreateTrainingPayload,
     buildUpdateTrainingPayload,
     CATEGORY_OPTIONS,
+    getTrainingDayCount,
     getTrainingTypeOptionsByCategory,
 } from "../helpers/trainingHelpers.js";
 
@@ -67,6 +68,12 @@ const defaultFormData = {
     courseDate: "",
     startTime: "",
     endTime: "",
+    secondCourseDate: "",
+    secondStartTime: "",
+    secondEndTime: "",
+    thirdCourseDate: "",
+    thirdStartTime: "",
+    thirdEndTime: "",
     locationId: "",
     trainerId: "",
     adminOverrideAllowed: false,
@@ -129,6 +136,12 @@ function TrainingForm({
             courseDate: initialValues.courseDate || "",
             startTime: initialValues.startTime ? initialValues.startTime.slice(0, 5) : "",
             endTime: initialValues.endTime ? initialValues.endTime.slice(0, 5) : "",
+            secondCourseDate: initialValues.secondCourseDate || "",
+            secondStartTime: initialValues.secondStartTime ? initialValues.secondStartTime.slice(0, 5) : "",
+            secondEndTime: initialValues.secondEndTime ? initialValues.secondEndTime.slice(0, 5) : "",
+            thirdCourseDate: initialValues.thirdCourseDate || "",
+            thirdStartTime: initialValues.thirdStartTime ? initialValues.thirdStartTime.slice(0, 5) : "",
+            thirdEndTime: initialValues.thirdEndTime ? initialValues.thirdEndTime.slice(0, 5) : "",
             locationId: initialValues.locationId ? String(initialValues.locationId) : "",
             trainerId: initialValues.trainerId ? String(initialValues.trainerId) : "",
             adminOverrideAllowed: Boolean(initialValues.adminOverrideAllowed),
@@ -291,6 +304,8 @@ function TrainingForm({
         return "Trainingstype";
     };
 
+    const trainingDayCount = getTrainingDayCount(selectedTrainingTypeValue);
+
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
 
@@ -423,7 +438,7 @@ function TrainingForm({
                 <div className="training-form__field training-form__field--third training-form__field--schedule">
                     <label htmlFor="courseDate">
                         <CalendarDays aria-hidden="true" />
-                        Datum
+                        {trainingDayCount > 1 ? "Datum dag 1" : "Datum"}
                     </label>
                     <input
                         id="courseDate"
@@ -439,7 +454,7 @@ function TrainingForm({
                 <div className="training-form__field training-form__field--third training-form__field--schedule">
                     <label htmlFor="startTime">
                         <Clock aria-hidden="true" />
-                        Starttijd
+                        {trainingDayCount > 1 ? "Starttijd dag 1" : "Starttijd"}
                     </label>
                     <input
                         id="startTime"
@@ -454,7 +469,7 @@ function TrainingForm({
                 <div className="training-form__field training-form__field--third training-form__field--schedule">
                     <label htmlFor="endTime">
                         <Clock aria-hidden="true" />
-                        Eindtijd
+                        {trainingDayCount > 1 ? "Eindtijd dag 1" : "Eindtijd"}
                     </label>
                     <input
                         id="endTime"
@@ -465,6 +480,22 @@ function TrainingForm({
                         onChange={handleChange}
                     />
                 </div>
+
+                {trainingDayCount >= 2 && (
+                    <>
+                        <ScheduleField icon="date" label="Datum dag 2" name="secondCourseDate" type="date" value={formData.secondCourseDate} onChange={handleChange} min={formData.courseDate || undefined} required />
+                        <ScheduleField label="Starttijd dag 2" name="secondStartTime" type="time" value={formData.secondStartTime} onChange={handleChange} required />
+                        <ScheduleField label="Eindtijd dag 2" name="secondEndTime" type="time" value={formData.secondEndTime} onChange={handleChange} required />
+                    </>
+                )}
+
+                {trainingDayCount >= 3 && (
+                    <>
+                        <ScheduleField icon="date" label="Datum dag 3" name="thirdCourseDate" type="date" value={formData.thirdCourseDate} onChange={handleChange} min={formData.secondCourseDate || formData.courseDate || undefined} required />
+                        <ScheduleField label="Starttijd dag 3" name="thirdStartTime" type="time" value={formData.thirdStartTime} onChange={handleChange} required />
+                        <ScheduleField label="Eindtijd dag 3" name="thirdEndTime" type="time" value={formData.thirdEndTime} onChange={handleChange} required />
+                    </>
+                )}
 
                 <LocationSearchSelect
                     className="training-form__field--half"
@@ -658,6 +689,28 @@ function TrainingForm({
                 </button>
             </div>
         </form>
+    );
+}
+
+function ScheduleField({ icon, label, name, type, value, onChange, min, required }) {
+    const Icon = icon === "date" ? CalendarDays : Clock;
+    return (
+        <div className="training-form__field training-form__field--third training-form__field--schedule">
+            <label htmlFor={name}>
+                <Icon aria-hidden="true" />
+                {label}
+            </label>
+            <input
+                id={name}
+                name={name}
+                type={type}
+                className="training-form__schedule-input"
+                value={value}
+                onChange={onChange}
+                min={min}
+                required={required}
+            />
+        </div>
     );
 }
 

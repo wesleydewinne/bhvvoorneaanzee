@@ -185,6 +185,16 @@ export function resolveTrainingType(formData) {
     return formData.trainingType || null;
 }
 
+export function getTrainingDayCount(trainingType) {
+    if (trainingType === "EHBO_BASIC_3_DAYS") return 3;
+    if ([
+        "BHV_BASIC_2_DAYS",
+        "BHV_PLOEGLEIDER_BASIC_2_DAYS",
+        "EHBO_BASIC_2_DAYS_ELEARNING",
+    ].includes(trainingType)) return 2;
+    return 1;
+}
+
 export function getCategoryLabel(value) {
     return CATEGORY_OPTIONS.find((option) => option.value === value)?.label || value || "-";
 }
@@ -259,6 +269,12 @@ export function buildCreateTrainingPayload(formData) {
         courseDate: formData.courseDate || null,
         startTime: formData.startTime || null,
         endTime: formData.endTime || null,
+        secondCourseDate: formData.secondCourseDate || null,
+        secondStartTime: formData.secondStartTime || null,
+        secondEndTime: formData.secondEndTime || null,
+        thirdCourseDate: formData.thirdCourseDate || null,
+        thirdStartTime: formData.thirdStartTime || null,
+        thirdEndTime: formData.thirdEndTime || null,
         locationId: toNullableNumber(formData.locationId),
         companyId: toNullableNumber(formData.companyId),
         trainerId: toNullableNumber(formData.trainerId),
@@ -277,6 +293,12 @@ export function buildUpdateTrainingPayload(formData) {
         courseDate: formData.courseDate || null,
         startTime: formData.startTime || null,
         endTime: formData.endTime || null,
+        secondCourseDate: formData.secondCourseDate || null,
+        secondStartTime: formData.secondStartTime || null,
+        secondEndTime: formData.secondEndTime || null,
+        thirdCourseDate: formData.thirdCourseDate || null,
+        thirdStartTime: formData.thirdStartTime || null,
+        thirdEndTime: formData.thirdEndTime || null,
         locationId: toNullableNumber(formData.locationId),
         companyId: toNullableNumber(formData.companyId),
         trainerId: toNullableNumber(formData.trainerId),
