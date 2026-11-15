@@ -5,6 +5,7 @@ import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
 import QuoteAcceptanceEvidence from "../components/QuoteAcceptanceEvidence.jsx";
 import CompleteQuoteModal from "../components/CompleteQuoteModal.jsx";
+import DeleteQuoteModal from "../components/DeleteQuoteModal.jsx";
 import SendQuoteModal from "../components/SendQuoteModal.jsx";
 import quoteService from "../services/quoteService.js";
 import { downloadBlob } from "../helpers/quoteHelpers.js";
@@ -24,6 +25,7 @@ export default function AdminQuoteDetailPage() {
   const [completing, setCompleting] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentQuote, setCurrentQuote] = useState(null);
   const handleQuoteChange = useCallback((quote) => setCurrentQuote(quote), []);
 
@@ -91,11 +93,6 @@ export default function AdminQuoteDetailPage() {
     }
   };
   const remove = async () => {
-    const confirmed = window.confirm(
-      `Weet je zeker dat je offerte ${detail.quote.quoteNumber} wilt verwijderen? Dit kan niet ongedaan worden gemaakt.`,
-    );
-    if (!confirmed) return;
-
     setDeleting(true);
     setError("");
     try {
@@ -131,16 +128,6 @@ export default function AdminQuoteDetailPage() {
           <Link className="quote-secondary-button" to="/admin/offertes">
             Terug
           </Link>
-          {detail.status === "DRAFT" && (
-            <button
-              className="quote-secondary-button quote-danger-button"
-              type="button"
-              onClick={remove}
-              disabled={deleting}
-            >
-              <Trash2 /> {deleting ? "Verwijderen..." : "Verwijderen"}
-            </button>
-          )}
           <button
             className="quote-primary-button"
             onClick={download}
@@ -189,6 +176,16 @@ export default function AdminQuoteDetailPage() {
         submitLabel="Wijzigingen opslaan"
         icon={<Save />}
         readOnly={detail.status !== "DRAFT"}
+        footerActions={detail.status === "DRAFT" ? (
+          <button
+            className="quote-danger-button"
+            type="button"
+            onClick={() => setShowDeleteModal(true)}
+            disabled={deleting}
+          >
+            <Trash2 /> {deleting ? "Verwijderen..." : "Offerte verwijderen"}
+          </button>
+        ) : null}
       />
       {showSendModal && (
         <SendQuoteModal
@@ -204,6 +201,14 @@ export default function AdminQuoteDetailPage() {
           completing={completing}
           onCancel={() => setShowCompleteModal(false)}
           onConfirm={complete}
+        />
+      )}
+      {showDeleteModal && (
+        <DeleteQuoteModal
+          quote={detail.quote}
+          deleting={deleting}
+          onCancel={() => setShowDeleteModal(false)}
+          onConfirm={remove}
         />
       )}
     </main>

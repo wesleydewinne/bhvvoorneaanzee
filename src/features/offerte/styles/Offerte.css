@@ -1127,6 +1127,21 @@ td small {
   padding: 0 1.4rem;
   font-weight: 900;
 }
+.quote-submit-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.quote-submit-bar .quote-danger-button {
+  border: 1px solid #fecaca;
+  background: #fff;
+  color: #b42318;
+  box-shadow: none;
+}
+.quote-submit-bar .quote-danger-button:hover {
+  border-color: #fda29b;
+  background: #fef3f2;
+}
 .quote-public-page {
   min-height: 70vh;
   place-items: center;
@@ -1791,6 +1806,23 @@ body.quote-modal-open {
   border-color: #bfdbfe;
   background: #eff6ff;
   color: #1e3a8a;
+}
+.quote-delete-modal .quote-send-modal__header {
+  background: linear-gradient(135deg, #fff1f2, #fff 72%);
+}
+.quote-delete-modal .quote-send-modal__header p {
+  color: #b42318;
+}
+.quote-delete-modal .quote-send-modal__icon,
+.quote-delete-modal__confirm {
+  border-color: #b42318;
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  box-shadow: 0 0.8rem 1.8rem rgba(185, 28, 28, 0.22);
+}
+.quote-delete-modal__notice {
+  border-color: #fecaca;
+  background: #fff1f2;
+  color: #991b1b;
 }
 .quote-reject-modal .quote-send-modal__header {
   background: linear-gradient(135deg, #fff7ed, #fff 72%);

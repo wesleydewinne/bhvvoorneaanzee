@@ -109,6 +109,7 @@ export default function QuotePdfForm({
   submitLabel = "Offerte opslaan",
   readOnly = false,
   disableCustomerAutofill = false,
+  footerActions = null,
 }) {
   const [form, setForm] = useState(() =>
     normalizeQuoteForForm(initialValue || createInitialQuote()),
@@ -726,14 +727,17 @@ export default function QuotePdfForm({
           De offerte wordt veilig opgeslagen. Daarna kan de PDF vanuit het
           overzicht worden gedownload.
         </p>
-        {!readOnly && <button type="submit" disabled={submitting || loadingTypes}>
-          {submitting ? (
-            <LoaderCircle className="quote-spin" size={20} />
-          ) : (
-            <Save size={20} />
-          )}
-          {submitting ? "Opslaan..." : submitLabel}
-        </button>}
+        <div className="quote-submit-bar__actions">
+          {footerActions}
+          {!readOnly && <button type="submit" disabled={submitting || loadingTypes}>
+            {submitting ? (
+              <LoaderCircle className="quote-spin" size={20} />
+            ) : (
+              <Save size={20} />
+            )}
+            {submitting ? "Opslaan..." : submitLabel}
+          </button>}
+        </div>
       </div>
     </form>
   );
