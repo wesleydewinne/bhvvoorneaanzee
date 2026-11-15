@@ -28,6 +28,7 @@ export default function UserDetailPage() {
     const [privacyPreview, setPrivacyPreview] = useState(null);
     const [privacyConfirmation, setPrivacyConfirmation] = useState("");
     const [privacyLoading, setPrivacyLoading] = useState(false);
+    const [companySearchOpen, setCompanySearchOpen] = useState(false);
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -182,21 +183,30 @@ export default function UserDetailPage() {
 
     const handleCompanyChange = (event) => {
         const companyName = event.target.value;
-        const normalizedName = companyName.trim().toLocaleLowerCase("nl-NL");
-        const selectedCompany = companies.find(
-            (company) =>
-                company.name?.trim().toLocaleLowerCase("nl-NL") === normalizedName,
-        );
 
         setFormData((prev) => ({
             ...prev,
-            companyId: selectedCompany?.id ?? null,
+            companyId: null,
             companyName,
             locationRoles:
-                prev.companyId === (selectedCompany?.id ?? null)
+                prev.companyId === null
                     ? prev.locationRoles
                     : prev.locationRoles.filter((assignment) => assignment.role !== "STUDENT"),
         }));
+        setCompanySearchOpen(true);
+    };
+
+    const handleCompanySelect = (company) => {
+        setFormData((prev) => ({
+            ...prev,
+            companyId: company.id,
+            companyName: company.name,
+            locationRoles:
+                Number(prev.companyId) === Number(company.id)
+                    ? prev.locationRoles
+                    : prev.locationRoles.filter((assignment) => assignment.role !== "STUDENT"),
+        }));
+        setCompanySearchOpen(false);
     };
 
     const handleStudentLocationToggle = (locationId) => {
@@ -314,6 +324,13 @@ export default function UserDetailPage() {
             }),
         )
         : [];
+    const normalizedCompanySearch = formData.companyName.trim().toLocaleLowerCase("nl-NL");
+    const companySuggestions = companies
+        .filter((company) =>
+            !normalizedCompanySearch ||
+            company.name?.toLocaleLowerCase("nl-NL").includes(normalizedCompanySearch),
+        )
+        .slice(0, 8);
 
     return (
         <section className="um-page">
@@ -565,22 +582,38 @@ export default function UserDetailPage() {
                                 />
                             </div>
 
-                            <div className="um-form__field">
+                            <div className="um-form__field um-company-search">
                                 <label htmlFor="companyName">Bedrijfsnaam</label>
                                 <input
                                     id="companyName"
                                     name="companyName"
-                                    list="user-company-options"
                                     value={formData.companyName}
                                     onChange={handleCompanyChange}
+                                    onFocus={() => setCompanySearchOpen(true)}
+                                    onBlur={() => setCompanySearchOpen(false)}
                                     placeholder="Zoek op bedrijfsnaam"
                                     autoComplete="off"
                                 />
-                                <datalist id="user-company-options">
-                                    {companies.map((company) => (
-                                        <option key={company.id} value={company.name} />
-                                    ))}
-                                </datalist>
+                                {companySearchOpen && (
+                                    <div className="um-company-search__results">
+                                        {companySuggestions.length > 0 ? companySuggestions.map((company) => (
+                                            <button
+                                                key={company.id}
+                                                type="button"
+                                                className={Number(formData.companyId) === Number(company.id) ? "is-selected" : ""}
+                                                onMouseDown={(event) => event.preventDefault()}
+                                                onClick={() => handleCompanySelect(company)}
+                                            >
+                                                {company.name}
+                                            </button>
+                                        )) : (
+                                            <span>Geen bedrijven gevonden</span>
+                                        )}
+                                    </div>
+                                )}
+                                {formData.companyId && (
+                                    <small className="um-field-hint">Geselecteerd bedrijf</small>
+                                )}
                             </div>
 
                             {formData.companyId && (
