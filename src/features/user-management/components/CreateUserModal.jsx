@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 import userService from "../services/userService.js";
 
+function getValidationMessage(error) {
+    const fieldErrors = error?.fieldErrors;
+    if (fieldErrors && typeof fieldErrors === "object") {
+        const messages = Object.values(fieldErrors)
+            .flatMap((value) => (Array.isArray(value) ? value : [value]))
+            .filter(Boolean);
+        if (messages.length > 0) return messages.join(" ");
+    }
+
+    return error?.message || "Aanmaken gebruiker mislukt.";
+}
+
 export default function CreateUserModal({ onClose, onCreated }) {
     const [roles, setRoles] = useState([]);
     const [loadingRoles, setLoadingRoles] = useState(false);
@@ -71,12 +83,7 @@ export default function CreateUserModal({ onClose, onCreated }) {
         } catch (err) {
             console.error("Fout bij aanmaken gebruiker:", err);
 
-            const backendMessage =
-                err?.response?.data?.message ||
-                err?.response?.data?.error ||
-                (typeof err?.response?.data === "string" ? err.response.data : null);
-
-            setError(backendMessage || "Aanmaken gebruiker mislukt.");
+            setError(getValidationMessage(err));
         } finally {
             setSaving(false);
         }
@@ -128,6 +135,7 @@ export default function CreateUserModal({ onClose, onCreated }) {
                                 onChange={handleChange}
                                 required
                             />
+                            <small>Dit e-mailadres moet uniek zijn.</small>
                         </div>
 
                         <div className="um-form__field">
@@ -140,6 +148,7 @@ export default function CreateUserModal({ onClose, onCreated }) {
                                 onChange={handleChange}
                                 required
                             />
+                            <small>Minimaal 14 tekens, met hoofdletter, kleine letter, cijfer en speciaal teken.</small>
                         </div>
 
                         <div className="um-form__field">
