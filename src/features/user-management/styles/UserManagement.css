@@ -209,6 +209,20 @@
     font-weight: 600;
 }
 
+.um-form__field--full {
+    grid-column: 1 / -1;
+}
+
+.um-form__label {
+    font-weight: 600;
+}
+
+.um-field-hint {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
 .um-form__field input,
 .um-form__field select {
     min-height: 46px;
@@ -230,17 +244,70 @@
     flex-wrap: wrap;
 }
 
-.um-checkbox-group,
+.um-account-options,
 .um-role-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
-    flex-wrap: wrap;
+}
+
+.um-location-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.um-option-card--location > span {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.um-option-card--location small {
+    color: #64748b;
+    font-weight: 400;
 }
 
 .um-checkbox {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+}
+
+.um-option-card {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid #d8e1ec;
+    border-radius: 14px;
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 600;
+    line-height: 1.3;
+    cursor: pointer;
+    transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.um-option-card:hover {
+    border-color: #94a3b8;
+    background: #ffffff;
+}
+
+.um-option-card.is-selected {
+    border-color: #0f766e;
+    background: #ecfdf5;
+    color: #115e59;
+    box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.12);
+}
+
+.um-option-card input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    accent-color: #0f766e;
 }
 
 .um-role-section {
@@ -252,6 +319,16 @@
 .um-role-section h2 {
     margin: 0;
     font-size: 1.2rem;
+}
+
+.um-role-section p {
+    margin: -4px 0 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.um-option-card--role {
+    min-height: 64px;
 }
 
 .um-modal-backdrop {
@@ -369,6 +446,12 @@
         grid-template-columns: 1fr;
     }
 
+    .um-account-options,
+    .um-role-grid,
+    .um-location-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .um-privacy-counts {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -422,6 +505,12 @@
 }
 
 @media (max-width: 600px) {
+    .um-account-options,
+    .um-role-grid,
+    .um-location-grid {
+        grid-template-columns: 1fr;
+    }
+
     .um-page .dashboard-admin-hero,
     .um-page .dashboard-admin-hero > div {
         min-width: 0;

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
+import companyService from "@/features/companies/services/companyService.js";
+import locationService from "@/features/locations/services/locationService.js";
 import userService from "../services/userService.js";
 import {
     formatRoleLabel,
@@ -16,6 +18,8 @@ export default function UserDetailPage() {
 
     const [user, setUser] = useState(null);
     const [roles, setRoles] = useState([]);
+    const [companies, setCompanies] = useState([]);
+    const [locations, setLocations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [editing, setEditing] = useState(false);
@@ -50,13 +54,23 @@ export default function UserDetailPage() {
                 setLoading(true);
                 setError("");
 
-                const [userData, rolesData] = await Promise.all([
+                const [userData, rolesData, companiesData, locationsData] = await Promise.all([
                     userService.getById(id),
                     userService.getAssignableRoles(),
+                    companyService.getAll().catch((companyError) => {
+                        console.error("Fout bij laden bedrijven:", companyError);
+                        return [];
+                    }),
+                    locationService.getAll().catch((locationError) => {
+                        console.error("Fout bij laden locaties:", locationError);
+                        return [];
+                    }),
                 ]);
 
                 setUser(userData);
                 setRoles(Array.isArray(rolesData) ? rolesData : []);
+                setCompanies(Array.isArray(companiesData) ? companiesData : []);
+                setLocations(Array.isArray(locationsData) ? locationsData : []);
                 setFormData(mapUserToForm(userData));
             } catch (err) {
                 console.error("Fout bij laden gebruiker:", err);
@@ -166,6 +180,48 @@ export default function UserDetailPage() {
         }
     };
 
+    const handleCompanyChange = (event) => {
+        const companyName = event.target.value;
+        const normalizedName = companyName.trim().toLocaleLowerCase("nl-NL");
+        const selectedCompany = companies.find(
+            (company) =>
+                company.name?.trim().toLocaleLowerCase("nl-NL") === normalizedName,
+        );
+
+        setFormData((prev) => ({
+            ...prev,
+            companyId: selectedCompany?.id ?? null,
+            companyName,
+            locationRoles:
+                prev.companyId === (selectedCompany?.id ?? null)
+                    ? prev.locationRoles
+                    : prev.locationRoles.filter((assignment) => assignment.role !== "STUDENT"),
+        }));
+    };
+
+    const handleStudentLocationToggle = (locationId) => {
+        setFormData((prev) => {
+            const hasStudentAssignment = prev.locationRoles.some(
+                (assignment) =>
+                    Number(assignment.locationId) === Number(locationId) &&
+                    assignment.role === "STUDENT",
+            );
+
+            return {
+                ...prev,
+                locationRoles: hasStudentAssignment
+                    ? prev.locationRoles.filter(
+                        (assignment) =>
+                            !(
+                                Number(assignment.locationId) === Number(locationId) &&
+                                assignment.role === "STUDENT"
+                            ),
+                    )
+                    : [...prev.locationRoles, { locationId, role: "STUDENT" }],
+            };
+        });
+    };
+
     const handlePrivacyExport = async () => {
         try {
             setPrivacyLoading(true);
@@ -245,6 +301,19 @@ export default function UserDetailPage() {
     const isAnonymized = user.email === `deleted+${user.id}@privacy.invalid`;
 
     const statusLabel = formatStatusLabel(getStatusLabel(user));
+    const userLocationNames = [...new Set(
+        (user.locationRoles ?? [])
+            .map((assignment) => assignment.locationName)
+            .filter(Boolean),
+    )].join(", ");
+    const companyLocations = formData.companyId
+        ? locations.filter((location) =>
+            (location.companyLocations ?? []).some((relation) => {
+                const relationCompanyId = relation.company?.id ?? relation.companyId;
+                return Number(relationCompanyId) === Number(formData.companyId) && relation.active !== false;
+            }),
+        )
+        : [];
 
     return (
         <section className="um-page">
@@ -414,6 +483,7 @@ export default function UserDetailPage() {
                             <DetailRow label="Telefoonnummer" value={user.phoneNumber} />
                             <DetailRow label="Geboortedatum" value={user.dateOfBirth} />
                             <DetailRow label="Bedrijfsnaam" value={user.companyName} />
+                            <DetailRow label="Vestiging(en)" value={userLocationNames} />
                             <DetailRow label="Functie" value={user.functionTitle} />
                             <DetailRow label="NIBHV-registratienummer" value={user.nibhvNummer} />
                             <DetailRow label="Oranje Kruis-registratienummer" value={user.oranjeKruisNummer} />
@@ -500,10 +570,59 @@ export default function UserDetailPage() {
                                 <input
                                     id="companyName"
                                     name="companyName"
+                                    list="user-company-options"
                                     value={formData.companyName}
-                                    onChange={handleChange}
+                                    onChange={handleCompanyChange}
+                                    placeholder="Zoek op bedrijfsnaam"
+                                    autoComplete="off"
                                 />
+                                <datalist id="user-company-options">
+                                    {companies.map((company) => (
+                                        <option key={company.id} value={company.name} />
+                                    ))}
+                                </datalist>
                             </div>
+
+                            {formData.companyId && (
+                                <div className="um-form__field um-form__field--full">
+                                    <span className="um-form__label">Vestiging(en)</span>
+                                    {companyLocations.length > 0 ? (
+                                        <div className="um-location-grid">
+                                            {companyLocations.map((location) => {
+                                                const selected = formData.locationRoles.some(
+                                                    (assignment) =>
+                                                        Number(assignment.locationId) === Number(location.id) &&
+                                                        assignment.role === "STUDENT",
+                                                );
+
+                                                return (
+                                                    <label
+                                                        key={location.id}
+                                                        className={`um-option-card um-option-card--location${selected ? " is-selected" : ""}`}
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selected}
+                                                            onChange={() => handleStudentLocationToggle(location.id)}
+                                                        />
+                                                        <span>
+                                                            <strong>{location.locationName}</strong>
+                                                            <small>{[location.address, location.city].filter(Boolean).join(", ")}</small>
+                                                        </span>
+                                                    </label>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <p className="um-field-hint">
+                                            Aan dit bedrijf zijn nog geen actieve vestigingen gekoppeld.
+                                        </p>
+                                    )}
+                                    <small className="um-field-hint">
+                                        Meerdere vestigingen selecteren is mogelijk.
+                                    </small>
+                                </div>
+                            )}
 
                             <div className="um-form__field">
                                 <label htmlFor="functionTitle">Functie</label>
@@ -546,8 +665,8 @@ export default function UserDetailPage() {
                             </div>
                         </div>
 
-                        <div className="um-checkbox-group">
-                            <label className="um-checkbox">
+                        <div className="um-account-options">
+                            <label className={`um-option-card${formData.enabled ? " is-selected" : ""}`}>
                                 <input
                                     type="checkbox"
                                     name="enabled"
@@ -557,7 +676,7 @@ export default function UserDetailPage() {
                                 Ingeschakeld
                             </label>
 
-                            <label className="um-checkbox">
+                            <label className={`um-option-card${formData.accountNonLocked ? " is-selected" : ""}`}>
                                 <input
                                     type="checkbox"
                                     name="accountNonLocked"
@@ -567,7 +686,7 @@ export default function UserDetailPage() {
                                 Account niet vergrendeld
                             </label>
 
-                            <label className="um-checkbox">
+                            <label className={`um-option-card${formData.mustChangePassword ? " is-selected" : ""}`}>
                                 <input
                                     type="checkbox"
                                     name="mustChangePassword"
@@ -580,18 +699,26 @@ export default function UserDetailPage() {
 
                         <div className="um-role-section">
                             <h2>Globale rollen</h2>
+                            <p>Selecteer één of meerdere rollen voor deze gebruiker.</p>
 
                             <div className="um-role-grid">
-                                {roles.map((role) => (
-                                    <label key={role} className="um-checkbox">
+                                {roles.map((role) => {
+                                    const selected = formData.globalRoles.includes(role);
+
+                                    return (
+                                    <label
+                                        key={role}
+                                        className={`um-option-card um-option-card--role${selected ? " is-selected" : ""}`}
+                                    >
                                         <input
                                             type="checkbox"
-                                            checked={formData.globalRoles.includes(role)}
+                                            checked={selected}
                                             onChange={() => handleRoleToggle(role)}
                                         />
-                                        {formatRoleLabel(role)}
+                                        <span>{formatRoleLabel(role)}</span>
                                     </label>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
 
