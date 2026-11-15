@@ -135,7 +135,6 @@ export default function CreateUserModal({ onClose, onCreated }) {
                                 onChange={handleChange}
                                 required
                             />
-                            <small>Dit e-mailadres moet uniek zijn.</small>
                         </div>
 
                         <div className="um-form__field">

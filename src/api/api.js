@@ -79,6 +79,7 @@ function getFieldErrors(error) {
 
     return (
         data?.fieldErrors ||
+        data?.validationErrors ||
         data?.errors ||
         data?.violations ||
         null
