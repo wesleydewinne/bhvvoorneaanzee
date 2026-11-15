@@ -301,6 +301,7 @@
 }
 .course-modules > .course-shell {
   position: relative;
+  width: min(1560px, calc(100% - 40px));
 }
 .course-heading {
   display: flex;
@@ -327,15 +328,9 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
-@media (min-width: 1100px) {
+@media (min-width: 1350px) {
   .course-module-grid--three {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .course-module-grid--three article {
-    padding-inline: 30px;
-  }
-  .course-module-grid--three h3 {
-    font-size: 24px;
   }
 }
 .course-module-grid article {
