@@ -229,7 +229,11 @@ export default function BhvTrainingDetailPage({ training }) {
               instructeur.
             </p>
           </div>
-          <div className="course-module-grid">
+          <div
+            className={`course-module-grid${
+              training.modules.length >= 3 ? " course-module-grid--three" : ""
+            }`}
+          >
             {training.modules.map((module, index) => (
               <article key={module.title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>

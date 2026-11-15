@@ -294,12 +294,12 @@ export const bhvTrainingData = {
     label: "BHV Ritme · verspreid door het jaar",
     title: "BHV Ritme",
     headline: "BHV Ritme: doorlopende BHV-training op locatie",
-    lead: "BHV Ritme is geen losse training, maar een doorlopend programma waarbij BHV’ers twee of drie keer per jaar praktijkgericht oefenen op hun eigen werklocatie.",
+    lead: "BHV Ritme is geen losse training, maar een doorlopend programma waarbij BHV’ers twee, drie of vier keer per jaar praktijkgericht oefenen op hun eigen werklocatie.",
     image: rhythmImage,
     priceEndpoint: null,
     facts: [
       ["Voor wie", "BHV-teams met een geldige basis"],
-      ["Ritme", "2 of 3 momenten per jaar"],
+      ["Ritme", "2, 3 of 4 momenten per jaar"],
       ["Vorm", "Incompany en scenario-gericht"],
       ["Groep", "Maximaal 10 deelnemers"],
     ],
@@ -351,6 +351,17 @@ export const bhvTrainingData = {
           "Geschikt voor: organisaties die BHV structureel en volledig willen onderhouden",
         ],
       },
+      {
+        title: "Ritme 4 · Vier trainingsmomenten",
+        text: "Bij BHV Ritme 4 oefenen BHV’ers ieder kwartaal. De BHV-herhaling, LOTUS-scenariotraining en ontruimingsoefening worden aangevuld met een integrale scenariotraining waarin meerdere BHV-taken samenkomen.",
+        items: [
+          "Moment 1: BHV-herhaling van circa 3,5 uur",
+          "Moment 2: scenariotraining met een LOTUS-slachtoffer",
+          "Moment 3: ontruimingsoefening op de eigen werklocatie",
+          "Moment 4: integrale scenariotraining met meerdere BHV-onderdelen",
+          "Geschikt voor: organisaties die ieder kwartaal structureel willen oefenen",
+        ],
+      },
     ],
     steps: [
       [
@@ -361,7 +372,7 @@ export const bhvTrainingData = {
       [
         "02",
         "Jaarplanning samenstellen",
-        "We verdelen de relevante BHV-onderwerpen over twee of drie trainingsmomenten gedurende het jaar.",
+        "We verdelen de relevante BHV-onderwerpen over twee, drie of vier trainingsmomenten gedurende het jaar.",
       ],
       [
         "03",
@@ -399,15 +410,15 @@ export const bhvTrainingData = {
     faqs: [
       [
         "Wat is BHV Ritme?",
-        "BHV Ritme is een doorlopend BHV-trainingsprogramma waarbij BHV’ers twee of drie keer per jaar een kortere praktijktraining volgen. De onderwerpen worden verspreid over het jaar, zodat kennis en vaardigheden regelmatig worden onderhouden.",
+        "BHV Ritme is een doorlopend BHV-trainingsprogramma waarbij BHV’ers twee, drie of vier keer per jaar een kortere praktijktraining volgen. De onderwerpen worden verspreid over het jaar, zodat kennis en vaardigheden regelmatig worden onderhouden.",
       ],
       [
         "Is BHV Ritme een BHV-basiscursus?",
         "Nee. BHV Ritme is bedoeld voor medewerkers die al een BHV-basiscursus hebben afgerond. De leerlijn onderhoudt en verdiept hun bestaande kennis en praktische vaardigheden.",
       ],
       [
-        "Wat is het verschil tussen BHV Ritme 2 en BHV Ritme 3?",
-        "BHV Ritme 2 bestaat uit een BHV-herhaling en één extra praktijkmoment naar keuze: een LOTUS-scenariotraining of een ontruimingsoefening. Bij BHV Ritme 3 worden alle drie de onderdelen gedurende het jaar uitgevoerd.",
+        "Wat is het verschil tussen BHV Ritme 2, 3 en 4?",
+        "BHV Ritme 2 bestaat uit een BHV-herhaling en één extra praktijkmoment naar keuze: een LOTUS-scenariotraining of een ontruimingsoefening. Bij BHV Ritme 3 worden de BHV-herhaling, LOTUS-scenariotraining en ontruimingsoefening uitgevoerd. BHV Ritme 4 voegt daar een vierde, integrale scenariotraining aan toe waarin meerdere BHV-taken, communicatie en besluitvorming samenkomen.",
       ],
       [
         "Wat houdt de BHV-herhaling van 3,5 uur in?",
