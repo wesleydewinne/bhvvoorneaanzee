@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { CheckCheck, Download, Mail, Save } from "lucide-react";
+import { CheckCheck, Download, Mail, Save, Trash2 } from "lucide-react";
 import { useAuthContext } from "@/features/auth/context/AuthContext.jsx";
 import QuotePdfForm from "../components/QuotePdfForm.jsx";
 import QuoteAcceptanceEvidence from "../components/QuoteAcceptanceEvidence.jsx";
@@ -20,6 +20,7 @@ export default function AdminQuoteDetailPage() {
   const [error, setError] = useState("");
   const [downloading, setDownloading] = useState(false);
   const [sending, setSending] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [completing, setCompleting] = useState(false);
   const [showSendModal, setShowSendModal] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
@@ -89,6 +90,22 @@ export default function AdminQuoteDetailPage() {
       setCompleting(false);
     }
   };
+  const remove = async () => {
+    const confirmed = window.confirm(
+      `Weet je zeker dat je offerte ${detail.quote.quoteNumber} wilt verwijderen? Dit kan niet ongedaan worden gemaakt.`,
+    );
+    if (!confirmed) return;
+
+    setDeleting(true);
+    setError("");
+    try {
+      await quoteService.deleteQuote(id);
+      navigate("/admin/offertes", { replace: true });
+    } catch (reason) {
+      setError(reason.message || "De offerte kon niet worden verwijderd.");
+      setDeleting(false);
+    }
+  };
   if (error && !detail)
     return (
       <main className="quote-admin-page">
@@ -114,6 +131,16 @@ export default function AdminQuoteDetailPage() {
           <Link className="quote-secondary-button" to="/admin/offertes">
             Terug
           </Link>
+          {detail.status === "DRAFT" && (
+            <button
+              className="quote-secondary-button quote-danger-button"
+              type="button"
+              onClick={remove}
+              disabled={deleting}
+            >
+              <Trash2 /> {deleting ? "Verwijderen..." : "Verwijderen"}
+            </button>
+          )}
           <button
             className="quote-primary-button"
             onClick={download}
