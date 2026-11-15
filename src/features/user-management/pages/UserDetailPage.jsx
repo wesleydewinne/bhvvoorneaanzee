@@ -492,31 +492,38 @@ export default function UserDetailPage() {
                 )}
 
                 {!editing ? (
-                    <div className="um-panel">
-                        <div className="um-detail-grid">
+                    <div className="um-detail-sections">
+                        <section className="um-detail-card">
+                            <header className="um-detail-card__header">
+                                <span>Profiel</span>
+                                <h2>Persoonsgegevens</h2>
+                                <p>Contact- en certificeringsgegevens van deze gebruiker.</p>
+                            </header>
+                            <div className="um-detail-list">
                             <DetailRow label="Voornaam" value={user.firstName} />
                             <DetailRow label="Achternaam" value={user.lastName} />
                             <DetailRow label="E-mail" value={user.email} />
                             <DetailRow label="Telefoonnummer" value={user.phoneNumber} />
                             <DetailRow label="Geboortedatum" value={user.dateOfBirth} />
-                            <DetailRow label="Bedrijfsnaam" value={user.companyName} />
-                            <DetailRow label="Vestiging(en)" value={userLocationNames} />
                             <DetailRow label="Functie" value={user.functionTitle} />
                             <DetailRow label="NIBHV-registratienummer" value={user.nibhvNummer} />
                             <DetailRow label="Oranje Kruis-registratienummer" value={user.oranjeKruisNummer} />
-                            <DetailRow label="Status" value={statusLabel} />
-                            <DetailRow
-                                label="Ingeschakeld"
-                                value={user.enabled ? "Ja" : "Nee"}
-                            />
-                            <DetailRow
-                                label="Account niet vergrendeld"
-                                value={user.accountNonLocked ? "Ja" : "Nee"}
-                            />
-                            <DetailRow
-                                label="Moet wachtwoord wijzigen"
-                                value={user.mustChangePassword ? "Ja" : "Nee"}
-                            />
+                            </div>
+                        </section>
+
+                        <section className="um-detail-card">
+                            <header className="um-detail-card__header um-detail-card__header--access">
+                                <span>Dashboard</span>
+                                <h2>Organisatie &amp; toegang</h2>
+                                <p>Bedrijf, vestigingen en rechten binnen het platform.</p>
+                            </header>
+                            <div className="um-detail-list">
+                            <DetailRow label="Bedrijfsnaam" value={user.companyName} />
+                            <DetailRow label="Vestiging(en)" value={userLocationNames} />
+                            <StatusRow label="Status" value={statusLabel} positive={statusLabel === "ACTIVE"} />
+                            <StatusRow label="Ingeschakeld" value={user.enabled ? "Ja" : "Nee"} positive={user.enabled} />
+                            <StatusRow label="Account ontgrendeld" value={user.accountNonLocked ? "Ja" : "Nee"} positive={user.accountNonLocked} />
+                            <StatusRow label="Wachtwoord wijzigen" value={user.mustChangePassword ? "Verplicht" : "Niet verplicht"} positive={!user.mustChangePassword} />
                             <DetailRow
                                 label="Globale rollen"
                                 value={
@@ -525,8 +532,9 @@ export default function UserDetailPage() {
                                         : "-"
                                 }
                             />
+                            </div>
+                        </section>
                         </div>
-                    </div>
                 ) : (
                     <form className="um-panel um-form" onSubmit={handleSubmit}>
                         <div className="um-form__grid">
@@ -806,6 +814,17 @@ function mapUserToForm(user) {
         locationRoles: Array.isArray(user?.locationRoles) ? user.locationRoles : [],
         status: user?.status ?? "",
     };
+}
+
+function StatusRow({ label, value, positive }) {
+    return (
+        <div className="um-detail-row um-detail-row--status">
+            <span className="um-detail-row__label">{label}</span>
+            <span className={`um-status-pill ${positive ? "is-positive" : "is-warning"}`}>
+                {value}
+            </span>
+        </div>
+    );
 }
 
 function PrivacyCount({ label, value }) {
