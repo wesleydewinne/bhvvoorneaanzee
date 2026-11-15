@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run generate:llms",
+    "prebuild": "npm run generate:llms && npm run generate:sitemap",
     "build": "vite build",
     "generate:llms": "node scripts/generate-llms-full.mjs",
+    "generate:sitemap": "node generate-sitemap.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

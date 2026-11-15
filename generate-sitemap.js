@@ -24,7 +24,7 @@ const sitemapRoutes = [
     "/ploegleider",
     "/ploegleider-basis-2-daagse",
     "/ploegleider-basis-1-dag-met-elearning",
-    "/ploegleider-herhaling-halve-dag",
+    "/ploegleider-herhaling-1-dag",
     "/ontruimingsoefening",
     "/ontruimingsoefening-fase0",
     "/ontruimingsoefening-fase1",
@@ -46,6 +46,7 @@ const sitemapRoutes = [
     "/maatwerk",
     "/modulaire-trainen",
     "/modulair-overzicht",
+    "/regio",
     "/rotterdam-rijnmond",
     "/zeeland",
     "/den-haag-westland",
@@ -53,10 +54,20 @@ const sitemapRoutes = [
     "/veiligheidscheck",
     "/veelgestelde-vragen",
     "/offerte",
+    "/algemene-voorwaarden",
     "/over-ons",
     "/bedrijfsgegevens",
     "/contact",
 ];
+
+const blogPostsDirectory = path.resolve(__dirname, "src", "features", "blog", "posts");
+const blogRoutes = fs.readdirSync(blogPostsDirectory)
+    .filter((fileName) => fileName.endsWith(".js"))
+    .map((fileName) => fs.readFileSync(path.join(blogPostsDirectory, fileName), "utf8"))
+    .map((source) => source.match(/\bslug\s*:\s*["']([^"']+)["']/)?.[1])
+    .filter(Boolean)
+    .map((slug) => `/blog/${slug}`)
+    .sort();
 
 const priorityByPath = {
     "/": 1.0,
@@ -81,10 +92,12 @@ const priorityByPath = {
     "/maatwerk": 0.7,
     "/modulaire-trainen": 0.6,
     "/modulair-overzicht": 0.6,
+    "/regio": 0.7,
     "/rotterdam-rijnmond": 0.6,
     "/zeeland": 0.6,
     "/den-haag-westland": 0.6,
     "/blog": 0.7,
+    "/algemene-voorwaarden": 0.4,
     "/veiligheidscheck": 0.6,
     "/veelgestelde-vragen": 0.6,
     "/over-ons": 0.6,
@@ -94,16 +107,16 @@ const priorityByPath = {
 
 async function generateSitemap() {
     const outputPath = path.resolve(__dirname, "public", "sitemap.xml");
-    const lastmod = new Date().toISOString();
-    const urls = sitemapRoutes.map((routePath) => {
+    const routes = [...new Set([...sitemapRoutes, ...blogRoutes])];
+    const urls = routes.map((routePath) => {
         const loc = routePath === "/" ? hostname : `${hostname}${routePath}`;
-        const changefreq = routePath === "/blog" ? "weekly" : "monthly";
-        const priority = priorityByPath[routePath] ?? 0.8;
+        const isBlogRoute = routePath === "/blog" || routePath.startsWith("/blog/");
+        const changefreq = isBlogRoute ? "weekly" : "monthly";
+        const priority = priorityByPath[routePath] ?? (isBlogRoute ? 0.6 : 0.8);
 
         return [
             "  <url>",
             `    <loc>${loc}</loc>`,
-            `    <lastmod>${lastmod}</lastmod>`,
             `    <changefreq>${changefreq}</changefreq>`,
             `    <priority>${priority.toFixed(1)}</priority>`,
             "  </url>",
